@@ -130,7 +130,7 @@ figcaption {
 
 .RightPanel {
     width: 70%;
-    height: 100dvh;
+    height: 100svh;
     display: flex;
     flex-direction: column;
 }
