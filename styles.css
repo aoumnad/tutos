@@ -1,0 +1,361 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    overflow-y: hidden;
+}
+body a{
+    text-decoration: none;
+    color: black;
+}
+.HyperLink{
+    font-style: italic;
+    color: blue;
+}
+body a:hover {
+    background-color: #55a3a3;
+}
+body ul, ol{
+    margin-left: 2rem;
+}
+body li {
+    margin-top: 1ch;
+} 
+
+.li_niv1 {
+    margin-top: 1rem;
+}
+.sanspuce {
+    list-style-type: none;
+}
+
+header{
+    width: 100vw;
+}
+header h1 {
+    background-color: #55a3a3;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: calc(1rem + 1.5vw);
+    color: rgb(113, 26, 10);
+    padding: 1rem;
+}
+header .logo{
+    float: left; 
+    margin-top: 10px;
+}
+
+img{
+    max-width: 100%;
+}
+
+strong {
+    font-style: italic;
+}
+
+.PosterPageContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+.AllPostersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 10px;
+    background-color: aquamarine;
+    overflow-y: auto;
+}
+
+
+figure {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    border: medium solid #813333;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.FigImgContainer {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FigImgContainer img {
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+figcaption {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    color:#813333;
+  }
+
+.TwoPanPageContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: hidden;
+}
+
+.LeftPanel {
+    /* c'est un id pour faciliter son accès dans javascript */
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.RightPanel {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.LeftPanelHeader {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(47, 132, 104);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.SideSummary {
+    flex: 1;
+    padding-left: 2ch;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    background-color: rgb(194, 242, 226);
+    overflow-y: auto;
+}
+.SideSummary a {
+    display: block;   
+}
+
+.SideSummary h3 {
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+.SideSummary h4 {
+    margin-top: 1ch;
+    margin-left: 2ch;
+    font-size: 1rem;
+}
+
+.RightPanelHeader {
+    height: 50px;
+    width: 100%;
+    background-color: darkcyan;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Burger {
+    display: none;
+}
+
+.RightPanelHeader h1 {
+    font-style: italic;
+    font-size: calc(0.5rem + 1.5vw);
+    color: white;
+}
+
+.Content {
+    flex: 1;
+    background-color: lightcyan;
+    overflow-y: auto;
+    /* padding: 0 1rem; */
+    line-height: 1.5;
+}
+
+.Content h2 {
+    margin-top: 1rem;
+    padding: 8px ;
+    font-style: italic;
+    color: brown;
+    background-color:rgb(136, 189, 190);
+}
+.Content h3 {
+    margin-top: 1ch;
+    padding: 8px 8px 0px 8px;
+    font-style: italic;
+    color: rgb(126, 28, 28);
+}
+
+.Content p {
+    margin: 1ch 1rem;
+    text-align: justify;
+}
+
+.Content em{
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-weight: bold;
+    color: tomato;
+}
+
+.Enhanced{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: tomato;
+    font-style: italic;
+}
+.EnhancedPlus{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    color:brown;
+    font-style: italic;
+}
+
+.Float_R{
+    float: right;
+    margin-left: 1rem;
+}
+
+.CursorPointer {
+    cursor: pointer;
+}
+
+.CodeAreaContainer {
+    display: flex;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    height: 400px;
+    /* width: 100%; */
+    max-width: 800px;
+}
+.CodeAreaHeader {
+    display: flex;
+    border-radius:10px 10px 0 0;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(139, 139, 200);
+    align-items: center;
+    padding-left: 10px;
+}
+.CodeArea {  
+    flex: 1;
+    font-size: medium;  
+    color: white;
+    background-color: black;  
+    padding-left: 1ch;  
+    font-family: monospace;  
+    font-style: italic;
+    resize: none;
+    border-radius: 0 0 10px 10px;
+}
+.PreCode{
+    color: white;
+    background-color: black; 
+    font-family: monospace;
+    font-style: italic;
+    font-size: 1rem;
+    padding: 1ch;
+    margin-top: 1ch;
+}
+.IndentAll{
+    margin-left: 2rem;
+}
+
+
+.CopyBtn {
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Bold{
+    font-weight: bold;
+}
+.BoldItal{
+    font-weight: bold;
+    font-style: italic;
+}
+.CodeLine{
+    font-family:  monospace;
+    /* 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-size: 1rem;
+    font-weight: bold;
+    color: blue;
+    font-style: italic;
+}
+
+.BlocCenter {
+    display: block;
+    margin: auto;
+}
+
+.InlineCenter{
+    text-align: center !important ; 
+}
+.w300 {
+    width: 300px;
+}
+.w400 {
+    width: 400px;
+}
+
+.encadre {
+    border: 2px solid black; /* Changez la couleur et l'épaisseur de la bordure si nécessaire */
+    padding: 5px; /* Ajoutez de l'espace entre le texte et la bordure */
+    display: inline-block; /* Assurez-vous que le texte soit encadré de manière appropriée */
+    border-radius: 5px; /* Optionnel : arrondir les coins */
+}
+
+@media screen and (max-width: 768px) {
+
+    .RightPanel {
+        width: 100%;
+    }
+
+    .Burger {
+        display: block;
+    }
+
+    .LeftPanel {
+        position: fixed;
+        top: 0%;
+        left: -100%;
+        width: 95%;
+        transition: 0.5s;        
+    }
+
+    .LeftPanel.visible{
+        left: 0;
+    }
+    .Float_R {
+        float: none;
+        display: block;
+        margin: auto;
+    }
+}

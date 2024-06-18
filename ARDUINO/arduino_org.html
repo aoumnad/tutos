@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Arduino</title>
+  <style type="text/css">
+    .entete {
+      background-color: #336666;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      border-top-width: medium;
+      border-right-width: medium;
+      border-bottom-width: medium;
+      border-left-width: medium;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #cccccc;
+      border-right-color: #cccccc;
+      border-bottom-color: #cccccc;
+      border-left-color: #cccccc;
+      font-family: Calibri;
+      font-size: 1.5vmax;
+      font-weight: bold;
+      font-style: italic;
+      color: yellow;
+      text-align: center;
+      height: auto;
+      width: 27%;
+      position: fixed;
+      line-height: normal;
+    }
+
+    .navig {
+      background-color: #99ffff;
+      width: 27%;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      border-top-width: medium;
+      border-right-width: medium;
+      border-bottom-width: medium;
+      border-left-width: medium;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #cccccc;
+      border-right-color: #cccccc;
+      border-bottom-color: #cccccc;
+      border-left-color: #cccccc;
+      overflow: auto;
+      position: fixed;
+      top: 8ch;
+      height: 87%;
+    }
+
+    .contenu {
+      background-color: #ccccff;
+      width: 71%;
+      height: 97%;
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      border-top-width: medium;
+      border-right-width: medium;
+      border-bottom-width: medium;
+      border-left-width: medium;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #cccccc;
+      border-right-color: #cccccc;
+      border-bottom-color: #cccccc;
+      border-left-color: #cccccc;
+      overflow: auto;
+      position: fixed;
+      left: 28%;
+      font-family: Calibri;
+      font-size: large;
+      padding-right: 1ch;
+      text-align: justify;
+      font-style: italic;
+    }
+
+    .rubrique {
+      font-family: Calibri;
+      background-color: #ffffcc;
+      width: auto;
+      height: auto;
+      margin-top: 5px;
+      padding-left: 4px;
+      border-top-width: 3px;
+      border-right-width: 3px;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #000099;
+      border-right-color: #000099;
+      border-bottom-color: #000099;
+      border-left-color: #000099;
+      -webkit-border-radius: 7px 7px 7px 7px;
+      border-radius: 7px 7px 7px 7px;
+      font-weight: bold;
+      font-style: italic;
+      margin-left: 2px;
+      font-size: large;
+      padding-top: 0px;
+      color: #cc0000;
+      margin-right: 5px;
+    }
+
+    .Srubrique {
+      font-family: Calibri;
+      background-color: #ffffcc;
+      width: auto;
+      height: auto;
+      margin-top: 5px;
+      padding-left: 4px;
+      border-top-width: 3px;
+      border-right-width: 3px;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #000099;
+      border-right-color: #000099;
+      border-bottom-color: #000099;
+      border-left-color: #000099;
+      -webkit-border-radius: 7px 7px 7px 7px;
+      border-radius: 7px 7px 7px 7px;
+      font-weight: bold;
+      font-style: italic;
+      margin-left: 23px;
+      font-size: large;
+      padding-top: 0px;
+      color: #cc0000;
+      margin-right: 5px;
+    }
+
+    .titre {
+      font-family: "Arial Rounded MT";
+      font-size: x-large;
+      font-weight: bold;
+      text-decoration: underline;
+      color: #cc0000;
+      font-style: italic;
+    }
+
+    .description {
+      margin-top: 0.5ch;
+      margin-right: 1ch;
+      margin-bottom: 0ch;
+      margin-left: 2ch;
+      font-style: italic;
+      font-family: Calibri;
+      font-size: large;
+      text-align: justify;
+    }
+
+    .description2 {
+      margin-top: 0ch;
+      margin-right: 4ch;
+      margin-bottom: 0ch;
+      margin-left: 5.5ch;
+      font-style: italic;
+      font-family: Calibri;
+      font-size: large;
+      text-align: justify;
+    }
+
+    .code {
+      font-size: medium;
+      background-color: #ccffff;
+      padding-left: 1ch;
+      margin-left: 3ch;
+      margin-right: 2ch;
+      font-family: Calibri;
+      font-style: italic;
+    }
+
+    .code2 {
+      font-size: medium;
+      background-color: #ccffff;
+      padding-left: 1ch;
+      margin-left: 6ch;
+      margin-right: 2ch;
+      font-family: Calibri;
+      font-style: italic;
+    }
+
+    .PP {
+      font-weight: bold;
+      font-size: x-large;
+      margin-left: 2ch;
+      color: #333399;
+      font-style: italic;
+      margin-bottom: 0.5ch;
+    }
+
+    .PS {
+      font-weight: bold;
+      margin-left: 5ch;
+    }
+
+    .PS2 {
+      margin-left: 5.5ch;
+    }
+
+    .visible {
+      font-weight: bold;
+      color: #990000;
+      font-style: italic;
+    }
+
+    .LibFonc {
+      font-weight: bold;
+      color: #990000;
+      font-style: italic;
+      margin-left: 2ch;
+      margin-bottom: 0ch;
+    }
+
+    .Float_R {
+      float: right;
+      margin-left: 1ch;
+    }
+
+    .R_2ch {
+      margin-left: 2ch;
+    }
+
+    .R_3ch {
+      margin-left: 3ch;
+    }
+
+    .R_5ch {
+      margin-left: 5ch;
+    }
+
+    .S_Titre {
+      font-weight: bold;
+      font-style: italic;
+      color: #000099;
+      margin-left: 1ch;
+      font-size: x-large;
+      margin-bottom: 0ch;
+    }
+
+    .P1 {
+      margin-left: 1ch;
+      margin-top: 0ch;
+      margin-bottom: 0ch;
+    }
+
+    .P2 {
+      margin-left: 4ch;
+      margin-top: 0ch;
+      margin-bottom: 0ch;
+    }
+
+    .P3 {
+      margin-left: 7ch;
+      margin-top: 0ch;
+      margin-bottom: 0ch;
+    }
+
+    .P0 {
+      margin-top: 0ch;
+      margin-bottom: 0ch;
+      margin-left: 0ch;
+    }
+
+    .indice {
+      vertical-align: bottom;
+      font-size: 60%;
+    }
+  </style>
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C" name="keywords">
+</head>
+
+<body
+  style="                                                                                                       background-color: silver;">
+  <div class="entete">Quelques petites bricoles<br>
+    sur Arduino ou similaire<br>
+  </div>
+  <div class="navig"> <a href="#INTRO">
+      <div class="rubrique"> Introduction</div>
+    </a> <a href="#DIGINOUT">
+      <div class="rubrique">Entrée/Sortie Numérique</div>
+    </a> <a href="#DIGOUT">
+      <div class="Srubrique"> Contrôler une sortie Numérique</div>
+    </a> <a href="#PWM">
+      <div class="Srubrique"> Contrôler une sortie PWM</div>
+    </a> <a href="#DIGIN">
+      <div class="Srubrique"> Tester une entrée Numérique</div>
+    </a> <a href="#REBONDS">
+      <div class="Srubrique"> Le problème des rebonds</div>
+    </a> <a href="#DIRECTPORTS">
+      <div class="Srubrique">Accès direct au ports d'E/S</div>
+    </a> <a href="#LCD">
+      <div class="rubrique">Contrôler un afficheur LCD</div>
+    </a> <a href="#ANALOG">
+      <div class="rubrique"> Mesurer une entrée Analogique</div>
+    </a> <a href="#SERIAL">
+      <div class="rubrique"> Communication Série&nbsp; (UART)</div>
+    </a> <a href="#I2C">
+      <div class="rubrique"> Interface de communication I2C</div>
+    </a> <a href="#I2C_ENBREF">
+      <div class="Srubrique"> Bref rappel du standard I2C</div>
+    </a><a href="#I2C_ARDUINO">
+      <div class="Srubrique"> I2C sur ARDUINO</div>
+    </a><a href="#LM75">
+      <div class="Srubrique"> Le capteur de température LM75A</div>
+    </a><a href="#SHT31">
+      <div class="Srubrique"> Capteur SHT31 température/humidité</div>
+    </a><a href="#CCLOAD">
+      <div class="rubrique"> Commander une charge CC</div>
+    </a><a href="#CINDUCTIV">
+      <div class="rubrique"> Commander une charge inductive</div>
+    </a><a href="#RELAIS">
+      <div class="rubrique"> Commander une charge alimentée par le secteur</div>
+    </a> <a href="#HBRIDGE">
+      <div class="rubrique"> Commander un moteur CC par pont en H</div>
+    </a> <a href="#CINDUCTIV">
+      <div class="rubrique"> x</div>
+    </a> <br>
+    <div style="text-align: center;"><a href="../index.html"><img alt="" src="../images/homeClick.gif"></a><br>
+    </div>
+    <br>
+    <br>
+    .
+  </div>
+  <div class="contenu"> <span class="titre"><a id="INTRO" name="INTRO"></a>Introduction </span><br>
+    <div class="description"> Arduino est une petite carte de prototypage dotée d'un microcontrôleur ATMEGA et une
+      interface USB-Série qui permet de la connecter à un port USB du PC pour&nbsp; téléverser (upload) les programmes
+      dans l'ATMEGA. La carte possède des connecteurs permettant d'accéder facilement aux E/S du Microcontrôleur<br>
+      <br>
+    </div>
+    <div style="text-align: center;"><img alt=""
+        src="Arduino_uno.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img
+        style="width: 286px; height: 116px;" alt="" src="nano.png"></div>
+    <br>
+    <div class="description"> Il existe plusieurs types de cartes Arduino. <a style="font-weight: bold;"
+        href="https://core-electronics.com.au/tutorials/compare-arduino-boards.html">Cet article</a> les présente d'une
+      façon très complète et colorée. Je me permet de reprendre son tableau récapitulatif.</div>
+    <div style="text-align: center;"><img style="width: 914px; height: 539px;" alt=""
+        src="arduino-boards-comparison-table.jpg"><br>
+    </div>
+    <br>
+    <div class="description"> Les exemple de ce tutoriel seront testés sur le Arduino UNO dont les caractéristiques
+      sont:<br>
+      <br>
+    </div>
+    <span class="PP">∎ Processeur:&nbsp; Atmega 328 avec:</span><br>
+    <span class="PS2"><span class="fontstyle0">•&nbsp;</span> 32ko de mémoire programme (flash)<br>
+    </span><span class="PS2">•&nbsp; 2ko de mémoire de données (SRAM)</span><br>
+    <span class="PS2">•&nbsp; Horloge 16 Mhz</span><br>
+    <br>
+    <span class="PP">∎ Les Entrées Sorties:</span><br>
+    <span class="PS2"><span class="fontstyle0">•&nbsp;</span> 13 E/S numériques dont 6 peuvent fonctionner comme sorties
+      PWM (Pulse Width Modulation)<br>
+    </span><span class="PS2">•&nbsp; 6 entrées analogiques,</span><br>
+    <span class="PS2">•&nbsp; Un bus de communication Série asynchrone (UART)</span><br>
+    <span class="PS2">•&nbsp; Un Bus de communication synchrone I2C/SPI</span><br>
+    <br>
+    <span class="PP">∎&nbsp; Limitation de courant</span><br>
+    <span class="PS2">• Le courant max recommandée sur une sortie Arduino est 20mA. En aucun cas il ne doit dépasser 40
+      mA</span>. <br>
+    <span class="PS2">• Le courant max que toutes les sorties réunies peuvent fournir ne doit pas dépasser
+      200mA</span><br>
+    <span class="PS2">• Le courant max que toutes les sorties réunies peuvent recevoir ne doit pas dépasser
+      400mA</span><br>
+    <br>
+    <span class="PP">∎&nbsp; Logiciel</span><span class="titre"></span><br>
+    <div class="PS2"> Pour programmer l'Arduino, on dispose d'un environnement de développement intégré (IDE) constitué
+      essentiellement de:<br>
+      • Un éditeur de texte qui permet au programmeur de saisir son programme,<br>
+      • Un compilateur C adapté au microcontrôleur ATMEGA. Le compilateur permet de traduire le code source écrit en C
+      en un code&nbsp; exécutable constitué d'une suite de codes machine compréhensibles par le microcontrôleur
+      ATMEGA.<br>
+      • Une fois le programme compilé, l'IDE permet de d'envoyer (téléverser) le code exécutable dans la mémoire
+      programme de l'ATMEGA afin d'y être exécuté.</div>
+    <br>
+    <span class="PP">∎&nbsp; Télécharger et installer l'IDE Arduino</span><span class="titre"></span><br>
+    <div class="PS2"> L'IDE de programmation est gratuit, on peut le télécharger ici: <a style="font-weight: bold;"
+        href="https://www.arduino.cc/en/Main/Software">https://www.arduino.cc/en/Main/Software</a><br>
+      Il est disponible en deux versions, un installateur (.exe) ou une version zippée (.zip) qu'il suffit d'extraire
+      dans un dossier. Je crois que la version (.exe) est plus rapide à télécharger car elle moins volumineuse que la
+      version (.zip). Son installation ne pose pas de problème particulier.</div>
+    <br>
+    <span class="PP">∎&nbsp; Installation du driver de la carte Arduino</span><br>
+    <div class="PS2"> Quand on branche l'Arduino à un port USB du PC, l’installation du driver se fait automatiquement.
+      Si cette opération échoue pour une raison ou une autre,&nbsp; procéder comme suit pour installer le driver :<br>
+      •&nbsp;&nbsp;&nbsp; Ouvrir le gestionnaire de périphérique: clic droit sur ordinateur→ propriétés → Gestionnaire
+      de périphérique<br>
+      •&nbsp;&nbsp;&nbsp; Localiser l'équipement qui n'a pas de driver. Si vous avez des doutes, débrancher le câble
+      USB, c'est celui qui disparaît. Rebranchez le câble USB, il réapparaît<br>
+      •&nbsp;&nbsp;&nbsp; Clic droit dessus → mettre à jour le pilote → rechercher un pilote sur mon ordinateur →
+      Sélectionner le répertoire « drivers » dans le dossier d'installation de IDE → confirmer<br>
+      <br>
+      <img style="float: right;" alt="" src="usbserialport.png">Que l'installation se fasse automatiquement ou pas, il
+      est bon d'aller dans le gestionnaire de périphériques pour noter le numéro de port COM assigné par le driver. On
+      en aura besoin pour configurer l'IDE arduino. Noter que si on branche l'arduino sur un autre port USB, le numéro
+      de port COM affecté par le driver peut etre différent.<br>
+      <br>
+    </div>
+    <br>
+    <span class="PP">∎&nbsp; Configurer L'IDE Arduino</span><br>
+    <div class="PS2"> </div>
+    <br>
+    <div style="margin-left: 40px;"> La première fois qu'on Lance l'IDE, il faut faire une petite configuration qui
+      consiste à:</div>
+    <ul>
+      <li>&nbsp;Choisir la carte Arduino sur laquelle on travaille: outils → type de carte → sélectionner votre carte
+        dans la liste</li>
+    </ul>
+    <ul>
+      <li>Définir le port COM sur lequel est connecté l’arduino : outils → port → sélectionner le port COM. Si la
+        prochaine fois, vous branchez votre Arduino sur un autre port USB, le plus souvent, le driver assigne un port
+        COM différent, il faudra refaire cette étape.</li>
+    </ul>
+    <ul>
+      <li>Choisir un dossier pour les programmes (croquis) que vous allez écrire:</li>
+    </ul>
+    <ul>
+      <ul>
+        <li>&nbsp;Utilisez l'explorateur windows pour créer un dossier de votre choix</li>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li>&nbsp;Dans l'IDE Arduino: fichier → préférences → Sélectionnez votre dossier dans le cadre Emplacement du
+          carnet de croquis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → OK</li>
+      </ul>
+    </ul>
+    <p class="description"> <span style="font-weight: bold;">Voila, maintenant, on peut commencer à bidouiller<br>
+      </span></p>
+    <br>
+    <span class="titre"><a id="DIGINOUT" name="DIGINOUT"></a>Les Entrées/Sorties Numériques </span><br>
+    <div class="description"> </div>
+    <div class="description"> <br>
+      Pour utiliser une E/S numérique, il faut d'abord la configurer en <span class="visible">entrée </span>ou en <span
+        class="visible">sortie </span>à l'aide de la fonction <span class="visible">pinMode()</span>.<br>
+      Ensuite, on utilise la fonction <span class="visible">digitalRead()</span> pour lire l'état d'une entrée et <span
+        class="visible">digitalWrite()</span> pour fixer l'état d'une sortie</div>
+    <br>
+    <ul>
+      <li class="visible">pinMode(pin, state); </li>
+      <ul>
+        <li>Permet de configurer une E/S numérique en <strong>Entrée </strong>ou en <strong>Sortie</strong></li>
+        <li><span class="visible">pin</span>: numéro de l'E/S&nbsp; (type = Integer)</li>
+        <li><span class="visible">state</span>:&nbsp; <strong>INPUT </strong>ou 0 pour Entrée,&nbsp; <strong>OUTPUT
+          </strong>ou 1 pour Sortie</li>
+      </ul>
+    </ul>
+    <ul>
+      <li class="visible">digitalWrite(pin, state);</li>
+      <ul>
+        <li>Permet de forcer une sortie au niveau logique haut (5V) ou au niveau logique bas (0V)</li>
+        <li><span class="visible">pin</span>: numéro de l'E/S (int)</li>
+        <li><span class="visible">state</span>: <strong>HIGH </strong>ou 1 pour le niveau haut,&nbsp; 0 ou <strong>LOW
+          </strong>pour le niveau bas</li>
+      </ul>
+    </ul>
+    <ul>
+      <li class="visible">val = digitalRead(pin);</li>
+      <ul>
+        <li>Retourne (int) l'état logique d'une entrée numérique (0=LOW ou 1=HIGH)</li>
+        <li><span class="visible">pin</span>: numéro de l'entrée (int)</li>
+      </ul>
+    </ul>
+    <br>
+    <span class="titre"><a id="DIGOUT" name="DIGOUT"></a>Contrôler une sortie Numérique </span><br>
+    <div class="description"> </div>
+    <div class="description"> <img class="Float_R" alt="" src="LED.png">Le meilleur exemple pour illustrer la façon de
+      contrôler une sortie et le programme qui fait clignoter une LED. C'est le "Hello World" des bricoleurs. On va
+      écrire un petit programme pour faire clignoter la LED <span class="visible">(L)</span> présente sur la carte
+      Arduino. Cette LED est branchée sur la patte n° 13. Si vous préférez en brancher une autre, vous pouvez le faire
+      comme indiqué sur l'image ci-contre. 
+    </div>
+    <ul>
+      <li>Commencer un nouveau programme sur L'IDE Arduino. Copier-coller le programme ci-dessous;</li>
+      <li>Sauvegarder le programme&nbsp;<img alt="" src="enregistrer.png">&nbsp; dans votre dossier en prenant soin de
+        lui donner un nom significatif (éviter les noms du genre exemple1, exemple2 ...). l'IDE crée un dossier pour
+        chaque programme. C'est une bonne chose car la compilation crée plusieurs fichiers. Si on met tout dans le même
+        dossier, ça devient vite la pagaille.</li>
+      <li>Cliquer sur le bouton&nbsp;<img alt="" src="televerser.png">&nbsp; pour compiler et téléverser le programme
+        dans la mémoire programme(flash) du microcontrôleur</li>
+      <li>Admirer le travail</li>
+    </ul>
+    <div class="code"> /*<br>
+      &nbsp; Clignoter la LED branchée sur la sortie 13<br>
+      */<br>
+      <br>
+      // fonction de configuration<br>
+      void setup() {<br>
+      &nbsp;&nbsp; pinMode(13, OUTPUT);&nbsp; // configurer la broche 13 en sortie<br>
+      }<br>
+      <br>
+      // corp du programme qui se répète en boucle<br>
+      void loop() {<br>
+      &nbsp; digitalWrite(13, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+      &nbsp; delay(500);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // attendre 500ms
+      = 1/2 s<br>
+      &nbsp; digitalWrite(13, LOW);&nbsp;&nbsp;&nbsp; // éteindre la LED<br>
+      &nbsp; delay(500);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // attendre 500ms
+      = 1/2 s<br>
+      }
+    </div>
+    <br>
+    <br>
+    <span class="PP">Analyse du programme:</span><br>
+    <ul style="text-align: justify;">
+      <li>Le programme est constituée de deux fonctions: <span class="visible">setup()</span> et <span
+          class="visible">loop()</span>. Ces deux fonctions sont obligatoires même si on ne met rien dedans,</li>
+      <li>Dans la fonction <span class="visible">setup()</span> on met les instructions qui doivent être exécutées une
+        seule fois. En général, on y trouve la configuration des E/S, l'initialisation des variables… Dans notre exemple
+        on trouve la ligne de code <span class="visible">pinMode(13, OUTPUT)</span>&nbsp;&nbsp;&nbsp; qui permet de
+        configurer la patte 13 en sortie,</li>
+      <li>Dans la fonction <span class="visible">loop()</span>, on place les tâches qui doivent se répéter indéfiniment.
+        Dans notre exemple, on doit allumer et éteindre la LED en permanence:</li>
+      <ul>
+        <li><span class="visible">digitalWrite(13, HIGH)</span> force la sortie 13 au niveau haut pour allumer la LED
+        </li>
+        <li><span class="visible">delay(500)</span> temporisation d'une ½ seconde afin que notre œil aie le temps de
+          voir la LED allumée</li>
+        <li><span class="visible">digitalWrite(13, LOW)</span> force la sortie 13 au niveau bas pour éteindre la LED
+        </li>
+        <li><span class="visible">delay(500)</span> temporisation d'une ½ seconde afin que notre œil aie le temps de
+          voir la LED éteinte</li>
+        <li>on recommence</li>
+      </ul>
+    </ul>
+    <br>
+    <p class="titre"><a id="PWM" name="PWM"></a>Contrôler une sortie PWM</p>
+    <div style="text-align: center;"><img alt="" src="PWM.png"><br>
+    </div>
+    <p class="P2">Un signal PWM (Pulse Width Modulation) ou MLI (Modulation de largeur d'impulsion) est un signal&nbsp;
+      dont le rapport cyclique T<span class="indice">H</span> /T&nbsp; est réglable. <br>
+      Arduino UNO possède 6 sorties (3, 5, 6, 9, 10 et 11) pouvant fonctionner en PWM.</p>
+    <p class="P1"><br>
+      Pour générer un signal PWM, on utilise la fonction:</p>
+    <p class="LibFonc">&nbsp;analogWrite(pin, rs);</p>
+    <ul>
+      <li><strong>&nbsp; pin </strong>:&nbsp;&nbsp; numéro de la patte PWM</li>
+      <li><strong>&nbsp; rs </strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entier compris entre 0 et 255 qui définit le
+        rapport cyclique</li>
+    </ul>
+    <p class="description">Après un appel de la fonction <strong>analogWrite()</strong>, le signal PWM reste actif sur
+      la sortie PWM.<br>
+      Pour le modifier, il faut faire un autre appel à cette fonction,<br>
+      Pour l'arrêter on peut appeler la fonction digitalWrite() ou digitalRead()&nbsp; sur la patte considérée.<br>
+      <span style="font-weight: bold;">remarque</span>: On n'est pas obligé de configurer la broche en sortie à l'aide
+      de&nbsp; pinMode()
+    </p>
+    <br>
+    <p class="PP">Comment modifier la fréquence du signal PWM</p>
+    <p class="description">La fonction <strong>analogWrite()</strong> permet de définir le rapport cyclique du signal
+      PWM mais ne permet pas de définir sa période (T). Pour le faire, il faut modifier les diviseurs des timers en
+      modifiant les regitres TCCRxB comme indiqué ci dessous.</p>
+    <p class="code">// For Arduino <strong>Uno, Nano</strong>, Micro Magician, Mini Driver, Lilly Pad and any other
+      board using ATmega 8, 168 or 328**<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D5 &amp; D6
+      -------------------------------<br>
+      &nbsp;<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 62500.00 Hz<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 7812.50 Hz<br>
+      &nbsp; TCCR0B = TCCR0B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 976.56 Hz (The DEFAULT)<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 244.14 Hz<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 61.04 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D9 &amp; D10
+      ------------------------------<br>
+      &nbsp;<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      &nbsp; TCCR1B = TCCR1B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz (The DEFAULT)<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D3 &amp; D11
+      ------------------------------<br>
+      &nbsp;<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp; 32
+      for PWM frequency of&nbsp;&nbsp; 980.39 Hz<br>
+      &nbsp; TCCR2B = TCCR2B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz (The DEFAULT)<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp; 128 for PWM
+      frequency of&nbsp;&nbsp; 245.10 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000110;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000111;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      <br>
+      //For Arduino Mega1280, Mega2560, MegaADK, Spider or any other board using ATmega1280 or ATmega2560**<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D4 &amp; D13
+      ------------------------------<br>
+      &nbsp;<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 62500.00 Hz<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 7812.50 Hz<br>
+      &nbsp; TCCR0B = TCCR0B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; &lt;// set timer 0 divisor
+      to&nbsp;&nbsp;&nbsp; 64 for PWM frequency of&nbsp;&nbsp; 976.56 Hz (Default)<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 244.14 Hz<br>
+      //TCCR0B = TCCR0B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 0 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 61.04 Hz<br>
+      &nbsp; <br>
+      //---------------------------------------------- Set PWM frequency for D11 &amp; D12
+      -----------------------------<br>
+      &nbsp;<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      &nbsp; TCCR1B = TCCR1B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR1B = TCCR1B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 1 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D9 &amp; D10
+      ------------------------------<br>
+      &nbsp;<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp; 32
+      for PWM frequency of&nbsp;&nbsp; 980.39 Hz<br>
+      &nbsp; TCCR2B = TCCR2B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp; 128 for PWM
+      frequency of&nbsp;&nbsp; 245.10 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000110;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR2B = TCCR2B &amp; B11111000 | B00000111;&nbsp;&nbsp;&nbsp; // set timer 2 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D2, D3 &amp; D5
+      ---------------------------<br>
+      &nbsp;<br>
+      //TCCR3B = TCCR3B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 3 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR3B = TCCR3B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 3 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      &nbsp; TCCR3B = TCCR3B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 3 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz<br>
+      //TCCR3B = TCCR3B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 3 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR3B = TCCR3B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 3 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D6, D7 &amp; D8
+      ---------------------------<br>
+      &nbsp;<br>
+      //TCCR4B = TCCR4B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 4 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR4B = TCCR4B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 4 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      &nbsp; TCCR4B = TCCR4B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 4 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz<br>
+      //TCCR4B = TCCR4B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 4 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR4B = TCCR4B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 4 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      //---------------------------------------------- Set PWM frequency for D44, D45 &amp; D46
+      ------------------------<br>
+      &nbsp;<br>
+      //TCCR5B = TCCR5B &amp; B11111000 | B00000001;&nbsp;&nbsp;&nbsp; // set timer 5 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      1 for PWM frequency of 31372.55 Hz<br>
+      //TCCR5B = TCCR5B &amp; B11111000 | B00000010;&nbsp;&nbsp;&nbsp; // set timer 5 divisor to&nbsp;&nbsp;&nbsp;&nbsp;
+      8 for PWM frequency of&nbsp; 3921.16 Hz<br>
+      &nbsp; TCCR5B = TCCR5B &amp; B11111000 | B00000011;&nbsp;&nbsp;&nbsp; // set timer 5 divisor to&nbsp;&nbsp;&nbsp;
+      64 for PWM frequency of&nbsp;&nbsp; 490.20 Hz<br>
+      //TCCR5B = TCCR5B &amp; B11111000 | B00000100;&nbsp;&nbsp;&nbsp; // set timer 5 divisor to&nbsp;&nbsp; 256 for PWM
+      frequency of&nbsp;&nbsp; 122.55 Hz<br>
+      //TCCR5B = TCCR5B &amp; B11111000 | B00000101;&nbsp;&nbsp;&nbsp; // set timer 5 divisor to&nbsp; 1024 for PWM
+      frequency of&nbsp;&nbsp;&nbsp; 30.64 Hz<br>
+      &nbsp;<br>
+      <strong><a href="http://wiki.ardumower.de/index.php?title=Arduino_Due_ru">source:
+          http://wiki.ardumower.de/index.php?title=Arduino_Due_ru</a></strong>
+    </p>
+    <p class="description"><span style="font-weight: bold;">Exemple:</span> <br>
+      - Signal PWM sur la sortie 9 du Arduino UNO<br>
+      - Fréquence 122.55 Hz<br>
+      - Rapport cyclique = 1/2 <br>
+    </p>
+    <p class="code">void setup() {<br>
+      TCCR1B = TCCR1B &amp; B11111000 | B00000100; <br>
+      analogWrite(9,127);&nbsp;&nbsp; <br>
+      }<br>
+      <br>
+      void loop() {<br>
+      }
+    </p>
+    <br>
+    <span class="titre"><a id="DIGIN" name="DIGIN"></a>Tester une entrée Numérique </span><br>
+    <div class="description">Les capteurs numériques, des interrupteurs, des bouton poussoirs...doivent être branchés
+      sur des entrées numériques. <br>
+      On va faire un petit exemple avec deux boutons poussoirs B1 et B2 et deux LEDs L1 et L2. <br>
+      <br>
+      <img class="Float_R" src="button_click.png">Avant de commencer, il faut préciser qu'il y a deux façons de
+      connecter un bouton poussoir ou un interrupteur pour délivrer une impulsion numérique:<br>
+      <ul>
+        <li>Avec le branchement active-low, le bouton délivre un niveau haut au repos, et un niveau bas quand il est
+          cliqué,</li>
+        <li>&nbsp;Avec le branchement active-high, le bouton délivre un niveau bas au repos, et un niveau haut quand il
+          est cliqué,</li>
+        <li>Personnellement, je préfère le branchement active-low car il n'y a jamais un lien direct entre l'entrée du
+          microcontrôleur et le 5V</li>
+      </ul>
+      <br>
+      &nbsp;<img alt="" src="2led2boutonsfritz.png"> &nbsp; <img style="width: 452px; height: 407px;"
+        src="2leds2boutonsisis.png"><br>
+    </div>
+    <br>
+    <p class="P1">Le bouton B1 permet d'allumer/éteindre la led L1, le bouton B2 en fait de même avec L2</p>
+    <br>
+    <div class="code">#define B1PIN 8<br>
+      #define B2PIN 12<br>
+      #define L1PIN 1<br>
+      #define L2PIN 6<br>
+      boolean L1STATE = false, L2STATE = false;<br>
+      <br>
+      void setup() {<br>
+      &nbsp; pinMode(B1PIN, INPUT);&nbsp;&nbsp; // bouton 1<br>
+      &nbsp; pinMode(B2PIN, INPUT);&nbsp;&nbsp; // bouton 2<br>
+      &nbsp; pinMode(L1PIN, OUTPUT);&nbsp;&nbsp; // LED 1<br>
+      &nbsp; pinMode(L2PIN, OUTPUT);&nbsp;&nbsp; // LED 2<br>
+      &nbsp; digitalWrite(L1PIN, LOW);&nbsp; // éteindre les LEDS au départ<br>
+      &nbsp; digitalWrite(L2PIN, LOW);<br>
+      }<br>
+      <br>
+      void loop() {<br>
+      &nbsp; <br>
+      &nbsp; if( digitalRead(B1PIN) == 0){&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // si le
+      bouton est cliqué ...<br>
+      &nbsp;&nbsp;&nbsp; L1STATE = !L1STATE ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; // état actuel &lt;-- inverse de l'état précédent<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(L1PIN, L1STATE); &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // LED &lt;-- état actuel
+      <br>
+      &nbsp;&nbsp;&nbsp; while( digitalRead(B1PIN) == 0);&nbsp; &nbsp;&nbsp;&nbsp; // attendre la fin du click<br>
+      &nbsp; }<br>
+      &nbsp; if( digitalRead(B2PIN) == 0){<br>
+      &nbsp;&nbsp;&nbsp; L2STATE = !L2STATE ;<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(L2PIN, L2STATE);<br>
+      &nbsp;&nbsp;&nbsp; while( digitalRead(B2PIN) == 0);<br>
+      &nbsp; }<br>
+      <br>
+      }<br>
+    </div>
+    <br>
+    <br>
+    <span class="titre"><a id="REBONDS" name="REBONDS"></a>Le problème des rebonds</span><br>
+    <div class="description"> Les boutons poussoir est les interrupteurs sont sujet à des rebondissements mécaniques.
+      Quand on clique sur un bouton, au lieux d'obtenir une impulsion propre comme ça:<br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="cleanpulse.png"><br>
+      </div>
+      <br>
+      on obtient quelques chose qui ressemble à ça:
+    </div>
+    <div style="text-align: center;"><img alt="" src="rebonds.png"><br>
+    </div>
+    <br>
+    <div class="description"> C'est un problème difficile à gérer car la nature des rebonds et leur durée a un caractère
+      aléatoire et dépend de beaucoup de paramètres. On peut essayer de les éliminer avec des circuits anti-rebond ou
+      les contourner d'une façon software.<br>
+      Pour en savoir un peu plus, vous pouvez jeter un coup d'œil sur <a style="font-weight: bold;" target="_blank"
+        href="https://hackaday.com/2015/12/09/embed-with-elliot-debounce-your-noisy-buttons-part-i/">ce site</a>, <br>
+    </div>
+    <br>
+    <div class="description"> je vais proposer une solution software qui marche pour l'exemple des LEDs traité
+      ci-dessus. Cette solution n'est pas universelle, c'est une proposition parmi d'autre.</div>
+    <div style="text-align: center;"><img src="softwaredebounce.png"><br>
+    </div>
+    <div class="description"> ① On détecte le début du clic,<br>
+      ② On fait le travail<br>
+      ③ On attend que le bouton se stabilise. La durée doit être fixée par talonnement. Dépend du bouton et la durée
+      (2)<br>
+      ④ Tant que le bouton est appuyé, ne rien faire<br>
+      ⑤&nbsp; On attend que le bouton se stabilise. La durée doit être fixée par talonnement,<br>
+      <br>
+      On obtient le programme ci-dessous.
+    </div>
+    <br>
+    <div class="code"> #define B1PIN 8<br>
+      #define B2PIN 12<br>
+      #define L1PIN 1<br>
+      #define L2PIN 6<br>
+      boolean L1STATE = false, L2STATE = false;<br>
+      <br>
+      void setup() {<br>
+      &nbsp; pinMode(B1PIN, INPUT);&nbsp;&nbsp; // bouton 1<br>
+      &nbsp; pinMode(B2PIN, INPUT);&nbsp;&nbsp; // bouton 2<br>
+      &nbsp; pinMode(L1PIN, OUTPUT);&nbsp;&nbsp; // LED 1<br>
+      &nbsp; pinMode(L2PIN, OUTPUT);&nbsp;&nbsp; // LED 2<br>
+      &nbsp; digitalWrite(L1PIN, LOW);&nbsp; // éteindre les LEDS au départ<br>
+      &nbsp; digitalWrite(L2PIN, LOW);<br>
+      }<br>
+      <br>
+      void loop() {<br>
+      &nbsp; <br>
+      &nbsp; if( digitalRead(B1PIN) == 0){&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // si le
+      bouton est cliqué ...&nbsp;&nbsp; ①<br>
+      &nbsp;&nbsp;&nbsp; L1STATE = !L1STATE ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // état actuel &lt;-- inverse de l'état précédent&nbsp;
+      ②<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(L1PIN, L1STATE); &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // LED &lt;-- état
+      actuel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ②<br>
+      &nbsp;&nbsp;&nbsp;
+      delay(20);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+      // delai anti-rebond&nbsp; (appui)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ③<br>
+      &nbsp;&nbsp;&nbsp; while( digitalRead(B1PIN) == 0); &nbsp;&nbsp; &nbsp; // attendre la fin du
+      click&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ④<br>
+      &nbsp;&nbsp;&nbsp;
+      delay(20);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+      // delai anti-rebond&nbsp; (relâchement)&nbsp; ⑤<br>
+      &nbsp; }<br>
+      <br>
+      &nbsp; if( digitalRead(B2PIN) == 0){<br>
+      &nbsp;&nbsp;&nbsp; L2STATE = !L2STATE ;<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(L2PIN, L2STATE);<br>
+      &nbsp;&nbsp;&nbsp;
+      delay(20);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      // delai anti-rebond (appui)<br>
+      &nbsp;&nbsp;&nbsp; while( digitalRead(B2PIN) == 0);<br>
+      &nbsp;&nbsp;&nbsp;
+      delay(20);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      // delai anti-rebond (relâchement)<br>
+      &nbsp; }<br>
+      <br>
+      }
+    </div>
+    <br>
+    <br>
+    <div class="titre"> <a id="DIRECTPORTS" name="DIRECTPORTS"></a>Accès direct au ports d'E/S</div>
+    <div class="description"> Les E/S de l'Arduino sont reliées aux ports d'E/S du microcontroleur Atmega. Les
+      PINs&nbsp; 0,1, 2, ...7 sont reliées au port D. Les PINs 8 à 13 sont reliées au port B. Les PINs A0 à A5 sont
+      reliées au port C.<br>
+      Chaque port est géré par 3 registres. Prenons le cas du port D, comme on peut le voir sur la figure ci-dessous, il
+      est géré par les registres:<br>
+      <span class="visible">DDRD</span>: registre de direction. C'est ce registre qui précise si on veut utiliser le
+      port en entrée ou en sortie. Chaque bit de DDRD configure la direction de la patte correspondante:&nbsp; 1=&gt;
+      sortie, 0=&gt; entrée,<br>
+      DDRD = B00001111; signifie que les pattes 0, 1, 2, 3 sont des sorties et les pattes 4, 5, 6, 7 sot des entrées<br>
+      <span class="visible">PORTD</span>: Registre de sortie. Si on place un bit de PORTD à 1 ou à 0, la sortie
+      correspondante passe à 5V ou à 0V<br>
+      <span class="visible">PIND</span>: Registre d'entrée. On le lit pour savoir l'état des broches configurées en
+      entrée.<br>
+    </div>
+    <div style="text-align: center;"><img alt="" src="portd-pind-ddrd.png"><br>
+    </div>
+    <div>
+      <ul>
+        <li>&nbsp; Pour définir d'un coup les 8 bits d'un registre, une simple affectation suffit. Exemples:</li>
+      </ul>
+    </div>
+    <div class="code2"> DDRB = B11001100;<br>
+      PORTB = B11110000;</div>
+    <ul>
+      <li>Pour lire le contenu d'un port configuré en entrée, il suffit d'affecter son contenu à une variable. On peut
+        aussi l'utiliser directement dans une expression </li>
+    </ul>
+    <div class="code2">x = PINB;<br>
+      ...<br>
+      if (PINB == B11001110) {<br>
+      ...<br>
+      }<br>
+    </div>
+    <br>
+    <div>
+      <ul>
+        <li>Pour forcer un bit à 1, on fait un OU&nbsp; avec 1,</li>
+      </ul>
+    </div>
+    <div class="description2 code code2">PORTD |= B00001000;&nbsp;&nbsp;&nbsp; //&nbsp; forcer le bit PD3 à 1</div>
+    <br>
+    <ul>
+      <li>&nbsp; Pour forcer un bit à 0, on fait un ET avec&nbsp; 0,</li>
+    </ul>
+    <div class="code2">PORTD |= B00001000; //&nbsp; forcer le bit PD3 à 1</div>
+    <ul>
+      <li>Pour inverser un bit, on fait un XOR avec 1,&nbsp; </li>
+    </ul>
+    <span class="code2">PORTD ^= B00000001; //&nbsp; forcer le bit PD0 à 1</span><br>
+    <br>
+    <br>
+    <span class="PP">Exemple de la LED qui clignote</span>
+    <div class="description2 code2">void setup() {<br>
+      &nbsp;&nbsp; DDRB |= B00100000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // PB5=P13 -&gt;
+      sortie<br>
+      }<br>
+      void loop() {<br>
+      &nbsp;&nbsp; PORTB ^= B00100000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // inverser PB5 = P13<br>
+      &nbsp;&nbsp; delay(300);<br>
+      &nbsp; }</div>
+    <br>
+    <br>
+    <ul>
+    </ul>
+    <span class="PP">Exemple d'un chenillard</span>
+    <ul>
+    </ul>
+    <div style="text-align: center;"><video loop="loop" controls="controls" preload="auto"
+        src="chenillard.mp4"></video><br>
+      <br>
+      <br>
+    </div>
+    <div class="PS2 PS">Méthode normale:</div>
+    <div class="description2 code2">int p;<br>
+      void setup(){<br>
+      &nbsp; // on configure les 8 pattes en sortie<br>
+      &nbsp; for(p = 0; p &lt; 8; p++){<br>
+      &nbsp;&nbsp;&nbsp; pinMode(p, OUTPUT);<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(p, LOW);<br>
+      &nbsp; }<br>
+      }<br>
+      <br>
+      // allumer les LEDs l'une après l'autre<br>
+      void loop(){<br>
+      &nbsp; for(p = 0; p &lt; 8; p++){<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(p, HIGH);<br>
+      &nbsp;&nbsp;&nbsp; delay(300);<br>
+      &nbsp;&nbsp;&nbsp; digitalWrite(p , LOW);<br>
+      &nbsp; }<br>
+      }<br>
+    </div>
+    <br>
+    <div class="PS"> </div>
+    <div class="PS">Méthode avec accès direct aux ports</div>
+    <div class="code2"> void setup() {<br>
+      &nbsp; DDRD = 0xFF;&nbsp; //PORTD sortie<br>
+      &nbsp; PORTD = B00000001;<br>
+      &nbsp;}<br>
+      <br>
+      void loop() {<br>
+      &nbsp;&nbsp;&nbsp; delay(300);<br>
+      &nbsp;&nbsp;&nbsp; PORTD = PORTD &lt;&lt; 1 ;&nbsp; // décaler à gauche<br>
+      &nbsp;&nbsp;&nbsp; if (PORTD == 0)PORTD = B00000001;<br>
+      }
+    </div>
+    <div> </div>
+    <br>
+    <br>
+    <span class="PP">Le vrai intérêt de l'accès direct aux ports </span><br>
+    <div class="description"> Le vrai intérêt de cette méthode est qu'elle produit des programmes qui s'exécutent
+      beaucoup plus vite. <br>
+      On va le montrer sur un exemple qui allume et éteint 5 fois la sortie n° 0 puis recommence<br>
+      <table style="width: 100%" border="1">
+        <tbody>
+          <tr>
+            <td style="width: 50%; text-align: center; background-color: #ffffcc;"><span
+                style="font-weight: bold;">Accès Direct<br>
+              </span></td>
+            <td style="text-align: center; background-color: #ffffcc;"><span style="font-weight: bold;">Utilisation des
+                fonctions<br>
+              </span></td>
+          </tr>
+          <tr>
+            <td class="code">void setup() {<br>
+              &nbsp;&nbsp; DDRD = B00000001;<br>
+              }<br>
+              <br>
+              void loop() {<br>
+              &nbsp; PORTD |= B00000001;&nbsp; // allumer<br>
+              &nbsp; PORTD &amp;= B11111110;&nbsp;&nbsp; // éteindre<br>
+              &nbsp; PORTD |= B00000001;<br>
+              &nbsp; PORTD &amp;= B11111110;<br>
+              &nbsp; PORTD |= B00000001;<br>
+              &nbsp; PORTD &amp;= B11111110;<br>
+              &nbsp; PORTD |= B00000001;<br>
+              &nbsp; PORTD &amp;= B11111110;<br>
+              &nbsp; PORTD |= B00000001;<br>
+              &nbsp; PORTD &amp;= B11111110;<br>
+              }<br>
+            </td>
+            <td class="code">void setup() {<br>
+              &nbsp;&nbsp; pinMode(0, OUTPUT);<br>
+              }<br>
+              <br>
+              void loop() {<br>
+              &nbsp; digitalWrite(0, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+              &nbsp; digitalWrite(0, LOW);&nbsp;&nbsp;&nbsp; // éteindre LED<br>
+              &nbsp; digitalWrite(0, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+              &nbsp; digitalWrite(0, LOW);&nbsp;&nbsp;&nbsp; // éteindre LED<br>
+              &nbsp; digitalWrite(0, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+              &nbsp; digitalWrite(0, LOW);&nbsp;&nbsp;&nbsp; // éteindre LED<br>
+              &nbsp; digitalWrite(0, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+              &nbsp; digitalWrite(0, LOW);&nbsp;&nbsp;&nbsp; // éteindre LED<br>
+              &nbsp; digitalWrite(0, HIGH);&nbsp;&nbsp; // allumer la LED<br>
+              &nbsp; digitalWrite(0, LOW);&nbsp;&nbsp;&nbsp; // éteindre LED<br>
+              }<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      Voici les résultats obtenus. On constate que l'accès direct est 26 fois plus rapide<br>
+    </div>
+    <br>
+    <img style="width: 96%; margin-left: 2ch;" alt="" src="comparaison.png"><br>
+    <br>
+    <br>
+    <span class="titre"><a id="LCD" name="LCD"></a>Contrôler un afficheur LCD</span><br>
+    <div class="description"> <img style="width: 363px; height: 193px;" class="Float_R" alt=""
+        src="LCD2x16.png">Afficheur alphanumérique de deux ou plusieurs lignes.<br>
+      Le contrôle de ces afficheur à l'aide d'un Arduino est rendu très simple grâce à la librairie LiquidCrystal .
+      L'afficheur est utilisé en mode 4 bits. Seuls les bits D4 à D7 du bus de données sont utilisés en plus des deux
+      bits de contrôle RS et E.<br>
+      Si on prend un afficheur 2x16 (deux lignes de 16 caractères). En réalité, même s'il n'y a que 16 caractères
+      visibles, chaque ligne est constituée de 40 caractères. Pour voir les caractères cachés, il faut faire défiler
+      l'affichage vers la gauche<br>
+      <br>
+      <img style="width: 929px; height: 107px;" alt="" src="LCD2lignes.png">
+    </div>
+    <span class="PP"> LiquidCrystal&nbsp; <span style="color: #cc0000;">lcd</span>(RS, E, d4, d5, d6, d7)</span>
+    <div class="description2">o&nbsp;&nbsp; Crée un objet&nbsp; pour commander l'afficheur LCD en mode 4 bits, <br>
+      o&nbsp;&nbsp; <strong style="color: red;">lcd</strong><span style="font-weight: bold;">:</span> nom l'objet. On
+      n'est pas obligé de appeler lcd, on peut l'appeler ce qu'on veut<br>
+      o&nbsp;&nbsp; RS: Numéro de la sortie qui commande la patte RS du LCD,<br>
+      o&nbsp;&nbsp; E: Numéro de la sortie qui commande la patte E du LCD,<br>
+      o&nbsp;&nbsp; d4, d5, d6, d7: Numéro des sorties qui commandent la pates D4, D5, D6, D7 du LCD,<br>
+      o&nbsp;&nbsp; La patte WR de l'afficheur doit être reliée à la masse,</div>
+    <br>
+    <span class="PP"><span style="color: #cc0000;">lcd</span>.<span style="color: #009900;">begin</span>(Nc,
+      Nl)</span><br>
+    <div class="description2">o&nbsp;&nbsp;&nbsp; Initialise l'afficheur LCD<br>
+      o&nbsp;&nbsp;&nbsp; Nc:&nbsp; Nombre de caractères par ligne<br>
+      o&nbsp;&nbsp;&nbsp; Nl:&nbsp; Nombre de ligne de l'afficheur</div>
+    <br>
+    <span class="PP"><span style="color: #cc0000;">lcd</span>.<span style="color: #009900;">clear</span>()</span><br>
+    <div class="description2"> o&nbsp;&nbsp;&nbsp; Efface l'afficheur et ramène le curseur au début de la première ligne
+    </div>
+    <br>
+    <br>
+    <span class="PP"><span style="color: #cc0000;">lcd</span>.<span style="color: #009900;">setCursor</span>(col,
+      lgn)</span><br>
+    <div class="description2"> o&nbsp;&nbsp;&nbsp; Place le curseur à la position (col, lgn), les deux paramètres
+      commencent à 0</div>
+    <br>
+    <br>
+    <span class="PP"> <span style="color: #cc0000;">lcd</span>.<span
+        style="color: #009900;">print</span>(donnée,[format])</span><br>
+    <div class="description2">o&nbsp;&nbsp;&nbsp; Affiche une chaine ou un nombre:<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print("Hello world");&nbsp;&nbsp;&nbsp; // affiche la chaîne&nbsp;&nbsp; Hello World<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print(1024);&nbsp;&nbsp;&nbsp; // Affiche le nombre 1024<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print(85, BIN);&nbsp;&nbsp;&nbsp; // affiche le nombre 85 en binaire&nbsp; --&gt;
+      1010101<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print(255, HEX);&nbsp;&nbsp;&nbsp; // affiche le nombre 255 en hexadécimal --&gt;&nbsp;
+      FF<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print(243.8765333);&nbsp;&nbsp;&nbsp; // affiche le nombre réel avec 2 chiffres à droite
+      de la virgule<br>
+      o&nbsp;&nbsp;&nbsp; lcd.print(243.8765333,4);&nbsp;&nbsp;&nbsp; // affiche le nombre réel avec 4 chiffres à droite
+      de la virgule</div>
+    <br>
+    <span class="PP"> <span style="color: #cc0000;">lcd</span>.<span style="color: #009900;">write</span>(c)</span><br>
+    <div class="description2">o&nbsp;&nbsp;&nbsp; Affiche un caractère<br>
+      o&nbsp;&nbsp;&nbsp; lcd.write('X');&nbsp;&nbsp;&nbsp; // affiche le caractère X<br>
+      o&nbsp;&nbsp;&nbsp; lcd.write(65);&nbsp;&nbsp;&nbsp; // Affiche le caractère A<br>
+      <br>
+    </div>
+    <span class="PP"> <span style="color: #cc0000;">lcd</span>.<span
+        style="color: #009900;">scrollDisplayLeft</span>()</span><br>
+    <div class="description2">o&nbsp;&nbsp;&nbsp; décaler l'affichage d'un caractère vers la gauche<br>
+    </div>
+    <br>
+    <span class="PP"> <span style="color: #cc0000;">lcd</span>.<span
+        style="color: #009900;">scrollDisplayRight</span>()</span><br>
+    <div class="description2">o&nbsp;&nbsp;&nbsp; décaler l'affichage d'un caractère vers la droite<br>
+    </div>
+    <br>
+    <span class="PS2 visible">Pour voir d'autres fonctions:&nbsp; Aide-&gt;Référence-&gt;Libraries
+      -&gt;LiquidCrystal</span><br>
+    <br>
+    <span class="PP">Exemple</span><br>
+    <div class="code"><img class="Float_R" src="lcd-dec-hex-bin.png"><br>
+      #include &lt;LiquidCrystal.h&gt;<br>
+      LiquidCrystal lcd1(12, 11, 5, 4, 3, 2);<br>
+      <br>
+      void setup() {<br>
+      &nbsp; int N = 195;<br>
+      &nbsp; lcd1.begin(16, 2);<br>
+      &nbsp; lcd1.print("DEC-HEX-BIN");<br>
+      &nbsp; lcd1.setCursor(0,1);<br>
+      &nbsp; lcd1.print(N);<br>
+      &nbsp; lcd1.write('-');<br>
+      &nbsp; lcd1.print(N,HEX);<br>
+      &nbsp; lcd1.write('-');<br>
+      &nbsp; lcd1.print(N,BIN);<br>
+      }<br>
+      <br>
+      void loop() { }<br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <br>
+    <span class="PS2 visible"> Remarque: </span><br>
+    <div class="description description2">•&nbsp;&nbsp;&nbsp; La classe <span class="visible">lcd </span>créée par la
+      fonction LiquidCrystal() doit être globale pour être connue de toutes les fonctions.<br>
+      •&nbsp;&nbsp;&nbsp; Ne pas oublier d'inclure le fichier des entêtes &lt;LiquidCristal.h&gt;</div>
+    <br>
+    <br>
+    <span class="titre"> <a id="ANALOG" name="ANALOG"></a>Mesurer une entrée Analogique</span><br>
+    <br>
+    <div class="description">•&nbsp;&nbsp;&nbsp; Arduino UNO dispose de 6 entrées analogiques A0, A1 ... A5, <br>
+      •&nbsp;&nbsp;&nbsp; La tension analogique Va est appliquée à un CAN (ADC en anglais) qui la convertit en un nombre
+      entier N de 10 bits, <br>
+      •&nbsp;&nbsp;&nbsp; La résolution du convertisseur est q = Vref/1023&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+      •&nbsp;&nbsp;&nbsp; La relation entre Va et le nombre N correspondant est <span class="visible">N = Va / q</span>
+      ,<br>
+      •&nbsp;&nbsp;&nbsp; comme N est arrondit à un nombre entier, l'erreur max de conversion est&nbsp; Emax = q<br>
+      •&nbsp;&nbsp;&nbsp; Par défaut, la dynamique du convertisseur est fixée à Vref=5V,&nbsp; ==&gt; q = 4.88 mV<br>
+      •&nbsp;&nbsp; Pour améliorer la résolution, on peut travailler avec Vref &lt; 5V. <br>
+      &nbsp;&nbsp;&nbsp; o&nbsp;&nbsp;&nbsp; La fonction <span class="visible">analogReference()</span>&nbsp;&nbsp;
+      permet de modifier la valeur de Vref<br>
+      &nbsp;&nbsp;&nbsp; o&nbsp;&nbsp;&nbsp; <span class="visible">analogReference(DEFALT);</span>&nbsp;&nbsp; Aa
+      tension de référence Vref est fixée à 5V ou 3.3V selon le type de l'Arduino<br>
+      &nbsp;&nbsp;&nbsp; o&nbsp;&nbsp;&nbsp; <span class="visible">analogReference(INTERNAL);</span> La tension de
+      référence Vref est fixée à 1.1V<br>
+      &nbsp;&nbsp;&nbsp; o&nbsp;&nbsp;&nbsp; <span class="visible">analogReference(EXTERNAL);</span> On doit appliquer
+      une tension de référence sur l'entrée Aref<br>
+      &nbsp;&nbsp;&nbsp; <br>
+      •&nbsp;&nbsp;&nbsp; Pour lire une entrée analogique, on utilise la fonction<span style="font-weight: bold;">
+      </span><span class="visible">N= analogRead(pin)</span> <br>
+      •&nbsp;&nbsp;&nbsp; Le temps de conversion par la fonction analogRead() est voisin de 100 µs<br>
+      <div style="text-align: center;"><img alt="" src="ADC.png"></div>
+    </div>
+    <br>
+    <span class="PP">Exemple</span><br>
+    <div class="description">On applique une tension analogique comprise entre 0 et 5V sur l'entrée A5 et un capteur de
+      température LM35 sur l'entrée A4. La tension max délivrée par le LM35 est de l'ordre de 1V, on travaille avec la
+      tension de référence interne (1.1V) pour améliorer la précision. Rappelons que le LM35 délivre une tension de
+      10mV/°C<br>
+    </div>
+    <div> </div>
+    <div class="code"> <video class="Float_R" controls="controls" preload="auto" src="lm35.mp4"></video><br>
+      #include &lt;LiquidCrystal.h&gt;<br>
+      LiquidCrystal lcd(12, 11, 5, 4, 3, 2);<br>
+      int N;<br>
+      float Va, T;<br>
+      void setup() {<br>
+      &nbsp; lcd.begin(16, 2);<br>
+      }<br>
+      <br>
+      void loop() {<br>
+      &nbsp; analogReference(DEFAULT);<br>
+      &nbsp; N = analogRead(A5);<br>
+      &nbsp; Va = N * 5.0 / 1023.0 ;<br>
+      &nbsp; lcd.clear();<br>
+      &nbsp; lcd.print("N=");<br>
+      &nbsp; lcd.print(N);<br>
+      &nbsp; lcd.print("--&gt;Va=");<br>
+      &nbsp; lcd.print(Va);<br>
+      &nbsp; lcd.write('V');<br>
+      &nbsp; analogReference(INTERNAL);<br>
+      &nbsp; N = analogRead(A4);&nbsp; <br>
+      &nbsp; T = N * 110.0 / 1023.0;<br>
+      &nbsp; lcd.setCursor(0,1);<br>
+      &nbsp; lcd.print("T = ");<br>
+      &nbsp; lcd.print(T);<br>
+      &nbsp; lcd.print(" C");<br>
+      &nbsp; delay(500);<br>
+      &nbsp; }<br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <span class="titre"><a id="SERIAL" name="SERIAL"></a>Communication Série Asynchrone (UART)</span><br>
+    <br>
+    <div class="description">L'Arduino UNO possède un module de communication série conforme au standard RS232 qui
+      permet de se connecter à tout autre équipement équipé du même standard.<br>
+      <ul class="P0">
+        <li>&nbsp;La communication est bidirectionnelle (full duplex) La réception (RX) se fait sur le broche 0 et la
+          transmission (TX) se fait sur la broche 1</li>
+        <li>Les niveaux de tension sont compatibles TTL (0V , 5V). </li>
+      </ul>
+      <br>
+      <img style="width: 100%;" alt="" src="serialcomm.png"><br>
+      <br>
+      Pour se connecter à un équipement avec une interface série standard RS232C, il faut utiliser un adaptateur de
+      niveaux car le standard RS232C utilise les niveaux de tension +12V / -12V avec une inversion du signal. Le circuit
+      Max232 permet de réaliser cette adaptation.<br>
+      <div style="text-align: center;"><img alt="" src="max232.png"><br>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <span class="PP"> La Librairie <span style="color: red;">Serial</span></span><br>
+    <br>
+    &nbsp; <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Serial.begin(speed);</span><br>
+    <div class="R_4ch R_5ch">&nbsp; Initialise le port série et définit la vitesse de communication</div>
+    <div class="code2">&nbsp; Serial.begin(9600);</div>
+    <p class="R_5ch"> Les vitesses&nbsp; standard sont 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400,
+      57600, ou 115200 baud,<br>
+      (baud = bit/seconde)</p>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Serial.write(data);</span><br>
+    <span class="R_4ch R_5ch">&nbsp;Transmet un octet, une chaine ou les octets d'un tableau&nbsp; de type char[] ou
+      byte[]</span><br>
+    <div class="code code2">Serial.write('A');&nbsp; transmet le caractère A (octet 65)<br>
+      Serial.write(66);&nbsp; transmet l'octet 66 =&nbsp; caractère B<br>
+      Serial.write("Bonjour"); transmet la chaine Bonjour (octet par octet)<br>
+      Serial.write(856); le nombre 856 est tronqué à un octet puis transmis<br>
+      byte b[] = {0x11, 0x22, 0x33, 0x44, 0x55};&nbsp;&nbsp; Serial.write(b,3); transmit 3 octets du tableau b</div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Serial.print(data, [format]); </span><br>
+    <div class="R_5ch"> Sert surtout à transmettre des nombres en tant que chaine. On peut aussi s'en servir pour
+      transmettre des caractères et des chaines,</div>
+    <div class="code2"> Serial.Print("Bonjour "); Transmet la chaîne "Bonjour"<br>
+      Serial.print('X');&nbsp; Transmet le caractère X</div>
+    <div class="code2">Serial.print(2048); Transmet le nombre entier 2048 comme la chaine "2048"</div>
+    <div class="code2">Serial.print(23456,HEX); Transmet la chaine "5BA0" qui est la représentation (papier) du nombre
+      23456 en hexadécimal (base 16) --&gt; octets 53, 66, 65 et 48 = codes ascii des caractères '5', 'B', 'A' et
+      '0'<br>
+      Serial.print(240,BIN); Convertit&nbsp; le nombre 240 en binaire et le transmet en tant que chaine "11110000"<br>
+      Serial.Print(235.4567); Transmet le nombre réel 235.4567 en tant que chaine en arrondissant à&nbsp; 2 chiffres
+      décimaux&nbsp; "235.46"<br>
+      Serial.Print(235.4567,4); Transmet&nbsp; en tant que chaine avec&nbsp; 4 chiffres décimaux → "235.4567"</div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Serial.println(data); </span><br>
+    <div class="R_5ch"> Identique à Serial.print() mais transmet en plus un retour ligne (CR LF)=(13 10)</div>
+    <div class="code2"> Serial.println(125.45);&nbsp;&nbsp; // transmet le nombre 125.45 suivi d'un retourne à la
+      ligne<br>
+      <br>
+      Serial.println();&nbsp;&nbsp; // transmet un retourne à la ligne
+    </div>
+    <span class="R_3ch visible"></span><br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; n = Serial.available(); </span><br>
+    <div class="R_5ch"> Retourne le nombre d'octets disponible dans le buffer de réception</div>
+    <br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; b = Serial.read(); </span><br>
+    <div class="R_4ch R_5ch">Lit un octet à partir du buffer de réception. L'octet est retiré du buffer. Si le buffer de
+      réception est vide, la fonction&nbsp; retourne -1 (255).Le receveur <strong>b</strong> peut être de type <span
+        style="font-weight: bold;">byte</span>, <span style="font-weight: bold;">char </span>ou&nbsp; <span
+        style="font-weight: bold;">int</span></div>
+    <br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; n = Serial.readBytes(B, length);</span><br>
+    <div class="R_5ch">Lit un ensemble d'octets à partir du buffer de réception et les place dans la variable B<br>
+      <strong>B:</strong> nom de la variable qui reçoit les données. Type&nbsp; char[] ou byte[]<br>
+      <strong>length</strong>: nombre d'octets à lire (int)<br>
+      cette fonction retourne le nombre <strong>n</strong> d'octets effectivement lus qui peut être inférieur à
+      <strong>length </strong>en cas de timeout<br>
+    </div>
+    <span class="R_3ch visible"></span><br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; n = Serial.readBytesUntil(terminator, B, length);</span><br>
+    <div class="R_5ch">lit un ensemble d'octets et les place dans la variable B<br>
+      La réception s'arrête quand on reçoit l'octet <strong>terminator </strong>ou après la réception de <span
+        style="font-weight: bold;">length </span>octets ou après un <strong> timeout</strong>. <br>
+      La fonction retourne le nombre<strong> n</strong> d'octets effectivement lus<br>
+    </div>
+    <span class="R_3ch visible"></span><br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; S = Serial.readStringUntil(car); </span><br>
+    <div class="R_5ch"> lit les caractères qui arrivent et les place dans la chaîne <strong>S</strong> (type string).
+      S'arrête à la réception du caractère <strong> car </strong>ou après un Timeout<br>
+    </div>
+    <span class="R_3ch visible"></span><br>
+    <span class="R_3ch visible"> •&nbsp;&nbsp;&nbsp; Serial.setTimeout(tms);&nbsp; </span><br>
+    <div class="R_5ch">&nbsp;Définit la durée de <strong>timeout </strong>en lecture. Par défaut le <strong>timeout
+      </strong>est fixé à 1000 ms = 1s <br>
+    </div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Serial.end();&nbsp; </span><br>
+    <div class="R_5ch"> Désactive l'UART. Les broches 0 et 1 peuvent de nouveau être utilisées comme des E/S normales
+    </div>
+    <span class="R_3ch visible"></span><br>
+    <br>
+    <span class="PP">En résumé</span><br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre un caractère</span><br>
+    <div class="code2">Serial.write('A');<br>
+      char c = 'B'<br>
+      Serial.write(c);</div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre une chaine</span><br>
+    <div class="code2">Serial.write("Bonjour");</div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre une nombre entier ou réel en tant que chaine</span><br>
+    <div class="code2">Serial.print(N);<br>
+      Serial.print(R, 3); // 3 chiffres à droite de la virgule</div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre un entier (int) ou (unsigned int) en tant que
+      nombre</span><br>
+    <div class="code2">unsigned int&nbsp; N = 0x4142; <br>
+      Serial.write((byte*) &amp;N , 2);&nbsp; //ordre little Indian, LSB d'abord<br>
+    </div>
+    <p class="R_5ch">On peut aussi faire:</p>
+    <p class="code2">Serial.write(lowByte(N));<br>
+      Serial.write(highByte(N));</p>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre un entier long&nbsp; (long) ou (unsigned long) en tant
+      que nombre</span><br>
+    <div class="code2"> unsigned long int Z = 0x44434241;<br>
+      Serial.write((byte*) &amp;Z, 4);<br>
+    </div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Transmettre un réel&nbsp; (float) en tant que nombre =&gt; 4
+      octets</span><br>
+    <div class="code2">&nbsp;&nbsp; float&nbsp; R = 123.456;<br>
+      &nbsp; Serial.write((byte*) &amp;R, 4);<br>
+    </div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Recevoir un entier (int) ou (unsigned int) =&gt; 2 octets</span><br>
+    <div class="code2">int&nbsp; N ; <br>
+      Serial.readBytes((byte*) &amp;N , 2);&nbsp; //ordre little Indian, LSB d'abord<br>
+    </div>
+    <br>
+    <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Recevoir un entier long (long)&nbsp; (unsigned long)</span><br>
+    <div class="code2">long N ; <br>
+      Serial.readBytes((byte*) &amp;N , 4);&nbsp; //ordre little Indian, LSB d'abord<br>
+    </div>
+    <br>
+    &nbsp; <span class="R_3ch visible">•&nbsp;&nbsp;&nbsp; Recevoir un réel (float) </span><br>
+    <div class="code2">float&nbsp; R ; <br>
+      Serial.readBytes((byte*) &amp;R , 4);&nbsp; //ordre little Indian, LSB d'abord</div>
+    <br>
+    <br>
+    <span class="PP">Exemple</span><br>
+    <div class="description">Ce programme peut être utilisé avec une liaison série filaire&nbsp; ou une interface
+      Bluetooth du genre HC-05<br>
+      Le hardware est constitué d'un Arduino avec une LED sur la patte 8 et et un capteur analogique sur la patte A5<br>
+      On écoute le port série:<br>
+      &nbsp;&nbsp;&nbsp; - Si on reçoit 'A', on allume la LED<br>
+      &nbsp;&nbsp;&nbsp; - Si on reçoit 'B', on éteint la LED<br>
+      &nbsp;&nbsp;&nbsp; - Si on reçoit 'C', on mesure le capteur analogique et on transmet le résultat en Volts</div>
+    <div class="code"> <video class="Float_R" controls="controls" preload="auto" src="serial-cmd.mp4"></video>#define
+      LEDPIN&nbsp; 8<br>
+      #define ANPIN&nbsp; A5<br>
+      char c ;<br>
+      uint16_t NA;<br>
+      float V;<br>
+      void setup() {<br>
+      &nbsp; pinMode(LEDPIN, OUTPUT);<br>
+      &nbsp; Serial.begin(9600);<br>
+      }<br>
+      <br>
+      void loop() {<br>
+      &nbsp; if (Serial.available() &gt; 0){<br>
+      &nbsp;&nbsp;&nbsp; c = Serial.read();<br>
+      &nbsp;&nbsp;&nbsp; switch (c) {<br>
+      &nbsp;&nbsp;&nbsp; case 'A':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(LEDPIN, HIGH);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case 'B':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(LEDPIN,LOW);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case 'C':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NA = analogRead(ANPIN);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V = NA * 5.0 / 1023.0;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Serial.println(V);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; default:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; }<br>
+      &nbsp; }<br>
+      }
+    </div>
+    &nbsp;<br>
+    <br>
+    <br>
+    <span class="titre"> <a id="I2C" name="I2C"></a>Interface de communication I2C</span><br>
+    <p class="description"> L'Arduino UNO possède un module de communication I2C pour communiquer avec tout autre
+      composant disposant du même standard.</p>
+    <br>
+    <p class="titre"><a id="I2C_ENBREF" name="I2C_ENBREF"></a>Bref rappel du standard I2C</p>
+    <div class="description"> Le protocole I2C (Inter-Integrated Circuit) est un standard de communication synchrone
+      adapté à la communication entre circuits électroniques. La partie Hardware est constituée d'un bus de deux fils
+      SCL (Serial Clock) et SDA (Serial Data). Les deux fils doivent être reliés à 5V par des résistances de
+      pull-Up.<br>
+      <img alt="" src="bus_I2C.png"><br>
+      <br>
+      On peut relier plusieurs circuits à un bus I2C, mais pendant une communication, un des circuits est le <span
+        class="visible">Master</span>, c'est lui qui génère l'horloge <span class="visible">SCL </span>et initie les
+      séquences de communication, les autres sont des slaves.<br>
+      Les slaves peuvent,&nbsp; à la demande du master, recevoir et émettre des données sur la ligne <span
+        class="visible">SDA</span>. Dans un sens, ou dans l'autre, les bits sont toujours placés sur la ligne <span
+        class="visible">SDA </span>au rythme de l'horloge <span class="visible">SCL </span>générée par le master.<br>
+      Un bus peut être connecté à <span class="visible">plusieurs masters</span>, mais dès qu'un master prend le
+      contrôle du bus, les autres doivent attendre jusqu'à ce que le bus se libère.<br>
+      Chaque Slave a une <span class="visible">adresse</span>, au début d'une séquence de communication, le Master qui
+      initie la séquence envoie l'adresse du slave avec lequel il désire communiquer, celui-ci reconnaît son adresse et
+      répond, les autres slaves (s'il y en a) restent muets.<br>
+    </div>
+    <br>
+    <p class="S_Titre"> </p>
+    <span class="S_Titre">Bus Libre</span><br>
+    <p class="description"> Quand le bus est libre, les deux lignes SDA et SCL sont au niveau haut</p>
+    <p class="S_Titre"> Start condition</p>
+    <p class="description">Quand un Master veut prendre le contrôle du bus et démarrer une séquence de communication, il
+      génère un signal <span class="visible">Start condition</span> sur le bus.<br>
+      <img src="I2C_START.png">
+    </p>
+    <br>
+    <p class="S_Titre">&nbsp; stoP condition</p>
+    <p class="description">Quand un Master veut terminer une séquence de communication et libérer le bus, il génère un
+      signal <span class="visible">stoP condition</span>.<br>
+      <img src="I@C_STOP.png">
+    </p>
+    <p class="S_Titre">&nbsp; Écrire un bit sur le bus</p>
+    <img class="R_2ch" alt="" src="I2C_W1_W0.png"><br>
+    <br>
+    <p class="S_Titre"> L' acknowledge</p>
+    <p class="description">L'acknowledge est l'accusé de réception. Il est placé par le circuit (qui vient de recevoir
+      un octet) sur la ligne SDA pendant le 9ème coup d'horloge.<br>
+      •&nbsp;&nbsp;&nbsp; Si c'est le master qui envoie, alors c'est le slave qui place l'acknowledge<br>
+      •&nbsp;&nbsp;&nbsp; Si c'est le master qui reçoit, alors c'est lui même qui place l'acknowledge<br>
+    </p>
+    <p class="R_5ch">o&nbsp;&nbsp;&nbsp; SDA=0 ==&gt; acknowledge positif (ACK),<br>
+      o&nbsp;&nbsp;&nbsp; SDA=1 ==&gt; acknowledge négatif (NoACK),</p>
+    <p class="S_Titre">Début d'une séquence de communication</p>
+    <p class="description">Une séquence de communication doit toujours commencer comme suit:<br>
+      •&nbsp;&nbsp;&nbsp; Le master envoie un Start,<br>
+      •&nbsp;&nbsp;&nbsp; Le master envoie l'adresse du Slave sur 7 bits<br>
+      •&nbsp;&nbsp;&nbsp; Le master envoie le bit R/W pour indiquer s'il veut envoyer des données vers le slave ou s'il
+      veut en recevoir </p>
+    <p class="description R_5ch">o&nbsp;&nbsp;&nbsp; R/W = 0&nbsp; =&gt;&nbsp;&nbsp; il veut envoyer<br>
+      o&nbsp;&nbsp;&nbsp; R/W = 1&nbsp; =&gt;&nbsp;&nbsp; il veut recevoir</p>
+    <p class="description">•&nbsp;&nbsp;&nbsp; Le slave place l'acknowledge pendant le 9ème coup d'horloge<br>
+      <img alt="" src="debut_echange.png">
+    </p>
+    <br>
+    <p class="S_Titre">Séquence de transmission (master → slave)</p>
+    <img class="R_3ch" alt="" src="I2C_master_W.png"><br>
+    <br>
+    <p class="S_Titre">Séquence de réception (master&nbsp; ← slave)</p>
+    <img class="R_3ch" alt="" src="I2C_master_R.png"><br>
+    <ul>
+      <li><span style="font-style: italic;">Le master envoie le Start, suivi de l'adresse du Slave avec le bit R/W=1
+          pour préciser qu'il démarre une séquence de réception</span></li>
+      <li><span style="font-style: italic;">Le slave envoie ACK pendant le 9ème coup d'horloge suivi d'un octet pendant
+          les 8 coups d'horloge suivant</span></li>
+      <li><span style="font-style: italic;">Le master envoie un ACK (positif) pour préciser qu'il désire recevoir un
+          autre octet</span></li>
+      <li><span style="font-style: italic;">Le slave envoie un octet</span></li>
+      <li><span style="font-style: italic;">Le master envoie un NoACK (négatif) pour préciser qu'il ne veut plus
+          recevoir</span></li>
+      <li><span style="font-style: italic;">Le master envoie un stoP pour mettre fin à la communication et libérer le
+          bus</span></li>
+    </ul>
+    <p class="S_Titre">Séquence bidirectionnelle</p>
+    <p class="description">Si le master veut envoyer des données puis en recevoir d'autres. Au moment où il envoie le
+      stoP à la fin de la séquence de transmission, le bus devient libre et il peut être pris par un autre master. Pour
+      éviter cela, le master peut envoyer un Start avant d'envoyer le stoP, on appelle un RepeatStart<br>
+      <img alt="" src="I2C_master_W_R.png">
+    </p>
+    <br>
+    <p class="S_Titre"> Fréquence de l'horloge </p>
+    <p class="description">Le standard I2C supporte 5 vitesses de communication, </p>
+    <ul>
+      <li><span style="font-style: italic;">Standard mode (Sm)&nbsp; &nbsp;&nbsp;&nbsp; ≤ 100 kbit/s,</span></li>
+      <li><span style="font-style: italic;">Fast mode (Fm)&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ≤ 400
+          kbit/s,</span></li>
+      <li><span style="font-style: italic;">Fast mode plus (Fm+)&nbsp; &nbsp;&nbsp;&nbsp; ≤ 1 Mbit/s,</span></li>
+      <li><span style="font-style: italic;">High-speed mode (Hsm)&nbsp; &nbsp;&nbsp;&nbsp; ≤ 3,4 Mbit/s,</span></li>
+      <li><span style="font-style: italic;">Ultra-fast mode (UFm) &nbsp;&nbsp;&nbsp; ≤ 5 Mbit/s, unidirectionnel
+          uniquement.</span></li>
+    </ul>
+    <br>
+    <p class="titre"><a id="I2C_ARDUINO" name="I2C_ARDUINO"></a>I2C sur ARDUINO</p>
+    <p class="description"> On utilise la librairie <span class="visible">Wire </span>pour communiquer sur le bus I2C.
+      Sur Arduino UNO R3, les pattes <span class="visible">SDA </span>et <span class="visible">SCL </span>sont situé en
+      haut à gauche à coté de l'entrée AREF. </p>
+    <p class="LibFonc"> •&nbsp;&nbsp;&nbsp; Wire.begin()</p>
+    <p class="description2">Initialise l'interface I2C. La vitesse est fixée par défaut à 100kHZ.<br>
+    </p>
+    <p class="LibFonc"> •&nbsp;&nbsp;&nbsp; Wire.setClock(Fhz)</p>
+    <p class="description2"> Permet de modifier la fréquence de communication. Pour Arduino UNO, les valeurs acceptée
+      sont 100000 et 400000</p>
+    <p class="LibFonc"> •&nbsp;&nbsp;&nbsp; Wire.beginTransmission(SlaveAdr);</p>
+    <p class="description2"> Envoie le Start suivi de l'<span style="font-weight: bold; color: #3333ff;">adresse
+      </span>SlaveAdr suivi du bit <span style="color: red;">R/W=0</span></p>
+    <span class="code2">Wire.beginTransmission(B<span style="font-weight: bold;"><span
+          style="color: #3333ff;">1001111</span><span style="color: red;">0</span></span>)</span><br>
+    <p class="description2">Après cette instruction, il faut utiliser la fonction <span
+        class="visible">Wire.write()</span> pour transmettre des données et terminer avec la fonction <span
+        class="visible">Wire.endTransmission()</span><br>
+      <span style="font-weight: bold;">Attention</span>: tout est placé dans une file d'attente et ne sera transmis
+      qu'au moment de l'exécution de la fonction Wire.endTransmission()
+    </p>
+    <br>
+    <p class="LibFonc"> •&nbsp;&nbsp;&nbsp; Wire.write(value)<br>
+      •&nbsp;&nbsp;&nbsp; Wire.write(string)<br>
+      •&nbsp;&nbsp;&nbsp; Wire.write(tab, length)</p>
+    <p class="description2"> Envoie des octets sur le bus I2C. En fait, les octets sont placé dans une file d'attente et
+      ne sont envoyé que quand on exécute l'instruction <span class="visible">Wire.endTransmission()</span></p>
+    <br>
+    <p class="LibFonc"> •&nbsp;&nbsp;&nbsp; Wire.endTransmission([b])</p>
+    <p class="P2"> Déclenche la transmission des octets mis dans la file d'attente par les fonctions
+      <strong>beginTransmission()</strong> et <strong>write()</strong> puis envoie un <strong>StoP </strong>ou un
+      <strong>RepeatStart </strong>selon la valeur du paramètre logique b:</p>
+    <ul class="P1">
+      <li> Si <strong>b = true</strong> (valeur par défaut) =&gt; envoie un <strong>StoP </strong>pour libérer le bus
+        I2C</li>
+      <li>Si <strong>b = false</strong> =&gt; envoie un <strong>RepeatStart </strong>pour garder le contrôle du bus I2C
+      </li>
+      <li>Cette fonction retourne:</li>
+      <ul>
+        <li>&nbsp;&nbsp; 0&nbsp; --&gt;&nbsp; success</li>
+        <li>&nbsp;&nbsp; 1 --&gt; data too long to fit in transmit buffer</li>
+        <li>&nbsp;&nbsp; 2 --&gt; received NoACK on transmit of address</li>
+        <li>&nbsp;&nbsp; 3 --&gt; received NoACK on transmit of data</li>
+        <li>&nbsp;&nbsp; 4 --&gt; other error</li>
+      </ul>
+    </ul>
+    <br>
+    <ul class="visible P0">
+      <li> k = Wire.requestFrom(adr, N, [b])</li>
+    </ul>
+    <p class="P2">Demande <b>N</b> octets au circuit d'adresse <strong>adr</strong>. A leur arrivé, les octets sont
+      placés dans le buffer de réception de l'interface I2C et la séquence est clôturée selon la valeur du paramètre
+      logique b (optionnel):</p>
+    <ul class="P2">
+      <li>&nbsp;Si b=true (défaut) la séquence est clôturée par l'envoi d'un <span
+          style="font-weight: bold;">stoP</span></li>
+      <li>Si b=false la séquence est clôturée par l'envoi d'un <strong>RepeatStart </strong></li>
+    </ul>
+    <p class="P2"><br>
+      La fonction retourne le nombre <b>k</b> d'octets effectivement lu<br>
+      La fonction <strong>Wire.available()</strong> permet de savoir combien il reste d'octet en attente dans le buffer
+      de réception. <br>
+      La fonction <strong>Wire.read()</strong> permet de lire et retirer un octet du buffer de réception.</p>
+    <br>
+    <ul class="visible P0">
+      <li> n = Wire.available()</li>
+    </ul>
+    <p class="P2"> Retourne le nombre d'octets en attente dans le buffer de réception</p>
+    <br>
+    <ul class="P0 visible">
+      <li> B = Wire.read()</li>
+    </ul>
+    <p class="P2"> Permet de retirer un octet du buffer de réception</p>
+    <br>
+    <ul class="P0 visible">
+      <li> n = Wire.readBytes(tab, N)</li>
+    </ul>
+    <p class="P2"> Permet de retirer <strong>N </strong>octets du buffer de réception et les place dans le tableau
+      <strong>tab</strong>. Retourne le nombre <strong>n</strong> d'octets effectivement lus qui peut être inférieur à
+      <strong>N </strong>si le buffer de réception ne contient pas suffisamment d'octets</p>
+    <br>
+    <span class="PS"> Exemple: envoyer le nombre 85 vers le slave d'adresse 0x4F (1001111)</span>
+    <div class="code">&nbsp; Wire.begin(); <br>
+      &nbsp; Wire.beginTransmission(0x4F);<br>
+      &nbsp; Wire.write(85);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      &nbsp; Wire.endTransmission();&nbsp;&nbsp;&nbsp; <br>
+    </div>
+    <br>
+    <span class="PS"> Exemple: Envoyer les nombres 85, 86, 87 vers le slave d'adresse 0x4F (1001111)</span>
+    <div class="code">&nbsp; Wire.begin(); <br>
+      &nbsp; Wire.beginTransmission(0x4F);<br>
+      &nbsp; Wire.write(85);&nbsp;&nbsp; <br>
+      &nbsp; Wire.write(86);&nbsp;&nbsp; <br>
+      &nbsp; Wire.write(87);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      &nbsp; Wire.endTransmission();&nbsp;&nbsp;&nbsp; <br>
+    </div>
+    <br>
+    <span class="PS"> Exemple: Lire deux nombres venant du slave d'adresse 0x4F (1001111)</span>
+    <div class="code">&nbsp; Wire.begin(); </div>
+    <div class="code">&nbsp; Wire.requestFrom(0x4F, 2);<br>
+      &nbsp; int n1 = Wire.read(); <br>
+      &nbsp; int n2 = Wire.read();&nbsp;&nbsp;&nbsp;&nbsp; <br>
+    </div>
+    <br>
+    <p class="titre"><a id="LM75" name="LM75"></a>Le capteur de température LM75A</p>
+    <p class="P2">C'est un capteur Numérique. Il a son propre convertisseur analogique numérique. Il communique avec
+      l'extérieur sur un bus I2C</p>
+    <img class="P2" alt="" src="lm75_0.png"><br>
+    <ul>
+      <li>&nbsp;Capteur de température avec un ADC 11 bits [D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0] avec une résolution de
+        0.125 °C (poids de D0)</li>
+      <li>&nbsp;Plage de fonctionnement -55°C&nbsp; à +125 °C</li>
+      <li>&nbsp;Pas très fiable, (possibilité d'erreur) +/- 2°C&nbsp; dans la plage (-25°C à +100°C)</li>
+      <li>&nbsp;Le circuit possède 3 entrées A2 A1 A0 qui permettent de fixer son adresse sur un bus I2C. On peut donc
+        avoir jusqu'à 8 circuits sur le même bus I2C. Les 4 autres bits sont fixés à 1001 ce qui donne l'adresse 7 bits
+        <span style="font-weight: bold; color: blue;">1 0 0 1 A2 A1 A0</span></li>
+      <li>Le circuit contient 4 registres internes [simple(8bits) ou double(16 bits)] que l'on peut écrire ou lire. On
+        peut les adresser à l'aide d'un pointeur dont seulement deux bits sont utilisés. &nbsp;&nbsp; pointeur = [0 0 0
+        0 0 0 B1&nbsp; B0] </li>
+    </ul>
+    <table class="P2" border="1">
+      <tbody>
+        <tr>
+          <td style="width: 3em; text-align: center; background-color: #ffffcc;">B1&nbsp; B0</td>
+          <td style="background-color: #ccffff;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 3em; text-align: center; background-color: #ffffcc;">0&nbsp; 0</td>
+          <td style="background-color: #ccffff;">&nbsp;Registre de température (2 octets)</td>
+        </tr>
+        <tr>
+          <td style="width: 3em; text-align: center; background-color: #ffffcc;">0&nbsp; 1</td>
+          <td style="background-color: #ccffff;">&nbsp;Registre de configuration (1 octet)</td>
+        </tr>
+        <tr>
+          <td style="width: 3em; text-align: center; background-color: #ffffcc;">1&nbsp; 0</td>
+          <td style="background-color: #ccffff;">&nbsp;Registre Hystérésis (1 octet)</td>
+        </tr>
+        <tr>
+          <td style="width: 3em; text-align: center; background-color: #ffffcc;">1&nbsp; 1</td>
+          <td style="background-color: #ccffff;">&nbsp;Overtemperature shutdown (1 octet)</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>A la mise sous tension, le circuit démarre en mode MORMAL. Dans ce mode, il réalise une mesure de température
+        toutes les 100ms et stocke le résultat dans le registre de température</li>
+    </ul>
+    <p class="P2"><img src="LM75A_temp_reg.jpg" alt=""><br>
+      Le poids du bit de de plus faible poids est 0.125 ==&gt;<br>
+      - Le poids du MSB = 1<br>
+      - Le poids du LSB (après cadrage à droite) est 0.125<br>
+      - La température est alors obtenue par T = MSB + (LSB&gt;&gt;5)*0.125</p>
+    <br>
+    <br>
+    <p class="PP">Ecrire dans un registre interne</p>
+    <ul class="P0">
+      <li>On envoie le Start suivi de l'adresse I2C du circuit avec le bit R/W=0 pour préciser que c'est une séquence
+        d'écriture. le LM75A retourne un ACK pendant le 9ème coup d'horloge</li>
+      <li>On envoie le pointeur avec l'adresse du registre ciblé. le LM75A retourne un ACK pendant le 9ème coup
+        d'horloge</li>
+      <li>On envoie la donnée à écrire dans le registre ciblé. le LM75A retourne un ACK pendant le 9ème coup d'horloge.
+      </li>
+      <li>On envoie un STOP pour terminer l'échange</li>
+    </ul>
+    <img class="P2" alt="" src="LM75_W_CONF.png"><br>
+    <br>
+    <p class="PP">Lecture d'un registre interne</p>
+    <p class="P2">Pour lire un registre interne, on a deux possibilités:</p>
+    <ul class="P2">
+      <li>Soit on précise le pointeur pour indiquer le registre ciblé</li>
+      <li>Soit on ne précise pas le pointeur. Dans ce cas, la valeur actuelle du pointeur est utilisée. Cette valeur a
+        été fixée lors d'un échange précédent. A la mise sou tension, la valeur du pointeur est 0.</li>
+    </ul>
+    <p class="P2"><br>
+      <strong><em> Pour lire le registre de température:</em></strong>
+    </p>
+    <ul class="P1 P2">
+      <li>On envoie le Start suivi de l'adresse I2C du circuit avec le bit R/W=0 pour préciser que derrière on va
+        envoyer le pointeur (adresse interne). Le LM75A retourne un ACK pendant le 9ème coup d'horloge</li>
+      <li>On envoie le pointeur avec l'adresse 00 du registre de température. le LM75A retourne un ACK pendant le 9ème
+        coup d'horloge</li>
+      <li>On envoie un RepeatStart (pour changer le sens de communication sans perdre le contrôle du bus)</li>
+      <li>On envoie l'adresse I2C du circuit avec le bit R/W=1 pour démarrer une lecture. Le LM75A retourne un ACK
+        pendant le 9ème coup d'horloge</li>
+      <li>Le LM75A envoie l'octet MSB (signé). Nous validons par un ACK pendant le 9ème coup d'horloge</li>
+      <li>Le LM75A envoie l'octet LSB (3 bits cadrés à gauche). Nous validons par un N_ACK pendant le 9ème coup
+        d'horloge pour préciser qu'on a fini</li>
+      <li>On envoie un STOP</li>
+    </ul>
+    <img class="P2 P3" alt="" src="LM75_R_2bytes.png"><br>
+    <br>
+    <p class="PP">Code pour afficher la température sur moniteur série</p>
+    <p class="PP"> </p>
+    <p class="code2">/*<br>
+      &nbsp;&nbsp; Lecture de température sur un LM75A<br>
+      &nbsp;&nbsp; Les 3 bits d'adresse I2C sont fixé à 111 =&gt; adresse = 1001 111 = 0x4F<br>
+      &nbsp;*/<br>
+      #include &lt;Wire.h&gt;<br>
+      int8_t MSB, LSB;&nbsp; // le msb obligatoirement signé<br>
+      float T ;<br>
+      void setup()<br>
+      {<br>
+      &nbsp; Serial.begin(9600);&nbsp; // initialiser l'interface série pour l'affichage<br>
+      &nbsp; Wire.begin();&nbsp;&nbsp; // initialiser l'interface I2C<br>
+      }<br>
+      void loop()<br>
+      {<br>
+      &nbsp; Wire.beginTransmission(0x4F);<br>
+      &nbsp; Wire.write(0);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // pointeur sur
+      registre de température<br>
+      &nbsp; Wire.endTransmission();&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      &nbsp; Wire.requestFrom(0x4F, 2); // demande les deux octets du registre de température<br>
+      &nbsp; MSB = Wire.read();&nbsp;&nbsp; // lire à partir du buffer de réception I2C de l'Arduino<br>
+      &nbsp; LSB = Wire.read();&nbsp;&nbsp; // lire à partir du buffer de réception I2C de l'Arduino<br>
+      &nbsp; T = MSB + (LSB &gt;&gt;5)*0.125;&nbsp; // le poids du msb est = 1<br>
+      &nbsp; Serial.println(T,3);<br>
+      &nbsp; delay(500);<br>
+      }<br>
+    </p>
+    <p> </p>
+    <p class="P2"> On peut optimiser le programme en envoyant l'adresse du registre de température une seule fois dans
+      la fonction setup().</p>
+    <p class="code2">/*<br>
+      Lecture de température sur un LM75A<br>
+      Les 3 bits d'adresse I2C sont fixé à 111 =&gt; adresse = 1001 111 = 0x4F<br>
+      Le pointeur est fixé une seule fois dans le setuo()<br>
+      la fonction loop() lit le registre de température toutes les 1/2 seconde sans préciser le pointeur à chaque
+      fois<br>
+      &nbsp;*/<br>
+      #include &lt;Wire.h&gt;<br>
+      int8_t MSB, LSB;<br>
+      float T ;<br>
+      void setup()<br>
+      {<br>
+      &nbsp; Serial.begin(9600);&nbsp; // initialiser l'interface série pour l'affichage<br>
+      &nbsp; Wire.begin();&nbsp;&nbsp; // initialiser l'interface I2C<br>
+      &nbsp; Wire.beginTransmission(0x4F);<br>
+      &nbsp; Wire.write(0);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // pointeur sur
+      registre de température<br>
+      &nbsp; Wire.endTransmission();&nbsp;&nbsp;&nbsp; <br>
+      }<br>
+      void loop()<br>
+      {<br>
+      &nbsp; Wire.requestFrom(0x4F, 2); // demande 2 octets à partir de la position courante du pointeur<br>
+      &nbsp; MSB = Wire.read();<br>
+      &nbsp; LSB = Wire.read();<br>
+      &nbsp; T = MSB+ (LSB&gt;&gt;5)*0.125;<br>
+      &nbsp; Serial.println(T,3);<br>
+      &nbsp; delay(500);<br>
+      }</p>
+    <br>
+    <p class="titre"><a id="SHT31" name="SHT31"></a>Le capteur de température et d'humidité SHT31</p>
+    <ul>
+      <li> <img class="Float_R" alt="" src="SHT3x.png">Plage de fonctionnement température: &nbsp;&nbsp;&nbsp; -40
+        °C&nbsp; à +125 °C</li>
+      <li>Plage de fonctionnement humidité:&nbsp;&nbsp;&nbsp; &nbsp; 0%&nbsp; à 100%</li>
+      <li>Résolution Température: 0.01 °C</li>
+      <li>Résolution humidité: 0.01 %</li>
+      <li>Fiabilité température:&nbsp;&nbsp; ±&nbsp;&nbsp;&nbsp; 0.2°C&nbsp; dans la plage [0, 90]°C</li>
+      <li>Fiabilité humidité:&nbsp; ±&nbsp;&nbsp; 2%</li>
+      <li>Le circuit possède&nbsp; une seule entrée <span style="color: red;">A</span> qui permettent de fixer son
+        adresse sur un bus I2C. Cette patte doit être reliée à 0V ou à 5V mais ne doit pas être laissée en l'air. Les 6
+        autres bits de l'adresse sont fixés à 100010 ce qui donne l'adresse 7 bits 100010<span
+          style="color: red;">A</span>. Les deux adresses possible sont 100010<span style="color: red;">0</span>=0x44 ou
+        100010<span style="color: red;">1</span>=0x45. On peut donc avoir au maximum 2 circuits SHT3x sur le même bus
+        I2C. </li>
+      <li>Pour prendre une mesure, on envoie une commande (2 octets) et le circuit nous renvoie les mesures (6 octets).
+        Deux modes de fonctionnement sont possibles, le mode single&nbsp; shot, et le mode périodique, On ne parlera
+        dans ce document que du mode single&nbsp; shot.&nbsp;</li>
+    </ul>
+    <p class="P2">Voir le <strong><a
+          href="https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital.pdf">datasheet
+        </a></strong>pour plus de détail</p>
+    <ul>
+    </ul>
+    <p class="PP">Mode single shot</p>
+    <p class="description">Dans ce mode, on envoie une commande pour demander une mesure. Le circuit prend la mesure et
+      nous renvoie les résultats. Il y a 6 commandes différentes pour réaliser cette tâche (tableau ci-dessous). Nous
+      allons essayer d'y voir plus clair. Il y a deux aspects à prendre en considération, la <strong>Repeatability
+      </strong>et le <strong>Clock stretching</strong>. <br>
+      La Repeatability exprime la régularité ou la dispersion des mesures successives autour d'une valeur moyenne. Le
+      tableau ci-dessous montre que le mode High Repeatability donne l'erreur la plus faible (0.04 °C) mais a le temps
+      de conversion le plus long (jusqu'à 15 ms) ce qui engendre aussi une consommation plus élevée car le circuit
+      consomme un courant plus fort pendant les conversions.<br>
+      Le Clock stretching est un mécanisme du standard I2C. Rappelons les points suivants:</p>
+    <ul class="P0">
+      <li>Les deux lignes SCK et SDA fonctionnent en mode collecteur ouvert. Si un circuit place une ligne au niveau 0,
+        c'est l'état dominant les autre circuits ne peuvent rien faire</li>
+      <li>&nbsp;Quand le master envoie une requête de lecture, c'est le slave qui va envoyer une donnée, mais c'est le
+        master qui génère l'horloge SCK, le slave ne fait que placer les bits sur SDA à chaque coup d'horloge.</li>
+    </ul>
+    <p class="description">Que se passe-t-il si le mater démarre l'horloge alors que le slave n'a pas encore préparé la
+      donnée à transmettre (temps de conversion pas encore terminé par exemple). C'est là que rentre en jeux le
+      mécanisme de Clock stretching, que l'on peut résumer ainsi </p>
+    <ul class="P0">
+      <li>Coté slave: dès que le slave reçoit un Start suivi de son adresse avec le bit R/W=1, il retourne un NoACK
+        pendant le 9eme coup d'horloge puis FORCE L'HORLOGE SCL à 0. Tant que l'horloge est forcée à 0 le master ne peut
+        rien faire.&nbsp; Dès que le slave a une donnée à transmettre, il libère la ligne SCK et le master rentre en
+        jeux</li>
+      <li>Coté Master:&nbsp; Si le master reçoit un NoACK après l'envoi d'un Start suivi d'une adresse avec le bit
+        R/W=1, il commence à tester l'état de la ligne SCK (Clock Stretching). Dès qu'elle passe à un, il continue la
+        suite de l'échange</li>
+    </ul>
+    <br>
+    <table style="text-align: center; margin-left: auto; margin-right: auto;" border="1">
+      <tbody>
+        <tr style="background-color: #ccffff;">
+          <td style="width: 8em;" colspan="2">Commande (hex) </td>
+          <td style="width: 8em;">Clock stretching</td>
+          <td style="width: 6em;">Repeatability </td>
+          <td style="width: 6em;">Dispersion</td>
+          <td style="width: 12em;">Temps de conversion max</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td rowspan="3"> 24 </td>
+          <td>00</td>
+          <td style="width: 98.333px;" rowspan="3"> Disabled </td>
+          <td>High</td>
+          <td>0.04 °C</td>
+          <td>15 ms</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td>0B </td>
+          <td>Medium</td>
+          <td>0.08 °C</td>
+          <td>6 ms</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td>16</td>
+          <td>Low</td>
+          <td>0.15 °C</td>
+          <td>4 ms</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td rowspan="3"> 2C </td>
+          <td>06 </td>
+          <td rowspan="3"> Enabled </td>
+          <td>High </td>
+          <td>0.04 °C</td>
+          <td>15 ms</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td>0D</td>
+          <td>Medium</td>
+          <td>0.08 °C</td>
+          <td>6 ms</td>
+        </tr>
+        <tr style="background-color: #ffffcc;">
+          <td>10</td>
+          <td>Low</td>
+          <td>0.15 °C</td>
+          <td>4 ms</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p class="description"> En conclusion, ne sachant pas si la librairie Wire gère le Clock stretching, nous
+      utiliserons les commandes qui n'activent pas ce mode.Il ne reste à choisir entre 3 commandes:</p>
+    <ul>
+      <li>Si on prend des mesures à un rythme lent (≈ la seconde), la commande <span
+          class="visible">0x2400</span>&nbsp;&nbsp; (mode High Repeatability sans clock stretching) semble bien adaptée,
+        elle donne une dispersion plus faible et le temps de conversion de 15ms n'aura pas d'incidence car beaucoup plus
+        faible que la période d'échantillonnage. Le Clock stretching n'étant pas actif, quand on envoie la commande, on
+        attendra 15 à 20ms avant de commencer la lecture des données.</li>
+      <li>Si on prend des mesures à un rythme élevé, (plusieurs mesures par seconde), la commande <span
+          class="visible">0x2416</span> est plus adaptée car elle a un temps de conversion plus faible ce qui est plus
+        compatible avec un rythme d'échantillonnage élevé. On aura aussi une consommation moyenne plus faible ce qui
+        peut éviter un échauffement du circuit et une altération de la précision. Le Clock stretching n'étant pas actif,
+        quand on envoie la commande, on attendra 4 à 5ms avant de commencer la lecture des données.</li>
+    </ul>
+    <p class="PP">Conversion des données en température (°C) et en Humidité (%)</p>
+    <p class="description">Quand on envoie une commande (Single shot), le circuit réalise une mesure et retourne 6
+      Octets (unsigned)&nbsp; Temp_H,&nbsp; Temp_L,&nbsp; SRC, Hum_H, Hum_L, SRC</p>
+    <ul>
+      <li><span class="visible">Température</span>: On forme un nombre 16 bits <strong>N<span
+            class="indice">T</span></strong> on collant les deux octets <strong>Temp_H</strong> et
+        <strong>Temp_L</strong>,</li>
+    </ul>
+    <div style="text-align: center;"><img alt="" src="SHT31_T_formule.png"><br>
+    </div>
+    <ul>
+      <li><span class="visible">Humidité</span>: On forme un nombre 16 bits <strong>N<span
+            class="indice">H</span></strong> on collant les deux octets <strong>Hum_H</strong> et
+        <strong>Hum_L</strong>,</li>
+    </ul>
+    <div style="text-align: center;"><img alt="" src="SHT31_formule_H.png"><br>
+    </div>
+    <br>
+    <p class="PP"> Exemple</p>
+    <p class="description">Nous allons utiliser un module SHT31. L'entrée A est reliée à la masse ce qui donne l'adresse
+      0x44. On va prendre une mesure toutes les 1/2s et afficher les résultats sur le moniteur série.<br>
+      Remarque: Les mesures ont été réalisées durant le mois de Janvier dans une ville côtière ce qui explique la valeur
+      élevée de l'humidité<br>
+    </p>
+    <br>
+    <p class="code"> #include &lt;Wire.h&gt;<br>
+      <img class="Float_R" alt="" src="SHT31_results.png"><br>
+      uint8_t B[6];<br>
+      uint16_t NT, NH;<br>
+      float T, H;<br>
+      void setup()<br>
+      {<br>
+      &nbsp; Serial.begin(9600);&nbsp; // initialisation du port série pour les besoins d'affichage<br>
+      &nbsp; Serial.println("Hello");<br>
+      &nbsp; Wire.begin();&nbsp;&nbsp; // initialiser l'interface I2C<br>
+      &nbsp; }<br>
+      <br>
+      void loop()<br>
+      {<br>
+      &nbsp; Wire.beginTransmission(0x44);<br>
+      &nbsp; Wire.write(0x24);&nbsp; // partie haute de la commande<br>
+      &nbsp; Wire.write(0x00); // partie basse de la commande<br>
+      &nbsp; Wire.endTransmission();&nbsp; // on valide la transmission et on fini par un stoP<br>
+      &nbsp; delay(20); //temps de conversion<br>
+      &nbsp; Wire.requestFrom(0x44, 6);<br>
+      &nbsp; Wire.readBytes(B,6);<br>
+      &nbsp; NT = B[0];<br>
+      &nbsp; NT &lt;&lt;= 8;<br>
+      &nbsp; NT |= B[1];<br>
+      &nbsp; T = NT;<br>
+      &nbsp; T *= 175;<br>
+      &nbsp; T /= 0xFFFF;<br>
+      &nbsp; T = -45 + T;<br>
+      &nbsp; NH = B[3];<br>
+      &nbsp; NH &lt;&lt;= 8;<br>
+      &nbsp; NH |= B[4];<br>
+      &nbsp; H = NH;<br>
+      &nbsp; H *= 100;<br>
+      &nbsp; H /= 0xFFFF;<br>
+      &nbsp; Serial.print("Température&nbsp; =&nbsp; ");<br>
+      &nbsp; Serial.print(T);<br>
+      &nbsp; Serial.println(" °C");<br>
+      &nbsp; Serial.print("Humidité&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; ");<br>
+      &nbsp; Serial.print(H);<br>
+      &nbsp; Serial.println("&nbsp; %");<br>
+      &nbsp; Serial.println();<br>
+      &nbsp; delay(500);<br>
+      }
+    </p>
+    <br>
+    <p class="titre"><a id="CCLOAD" name="LM75"></a>Commander une charge CC</p>
+    <p class="description"> </p>
+    <p class="description"> <img class="Float_R" alt="" src="chargeCC.png">Si on veut commander une charge qui demande
+      plus 200mA ou une charge nécessitant une alimentation supérieure à 5V. Il est évident qu'on ne peut pas la
+      commander directement par une sortie de l'Arduino. Il faut utiliser une interface de puissance capable de fournir
+      à la charge la tension et le courant dont elle a besoin.<br>
+      La solution la plus simple consiste à utiliser un transistor de commutation. Celui-ci joue le rôle d'interrupteur.
+      Il faut juste choisir un transistor&nbsp; capable de conduire le courant demandé par la charge quand il est
+      saturé,</p>
+    <ul>
+      <li>Il faut calculer Rb pour que le transistor se sature quand la sortie de l'Arduino est au niveau haut</li>
+      <li>Si le courant de la charge est élevé, il peut s'avérer nécessaire d'utiliser un transistor de puissance. Les
+        transistors de puissance ont un 𝛃 assez faible, on risque de se retrouver avec un courant Ib important que le
+        Arduino doit fournir. Pour y remédier, on peut utiliser un transistor Darlington qui a un fort β.</li>
+    </ul>
+    <div style="text-align: center;"><img alt="" src="2n2222.png"><br>
+      <img alt="" src="bdx53.png"><br>
+    </div>
+    <br>
+    <p class="titre"> <a id="CINDUCTIV" name="CINDUCTIV"></a>Commander une charge inductive<img class="Float_R"
+        src="chargeinductive.png"></p>
+    <p class="description"> Dans le cas d'une charge inductive comme un relais ou un moteur, il est IMPÉRATIF de
+      rajouter une DIODE de récupération (roue libre) sinon le transistor sera détruit à la première commutation.<br>
+      Pour le calcul de Rb, on a besoin de la résistance R<span class="indice">L</span> (Continue) de la bobine, il
+      suffit de la mesurer avec un Ohmmètre. Ne vous étonnez pas si vous trouver une valeur faible. C'est normal, c'est
+      juste un fil de cuivre bobiné.</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="titre"><a id="RELAIS" name="RELAIS"></a>Commande d'une charge alimentée par secteur</p>
+    <p class="description"><img class="Float_R" alt="" src="relais.png">Plusieurs solutions sont possibles. Nous
+      exposons ici la solution avec un relais. Elle présente l'avantage d'une isolation galvanique et la possibilité de
+      contrôler des charges de forte puissance.<br>
+      Le transistor joue le rôle d'interrupteur pour alimenter ou non la bobine du relais. Ainsi le courant qui alimente
+      la bobine n'est pas fourni directement par la sortie de l'Arduino mais il vient de l'alimentation du relais Vrel.
+      Cette dernière peut être différente de celle de l'Arduino dans le cas où le relais nécessite une alimentation &gt;
+      5V<br>
+      La résistance Rb doit être calculée pour que le transistor soit saturé quand la sortie de l'Arduino est au niveau
+      haut.</p>
+    <p class="description"><br>
+      Exemple:<br>
+      Rrel = 43Ω,&nbsp; β=100,&nbsp; Vrel = 5V, Vcc = 5V<br>
+      Rb&nbsp; doit être inférieure à&nbsp;&nbsp; 100 ×&nbsp; 43 Ω = 4.3 k,&nbsp; On prend Rb=3.3k <br>
+      Quand la sortie de l'Arduino est au niveau haut, elle fournit un courant Is =(5 – 0.7)/3.3k = 1.3 mA<br>
+      Ce courant sature le transistor qui devient un circuit fermé. La bobine est alors traversée par un courant Ic
+      ≈&nbsp; 5V / 43Ω = 116mA qui vient directement de l'alimentation Vrel. Le courant dans la bobine crée un champ
+      magnétique suffisant pour faire coller le relais, la charge est alors alimentée par le secteur 220V</p>
+    <br>
+    <p class="titre"> <a id="HBRIDGE" name="HBRIDGE"></a>Commander un moteur CC à l'aide d'un pont en H</p>
+    <p class="description"> <img class="Float_R" alt="" src="hbridge.png">Un pont en H est une association de 4
+      interrupteurs permettant d'alimenter une charge CC soit dans un sens soit dans un autre.</p>
+    <div style="text-align: center;"><img alt="" src="hbridgecmd.png"></div>
+    <p class="description"><br>
+      On peut concevoir des ponts en H avec des transistors bipolaires ou des transistors MOS. Plusieurs configurations
+      sont disponibles.&nbsp; J'ai une préférence pour le schéma ci-dessous. C'est un pont pour commander des moteurs
+      demandant jusqu'à 8A</p>
+    <p class="description"> <img alt="" src="hbridgetransistor.png"></p>
+    <p class="description"><br>
+    </p>
+    <p class="description PP">Le pont en H intégré L298</p>
+    <p class="description"><br>
+    </p>
+    <div style="text-align: center;"><img alt="" src="L298_1.png"><br>
+      <br>
+    </div>
+    <p class="description">Le L298 contient deux ponts en H avec trois entrées de commande pour chaque pont. <br>
+      Chaque pont utilise quatre transistors NPN. </p>
+    <p class="description"><img alt="" src="L298_2.png"><br>
+      Les caractéristiques de chaque pont sont les suivantes :</p>
+    <ul>
+      <li>Intensité maximale : 2A par pont ;</li>
+      <li>Alimentation de puissance de 5.5V à 50V ;</li>
+      <li>Dissipation de puissance totale : 25w ;</li>
+      <li>Trois entrées par pont : In1, In2 et ENABLE, la fonctionnement comme suite :</li>
+    </ul>
+    <table
+      style="text-align: left; margin-left: auto; margin-right: auto; width: 529px; height: 207px; background-color: white;"
+      border="1">
+      <tbody>
+        <tr style="background-color: #ffff33;" align="center">
+          <td colspan="3" rowspan="1">Entrées<br>
+          </td>
+          <td colspan="2" rowspan="1">Sories<br>
+          </td>
+          <td colspan="1" rowspan="2">Fonction<br>
+          </td>
+        </tr>
+        <tr style="background-color: #ffffcc;" align="center">
+          <td>ENA</td>
+          <td>IN1</td>
+          <td>IN2</td>
+          <td>Out1</td>
+          <td>Out2</td>
+        </tr>
+        <tr align="center">
+          <td style="vertical-align: middle;" colspan="1" rowspan="4">1<br>
+          </td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>Marche avant&nbsp; (droite)</td>
+        </tr>
+        <tr align="center">
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>Marche arrière (gauche)</td>
+        </tr>
+        <tr align="center">
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td colspan="1" rowspan="2">Frein<br>
+          </td>
+        </tr>
+        <tr align="center">
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr align="center">
+          <td>0<br>
+          </td>
+          <td>x<br>
+          </td>
+          <td>x<br>
+          </td>
+          <td>rien<br>
+          </td>
+          <td>rien<br>
+          </td>
+          <td>Roue libre<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p class="description"> Pour faire varier la vitesse du moteur, on fixe In1 et In2&nbsp; pour définir le sens de
+      rotation et on applique un signal PWM sur l'entrée ENA.<br>
+    </p>
+    <div style="text-align: center;"><img alt="" src="L298_4.png"><br>
+    </div>
+    <br>
+    <br>
+    <span class="PP">Exemple indicatif</span><br>
+    <p class="description">Hardware: On contrôle un moteur CC à l'aide du circuit L298. </p>
+    <br>
+    <table style="width: 282px; height: 143px; margin-left: 40px;" border="1">
+      <tbody>
+        <tr align="center">
+          <td>Sortie Arduino</td>
+          <td>Entrée L298</td>
+        </tr>
+        <tr align="center">
+          <td style="width: 130.45px;">2</td>
+          <td style="width: 135.55px;">IN1</td>
+        </tr>
+        <tr align="center">
+          <td>3</td>
+          <td>IN2</td>
+        </tr>
+        <tr align="center">
+          <td>9 (PWM)</td>
+          <td>ENA</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p class="description">Au départ le moteur sera à l’arrêt. Ensuite on écoute le port série et on agit comme indiqué
+      ci-dessous. <br>
+      Si on reçoit</p>
+    <ul>
+      <li>'G'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Moteur gauche</li>
+      <li>'D'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Moteur droite</li>
+      <li>'S'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arrêt</li>
+      <li>'L'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Roue libre</li>
+      <li>'+'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Accélérer</li>
+      <li>'-'&nbsp;&nbsp;&nbsp;&nbsp; →&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ralentir</li>
+    </ul>
+    <p class="description">(Au premier démarrage, on commence avec un rapport pwm de ½),</p>
+    <p class="code2">char c=0;<br>
+      int pwm = 127;<br>
+      #define ENA 9<br>
+      #define IN1 2<br>
+      #define IN2 3<br>
+      <br>
+      void setup() {<br>
+      &nbsp; TCCR1B = TCCR1B &amp; B11111000 | B00000100;&nbsp; // 500 Hz<br>
+      &nbsp; pinMode(ENA, OUTPUT);<br>
+      &nbsp; pinMode(IN1, OUTPUT);<br>
+      &nbsp; pinMode(IN2, OUTPUT);<br>
+      &nbsp; Serial.begin(9600);<br>
+      &nbsp; digitalWrite(IN1,LOW);<br>
+      &nbsp; digitalWrite(IN2,LOW);<br>
+      &nbsp; analogWrite(ENA,0); // roue libre au déppart<br>
+      <br>
+      }<br>
+      <br>
+      void loop() {<br>
+      &nbsp; if (Serial.available() &gt; 0){<br>
+      &nbsp;&nbsp;&nbsp; c = Serial.read();<br>
+      &nbsp;&nbsp;&nbsp; switch (c) {<br>
+      &nbsp;&nbsp;&nbsp; case 'G':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN1,LOW);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN2,HIGH); // gauche<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; analogWrite(ENA,pwm);&nbsp;&nbsp; // vitesse<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case 'D':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN1,HIGH);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN2,LOW);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; analogWrite(ENA,pwm);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case 'L':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; analogWrite(ENA,0); // roue libre<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case 'S':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN1,LOW);&nbsp; // frein<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(IN2,LOW);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(ENA,HIGH);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case '+':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pwm += 5;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (pwm &gt; 255) pwm = 255;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; analogWrite(ENA, pwm);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; case '-':<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pwm -= 5;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (pwm &lt; 0) pwm = 0;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; analogWrite(ENA, pwm);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+      &nbsp;&nbsp;&nbsp; }<br>
+      &nbsp; }<br>
+      }<br>
+    </p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    .
+  </div>
+</body>
+
+</html>

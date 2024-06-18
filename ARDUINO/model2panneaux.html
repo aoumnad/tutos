@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+    name="keywords">
+  <title>Intro Arduino</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="TwoPanPageContainer">
+    <div id="menuLateral" class="LeftPanel">
+      <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
+          href="arduino.html">
+          <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+      <div id="IDSideSummary" class="SideSummary">
+        <a href="#INTRO">
+          <h3>Introduction</h3>
+        </a>
+      </div>
+    </div>
+    <div class="RightPanel">
+      <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png"
+          alt="">
+        <h1>C'est quoi Arduino ?</h1>
+      </div>
+      <div class="Content">
+        <!-- ################################################################################################ -->
+        <h2 id="INTRO">Introduction</h2>
+        <p>xxxxx</p><br>
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <textarea class="CodeArea" readonly="readonly">
+void setup() {
+  Serial.begin(9600);
+  Serial.setTimeout(5000);
+}
+          </textarea>
+        </div>
+        <!-- ============================= Fin Code ================================================ -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    function CopyCode(button) {
+      var CodeAreaContainer = button.closest('.CodeAreaContainer');
+      var textarea = CodeAreaContainer.querySelector('.CodeArea');
+      textarea.select();
+      document.execCommand("copy");
+      button.textContent = "C'est fait !";
+      setTimeout(function () {
+        button.textContent = "Copier";
+        window.getSelection().removeAllRanges(); // Annuler la sélection  
+      }, 1000);
+    }
+    function montrerMenu() {
+      menuLateral.classList.add("visible");  // .toggle marche aussi
+      const liens = document.querySelectorAll("#IDSideSummary");
+      liens.forEach(element => {
+        element.addEventListener("click", () => {
+          menuLateral.classList.remove("visible");
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
