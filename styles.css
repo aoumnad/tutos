@@ -344,7 +344,7 @@ figcaption {
 
     .LeftPanel {
         position: fixed;
-        top: 0%;
+        top: -5%;
         left: -100%;
         width: 95%;
         transition: 0.5s;        

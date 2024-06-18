@@ -11,7 +11,7 @@
 
 <body>
   <div class="TwoPanPageContainer">
-    <div id="menuLateral" class="LeftPanel">
+    <div id="menuLateral_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
         <a href="../index.html">
           <img src="IMAGES/home48.png" alt="">
@@ -20,7 +20,7 @@
           <img src="IMAGES/Back2Arduino.png" alt="" height="45px">
         </a>
       </div>
-      <div id="IDSideSummary" class="SideSummary">
+      <div id="SideSummary_ID" class="SideSummary">
         <a href="#DEF">
           <h3>Définition</h3>
         </a> <a href="#DIR">
@@ -586,11 +586,11 @@ void loop() {
     }
 
     function montrerMenu() {
-      menuLateral.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#IDSideSummary");
+      menuLateral_ID.classList.add("visible");  // .toggle marche aussi
+      const liens = document.querySelectorAll("#SideSummary_ID");
       liens.forEach(element => {
         element.addEventListener("click", () => {
-          menuLateral.classList.remove("visible");
+          menuLateral_ID.classList.remove("visible");
         });
       });
     }
