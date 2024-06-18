@@ -359,6 +359,7 @@ figcaption {
         margin: auto;
     }
     .CodeArea { 
-        font-size: 5px;
+        font-size: 10px;
+        color: aqua;
      }
 }
