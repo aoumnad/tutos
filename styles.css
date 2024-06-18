@@ -344,10 +344,11 @@ figcaption {
 
     .LeftPanel {
         position: fixed;
-        top: -5%;
+        top: 0%;
         left: -100%;
         width: 95%;
-        transition: 0.5s;        
+        height: 100dvh;
+        transition: 0.5s;       
     }
 
     .LeftPanel.visible{
@@ -360,6 +361,6 @@ figcaption {
     }
     .CodeArea { 
         font-size: 10px;
-        color: aqua;
+        /* color: aqua; */
      }
 }
