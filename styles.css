@@ -123,14 +123,14 @@ figcaption {
 .LeftPanel {
     /* c'est un id pour faciliter son accès dans javascript */
     width: 30%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
 }
 
 .RightPanel {
     width: 70%;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
 }
