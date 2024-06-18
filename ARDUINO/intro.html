@@ -14,11 +14,11 @@
 
 <body>
   <div class="TwoPanPageContainer">
-    <div id="menuLateral_ID" class="LeftPanel">
+    <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
           href="arduino.html">
           <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
-      <div id="SideSummary_ID" class="SideSummary">
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#INTRO">
           <h3>Introduction</h3>
         </a>
@@ -59,7 +59,7 @@
           alt="">
         <h1>C'est quoi Arduino ?</h1>
       </div>
-      <div class="Content">
+      <div class="RightPanelContent">
         <h2 id="INTRO" style="margin-top: 0;">Introduction</h2>
         <p> Arduino est une plate-forme open-source de développement
           électronique qui comprend à la fois du matériel et du logiciel. Elle
@@ -372,11 +372,11 @@ void loop() {
       }, 1000);
     }
     function montrerMenu() {
-      menuLateral_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#SideSummary_ID");
+      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
+      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
       liens.forEach(element => {
         element.addEventListener("click", () => {
-          menuLateral_ID.classList.remove("visible");
+          LeftPanel_ID.classList.remove("visible");
         });
       });
     }

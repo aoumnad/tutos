@@ -11,7 +11,7 @@
 
 <body>
   <div class="TwoPanPageContainer">
-    <div id="menuLateral_ID" class="LeftPanel">
+    <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
         <a href="../index.html">
           <img src="IMAGES/home48.png" alt="">
@@ -20,7 +20,7 @@
           <img src="IMAGES/Back2Arduino.png" alt="" height="45px">
         </a>
       </div>
-      <div id="SideSummary_ID" class="SideSummary">
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#DEF">
           <h3>Définition</h3>
         </a> <a href="#DIR">
@@ -53,7 +53,7 @@
         <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png" alt="">
         <h1>E/S Numériques</h1>
       </div>
-      <div class="Content">
+      <div class="RightPanelContent">
         <h2 id="DEF">Définition</h2>
         <p> Une E/S numérique ne peut prendre que deux états: <span class="Enhanced">LOW</span>
           (0V) ou <span class="Enhanced">HIGH</span> (5V) <br>
@@ -586,11 +586,11 @@ void loop() {
     }
 
     function montrerMenu() {
-      menuLateral_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#SideSummary_ID");
+      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
+      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
       liens.forEach(element => {
         element.addEventListener("click", () => {
-          menuLateral_ID.classList.remove("visible");
+          LeftPanel_ID.classList.remove("visible");
         });
       });
     }

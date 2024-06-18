@@ -114,8 +114,8 @@ figcaption {
   }
 
 .TwoPanPageContainer {
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw;
+    height: 100dvh;
     display: flex;
     overflow-y: hidden;
 }
@@ -123,29 +123,38 @@ figcaption {
 .LeftPanel {
     /* c'est un id pour faciliter son accès dans javascript */
     width: 30%;
-    height: 100dvh;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .RightPanel {
     width: 70%;
-    height: 100svh;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .LeftPanelHeader {
-    height: 50px;
+    height: 7%;
     width: 100%;
     background-color: rgb(47, 132, 104);
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+.RightPanelHeader {
+    height: 7%;
+    width: 100%;
+    background-color: darkcyan;
+    display: flex;   
+    align-items: center;
+    justify-content: space-around;
+}
 
-.SideSummary {
-    flex: 1;
+.LeftPanelMenu {
+    height: 93%;
+    width: 100%;
     padding-left: 2ch;
     font-size: large;
     font-weight: bold;
@@ -153,27 +162,27 @@ figcaption {
     background-color: rgb(194, 242, 226);
     overflow-y: auto;
 }
-.SideSummary a {
+.RightPanelContent {
+    height: 93%;
+    width: 100%;
+    background-color: lightcyan;
+    overflow-y: auto;
+    /* padding: 0 1rem; */
+    line-height: 1.5;
+}
+
+.LeftPanelMenu a {
     display: block;   
 }
 
-.SideSummary h3 {
+.LeftPanelMenu h3 {
     font-size: 1rem;
     margin-top: 1rem;
 }
-.SideSummary h4 {
+.LeftPanelMenu h4 {
     margin-top: 1ch;
     margin-left: 2ch;
     font-size: 1rem;
-}
-
-.RightPanelHeader {
-    height: 50px;
-    width: 100%;
-    background-color: darkcyan;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .Burger {
@@ -186,34 +195,26 @@ figcaption {
     color: white;
 }
 
-.Content {
-    flex: 1;
-    background-color: lightcyan;
-    overflow-y: auto;
-    /* padding: 0 1rem; */
-    line-height: 1.5;
-}
-
-.Content h2 {
+.RightPanelContent h2 {
     margin-top: 1rem;
     padding: 8px ;
     font-style: italic;
     color: brown;
     background-color:rgb(136, 189, 190);
 }
-.Content h3 {
+.RightPanelContent h3 {
     margin-top: 1ch;
     padding: 8px 8px 0px 8px;
     font-style: italic;
     color: rgb(126, 28, 28);
 }
 
-.Content p {
+.RightPanelContent p {
     margin: 1ch 1rem;
     text-align: justify;
 }
 
-.Content em{
+.RightPanelContent em{
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-weight: bold;
     color: tomato;
@@ -336,8 +337,6 @@ figcaption {
 
     .RightPanel {
         width: 100%;
-        height: 100dvh;
-       
     }
 
     .Burger {
@@ -349,7 +348,6 @@ figcaption {
         top: 0%;
         left: -100%;
         width: 95%;
-        height: 100dvh;
         transition: 0.5s;       
     }
 
@@ -363,6 +361,6 @@ figcaption {
     }
     .CodeArea { 
         font-size: 10px;
-        color: aqua;
+        color: rgb(255, 0, 200);
      }
 }
