@@ -336,6 +336,8 @@ figcaption {
 
     .RightPanel {
         width: 100%;
+        height: 100dvh;
+       
     }
 
     .Burger {
@@ -361,6 +363,6 @@ figcaption {
     }
     .CodeArea { 
         font-size: 10px;
-        /* color: aqua; */
+        color: aqua;
      }
 }
