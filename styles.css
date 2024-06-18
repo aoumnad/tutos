@@ -264,7 +264,7 @@ figcaption {
 }
 .CodeArea {  
     flex: 1;
-    font-size: 0.5rem;  
+    font-size: 1rem;  
     color: white;
     background-color: black;  
     padding-left: 1ch;  
@@ -358,4 +358,7 @@ figcaption {
         display: block;
         margin: auto;
     }
+    .CodeArea { 
+        font-size: small;
+     }
 }
