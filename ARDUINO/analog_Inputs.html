@@ -59,18 +59,18 @@
                         Arduino Uno possède 6 entrée analogiques, A0, A1, A2, A3, A4 et A5
                     </li>
                     <li>
-                        Pour mesurer l'entrée analogique A0 par exemple: <br>
-                        <p class="PreCode">
-                            <em>int N = analogRead(A0);</em> // retourne un nombre compris entre 0 et 1023 <br>
-                            <em>float V = N * 5.0 / 1024.0;</em> // Valeur en Volts de la tension sur A0 <br>
-                        </p>
-                    </li>
-                    <p>
+                        Pour mesurer l'entrée analogique A0 par exemple: </li>
+                    <div class="Code">
+                        <em>int N = analogRead(A0);</em> // retourne un nombre compris entre 0 et 1023 <br>
+                        <em>float V = N * 5.0 / 1024.0;</em> // Valeur en Volts de la tension sur A0 <br>
+                    </div>
+
+                    <!-- <p> -->
                         Dans l'instruction ci-dessus, Il est important que les opérandes soient de type
                         <strong>float</strong> pour empêcher le compilateur d'effectuer une <strong>division
                             entière</strong>, d'ou l'utilisation de
                         '5.0' et non pas '5'
-                    </p>
+                    <!-- </p> -->
                 </ul>
                 <br><br>
                 <h2 id="CCM">Comment ça marche</h2>
@@ -80,7 +80,7 @@
                         déterminer la valeur d'une tension appliquée sur une entrée analogique,
                     </li>
                     <li>
-                        L’Arduino dispose d'un seul ADC, mais de plusieurs entrées analogiques (généralement 6 sur une
+                        L'Arduino dispose d'un seul ADC, mais de plusieurs entrées analogiques (généralement 6 sur une
                         Arduino Uno). Ceci est rendu possible grâce à un multiplexeur analogique intégré, qui permet de
                         sélectionner l'une des entrées analogiques pour la conversion,
                     </li>
@@ -174,12 +174,13 @@
 
                     <li>Pour modifier la tension de référence, on utilise la fonction <em>analogReference()</em> et
                         éventuellement l'entrée <em>AREF</em> de l'Arduino</li>
-                    <p class="PreCode">
+                    <div class="Code">
                         <em>analogReference(DEFAULT); </em> // Vref = 5V <br>
                         <em>analogReference(INTERNAL); </em> // Vref = 1.1 V <br>
                         <em>analogReference(EXTERNAL); </em> // Vref = entrée AREF <br>
-                    </p>
-                </ul><br><br>
+                    </div>
+                </ul>
+                <br><br>
                 <!-- ===================================================================================================== -->
                 <h2 id="EXMPLBASIC">Exemple basique</h2>
                 <p>Chaque 1/2 seconde, on prend une mesure de l 'entrée A0 et on affiche le résultat sur le moniteur

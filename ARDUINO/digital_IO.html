@@ -261,79 +261,79 @@ void loop() {
         <p> Pour modifier la période T, il faut reconfigurer les timers TIMER0,
           TIMER1 ou TIMER2 en ajoutant une des lignes ci-dessous dans la
           fonction setup() </p>
-          <pre class="PreCode">
-<em>Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328</em>
+          <textarea class="PreCode">
+Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328
  
-//-------------- fréquences PWM sur les broches D5 & D6 -------------------------------
+//--------------fréquences PWM sur les broches D5 & D6 -----------------------
 TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
 TCCR0B = TCCR0B & B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
-TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (The DEFAULT)
+TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
 TCCR0B = TCCR0B & B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
 TCCR0B = TCCR0B & B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
  
-//---------------------------------------------- Set PWM frequency for D9 & D10 ------------------------------
+//--------------Set PWM frequency for D9 & D10 ------------------------------
 TCCR1B = TCCR1B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
 TCCR1B = TCCR1B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
 TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
 TCCR1B = TCCR1B & B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
  
-//---------------------------------------------- Set PWM frequency for D3 & D11 ------------------------------
+//------------- Set PWM frequency for D3 & D11 ------------------------------
 TCCR2B = TCCR2B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
 TCCR2B = TCCR2B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
 TCCR2B = TCCR2B & B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
-TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
 TCCR2B = TCCR2B & B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
 TCCR2B = TCCR2B & B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
 TCCR2B = TCCR2B & B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
  
 
-<em>Pour Arduino Mega1280, Mega2560, MegaADK et autres cartes utilisant ATmega1280 ou ATmega2560</em>
+Pour Arduino Mega1280, Mega2560, MegaADK et autres cartes utilisant ATmega1280 ou ATmega2560
 
-//---------------------------------------------- Set PWM frequency for D4 & D13 ------------------------------
+//------------- Set PWM frequency for D4 & D13 ------------------------------
 TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
 TCCR0B = TCCR0B & B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
-TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (The DEFAULT)
+TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
 TCCR0B = TCCR0B & B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
 TCCR0B = TCCR0B & B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
 
-//---------------------------------------------- Set PWM frequency for D11 & D12 -----------------------------
+//------------- Set PWM frequency for D11 & D12 -----------------------------
 TCCR1B = TCCR1B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
 TCCR1B = TCCR1B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
 TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
 TCCR1B = TCCR1B & B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
  
-//---------------------------------------------- Set PWM frequency for D9 & D10 ------------------------------
+//------------- Set PWM frequency for D9 & D10 ------------------------------
 TCCR2B = TCCR2B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
 TCCR2B = TCCR2B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
 TCCR2B = TCCR2B & B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
-TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
 TCCR2B = TCCR2B & B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
 TCCR2B = TCCR2B & B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
 TCCR2B = TCCR2B & B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
  
-//---------------------------------------------- Set PWM frequency for D2, D3 & D5 ---------------------------
-TCCR3B = TCCR3B & B11111000 | B00000001;    // f = 31372.55 Hz		T = 0.032ms
-TCCR3B = TCCR3B & B11111000 | B00000010;    // f = 3921.16 Hz		T = 0.255ms
-TCCR3B = TCCR3B & B11111000 | B00000011;    // f = 490.20 Hz		T = 2.04ms (DEFAULT)
-TCCR3B = TCCR3B & B11111000 | B00000100;    // f = 122.55 Hz		T = 8.16ms
-TCCR3B = TCCR3B & B11111000 | B00000101;    // f = 30.64 Hz		T = 32.637ms
+//------------- Set PWM frequency for D2, D3 & D5 ---------------------------
+TCCR3B = TCCR3B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR3B = TCCR3B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR3B = TCCR3B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR3B = TCCR3B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR3B = TCCR3B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
  
-//---------------------------------------------- Set PWM frequency for D6, D7 & D8 ---------------------------
-TCCR4B = TCCR4B & B11111000 | B00000001;    // f = 31372.55 Hz		T = 0.032ms
-TCCR4B = TCCR4B & B11111000 | B00000010;    // f = 3921.16 Hz		T = 0.255ms
-TCCR4B = TCCR4B & B11111000 | B00000011;    // f = 490.20 Hz		T = 2.04ms (DEFAULT)
-TCCR4B = TCCR4B & B11111000 | B00000100;    // f = 122.55 Hz		T = 8.16ms
-TCCR4B = TCCR4B & B11111000 | B00000101;    // f = 30.64 Hz		T = 32.637ms
+//------------- Set PWM frequency for D6, D7 & D8 ---------------------------
+TCCR4B = TCCR4B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR4B = TCCR4B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR4B = TCCR4B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR4B = TCCR4B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR4B = TCCR4B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
  
-//---------------------------------------------- Set PWM frequency for D44, D45 & D46 ------------------------
-TCCR5B = TCCR5B & B11111000 | B00000001;    // f = 31372.55 Hz		T = 0.032ms
-TCCR5B = TCCR5B & B11111000 | B00000010;    // f = 3921.16 Hz		T = 0.255ms
-TCCR5B = TCCR5B & B11111000 | B00000011;    // f = 490.20 Hz		T = 2.04ms (DEFAULT)
-TCCR5B = TCCR5B & B11111000 | B00000100;    // f = 122.55 Hz		T = 8.16ms
-TCCR5B = TCCR5B & B11111000 | B00000101;    // f = 30.64 Hz		T = 32.637ms
-          </pre>
+//------------- Set PWM frequency for D44, D45 & D46 ------------------------
+TCCR5B = TCCR5B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR5B = TCCR5B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR5B = TCCR5B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR5B = TCCR5B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR5B = TCCR5B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
+          </textarea>
         <br>
         <br>
         <h2 id="PWMSWP">Exemple PWM</h2>

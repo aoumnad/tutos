@@ -257,29 +257,29 @@
                 <h2 id="RESUME">En résumé</h2>
                 <ul>
                     <li class="EnhancedPlus">Envoyer des octets B1, B2…BN vers un Slave d'adresse ADX </li>
-                    <pre class="PreCode">
-    Wire.beginTransmission(ADX);
-    Wire.write(B1);
-    Wire.write(B2);
-    …
-    Wire.write(BN);
-    int s = Wire.endTransmission();</pre><br>
+                    <div class="Code">
+    Wire.beginTransmission(ADX); <br>
+    Wire.write(B1); <br>
+    Wire.write(B2); <br>
+    … <br>
+    Wire.write(BN); <br>
+    int s = Wire.endTransmission();</div><br>
                     <li class="EnhancedPlus">Envoyer N octets d'un tableau TAB vers un Slave d'adresse ADX </li>
-                    <pre class="PreCode">
-    Wire.beginTransmission(ADX);
-    Wire.write(TAB,N);
-    int s = Wire.endTransmission(); </pre><br>
+                    <div class="Code">
+    Wire.beginTransmission(ADX); <br>
+    Wire.write(TAB,N); <br>
+    int s = Wire.endTransmission(); </div><br>
                     <li class="EnhancedPlus">Recevoir N octets venant d'un Slave d'adresse ADX</li>
-                    <pre class="PreCode">
-    Wire.requestFrom(ADX,N); 
-    B1 = Wire.read();
-    B2 = Wire.read();
+                    <div class="Code">
+    Wire.requestFrom(ADX,N);  <br>
+    B1 = Wire.read(); <br>
+    B2 = Wire.read(); <br>
     …
-    BN = Wire.read();</pre><br>
+    BN = Wire.read();</div><br>
                     <li class="EnhancedPlus">Recevoir N octets dans un tableau TAB </li>
-                    <pre class="PreCode">
-    Wire.requestFrom(ADX,N); 
-    Wire.readBytes(TAB,N);</pre><br>
+                    <div class="Code">
+    Wire.requestFrom(ADX,N);  <br>
+    Wire.readBytes(TAB,N);</div><br>
                 </ul><br>
                 <h2 id="EXMPL">Écriture, Lecture dans une mémoire EEPROM 24C64</h2>
                 <img class="BlocCenter" src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">

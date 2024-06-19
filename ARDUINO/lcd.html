@@ -42,7 +42,7 @@
     <div class="RightPanel">
       <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png"
           alt="">
-        <h1>C'est quoi Arduino ?</h1>
+        <h1>Afficheur LCD</h1>
       </div>
       <div class="RightPanelContent">
         <h2 id="LCD2x16" style="margin-top: 0;">LCD 2x16</h2>
@@ -54,7 +54,8 @@
         </p><br>
         <img class=" BlocCenter" src="IMAGES/lcd2x16_1.png" alt=""><br>
         <p>
-          En réalité, même s'il n'y a que 16 caractères visibles, chaque ligne est est stockée dans une RAM de 40 caractères. Pour
+          En réalité, même s'il n'y a que 16 caractères visibles, chaque ligne est est stockée dans une RAM de 40
+          caractères. Pour
           voir les caractères cachés, il faut faire défiler l'affichage vers la gauche
         </p>
         <img class=" BlocCenter" src="IMAGES/LCD2lignes.png" alt=""><br>
@@ -270,35 +271,37 @@ void loop() {
           fait, les programmes sont les mêmes, il n'y a que la déclaration et l'initialisation qui changent</p><br>
         <ul>
           <li class="BoldItal">LCD seul et Librairie LiquidCrystal</li>
-          <pre class="PreCode">
+          <div class="Code">
             <span class="Enhanced">
-#include &lt;LiquidCrystal.h&gt;
-LiquidCrystal   lcd(12, 11, 5, 4, 3, 2);</span>
+              #include &lt;LiquidCrystal.h&gt; <br>
+              LiquidCrystal lcd(12, 11, 5, 4, 3, 2);<br></span>
 
-void setup(){
-    <span class="Enhanced">lcd.begin(16,2); </span>
-    lcd.print("Hello World !");
-}
+            void setup(){
+            <ul>
+              <span class="Enhanced">lcd.begin(16,2); </span><br>
+              lcd.print("Hello World !");
+            </ul>
+            } <br>
 
-void loop() {  }
-            </pre>
+            void loop() { } <br>
+          </div>
           <br>
           <li class="BoldItal">LCD avec module et Librairie LCD_I2C</li>
-          <pre class="PreCode">
+          <div class="Code">
             <span class="Enhanced">
-#include &lt;LCD_I2C.h&gt;
-LCD_I2C lcd(0x27, 16, 2);</span> 
-
-void setup(){
-    <span class="Enhanced">lcd.begin(); </span>
-    lcd.backlight();
-    lcd.print("Hello World !");
-}
-
-void loop() {  }
-            </pre>
+              #include &lt;LCD_I2C.h&gt; <br>
+              LCD_I2C lcd(0x27, 16, 2);</span> <br>
+            void setup(){ <br>
+            <ul>
+              <span class="Enhanced">lcd.begin(); </span> <br>
+              lcd.backlight(); <br>
+              lcd.print("Hello World !"); 
+            </ul>
+            } <br>
+            void loop() { } <br>
+          </div>
         </ul>
-
+        <br> <br> <br>
       </div>
     </div>
   </div>
