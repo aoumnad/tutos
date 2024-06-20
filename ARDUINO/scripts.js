@@ -6,6 +6,9 @@ function montrerMenu() {
             LeftPanel_ID.classList.remove("visible");
         });
     });
+    document.getElementById('XIcon').addEventListener('click', function() {
+        LeftPanel_ID.classList.remove("visible");
+    });
 }
 
 function CopyCode(button) {

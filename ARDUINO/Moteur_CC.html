@@ -16,9 +16,11 @@
 <body>
     <div class="TwoPanPageContainer">
         <div id="LeftPanel_ID" class="LeftPanel">
-            <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
-                    href="arduino.html">
-                    <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+            </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
                     <h3>Introduction</h3>
@@ -342,14 +344,14 @@ void loop() {
                         </ul>
                     </li>
                 </ul><br>
-                <img class="BlocCenter" src="IMAGES/Joystick_Plages.png" ><br>
+                <img class="BlocCenter" src="IMAGES/Joystick_Plages.png"><br>
                 <p>Pour changer, nous allons brancher le moteur sur le pont B du module L298</p>
                 <img class="BlocCenter" src="IMAGES/Mot_CC_L298_Joy_Schematic.png"><br>
-        <!-- =========================== Code ========================================================= -->
-        <div class="CodeAreaContainer">
-            <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
-                onclick="CopyCode(this)">Copier</button> </div>
-<pre>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
     <code>
 /*
   0              200              420             580              800           1023
@@ -401,9 +403,9 @@ void loop() {
 }
     </code>
 </pre>
-          </div><br><br>
-          <!-- ============================= Fin Code ================================================ -->
-  
+                </div><br><br>
+                <!-- ============================= Fin Code ================================================ -->
+
 
             </div>
         </div>
@@ -411,4 +413,5 @@ void loop() {
     <!-- #################################################################################################################################### -->
 
 </body>
+
 </html>

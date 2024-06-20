@@ -13,12 +13,9 @@
   <div class="TwoPanPageContainer">
     <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
-        <a href="../index.html">
-          <img src="IMAGES/home48.png" alt="">
-        </a>
-        <a href="arduino.html">
-          <img src="IMAGES/Back2Arduino.png" alt="" height="45px">
-        </a>
+        <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+        <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
       </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#DEF">
@@ -160,7 +157,7 @@ void loop() {
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader"> LED Blink utilisant millis() <button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-              <pre>
+          <pre>
                 <code>
   /*
     Clignoter la LED intégrée sur arduino
@@ -193,8 +190,7 @@ void loop() {
           delay()</p>
         <p>On va faire clignoter L1 tous les 537ms et L2 tous les 1958ms</p>
         <div class="CodeAreaContainer">
-          <div class="CodeAreaHeader"> Clignoter 2 LEDs <button class="CopyBtn"
-              onclick="CopyCode(this)">Copier</button>
+          <div class="CodeAreaHeader"> Clignoter 2 LEDs <button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
           </div>
           <pre>
             <code>
@@ -261,7 +257,7 @@ void loop() {
         <p> Pour modifier la période T, il faut reconfigurer les timers TIMER0,
           TIMER1 ou TIMER2 en ajoutant une des lignes ci-dessous dans la
           fonction setup() </p>
-          <pre>
+        <pre>
             <code>
 <em> Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328</em>
  
@@ -344,9 +340,9 @@ TCCR5B = TCCR5B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
 
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Exemple: PWM variable<button class="CopyBtn"
-            onclick="CopyCode(this)">Copier</button>
-        </div>
-        <pre>
+              onclick="CopyCode(this)">Copier</button>
+          </div>
+          <pre>
           <code>
 /*
 * On va générer un signal PWM de frequence 61 Hz sur la pate 5
@@ -449,8 +445,7 @@ void loop() {
         </ul>
         <img class="width75 BlocCenter" src="IMAGES/transition.png" alt=""> <br>
         <div class="CodeAreaContainer">
-          <div class="CodeAreaHeader">Un bouton, Une LED<button class="CopyBtn"
-              onclick="CopyCode(this)">Copier</button>
+          <div class="CodeAreaHeader">Un bouton, Une LED<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
           </div>
           <pre>
             <code>
@@ -577,4 +572,5 @@ void loop() {
     </div>
   </div>
 </body>
+
 </html>

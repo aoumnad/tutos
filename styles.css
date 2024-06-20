@@ -217,11 +217,19 @@ figcaption {
 .Burger {
     display: none;
 }
+.xicon {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+}
+.xicon:hover{
+    background-color: #86d8d8;
+}
 
 .Enhanced{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
-    color: tomato;
+    color: brown;
     font-style: italic;
 }
 .EnhancedPlus{

@@ -16,9 +16,11 @@
 <body>
     <div class="TwoPanPageContainer">
         <div id="LeftPanel_ID" class="LeftPanel">
-            <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
-                    href="arduino.html">
-                    <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+            </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
                     <h3>Introduction</h3>
@@ -263,18 +265,19 @@ void stepperStep(int32_t steps, float step_time_ms) {
                         </ul>
                     </li>
                     <li><strong>Exemples de commandes :</strong>
-                    <ul>
-                        <li>stepms 4.7   ==> Définir la durée du pas à 4.7 ms</li>
-                        <li>step 100     ==> Tourner en avant de 100 pas"</li>
-                        <li>step -200    ==> Tourner en arrière de 200 pas"</li>
-                    </ul></li>
+                        <ul>
+                            <li>stepms 4.7 ==> Définir la durée du pas à 4.7 ms</li>
+                            <li>step 100 ==> Tourner en avant de 100 pas"</li>
+                            <li>step -200 ==> Tourner en arrière de 200 pas"</li>
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                            <pre><code>
+                    <pre><code>
 #define PINA 8
 #define PINB 9
 #define PINC 10
@@ -372,4 +375,5 @@ void viderbuffer() {
         </div>
     </div>
 </body>
+
 </html>

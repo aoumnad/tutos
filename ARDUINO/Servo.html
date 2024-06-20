@@ -16,9 +16,11 @@
 <body>
     <div class="TwoPanPageContainer">
         <div id="LeftPanel_ID" class="LeftPanel">
-            <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
-                    href="arduino.html">
-                    <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
+            </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#SERVO">
                     <h3>Servo Moteur</h3>
@@ -30,7 +32,7 @@
         </div>
         <div class="RightPanel">
             <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
-                    src="IMAGES/menu48.png" alt="">
+                    src="IMAGES/menu48.png">
                 <h1>C'est quoi Arduino ?</h1>
             </div>
             <div class="RightPanelContent">
@@ -51,26 +53,27 @@
                 <ul>
                     <li><em>attach(pin, [min, max]); </em></li>
                     <ul>
-                        <Li>Initialise la librairie et Définit la pate Arduino connectée au servomoteur</Li>
+                        <Li>Initialise la librairie et Définit la broche Arduino connectée au servomoteur</Li>
                         <Li><em>pin : </em>Broche Arduino qui contrôle le Servomoteur</Li>
                         <Li><em>[min, max] : </em>Ces deux paramètres sont optionnels. Ils définissent (en
                             μs) la largeur d'impulsion minimale (pour 0°) et maximale (pour 180°), Par défaut [544,
                             2400]</Li>
                         <li>A l'exécution de cette fonction, le servo est envoyé à la position 90° </li>
                     </ul>
-                    <li><em>write(A);  </em></li>
+                    <li><em>write(A); </em></li>
                     <ul>
                         <Li>Positionner le Servo en précisant un angle</Li>
                         <Li><em>A : </em>Nouvelle position en °</Li>
                     </ul>
-                    <li><em>writeMicroseconds(U);  </em></li>
+                    <li><em>writeMicroseconds(U); </em></li>
                     <ul>
                         <Li>Positionner le Servo en précisant une largeur d'impulsion,</Li>
                         <Li><em>U : </em>Largeur de l'impulsion en µs</Li>
                     </ul>
-                    <li><em>read();  </em></li>
+                    <li><em>read(); </em></li>
                     <ul>
-                        <Li>retourne la position actuelle du moteur (dernier paramètre envoyé par la fonction write())</Li>
+                        <Li>retourne la position actuelle du moteur (dernier paramètre envoyé par la fonction write())
+                        </Li>
                     </ul>
                     <li><em>detach(); </em></li>
                     <ul>

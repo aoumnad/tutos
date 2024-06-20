@@ -16,9 +16,11 @@
 <body>
   <div class="TwoPanPageContainer">
     <div id="LeftPanel_ID" class="LeftPanel">
-      <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
-          href="arduino.html">
-          <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+      <div class="LeftPanelHeader">
+        <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+        <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
+      </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#INTRO">
           <h3>Introduction</h3>
@@ -308,7 +310,7 @@
           <div class="CodeAreaHeader">Faire clignoter une LED<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button>
           </div>
-<pre>
+          <pre>
   <code>
 /*
  Clignoter la LED intégrée sur Arduino
@@ -341,7 +343,8 @@ void loop() {
           série</p>
         <p>Les terminaux étaient très utilisés dans les années 70-80 avant l'arrivé des ordinateurs personnels (PC). On
           utilisaient plusieurs terminaux pour travailler sur un seul grand ordinateur (mainframe).
-          Aujourd'hui, il ya un tas de petits logiciels émulateurs gratuits (Tera Term, PuTTY, ...) qui transforment un PC en
+          Aujourd'hui, il ya un tas de petits logiciels émulateurs gratuits (Tera Term, PuTTY, ...) qui transforment un
+          PC en
           terminal. </p>
         <img class="BlocCenter " src="IMAGES/Arduino&Terminal.png" alt="">
         <p>
@@ -354,10 +357,12 @@ void loop() {
         <p>Le Moniteur Série n'a pa la même allure sur la version 2.3.x et la version 1.8.x</p>
         <p>Sur la version 2.3.x, le Moniteur série s'affiche en bas de la fenêtre, on ne peut pas le détacher</p><br>
         <img class=" BlocCenter" src="IMAGES/Arduino-IDE2.3-SerialMonitor.png" alt=""><br>
-        <p>Sur la version 1.8.x, Le moniteur série s'affiche dans une fenêtre séparée, je trouve que c'est plus intéressant</p><br>
+        <p>Sur la version 1.8.x, Le moniteur série s'affiche dans une fenêtre séparée, je trouve que c'est plus
+          intéressant</p><br>
         <img class=" BlocCenter" src="IMAGES/ArduinoIDE1.8-SerialMonitor.png" alt=""><br>
       </div>
     </div>
   </div>
 </body>
+
 </html>

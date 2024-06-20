@@ -16,9 +16,11 @@
 <body>
     <div class="TwoPanPageContainer">
         <div id="LeftPanel_ID" class="LeftPanel">
-            <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
-                    href="arduino.html">
-                    <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+            </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
                     <h3>Introduction</h3>
@@ -257,7 +259,7 @@
                 </ul><br>
                 <h2 id="RESUME">En résumé</h2>
                 <ul>
-                    <li class="EnhancedPlus">Envoyer des octets B1, B2…BN vers un Slave d'adresse ADX </li>
+                    <li class="Enhanced">Envoyer des octets B1, B2…BN vers un Slave d'adresse ADX </li>
                     <pre>
                         <code>
 Wire.beginTransmission(ADX); 
@@ -268,7 +270,7 @@ Wire.write(BN);
 int s = Wire.endTransmission();
 </code>
 </pre><br>
-                    <li class="EnhancedPlus">Envoyer N octets d'un tableau TAB vers un Slave d'adresse ADX </li>
+                    <li class="Enhanced">Envoyer N octets d'un tableau TAB vers un Slave d'adresse ADX </li>
                     <pre>
                         <code>
 Wire.beginTransmission(ADX);
@@ -277,7 +279,7 @@ int s = Wire.endTransmission();
                         </code>
                     </pre>
                     <br>
-                    <li class="EnhancedPlus">Recevoir N octets venant d'un Slave d'adresse ADX</li>
+                    <li class="Enhanced">Recevoir N octets venant d'un Slave d'adresse ADX</li>
                     <pre>
                         <code>
 Wire.requestFrom(ADX,N); 
@@ -287,7 +289,7 @@ B2 = Wire.read();
 BN = Wire.read();
                         </code>
                     </pre><br>
-                    <li class="EnhancedPlus">Recevoir N octets dans un tableau TAB </li>
+                    <li class="Enhanced">Recevoir N octets dans un tableau TAB </li>
                     <pre>
                         <code>
 Wire.requestFrom(ADX,N);
@@ -340,7 +342,7 @@ Wire.readBytes(TAB,N);
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Ecriture/Lecture dans une EEPROM 24C64<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-<pre>
+                    <pre>
     <code>
 #define MEM_I2C_ADR 0x57 //1010 111
 #include <Wire.h>
@@ -421,4 +423,5 @@ void loop() {
             </div>
         </div>
 </body>
+
 </html>
