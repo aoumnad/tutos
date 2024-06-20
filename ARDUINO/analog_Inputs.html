@@ -11,6 +11,7 @@
         name="keywords">
     <title>Entrées Analogique</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -60,17 +61,16 @@
                     </li>
                     <li>
                         Pour mesurer l'entrée analogique A0 par exemple: </li>
-                    <div class="Code">
-                        <em>int N = analogRead(A0);</em> // retourne un nombre compris entre 0 et 1023 <br>
-                        <em>float V = N * 5.0 / 1024.0;</em> // Valeur en Volts de la tension sur A0 <br>
-                    </div>
-
-                    <!-- <p> -->
-                        Dans l'instruction ci-dessus, Il est important que les opérandes soient de type
-                        <strong>float</strong> pour empêcher le compilateur d'effectuer une <strong>division
-                            entière</strong>, d'ou l'utilisation de
-                        '5.0' et non pas '5'
-                    <!-- </p> -->
+                    <pre>
+                            <code>
+<em>int N = analogRead(A0);</em> // retourne un nombre compris entre 0 et 1023
+<em>float V = N * 5.0 / 1024.0;</em> // Valeur en Volts de la tension sur A0
+                            </code>
+                        </pre>
+                    Dans l'instruction ci-dessus, Il est important que les opérandes soient de type
+                    <strong>float</strong> pour empêcher le compilateur d'effectuer une <strong>division
+                        entière</strong>, d'ou l'utilisation de
+                    '5.0' et non pas '5'
                 </ul>
                 <br><br>
                 <h2 id="CCM">Comment ça marche</h2>
@@ -174,11 +174,13 @@
 
                     <li>Pour modifier la tension de référence, on utilise la fonction <em>analogReference()</em> et
                         éventuellement l'entrée <em>AREF</em> de l'Arduino</li>
-                    <div class="Code">
-                        <em>analogReference(DEFAULT); </em> // Vref = 5V <br>
-                        <em>analogReference(INTERNAL); </em> // Vref = 1.1 V <br>
-                        <em>analogReference(EXTERNAL); </em> // Vref = entrée AREF <br>
-                    </div>
+                    <pre>
+                            <code>
+<em>analogReference(DEFAULT); </em> // Vref = 5V 
+<em>analogReference(INTERNAL); </em> // Vref = 1.1 V 
+<em>analogReference(EXTERNAL); </em> // Vref = entrée AREF 
+                            </code>
+                        </pre>
                 </ul>
                 <br><br>
                 <!-- ===================================================================================================== -->
@@ -188,8 +190,8 @@
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Chaque 1/2 seconde, on mesure A0 et on affiche sur le moniteur
                         Série<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
-
+                    <pre>
+    <code>
 void setup() {
   Serial.begin(9600);
 }
@@ -203,7 +205,9 @@ void loop() {
   Serial.print(V);
   Serial.println(" Volts");
   delay(500);
-}                    </textarea>
+}
+    </code>
+</pre>
                 </div><br>
                 <!-- ===================================================================================================== -->
                 <h2 id="EXMPL6CAN">Exemple: Voltmètre à 6 canaux</h2>
@@ -212,7 +216,8 @@ void loop() {
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Voltmètre 6 canaux<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
+                    <pre>
+                        <code>
 #include <LiquidCrystal.h>
 LiquidCrystal   lcd(12, 10, 5, 4, 3, 2);
 void setup() {
@@ -241,7 +246,8 @@ void loop() {
   lcd.print(V);
   delay(500);
 }
-                    </textarea>
+                        </code>
+                    </pre>
                 </div><br>
                 <img class="BlocCenter" src="IMAGES/ADC6canaux.png" alt=""><br>
                 <h2 id="EXMPLVREF">Exemple: Comparatif Vref=5V avec Vref=1.1V</h2>
@@ -254,7 +260,7 @@ void loop() {
                         Le programme a été essayé sur Proteus Isis
                     </li>
                     <li>
-                        Les résultat montrent clairement l’intérêt de travailler avec la tension de référence interne
+                        Les résultat montrent clairement l'intérêt de travailler avec la tension de référence interne
                         (Vref=1.1V)
                     </li>
                     <li>
@@ -265,8 +271,8 @@ void loop() {
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Comparatif Vref<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
-
+                    <pre>
+                        <code>
 void setup() {
   Serial.begin(9600);
 }
@@ -291,7 +297,8 @@ void loop() {
   Serial.print(500 - V, 3);
   Serial.println(" mV");  delay(1000);
 }          
-                    </textarea>
+                        </code>
+                    </pre>
                 </div><br>
                 <img class="BlocCenter" src="IMAGES/Vref_invest.png" alt="" style="height: 4rem;"><br><br>
                 <h2 id="ADAPTER">Mise en forme des signaux analogiques</h2>
@@ -327,36 +334,8 @@ void loop() {
                 </ul>
                 <img class="BlocCenter" src="IMAGES/Ampli_decaleur.png" alt=""><br>
                 <img class="BlocCenter" src="IMAGES/Ampli_deca_reslt.png" alt=""><br>
-
             </div>
         </div>
     </div>
-
-
-
-
-    <script>
-        function CopyCode(button) {
-            var CodeAreaContainer = button.closest('.CodeAreaContainer');
-            var textarea = CodeAreaContainer.querySelector('.CodeArea');
-            textarea.select();
-            document.execCommand("copy");
-            button.textContent = "C'est fait !";
-            setTimeout(function () {
-                button.textContent = "Copier";
-                window.getSelection().removeAllRanges(); // Annuler la sélection  
-            }, 1000);
-        }
-        function montrerMenu() {
-            LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-            const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-            liens.forEach(element => {
-                element.addEventListener("click", () => {
-                    LeftPanel_ID.classList.remove("visible");
-                });
-            });
-        }
-    </script>
 </body>
-
 </html>

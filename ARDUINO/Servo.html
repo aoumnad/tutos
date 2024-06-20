@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, DC Motor, Servo, Servomoteur,
+         Matlab, Python, TKinter" name="keywords">
+    <title>Servo Moteur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader"> <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a> <a
+                    href="arduino.html">
+                    <img src="IMAGES/Back2Arduino.png" alt="" height="45px"> </a> </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#SERVO">
+                    <h3>Servo Moteur</h3>
+                </a>
+                <a href="#SERVOLIB">
+                    <h3>La librairie Servo</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>C'est quoi Arduino ?</h1>
+            </div>
+            <div class="RightPanelContent">
+                <!-- ################################################################################################ -->
+                <h2 id="SERVO">Servo Moteur</h2>
+                <p>Un Servomoteur est un moteur CC auquel on a ajouté un peu d'électronique et un peu de mécanique pour
+                    en faire un positionneur angulaire</p><br>
+                <img src="IMAGES/Servo_bleu.png" class="BlocCenter">
+                <p>Le contrôle de position se fait à l'aide d'un signal PWM</p>
+                <img src="IMAGES/Servo_PWM_Signal.png" class="BlocCenter">
+                <p>Le branchement avec l'Arduino est très simple, une seule sortie PWM suffit. L'alimentation doit être
+                    choisie en fonction des spécifications du moteur</p>
+                <img src="IMAGES/Servo_Branchement.png" class="BlocCenter"><br>
+                <!-- ################################################################################################ -->
+                <h2 id="SERVOLIB">La librairie Servo</h2>
+                <p>La librairie Servo fait partie du package Arduino-IDE. Elle propose quelques fonctions permettant de
+                    contrôler facilement un Servomoteur</p>
+                <ul>
+                    <li><em>attach(pin, [min, max]); </em></li>
+                    <ul>
+                        <Li>Initialise la librairie et Définit la pate Arduino connectée au servomoteur</Li>
+                        <Li><em>pin : </em>Broche Arduino qui contrôle le Servomoteur</Li>
+                        <Li><em>[min, max] : </em>Ces deux paramètres sont optionnels. Ils définissent (en
+                            μs) la largeur d'impulsion minimale (pour 0°) et maximale (pour 180°), Par défaut [544,
+                            2400]</Li>
+                        <li>A l'exécution de cette fonction, le servo est envoyé à la position 90° </li>
+                    </ul>
+                    <li><em>write(A);  </em></li>
+                    <ul>
+                        <Li>Positionner le Servo en précisant un angle</Li>
+                        <Li><em>A : </em>Nouvelle position en °</Li>
+                    </ul>
+                    <li><em>writeMicroseconds(U);  </em></li>
+                    <ul>
+                        <Li>Positionner le Servo en précisant une largeur d'impulsion,</Li>
+                        <Li><em>U : </em>Largeur de l'impulsion en µs</Li>
+                    </ul>
+                    <li><em>read();  </em></li>
+                    <ul>
+                        <Li>retourne la position actuelle du moteur (dernier paramètre envoyé par la fonction write())</Li>
+                    </ul>
+                    <li><em>detach(); </em></li>
+                    <ul>
+                        <li>Libère la broche préalablement attachée par attach()</li>
+                    </ul>
+                </ul>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+void setup() {
+  Serial.begin(9600);
+  Serial.setTimeout(5000);
+}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

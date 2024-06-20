@@ -10,6 +10,7 @@
     name="keywords">
   <title>Port Série</title>
   <link rel="stylesheet" href="../styles.css">
+  <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -72,10 +73,10 @@
       </div>
       <div class="RightPanelContent">
         <h2 id="INTRO" style="margin-top: 0;">Introduction</h2>
-        <p>L’échange d’information entre différents blocs d’un système
+        <p>L'échange d'information entre différents blocs d'un système
           constitue une brique fondamentale du monde hyper connecté dans
           lequel nous vivons. Les normes de communication se multiplient et se
-          comptent par dizaines. Voici quelques exemples loin d’être
+          comptent par dizaines. Voici quelques exemples loin d'être
           exhaustifs :</p>
         <ul>
           <li class="li_niv1 Bold">Ethernet</li>
@@ -149,7 +150,7 @@
             écrans, des modules de mémoire, et d'autres périphériques, </li>
         </ul>
         <br>
-        <p class="IndentAll">Toutes ces normes de communication ont un ancêtre
+        <p>Toutes ces normes de communication ont un ancêtre
           commun: <span class="Enhanced">Le standard de communication série</span>
           développé dans les années 60 et standardisé sous la nomenclature
           RS232C</p>
@@ -176,9 +177,9 @@
             IEEE-754 sur 4 octets: 01000001 11001010 10111000 01010001</li>
         </ul>
         <br>
-        <p class="IndentAll Enhanced">En résumé, quelque soit le type
-          d'information à échanger, il suffit de savoir transmettre et
-          recevoir des octets</p>
+          <p><em>En résumé, quelque soit le type
+            d'information à échanger, il suffit de savoir transmettre et
+            recevoir des octets</em></p>
         <br>
         <br>
         <h3>Transmission parallèle</h3>
@@ -191,7 +192,7 @@
         <br>
         <h3>Transmission Série</h3>
         <p>Les 8 bits sont envoyé l'un après l'autre sur le même fil.
-          l’émetteur place le fil successivement soit à 0V soit à 5V selon le
+          l'émetteur place le fil successivement soit à 0V soit à 5V selon le
           bit à transmettre. Tout se passe comme si on a une autoroute à une
           seule voie et 8 voitures qui passent l'une après</p>
         <img class=" BlocCenter" src="IMAGES/trans_serial.png" alt=""><br>
@@ -220,7 +221,7 @@
           <li>Rx: Receive Data</li>
           <li>Gnd : Ground = référence électrique</li>
         </ul>
-        <p class="IndentAll">Vu son apparence, ce cable est souvent appelé <span class="Enhanced">câble croisé</span>
+        <p>Vu son apparence, ce cable est souvent appelé <em>câble croisé</em>
         </p>
         <br>
         <br>
@@ -231,7 +232,7 @@
           désigner la vitesse de communication. Par exemple 9600 baud signifie
           9600 bits/s. </p>
         <p> Le mode de communication est dit <span class="Enhanced">Asynchrone</span>,
-          cela signifie que l’émetteur ne partage par son horloge avec
+          cela signifie que l'émetteur ne partage par son horloge avec
           récepteur sur un fil dédié comme c'est le cas des systèmes de
           communication synchrones. Pour ne pas perdre d'information, il faut
           que le récepteur collecte les bits exactement au même rythme qu'ils
@@ -251,10 +252,10 @@
         </p>
         <ul>
           <li>Au repos la ligne Tx est toujours au niveau 1</li>
-          <li>L’émetteur transmet un "Start bit" (S) toujours = 0 </li>
-          <li>L’émetteur transmet le 8 bits de données en commençant par le
+          <li>L'émetteur transmet un "Start bit" (S) toujours = 0 </li>
+          <li>L'émetteur transmet le 8 bits de données en commençant par le
             LSB</li>
-          <li>L’émetteur transmet un "Stop bit" (P) toujours = 1 </li>
+          <li>L'émetteur transmet un "Stop bit" (P) toujours = 1 </li>
           <li>La ligne Tx restera à 1 jusqu'au début de l'octet suivant</li>
         </ul>
         <br>
@@ -369,7 +370,7 @@
               constitué de 1, 2 ou 3 octets</li>
             <ul>
               <li><span class="CodeLine">Serial.write("A"); </span>//transmet
-                l’octet 65 = 0x41 = code du caractère A</li>
+                l'octet 65 = 0x41 = code du caractère A</li>
               <li><span class="CodeLine">Serial.write("déçu"); </span>//transmet
                 0x64 0xC3 0xA9 0cC3 0xA7 0x75</li>
             </ul>
@@ -391,7 +392,7 @@
               constitué de 1, 2 ou 3 octets</li>
             <ul>
               <li><span class="CodeLine">Serial.print("A"); </span>//transmet
-                l’octet 65 = 0x41 = code du caractère A</li>
+                l'octet 65 = 0x41 = code du caractère A</li>
               <li><span class="CodeLine">Serial.print("déçu"); </span>//transmet
                 0x64 0xC3 0xA9 0cC3 0xA7 0x75</li>
             </ul>
@@ -463,7 +464,7 @@
           <li class="li_niv1 EnhancedPlus">S = Serial.readString();</li>
           <ul>
             <li>Lit les caractères qui arrivent et les place dans le String <span class="Enhanced">S</span></li>
-            <li>S’arrête après un Timeout</li>
+            <li>S'arrête après un Timeout</li>
             <li>Si le flux entrant contient des caractères spéciaux comme un retour à la ligne, il est ajouté à la
               chaîne S</li>
           </ul>
@@ -523,7 +524,8 @@
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Envoyer et recevoir des messages<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 void setup() {
   Serial.begin(9600);
   Serial.println("Hello, world!");
@@ -537,10 +539,9 @@ void loop() {
     Serial.println(msg);
   }
 }
-
-          </textarea>
-        </div>
-        <br>
+</code>
+</pre>
+        </div> <br>
         <h3 id="EX2">Exemple 2 : Contrôle d'une LED via le port série</h3>
         <p>Ce programme permet de contrôler une LED en envoyant des commandes via le port série. Les commandes "ON" et
           "OFF" allument et éteignent la LED, respectivement.</p>
@@ -548,8 +549,9 @@ void loop() {
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">contrôler une LED<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
           </div>
-          <textarea class="CodeArea" readonly="readonly">
-            const int ledPin = 13; // Pin de la LED intégrée
+          <pre>
+            <code>
+const int ledPin = 13; // Pin de la LED intégrée
 
 void setup() {
   Serial.begin(9600);
@@ -573,20 +575,22 @@ void loop() {
     }
   }
 }
-
-          </textarea>
+</code>
+</pre>
         </div><br><br>
         <!-- =============================================================================================== -->
         <h3 id="EX3">Exemple 3 : Chaîne de commande avec paramètre entier</h3>
         <p>Ce programme illustre une façon parmi d'autres de lire une commande constituée d'un mot clé suivi
           d'un paramètre numérique.
-        </p><p>la commande et le paramètre doivent être séparés d'au moins un espace</p>
+        </p>
+        <p>la commande et le paramètre doivent être séparés d'au moins un espace</p>
         <p>Par exemple: <span class="BoldItal">LEFT 125</span></p>
         <br>
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 void viderbuffer() {
   do {
     delay(2);
@@ -608,34 +612,12 @@ void loop() {
     Serial.println("parametre:    -->"+String(param)+"<--");
   }
 }
-          </textarea>
+</code>
+</pre>
         </div><br><br>
       </div>
     </div>
   </div>
   <!-- ================================================================================================== -->
-  <script>
-    function CopyCode(button) {
-      var CodeAreaContainer = button.closest('.CodeAreaContainer');
-      var textarea = CodeAreaContainer.querySelector('.CodeArea');
-      textarea.select();
-      document.execCommand("copy");
-      button.textContent = "C'est fait !";
-      setTimeout(function () {
-        button.textContent = "Copier";
-        window.getSelection().removeAllRanges(); // Annuler la sélection  
-      }, 1000);
-    }
-    function montrerMenu() {
-      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-      liens.forEach(element => {
-        element.addEventListener("click", () => {
-          LeftPanel_ID.classList.remove("visible");
-        });
-      });
-    }
-  </script>
 </body>
-
 </html>

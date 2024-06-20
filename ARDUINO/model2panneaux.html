@@ -10,6 +10,7 @@
     name="keywords">
   <title>Intro Arduino</title>
   <link rel="stylesheet" href="../styles.css">
+  <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -37,43 +38,18 @@
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(5000);
 }
-          </textarea>
+</code>
+</pre>
         </div>
         <!-- ============================= Fin Code ================================================ -->
       </div>
     </div>
   </div>
-
-
-
-
-  <script>
-    function CopyCode(button) {
-      var CodeAreaContainer = button.closest('.CodeAreaContainer');
-      var textarea = CodeAreaContainer.querySelector('.CodeArea');
-      textarea.select();
-      document.execCommand("copy");
-      button.textContent = "C'est fait !";
-      setTimeout(function () {
-        button.textContent = "Copier";
-        window.getSelection().removeAllRanges(); // Annuler la sélection  
-      }, 1000);
-    }
-    function montrerMenu() {
-      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-      liens.forEach(element => {
-        element.addEventListener("click", () => {
-          LeftPanel_ID.classList.remove("visible");
-        });
-      });
-    }
-  </script>
 </body>
-
 </html>

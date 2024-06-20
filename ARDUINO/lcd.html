@@ -10,6 +10,8 @@
     name="keywords">
   <title>Afficheur LCD</title>
   <link rel="stylesheet" href="../styles.css">
+  <script src="scripts.js" defer></script>
+</head>
 </head>
 
 <body>
@@ -117,13 +119,13 @@
           <li class="sanspuce"><img class=" BlocCenter" src="IMAGES/lcd_font_japon.png" alt=""></li>
           <p class="InlineCenter">Exemple : Ω = 0xF4</p><br>
           <br>
-          <li>Hitachi HD44780UA02 : English-European -> ASCII standard, caractères de l’Europe de l'ouest, quelques
+          <li>Hitachi HD44780UA02 : English-European -> ASCII standard, caractères de l'Europe de l'ouest, quelques
             caractères
             cyrilliques et grecs </li>
           <li class="sanspuce"><img class=" BlocCenter" src="IMAGES/HD44780_charset_europe.png" alt=""></li>
           <p class="InlineCenter">Exemple : Ω = 0x9A</p><br>
           <br>
-          <li>Winstar WH1602B-TMI-ET : English-European -> ASCII standard, caractères de l’Europe de l'ouest, quelques
+          <li>Winstar WH1602B-TMI-ET : English-European -> ASCII standard, caractères de l'Europe de l'ouest, quelques
             caractères
             grecs et quelques symboles mathématiques</li>
           <li class="sanspuce">
@@ -141,7 +143,7 @@
         <p>
           L'IDE Arduino intègre la bibliothèque LiquidCrystal qui permet d'utiliser ces afficheurs sans en connaître le
           fonctionnement interne. L'afficheur est utilisé en mode 4 bits ce qui permet de le contrôler avec 6 sorties de
-          l’Arduino
+          l'Arduino
         </p>
         <br>
         <ul>
@@ -212,8 +214,9 @@
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Exemple affichage sur LCD<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
-#include <LiquidCrystal.h>
+          <pre>
+  <code>
+#include &lt;LiquidCrystal.h&gt;
 LiquidCrystal lcd1(12, 11, 5, 4, 3, 2);
 
 void setup() {
@@ -229,11 +232,10 @@ void setup() {
 }
 
 void loop() {
-  
  }
-                  </textarea>
-        </div>
-        <br>
+  </code>
+</pre>
+        </div> <br>
         <h2 id="LCD-I2C">Afficheur LCD avec module I2C</h2>
         <p>Le module d'interface I2C pour afficheur LCD 2x16 permet de connecter facilement un l'afficheur à un
           microcontrôleur ou à une carte de type Arduino via le bus de communication I2C. Ce module simplifie la
@@ -271,66 +273,38 @@ void loop() {
           fait, les programmes sont les mêmes, il n'y a que la déclaration et l'initialisation qui changent</p><br>
         <ul>
           <li class="BoldItal">LCD seul et Librairie LiquidCrystal</li>
-          <div class="Code">
-            <span class="Enhanced">
-              #include &lt;LiquidCrystal.h&gt; <br>
-              LiquidCrystal lcd(12, 11, 5, 4, 3, 2);<br></span>
-
-            void setup(){
-            <ul>
-              <span class="Enhanced">lcd.begin(16,2); </span><br>
-              lcd.print("Hello World !");
-            </ul>
-            } <br>
-
-            void loop() { } <br>
-          </div>
+          <pre>
+            <code>
+<em>#include &lt;LiquidCrystal.h&gt;
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);</em>
+void setup(){
+  <em>lcd.begin(16,2); </em>
+  lcd.print("Hello World !");
+} 
+void loop() { }
+            </code>
+          </pre>
           <br>
           <li class="BoldItal">LCD avec module et Librairie LCD_I2C</li>
-          <div class="Code">
-            <span class="Enhanced">
-              #include &lt;LCD_I2C.h&gt; <br>
-              LCD_I2C lcd(0x27, 16, 2);</span> <br>
-            void setup(){ <br>
-            <ul>
-              <span class="Enhanced">lcd.begin(); </span> <br>
-              lcd.backlight(); <br>
-              lcd.print("Hello World !"); 
-            </ul>
-            } <br>
-            void loop() { } <br>
+          <pre>
+            <code>
+<em>#include &lt;LCD_I2C.h&gt;
+LCD_I2C lcd(0x27, 16, 2);</em>
+void setup(){
+  <em>lcd.begin();</em>
+  lcd.backlight();
+  lcd.print("Hello World !");
+} 
+void loop() { }
+            </code>
+          </pre>
           </div>
+
         </ul>
         <br> <br> <br>
       </div>
     </div>
   </div>
-
-
-
-
-  <script>
-    function CopyCode(button) {
-      var CodeAreaContainer = button.closest('.CodeAreaContainer');
-      var textarea = CodeAreaContainer.querySelector('.CodeArea');
-      textarea.select();
-      document.execCommand("copy");
-      button.textContent = "C'est fait !";
-      setTimeout(function () {
-        button.textContent = "Copier";
-        window.getSelection().removeAllRanges(); // Annuler la sélection  
-      }, 1000);
-    }
-    function montrerMenu() {
-      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-      liens.forEach(element => {
-        element.addEventListener("click", () => {
-          LeftPanel_ID.classList.remove("visible");
-        });
-      });
-    }
-  </script>
 </body>
 
 </html>

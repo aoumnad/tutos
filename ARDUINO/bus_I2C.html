@@ -10,6 +10,7 @@
         name="keywords">
     <title>Bus I2C</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -257,36 +258,49 @@
                 <h2 id="RESUME">En résumé</h2>
                 <ul>
                     <li class="EnhancedPlus">Envoyer des octets B1, B2…BN vers un Slave d'adresse ADX </li>
-                    <div class="Code">
-    Wire.beginTransmission(ADX); <br>
-    Wire.write(B1); <br>
-    Wire.write(B2); <br>
-    … <br>
-    Wire.write(BN); <br>
-    int s = Wire.endTransmission();</div><br>
+                    <pre>
+                        <code>
+Wire.beginTransmission(ADX); 
+Wire.write(B1); 
+Wire.write(B2); 
+    … 
+Wire.write(BN); 
+int s = Wire.endTransmission();
+</code>
+</pre><br>
                     <li class="EnhancedPlus">Envoyer N octets d'un tableau TAB vers un Slave d'adresse ADX </li>
-                    <div class="Code">
-    Wire.beginTransmission(ADX); <br>
-    Wire.write(TAB,N); <br>
-    int s = Wire.endTransmission(); </div><br>
+                    <pre>
+                        <code>
+Wire.beginTransmission(ADX);
+Wire.write(TAB,N);
+int s = Wire.endTransmission();
+                        </code>
+                    </pre>
+                    <br>
                     <li class="EnhancedPlus">Recevoir N octets venant d'un Slave d'adresse ADX</li>
-                    <div class="Code">
-    Wire.requestFrom(ADX,N);  <br>
-    B1 = Wire.read(); <br>
-    B2 = Wire.read(); <br>
-    …
-    BN = Wire.read();</div><br>
+                    <pre>
+                        <code>
+Wire.requestFrom(ADX,N); 
+B1 = Wire.read(); 
+B2 = Wire.read();
+…
+BN = Wire.read();
+                        </code>
+                    </pre><br>
                     <li class="EnhancedPlus">Recevoir N octets dans un tableau TAB </li>
-                    <div class="Code">
-    Wire.requestFrom(ADX,N);  <br>
-    Wire.readBytes(TAB,N);</div><br>
+                    <pre>
+                        <code>
+Wire.requestFrom(ADX,N);
+Wire.readBytes(TAB,N);
+                        </code>
+                    </pre> <br>
                 </ul><br>
                 <h2 id="EXMPL">Écriture, Lecture dans une mémoire EEPROM 24C64</h2>
                 <img class="BlocCenter" src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
                 <ul>
                     <li>La 24C64 est une mémoire permanente (flash) de capacité 8 ko. Elle est organisée par page de 32
                         octets.
-                        La durée d'écriture d'un seul octet ou d'une page de 32 octets est de 5ms, d'où l’intérêt de
+                        La durée d'écriture d'un seul octet ou d'une page de 32 octets est de 5ms, d'où l'intérêt de
                         faire des écriture par paquets de plusieurs octets sans dépasser 32 octets par paquet</li>
                     <li>Les 4 bits de poids fort de l'adresse I2C sont fixés à 1010, les trois autres sont
                         déterminés par les 3 entrées A2 A1 A0. Dans notre exemple, les trois entrées Ai sont reliées à
@@ -326,7 +340,8 @@
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Ecriture/Lecture dans une EEPROM 24C64<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
+<pre>
+    <code>
 #define MEM_I2C_ADR 0x57 //1010 111
 #include <Wire.h>
 
@@ -398,39 +413,12 @@ void setup() {
 
 void loop() {
 }
-                    </textarea>
-
+    </code>
+</pre>
                 </div>
                 <br>
                 <img class="BlocCenter" src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
             </div>
         </div>
-
-
-
-
-        <script>
-            function CopyCode(button) {
-                var CodeAreaContainer = button.closest('.CodeAreaContainer');
-                var textarea = CodeAreaContainer.querySelector('.CodeArea');
-                textarea.select();
-                document.execCommand("copy");
-                button.textContent = "C'est fait !";
-                setTimeout(function () {
-                    button.textContent = "Copier";
-                    window.getSelection().removeAllRanges(); // Annuler la sélection  
-                }, 1000);
-            }
-            function montrerMenu() {
-                LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-                const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-                liens.forEach(element => {
-                    element.addEventListener("click", () => {
-                        LeftPanel_ID.classList.remove("visible");
-                    });
-                });
-            }
-        </script>
 </body>
-
 </html>

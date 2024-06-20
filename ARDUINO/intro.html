@@ -10,6 +10,7 @@
     name="keywords">
   <title>Intro Arduino</title>
   <link rel="stylesheet" href="../styles.css">
+  <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -307,7 +308,8 @@
           <div class="CodeAreaHeader">Faire clignoter une LED<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button>
           </div>
-          <textarea class="CodeArea" readonly="readonly">
+<pre>
+  <code>
 /*
  Clignoter la LED intégrée sur Arduino
 */
@@ -324,7 +326,9 @@ void loop() {
     digitalWrite(LED_BUILTIN, LOW);    // éteindre la LED
     delay(500);              // attendre 500ms = 1/2 s
 }
-          </textarea>
+
+  </code>
+</pre>
         </div><br>
 
         <h2 id="SERIALMONITOR">Le Moniteur Série</h2>
@@ -355,32 +359,5 @@ void loop() {
       </div>
     </div>
   </div>
-
-
-
-
-  <script>
-    function CopyCode(button) {
-      var CodeAreaContainer = button.closest('.CodeAreaContainer');
-      var textarea = CodeAreaContainer.querySelector('.CodeArea');
-      textarea.select();
-      document.execCommand("copy");
-      button.textContent = "C'est fait !";
-      setTimeout(function () {
-        button.textContent = "Copier";
-        window.getSelection().removeAllRanges(); // Annuler la sélection  
-      }, 1000);
-    }
-    function montrerMenu() {
-      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-      liens.forEach(element => {
-        element.addEventListener("click", () => {
-          LeftPanel_ID.classList.remove("visible");
-        });
-      });
-    }
-  </script>
 </body>
-
 </html>

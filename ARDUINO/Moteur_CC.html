@@ -10,6 +10,7 @@
         name="keywords">
     <title>Moteur CC</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -138,7 +139,7 @@
                     <li>Des condensateurs de filtrage</li>
                 </ul><br>
                 <h3 id="L298_5">Le Module:</h3>
-                <p>Le <em>module</em> L298 disponible dans le commerce a l'avantage d’être tout équipé et prêt à
+                <p>Le <em>module</em> L298 disponible dans le commerce a l'avantage d'être tout équipé et prêt à
                     l'emploi. Il intègre :</p>
                 <img class="BlocCenter" src="IMAGES/L298_M1.jpg" style="width: 500px;">
                 <ul>
@@ -176,7 +177,8 @@
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Moteur CC, Avant/Arrière, vitesse fixe<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
+                    <pre>
+                        <code>
 #define IN1 7
 #define IN2 6
 
@@ -206,7 +208,8 @@ void loop() {
     }
   }
 }
-            </textarea>
+</code>
+</pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
                 <!-- =================================================================================================================== -->
@@ -243,7 +246,8 @@ void loop() {
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Moteur CC, Avant/Arrière, vitesse Variable<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <textarea class="CodeArea" readonly="readonly">
+                    <pre>
+                        <code>
 #define IN1 7
 #define IN2 6
 #define ENA 9
@@ -286,7 +290,9 @@ void loop() {
       Serial.println(String(c)+" ---> Bad Command ");
     }
   }
-}            </textarea>
+}
+</code>
+</pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
                 <!-- =================================================================================================================== -->
@@ -327,13 +333,12 @@ void loop() {
                             <li>On peut par exemple essayer les plages suivantes et les adapter ensuite après
                                 utilisation</li>
                             <pre>
-        [800→1023] ==&gt;  Rotation avant, Vitesse Forte
-        [580→800]  ==&gt;  Rotation avant, Vitesse Faible
-        [420→580]  ==&gt;  Arrêt
-        [200→420]  ==&gt;  Rotation arrière, Vitesse Faible
-        [0→200]    ==&gt;  Rotation arrière, Vitesse Forte
+[800→1023] ==&gt;  Rotation avant, Vitesse Forte
+[580→800]  ==&gt;  Rotation avant, Vitesse Faible
+[420→580]  ==&gt;  Arrêt
+[200→420]  ==&gt;  Rotation arrière, Vitesse Faible
+[0→200]    ==&gt;  Rotation arrière, Vitesse Forte
                             </pre>
-                            
                         </ul>
                     </li>
                 </ul><br>
@@ -344,7 +349,8 @@ void loop() {
         <div class="CodeAreaContainer">
             <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
                 onclick="CopyCode(this)">Copier</button> </div>
-            <textarea class="CodeArea" readonly="readonly">
+<pre>
+    <code>
 /*
   0              200              420             580              800           1023
   |--Ariere fort--|-arrière faible-|-----Arrêt-----|--Avant faible--|--Avant fort--|
@@ -393,8 +399,9 @@ void loop() {
     analogWrite(ENB, PWMH); // Avant fort
   }
 }
-            </textarea><br><br>
-          </div>
+    </code>
+</pre>
+          </div><br><br>
           <!-- ============================= Fin Code ================================================ -->
   
 
@@ -403,28 +410,5 @@ void loop() {
     </div>
     <!-- #################################################################################################################################### -->
 
-    <script>
-        function CopyCode(button) {
-            var CodeAreaContainer = button.closest('.CodeAreaContainer');
-            var textarea = CodeAreaContainer.querySelector('.CodeArea');
-            textarea.select();
-            document.execCommand("copy");
-            button.textContent = "C'est fait !";
-            setTimeout(function () {
-                button.textContent = "Copier";
-                window.getSelection().removeAllRanges(); // Annuler la sélection  
-            }, 1000);
-        }
-        function montrerMenu() {
-            LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-            const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-            liens.forEach(element => {
-                element.addEventListener("click", () => {
-                    LeftPanel_ID.classList.remove("visible");
-                });
-            });
-        }
-    </script>
 </body>
-
 </html>

@@ -17,7 +17,7 @@ body a{
     color: blue;
 }
 body a:hover {
-    background-color: #55a3a3;
+    background-color: #427272;
 }
 body ul, ol{
     margin-left: 2rem;
@@ -73,7 +73,7 @@ strong {
     align-items: center;
     flex: 1;
     padding: 10px;
-    background-color: aquamarine;
+    background-color: rgb(132, 152, 172);
     overflow-y: auto;
 }
 
@@ -121,7 +121,6 @@ figcaption {
 }
 
 .LeftPanel {
-    /* c'est un id pour faciliter son accès dans javascript */
     width: 30%;
     height: 100%;
     display: flex;
@@ -185,10 +184,6 @@ figcaption {
     font-size: 1rem;
 }
 
-.Burger {
-    display: none;
-}
-
 .RightPanelHeader h1 {
     font-style: italic;
     font-size: calc(0.5rem + 1.5vw);
@@ -218,6 +213,9 @@ figcaption {
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-weight: bold;
     color: tomato;
+}
+.Burger {
+    display: none;
 }
 
 .Enhanced{
@@ -250,9 +248,9 @@ figcaption {
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
-    height: 400px;
+    /* max-height: 400px; */
     /* width: 100%; */
-    max-width: 800px;
+    /* max-width: 800px; */
 }
 .CodeAreaHeader {
     display: flex;
@@ -262,42 +260,6 @@ figcaption {
     background-color: rgb(139, 139, 200);
     align-items: center;
     padding-left: 10px;
-}
-.CodeArea {  
-    flex: 1;
-    /* font-size: 1rem;   */
-    color: white;
-    background-color: black;  
-    padding-left: 1ch;  
-    font-family: monospace;  
-    font-style: italic;
-    resize: none;
-    border-radius: 0 0 5px 5px;
-}
-.PreCode{
-    color: white;
-    background-color: black; 
-    font-style: italic;
-    font-size: 1rem;
-    padding: 1ch;
-    margin-top: 1ch;
-    width: 100%;
-    height: 400px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-.Code{
-    color: white;
-    background-color: black;
-    font-family: monospace;   
-    font-style: italic;
-    /* font-size: 1rem; */
-    padding: 1ch;
-    margin-top: 1ch;
-    border-radius: 5px;
-}
-.IndentAll{
-    margin-left: 2rem;
 }
 
 .CopyBtn {
@@ -343,6 +305,20 @@ figcaption {
     display: inline-block; /* Assurez-vous que le texte soit encadré de manière appropriée */
     border-radius: 5px; /* Optionnel : arrondir les coins */
 }
+pre {
+    background-color: #2d2d2d;
+    color: #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 400px;
+}
+
+code {
+    font-family: monospace;
+    font-size: 1em;
+}
 
 @media screen and (max-width: 768px) {
 
@@ -370,12 +346,7 @@ figcaption {
         display: block;
         margin: auto;
     }
-    .CodeArea { 
-        font-size: 10px;
-    }
-    .PreCode { 
-        font-size: 8px;
-    }
+    
     .Code { 
         font-size: 10px;
     }

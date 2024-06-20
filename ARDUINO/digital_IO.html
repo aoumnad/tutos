@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E/S Numériques</title>
   <link rel="stylesheet" href="../styles.css">
-
+  <script src="scripts.js" defer></script>
 </head>
 
 <body>
@@ -117,13 +117,14 @@
         <p> Si vous utilisez l'IDE Arduino, le programme Blink se trouve
           dans: Fichier → Examples → Basics → Blink </p>
         <p> Sinon vous pouvez tout simplement commencer un nouveau programme (file -> new) et copier coller le programme
-          ci-dessous </p><br><br><br>
+          ci-dessous </p>
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">
             <p>LED Blink</p>
             <button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
           </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 /*
  Clignoter la LED intégrée sur arduino
 */
@@ -140,10 +141,9 @@ void loop() {
     digitalWrite(LED_BUILTIN, LOW);    // éteindre la LED
     delay(500);              // attendre 500ms = 1/2 s
 }
-                </textarea>
+            </code>
+          </pre>
         </div>
-        <br>
-        <br>
         <br>
         <h2 id="BLINK1">Blink utilisant millis()</h2>
         <p> <i><b>Delay()</b></i> est une fonction bloquante. Lorsque qu'on
@@ -160,7 +160,8 @@ void loop() {
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader"> LED Blink utilisant millis() <button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+              <pre>
+                <code>
   /*
     Clignoter la LED intégrée sur arduino
     en utilisant la fonction millis()
@@ -182,21 +183,21 @@ void loop() {
       Tchange = Tnow;
     }
   }
-          </textarea>
+                </code>
+              </pre>
         </div> <br>
-        <br>
-        <br>
         <h2 id="BLINK2">Blink 2 LEDs utilisant millis()</h2>
         <p> Dans cet exemple on va faire clignoter deux LEDs à des rythmes
           différents ce qui illustre clairement l'avantage de millis() sur
-          delay(). Si vous n’êtes pas convaincu, essayer de le faire avec
+          delay(). Si vous n'êtes pas convaincu, essayer de le faire avec
           delay()</p>
         <p>On va faire clignoter L1 tous les 537ms et L2 tous les 1958ms</p>
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader"> Clignoter 2 LEDs <button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button>
           </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
     /*
     Clignoter 2 LEDs à des rythmes différents
     L1 change tous les 537ms
@@ -227,10 +228,9 @@ void loop() {
       TchangeL2 = Tnow;
     }
   }
-          </textarea>
+            </code>
+          </pre>
         </div> <br>
-        <br>
-        <br>
         <h2 id="PWM">Signal PWM</h2>
         <img class="BlocCenter" src="IMAGES/PWM.png" alt="">
         <p>Un signal PWM (Pulse Width Modulation) ou MLI (Modulation de largeur
@@ -261,8 +261,9 @@ void loop() {
         <p> Pour modifier la période T, il faut reconfigurer les timers TIMER0,
           TIMER1 ou TIMER2 en ajoutant une des lignes ci-dessous dans la
           fonction setup() </p>
-          <textarea class="PreCode">
-Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328
+          <pre>
+            <code>
+<em> Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328</em>
  
 //--------------fréquences PWM sur les broches D5 & D6 -----------------------
 TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
@@ -288,7 +289,7 @@ TCCR2B = TCCR2B & B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
 TCCR2B = TCCR2B & B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
  
 
-Pour Arduino Mega1280, Mega2560, MegaADK et autres cartes utilisant ATmega1280 ou ATmega2560
+<em>Pour Arduino Mega1280, Mega2560, MegaADK et autres cartes utilisant ATmega1280 ou ATmega2560</em>
 
 //------------- Set PWM frequency for D4 & D13 ------------------------------
 TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
@@ -333,18 +334,20 @@ TCCR5B = TCCR5B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
 TCCR5B = TCCR5B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
 TCCR5B = TCCR5B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
 TCCR5B = TCCR5B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
-          </textarea>
-        <br>
+            </code>
+          </pre>
         <br>
         <h2 id="PWMSWP">Exemple PWM</h2>
         <p>Dans cet exemple on va faire varier le rapport cyclique d'un signal
           PWM entre 0 et 1. Cela peut servir par exemple à démarrer un moteur CC
           et l'accélérer graduellement</p>
+
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Exemple: PWM variable<button class="CopyBtn"
-              onclick="CopyCode(this)">Copier</button>
-          </div>
-          <textarea class="CodeArea" readonly="readonly">
+            onclick="CopyCode(this)">Copier</button>
+        </div>
+        <pre>
+          <code>
 /*
 * On va générer un signal PWM de frequence 61 Hz sur la pate 5
 * Cette fréquence est bien adaptée à la commande de moteurs CC
@@ -390,9 +393,9 @@ void loop() {
     Serial.print((Tfin-Tdebut)/1000.0);
     Serial.println(" secondes");
 }
-              </textarea>
-        </div>
-        <br>
+          </code>
+        </pre>
+        </div><br>
         <br>
         <h2 id="DIGINPUT">Entrées Numériques</h2>
         <img src="IMAGES/button_click.png" alt="" class="Float_R">
@@ -449,7 +452,8 @@ void loop() {
           <div class="CodeAreaHeader">Un bouton, Une LED<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button>
           </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 #define BP_PIN 4
 #define LED_PIN  3
 int8_t BP_OLD, BP_NEW,LED_STATE;
@@ -470,10 +474,9 @@ void loop() {
     }
     BP_OLD = BP_NEW;
 }
-                  </textarea>
+            </code>
+          </pre>
         </div>
-        <br>
-        <br>
         <br>
         <h2 id="2BUTTON2LED">Exemple: Deux boutons pour contrôler deux LEDs</h2>
         <ul>
@@ -484,7 +487,8 @@ void loop() {
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Deux boutons, deux LEDs<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 #define B1  2
 #define B2  4
 #define L1  5
@@ -517,10 +521,10 @@ void loop() {
         digitalWrite(L2,L2_STATE);
     }
     B2_OLD = B2_NEW;
-}        </textarea>
+}
+            </code>
+          </pre>
         </div>
-        <br>
-        <br>
         <br>
         <h2 id="REBONDS">Le problème des rebonds</h2>
         <p>Les boutons poussoir est les interrupteurs sont sujet à des
@@ -544,7 +548,8 @@ void loop() {
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Exemple de traitement des rebonds<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
-          <textarea class="CodeArea" readonly="readonly">
+          <pre>
+            <code>
 #define BP_PIN 4
 #define LED_PIN  3
 int8_t BP_OLD = 1, BP_NEW,LED_STATE = 0;
@@ -565,36 +570,11 @@ void loop() {
     }
     BP_OLD = BP_NEW;
 }
-                  </textarea>
-        </div>
-        <br>
-        <br>
+            </code>
+          </pre>
+        </div><br><br>
       </div>
     </div>
   </div>
-  <script>
-    function CopyCode(button) {
-      var CodeAreaContainer = button.closest('.CodeAreaContainer');
-      var textarea = CodeAreaContainer.querySelector('.CodeArea');
-      textarea.select();
-      document.execCommand("copy");
-      button.textContent = "C'est fait !";
-      setTimeout(function () {
-        button.textContent = "Copier";
-        window.getSelection().removeAllRanges(); // Annuler la sélection  
-      }, 1000);
-    }
-
-    function montrerMenu() {
-      LeftPanel_ID.classList.add("visible");  // .toggle marche aussi
-      const liens = document.querySelectorAll("#LeftPanelMenu_ID");
-      liens.forEach(element => {
-        element.addEventListener("click", () => {
-          LeftPanel_ID.classList.remove("visible");
-        });
-      });
-    }
-  </script>
 </body>
-
 </html>
