@@ -1,3 +1,5 @@
+
+/* Δ ≈ */
 * {
     margin: 0px;
     padding: 0px;
@@ -259,9 +261,7 @@ figcaption {
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
-    /* max-height: 400px; */
-    /* width: 100%; */
-    /* max-width: 800px; */
+    max-width: 95%;
 }
 .CodeAreaHeader {
     display: flex;
@@ -271,6 +271,20 @@ figcaption {
     background-color: rgb(139, 139, 200);
     align-items: center;
     padding-left: 10px;
+}
+pre {
+    background-color: #2d2d2d;
+    color: #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 400px;
+}
+
+code {
+    font-family: monospace;
+    font-size: 1em;
 }
 
 .CopyBtn {
@@ -319,20 +333,7 @@ figcaption {
     display: inline-block; /* Assurez-vous que le texte soit encadré de manière appropriée */
     border-radius: 5px; /* Optionnel : arrondir les coins */
 }
-pre {
-    background-color: #2d2d2d;
-    color: #ccc;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-    overflow: auto;
-    max-height: 400px;
-}
 
-code {
-    font-family: monospace;
-    font-size: 1em;
-}
 
 @media screen and (max-width: 768px) {
 
