@@ -26,6 +26,7 @@ body ul, ol{
 }
 body li {
     margin-top: 1ch;
+    margin-right: 1ch;
 } 
 
 .li_niv1 {
@@ -168,7 +169,7 @@ figcaption {
     width: 100%;
     background-color: lightcyan;
     overflow-y: auto;
-    /* padding: 0 1rem; */
+    padding-right: 1ch;
     line-height: 1.5;
 }
 
