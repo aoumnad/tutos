@@ -217,6 +217,9 @@ figcaption {
 .Burger {
     display: none;
 }
+.ForPC{
+    display: bloc;
+}
 .xicon {
     cursor: pointer;
     width: 35px;
@@ -300,6 +303,9 @@ figcaption {
 .InlineCenter{
     text-align: center !important ; 
 }
+.w200 {
+    width: 200px;
+}
 .w300 {
     width: 300px;
 }
@@ -337,7 +343,9 @@ code {
     .Burger {
         display: block;
     }
-
+    .ForPC{
+        display: none;
+    }
     .LeftPanel {
         position: fixed;
         top: 0%;
