@@ -170,6 +170,7 @@ figcaption {
     background-color: lightcyan;
     overflow-y: auto;
     padding-right: 1ch;
+    padding-left: 1ch;
     line-height: 1.5;
 }
 
@@ -194,6 +195,8 @@ figcaption {
 }
 
 .RightPanelContent h2 {
+    margin-left: -1ch;
+    margin-right: -1ch;
     margin-top: 1rem;
     padding: 8px ;
     font-style: italic;
