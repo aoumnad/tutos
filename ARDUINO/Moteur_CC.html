@@ -159,7 +159,7 @@
                 <p>Dans cet exemple, on a un seul moteur branché sur le pont A</p>
                 <ul>
                     <li>On contrôle le sens de rotation à l'aides des broches IN1 et IN2</li>
-                    <li>La broche ENA est validée en permanence à l'aide de son jumper, le moteur tournera à sa vitesse
+                    <li>La broche ENA est validée en permanence à l'aide de son jumper (ou reliée à 5V), le moteur tournera à sa vitesse
                         max</li>
                     <li>La source d'alimentation du moteur doit tenir compte de la chute de tension voisine de 2Volts
                         perdue dans le pont</li>
@@ -181,21 +181,25 @@
                             onclick="CopyCode(this)">Copier</button> </div>
                     <pre>
                         <code>
-#define IN1 7
-#define IN2 6
+#define IN1 9
+#define IN2 8
 
 void setup() {
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
+  digitalWrite(IN1,LOW);
+  digitalWrite(IN2, LOW);
   Serial.begin(9600);
-  Serial.println(F("F  -->  Forward (Avant)"));
-  Serial.println(F("B  -->  Backward (Arrière)"));
-  Serial.println(F("S  -->  Stop (Arrêt)"));
+  Serial.println(F("F ou f  -->  Forward (Avant)"));
+  Serial.println(F("B ou b -->  Backward (Arrière)"));
+  Serial.println(F("S ou s -->  Stop (Arrêt)"));
+  Serial.println("Le moniteur Série ne doit pas envoyer de Fin de Ligne");
 }
 
 void loop() {
   if (Serial.available()) {
     char c = toupper(Serial.read());
+    Serial.println(" ---> " + String(c));
     if (c == 'F') {
       digitalWrite(IN1, HIGH);
       digitalWrite(IN2, LOW); // gauche
@@ -225,13 +229,13 @@ void loop() {
                     <li>Le jumper 5V est en place, l'alim 5V est produite localement à partie de l'alimentation du
                         moteur</li>
                     <li>On envoie des commandes à partir du moniteur série. La commande est constituée d'un caractère
-                        (F, B, ou S)
+                        majuscule ou minuscule (F, B, ou S)
                         suivi d'un nombre N. Le caractère définit le sens de rotation, le nombre N (de 0 à 255)
                         représente le
                         paramètre de la fonction <strong>analogWrite()</strong> qui défini le rapport cyclique N/255 du
                         signal PWM. Par exemple :
                         <ul>
-                            <li>F 255 ==> Rotation avant, vitesse max</li>
+                            <li>f 255 ==> Rotation avant, vitesse max</li>
                             <li>F 50 ==> Rotation avant, vitesse faible</li>
                             <li>B 127 ==> Rotation Arrière, vitesse médiane</li>
                             <li>F 0 ou B 0 ==> Roue Libre</li>
@@ -250,32 +254,33 @@ void loop() {
                             onclick="CopyCode(this)">Copier</button> </div>
                     <pre>
                         <code>
-#define IN1 7
-#define IN2 6
-#define ENA 9
-
-void viderBuffer() {
-  do {
-    delay(2);
-    Serial.read();
-  } while (Serial.available());
-}
+#define ENA 10
+#define IN1 9
+#define IN2 8
 
 void setup() {
+  TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
+  analogWrite(ENA,0);
   Serial.begin(9600);
   Serial.setTimeout(5000);
   Serial.println(F("F N -->  Forward (Avant), vitesse ~ N/255"));
   Serial.println(F("B N -->  Backward (Arrière), vitesse ~ N/255"));
   Serial.println(F("S  -->  Stop (Arrêt)"));
+  Serial.println("Le moniteur Série doit envoyer un Fin de Ligne");
 }
 
 void loop() {
   if (Serial.available()) {
     char c = toupper(Serial.read());
+    if(c == 'S'){
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, LOW);
+      return;
+    }
     uint8_t N = Serial.parseInt();
-    viderBuffer();
+    clearInputBuffer();
     Serial.println(String(c)+" --> "+String(N));
     if (c == 'F') {
       digitalWrite(IN1, HIGH);
@@ -285,15 +290,19 @@ void loop() {
       digitalWrite(IN1, LOW);
       digitalWrite(IN2, HIGH);
       analogWrite(ENA,N);
-    } else if (c == 'S') {
-      digitalWrite(IN1, LOW);
-      digitalWrite(IN2, LOW);
     } else {
       Serial.println(String(c)+" ---> Bad Command ");
     }
   }
 }
-</code>
+
+void clearInputBuffer() {
+  do {
+    delay(2);
+    Serial.read();
+  } while (Serial.available());
+}
+                        </code>
 </pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
@@ -335,17 +344,16 @@ void loop() {
                             <li>On peut par exemple essayer les plages suivantes et les adapter ensuite après
                                 utilisation</li>
                             <pre>
-[800→1023] ==&gt;  Rotation avant, Vitesse Forte
-[580→800]  ==&gt;  Rotation avant, Vitesse Faible
-[420→580]  ==&gt;  Arrêt
-[200→420]  ==&gt;  Rotation arrière, Vitesse Faible
-[0→200]    ==&gt;  Rotation arrière, Vitesse Forte
+[900→1023] ==&gt;  Rotation avant, Vitesse Forte
+[600→900]  ==&gt;  Rotation avant, Vitesse Faible
+[400→600]  ==&gt;  Arrêt
+[100→400]  ==&gt;  Rotation arrière, Vitesse Faible
+[0 → 100]  ==&gt;  Rotation arrière, Vitesse Forte
                             </pre>
                         </ul>
                     </li>
                 </ul><br>
-                <img class="BlocCenter" src="IMAGES/Joystick_Plages.png"><br>
-                <p>Pour changer, nous allons brancher le moteur sur le pont B du module L298</p>
+                <img class="BlocCenter" src="IMAGES/Joystick_Plages_CC.png"><br>
                 <img class="BlocCenter" src="IMAGES/Mot_CC_L298_Joy_Schematic.png"><br>
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
@@ -354,51 +362,51 @@ void loop() {
                     <pre>
     <code>
 /*
-  0              200              420             580              800           1023
-  |--Ariere fort--|-arrière faible-|-----Arrêt-----|--Avant faible--|--Avant fort--|
+  0            100                400             600                900          1023
+  |Ariere fort|---arrière faible---|-----Arrêt-----|---Avant faible---|-Avant fort-|
 
-  Moteur branché sur pont B du L298
+  Moteur branché sur pont A du L298
   Joystick sur A0
 */
-#define IN3 7
-#define IN4 6
-#define ENB 5
-#define PWML 127 // vitesse faible 
+#define ENA 10
+#define IN1 9
+#define IN2 8
+
+#define PWML 100 // vitesse faible 
 #define PWMH 255 // vitesse forte
-#define N1  200 // modifier les paliers si nécessaire
-#define N2  420
-#define N3  580
-#define N4  800
+#define N1  100  // modifier les paliers si nécessaire
+#define N2  400
+#define N3  600
+#define N4  900
 
 
 void setup() {
-  TCCR0B = TCCR0B & B11111000 | B00000101; // f = 61.04 Hz, Arduino UNO, D5
-  pinMode(ENB, OUTPUT);
-  pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT);
-  digitalWrite(ENB, LOW); // roue libre au déppart
+  TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
 }
 
 void loop() {
+  delay(10);
   int N = analogRead(A0);
   if (N < N1) {
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, HIGH);
-    analogWrite(ENB, PWMH); // arrière Fort
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    analogWrite(ENA, PWMH); // arrière Fort
   } else if (N < N2) {
-    digitalWrite(IN3, LOW);
-    digitalWrite(IN4, HIGH);
-    analogWrite(ENB, PWML); // arrière Faible
-  } else if (N < N3)analogWrite(ENB, 0); // Roue libre
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    analogWrite(ENA, PWML); // arrière Faible
+  } else if (N < N3)analogWrite(ENA, 0); // Roue libre
   else if (N < N4) {
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
-    analogWrite(ENB, PWML);  // Avant faible
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite(ENA, PWML);  // Avant faible
   }
   else {
-    digitalWrite(IN3, HIGH);
-    digitalWrite(IN4, LOW);
-    analogWrite(ENB, PWMH); // Avant fort
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite(ENA, PWMH); // Avant fort
   }
 }
     </code>

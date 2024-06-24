@@ -136,7 +136,7 @@
                 <h2 id="EXMPLBASIC">Exemple basique</h2>
                 <img class="BlocCenter" src="IMAGES/Stepper_ULN2003_Arduino.png">
                 <p>Dans cet exemple on va utiliser le moteur pas-à-pas 28BYJ-48. Ce moteur existe en plusieurs
-                    versions. Nous utilisons une version 5V, 32 pas, réducteur 1/64</p>
+                    versions. Nous utilisons une version 5V, 32 pas, réducteur 1/64, durée min d'un pas : 2 ms</p>
                 <ul>
                     <li>Alimentation 5V de préférence 6V pour compenser la chute de tension dans l'ULN2003</li>
                     <li>32 pas par révolution. Réducteur mécanique 1/64. On obtient 32*64 = 2048 pas par
@@ -176,19 +176,19 @@
                     <div class="CodeAreaHeader">Exemple basique: Aller retour<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
                     <pre><code>
-#define PINA 8
-#define PINB 9
-#define PINC 10
-#define PIND 11
+#define PINA 11
+#define PINB 10
+#define PINC 9
+#define PIND 8
 
 void setup() {
     stepperInit(LOW);
   }
   
   void loop() {
-    stepperStep(2048, 2);
+    stepperStep(2048, 3);
     delay(1000);
-    stepperStep(-2048, 2);
+    stepperStep(-2048, 3);
     delay(1000);
   }
   
@@ -208,7 +208,7 @@ void setup() {
 
 void stepperStep(int32_t steps, float step_time_ms) {
   // Tourner de steps pas au rythme de step_time_ms par pas
-  // lire l'etat actuel des bobines
+  // lire l'état actuel des bobines
   byte A, B, C, D, S;
   A = digitalRead(PINA) ;
   B = digitalRead(PINB) ;
@@ -278,10 +278,10 @@ void stepperStep(int32_t steps, float step_time_ms) {
                     <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
                     <pre><code>
-#define PINA 8
-#define PINB 9
-#define PINC 10
-#define PIND 11
+#define PINA 11
+#define PINB 10
+#define PINC 9
+#define PIND 8
 
 void setup() {
   Serial.begin(9600);
@@ -299,7 +299,7 @@ void loop() {
   if (Serial.available()) {
     String cmd = Serial.readStringUntil(' ');
     float param = Serial.parseFloat();
-    viderbuffer();
+    clearInputBuffer();
     Serial.println("---->  " + cmd + "  " + String(param));
     if(cmd == "step") stepperStep(param,T);
     else if (cmd == "stepms")T = param;
@@ -362,7 +362,7 @@ void stepperStep(int32_t steps, float step_time_ms) {
   }
 }
 
-void viderbuffer() {
+void clearInputBuffer() {
   do {
     delay(2);
     Serial.read();

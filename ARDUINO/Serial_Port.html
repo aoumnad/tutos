@@ -594,7 +594,7 @@ void loop() {
               onclick="CopyCode(this)">Copier</button> </div>
           <pre>
             <code>
-void viderbuffer() {
+void clearInputBuffer() {
   do {
     delay(2);
     Serial.read();
@@ -610,7 +610,7 @@ void loop() {
   if (Serial.available()) {
     String cmd = Serial.readStringUntil(' ');
     int param = Serial.parseInt();
-    viderbuffer();
+    clearInputBuffer();
     Serial.println("Commande:     -->"+cmd+"<--");
     Serial.println("parametre:    -->"+String(param)+"<--");
   }
