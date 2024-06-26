@@ -281,11 +281,22 @@ pre {
     color: #ccc;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     overflow: auto;
     max-height: 400px;
 }
-
+.CodeArea {  
+    height: 400px;
+    font-size: medium;  
+    color: white;
+    background-color: black;  
+    padding-left: 1ch;  
+    font-family: monospace;  
+    font-style: italic;
+    resize: none;
+    border-radius: 0 0 10px 10px;
+    overflow: auto;
+}
 code {
     font-family: monospace;
     font-size: 1em;
