@@ -155,7 +155,7 @@ figcaption {
 }
 
 .LeftPanelMenu {
-    height: 93%;
+    height: 100%;
     width: 100%;
     padding-left: 2ch;
     font-size: large;
@@ -366,7 +366,7 @@ code {
         position: fixed;
         top: 0%;
         left: -100%;
-        width: 95%;
+        width: 98%;
         transition: 0.5s;       
     }
 
