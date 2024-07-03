@@ -179,13 +179,13 @@ figcaption {
 }
 
 .LeftPanelMenu h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 1rem;
 }
 .LeftPanelMenu h4 {
     margin-top: 1ch;
     margin-left: 2ch;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .RightPanelHeader h1 {
