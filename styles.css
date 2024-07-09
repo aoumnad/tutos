@@ -68,9 +68,18 @@ strong {
     flex-direction: column;
     overflow-y: hidden;
 }
-/* .PosterPageContainer header{
-    flex: 1;
-} */
+
+.PostersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 9;
+    padding: 10px;
+    background-color: rgb(132, 152, 172);
+    overflow-y: auto;
+}
+
 
 .IndexHeader{
     width: 100%;
@@ -87,18 +96,6 @@ strong {
     flex: 1;
     background-color: #55a3a3;
 }
-
-.PostersContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex: 9;
-    padding: 10px;
-    background-color: rgb(132, 152, 172);
-    overflow-y: auto;
-}
-
 
 figure {
     width: 250px;
