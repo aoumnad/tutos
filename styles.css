@@ -63,7 +63,7 @@ strong {
 
 .PosterPageContainer {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     /* padding-bottom: 10px; */
     display: flex;
     flex-direction: column;
@@ -75,10 +75,9 @@ strong {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    flex: 9;
     padding: 10px;
     background-color: rgb(132, 152, 172);
-    padding-bottom: 10px;
     overflow-y: auto;
 }
 
@@ -88,14 +87,14 @@ strong {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 10%;
+    flex: 1;
     background-color: #55a3a3;
 }
 .ArduinoHeader{
     width: 100%;
     display: flex;
     align-items: center;
-    height: 10%;
+    flex: 1;
     background-color: #55a3a3;
 }
 
