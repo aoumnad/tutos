@@ -36,29 +36,22 @@ body li {
 .sanspuce {
     list-style-type: none;
 }
-.IndexHeader{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: #55a3a3;
-    flex: 1;
-}
-.ArduinoHeader{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: #55a3a3;
-    flex: 1;
-}
 
+header{
+    width: 100%;
+}
 header h1 {
     background-color: #55a3a3;
+    text-align: center;
     font-weight: bold;
     font-style: italic;
     font-size: calc(1rem + 1.5vw);
     color: rgb(113, 26, 10);
-    margin: auto;
+    padding: 1rem;
+}
+header .logo{
+    float: left; 
+    margin-top: 10px;
 }
 
 img{
@@ -77,8 +70,11 @@ strong {
     flex-direction: column;
     overflow-y: hidden;
 }
+.PosterPageContainer header{
+    flex: 1;
+}
 
-.PostersContainer {
+.AllPostersContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
