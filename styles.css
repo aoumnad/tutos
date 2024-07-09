@@ -42,12 +42,12 @@ header{
 }
 header h1 {
     background-color: #55a3a3;
-    text-align: center;
+    /* text-align: center; */
     font-weight: bold;
     font-style: italic;
     font-size: calc(1rem + 1.5vw);
     color: rgb(113, 26, 10);
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 header .logo{
     float: left; 
@@ -70,11 +70,20 @@ strong {
     flex-direction: column;
     overflow-y: hidden;
 }
-.PosterPageContainer header{
+/* .PosterPageContainer header{
     flex: 1;
+} */
+
+.IndexHeader{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: #55a3a3;
 }
 
-.AllPostersContainer {
+.PostersContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
