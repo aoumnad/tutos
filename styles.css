@@ -46,6 +46,7 @@ header h1 {
     font-style: italic;
     font-size: calc(1rem + 1.5vw);
     color: rgb(113, 26, 10);
+    margin: auto; 
 }
 /* header .logo{
     float: left; 
