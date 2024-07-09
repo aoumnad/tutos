@@ -48,6 +48,15 @@ header h1 {
     color: rgb(113, 26, 10);
     margin: auto; 
 }
+header h2 {
+    /* background-color: #55a3a3; */
+    /* font-weight: bold; */
+    font-family: monospace;
+    font-style: italic;
+    /* font-size: calc(1rem + 1.5vw); */
+    color: rgb(113, 26, 10);
+    margin: auto; 
+}
 /* header .logo{
     float: left; 
     margin-top: 10px;
