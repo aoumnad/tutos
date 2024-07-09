@@ -78,6 +78,7 @@ strong {
     height: 90%;
     padding: 10px;
     background-color: rgb(132, 152, 172);
+    padding-bottom: 10px;
     overflow-y: auto;
 }
 
