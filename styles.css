@@ -64,7 +64,8 @@ strong {
 
 .PosterPageContainer {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
