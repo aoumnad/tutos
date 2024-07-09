@@ -16,6 +16,7 @@ body a{
 }
 .HyperLink{
     font-style: italic;
+    font-weight: bold;
     color: blue;
 }
 body a:hover {
@@ -278,7 +279,7 @@ figcaption {
 }
 pre {
     background-color: #2d2d2d;
-    color: #ccc;
+    color: white;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 0 0 5px 5px;
@@ -287,19 +288,29 @@ pre {
 }
 .CodeArea {  
     height: 400px;
-    font-size: medium;  
+    width: 90%;
     color: white;
     background-color: black;  
     padding-left: 1ch;  
     font-family: monospace;  
     font-style: italic;
+    font-size: medium;  
     resize: none;
     border-radius: 0 0 10px 10px;
     overflow: auto;
 }
+
 code {
     font-family: monospace;
     font-size: 1em;
+}
+.code2 {
+    padding-left: 1ch;
+    font-family: monospace;
+    font-style: italic;
+    font-size: medium;  
+    color: white;
+    background-color: rgb(24, 23, 23);  
 }
 
 .CopyBtn {

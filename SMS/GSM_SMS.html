@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, GSM, SMS, SIM800, SIM900"
+    name="keywords">
+  <title>SMS Control</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+  <div class="TwoPanPageContainer">
+    <div id="LeftPanel_ID" class="LeftPanel">
+      <div class="LeftPanelHeader">
+        <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+      </div>
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+        <a href="#OBJECTIF">
+          <h3>Objectif</h3>
+        </a>
+        <a href="#SIM900">
+          <h3>Module SIM900</h3>
+        </a>
+      </div>
+    </div>
+    <div class="RightPanel">
+      <div class="RightPanelHeader">
+        <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+        <h1>Contrôle par SMS</h1>
+      </div>
+      <div class="RightPanelContent">
+        <!-- ################################################################################################ -->
+        <h2 id="OBJECTIF">Objectif</h2>
+        <p>Dans ce tutos, on va apprendre à gérer un système distant à l'aide de messages SMS. L'avantage d'un tel système
+          est la couverture du réseau GSM qui est quasi totale</p>
+          <img src="IMAGES/SMS_Control.jpg" class="BlocCenter">
+
+        <!-- ################################################################################################ -->
+        <h2 id="SIM900">Module SIM900</h2>
+        <p>Dans ce tuto, nous allons utiliser le module SIM900A, mais tout ce qu'on va dire est valable pour d'autre
+          modules GSM comme le SIM800</p><br>
+        <img src="IMAGES/SIM900A.jpg" class="BlocCenter">
+        <p>voici quelques considérations concernant ce module</p>
+        <ol>
+          <li><em>Schéma de branchement: </em>
+            <ul>
+              <li><b>Ne pas utiliser le connecteur RS232</b>. Ce connecteur, situé sur le bord du module avec 3
+                broches (RXD-RS232, TXD-RS232, GND), est compatible avec le standard RS232 où les niveaux logiques sont
+                inversés (0 logique = +12V, 1 logique = -12V).</li>
+              <li><b>Arduino-UNO: </b>Les entrées/sorties (RxD, TxD) de l'Arduino-UNO ont des niveaux TTL 5V (0 logique
+                = 0V, 1 logique = 5V). Il faut donc les relier aux broches du module (TXD 5V, RXD 5V).</li>
+              <li><b>Autres cartes: </b>Si vous utilisez une carte dont les entrées/sorties (RxD, TxD) ont des niveaux
+                TTL 3.3V (0 logique = 0V, 1 logique = 3.3V), reliez-les aux broches du module (TXD 3.3V, RXD 3.3V).</li>
+              <li><b>Utilisation du port série :</b> Sur l'Arduino, n'utilisez pas le port série intégré avec le module
+                GSM, car il est préférable de l'utiliser avec le moniteur série. Utilisez un port série software grâce à
+                la librairie SoftwareSerial. Par exemple, D8=TXD, D7=RXD. Il faut croiser les connexions avec le module
+                : TXD → RXD, RXD ← TXD.
+              </li>
+            </ul>
+          </li>
+          <img src="IMAGES/SIM900_Connect.jpg" class="BlocCenter">
+          <li><em>Alimentation: </em><br>
+            <b>Ne pas alimenter le module par le 5V issu de l'Arduino</b>. Lors de la transmission vers le réseau
+            GSM, le module consomme au moins 1A. Je vous conseille d'utiliser une alim (5V, 2A) pour être tranquille.
+          </li>
+          <li><em>Carte SIM: </em><br>Quand on met une carte SIM dans le module. Si ce dernier réussit à s'enregistrer
+            auprès du réseau GSM de
+            l'opérateur, la LED D6 à coté de l'antenne s'allume. Si c'est pas le cas, on ne peut pas réaliser des
+            opération comme l'envoi ou la réception de SMS. Il va de soit que la carte SIM doit avoir un solde
+            suffisant.</li>
+        </ol>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
