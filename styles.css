@@ -38,7 +38,7 @@ body li {
 }
 
 header{
-    width: 100vw;
+    width: 100%;
 }
 header h1 {
     background-color: #55a3a3;
@@ -70,13 +70,16 @@ strong {
     flex-direction: column;
     overflow-y: hidden;
 }
+.PosterPageContainer header{
+    flex: 1;
+}
 
 .AllPostersContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    flex: 9;
     padding: 10px;
     background-color: rgb(132, 152, 172);
     overflow-y: auto;
