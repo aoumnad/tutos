@@ -14,11 +14,6 @@ body a{
     text-decoration: none;
     color: black;
 }
-.HyperLink{
-    font-style: italic;
-    font-weight: bold;
-    color: blue;
-}
 body a:hover {
     background-color: #427272;
 }
@@ -28,6 +23,7 @@ body ul, ol{
 body li {
     margin-top: 1ch;
     margin-right: 1ch;
+    text-align: justify;
 } 
 
 .li_niv1 {
@@ -48,19 +44,6 @@ header h1 {
     color: rgb(113, 26, 10);
     margin: auto; 
 }
-header h2 {
-    /* background-color: #55a3a3; */
-    /* font-weight: bold; */
-    font-family: monospace;
-    font-style: italic;
-    /* font-size: calc(1rem + 1.5vw); */
-    color: rgb(113, 26, 10);
-    margin: auto; 
-}
-/* header .logo{
-    float: left; 
-    margin-top: 10px;
-} */
 
 img{
     max-width: 100%;
@@ -73,7 +56,6 @@ strong {
 .PosterPageContainer {
     width: 100vw;
     height: 100dvh;
-    /* padding-bottom: 10px; */
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
@@ -107,7 +89,7 @@ strong {
     background-color: #55a3a3;
 }
 
-figure {
+.PostersContainer figure {
     width: 250px;
     height: 250px;
     margin: 10px;
@@ -134,7 +116,7 @@ figure {
     max-height: 100%;
 }
 
-figcaption {
+.PostersContainer figcaption {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -198,6 +180,12 @@ figcaption {
     padding-right: 1ch;
     padding-left: 1ch;
     line-height: 1.5;
+}
+
+.RightPanelContent a {
+    font-style: italic;
+    font-weight: bold;
+    color: blue;
 }
 
 .LeftPanelMenu a {
@@ -275,6 +263,14 @@ figcaption {
     font-style: italic;
 }
 
+.FitContent{
+    width: fit-content;
+}
+.Row{
+    display: flex; 
+    justify-content: space-around; 
+    align-items: baseline;
+}
 .Float_R{
     float: right;
     margin-left: 1rem;

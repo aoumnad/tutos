@@ -131,7 +131,7 @@
                         programmation ce qui nécessite l'utilisation de deux boutons poussoir. Bref, c'est la galère,
                     </li>
                 </ul>
-                <p> Je vais tout de même lui consacrer un <a href="#ESP-01" class="HyperLink">petit paragraphe</a> pour
+                <p> Je vais tout de même lui consacrer un <a href="#ESP-01" >petit paragraphe</a> pour
                     les gens qui
                     veulent l'utiliser.</p>
                 <br>
@@ -172,7 +172,7 @@
                     mode RUN. Il arrive des fois que le programme ne démarre pas à la fin du téléversement, il suffit de
                     cliquer sur le bouton RESET du module pour le placer en mode RUN.</p>
                 <p>Si vous utiliser un module qui n'as pas de connecteur USB comme l'ESP-01, voir <a href="#ESP-01"
-                        class="HyperLink">le paragraphe</a> réservé
+                        >le paragraphe</a> réservé
                     à ce module pour savoir comment le brancher. Pour basculer d'un mode à l'autre il faut utiliser un
                     branchement avec un ou deux boutons poussoir.</p>
 
@@ -215,7 +215,7 @@ void loop() {
                     interface I2C. Pour des raisons de disponibilité, j'ai choisi le LM75. Le bus I2C est un standard et
                     ce qui suit peut être adapté à n'importe quel autre capteur avec bus I2C. Pour avoir un peu plus
                     d'information sur ce sujet, je vous conseille de jeter un coup d'œil <a target="_blank"
-                        href="../ARDUINO/bus_I2C.html" class="HyperLink">ICI</a></p>
+                        href="../ARDUINO/bus_I2C.html" >ICI</a></p>
                 <p>Le bus I2C adresse les circuits connectés sur le bus à l'aide d'une adresse 7 bits. Le LM75 possède 3
                     entrée A2 A1 A0 qui permette à l'utilisateur de fixer l'adresse à laquelle le circuit va répondre,
                     les 4 autres bits sont fixés en interne à 1001.</p>
@@ -657,7 +657,7 @@ void envoyer_pageweb(){
 }                        
                 </code></pre>
                 <p>Elle respecte le format d'une <a target="_blank"
-                        href="https://www.tutorialspoint.com/http/http_responses.htm" class="HyperLink">réponse HTTP</a>
+                        href="https://www.tutorialspoint.com/http/http_responses.htm" >réponse HTTP</a>
                     en envoyant:</p>
                 <pre><code>
 HTTP/1.1 200 OK
@@ -678,7 +678,7 @@ Connection: close
                 </code></pre>
                 <ul>
                     <li>La première ligne indique le status de la réponse. Le code <em>200 OK</em> indique que la
-                        requête a réussi. Vous trouverez <a target="_blank" class="HyperLink"
+                        requête a réussi. Vous trouverez <a target="_blank" 
                             href="https://developer.mozilla.org/fr/docs/Web/HTTP/Status">ICI </a>d'autres
                         code de réponse HTTP</li>
                     <li>Les trois lignes suivantes sont des entêtes qui envoient quelques information sur la page WEB.
@@ -743,7 +743,7 @@ else if (request.indexOf("/LEDON") != -1){  // requête  "/LEDON"
                     <em>"/REQXX"</em>, exécutes la
                     fonction <em>"fonctionxx"</em>.
                 </p>
-                <p>On peut trouver un peux plus d'information dans <a class="HyperLink" target="_blank"
+                <p>On peut trouver un peux plus d'information dans <a  target="_blank"
                         href="https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer">cette page</a>
                 </p>
                 <p>Voici le code entier :</p>
@@ -1425,7 +1425,7 @@ void envoyer_donnee() {
                 <!-- ################################################################################################ -->
                 <h2 id="SPIFFS">File System dans la mémoire flash</h2>
                 <p>L'ESP8266 dispose d'une zone mémoire flash dans laquelle on peut créer un système de fichier pour
-                    stocker des fichiers comme dans un disque normal. Voir <a class="HyperLink" target="_blank"
+                    stocker des fichiers comme dans un disque normal. Voir <a  target="_blank"
                         href="https://arduino-esp8266.readthedocs.io/en/latest/filesystem.html">cette page</a>
                     pour plus de détails</p>
                 <p>Il existe deux systèmes permettant de créer un système de fichier dans cette zone, <em>SPIFFS</em>
@@ -1960,7 +1960,7 @@ void handleformatok(){
                     gestionnaire de cartes ESP8266 est passé dernièrement de Python2 à Python3 qui ne sont pas vraiment
                     compatibles. </p>
                 <p>J'ai fini par trouver une version qui marche avec Arduino-IDE 1.x <a target="_blank"
-                        class="HyperLink"
+                        
                         href="https://github.com/earlephilhower/arduino-esp8266littlefs-plugin/releases">ICI</a></p>
                 <p>Une fois le fichier Zip téléchargé, extraire son contenu et copier le dossier ESP8266LittleFS dans le
                     dossier tools de votre dossier de croquis (le mien s'appelle ARDUINO_IDE). Remarquez que le dossier
@@ -2168,7 +2168,7 @@ void envoyer_donnee() {
                     l'aide de la librairie <em>NTPclient</em>. La version installable par le gestionnaire de librairie
                     ne
                     contient pas toutes les fonctions comme getDate() et getFormattedDate()... Je vous conseille de
-                    télécharger <a class="HyperLink" target="_blank"
+                    télécharger <a  target="_blank"
                         href="https://github.com/arduino-libraries/NTPClient/files/1357589/NTPClient.zip"> cette
                         version:</a> et de l'installer comme ça:</p>
                 <img src="IMAGES/ZIP_Library.jpg" class="BlocCenter"><br>
@@ -2745,7 +2745,7 @@ void loop(void){
                 <h3>Procédure de programmation</h3>
                 <ol>
                     <li>Si ce n'est pas déjà fait, effectuez les deux premières étapes du paragraphe: <a href="#IDE"
-                            class="HyperLink">Environnement de programmation</a></li>
+                            >Environnement de programmation</a></li>
                     <li>Connecter l'adaptateur USB au PC et noter le port COM affecté par Windows (Gestion de
                         périphériques)</li>
                     <li>Dans l'IDE Arduino: (Outil→Port→choisir le port) , (Outil→type de carte→Generic ES8266)</li>
@@ -2806,7 +2806,7 @@ void loop(void){
                 </ul>
                 <h3>Flasher l'ESP-01 avec un firmware AT</h3>
                 <ul>
-                    <li>Télécharger <a target="_blank" class="HyperLink"
+                    <li>Télécharger <a target="_blank" 
                             href="https://github.com/nodemcu/nodemcu-flasher">le flasheur de NodeMCU</a></li>
                     <li>Brancher le module à votre PC avec un adaptateur USB-Serial ou avec un Arduino comme indiqué
                         plus haut. Si vous utiliser l'Arduino, assurez vous
