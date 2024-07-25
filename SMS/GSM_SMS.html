@@ -63,6 +63,16 @@
         <a href="#LEDMOTCC">
           <h3>Contrôler une LED et un moteur CC</h3>
         </a>
+        <a href="#SMSREQRES">
+          <h3>Demander et recevoir une mesure par SMS</h3>
+        </a>
+        <a href="#TRUCS2">
+          <h3>Envoyer SMS avec codage UCS2</h3>
+        </a>
+        <a href="#RCVUCS2">
+          <h3>Recevoir SMS avec codage UCS2</h3>
+        </a>
+
       </div>
     </div>
     <div class="RightPanel">
@@ -188,6 +198,9 @@ void loop() {
           toutes
           les commandes AT supportées par le module SIM900</p>
         <ul>
+          <li><em>AT&F</em> Remet tous les paramètres du module à leur configuration d'usine. Quand on <i>s'amuse</i>
+            avec le module, il arrive souvent qu'on change des paramètres sans noter leurs valeurs par défaut. C'est là
+            que la commande AT&F peut s'avérer très utile</li>
           <li><em>AT+CGMI</em> Retourne le nom du constructeur. Ça ne sert pas à grand chose à part le fait de se
             familiariser
             un peu avec les commandes AT </li>
@@ -234,6 +247,30 @@ void loop() {
                 accentués, il est cote en UCS2 (16 bits) </li>
             </ul>
           </li>
+          <li><em>AT+CSCS</em> Choisir le jeu de caractère utilisé par le module
+            <ul>
+              <li><em>AT+CSCS?</em> Affiche le jeux de caractères en vigueur</li>
+              <li><em>AT+CSCS=?</em> Affiche la liste des jeux de caractères supportés</li>
+              +CSCS: ("IRA","GSM","UCS2","HEX","PCCP","PCDN","8859-1")
+              La configuration usine est "IRA" qui correspond au jeu de caractère ASCII (ITU T.50)
+              <li><em>AT+CSCS="8859-1"</em> Choisir un jeu de caractère</li>
+              <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
+                sera
+                conservée même si on redémarre le module. Pour revenir à la configuration <em>par défaut</em> , il faut
+                recharger les paramètres <em>usine</em> à l'aide de la commande <em>AT&F</em></li>
+            </ul>
+          </li>
+          <li><em>AT+CSMP</em> Fixer les paramètres du mode Texte (4 paramètres). On peut être amené à utiliser cette
+            commande en combinaison avec la commande AT+CSCS si on veux travailler avec un codage autre que ASCII (IRA)
+            <ul>
+              <li><em>AT+CSMP?</em> Affiche la configuration en vigueur. La configuration usine par défaut est
+                17,167,0,0</li>
+              <li><em>AT+CSCS=17,167,0,8</em> Choisir une configuration </li>
+              <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
+                sera conservée même si on redémarre le module. Pour revenir à la configuration <em>par défaut</em>, il faut
+                recharger les paramètres <em>usine</em> à l'aide de la commande <em>AT&F</em></li>
+            </ul>
+          </li>
           <li><em>AT+CPMS="SM" </em>Afficher le nombre de messages présents dans la carte SIM</li>
           <li><em>AT+CMGL="ALL" </em>Lister tous les messages qui se trouvent en mémoire de la carte SIM (mode texte)
           </li>
@@ -249,6 +286,8 @@ void loop() {
             <li><em>AT+CNMI=2,2,0,1,0 </em>Avec cette configuration, les messages reçus ne sont pas mémorisés, ils sont
               envoyés directement vers le terminal. En fait, on a plusieurs combinaisons possibles pour que les messages
               soit relayés immédiatement: AT+CNMI=(1,2,3)(2)(0,2)(1)(0,1) </li>
+              <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
+                sera conservée même si on redémarre le module. Il n'y a pas de configuration usine par défaut</li>
           </ul>
           <li><em>AT+CMGS </em>Envoyer un SMS. On procède en deux étapes:</li>
           <ul>
@@ -425,7 +464,7 @@ void loop() {
           <li><b>AT+CMGF=1&crarr;</b></li>
         </ul>
         <p>Ensuite, chaque fois que l'on désire envoyer un SMS, il faut suivre les étapes suivantes:</p>
-        <ul>
+        <ol>
           <li><b>AT+CMGS="Numéro de téléphone"&crarr;</b></li>
           <li><b>Attendre que le module réponde par <em>&gt;</em></b></li>
           <li><b>On envoie le texte du message terminé par le caractère SUB de code ascii 26</b>. Sur certain
@@ -434,19 +473,24 @@ void loop() {
           </li>
           <li><b>Attendre que le module réponde par <em>+CMGS: nnn</em></b> pour indiquer que le message a bien été
             envoyé</li>
-        </ul>
+        </ol>
         <h3 id="SENDMS">Envoyer SMS ave le moniteur série</h3>
-        <p>On va utiliser le programme AT2 pour envoyer un SMS</p>
-        <p>Le problème avec le moniteur série c'est qu'il n'y a pas une combinaison clavier qui envoie le caractère SUB
-          (ASCII 26=0x1A)</p>
-        <p>Pour remédier à ce petit désagrément, on rajoute une ligne au programme qui affiche ce caractère pour faire
-          un couper/coller:</p>
-        <p class="code2">Serial.write(26);</p>
-        <p>Ou de preference:</p>
-        <p class="code2">Serial.println("Copier/Coller pour avoir ASCII(26) --&gt;\x1A&lt;--");</p>
-        <p> Comme c'est un caractère de contrôle, Le moniteur série affiche un petit carré à la place </p>
-        <img src="IMAGES/CaractèreSUB26.jpg" class="BlocCenter">
-        <p>Maintenant il suffit de <b>copier</b> ce caractère et le <b>coller</b> à la fin du message</p><br>
+        <p>On va utiliser le programme AT2 pour faire la liaison entre le moniteur série et le module SIM900</p>
+        <ul>
+          <li>Le problème avec le moniteur série c'est qu'il n'y a pas une combinaison clavier qui envoie le caractère
+            SUB (ASCII 26=0x1A)</li>
+          <li>
+            <p>Pour remédier à ce petit désagrément, on rajoute une ligne au programme qui affiche ce caractère pour
+              faire
+              un couper/coller:</p>
+            <p class="code2">Serial.write(26);</p>
+            <p>Ou de preference:</p>
+            <p class="code2">Serial.println("Copier/Coller pour avoir ASCII(26) --&gt;\x1A&lt;--");</p>
+          </li>
+          <li>Comme c'est un caractère de contrôle, Le moniteur série affiche un petit carré à la place <img
+              src="IMAGES/CaractèreSUB26.jpg" class="BlocCenter"></li>
+          <li>Maintenant il suffit de <b>copier</b> ce caractère et le <b>coller</b> à la fin du message</li>
+        </ul><br>
         <!-- =========================== Code ========================================================= -->
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Prog. AT2<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
@@ -694,7 +738,8 @@ bool waitFor(String STR, uint32_t Tms) {
         </p><br>
         <!-- =========================== Code ========================================================= -->
         <div class="CodeAreaContainer">
-          <div class="CodeAreaHeader">Recevoir et afficher un SMS<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+          <div class="CodeAreaHeader">Recevoir et afficher un SMS<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
           <pre><code>/*
    Recevoir et afficher un SMS
    Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
@@ -756,8 +801,8 @@ void loop() {
 }</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
-         <img src="IMAGES/Message_recu.jpg" class="BlocCenter"><br>
-         <!-- ################################################################################################ -->
+        <img src="IMAGES/Message_recu.jpg" class="BlocCenter"><br>
+        <!-- ################################################################################################ -->
         <h2 id="LEDSMS">Contrôler une LED à distance</h2>
         <p>Dans cet exemple, On va controller une LED à l'aide d'un message contenant les mots clé LED_ON ou LED_OFF</p>
         <br>
@@ -821,20 +866,22 @@ void loop() {
         <img src="IMAGES/SMS_Motor_CC.jpg" class="BlocCenter"><br>
 
         <ul>
-          <li><em>LED_ON</em>   Allumer la LED</li>
-          <li><em>LED_OFF</em>  Eteindre la LED</li>
-          <li><em>MOTOR_FREE</em>  Moteur roue libre</li>
-          <li><em>MOTOR_STOP</em>  Moteur Stop</li>
-          <li><em>MOTOR</em>( <strong>dir, durée, pwm</strong> ) 
+          <li><em>LED_ON</em> Allumer la LED</li>
+          <li><em>LED_OFF</em> Eteindre la LED</li>
+          <li><em>MOTOR_FREE</em> Moteur roue libre</li>
+          <li><em>MOTOR_STOP</em> Moteur Stop</li>
+          <li><em>MOTOR</em>( <strong>dir, durée, pwm</strong> )
             <ul>
               <li><b><i>dir: </i></b> Direction, 1 &rarr; en avant, 0 &rarr; en arrière</li>
               <li><b><i>durée: </i></b>Nombre de secondes (0 &rarr; permanent)</li>
               <li><b><i>pwm: </i></b>Paramètre compris entre 0 et 255 pour fixer la vitesse</li>
               <li class="sanspuce"><strong>Exemples:</strong></li>
-              <li><strong>MOTOR(1,10,127) </strong>En avant pendant 10 secondes à vitesse médiane</li></li>
-              <li><strong>MOTOR(0,0,255) </strong>En arrière vitesse max</li></li>
-            </ul>
-          <li>On peut réunir deux commandes dans le même SMS: exemple: <strong>LED_OFF  MOTOR_STOP</strong></li>
+              <li><strong>MOTOR(1,10,127) </strong>En avant pendant 10 secondes à vitesse médiane</li>
+          </li>
+          <li><strong>MOTOR(0,0,255) </strong>En arrière vitesse max</li>
+          </li>
+        </ul>
+        <li>On peut réunir deux commandes dans le même SMS: exemple: <strong>LED_OFF MOTOR_STOP</strong></li>
         </ul>
         <br>
 
@@ -933,6 +980,358 @@ void loop() {
 </code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
+        <!-- ################################################################################################ -->
+        <h2 id="SMSREQRES">Demander et recevoir une mesure par SMS</h2>
+        <p>Dans cet exemple, on va envoyer un SMS (Request) pour demander une mesure. Le système effectue la mesure et
+          retourne un SMS (Response) avec la mesure demandée</p>
+        <p>Considérons par exemple un cas de mesure de distance à l'aide d'un module à ultra-sons. On va voir que ça
+          peut être très utile dans un cas pratique</p><br>
+        <img src="IMAGES/SMS_DISTANCE.jpg" class="BlocCenter">
+        <p>Téléversez le programme ci-dessous et utilisez votre téléphone pour envoyer un SMS avec le mote clé
+          <b>mesure</b> en majuscule ou en minuscule (mesure , MESURE, Mesure, ...)
+        </p><br>
+
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Mesure de distance<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+          </div>
+          <pre><code>/*
+   Mesure de distance par SMS
+   Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+   Port COMM Software {Rx(11), Tx(12)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+     _________________                ______________
+     |   Arduino     |                |  Moniteur   |
+     |         Rx(0) |&lt;---------------|  Série      |
+     |         Tx(1) |---------------&gt;| 9600,CR+LF  |
+     |               |                ---------------
+     |               |                _______________
+     |         Rx(11)|&lt;---------------|Tx  Module   |
+     |         Tx(12)|---------------&gt;|Rx   GSM     |
+     |               |                |             |
+     |           GND |----------------|GND          |
+     |               |                ---------------
+     -----------------
+*/
+#define trigPin 9
+#define echoPin 8
+#include &lt;SoftwareSerial.h&gt;
+SoftwareSerial Module(11, 12); // (RX, TX)
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  digitalWrite(trigPin, LOW);
+  Serial.begin(9600);
+  Module.begin(9600);
+  Serial.println("J'attend un message\n\n");
+  Module.write(27); //mettre fin à une éventuelle commande inachevée
+  Module.readString();  // vider le buffer d'entrée
+  Module.println("ATE 0");  // Echo OFF
+  delay(200);
+  Module.println("AT+CMGF=1"); // Mode texte
+  delay(200);
+  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
+  Module.readString(); //vider le buffer
+}
+
+void loop() {
+  if (Module.available() == 0)return; // on n'a rien reçu
+  // lire et afficher ce qui a été reçu
+  String sms = Module.readString();
+  sms.toUpperCase();
+  Serial.println(sms);
+  // Vérifier si c'est un SMS
+  if (sms.indexOf("CMT") == -1)return; // ce n'est pas un  SMS
+  if (sms.indexOf("MESURE") == -1) return; // ce n'est pas une requête
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float Tus = pulseIn(echoPin, HIGH); // temps en µs
+  float Dcm = Tus * 0.0343 / 2;  // distance en cm
+  Module.println("AT+CMGS=\"0667066947\"");
+  String str = Module.readString();
+  if (str.endsWith("&gt; ")) {
+    Module.print("La distance est:  " + String(Dcm) + " Cm"); // max 160 octets
+    Module.write(26);
+    delay(5000);  //attendre la réponse après l'envoi du message
+    str = Module.readString();  // réponse
+    if (str.indexOf("+CMGS:") != -1)Serial.println("Message envoyé avec succès");
+    else {
+      Serial.println("Pas de réponse de confirmation");
+      Module.write(27);
+    }
+  } else {
+    Serial.println("Invité '&gt;' non reçu");
+    Module.write(27);
+  }
+  Module.readString(); // nettoyer le buffer
+}</code></pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+        <!-- ################################################################################################ -->
+        <h2 id="TRUCS2">Envoyer un SMS avec caractère Accentués et symboles spéciaux</h2>
+        <ul>
+          <li>Comme nous allons parler de codage, voici un petit tableau avec les codes (Hex) d'un caractère normal et
+            un
+            caractère accentué</li>
+          <img src="IMAGES/Codage_Accent.jpg" class="BlocCenter">
+          <li>Par défaut, le module SIM900A utilise le codage <b>IRA </b> qui est un codage 7 bits quasi identique au
+            code ASCII standard. Ce codage ne supporte pas les caractères accentués.</li>
+          <li>Sur Arduino-IDE, Les chaîne de caractères sont codées en UTF-8. Avec ce codage, on peut coder 1112064
+            caractères et symboles différents. Un caractère est codé sur 1, 2, 3 ou 4 octets. Le moniteur série est
+            compatible UTF-8</li>
+          <li>Si on envoie un SMS contenant des caractères usuels non accentués, le message est envoyé correctement car
+            ces caractères sont codé de la même façon en IRA et en UTF-8.</li>
+          <li>Si on envoie un message avec des caractères accentués, ça ne marche pas car leurs codes UTF-8 ne peuvent
+            pas être interprétés par le codage IRA du module SIM900A</li>
+          <li>Le module SIM900A ne supporte pas le codage UTF-8. Il supporte d'autres standards de codage comme
+            <b>ISO-8859-1</b> et <b>UCS2</b>
+          </li>
+          <li>Pour fixer le type de codage, il faut utiliser les commandes <b>AT+CSCS</b> et <b>AT+CSMP</b></li>
+          <li>Le codage ISO-8859-1 (latin 1) utilise 8 bits pour coder chaque caractère. Il peut représenter 256
+            caractères différents utilisés dans l'Europe de l'ouest. je n'ai pas réussi à le faire marcher correctement.
+            Certains caractères accentué ne passent pas bien</li>
+          <li>Après pas mal d'essais, je suis arrivé à la conclusion que le seul codage qui marche bien est le
+            <b>UCS2</b>. Avec ce codage chaque caractère est codé par la représentation hexadécimale sur 4 digits
+            de son code unicode. On peut représenter tous les caractères et symboles qui existent
+          </li>
+          "ABCD" &rarr; "0041004200430044" <br>
+          "αβδàç€£" &rarr; "03B103B203B400E000E720AC00A3" <br>
+          "06450631062D06280627" &larr; مرحبا
+          <li>Le codage UCS2 n'a pas un très bon rendement, il faut transmettre 4 octets pour chaque caractère. C'est le
+            prix à payer pour représenter tous les caractères existants</li>
+        </ul><br>
+        <p>Dans l'exemple ci-dessous, les points importants sont:</p>
+        <ol>
+          <li>Choisir le codage UCS2 sur le module SIM900A. </li>
+          <pre><code>Module.println("AT+CSCS=\"UCS2\"");
+Module.println("AT+CSMP=17,167,0,8");</code></pre>
+          <li>Pour envoyer les commandes AT, j'utilise la fonction <i>ATcom()</i> qui facilite un peu la vie. Ele envoie
+            la commande AT et affiche la réponse sur le moniteur série pour avoir une trace. On peut l'améliorer car la
+            fonction readString utilisée pour lire la réponse dure une seconde ce qui ralentit un peu le programme</li>
+          <li>Le numéro de téléphone et le corps du message doivent être codés en UCS2. J'utilise la fonction
+            <strong>ucs2()</strong> pour la conversion. Afin de simplifier l'algorithme de cette fonction, je lui passe
+            la chaîne à convertir au format <b>wchar_t</b>. Ce format a l'avantage de représenter chaque caractère par
+            son code unicode de 16 bits. La conversion en Hexadécimal est ainsi simplifiée. C'est pour cette raison que
+            la chaîne à convertir doit être précédée de la lettre L. Malheureusement, Arduino-IDE supporte assez mal ce
+            format.
+          </li>
+        </ol><br>
+
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Envoi SMS avec caractères accentués<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre><code>/*
+   Envoi SMS avec caractères accentués codage UCS2
+   Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+   Port COMM Software {Rx(7), Tx(8)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+     _________________                ______________
+     |   Arduino     |                |  Moniteur   |
+     |         Rx(0) |&lt;---------------|  Série      |
+     |         Tx(1) |---------------&gt;| 9600,CR+LF  |
+     |               |                ---------------
+     |               |                _______________
+     |         Rx(11)|&lt;---------------|Tx  Module   |
+     |         Tx(12)|---------------&gt;|Rx   GSM     |
+     |               |                |             |
+     |           GND |----------------|GND          |
+     |               |                ---------------
+     -----------------
+*/
+
+#include &lt;SoftwareSerial.h&gt;
+SoftwareSerial Module(11, 12); // (RX, TX)
+void setup() {
+  Serial.begin(9600);
+  Module.begin(9600);
+  Serial.println("======= Initialisation =============");
+  Module.write(27); //mettre fin à une éventuelle commande inachevée
+  Module.readString();  // vider le buffer d'entrée
+  ATcom("ATE 1"); // juste pendant la phase d'initialisation
+  ATcom("AT+CMGF=1");
+  <em>ATcom("AT+CSCS=\"UCS2\"");
+  ATcom("AT+CSMP=17,167,0,8");</em>
+  ATcom("AT+CNMI=2,2,0,1,0");
+  ATcom("ATE 0");
+  Serial.println("======= Envoi message accentué =============");
+  <em>String numtelucs2 = ucs2(L"0667066947"); // ne pas oublier le L
+  Module.println("AT+CMGS=\"" + numtelucs2 + "\"");</em>
+  String str = Module.readString();
+  Serial.print(str);
+  if (str.endsWith("&gt; ")) {
+    <em>Module.print(ucs2(L"ABCéèêàçÇµ€"));</em> // ne pas oublier le L
+    Module.write(26);
+    delay(5000);  //attendre la réponse après l'envoi du message
+    str = Module.readString();  // réponse
+    if (str.indexOf("+CMGS:") != -1)Serial.println("\nMessage envoyé avec succès");
+    else {
+      Serial.println("\nPas de réponse de confirmation");
+      Module.write(27);
+    }
+  } else {
+    Serial.println("Invité '&gt;' non reçu");
+    Module.write(27);
+  }
+  Module.readString(); // nettoyer le buffer
+
+}
+
+void loop() {
+  if (Serial.available())Module.write(Serial.read());
+  if (Module.available())Serial.write(Module.read());
+}
+void ATcom(String cmd) {
+  Module.println(cmd);
+  Serial.println(Module.readString());
+}
+
+<em>String ucs2(wchar_t *wstr) {
+  String str,s;
+  for (byte i = 0; wstr[i] != L'\0'; i++) {
+    s = String(wstr[i],HEX);
+    while (s.length() &lt; 4) s = "0" + s;
+    str += s;
+  }
+  return str;
+}</em></code></pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+        <!-- ################################################################################################ -->
+        <h2 id="RCVUCS2">Recevoir un message avec caractères accentués et symboles spéciaux</h2>
+        <ul>
+          <li>Le programme de réception utilisera la même configuration que le programme d'émission.</li>
+          <li>Le corps du message reçu ainsi que le numéro de téléphone de l'expéditeur sont codés en UCS2. Il faut les
+            transformer en UTF-8 pour les afficher sur le moniteur Série. C'est le role de la fonction
+            <i>UcsstrToUtfstr()</i>
+          </li>
+        </ul>
+
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+          <pre><code>/*
+   Recevoir et afficher un SMS avec le codage UCS2
+   Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+   Port COMM Software {Rx(11), Tx(12)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
+     _________________                ______________
+     |   Arduino     |                |  Moniteur   |
+     |         Rx(0) |&lt;---------------|  Série      |
+     |         Tx(1) |---------------&gt;| 9600,CR+LF  |
+     |               |                ---------------
+     |               |                _______________
+     |         Rx(11)|&lt;---------------|Tx  Module   |
+     |         Tx(12)|---------------&gt;|Rx   GSM     |
+     |               |                |             |
+     |           GND |----------------|GND          |
+     |               |                ---------------
+     -----------------
+*/
+#include &lt;SoftwareSerial.h&gt;
+SoftwareSerial Module(11, 12); // (RX, TX)
+void setup() {
+  Serial.begin(9600);
+  Module.begin(9600);
+  Module.write(27); //mettre fin à une éventuelle commande inachevée
+  Module.readString();  // vider le buffer d'entrée
+  ATcom("ATE 1");  // juste pendant la phase d'initialisation
+  ATcom("AT+CMGF=1");
+  ATcom("AT+CSCS=\"UCS2\"");
+  ATcom("AT+CSMP=17,167,0,8");
+  ATcom("AT+CNMI=2,2,0,1,0");
+  ATcom("ATE 0");
+  Serial.println(F("\nJ'attend un message\n\n"));
+}
+
+void loop() {
+  if (Module.available() == 0)return; // on n'a rien reçu
+  String sms = Module.readString(); //Ce qu'on a reçu
+  Serial.println(sms); 
+  int n1 = sms.indexOf("CMT");
+  if (n1 == -1)return; // ce n'est pas un  SMS
+  // Isoler le numéro de téléphone
+  n1 = sms.indexOf('"') + 1;
+  int n2 = sms.indexOf('"', n1);
+  String numtel = sms.substring(n1, n2); // numéro tel
+  Serial.print("Message de  ");
+  if (isUCS2(numtel)) {
+    Serial.println(UcsstrToUtfstr(numtel));
+  } else {
+    Serial.println(numtel);
+  }
+  // isoler la date et heure
+  n1 = sms.lastIndexOf('"');
+  String date = sms.substring(n1 - 20, n1 - 12);
+  Serial.print("Reçu le     ");
+  Serial.print(date);
+  String heure = sms.substring(n1 - 11, n1 - 3);
+  Serial.print("    à   ");
+  Serial.println(heure);
+  // Isoler le corps du message
+  n2 = sms.indexOf("\r", n1 + 2);
+  String msgBdy = sms.substring(n1 + 3, n2);
+  Serial.println();
+  if (isUCS2(msgBdy)) {
+    Serial.println(UcsstrToUtfstr(msgBdy));
+  } else {
+    Serial.println(msgBdy);
+  }
+  Serial.println(F("\n\n====== J'attend un autre message ======"));
+}
+
+void ATcom(String cmd) {
+  Module.println(cmd);
+  Serial.println(Module.readString());
+}
+
+bool isUCS2(String str) {
+  if (str.length() % 4 != 0) {
+    return false;
+  }
+  for (int i = 0; i &lt; str.length(); i++) {
+    if (!isxdigit(str[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+uint32_t unicode2utf8(uint16_t U) {
+  uint8_t BT0;
+  uint16_t BT1;
+  uint32_t BT2;
+  if (U &lt; 0x80)return (U);
+  else if (U &lt; 0x800) {
+    BT0 = 0x80 | (U & 0x003F);
+    BT1 = 0xC0 | (U &gt;&gt; 6);
+    return (BT1 &lt;&lt; 8) | BT0;
+  } else {
+    BT0 = 0x80 | (U & 0x003F);
+    BT1 = 0x80 | ( (U &gt;&gt; 6) & 0x003F );
+    BT2 = 0xE0 | ( (U &gt;&gt; 12) );
+    return (BT2 &lt;&lt; 16) | (BT1 &lt;&lt; 8) | BT0;
+  }
+}
+
+String UcsstrToUtfstr(const String ucs2) {
+  uint8_t n = ucs2.length();
+  String utf8 = "";
+  for (uint8_t i = 0; i &lt; n ; i += 4) {
+    String onechar = ucs2.substring(i, i + 4);
+    const char* onechart = onechar.c_str();
+    uint16_t CP = strtoul(onechart, NULL, 16);
+    uint32_t U8 = unicode2utf8(CP);
+    if (U8 &gt; 0xFFFF)utf8 += char(U8 &gt;&gt; 16);
+    if (U8 &gt; 0xFF)utf8 += char(U8 &gt;&gt; 8);
+    utf8 += char(U8);
+  }
+  return utf8;
+}</code></pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+
+
+
+
       </div>
     </div>
   </div>

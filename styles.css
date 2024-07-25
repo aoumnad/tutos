@@ -335,6 +335,7 @@ code {
 }
 
 .CopyBtn {
+    margin-right: 20px;
     padding: 5px;
     background-color: #007bff;
     color: #fff;
