@@ -36,6 +36,9 @@
         <a href="#ATSUCC">
           <h3>Commandes AT successives</h3>
         </a>
+        <a href="#ATCOM">
+          <h3>Fonction pour envoyer une commande AT</h3>
+        </a>
         <a href="#CLEARBUF">
           <h3>Vider le buffer de réception</h3>
         </a>
@@ -78,7 +81,7 @@
     <div class="RightPanel">
       <div class="RightPanelHeader">
         <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
-        <h1>Contrôle par SMS</h1>
+        <h1>Contrôler un système par SMS</h1>
       </div>
       <div class="RightPanelContent">
         <!-- ################################################################################################ -->
@@ -267,7 +270,8 @@ void loop() {
                 17,167,0,0</li>
               <li><em>AT+CSCS=17,167,0,8</em> Choisir une configuration </li>
               <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
-                sera conservée même si on redémarre le module. Pour revenir à la configuration <em>par défaut</em>, il faut
+                sera conservée même si on redémarre le module. Pour revenir à la configuration <em>par défaut</em>, il
+                faut
                 recharger les paramètres <em>usine</em> à l'aide de la commande <em>AT&F</em></li>
             </ul>
           </li>
@@ -286,8 +290,8 @@ void loop() {
             <li><em>AT+CNMI=2,2,0,1,0 </em>Avec cette configuration, les messages reçus ne sont pas mémorisés, ils sont
               envoyés directement vers le terminal. En fait, on a plusieurs combinaisons possibles pour que les messages
               soit relayés immédiatement: AT+CNMI=(1,2,3)(2)(0,2)(1)(0,1) </li>
-              <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
-                sera conservée même si on redémarre le module. Il n'y a pas de configuration usine par défaut</li>
+            <li><em>Attention!</em> la configuration choisie est stockée dans une <em>mémoire permanente</em>, elle
+              sera conservée même si on redémarre le module. Il n'y a pas de configuration usine par défaut</li>
           </ul>
           <li><em>AT+CMGS </em>Envoyer un SMS. On procède en deux étapes:</li>
           <ul>
@@ -315,20 +319,23 @@ void loop() {
         <p>On peut procéder de deux façons pour un fonctionnement correct:</p>
         <ol>
           <li><b>Lire la réponse de chaque commande envoyée:</b> <br>
-            &star; Si on veut lire la réponse pour faire un test dessus:
-            <pre><code></code>String str = Module.readString();</pre><br>
-            &star; Si on veut seulement attendre et retirer la réponse du buffer:
-            <pre><code></code>Module.readString();</pre><br>
-            Cette solution a au moins deux avantages: <br>
+            Cette solution a au moins deux avantages:
             <ul>
               <li>Les réponses sont retirées du buffer de réception au fur et à mesure ce qui évite son débordement
                 puisque sa taille n'est que de 64 octets</li>
               <li>Chaque réponse lue peut être traitée pour savoir si elle a réussi et décider de la suite des
                 opérations</li>
             </ul><br>
-            Elle a aussi un inconvénient. Elle dure 1 seconde (timeout de la librairie). Cela peur
-            ralentir le fonctionnement du programme.
-          </li>
+
+            &star; Si on veut lire la réponse pour faire un test dessus:
+            <pre><code>String str = Module.readString(); </code></pre>
+            <br>
+            &star; Si on veut seulement attendre et retirer la réponse du buffer:
+            <pre><code></code>Module.readString();</pre><br>
+            La fonction <b>readString()</b> répond après une seconde (timeout de la librairie SoftwareSerial). Cela peur
+            ralentir le fonctionnement du programme. La fonction <b>readString()</b> présentée dans le paragraphe
+            ci-dessous propose une solution plus efficace<br><br>
+          </li><br>
           <li><b>Insérer un délai de 200ms après chaque commandes.</b> Cette méthode marche bien. Elle est rapide,
             marche même avec 150ms. Mais elle a quelques inconvénients:
             <ul>
@@ -339,6 +346,72 @@ void loop() {
             </ul>
           </li>
         </ol><br>
+
+        <!-- ################################################################################################ -->
+        <h2 id="ATCOM">Fonction pour envoyer une commande AT</h2>
+        <p>La fonction proposée ici envoie une commande AT et affiche la réponse du module sur le moniteur série</p>
+        <p>La fonction prend juste le temps nécessaire pour attendre la réponse</p>
+        <ul>
+          <li>Si la réponse est "OK" ou "ERROR", la fonction retourne immédiatement</li>
+          <li>Sinon elle dure une seconde</li>
+        </ul>
+        <br>
+
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Fonction pour envoyer commande AT<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre><code>void ATcom(String cmd) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
+}</code></pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+        <p><strong>Exemple d'utilisation:</strong></p>
+        <ul>
+          <pre><code>ATcom("ATE 1");
+ATcom("AT+CMGF=1");
+ATcom("AT+CNMI=2,2,0,1,0");</code></pre>
+        </ul><br>
+        <h3>Variante</h3>
+        <p>La variante ci-dessous présente une légère modification</p>
+        <ul>
+          <li>La fonction retourne la réponse. Ça peut être utile si on veut faire un traitement sur la réponse</li>
+          <li>elle a un deuxième paramètre pour décider si on veut afficher/ne pas afficher la réponse</li>
+        </ul>
+        <br>
+
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Fonction pour envoyer commande AT<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre><code>String ATcom(String cmd, bool dsply) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  if (dsply)Serial.println(receivedData);
+  return receivedData;
+}</code></pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+        <p><strong>Exemple d'utilisation:</strong></p>
+        <ul>
+          <pre><code>ATcom("ATE 1", 0);  // ne pas afficher la réponse
+ATcom("AT+CMGF=1", 1);  // afficher la réponse
+String str = ATcom("AT+CNMI=2,2,0,1,0", 0);  //retourne la réponse sans affichage</code></pre>
+        </ul><br>
+
+
         <!-- ################################################################################################ -->
         <h2 id="CLEARBUF">Vider le buffer de réception</h2>
         <p>Vider le buffer de réception efficacement quelque soit le rythme d'arrivé des données peut s'avérer assez
@@ -390,8 +463,7 @@ void loop() {
           <div class="CodeAreaHeader">Prog. AT2<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
           </div>
           <pre>
-            <code>
-/*
+            <code>/*
  * Programme AT2 pour tester les commandes AT
  * Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
  * Port COMM Software {Rx(11), Tx(12)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
@@ -415,14 +487,9 @@ void setup() {
   Module.begin(9600);
   Serial.println("Petite initialisation au départ");
   Module.write(27); //mettre fin à une éventuelle commande inachevée
-  Module.readString();  // vider le buffer d'entrée
-  Module.println("ATE 1");  // Echo ON
-  Serial.print(Module.readString());  //echo + réponse
-  Module.println("AT+CMGF=1"); // Mode texte
-  Serial.print(Module.readString()); //echo + réponse
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  Serial.print(Module.readString()); //echo + réponse
-
+  ATcom("AT&F");  // Config usine
+  ATcom("AT+CMGF=1"); // Mode texte
+  ATcom("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
   Serial.println("=====================================================");
   Serial.println("Tapez une commande AT est valider par ENTER");
 }
@@ -431,29 +498,32 @@ void loop() {
   if(Serial.available())Module.write(Serial.read());
   if(Module.available())Serial.write(Module.read()); 
 }
-            </code>
+
+void ATcom(String cmd) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
+}
+</code>
           </pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
         <p>Voici quelques explications sur le code:</p>
         <ul>
-          <li><b>Module.write(27); </b>On commence par envoyer le caractère ESC=char(27) pour terminer une éventuelle
+          <li><b>ESC </b>On commence par envoyer le caractère ESC=char(27) pour terminer une éventuelle
             commande inachevée susceptible de bloquer le module. Ce n'est pas obligatoire mais ça améliore la robustesse
             du programme (Loi de Murphy)</li>
-          <li><b>Module.println("ATE 1"); </b>On active l'écho. Normalement l'écho est activé par défaut mais c'est pour
-            le cas où il a été désactivé
-            par un programme précédent. Cette opération n'est pas vraiment nécessaire, mais comme le moniteur série a
-            une fenêtre de réception séparée de celle de l'émission, ça permet de garder une trace des commandes
-            envoyées. Vous pouvez essayer avec ATE 0 est garder la version qui vous convient,</li>
-          <li><b>Module.println("AT+CMGF=1"); </b>On passe en mode Texte pour que le module utilise un codage ASCII
-            8 bits (simple) pour les SMS</li>
-          <li><b>Module.println("AT+CNMI=2,2,0,1,0"); </b>On configure la commande CNMI pour que les messages reçus par
-            le modules ne soient pas stockés dans la carte SIM mais relayés directement vers le Arduino pour que notre
+          <li><b>AT&F </b> Réinitialiser le module à la configuration d'usine. Ce n'est pas vraiment obligatoire mais
+            si le module se comporte bizarrement, je vous conseille de la garder (Loi de Murphy)</li>
+          <li><b>AT+CMGF=1 </b>Mode Texte pour que le module utilise un codage 8 bits (simple) pour les SMS</li>
+          <li><b>AT+CNMI=2,2,0,1,0 </b>On configure la commande CNMI pour que les messages reçus par
+            le modules ne soient pas stockés dans le module mais relayés directement vers le Arduino pour que notre
             programme les affichent sur le moniteur série
-          </li>
-          <li><b>Serial.print(Module.readStringUntil("OK\r\n")); </b>Pour chaque commande envoyée, j'ai récupéré et
-            affiché la réponse avant de passer à la commande suivante. Ainsi, je suis sur que toutes les commandes sont
-            prises en compte par le module. En plus j'affiche les réponses pour m'assurer qu'il n'y a pas d'erreur.
           </li>
         </ul><br>
 
@@ -474,15 +544,15 @@ void loop() {
           <li><b>Attendre que le module réponde par <em>+CMGS: nnn</em></b> pour indiquer que le message a bien été
             envoyé</li>
         </ol>
-        <h3 id="SENDMS">Envoyer SMS ave le moniteur série</h3>
-        <p>On va utiliser le programme AT2 pour faire la liaison entre le moniteur série et le module SIM900</p>
+        <h3 id="SENDMS">Envoyer SMS à partie du moniteur série</h3>
+        <p>On va envoyer un SMS en tapant les commandes AT sur le moniteur Série. Pour cela, il faut utiliser le
+          programme AT1 ou AT2</p>
         <ul>
           <li>Le problème avec le moniteur série c'est qu'il n'y a pas une combinaison clavier qui envoie le caractère
             SUB (ASCII 26=0x1A)</li>
           <li>
-            <p>Pour remédier à ce petit désagrément, on rajoute une ligne au programme qui affiche ce caractère pour
-              faire
-              un couper/coller:</p>
+            <p>Pour remédier à ce petit désagrément, on rajoute une ligne au début la partie initialisation du programme
+              pour afficher ce caractère et ensuite faire un couper/coller:</p>
             <p class="code2">Serial.write(26);</p>
             <p>Ou de preference:</p>
             <p class="code2">Serial.println("Copier/Coller pour avoir ASCII(26) --&gt;\x1A&lt;--");</p>
@@ -491,58 +561,6 @@ void loop() {
               src="IMAGES/CaractèreSUB26.jpg" class="BlocCenter"></li>
           <li>Maintenant il suffit de <b>copier</b> ce caractère et le <b>coller</b> à la fin du message</li>
         </ul><br>
-        <!-- =========================== Code ========================================================= -->
-        <div class="CodeAreaContainer">
-          <div class="CodeAreaHeader">Prog. AT2<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
-          </div>
-          <pre>
-                    <code>
-        /*
-         * Programme pour tester les commandes AT
-         * Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
-         * Port COMM Software {Rx(11), Tx(12)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
-             _________________                ______________
-             |   Arduino     |                |  Moniteur   |
-             |         Rx(0) |&lt;---------------|  Série      |
-             |         Tx(1) |---------------&gt;| 9600,CR+LF  |
-             |               |                ---------------
-             |               |                _______________
-             |         Rx(11)|&lt;---------------|Tx  Module   |
-             |         Tx(12)|---------------&gt;|Rx   GSM     |
-             |               |                |             |
-             |           GND |----------------|GND          |
-             |               |                ---------------
-             -----------------            
-        */
-        #include &lt;SoftwareSerial.h&gt;
-        SoftwareSerial Module(11,12); // (RX, TX)
-        void setup() {
-          Serial.begin(9600);
-          Module.begin(9600);
-          Serial.println("=====================================================");
-          Serial.println("Copier/Coller pour avoir ASCII(26)  --&gt;\x1A&lt;--");
-          Serial.println("\nPetite initialisation au départ");
-          Module.write(27); //mettre fin à une éventuelle commande inachevée
-          Module.readString();  // vider le buffer d'entrée
-          Module.println("ATE 1");  // Echo ON
-          Serial.print(Module.readStringUntil("OK\r\n"));  //echo + réponse
-          Module.println("AT+CMGF=1"); // Mode texte
-          Serial.print(Module.readStringUntil("OK\r\n")); //echo + réponse
-          Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-          Serial.print(Module.readStringUntil("OK\r\n")); //echo + réponse
-        
-          Serial.println("=====================================================");
-          Serial.println("Tapez une commande AT est valider par ENTER");
-        }
-        
-        void loop() {
-          if(Serial.available())Module.write(Serial.read());
-          if(Module.available())Serial.write(Module.read()); 
-        }
-                    </code>
-                  </pre>
-        </div><br>
-        <!-- ============================= Fin Code ================================================ -->
         <p>Voici une capture d'écran du moniteur série illustrant l'envoi d'un SMS:</p><br>
         <img src="IMAGES/Send_moniteur.jpg" class="BlocCenter"><br>
         <h3 id="SENDPROGS">Envoyer SMS par programme, version basique</h3>
@@ -552,7 +570,7 @@ void loop() {
           <div class="CodeAreaHeader">Envoi SMS, version basique<button class="CopyBtn"
               onclick="CopyCode(this)">Copier</button> </div>
           <pre><code>/*
-   Envoi SMS, version basique x
+   Envoi SMS, version basique
    Port COMM physique {Rx(0), Tx(1)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
    Port COMM Software {Rx(7), Tx(8)} &lt;--&gt; moniteur Série (9600 baud, CR+LF)
      _________________                ______________
@@ -574,18 +592,17 @@ SoftwareSerial Module(11, 12); // (RX, TX)
 void setup() {
   Serial.begin(9600);
   Module.begin(9600);
+  Serial.println("======= Initialisation =============");
+  Module.write(27); //mettre fin à une éventuelle commande inachevée
+  ATcom("AT&F", 1); // Config usine
+  ATcom("AT+CMGF=1", 1); // Mode texte
+  ATcom("ATE 0", 1); //pas d'écho
   Serial.println("======= Envoi du message =============");
-  Module.println("ATE 0"); // pas d'écho
-  delay(200);
-  Module.println("AT+CMGF=1");
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  delay(200);
-  Module.println("AT+CMGS=\"0667066947\"");
-  String str = Module.readString();
+  String str = ATcom("AT+CMGS=\"0667066947\"", 1);
   if (str.endsWith("&gt; ")) {
-    Module.print("Bonjour,\nCeci est un message de Test");  // max 160 octets 
+    Module.print("Bonjour,\nCeci est un message de Test");  // max 160 octets
     Module.write(26);
+    Serial.println("Bonjour,\nCeci est un message de Test"); // trace sur le moniteur série
     delay(5000);  //attendre la réponse après l'envoi du message
     str = Module.readString();  // réponse
     if (str.indexOf("+CMGS:") != -1)Serial.println("Message envoyé avec succès");
@@ -602,8 +619,20 @@ void setup() {
 }
 
 void loop() {
-  if(Serial.available())Module.write(Serial.read());
-  if(Module.available())Serial.write(Module.read()); 
+  if (Serial.available())Module.write(Serial.read());
+  if (Module.available())Serial.write(Module.read());
+}
+
+String ATcom(String cmd, bool dsply) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  if (dsply)Serial.print(receivedData);
+  return receivedData;
 }</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
@@ -614,19 +643,12 @@ void loop() {
           <li>Au départ on envoie le caractère ESC= char(27) pour interrompre une éventuelle commande qui ne serait pas
             terminée correctement</li>
           <li>On vérifie si le module répond au commandes AT. Sinon ça ne sert à rien de continuer</li>
-          <li>On désactive l'écho. (ATE)</li>
           <li>On vérifie si le module est enregistré auprès du réseau de l'opérateur (CREG). Sinon on reboute le module
             (CFUN)</li>
-          <li>On passe en mode Texte (CMGF)</li>
-          <li>En fait en sorte que les messages reçus soir relayés immédiatement au terminal (CNMI). Cette étape n'est
-            pas
-            obligatoire, elle peut s'avérer utile au cas où l'on reçoive un message de l'opérateur du type "Solde
-            insuffisant" ou quelque chose du genre.</li>
+          <li>On passe en mode Texte (CMGF) et on désactive l'écho. (ATE)</li>
           <li>On envoie le message</li>
-          <li>On garde la fonction loop() qui affiche sur le moniteur série tout ce qui vent du module. Ça peut servir
-            si on reçoit un message du réseau</li>
         </ul>
-        <div class="ForPC"><br><br><br><br><br><br><br><br></div>
+        <div class="ForPC"><br><br><br><br><br><br><br><br><br></div>
         <!-- =========================== Code ========================================================= -->
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Envoi SMS, version robuste<button class="CopyBtn"
@@ -654,26 +676,25 @@ SoftwareSerial Module(11, 12); // (RX, TX)
 void setup() {
   Serial.begin(9600);
   Module.begin(9600);
-  Module.write(27);
-  Module.readString();
+  Module.write(27); //mettre fin à une éventuelle commande inachevée
+  Module.readString(); // vider le buffer
+  String str = "";
   while (1) {
-    testAT();// tester si le module répond à AT
-    Module.println("ATE 0"); // sinon l'écho du message sature le buffer de réception
-    delay(200);
+    do{
+      Serial.println("Tester commande AT&F");
+      str = ATcom("AT&F" , 1);
+    }while(str.indexOf("OK") == -1); // recommencer si pas de réponse
     if (isConnected())break; // module connecté au réseau
     Serial.println("Redémarrage du module");
-    Module.println("AT+CFUN=1,1") ;
+    ATcom("AT+CFUN=1,1" , 1) ;
     delay(10000); // laisser le module démarrer
   }
-  Module.println("AT+CMGF=1"); // mode text
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  delay(200);
-
+  ATcom("AT+CMGF=1" , 1); // mode text
+  ATcom("ATE 0" , 1); // l'echo peut saturer le buffer de réception
   // =============== Envoyer SMS
   Serial.println("Envoi SMS");
-  Module.println("AT+CMGS=\"0667066947\"");
-  if (waitFor("&gt; ", 1000)) {
+  str = ATcom("AT+CMGS=\"0667066947\"" , 1);
+  if (str.endsWith("&gt; ")) {
     Module.print("Hello, \nCeci est un message de test");
     Module.write(26);
     if (waitFor("+CMGS:", 6000)) Serial.println("SMS envoyé avec succès");
@@ -684,19 +705,18 @@ void setup() {
 }
 
 void loop() {
-  if(Serial.available())Module.write(Serial.read());
-  if(Module.available())Serial.write(Module.read()); 
 }
 
-void testAT() {
-  Serial.println("Vérifier si le module répond aux commandes AT");
-  Module.readString(); // vider buffer
-  while (1) {
-    Serial.write('.');
-    Module.println("AT");
-    if (waitFor("OK\r\n", 500))break;
+String ATcom(String cmd, bool dsply) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
   }
-  Serial.println("Commande AT OK");
+  if (dsply)Serial.print(receivedData);
+  return receivedData;
 }
 
 bool isConnected() {
@@ -762,15 +782,12 @@ SoftwareSerial Module(11, 12); // (RX, TX)
 void setup() {
   Serial.begin(9600);
   Module.begin(9600);
-  Serial.println("J'attend un message\n\n");
+  Serial.println("======= Initialisation =====================");
   Module.write(27); //mettre fin à une éventuelle commande inachevée
-  Module.readString();  // vider le buffer d'entrée
-  Module.println("ATE 0");  // Echo OFF
-  delay(200);
-  Module.println("AT+CMGF=1"); // Mode texte
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  Module.readString(); //vider le buffer
+  ATcom("AT&F");  // Config Usine
+  ATcom("AT+CMGF=1");  // mode Text
+  ATcom("AT+CNMI=2,2,0,1,0"); // Transferer messages reçus vers Arduino 
+  Serial.println("J'attend un message\n\n");
 }
 
 void loop() {
@@ -779,32 +796,45 @@ void loop() {
   String sms = Module.readString();
   Serial.println(sms);
   // Vérifier si c'est un SMS
-  int n1 = sms.indexOf("CMT");
-  if (n1 == -1)return; // ce n'est pas un  SMS
+  if (sms.indexOf("CMT") == -1)return; // ce n'est pas un  SMS
   // Isoler le numéro de téléphone
-  n1 = sms.indexOf('"');
-  int n2 = sms.indexOf('"', n1 + 1);
-  String numtel = sms.substring(n1 + 1, n2); // numéro tel
+  int n1 = sms.indexOf('"') + 1;
+  int n2 = sms.indexOf('"', n1);
+  String numtel = sms.substring(n1, n2); // numéro tel
   Serial.print("Message de  ");
   Serial.println(numtel);
   // isoler la date et heure
   n1 = sms.lastIndexOf('"');
   String date = sms.substring(n1 - 20, n1-12);
   Serial.print("Reçu le     ");
-  Serial.println(date);
+  Serial.print(date);
   String heure = sms.substring(n1 - 11, n1-3);
-  Serial.print("à           ");
+  Serial.print("    à    ");
   Serial.println(heure);
   // Isoler le corps du message
-  String msg = sms.substring(n1 + 3);
+  n2 = sms.indexOf("\r", n1 + 2);
+  Serial.println();
+  String msg = sms.substring(n1 + 3, n2);
   Serial.println(msg);
+  Serial.println(F("\n\n====== J'attend un autre message ======"));
+}
+
+void ATcom(String cmd) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
 }</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
         <img src="IMAGES/Message_recu.jpg" class="BlocCenter"><br>
         <!-- ################################################################################################ -->
         <h2 id="LEDSMS">Contrôler une LED à distance</h2>
-        <p>Dans cet exemple, On va controller une LED à l'aide d'un message contenant les mots clé LED_ON ou LED_OFF</p>
+        <p>Dans cet exemple, On va controller une LED à l'aide d'un message contenant les mots clé LEDON ou LEDOFF</p>
         <br>
 
 
@@ -836,15 +866,12 @@ void setup() {
   digitalWrite(LED_BUILTIN,LOW);
   Serial.begin(9600);
   Module.begin(9600);
-  Serial.println("J'attend un message\n\n");
+  Serial.println("======= Initialisation =====================");
   Module.write(27); //mettre fin à une éventuelle commande inachevée
-  Module.readString();  // vider le buffer d'entrée
-  Module.println("ATE 0");  // Echo OFF
-  delay(200);
-  Module.println("AT+CMGF=1"); // Mode texte
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  Module.readString(); //vider le buffer
+  ATcom("AT&F");  // Config Usine
+  ATcom("AT+CMGF=1");  // mode Text
+  ATcom("AT+CNMI=2,2,0,1,0"); // Transferer messages reçus vers Arduino 
+  Serial.println("J'attend un message de commande \n\n");
 }
 
 void loop() {
@@ -854,9 +881,22 @@ void loop() {
   Serial.println(sms);
   // Vérifier si c'est un SMS
   if (sms.indexOf("CMT") == -1)return; // ce n'est pas un  SMS
-  if(sms.indexOf("LED_ON") != -1)digitalWrite(LED_BUILTIN,HIGH);
-  else if(sms.indexOf("LED_OFF") != -1)digitalWrite(LED_BUILTIN,LOW);
-}</code></pre>
+  if(sms.indexOf("LEDON") != -1)digitalWrite(LED_BUILTIN,HIGH);
+  else if(sms.indexOf("LEDOFF") != -1)digitalWrite(LED_BUILTIN,LOW);
+  Serial.println(F("\n\n====== J'attend un autre message ======"));
+}
+
+void ATcom(String cmd) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
+}
+</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
 
@@ -866,10 +906,10 @@ void loop() {
         <img src="IMAGES/SMS_Motor_CC.jpg" class="BlocCenter"><br>
 
         <ul>
-          <li><em>LED_ON</em> Allumer la LED</li>
-          <li><em>LED_OFF</em> Eteindre la LED</li>
-          <li><em>MOTOR_FREE</em> Moteur roue libre</li>
-          <li><em>MOTOR_STOP</em> Moteur Stop</li>
+          <li><em>LEDON</em> Allumer la LED</li>
+          <li><em>LEDOFF</em> Eteindre la LED</li>
+          <li><em>MOTORFREE</em> Moteur roue libre</li>
+          <li><em>MOTORSTOP</em> Moteur Stop</li>
           <li><em>MOTOR</em>( <strong>dir, durée, pwm</strong> )
             <ul>
               <li><b><i>dir: </i></b> Direction, 1 &rarr; en avant, 0 &rarr; en arrière</li>
@@ -920,16 +960,13 @@ void setup() {
   digitalWrite(ENA, 0); // roue libre
   Serial.begin(9600);
   Module.begin(9600);
-  Serial.println("J'attend un message\n\n");
+  Serial.println("======= Initialisation =====================");
   Module.write(27); //mettre fin à une éventuelle commande inachevée
-  Module.readString();  // vider le buffer d'entrée
-  Module.println("ATE 0");  // Echo OFF
-  delay(200);
-  Module.println("AT+CMGF=1"); // Mode texte
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  Module.readString(); //vider le buffer
-}
+  ATcom("AT&F");  // Config Usine
+  ATcom("AT+CMGF=1");  // mode Text
+  ATcom("AT+CNMI=2,2,0,1,0"); // Transferer messages reçus vers Arduino
+  Serial.println("J'attend un message de commande \n\n");
+ }
 
 void loop() {
   if (Module.available() == 0)return; // on n'a rien reçu
@@ -938,11 +975,11 @@ void loop() {
   Serial.println(sms);
   // Vérifier si c'est un SMS
   if (sms.indexOf("CMT") == -1)return; // ce n'est pas un  SMS
-  if (sms.indexOf("LED_ON") != -1)digitalWrite(LED_BUILTIN, HIGH);
-  if (sms.indexOf("LED_OFF") != -1)digitalWrite(LED_BUILTIN, LOW);
+  if (sms.indexOf("LEDON") != -1)digitalWrite(LED_BUILTIN, HIGH);
+  if (sms.indexOf("LEDOFF") != -1)digitalWrite(LED_BUILTIN, LOW);
 
   int i1 = sms.indexOf("MOTOR(");
-  if (i1 != -1) {
+  if(i1 != -1){
     int i2 = sms.indexOf(",", i1 + 4); // 1ère virgule
     int i3 = sms.indexOf(",", i2 + 1); // 2ème virgule
     int i4 = sms.indexOf(")", i3 + 1); //
@@ -968,15 +1005,27 @@ void loop() {
     }
   }
 
-  if (sms.indexOf("MOTOR_STOP") != -1) {
+  if (sms.indexOf("MOTORSTOP") != -1) {
     digitalWrite(IN1, LOW);
     digitalWrite(IN2, LOW);
     digitalWrite(ENA, 1);
   }
 
-  if (sms.indexOf("MOTOR_FREE") != -1)analogWrite(ENA, 0); // roue libre
+  if (sms.indexOf("MOTORFREE") != -1)analogWrite(ENA, 0); // roue libre
 
 }
+
+void ATcom(String cmd) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
+}
+
 </code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
@@ -1022,15 +1071,12 @@ void setup() {
   digitalWrite(trigPin, LOW);
   Serial.begin(9600);
   Module.begin(9600);
-  Serial.println("J'attend un message\n\n");
+  Serial.println("======= Initialisation =====================");
   Module.write(27); //mettre fin à une éventuelle commande inachevée
-  Module.readString();  // vider le buffer d'entrée
-  Module.println("ATE 0");  // Echo OFF
-  delay(200);
-  Module.println("AT+CMGF=1"); // Mode texte
-  delay(200);
-  Module.println("AT+CNMI=2,2,0,1,0");  // Relayer messages reçus immédiatement
-  Module.readString(); //vider le buffer
+  ATcom("AT&F" , 1);  // Config Usine
+  ATcom("AT+CMGF=1" , 1);  // mode Text
+  ATcom("AT+CNMI=2,2,0,1,0" , 1); // Transferer messages reçus vers Arduino
+  Serial.println("J'attend un message de commande \n\n");
 }
 
 void loop() {
@@ -1041,30 +1087,52 @@ void loop() {
   Serial.println(sms);
   // Vérifier si c'est un SMS
   if (sms.indexOf("CMT") == -1)return; // ce n'est pas un  SMS
-  if (sms.indexOf("MESURE") == -1) return; // ce n'est pas une requête
+  if (sms.indexOf("MESURE") == -1) return; // ce n'est pas une recquette
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   float Tus = pulseIn(echoPin, HIGH); // temps en µs
   float Dcm = Tus * 0.0343 / 2;  // distance en cm
-  Module.println("AT+CMGS=\"0667066947\"");
-  String str = Module.readString();
+  // ========== envoyer réponse
+  ATcom("ATE 0" , 1);
+  String str = ATcom("AT+CMGS=\"0667066947\"" , 1);
   if (str.endsWith("&gt; ")) {
-    Module.print("La distance est:  " + String(Dcm) + " Cm"); // max 160 octets
+    Module.print("La distance est:  " + String(Dcm) + " Cm");
     Module.write(26);
-    delay(5000);  //attendre la réponse après l'envoi du message
-    str = Module.readString();  // réponse
-    if (str.indexOf("+CMGS:") != -1)Serial.println("Message envoyé avec succès");
-    else {
-      Serial.println("Pas de réponse de confirmation");
-      Module.write(27);
-    }
-  } else {
-    Serial.println("Invité '&gt;' non reçu");
-    Module.write(27);
-  }
+    if (waitFor("+CMGS:", 6000)) Serial.println("SMS envoyé avec succès");
+    else Serial.println("Echec finalisation SMS");
+  } else Serial.println("Invité '&gt;' non reçu");
+  Module.write(27); // cas d'échec
   Module.readString(); // nettoyer le buffer
-}</code></pre>
+}
+
+String ATcom(String cmd, bool dsply) {
+  Module.println(cmd);
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  if (dsply)Serial.println(receivedData);
+  return receivedData;
+}
+
+bool waitFor(String STR, uint32_t Tms) {
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; Tms) {
+    if (Module.available()) {
+      char c = Module.read();
+      receivedData += c;
+      if (receivedData.endsWith(STR)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
         <!-- ################################################################################################ -->
@@ -1180,10 +1248,18 @@ void loop() {
   if (Serial.available())Module.write(Serial.read());
   if (Module.available())Serial.write(Module.read());
 }
+
 void ATcom(String cmd) {
   Module.println(cmd);
-  Serial.println(Module.readString());
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
 }
+
 
 <em>String ucs2(wchar_t *wstr) {
   String str,s;
@@ -1280,7 +1356,13 @@ void loop() {
 
 void ATcom(String cmd) {
   Module.println(cmd);
-  Serial.println(Module.readString());
+  String receivedData = "";
+  unsigned long startTime = millis(); // Temps de départ pour le timeout
+  while (millis() - startTime &lt; 1000) {
+    if (Module.available()) receivedData += char(Module.read());
+    if (receivedData.endsWith("OK\r\n") || receivedData.endsWith("ERROR\r\n"))break;
+  }
+  Serial.println(receivedData);
 }
 
 bool isUCS2(String str) {
