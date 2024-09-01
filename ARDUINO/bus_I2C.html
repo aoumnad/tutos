@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Bus I2C</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <a href="#PROTOCOL">
+                    <h3>Protocole</h3>
+                </a>
+                <a href="#WIRE">
+                    <h3>I2C sur Arduino</h3>
+                </a>
+                <a href="#RESUME">
+                    <h3>En résumé</h3>
+                </a>
+                <a href="#EXMPL">
+                    <h3>Exemple : EEPROM 24C64</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>Bus I2C</h1>
+            </div>
+            <div class="RightPanelContent">
+                <h2 id="INTRO">Introduction</h2>
+                <p>
+                    Le bus I2C (Inter-Integrated Circuit) est un bus de communication série développé par Philips
+                    Semiconductor (maintenant NXP Semiconductors) dans les années 1980. Il est largement utilisé pour la
+                    communication entre microcontrôleurs et divers périphériques tels que des capteurs, des mémoires,
+                    des horloges temps réel, et des DAC/ADC.
+                </p><br>
+                <img class="BlocCenter" src="IMAGES/bus_I2C.png" alt=""><br>
+                <p>Voici quelques aspects clés du bus I2C :</p>
+                <ul>
+                    <li>
+                        Architecture Master-Slave :
+                        <ul>
+                            <li>Master : Initie et contrôle la communication.</li>
+                            <li>Slave : Répond aux commandes du master.</li>
+                            <li>Un bus peut avoir plusieurs masters, mais dès que l'un prend le contrôle du bus, les
+                                autres doivent attendre jusqu'à ce que le bus se libère
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        2 lignes de Communication :
+                        <ul>
+                            <li>SDA (Serial Data Line) : Ligne de données bidirectionnelle,</li>
+                            <li>SCL (Serial Clock Line) : Ligne d'horloge générée par le master.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Adresse :
+                        <ul>
+                            <li>Chaque périphérique slave sur le bus a une adresse unique (généralement 7 bits,
+                                parfois 10 bits). Avec 7 bits d'adresse, on peut brancher jusqu'à 127 slaves sur le
+                                même bus. L'adresse 0 (General Call Address) est une adresse de diffusion, attention:
+                                certains circuits du commerce ne répondent pas à cette adresse,
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Protocoles de Communication :
+                        <ul>
+                            <li>Lecture et Écriture : Le master peut envoyer (écrire) ou demander (lire) des données à
+                                un slave.</li>
+                            <li>Start et Stop Conditions : Le master commence (start) et termine (stop)
+                                chaque transaction avec des conditions spécifiques sur les lignes SDA et SCL.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Vitesse de Communication :
+                        <ul>
+                            <li>Standard Mode : Jusqu'à 100 kbit/s.</li>
+                            <li>Fast Mode : Jusqu'à 400 kbit/s.</li>
+                            <li>Fast Mode Plus : Jusqu'à 1 Mbit/s.</li>
+                            <li>High Speed Mode : Jusqu'à 3.4 Mbit/s.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h2 id="PROTOCOL">Protocole</h2>
+                <ol>
+                    <li class="EnhancedPlus">Lignes de communication Bidirectionnelles</li>
+                    <p> Les lignes SDA et SCK sont bidirectionnelles. De ce fait on peut avoir un conflit sur une
+                        ligne
+                        si d'un coté on écrit un '1' (Vcc) et de l'autre coté, on écrit un '0' (GND). Du point de vu
+                        logique, l'état de la ligne n'est pas défini et du point de vu électrique, c'est un
+                        court-circuit. Pour éviter ce problème, Chaque ligne fonctionne en mode collecteur ouvert
+                        (ou
+                        drain ouvert) de sorte qu'un circuit peut soit forcer la ligne à 0 et imposer un niveau '0',
+                        soit libérer la ligne, le niveau '1' est alors obtenu grâce une résistance de tirage
+                        externe.
+                    </p>
+                    <p>Le niveau '0' est dominant, le niveau '1' est récessif. Une ligne passe à 0 quand un des deux
+                        circuits écrit un '0'. Si un circuit écrit un '0' et l'autre écrit un '1', celui qui a écrit
+                        le
+                        '0' gagne. Pour que la ligne passe à '1', il faut que les deux circuits écrivent un '1' en
+                        libérant la
+                        ligne et le '1' est alors imposé par la résistance de pull-up.
+                    </p>
+                    <p>Le protocole I2C jongle avec cette situation pour organiser l'échange des données entre les
+                        deux
+                        composants.</p>
+                    <img class="BlocCenter" src="IMAGES/I2C_line.png" alt="">
+
+                    <li class="EnhancedPlus">Bus Libre</li>
+                    <p>Quand le bus est libre, les deux lignes SDA et SCL sont au niveau haut. C'est la condition
+                        pour
+                        qu'un master prend possession du bus et commence une séquence de communication</p>
+                    <br>
+
+                    <li class="EnhancedPlus">Start Condition</li>
+                    <p>Quand un Master veut prendre le contrôle du bus et démarrer une séquence de communication, il
+                        génère un signal <strong>Start</strong> condition sur le bus en ramenant les deux lignes à 0
+                    </p>
+                    <img class="BlocCenter" src="IMAGES/I2C_START.png" alt=""><br>
+
+                    <li class="EnhancedPlus">Stop Condition</li>
+                    <p>Quand un Master veut terminer une séquence de communication et libérer le bus, il génère un
+                        signal <strong>stoP</strong> condition en ramenant les deux ligne à 1</p>
+                    <img class="BlocCenter" src="IMAGES/I2C_STOP.png" alt=""><br>
+
+                    <li class="EnhancedPlus"> Écrire un bit sur le bus</li>
+                    <p>Le circuit qui écrit force la ligne SDA à 0 ou à 1 pendant l'impulsion de l'horloge sur SCL
+                        (c'est
+                        toujours le master qui génère l'horloge)</p>
+                    <img class="BlocCenter" src="IMAGES/I2C_W1_W0.png" alt=""><br>
+
+                    <li class="EnhancedPlus">L' acknowledge</li>
+                    <p>L'acknowledge est l'accusé de réception. Il est placé par le circuit (qui vient de recevoir
+                        un
+                        octet) sur la ligne SDA pendant le 9ème coup d'horloge.</p>
+                    <ul>
+                        <li>SDA=0 ==> acknowledge positif (ACK), SDA=1 ==> acknowledge négatif (NoACK),</li>
+                        <li>Si c'est le master qui envoie, alors c'est le slave qui place l'acknowledge</li>
+                        <li>Si c'est le master qui reçoit, alors c'est lui même qui place l'acknowledge</li>
+                    </ul><br>
+                    <img class="BlocCenter" src="IMAGES/I2C_Acknowledge.png" alt=""><br>
+                    <li class="EnhancedPlus">Début d'une séquence de communication</li>
+                    <p>Une séquence de communication doit toujours commencer comme suit:</p>
+                    <ul>
+                        <li>Le master envoie un Start,</li>
+                        <li>Le master envoie l'adresse du Slave sur 7 bits</li>
+                        <li>Le master envoie le bit R/W pour indiquer s'il veut envoyer des données vers le slave ou
+                            s'il veut en recevoir</li>
+                        <ul>
+                            <li>R/W = 0 => il veut envoyer</li>
+                            <li>R/W = 1 => il veut recevoir</li>
+                        </ul>
+                        <li>Le slave place l'acknowledge pendant le 9ème coup d'horloge</li>
+                    </ul>
+                    <img class="BlocCenter" src="IMAGES/I2C_debut_echange.png" alt=""><br>
+                    <li class="EnhancedPlus">Séquence de transmission (master → slave)</li>
+                    <img class="BlocCenter" src="IMAGES/I2C_master_W.png" alt=""><br>
+                    <ul>
+                        <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=0</em> pour
+                            préciser qu'il
+                            démarre une séquence de <em>transmission</em></li>
+                        <li>Le slave qui a reconnu son adresse renvoie un acknowledge pendant le 9ème coup d'horloge
+                        </li>
+                        <li>Le master envoie un octet qui sera acquitté par le slave pendant le 9ème coup d'horloge
+                        </li>
+                        <li>Le master recommence l'envoi d'octets jusqu'à ce qu'il n'a plus rien à transmettre</li>
+                        <li>Le master termine la séquence en envoyant un stoP ce qui libère le bus</li>
+                    </ul><br>
+                    <li class="EnhancedPlus">Séquence de réception (master ← slave)</li>
+                    <img class="BlocCenter" src="IMAGES/I2C_master_R.png" alt=""><br>
+                    <ul>
+                        <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=1</em>
+                            pour préciser qu'il démarre une séquence de <em>réception</em></li>
+                        <li>Le slave envoie ACK pendant le 9ème coup d'horloge suivi d'un octet pendant
+                            les 8 coups d'horloge suivants</li>
+                        <li>Le master envoie un ACK (positif) pour préciser qu'il désire recevoir un
+                            autre octet</li>
+                        <li>Le slave envoie un octet</li>
+                        <li>Le master envoie un NoACK (négatif) pour préciser qu'il ne veut plus
+                            recevoir</li>
+                        <li>Le master envoie un stoP pour mettre fin à la communication et libérer le
+                            bus</li>
+
+                    </ul>
+                </ol><br>
+                <h2 id="WIRE">I2C sur Arduino</h2>
+                <img class="Float_R" style="width: 300px;" src="IMAGES/I2C_Arduino.png" alt="">
+                <p>Sur Arduino, on utilise la librairie <em>Wire</em> pour communiquer sur le bus I2C. Dès qu'on
+                    initialise la librairie à l'aide de <em>Wire.begin()</em>, les broches A4 et A5 deviennent SDA et
+                    SCL</p>
+                <p>Voici les fonctions usuelle de la librairie wire</p>
+                <ul>
+                    <li><em>Wire.begin()</em></li>
+                    Initialise l'interface I2C. La vitesse est fixée par défaut à 100kHZ.
+                    <li><em>Wire.setClock(Fhz)</em></li>
+                    Permet de modifier la fréquence de communication. Pour Arduino UNO, les valeurs acceptées sont
+                    100000 et 400000
+                    <li><em>Wire.beginTransmission(SlaveAdr)</em></li>
+                    Envoie le Start suivi de l'adresse SlaveAdr suivi du bit R/W = 0
+                    <li><em>Wire.write(data); </em></li>
+                    Envoie un octet, une chaîne ou un tableau
+                    <ul>
+                        <li><strong>Wire.write(value);</strong> Envoie un octet</li>
+                        <li><strong>Wire.write(string);</strong> Envoie une chaîne octet par octet</li>
+                        <li><strong>Wire.write(tab, N); </strong>Envoie N octets du tableau tab</li><br>
+                        Les octets ne sont pas envoyés immédiatement, ils sont placés dans une mémoire tampon (file
+                        d'attente) et ne sont envoyé que quand on exécute l'instruction
+                        <strong>Wire.endTransmission()</strong>
+                    </ul>
+                    <li><em>S = Wire.endTransmission([b])</em></li>
+                    Déclenche la transmission des octets présents dans la mémoire tampon puis envoie un StoP,
+                    Cette fonction retourne un status S :
+                    <ul>
+                        <li><em>0 :</em> Success</li>
+                        <li><em>1 : </em>data too long to fit in transmit buffer</li>
+                        <li><em>2 : </em>received NoACK on transmit of address</li>
+                        <li><em>3 : </em>received NoACK on transmit of data</li>
+                        <li><em>4 : </em>other error</li>
+                    </ul>
+
+                    <li><em>k = Wire.requestFrom(adr, N)</em></li>
+                    Réalise une séquence de réception complète :
+                    <ul>
+                        <li>Envoie le Start suivi de l'adresse adr avec R/W=1,</li>
+                        <li>Récupère N octets (max 32) et les place dans le buffer de réception, </li>
+                        <li>Clôture la séquence par un stoP</li>
+                        <li>La fonction retourne le nombre k d'octets effectivement lus qui peut être inférieur à N
+                        </li>
+                    </ul>
+                    Les octets reçus sont placé dans la mémoire tampon (buffer de réception) (32 octets max)
+                    <li><em>n = Wire.available(); </em></li>
+                    Retourne le nombre d'octets en attente dans le buffer de réception
+                    <li><em>B = Wire.read(); </em></li>
+                    Lit un octet à partir du buffer de réception. L'octet est retiré du buffer.
+                    <li><em>n = Wire.readBytes(tab,N); </em></li>
+                    Permet de retirer N octets du buffer de réception et les placer dans le tableau tab. Retourne le
+                    nombre n d'octets effectivement lus qui peut être inférieur à N si le buffer de réception ne
+                    contient pas suffisamment d'octets
+                </ul><br>
+                <h2 id="RESUME">En résumé</h2>
+                <ul>
+                    <li class="Enhanced">Envoyer des octets B1, B2…BN vers un Slave d'adresse ADX </li>
+                    <pre>
+                        <code>
+Wire.beginTransmission(ADX); 
+Wire.write(B1); 
+Wire.write(B2); 
+    … 
+Wire.write(BN); 
+int s = Wire.endTransmission();
+</code>
+</pre><br>
+                    <li class="Enhanced">Envoyer N octets d'un tableau TAB vers un Slave d'adresse ADX </li>
+                    <pre>
+                        <code>
+Wire.beginTransmission(ADX);
+Wire.write(TAB,N);
+int s = Wire.endTransmission();
+                        </code>
+                    </pre>
+                    <br>
+                    <li class="Enhanced">Recevoir N octets venant d'un Slave d'adresse ADX</li>
+                    <pre>
+                        <code>
+Wire.requestFrom(ADX,N); 
+B1 = Wire.read(); 
+B2 = Wire.read();
+…
+BN = Wire.read();
+                        </code>
+                    </pre><br>
+                    <li class="Enhanced">Recevoir N octets dans un tableau TAB </li>
+                    <pre>
+                        <code>
+Wire.requestFrom(ADX,N);
+Wire.readBytes(TAB,N);
+                        </code>
+                    </pre> <br>
+                </ul><br>
+                <h2 id="EXMPL">Écriture, Lecture dans une mémoire EEPROM 24C64</h2>
+                <img class="BlocCenter" src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
+                <ul>
+                    <li>La 24C64 est une mémoire permanente (flash) de capacité 8 ko. Elle est organisée par page de 32
+                        octets.
+                        La durée d'écriture d'un seul octet ou d'une page de 32 octets est de 5ms, d'où l'intérêt de
+                        faire des écriture par paquets de plusieurs octets sans dépasser 32 octets par paquet</li>
+                    <li>Les 4 bits de poids fort de l'adresse I2C sont fixés à 1010, les trois autres sont
+                        déterminés par les 3 entrées A2 A1 A0. Dans notre exemple, les trois entrées Ai sont reliées à
+                        5V, donc adresse = 1010111 = 0x57</li>
+                    <li>L'écriture d'un ensemble d'octets se fait comme suit :
+                        <ul>
+                            <li>On envoie le Start et l'adresse I2C du circuit</li>
+                            <li>On envoie l'adresse de la position interne où on commence l'écriture. Elle est
+                                constituée de deux octet adrH et adrL</li>
+                            <li>On envoie les octets de données</li>
+                            <li>On termine avec un Stop</li>
+                        </ul>
+                    </li>
+                    <li>Si on utilise la librairie Wire, il faut faire attention car cette librairie utilise un
+                        buffer
+                        de transmission de 32 octets pour chaque séquence de transmission. Si on désire écrire une
+                        page
+                        entière de la 24C64, on a un petit
+                        problème car la séquence d'écriture est constituée de 2 octets d'adresse plus 32 octets de
+                        données ce qui fait 34 octets qui ne rentreront pas dans le buffer transmission et on perd
+                        les
+                        deux derniers octets
+                    </li>
+                    <li>Dans l'exemple ci-dessous, on réalise deux séquences d'écriture pour remplir une partage
+                        <ul>
+                            <li>On rempli la première page (0x0000) avec des caractères</li>
+                            <li>On rempli la 3ème page (0x0040) avec des nombres</li>
+                            <li>On relit les pages et on affiche dans le monteur série</li>
+                            <li>La figure ci-dessous montre la mémoire avant et après écriture</li>
+                        </ul>
+                    </li>
+                </ul><br>
+
+                <div class="InlineCenter"><img src="IMAGES/24C64_vide.png" alt=""> <img src="IMAGES/24C64_ecrite.png"
+                        alt=""></div>
+                <br>
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Ecriture/Lecture dans une EEPROM 24C64<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+    <code>
+#define MEM_I2C_ADR 0x57 //1010 111
+#include <Wire.h>
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  // on rempli la moitié de la 1ère page
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x00); // first page
+  Wire.write("abcdefghijklmnop"); // 16 caractères
+  Wire.endTransmission(); // On envoie 18 octets (2+16)
+  delay(10);
+  
+  // on rempli la 2ème moitié de la page
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x10);
+  Wire.write("QRSTUVWXYZABCDEF");
+  Wire.endTransmission(); // On envoie 18 octets (2+16)
+  delay(10); // flashing duration
+  
+  // on rempli la 1ère moitié de la 3ème page
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x40);
+  for (uint8_t i = 0; i < 16; i++)Wire.write(i);
+  Wire.endTransmission();
+  delay(10);
+
+  // on rempli la 2ème moitié de la 3ème page
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x50);
+  for (uint8_t i = 16; i < 32 ; i++)Wire.write(i);
+  Wire.endTransmission();
+  delay(10);
+
+  // On positionne l'adresse courante
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x00);
+  Wire.endTransmission();
+  // On reçoit 32 caractères vers le buffer de réception
+  Wire.requestFrom(MEM_I2C_ADR, 32);
+  // on récupère les caractères dans le buffer de réception
+  for (int i = 0; i < 32; i++) {
+    char c = Wire.read();
+    Serial.print(c);
+  }
+  Serial.println();
+  
+  // On positionne l'adresse courante sur 3ème page
+  Wire.beginTransmission(MEM_I2C_ADR);
+  Wire.write(0x00);
+  Wire.write(0x40);
+  Wire.endTransmission();
+  // on reçoit 32 octets dans le buffer de réception
+  Wire.requestFrom(MEM_I2C_ADR, 32);
+  // on récupère les octets dans le buffer de réception
+  for (int i = 0; i < 32; i++) {
+    if(i % 8 == 0)Serial.println();
+    uint8_t k = Wire.read();
+    Serial.print(k);
+    Serial.print(" ");
+  }
+  Serial.println();
+}
+
+void loop() {
+}
+    </code>
+</pre>
+                </div>
+                <br>
+                <img class="BlocCenter" src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
+            </div>
+        </div>
+</body>
+
+</html>

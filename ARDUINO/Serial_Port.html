@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+    name="keywords">
+  <title>Port Série</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+  <div class="TwoPanPageContainer">
+    <div id="LeftPanel_ID" class="LeftPanel">
+      <div class="LeftPanelHeader">
+        <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+        <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+      </div>
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+        <a href="#INTRO">
+          <h3>Introduction</h3>
+        </a>
+        <a href="#PARSER">
+          <h3>Parallèle vs Série</h3>
+        </a>
+        <a href="#CABLE">
+          <h3>Câble de communication Série</h3>
+        </a>
+        <a href="#BAUDRATE">
+          <h3>Vitesse de communication</h3>
+        </a>
+        <a href="#SYNCHRO">
+          <h3>Synchronisation</h3>
+        </a>
+        <a href="#UART">
+          <h3>L'UART</h3>
+        </a>
+        <a href="#RBUFFER">
+          <h3>Buffer de réception</h3>
+        </a>
+        <a href="#TBUFFER">
+          <h3>Buffer de transmission</h3>
+        </a>
+        <a href="#RS232">
+          <h3>Port Série Arduino ≠ RS232</h3>
+        </a>
+        <a href="#SERIAL">
+          <h3>La librairie Serial</h3>
+        </a>
+        <a href="#CONFLICT">
+          <h3>Conflit sur le port Série</h3>
+        </a>
+        <a href="#EXPLS">
+          <h3>Exemples</h3>
+        </a>
+        <a href="#EX1">
+          <h4>Communication basique</h3>
+        </a>
+        <a href="#EX2">
+          <h4>Contrôle d'une LED via le port série</h3>
+        </a>
+        <a href="#EX3">
+          <h4>Chaîne de commande avec paramètre entier</h3>
+        </a>
+      </div>
+    </div>
+    <div class="RightPanel">
+      <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png"
+          alt="">
+        <h1>Port Série</h1>
+      </div>
+      <div class="RightPanelContent">
+        <h2 id="INTRO" style="margin-top: 0;">Introduction</h2>
+        <p>L'échange d'information entre différents blocs d'un système
+          constitue une brique fondamentale du monde hyper connecté dans
+          lequel nous vivons. Les normes de communication se multiplient et se
+          comptent par dizaines. Voici quelques exemples loin d'être
+          exhaustifs :</p>
+        <ul>
+          <li class="li_niv1 Bold">Ethernet</li>
+          <li class="sanspuce">Une norme de réseau local (LAN) qui spécifie
+            les aspects physiques et de liaison de données pour la
+            transmission de données sur des câbles Ethernet, </li>
+          <li class="li_niv1 Bold">Wi-Fi (IEEE 802.11) : </li>
+          <li class="sanspuce"> Une famille de normes de communication sans
+            fil qui permettent la connexion d'appareils à un réseau local sans
+            avoir besoin de câbles physiques, </li>
+          <li class="li_niv1 Bold">Bluetooth (IEEE 802.15.1) : </li>
+          <li class="sanspuce"> Une norme de communication sans fil à courte
+            portée utilisée pour connecter des appareils électroniques, tels
+            que des smartphones, des écouteurs sans fil et des périphériques
+            informatiques, dans un réseau personnel (PAN), </li>
+          <li class="li_niv1 Bold">USB (Universal Serial Bus) : </li>
+          <li class="sanspuce"> Une norme de communication filaire utilisée
+            pour connecter des périphériques électroniques, tels que des
+            claviers, des souris, des imprimantes, des caméras et des
+            périphériques de stockage, à un ordinateur ou à d'autres appareils
+            hôtes, </li>
+          <li class="li_niv1 Bold">GSM (Global System for Mobile
+            Communications) : </li>
+          <li class="sanspuce"> Une norme de communication mobile utilisée
+            pour les réseaux de téléphonie mobile. Elle spécifie les normes
+            pour la transmission de la voix et des données sur les réseaux
+            cellulaires, </li>
+          <li class="li_niv1 Bold">LTE (Long-Term Evolution) : </li>
+          <li class="sanspuce"> Une norme de communication sans fil utilisée
+            pour les réseaux de téléphonie mobile de quatrième génération
+            (4G), offrant des vitesses de données plus élevées et une
+            meilleure qualité de service que les normes précédentes, </li>
+          <li class="li_niv1 Bold">TCP/IP (Transmission Control
+            Protocol/Internet Protocol) :</li>
+          <li class="sanspuce"> Alors que TCP et IP sont techniquement deux
+            protocoles distincts, ils sont souvent mentionnés ensemble car ils
+            forment la base du fonctionnement d'Internet et des réseaux
+            informatiques modernes. TCP gère la transmission des données de
+            manière fiable et ordonnée, tandis qu'IP s'occupe du routage des
+            paquets de données sur le réseau. Ensemble, ils permettent la
+            communication et l'échange de données entre les appareils
+            connectés à Internet; </li>
+          <li class="li_niv1 Bold">NFC (Near Field Communication) : </li>
+          <li class="sanspuce"> Une norme de communication sans fil à courte
+            portée utilisée pour l'échange de données entre des dispositifs
+            situés à proximité les uns des autres, souvent utilisée pour les
+            paiements sans contact et le partage d'informations entre
+            appareils mobiles, </li>
+          <li class="li_niv1 Bold">I2C (Inter-Integrated Circuit) : </li>
+          <li class="sanspuce"> Un protocole de communication série utilisé
+            pour la communication entre circuits intégrés sur une carte de
+            circuit imprimé. Il est souvent utilisé pour connecter des
+            composants tels que des capteurs, des afficheurs et des mémoires à
+            un microcontrôleur., </li>
+          <li class="li_niv1 Bold">CAN (Controller Area Network) : </li>
+          <li class="sanspuce"> Un protocole de communication série largement
+            utilisé dans l'industrie automobile pour permettre la
+            communication entre les différents systèmes électroniques des
+            véhicules, tels que les moteurs, les freins, les airbags, etc, </li>
+          <li class="li_niv1 Bold">LoRa (Long Range) : </li>
+          <li class="sanspuce"> Une technologie de communication sans fil à
+            longue portée conçue pour les réseaux bas débit, souvent utilisée
+            dans les applications IoT pour la surveillance à distance, le
+            suivi d'actifs, et d'autres cas d'utilisation nécessitant une
+            large couverture géographique, </li>
+          <li class="li_niv1 Bold">SPI (Serial Peripheral Interface) : </li>
+          <li class="sanspuce"> Un protocole de communication série synchrone
+            utilisé pour la communication entre des périphériques
+            électroniques sur une carte de circuit imprimé. Il est couramment
+            utilisé pour connecter des microcontrôleurs à des capteurs, des
+            écrans, des modules de mémoire, et d'autres périphériques, </li>
+        </ul>
+        <br>
+        <p>Toutes ces normes de communication ont un ancêtre
+          commun: <span class="Enhanced">Le standard de communication série</span>
+          développé dans les années 60 et standardisé sous la nomenclature
+          RS232C</p>
+        <br>
+        <br>
+        <h2 id="PARSER">Parallèle vs Série</h2>
+        <p> Lors d'une séquence de communication, on échange du texte et des
+          nombres. Ces deux types d'information sont codés en binaire
+          empaqueté par groupe de 8 bits appelé octets. </p>
+        <ul>
+          <li>En code ASCII ISO-8859-1, le caractère 'é' est codé sur un octet
+            par 0xE9 = 111010001 </li>
+          <li>En code Unicode UTF-8, le caractère 'é' est codé sur deux octets
+            par 0xC3 0xA9 = 11000011 10101001 </li>
+          <li>En code ASCII ISO-8859-6, le caractère arabe 'ك' est codé sur un
+            octet par 0xE3 = 111000011 </li>
+          <li>En code Unicode UTF-8, le caractère 'ك' est codé sur deux octets
+            par 0xD9 0x83 = 11011001 10000011</li>
+          <li>Le nombre entier positif 23456 est codé sur deux octets par
+            01011011 10100000</li>
+          <li>Le nombre entier négatif -23456 est codé sur deux octets par
+            10100100 01100000</li>
+          <li>Le nombre réel 25.34 est représenté en virgule flottante
+            IEEE-754 sur 4 octets: 01000001 11001010 10111000 01010001</li>
+        </ul>
+        <br>
+        <p><em>En résumé, quelque soit le type
+            d'information à échanger, il suffit de savoir transmettre et
+            recevoir des octets</em></p>
+        <br>
+        <br>
+        <h3>Transmission parallèle</h3>
+        <p>On utilise un cable d'au moins 8 fils. l'émetteur place chaque fil
+          à une tension équivalente au bit correspondant. Par exemple 0 Volts
+          pour le 0 logique et 5 Volts pour le 1 logique. Les huit bits sont
+          envoyés en même temps, tout se passe comme si on a une autoroute à 8
+          voies et 8 voitures passent en même temps</p>
+        <img class=" BlocCenter" src="IMAGES/trans_para.png" alt=""><br>
+        <br>
+        <h3>Transmission Série</h3>
+        <p>Les 8 bits sont envoyé l'un après l'autre sur le même fil.
+          l'émetteur place le fil successivement soit à 0V soit à 5V selon le
+          bit à transmettre. Tout se passe comme si on a une autoroute à une
+          seule voie et 8 voitures qui passent l'une après</p>
+        <img class=" BlocCenter" src="IMAGES/trans_serial.png" alt=""><br>
+        <br>
+        <p>Pour un tas de raisons plus au moins évidentes, la quasi totalité
+          des standard de communication filaires ont adoptés le mode de
+          communication série. Parmi ces raisons, on peut citer :</p>
+        <ul>
+          <li>Réduction des coûts et de complexité</li>
+          <li>Augmentation de la portée</li>
+          <li>Meilleurs performance, car le couplage capacitif entre les fils
+            d'un même cable parallèle engendre un taux d'erreur qui augmente
+            avec la fréquence et la longueur du câble et qui de vient très
+            vite prohibitif</li>
+        </ul>
+        <br>
+        <br>
+        <h2 id="CABLE">Câble de communication série</h2>
+        <p>Pour une communication bidirectionnelle (liaison full duplex), deux
+          fils sont utilisés, un dans chaque sens, avec un fil de masse
+          supplémentaire servant de référence électrique. </p>
+        <br>
+        <img class="BlocCenter " src="IMAGES/trans_cable.png" alt=""><br>
+        <ul>
+          <li>Tx: Transmit Data</li>
+          <li>Rx: Receive Data</li>
+          <li>Gnd : Ground = référence électrique</li>
+        </ul>
+        <p>Vu son apparence, ce cable est souvent appelé <em>câble croisé</em>
+        </p>
+        <br>
+        <br>
+        <h2 id="BAUDRATE">Vitesse de communication</h2>
+        <p>Comme les bits sont transmis l'un après l'autre, la vitesse de
+          communication représente le nombre de bits transmis par seconde. On
+          utilise souvent le terme "Baud Rate" avec l'unité "baud" pour
+          désigner la vitesse de communication. Par exemple 9600 baud signifie
+          9600 bits/s. </p>
+        <p> Le mode de communication est dit <span class="Enhanced">Asynchrone</span>,
+          cela signifie que l'émetteur ne partage par son horloge avec
+          récepteur sur un fil dédié comme c'est le cas des systèmes de
+          communication synchrones. Pour ne pas perdre d'information, il faut
+          que le récepteur collecte les bits exactement au même rythme qu'ils
+          ont été transmis par l'émetteur. D'où la règle fondamentale : <span class="Enhanced">L'émetteur et le
+            récepteur doivent être configuré
+            à la même vitesse de communication</span> </p>
+        <p> Pour des raisons historiques, les vitesses de communication
+          communément utilisées sont 300, 600, 1200, 2400, 4800, 9600, 14400,
+          19200, 28800, 38400, 57600, ou 115200 baud </p>
+        <br>
+        <br>
+        <h2 id="SYNCHRO">Synchronisation</h2>
+        <p> Dans le flux de bits transmis par l'émetteur, il est important que
+          le récepteur puissent repérer le premier bits de chaque octet. Pour
+          cette raison, le récepteur va insérer deux bits de synchronisation
+          supplémentaires et chaque octet sera transmis de la façon suivante :
+        </p>
+        <ul>
+          <li>Au repos la ligne Tx est toujours au niveau 1</li>
+          <li>L'émetteur transmet un "Start bit" (S) toujours = 0 </li>
+          <li>L'émetteur transmet le 8 bits de données en commençant par le
+            LSB</li>
+          <li>L'émetteur transmet un "Stop bit" (P) toujours = 1 </li>
+          <li>La ligne Tx restera à 1 jusqu'au début de l'octet suivant</li>
+        </ul>
+        <br>
+        <img class="BlocCenter " src="IMAGES/signal_Z.png" alt=""><br>
+        <p> Comme on peut le constater sur le signal, la transmission d'un
+          octet commence toujours par une transition descendante. En détectant
+          cette transition, le récepteur aligne son horloge sur celle de
+          l'émetteur ce qui lui permet de lire correctement les bits de
+          données. </p>
+        <br>
+        <h2 id="UART">L'UART</h2>
+        <p>L'UART (Universal Asynchronous Receiver/Transmitter) est le moteur du port série. C'est un module intégré
+          dans le microcontrôleur qui se charge de gérer les communications série. </p>
+        <img class="BlocCenter" src="IMAGES/UART.png" alt="">
+        <ul>
+          <li>Elle s'occupe de la sérialisation des données :</li>
+          <ul>
+            <li>En émission, elle reçoit les données en parallèle sur le bus du
+              microcontrôleur et les transmet en série un bit après l'autre sur un seul fil vers un système distant,
+            </li>
+            <li>En réception, elle réalise l'opération inverse, elle reçoit les données bits par bit et transfert en
+              parallèle sur le bus du microcontrôleur</li>
+          </ul>
+          <li>Elle gère la vitesse de communication connue sous le nom de <span class="Enhanced">baud rate</span>. Elle
+            fixe la fréquence de l'horloge qui cadence la transmission des bits sur la ligne TxD et la réception des
+            bits sur la ligne RxD</li>
+          <li>Elle s'occupe de la synchronisation en émission et en réception à l'aide du Start bit et du Stop bit</li>
+          <li>Elle s'occupe de la détection d'erreurs à l'aide du bit de parité</li>
+          <li>Elle s'occupe du control de flus à l'aide des lignes DTR, DSR, RTS, CTS ...</li>
+        </ul><br>
+        <h2 id="RBUFFER">Buffer de réception</h2>
+        <p>Le buffer de réception du port série est une zone de mémoire temporaire (prise dans la RAM) qui stocke les
+          données entrantes
+          provenant de la liaison série (UART) jusqu'à ce qu'elles soient lues par le programme.</p>
+        <p>Le buffer de réception a une taille fixe, qui est généralement de 64 octets sur le Arduino Uno. </p>
+        <p>Le buffer de réception permet d'éviter la perte de données lorsqu'elles sont reçues plus rapidement que le
+          programme ne peut les traiter. Les données sont stockées dans le buffer jusqu'à ce que le programme
+          puisse les lire.</p>
+        <p>Les données sont lues du buffer de manière séquentielle. Chaque octet lu est retiré du
+          buffer pour faire place aux données suivantes.</p>
+        <p>Quand le buffer de réception est plein, les nouvelles données reçues seront perdue.</p>
+        <br>
+        <h2 id="TBUFFER">Buffer de transmission</h2>
+        <p>Le buffer de transmission du port série est une zone de mémoire qui stocke temporairement les données
+          envoyées par le programme jusqu'à ce qu'elles soient effectivement transmises par l'UART</p>
+        <p>Le buffer de transmission a une taille fixe, généralement de 64 octets sur le Arduino Uno.</p>
+        <p>Une fois que les données sont placées dans le buffer de transmission, l'UART les envoie à un
+          rythme déterminé par la vitesse de transmission (baud rate).</p>
+        <br>
+        <h2 id="RS232">Port Série Arduino ≠ RS232C</h2>
+        <img class="BlocCenter" src="IMAGES/Arduino_Tx_Rx.png" alt="">
+        <p>Attention, le port série du Arduino n'est pas tout à fait
+          compatible avec le standard de communication série RS232C</p>
+        <ul>
+          <li class="li_niv1 Bold">Niveaux électriques des Signaux Tx, Rx</li>
+          <ul>
+            <li>Arduino utilise les niveaux TTL : 0 -&gt; 0 Volts, 1 -&gt; 5
+              Volts</li>
+            <li>RS232C utilise des niveaux inversés de forte valeur : 0 ≈&gt;
+              +12 Volts, 1 ≈&gt; -12 Volts</li>
+          </ul>
+          <li class="li_niv1 Bold">Control de flux hardware</li>
+          <ul>
+            <li>Arduino ne dispose que de deux broches de données TxD et RxD.
+              Le control de flux doit se faire en software.</li>
+            <li>RS232C utilise un connecteur DB9 standard sur lequel, en plus
+              des broches TxD et RxD, on trouve les broches de control de flux
+              DTR, DSR, RTS, CTS, RI, DCD. Ces broches permettent aux deux
+              machines qui communiquent de gérer les échanges et éviter les
+              pertes de données </li>
+            <img class="BlocCenter " src="IMAGES/RS232_DB9.png" alt="">
+          </ul>
+          <li class="li_niv1 Bold">Control de parité</li>
+          <ul>
+            <li>Arduino utilise toujours une donnée de 8 bits. Il n'utilise
+              pas le mécanisme de control de parité pour détecter les erreurs</li>
+            <li>RS232C offre la possibilité d'utiliser une donnée de 7 bits
+              plus un bit de parité pour détecter les erreurs de transmission
+            </li>
+          </ul>
+          <li class="li_niv1 Bold">Bit de Stop</li>
+          <ul>
+            <li>Arduino utilise toujours un seul bit de Stop</li>
+            <li>RS232C offre la possibilité d'utiliser plusieurs bits de Stop
+            </li>
+          </ul>
+        </ul>
+        <br>
+        <br>
+        <h2 id="SERIAL">La librairie Serial</h2>
+        <p>La librairie <span class="BoldItal">Serial</span> est installée d'office avec l'environnement Arduino-IDE</p>
+        <ul>
+          <li class="li_niv1 EnhancedPlus">Serial.begin(speed);</li>
+          <ul>
+            <li>Initialise le port série et définit la vitesse de
+              communication</li>
+            <li class="CodeLine">Serial.begin(9600);</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">Serial.write()</li>
+          <ul>
+            <li><span class="Enhanced">Serial.write(nombre); </span>Transmet
+              seulement l'octet bas du nombre (troncature)</li>
+            <ul>
+              <li><span class="CodeLine">Serial.write(66); </span> //transmet
+                l'octet 66</li>
+              <li><span class="CodeLine">Serial.write(856);</span> // Transmet
+                l'octet 88 (= 01011000 = octet bas de 856=1101011000) </li>
+            </ul>
+            <li><span class="Enhanced">Serial.write(chaîne); </span>Transmet
+              le code UTF-8 de chaque caractère de la chaîne</li>
+            <li class="sanspuce"> Le code UTF-8 d'un caractère peut être
+              constitué de 1, 2 ou 3 octets</li>
+            <ul>
+              <li><span class="CodeLine">Serial.write("A"); </span>//transmet
+                l'octet 65 = 0x41 = code du caractère A</li>
+              <li><span class="CodeLine">Serial.write("déçu"); </span>//transmet
+                0x64 0xC3 0xA9 0cC3 0xA7 0x75</li>
+            </ul>
+            <li><span class="Enhanced">Serial.write(tableau, n); </span>Transmet
+              n octets du tableau</li>
+            <ul>
+              <li class="sanspuce">byte B[] = {0x11, 0x22, 0x33, 0x44, 0x55};
+              </li>
+              <li class="sanspuce"><span class="CodeLine">Serial.write(B,3); </span>//transmit
+                3 octets du tableau B</li>
+            </ul>
+          </ul>
+          <br>
+          <li class="li_niv1 EnhancedPlus">Serial.print()</li>
+          <ul>
+            <li><span class="Enhanced">Serial.print(chaîne); </span>Transmet
+              le code UTF-8 de chaque caractère de la chaîne</li>
+            <li class="sanspuce"> Le code UTF-8 d'un caractère peut être
+              constitué de 1, 2 ou 3 octets</li>
+            <ul>
+              <li><span class="CodeLine">Serial.print("A"); </span>//transmet
+                l'octet 65 = 0x41 = code du caractère A</li>
+              <li><span class="CodeLine">Serial.print("déçu"); </span>//transmet
+                0x64 0xC3 0xA9 0cC3 0xA7 0x75</li>
+            </ul>
+            <li><span class="Enhanced">Serial.print(entier, base); </span>//
+              transmet la chaîne représentant le nombre `entier` dans la bas
+              `base` </li>
+            <ul>
+              <li><span class="CodeLine">Serial.print(2048); </span>//Transmet
+                la chaîne "2048" -&gt; 4 octets: '2' , '0' , '4' , '8' -&gt;
+                octets 50, 48, 52, 56<span class="CodeLine"></span></li>
+              <li><span class="CodeLine">Serial.print(23456,HEX); </span>
+                //Transmet la chaîne "5BA0" qui est la représentation de 23456
+                en hexadécimal -&gt; 4 octets 53, 66, 65 et 48 = codes ascii
+                des caractères '5', 'B', 'A' et '0'</li>
+              <li><span class="CodeLine">Serial.print(240,BIN); </span>//Transmet
+                la chaîne "11110000". Un nombre négatif est représenté sur 32
+                bits quelque soit son type</li>
+            </ul>
+            <li><span class="Enhanced">Serial.print(reel, n); </span>//
+              transmet la chaîne représentant le nombre réel 'reel' avec n décimales</li>
+            <ul>
+              <li><span class="CodeLine">Serial.print(235.4567); </span>//Transmet
+                la chaîne&nbsp; "235.46" (2 décimales, arrondit correct)</li>
+              <li><span class="CodeLine">Serial.print(235.45673,4); </span>//Transmet la chaîne "235.4567" (4
+                décimales)</li>
+            </ul>
+          </ul>
+          <br>
+          <li class="li_niv1 EnhancedPlus">Serial.println();
+          </li>
+          <ul>
+            <li>Identique à <span class="BoldItal">Serial.print()</span> mais transmet en plus un retour à la ligne (CR
+              LF)=(13 10)</li>
+            <li><span class="CodeLine">Serial.println(); </span>//Retour à la ligne</li>
+            <li><span class="CodeLine">Serial.println("Bonjour"); </span>// Transmet "Bonjour" suivie d'un retour à la
+              ligne</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">Serial.setTimeout(tms);</li>
+          <ul>
+            <li>Définit la durée de timeout en lecture. Par défaut le timeout est fixé à 1000 ms = 1s</li>
+            <li>Le Timeout évite le blocage lors des opérations de lecture</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">Serial.available();</li>
+          <ul>
+            <li>Retourne le nombre d'octets disponible dans le buffer de réception</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">b = Serial.read();</li>
+          <ul>
+            <li>Lit un octet à partir du buffer de réception. L'octet est retiré du buffer, </li>
+            <li>Non bloquante, retourne (immédiatement) -1 (255) si le buffer de réception est vide,</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">n = Serial.readBytes(B, length);</li>
+          <ul>
+            <li>Lit un ensemble d'octets à partir du buffer de réception</li>
+            <li><span class="Enhanced">B:</span> nom du tableau qui reçoit les données. Type char[] ou byte[]</li>
+            <li><span class="Enhanced">length: </span> nombre d'octets à lire (int)</li>
+            <li>Retourne <span class="Enhanced">n </span>= nombre d'octets effectivement lus. Peut être inférieur à
+              length en cas de timeout</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">n = Serial.readBytesUntil(terminator, B, length);</li>
+          <ul>
+            <li>Lit un ensemble d'octets et les place dans le tableau <span class="Enhanced">B</span></li>
+            <li>La réception s'arrête quand on reçoit l'octet <span class="Enhanced">terminator</span> ou après la
+              réception de <span class="Enhanced">length</span> octets ou après un <span class="Enhanced">timeout</span>
+            </li>
+            <li>Retourne le nombre <span class="Enhanced">n </span>d'octets effectivement lus. Peut être inférieur à
+              length en cas de timeout</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">S = Serial.readString();</li>
+          <ul>
+            <li>Lit les caractères qui arrivent et les place dans le String <span class="Enhanced">S</span></li>
+            <li>S'arrête après un Timeout</li>
+            <li>Si le flux entrant contient des caractères spéciaux comme un retour à la ligne, il est ajouté à la
+              chaîne S</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">S = Serial.readStringUntil(C);</li>
+          <ul>
+            <li>Lit les caractères qui arrivent et les place dans la chaîne S,</li>
+            <li>S'arrête à la réception du caractère <span class="Enhanced">C</span> ou après un Timeout,</li>
+          </ul>
+
+          <li class="li_niv1 EnhancedPlus">Serial.end();</li>
+          <ul>
+            <li>Désactive l'UART. Les broches 0 et 1 peuvent de nouveau être utilisées comme des E/S normales</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">N = Serial.parseInt();</li>
+          <ul>
+            <li>Lit correctement le premier entier (int ou long) reçu en mode texte</li>
+            <li>Les premiers caractères qui ne sont pas des chiffres sont retirés du buffer et ignorés</li>
+            <li>La lecture du nombre s'arrête au premier caractère qui n'est pas un chiffre y compris CR ou LF. Ce
+              caractère et les suivants ne sont pas retirés du buffer</li>
+            <li>La lecture peut aussi s'arrêter au bout du timeout</li>
+            <li>Si par exemple le buffer contient <span class="Bold">xx yz 234abc xyz</span> </li>
+            <ul>
+              <li>Les caractères <span class="Bold">xx yz</span> sont retirés du buffer et ignorés</li>
+              <li>Le nombre <span class="Bold">234</span> est affecté à N</li>
+              <li>Les caractères <span class="Bold">abc xyz</span> restent dans le buffer de réception</li>
+            </ul>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">serialEvent(){ ... }</li>
+          <ul>
+            <li>Si on ajoute cette fonction au programme, à chaque repassage dans la fonction loop(), si le buffer de
+              réception contient quelque chose, cette fonction sera exécutée</li>
+          </ul>
+          <li class="li_niv1 EnhancedPlus">Vider le buffer de réception</li>
+          <ul>
+            <li>Il arrive souvent d'avoir besoin de vider le buffer de réception avant de commencer la scrutation du
+              flux entrant</li>
+            <li class="CodeLine">while(Serial.available()){Serial.read(); delay(2);}</li>
+          </ul>
+        </ul><br>
+        <h2 id="CONFLICT">Conflit sur le port série</h2>
+        <p>Si on a un module branché sur le port série du Arduino (broches 0 et 1), on peut avoir un problème lors du
+          téléversement d'un
+          programme. Comme on peut le constater sur la figure, le port série de l'ATmega est connecté en parallèle sur
+          celui du module d'ou le conflit</p>
+        <p>Dans ce cas il faut débrancher le module pendant le téléversement</p>
+        <p>Pour la même raison, lors de la pase d'exécution, il ne faut pas ouvrir le moniteur série car il va entrer en
+          conflit avec le module</p>
+        <br>
+        <img class="BlocCenter" src="IMAGES/Serial_Conflict.png" alt="">
+        <br><br>
+        <!-- =============================================================================================================== -->
+        <h2 id="EXPLS">Exemples</h2>
+        <br>
+        <h3 id="EX1">Exemple 1 : Communication basique</h3>
+        <p>Utilisez le moniteur série ou le virtual terminal sur Proteus ISIS pour tester le programme suivant :</p>
+        <br>
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Envoyer et recevoir des messages<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre>
+            <code>
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello, world!");
+  Serial.println("Envoyez moi des messages");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String msg = Serial.readString();
+    Serial.print("Message reçu : ");
+    Serial.println(msg);
+  }
+}
+</code>
+</pre>
+        </div> <br>
+        <h3 id="EX2">Exemple 2 : Contrôle d'une LED via le port série</h3>
+        <p>Ce programme permet de contrôler une LED en envoyant des commandes via le port série. Les commandes "ON" et
+          "OFF" allument et éteignent la LED, respectivement.</p>
+        <br>
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">contrôler une LED<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+          </div>
+          <pre>
+            <code>
+const int ledPin = 13; // Pin de la LED intégrée
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  Serial.println("Envoyez 'ON' pour allumer la LED et 'OFF' pour l'éteindre.");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');
+    command.trim(); // Supprimer les espaces blancs en début et fin de chaîne
+    
+    if (command.equalsIgnoreCase("ON")) {
+      digitalWrite(ledPin, HIGH);
+      Serial.println("LED allumée.");
+    } else if (command.equalsIgnoreCase("OFF")) {
+      digitalWrite(ledPin, LOW);
+      Serial.println("LED éteinte.");
+    } else {
+      Serial.println("Commande non reconnue.");
+    }
+  }
+}
+</code>
+</pre>
+        </div><br><br>
+        <!-- =============================================================================================== -->
+        <h3 id="EX3">Exemple 3 : Chaîne de commande avec paramètre entier</h3>
+        <p>Ce programme illustre une façon parmi d'autres de lire une commande constituée d'un mot clé suivi
+          d'un paramètre numérique.
+        </p>
+        <p>la commande et le paramètre doivent être séparés d'au moins un espace</p>
+        <p>Par exemple: <span class="BoldItal">LEFT 125</span></p>
+        <br>
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre>
+            <code>
+void clearInputBuffer() {
+  do {
+    delay(2);
+    Serial.read();
+  } while (Serial.available());
+}
+
+void setup() {
+  Serial.begin(9600);
+  Serial.setTimeout(5000);
+}
+
+void loop() {
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil(' ');
+    int param = Serial.parseInt();
+    clearInputBuffer();
+    Serial.println("Commande:     -->"+cmd+"<--");
+    Serial.println("parametre:    -->"+String(param)+"<--");
+  }
+}
+</code>
+</pre>
+        </div><br><br>
+      </div>
+    </div>
+  </div>
+  <!-- ================================================================================================== -->
+</body>
+
+</html>

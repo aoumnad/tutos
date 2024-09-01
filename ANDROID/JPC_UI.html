@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Android App</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+
+                <a href="#HELLO">
+                    <h3>Hello World !</h3>
+                </a>
+                <a href="#HELLOBASIC">
+                    <h3>Hello World très basique</h3>
+                </a>
+                <a href="#MISEPAGE">
+                    <h3>Mise en page</h3>
+                </a>
+                <ul>
+                    <li>
+                        <a href="#COLUMN">
+                            <h3>Column( ){ }</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#ROW">
+                            <h3>Row( ){ }</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#COLSMPL">
+                            <h3>Exemple 1</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#ROWSMPL">
+                            <h3>Exemple 2</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#LAZYCOLUMN">
+                            <h3>LazyColumn() { }</h3>
+                        </a>
+                    </li>
+                </ul>
+                <a href="#TEXT">
+                    <h3>Quelques Composables</h3>
+                </a>
+                <ul>
+                    <li> <a href="#TEXT">
+                            <h3>Text( )</h3>
+                        </a></li>
+                    <li><a href="#BUTTON">
+                            <h3>Button, OutlinedButton, TextButton</h3>
+                        </a></li>
+                    <li><a href="#BOX">
+                            <h3>Box()</h3>
+                        </a></li>
+                    <li><a href="#ICON">
+                            <h3>Icon()</h3>
+                        </a></li>
+                    <li><a href="#ICONBUTTON">
+                            <h3>IconButton(), FilledIconButton()</h3>
+                        </a></li>
+                    <li><a href="#FAB">
+                            <h3>FloatingActionButton</h3>
+                        </a></li>
+                    <li><a href="#SPACER">
+                            <h3>Spacer()</h3>
+                        </a></li>
+                    <li><a href="#IMAGE">
+                            <h3>Image()</h3>
+                        </a></li>
+                    <li><a href="#TEXTFIELD">
+                            <h3>TextField()</h3>
+                        </a>
+                        <ul class="ul2">
+                            <li><a href="#TFBASICS">
+                                    <h3>Concept de Base</h3>
+                                </a></li>
+                            <li><a href="#TFLOOK">
+                                    <h3>Apparence</h3>
+                                </a></li>
+                            <li><a href="#TFKEYB">
+                                    <h3>Clavier</h3>
+                                </a></li>
+                            <li><a href="#FOCUS">
+                                    <h3>Donner/Retirer le focus</h3>
+                                </a></li>
+                            <li><a href="#ISFOCUS">
+                                    <h3>Détecter le focus</h3>
+                                </a></li>
+                            <li><a href="#TFHEITH">
+                                    <h3>Taille verticale</h3>
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#OTEXTFIELD">
+                            <h3>OutlinedTextField()</h3>
+                        </a></li>
+                    <li><a href="#CHECKBOX">
+                            <h3>Checkbox()</h3>
+                        </a></li>
+                </ul>
+
+
+                <br><br>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>JPC User Interface</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="HELLO">Hello World</h2>
+                <p>Quand on crée un nouveau projet <b>Jetpack Compose</b> avec <b>Android Studio</b> , on obtient un
+                    ensemble de fichiers avec une arborescence spécifique. Pour l'instant le seul fichier qui nous
+                    intéresse est le fichier <b>MainActivity</b></p>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Hello World<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.test01
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.test01.ui.theme.Test01Theme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        <em>setContent {
+            Test01Theme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    Greeting("Android")
+                }
+            }
+        }</em>
+    }
+}
+
+<em>@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}</em>
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Test01Theme {
+        Greeting("Android")
+    }
+}</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <ul>
+                    <li>Sous <b>Jetpack Compose</b>, L'interface utilisateur (UI) est constituée de <b>Composables</b>.
+                        C'est le terme pour désigner des éléments graphiques</li>
+                    <li>L'application proposés est juste un exemple qui affiche "Hello Android!"</li>
+                    <li><b><i>setContent { ... } :</i></b> Cette fonction est appelée dans la méthode onCreate() d'une
+                        activité pour définir le contenu de l'interface utilisateur. Tout ce qui est passé à setContent
+                        est utilisé pour composer l'interface graphique.</li>
+                    <li><b><i>Test01Theme { ... } :</i></b> Cette section applique un thème par défaut (que l'on peut
+                        personnaliser) à l'interface utilisateur. Le thème gère les couleurs,
+                        les formes, la typographie, etc., qui seront appliquées à tous les composants enfants</li>
+                    <li><b><i>Surface(...) { ... } :</i></b> Surface est un composant de base de Jetpack Compose. Il
+                        s'agit d'un conteneur. Il peut être utilisé pour appliquer un fond, une élévation ou des
+                        bordures.
+                        <ul>
+                            <li><b>Entre parenthèses</b>, on place les propriétés de l'élément graphique. Dans Jetpack
+                                Compose,
+                                les propriété d'un élément sont définies de deux manières:
+                                <ul>
+                                    <li><b>Les attributs:</b> Ce sont des propriétés propres à l'élément</li>
+                                    <li><b>Les modifiers:</b> Ce sont des propriétés qui peuvent s'appliquer à
+                                        différents types
+                                        d'éléments</li>
+                                </ul>
+                                <p>Dans notre exemple, l'élément <b><i>Surface( ) { }</i></b> est caractérisé par deux
+                                    propriétés:</p>
+                                <ul>
+                                    <li>L'<b>Attribut <i>color</i></b> qui définit la couleur de l'arrière plan. Ici
+                                        c'est la couleur par défaut du thème. On aura l'occasion de revenir sur les
+                                        thèmes plus tard</li>
+                                    <li>Le <b>Modifier <i>fillMaxSize()</i></b> qui précise que l'élément va occuper
+                                        toute la surface de l'écran</li>
+                                </ul>
+                            </li>
+                            <li><b>Entre Accolades</b>, on place les éléments graphiques qui seront affichés dans la
+                                surface. Ici, on appelle la fonction composable <b>Greeting</b> qui va afficher le
+                                message</li>
+                        </ul>
+                    </li>
+
+                    <li>La fonction <b><i>Greeting()</i></b> appelle le composable <em>Text()</em> pour afficher
+                        <b>Hello Android!</b> comme
+                        indiqué sur la figure ci-dessous<br>
+
+                    </li>
+                    <img src="IMAGES/Hello.jfif" class="w300 BlocCenter">
+                    <li>
+                        En dessous de la fonction <i>Greeting()</i> on trouve la partie <i>@Preview()</i> qui permet de
+                        prévisualiser le résultat sur un <i>Virtual Device</i>. En ce qui me concerne, je supprime cette
+                        partie car je préfère visualiser sur un vrai téléphone</li>
+                </ul><br><br>
+                <!-- ################################################################################################ -->
+                <h2 id="HELLOBASIC">Hello World très basique</h2>
+                <p>En fait, l'élément le plus important du fichier MainActivity est la fonction <em>setContent {}</em>.
+                    C'est dans cette fonction qu'il faut placer tout le contenu de l'application</p>
+                <p>Si on veut un <i>"Hello World!"</i> très basique, On peut se passer des propriétés par défaut du
+                    thème ainsi que de l'élément Surface(). On peut aussi placer l'élément Text() directement dans le
+                    bloc
+                    setContent{}</p><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Hello World très basique<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.hellobasic
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        <em>setContent {
+            Text( text = "Hello World!" )
+        }</em>
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="MISEPAGE">Mise en page</h2>
+                <p>Il me semble que les éléments les plus importants pour la mise en Page d'une Interface utilisateur
+                    (UI) sont les composables <em>Column(){}</em> et <em>Row(){}</em> qui permettent d'organiser les
+                    éléments
+                    composables soit en colonne soit en ligne.
+                </p>
+                <p>On peut obtenir des mises en page assez élaborées en plaçant des lignes dans des colonnes
+                    et des colonnes dans des lignes.</p><br>
+                <img src="IMAGES/ColumnRow.jpg" class="BlocCenter">
+                <h3 id="COLUMN">Column( ){ }</h3>
+                <ul>
+                    <li>Permet de positionner (d'empiler) les éléments (Composables) <b>verticalement</b></li>
+                    <li>Les attributs (propriétés) de la colonne sont indiqués entre <em>()</em>, les élément contenus
+                        dans la
+                        colone sont placés entre <em>{}</em></li>
+                    <li><em>verticalArrangement:</em> Cet attribut définit la façon dont les éléments seront répartis
+                        verticalement. Il peut prendre les valeurs:
+                        <ul>
+                            <li>Arrangement.<Strong>Top</Strong></li>
+                            <li>Arrangement.<Strong>Center</Strong></li>
+                            <li>Arrangement.<Strong>Bottom</Strong></li>
+                            <li>Arrangement.<Strong>SpaceAround</Strong></li>
+                            <li>Arrangement.<Strong>SpaceEvenly</Strong></li>
+                            <li>Arrangement.<Strong>SpaceBetween</Strong></li>
+                            <li>Arrangement.<Strong>spacedBy(valeur.dp)</Strong></li>
+                        </ul>
+                    </li>
+
+                    <li><em>horizontalAlignment</em> Cet attribut définit la façon dont les éléments seront ajustés
+                        horizontalement. Il peut prendre les valeurs:
+                        <ul>
+                            <li>Alignment.<Strong>Start</Strong></li>
+                            <li>Alignment.<Strong>CenterHorizontally</Strong></li>
+                            <li>Alignment.<Strong>End</Strong></li>
+                        </ul>
+                    </li>
+                    <li>D'autres propriétés comme la couleur, la bordure, les dimensions... peuvent être définis par les
+                        <em>modificateurs</em>
+                    </li><br>
+
+                    <h3 id="ROW">Row( ){ }</h3>
+                    <ul>
+                        <li>Row qui signifie ligne permet de positionner les éléments (Composables)
+                            <b>horizontalement</b>
+                        </li>
+                        <li>Les attributs (propriétés) de la Row sont indiqués entre <em>()</em>, les élément contenus
+                            dans la Row sont placés entre <em>{}</em></li>
+                        <li><em>horizontalArrangement:</em> Cet attribut définit la façon dont les éléments seront
+                            répartis
+                            horizontalement. Il peut prendre les valeurs:
+                            <ul>
+                                <li>Arrangement.<Strong>Start</Strong></li>
+                                <li>Arrangement.<Strong>Center</Strong></li>
+                                <li>Arrangement.<Strong>End</Strong></li>
+                                <li>Arrangement.<Strong>SpaceAround</Strong></li>
+                                <li>Arrangement.<Strong>SpaceEvenly</Strong></li>
+                                <li>Arrangement.<Strong>SpaceBetween</Strong></li>
+                                <li>Arrangement.<Strong>spacedBy(valeur.dp)</Strong></li>
+                            </ul>
+                        </li>
+
+                        <li><em>verticalAlignment</em> Cet attribut définit la façon dont les éléments seront justifiés
+                            verticalement. Il peut prendre les valeurs:
+                            <ul>
+                                <li>Alignment.<Strong>Top</Strong></li>
+                                <li>Alignment.<Strong>CenterVertically</Strong></li>
+                                <li>Alignment.<Strong>Bottom</Strong></li>
+                            </ul>
+                        </li>
+                        <li>D'autres propriétés comme la couleur, la bordure, les dimensions... peuvent être définis par
+                            les
+                            <em>modificateurs</em>
+                        </li><br>
+                    </ul><br>
+                    <h3 id="COLSMPL">Exemple 1: Répartition verticale</h3><br>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Arrangement Vertical dans une Column()<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.columns
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Column(  //Conteneur principal, 
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Row( // moitié haute de l'écran
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        )
+        {
+            Column(
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt(" Top ")
+                Txt(" Top ")
+                Txt(" Top ")
+            }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("spacedBy")
+                Txt("spacedBy")
+                Txt("spacedBy")
+            }
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("Center")
+                Txt("Center")
+                Txt("Center")
+            }
+            Column(
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("Bottom")
+                Txt("Bottom")
+                Txt("Bottom")
+            }
+
+        }
+        Row( // moitié basse de l'écran
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        )
+        {
+            Column(
+                verticalArrangement = Arrangement.SpaceAround,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("SpaceAround")
+                Txt("SpaceAround")
+                Txt("SpaceAround")
+            }
+            Column(
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("SpaceEvenly")
+                Txt("SpaceEvenly")
+                Txt("SpaceEvenly")
+            }
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f)
+                    .background(Color.Cyan)
+            ) {
+                Txt("SpaceBetween")
+                Txt("SpaceBetween")
+                Txt("SpaceBetween")
+            }
+        }
+    }
+}
+
+@Composable
+fun Txt(str: String) {
+    Text(text = str,
+        modifier = Modifier
+            .background(Color.Yellow, shape = RoundedCornerShape(10.dp))
+            .padding(5.dp)
+    )
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <img src="IMAGES/Colones.jfif" class="w300 BlocCenter">
+                </ul><br>
+                <p>Dans la figure ci-dessus: </p>
+                <ul>
+                    <li>Le conteneur principal est une <b>Column()</b> qui occupe la totalité de l'écran</li>
+                    <li>Cette Column() contient deux <b>Row()</b>. Une occupe la moitié haute de l'écran, l'autre la
+                        moitié basse. Pour partager l'écran équitablement entre les deux Row(), chacune est caractérisée
+                        par la propriété <em>Modifier.fillMaxWidth()</em> pour occuper toute la largeur et
+                        <em>Modifier.weight(1f)</em> pour occuper le même espace vertical que l'autre
+                    </li>
+                    <li>La premiere <i>Row()</i> contient 4 <i>Columns()</i>. Chacune a la propriété
+                        <em>Modifier.weight(1f)</em> pour se partager équitablement l'espace horizontal de la Row() mère
+                    </li>
+                    <li>La deuxième <i>Row()</i> contient 3 <i>Columns()</i>. Chacune a la propriété
+                        <em>Modifier.weight(1f)</em> pour se partager équitablement l'espace horizontal de la Row() mère
+                    </li>
+                    <li>Chacune des sept <i>Columns()</i> contient trois composable <b>Text()</b> </li>
+                    <li>Chacune des sept <i>Columns()</i> utilise un attribut <b>verticalArrangement</b> différent pour
+                        illustration</li>
+                    <li>Toutes les colonnes utilisent l'ajustement horizontal <b>Alignment.CenterHorizontally</b></li>
+                </ul>
+
+
+                <br>
+                <h3 id="ROWSMPL">Exemple 2: Répartition horizontale</h3><br>
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Arrangement horizontal dans une Row()<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.rows
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxSize())
+    {
+        MyRow(Arrangement.Start)
+        MyRow(Arrangement.Center)
+        MyRow(Arrangement.End)
+        MyRow(Arrangement.SpaceAround)
+        MyRow(Arrangement.SpaceEvenly)
+        MyRow(Arrangement.SpaceBetween)
+        Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Cyan)
+                .height(70.dp)
+        )
+        {
+            Txt("spacedBy")
+            Txt("spacedBy")
+            Txt("spacedBy")
+        }
+    }
+}
+
+@Composable
+fun Txt(str: String){
+    Text(text = str,
+        modifier = Modifier
+            .background(Color.Yellow, shape = RoundedCornerShape(10.dp))
+            .padding(5.dp)
+    )
+}
+
+@Composable
+fun MyRow(arrHor: Arrangement.Horizontal) {
+    Row(horizontalArrangement = arrHor,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Cyan)
+            .height(70.dp)
+    )
+    {
+        Txt(arrHor.toString().substringAfter("#"))
+        Txt(arrHor.toString().substringAfter("#"))
+        Txt(arrHor.toString().substringAfter("#"))
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/Lignes.jpg" class="w300 BlocCenter"><br>
+                <p>Dans la figure ci-dessus: </p>
+                <ul>
+                    <li>Le conteneur principal est une <b>Column()</b> qui occupe la totalité de l'écran</li>
+                    <li>Cette Column() contient sept <b>Row()</b>, chacune est caractérisée
+                        par la propriété <em>Modifier.fillMaxWidth()</em> pour occuper toute la largeur et
+                        <em>Modifier.weight(1f)</em> pour occuper le même espace vertical que les autres
+                    </li>
+                    <li>Chaque <i>Row()</i> contient 3 composable <i>Text()</i> et utilise une propriété
+                        <em>horizontalArrangement</em> différente pour illustration
+                    </li>
+                    <li>Toutes les <i>Row()</i> utilise une propriété <em>verticalAlignment =
+                            Alignment.CenterVertically</em> </li>
+                    <li>Pour optimiser un peu le code, j'ai crée la fonction <i>MyRow()</i> que j'ai invoqué plusieurs
+                        fois pour afficher chaque une <i>Row()</i> avec les textes qu'elle contient</li>
+
+                </ul>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="LAZYCOLUMN">LazyColumn()</h2>
+                <p>Si on essaye d'afficher une liste avec un grand nombre d'éléments dans une <i>Column(),</i> on aura
+                    un problème car <i>Column()</i> ne permet pas de défilement vertical et il n'y aura que les premiers
+                    éléments qui seront visibles</p>
+                <p><em>LazyColumn</em> est conçue pour gérer de grandes listes efficacement car elle offre la
+                    possibilité de <strong>défilement vertical</strong>. Son fonctionnement est optimisé car il n'y a
+                    que les éléments
+                    visibles dans la fenêtre d'affichage qui sont <i>composés graphiquement</i></p>
+                <p>Il existe plusieurs façons d'ajouter des éléments dans un LazyColumn :</p>
+                <ol>
+                    <li><em>item{ } :</em> Utilisée pour ajouter un seul élément</li>
+                    <li><em>items(cont) { } :</em> Utilisé pour ajouter <i>count</i> éléments</li>
+                    <li><em>items(maListe) { } :</em> Utilisé pour ajouter tous les éléments de la liste <i>maListe</i>
+                    </li>
+                    <li><em>itemsIndexed(maListe) { } :</em> Utilisé pour ajouter tous les éléments de la liste
+                        <i>maListe</i> et donne l'accès à l'index de chaque élément
+                    </li>
+                </ol> <br>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">LazyColumn<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.lazycolun
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val maListe = listOf("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 20.dp)
+    )
+    {
+        item {
+            Text(
+                text = "En-tête",
+                fontSize = 30.sp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Cyan)
+            )
+        }
+        item {
+            Button(onClick = { /*TODO*/ })
+            { Text(text = "Bouton A") }
+        }
+        item {
+            Button(onClick = { /*TODO*/ })
+            { Text(text = "Bouton B") }
+        }
+        item { Spacer(modifier = Modifier.height(20.dp)) }
+        items(5) { index ->
+            Text("Élément numéro $index")
+        }
+        item { Spacer(modifier = Modifier.height(20.dp)) }
+        items(maListe) { item ->
+            Text(text = item)
+        }
+        item { Spacer(modifier = Modifier.height(20.dp)) }
+        itemsIndexed(maListe) { index, item ->
+            Text(text = "jour $index -> $item")
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/LazyColumn.jfif" class="BlocCenter w200">
+
+                <!-- ################################################################################################ -->
+                <h2 id="TEXT">Le composable Text( )</h2>
+                <p>Cet élément permet de placer un text dans un conteneur</p>
+                <p>L'apparence du texte dépend d'un certain nombre d'attributs et de modificateurs</p>
+                <pre><code>Text(
+    "le texte ici",
+    attribut1 = valeur, 
+    attribut2 = valeur
+    …,
+    modifier = Modifier
+	    .modif1
+	    .modif2
+	    .modif3
+	    …       
+    )
+</code></pre> <br>
+
+                <h3>Quelques attributs</h3>
+                <ul>
+                    <li><em>color:</em> Couleur du texte </li>
+                    <i>color = Color.Red</i> ou <i>color=Color(0xFFrrvvbb)</i>
+                    <li><em>fontStyle :</em> Style de fonte. </li>
+                    <i>fontStyle = FontStyle.Italic</i>
+                    <li><em>fontSize :</em> Taille de la fonte</li>
+                    <i>fontSize = 30.sp</i>
+                    <li><em>textAlign :</em> Alignement du texte </li>
+                    <i>textAlign = TextAlign.Center</i>
+                    <li><em>fontWeight :</em> poids de la police</li>
+                    <i>fontWeight = FontWeight.Bold</i>
+                    <li><em>fontFamily :</em> Choix de la police</li>
+                    <i>fontFamily = FontFamily.Monospace</i>
+                    <li>Placer le curseur de la souris sur l'élément <i>Text()</i> pour voir tous les attributs
+                        possibles</li>
+                </ul><br>
+                <h3>Quelques modifiers</h3>
+                <ul>
+                    <li><em>.align(alignment = Alignment.xy)</em> Position du composable Text() par rapport à son
+                        père </li>
+                    Les positions xy possibles sont: <b>TopStart, TopCenter, TopEnd, CenterStart, Center, CenterEnd,
+                        BottomStart, BottomCenter, BottomEnd</b>
+                    <li><em>.background() : </em> Applique une couleur de fond au texte</li>
+                    <i>Modifier.background(Color.Gray)</i>
+                    <li><em>.width : </em> Largeur du composable</li>
+                    <i>Modifier.width(100.dp)</i>
+                    <li><em>.height : </em> hauteur du composable</li>
+                    <i>Modifier.height(100.dp)</i>
+                    <li><em>.fillMaxWidth() :</em> Étend la largeur pour occuper toute la largeur disponible.</li>
+                    <li><em>.fillMaxHeight :</em> Étend la hauteur pour occuper toute la hauteur disponible.</li>
+                    <li><em>.fillMaxSize :</em> Étend la largeur et la hauteur pour occuper tout l'espace disponible.
+                    </li>
+                    <li><em>.padding() :</em> Ajoute un espacement autour du texte,
+                        <ul>
+                            <li><i>Modifier.padding(16.dp)</i>: Padding de tout les cotés. Le texte apparaîtra dans
+                                l'espace qui reste après le padding</li>
+                            <li><i>Modifier.padding(horizontal = 40.dp)</i>: Padding à gauche et à droite</li>
+                            <li><i>Modifier.padding(vertical = 40.dp)</i>: Padding en haut et en bas</li>
+                            <li><i>Modifier.padding(start = 40.dp)</i>: Padding gauche</li>
+                            <li><i>Modifier.padding(start = 40.dp, end = 30.dp, top = 10.dp, bottom = 20.dp) :</i>
+                                Padding de chaque coté</li>
+                        </ul>
+                    </li>
+                    <li><em>.border :</em> Contour de l'objet</li>
+                    <i>.border(width=2.dp, Color.Blue, shape = RoundedCornerShape(5.dp))</i>
+                    <li><em>.wrapContentHeight() :</em> Position verticale du texte dans le composable
+                        <ul>
+                            <li><i>.wrapContentHeight(Alignment.CenterVertically) // centrer le texte verticalement</i>
+                            </li>
+                            <li><i>.wrapContentHeight(Alignment.Top) // le texte est placé en haut du composable</i>
+                            </li>
+                            <li><i>.wrapContentHeight(Alignment.Bottom) // le texte est placé en bas du composable</i>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Exemple composable Text()<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.text
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Column( horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+        .fillMaxSize()
+        .background(Color.Green)) {
+        Box (
+            modifier = Modifier
+                .background(Color.Cyan, shape = RoundedCornerShape(10.dp))
+                .width(200.dp)
+                .height(200.dp)
+        ){
+            Text(
+                text = "Hello",
+                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                fontSize = 20.sp,
+                color = Color.Red,
+                textAlign = TextAlign.Center, // centrer le texte horizontalement
+                modifier = Modifier
+                    .align(alignment = Alignment.BottomCenter) // position dans le père
+                    .width(100.dp)
+                    .height(100.dp)
+                    .background(Color.Yellow, shape = RoundedCornerShape(5.dp))
+                    .border(width=2.dp, Color.Blue, shape = RoundedCornerShape(5.dp))
+                    .wrapContentHeight(Alignment.CenterVertically) // centrer le texte verticalement
+            )
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <p>Dans cette exemple, on teste quelques composables: Column(), Box() et Text()</p>
+                <ul>
+                    <li>La <b>Column()</b> sert de conteneur principal
+                        <ul>
+                            <li>Elle occupe tout l'écran</li>
+                            <li>Elle a une couleur verte</li>
+                            <li>Ses fils seront centrés horizontalement</li>
+                        </ul>
+                    </li>
+                    <li>Dans la colonne On place un composable <b>Box()</b> qui va aussi servir de conteneur
+                        <ul>
+                            <li>Couleur de fond Cyan avec coins arrondis</li>
+                            <li>Dimensions 200dp x 200dp</li>
+                        </ul>
+                    </li>
+                    <li>Dans la Box(), on place un composable <b>Text()</b> avec les caractéristiques:
+                        <ul>
+                            <li>Dimensions 100dp x 100dp</li>
+                            <li>Placé au centre bas du conteneur Box()</li>
+                            <li>Couleur de fond Jaune, bord arrondit</li>
+                            <li>Cadre bleu, bords arrondis</li>
+                            <li>Texte 'Hello' police 20sp, rouge, gras, italique, centré horizontalement et
+                                verticalement dans le composable</li>
+                            <li>On remarquera que pour centrer le texte horizontalement, on utilise l'attribut
+                                <b>textAlign</b>, et pour centrer verticalement, on utilise le modifier
+                                <b>wrapContentHeight()</b>. Le plus souvent, on n'aura pas besoin de centrer le texte,
+                                si on ne précise pas les dimensions du composable, le texte prend juste l'espace
+                                nécessaire.
+                            </li>
+                        </ul>
+                    </li>
+                </ul><br>
+                <img src="IMAGES/TextBox.jpg" class="w300 BlocCenter"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="BUTTON">Button(), OutlinedButton(), TextButton()</h2>
+                <p>Le bouton exécute une action lorsque l'utilisateur clique dessus. L'apparence du bouton dépend d'un
+                    certain nombre d'attributs et de modificateurs. Le bouton est un conteneur, on y place généralement
+                    du texte et des icônes</p>
+                <pre><code>Button(
+                    attribut1 = valeur, 
+                    attribut2 = valeur,
+                    …,
+                    modifier = Modifier
+                        .modif1
+                        .modif2
+                        .modif3
+                        …       
+                    ){
+                        Contenu du bouton: Label, icônes ...
+                    }
+                </code></pre> <br>
+                <h3>Quelques attributs</h3>
+                <ul>
+                    <li><em>onClick </em>Définit l'action qui sera exécutée quand le bouton est cliqué. C'est un
+                        attribut obligatoire.</li>
+                    <pre><code>onClick = {Toast.makeText(context, "Bouton cliqué", Toast.LENGTH_SHORT).show() },</code></pre>
+                    <li><em>enabled: </em>Pour activer ou désactiver le bouton. Les valeurs possibles sont <i>true</i>
+                        et <i>false</i>. Si false, le bouton devient grisé et non cliquable.</li>
+                    <pre><code>enabled = true,</code></pre>
+                    <li><em>shape: </em>Définit la forme du bouton</li>
+                    <pre><code>shape = RoundedCornerShape(10.dp),</code></pre>
+                    <li><em>border: </em>Définit la bordure du bouton</li>
+                    <pre><code>border = BorderStroke(2.dp, Color.Blue),</code></pre>
+                    <li><em>colors:</em> Permet de personnaliser les couleurs du bouton, comme la couleur de fond ou le
+                        contenu. pour le mode normal et le mode disabled </li>
+                    <pre><code>colors = ButtonDefaults.buttonColors(
+            contentColor = Color.White,
+            containerColor = Color(0xFF33FFFF)
+        )</code></pre>
+                    <li><em>contentPadding </em>Définit les marges intérieurs</li>
+                    <pre><code>contentPadding = PaddingValues(
+                start = 20.dp,
+                top = 12.dp,
+                end = 20.dp,
+                bottom = 12.dp
+            ),</code></pre>
+                </ul><br>
+                <h3>Quelques modifiers</h3>
+                <ul>
+                    <li><em>.align(Alignment.xy)</em> Position du composable par rapport à son
+                        père. (<i>.align(alignment = Alignment.xy) // marche aussi</i>) </li>
+                    Les positions xy possibles sont: <b>TopStart, TopCenter, TopEnd, CenterStart, Center, CenterEnd,
+                        BottomStart, BottomCenter, BottomEnd</b><br>
+                    <pre><code>Modifier.align(Alignment.Center)</code></pre>
+                    <li><em>Modifier.width : </em> Largeur du composable</li>
+                    <pre><code>Modifier.width(100.dp)</code></pre>
+                    <li><em>.height : </em> hauteur du composable</li>
+                    <pre><code>Modifier.height(100.dp)</code></pre>
+                    <li><em>.size(w.dp, h.dp) : </em> Dimensions du composable</li>
+                    <pre><code>Modifier.size(200.dp, 100.dp)</code></pre>
+                    <li><em>.fillMaxWidth() :</em> Étend la largeur pour occuper toute la largeur disponible.</li>
+                    <li><em>.fillMaxHeight :</em> Étend la hauteur pour occuper toute la hauteur disponible.</li>
+                    <li><em>.fillMaxSize :</em> Étend la largeur et la hauteur pour occuper tout l'espace disponible.
+                    </li>
+                    <li><em>.padding() :</em> Ajoute un espacement autour du texte,
+                        <ul>
+                            <li>
+                                <pre><code>Modifier.padding(16.dp)</code></pre>Padding de tout les cotés. Le texte
+                                apparaîtra dans
+                                l'espace qui reste après le padding
+                            </li>
+                            <li>
+                                <pre><code>Modifier.padding(horizontal = 40.dp)</code></pre>Padding à gauche et à droite
+                            </li>
+                            <li>
+                                <pre><code>Modifier.padding(vertical = 40.dp)</code></pre>
+                                Padding en haut et en bas
+                            </li>
+                            <li>
+                                <pre><code>Modifier.padding(start = 40.dp)</code></pre>Padding gauche
+                            </li>
+                            <li>
+                                <pre><code>Modifier.padding(start = 40.dp, end = 30.dp, top = 10.dp, bottom = 20.dp)</code></pre>
+                                Padding de chaque coté
+                            </li>
+                        </ul>
+                    </li>
+                    <li><em>.border :</em> Contour de l'objet</li>
+                    <pre><code>Modifier.border(width=2.dp, Color.Blue, shape = RoundedCornerShape(5.dp))</code></pre>
+                </ul><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Quelques boutons<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.button0
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val backColor1 = 0xFFFFE0B2
+    val backColor2 = 0xFFB2DFDB
+    val backMask = backColor1 xor backColor2
+    val butColor1 = 0xFF883333
+    val butColor2 = 0xFF3399AA
+    val butMask = butColor1 xor butColor2
+    var butColor by remember { mutableLongStateOf(butColor1) }
+    var backColor by remember { mutableLongStateOf(backColor1) }
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(backColor))
+            .padding(10.dp)
+    )
+    {
+        val context = LocalContext.current
+            Button(onClick = { Toast.makeText(context, "par défaut", Toast.LENGTH_SHORT).show() },
+            ) {
+                Text(text = "par défaut")
+            }
+        Button(onClick = { Toast.makeText(context, "Rectangle", Toast.LENGTH_SHORT).show() },
+            shape = RectangleShape,
+        ) {
+            Text(text = "Rectangle")
+        }
+        Button(onClick = { Toast.makeText(context, "Circulaire", Toast.LENGTH_SHORT).show() },
+            shape = CircleShape,
+            modifier = Modifier
+                .width(120.dp)
+                .height(120.dp)
+        ) {
+            Text(text = "Circulaire")
+        }
+        Button(onClick = { Toast.makeText(context, "Coins coupés", Toast.LENGTH_SHORT).show() },
+            shape = CutCornerShape(5.dp),
+        ) {
+            Text(text = "Coins coupés")
+        }
+        Button(onClick = { Toast.makeText(context, "Arrondi", Toast.LENGTH_SHORT).show() },
+            shape = RoundedCornerShape(10.dp),
+        ) {
+            Text(text = "Coins arrondis")
+        }
+        OutlinedButton(onClick = { Toast.makeText(context, "Outlined", Toast.LENGTH_SHORT).show() }
+        ) {
+            Text("Outlined")
+        }
+        OutlinedButton(onClick = { Toast.makeText(context, "Outlined épais", Toast.LENGTH_SHORT).show() },
+            border = BorderStroke(2.dp, Color.Blue),
+//            colors = ButtonDefaults.buttonColors(containerColor = Color(butColor) )
+        ) {
+            Text("Outlined épais")
+        }
+        Button(
+            onClick = { backColor = backColor xor backMask },
+            shape = RoundedCornerShape(10.dp),
+            modifier = Modifier
+                .size(140.dp, 60.dp)
+        ) {
+            Text(
+                text = "Modifier\ncouleur fond",
+                textAlign = TextAlign.Center
+            )
+        }
+        Button(
+            onClick = { butColor = butColor xor butMask },
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(butColor),
+                contentColor = Color.Yellow
+            ),
+            modifier = Modifier
+                .width(120.dp)
+                .height(60.dp)
+        ) {
+            Text(
+                text = "Modifier\nma couleur",
+                textAlign = TextAlign.Center
+            )
+        }
+        TextButton(onClick = {Toast.makeText(context, "TextButton", Toast.LENGTH_SHORT).show()},
+            border = BorderStroke(width = 1.dp, color = Color.Black),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.textButtonColors(
+                containerColor = Color.Green.copy(alpha = 0.8f))
+        )
+        {
+            Text(text = "+",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/Buttons.jfif" class="BlocCenter w300"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="BOX">Box()</h2>
+                <p>Box est un conteneur. Les élément contenus (fils) sont placés sur des plans superposés. On s'en sert
+                    par exemple s'il faut superposer un texte sur une image.</p>
+                <p>Un fils peut être positionné sur son plan grâce à ses modificateurs <b><i>.align()</i></b> et
+                    <b><i>.offset()</i></b>
+                </p><br>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Box()<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.boximage
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Box(modifier = Modifier
+        .size(200.dp, 200.dp)
+        .background(Color.Cyan))
+    {
+        Button(onClick = { /*TODO*/ },
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .offset(y = -30.dp)
+        )
+        {
+            Text(text = "Button 1")
+        }
+        Button(onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta ),
+            modifier = Modifier
+                .align(Alignment.Center)
+        )
+        {
+            Text(text = "Button 2")
+        }
+        Button(onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Gray ),
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .offset(y = 30.dp)
+        )
+        {
+            Text(text = "Button 3")
+        }
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/Box.jfif" class="BlocCenter w300"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="ICON">Icon</h2>
+                <p>Les icônes peuvent être définies de deux manières principales : avec <strong>ImageVector</strong> et
+                    avec <strong>painter</strong>.</p>
+                <ul>
+                    <li><em>ImageVector </em>Icônes vectorielles standard. Elles sont définies en tant que vecteurs
+                        scalables, ce qui les rend adaptables à différentes tailles sans perte de qualité
+                    </li>
+                    <pre><code>Icon(imageVector = Icons.Default.Call, contentDescription = null)</code></pre>
+                    Dès qu'on a tapé <b>Icons.Default.</b> VScode affiche la liste des icônes disponibles
+                    <li><em>painter </em> Représente une approche plus flexible pour afficher des images et des
+                        icônes personnalisées comme des clip Art xml ou des fichier SVG.
+                    </li>
+                    Les icônes doivent être placées dans le dossier <b>drawable</b> des ressources dans l'arborescence
+                    du projet. <br>
+                    Pour Ajouter une icône clipArt xml dans le dossier drawable: <br>
+                    <i>Clic droit sur le dossier drawable &rarr; new &rarr; Vector Asset &rarr; clic sur l'icône
+                        affichée devant
+                        `Clip Art` &rarr; choisir</i> <br>
+                    Ensuite, ajouter les icônes à votre UI comme suit: <br>
+                    <pre><code>Icon(painter = painterResource(id = R.drawable.outline_delete_24), contentDescription = null)</code></pre>
+
+                </ul> <br>
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Row() contenant quelques icônes<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>Row(horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color(0xFF33BB88)))
+        {
+            Icon(imageVector = Icons.Default.Call, contentDescription = null)
+            Icon(imageVector = Icons.Default.Call, contentDescription = null, modifier = Modifier.size(48.dp))
+            Icon(imageVector = Icons.Default.Build, contentDescription = null, tint = Color.Magenta)
+            Icon(painter = painterResource(id = R.drawable.outline_bluetooth_24), contentDescription = null)
+            Icon(painter = painterResource(id = R.drawable.outline_download_for_offline_24),
+                contentDescription = null, tint = Color.Blue)
+            Icon(painter = painterResource(id = R.drawable.outline_delete_24), contentDescription = null)
+        }</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/icons.jpg" class="BlocCenter"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="ICONBUTTON">IconButton(), FilledIconButton()</h2>
+                <p>C'est tout simplement l'utilisation d'une Icône comme un bouton</p><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">IconButton(), FilledIconButton()<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.iconbutton
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val context = LocalContext.current
+    Row(horizontalArrangement = Arrangement.SpaceAround,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .background(Color(0xFF43928B))
+    )
+    {
+        IconButton(onClick = { Toast.makeText(context, "IconButton", Toast.LENGTH_SHORT).show() }) {
+            Icon(imageVector = Icons.Default.Favorite, contentDescription = null)
+        }
+        IconButton(
+            onClick = { Toast.makeText(context, "IconButton", Toast.LENGTH_SHORT).show() },
+            colors = IconButtonDefaults.filledTonalIconButtonColors(
+                containerColor = Color(0xFF8BC34A),
+                contentColor = Color.Red
+            )
+        )
+        {
+            Icon(imageVector = Icons.Default.Favorite, contentDescription = null)
+        }
+        FilledIconButton(onClick = {
+            Toast.makeText(context, "FilledIconButton", Toast.LENGTH_SHORT).show()
+        }) {
+            Icon(imageVector = Icons.Default.Favorite, contentDescription = null)
+        }
+        FilledIconButton(
+            onClick = { Toast.makeText(context, "FilledIconButton", Toast.LENGTH_SHORT).show() },
+            colors = IconButtonDefaults.filledTonalIconButtonColors(
+                containerColor = Color(0xFF8BC34A),
+                contentColor = Color.Red
+            )
+        )
+        {
+            Icon(imageVector = Icons.Default.Favorite, contentDescription = null)
+        }
+
+        FilledIconButton(
+            onClick = { Toast.makeText(context, "FilledIconButton", Toast.LENGTH_SHORT).show() },
+            shape = RoundedCornerShape(12.dp),  // Coins arrondis de 12.dp
+            colors = IconButtonDefaults.filledTonalIconButtonColors(
+                containerColor = Color(0xFF8BC34A),
+                contentColor = Color.Red
+            )
+        ) {
+            Icon(
+                imageVector = Icons.Default.Favorite,
+                contentDescription = "Favorite Icon",
+            )
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/IconButton.jfif" class="BlocCenter"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="FAB">FloatingActionButton (FAB)</h2>
+                <p>Le FloatingActionButton (FAB) est un bouton utilisé pour représenter une action principale ou très
+                    importante dans une interface utilisateur. Il s'agit d'un bouton qui "flotte" au-dessus du reste du
+                    contenu de l'interface, avec une icône à l'intérieur.</p>
+                <p>En réalité, le FAB est un bouton comme les autres. Il se distingue seulement par sa conception qui
+                    attire l'attention de l'utilisateur, grâce à son élévation qui lui donne un aspect flottant</p>
+                <p>Par contre, du point de vue positionnement, le FAB ne flotte pas au dessus des autres composants
+                    comme son nom pourrait le faire croire, et il n'est pas positionné automatiquement en bas de
+                    l'écran comme on peut le lire dans certains document.</p>
+                <p> Le positionnement du FAB dépend dans quel conteneur il est placé. Par exemple, si on le place dans
+                    une colonne qui contient déjà deux composables, il se positionnera normalement derrières ces
+                    composants. On pourra seulement le positionner horizontalement à l'aide du modifier <i>align</i>
+                </p>
+                <p>Pour réellement faire flotter le FAB au dessus du reste du contenu et avoir beaucoup plus de
+                    souplesse de positionnement, il faut utiliser un <b><i>Box()</i></b> comme conteneur principal
+                    occupant tout l'écran. Dans ce Box(), on placera le contenu (dans une colonne par exemple) et le
+                    FAB, qui dans ce cas va se superposer à tout le reste et on peut le positionner horizontalement et
+                    verticalement à l'aide du modifier <i>align</i> </p>
+
+                <br>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">FloatingActionButton()<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.floatingbutton
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.LightGray)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Button(onClick = { /*TODO*/ }) {
+                Text("Button 1")
+            }
+            Button(onClick = { /*TODO*/ }) {
+                Text("Button 2")
+            }
+        }
+
+        FloatingActionButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                <em>.align(Alignment.BottomEnd)</em>  // Positionner en bas à droite
+                .padding(16.dp)  // Ajouter un padding pour éloigner du bord
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "Add"
+            )
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/FAB.jfif" class="BlocCenter w200">
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="SPACER">Spacer()</h2>
+                <p>Spacer permet d'ajouter un espace vide entre les éléments. Pratique pour gérer l'espacement dans les
+                    Row, Column,</p>
+                <pre><code>Spacer(modifier = Modifier.height(20.dp)) // Espacement vertical
+Spacer(modifier = Modifier.width(20.dp))  // Espacement horizontale
+                    </code></pre>
+
+                <br>
+                <!-- ################################################################################################ -->
+                <h2 id="IMAGE">Image()</h2>
+                <p>Ce composable permet de charger et d'afficher une images à partir du dossier drawable ou même des
+                    images provenant d'une URL
+                </p>
+                <p>Commencer par copier les images dans le dossier <b>drawable</b> de votre application. Le nom des
+                    fichiers ne doit contenir que des lettres minuscule (a - z), des chiffres (0 - 9) et le caractère
+                    underscore '_'</p><br>
+                <img src="IMAGES/DrawableImages.jpg" class="BlocCenter"><br>
+                <pre><code>    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth()
+    )
+    {
+        Image(
+            painter = painterResource(id = R.drawable.android),
+            contentDescription = null, modifier = Modifier.size(150.dp, 150.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Image(
+            painter = painterResource(id = R.drawable.jpc),
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Box(
+            modifier = Modifier
+                .size(200.dp, 200.dp)
+                .background(Color.Cyan)
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.android),
+                contentDescription = null,
+                modifier = Modifier.align(Alignment.CenterEnd)
+            )
+        }
+    }
+
+</code></pre><br>
+                <img src="IMAGES/Images.jpg" class="BlocCenter"> <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="TEXTFIELD">TextField()</h2>
+                <p>permet à l'utilisateur de saisir du texte pour interagir avec l'application </p>
+                <p>C'est un composant qui nécessite beaucoup de pratique pour cerner toutes ses possibilités</p>
+                <h3 id="TFBASICS">Concept de base</h3>
+                <ul>
+                    <li>A l'aide de l'attribut <em>value</em>, on affecte une variable de type <b><i>mutableStateOf("")
+                            </i></b> au TextField </li>
+                    <li>Quand on place le curseur dans le TextField, celui-ci prend le focus et le clavier
+                        apparaît,</li>
+                    <li>A l'aide de l 'attribut <em>onValueChange, </em> on fait de sorte que chaque changement dans le
+                        champs de saisie est affectée à la variable. Comme cette dernière est de type <b>mutableState,
+                        </b>ceci affectera toutes les parties de l'UI qui utilisent cette variable </li>
+                    <li>Si on on utilise l'attribut <em>keyboardOptions</em> pour afficher la touche de validation
+                        &#x2714; du clavier, alors, quand on clique sur cette touche, les tâches définies par l'action
+                        <em>onDone</em> de l'attribut <em>keyboardActions</em> sont exécutées
+                    </li>
+                </ul>
+                <p>L'exemple ci-dessous crée deux champs de saisie <i>TextField()</i> et deux champs d'affichage
+                    <i>Text()</i>. On va les appeler Textfield1, Textfield2, Text1 et Text2. Les deux TextFields sont
+                    légèrement différents
+                </p> <br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">TextField, premier exemple<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.textfield
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    var tf1variable by remember { mutableStateOf("") }
+    var tf2variable by remember { mutableStateOf("") }
+    var txt2 by remember { mutableStateOf("") }
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    )
+    {
+        Spacer(modifier = Modifier.height(40.dp))
+        
+        TextField(
+            <em>value = tf1variable,
+            onValueChange = { tf1variable = it },</em>
+        )
+
+        TextField(
+            value = tf2variable,
+            onValueChange = { tf2variable = it },
+            <em>keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),  // touche de validation
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    txt2 = tf2variable
+                    tf2variable = ""
+                }
+            )</em>
+        )
+        
+        Text(
+            <em>text = tf1variable,</em>
+            modifier = Modifier
+                .size(200.dp, 40.dp)
+                .background(Color.LightGray)
+                .padding(8.dp)
+        )
+        
+        Text(
+            <em>text = txt2,</em>
+            modifier = Modifier
+                .size(200.dp, 40.dp)
+                .background(Color.LightGray)
+                .padding(8.dp)
+        )
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <p>Si on clique dans Textfield1, le clavier apparaît comme indiqué sur la figure
+                    ci-dessous. On peut faire quelques observations:</p>
+                <ul>
+                    <li>Le trait en bas de Textfield1 devient épais pour indiquer que le composant a le <b>focus</b>
+                    </li>
+                    <li>Le clavier n'a pas de touche de validation. La touche &#x21b5; permet seulement de revenir à la
+                        ligne</li>
+                    <li>Comme on a affecté la même variable à TextField1 et à Text1, tous ce que l'on tape dans le
+                        premier est affecté à la variable et donc apparaît aussi dans Text1</li>
+                </ul>
+                <figure>
+                    <img src="IMAGES/TextField1.jfif" class="BlocCenter w200">
+                    <figcaption>TextField 1</figcaption>
+                </figure><br>
+                <p>Si on clique dans TextField2, le clavier apparaît comme indiqué sur la figure
+                    ci-dessous. On peut faire quelques observations:</p>
+                <ul>
+                    <li>Le trait en bas de Textfield2 devient épais pour indiquer que le composant a le <b>focus</b>
+                    </li>
+                    <li>Grace à l'attribut <b>keyboardOptions</b>, le clavier a une touche de validation &#x2714;</li>
+                    <li>Grace à l'action <b>onDone</b> de l 'attribut <b>keyboardActions</b>, quand on clique sur la
+                        touche de validation:
+                        <ol>
+                            <li>Le contenu de TextFiels2 est affecté à la variable <i>text2</i>, donc il sera affiché
+                                dans le champ d'affichage Text2</li>
+                            <li>On affecte une chaîne vide à la variable <i>tf2variable</i> pour effacer le contenu de
+                                TextField2. C'est plus pratique pour se préparer à une nouvelle saisie</li>
+                        </ol>
+                    </li>
+                </ul>
+
+                <img src="IMAGES/TextField2.jfif" class="BlocCenter w200"><br>
+                <h3 id="TFLOOK">Apparence</h3>
+                <p>L'apparence d'un TextField peut être ajustée à l'aide de ces attributs et ses modifiers. </p>
+                <ul>
+                    <li>L'attribut <em>textStyle</em> permet de définir divers aspects du texte comme la taille de la
+                        police, la famille de polices, la couleur, l'espacement des lettres, etc.
+                        <pre><code>textStyle = TextStyle(
+            color = Color.Blue,              // Couleur du texte
+            fontSize = 20.sp,                // Taille de la police
+            fontWeight = FontWeight.Bold,    // Poids de la police (ex: gras)
+            lineHeight = 24.sp,
+            letterSpacing = 0.5.sp
+        ),</code></pre>
+                    </li>
+                    <li>L'attribut <em>colors</em> permet également de personnaliser les couleurs de différents éléments
+                        du TextField, tels que le texte, le curseur, les bordures, etc.
+                        <pre><code>colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color(0xFFD6E4DE),
+                focusedContainerColor = Color.Cyan,
+                cursorColor = Color.Red,           // Couleur du curseur
+                focusedIndicatorColor = Color.Red // Couleur du trait bas lorsque le TextField est focalisé
+            ),</code></pre>
+                    </li>
+                    <li>L'attribut <em>label</em> est utilisé pour afficher un texte indicatif au-dessus du TextField,
+                        pour décrire le type de contenu que l'utilisateur doit saisir. Le label flotte
+                        au-dessus du champ de texte lorsque celui-ci est en focus ou que l'utilisateur a déjà entré du
+                        texte, et il revient à l'intérieur du champ lorsqu'il est vide et non focalisé</li>
+                    <li>L'attribut <em>placeholder</em> est utilisé pour afficher un texte indicatif à l'intérieur du
+                        TextField lorsque celui-ci est vide. Il disparaît dès que l'utilisateur commence à saisir du
+                        texte</li>
+                    <li>l'attribut <em>shape</em> permet de personnaliser la forme du champ de texte en utilisant des
+                        formes
+                        prédéfinies comme RoundedCornerShape, CutCornerShape, ou encore des formes personnalisées.
+                        <ul>
+                            <li><b>shape = RoundedCornerShape(...)</b> : Permet de créer des coins arrondis avec un
+                                rayon spécifique</li>
+                            <li><b>shape = CutCornerShape(...)</b> : Crée une forme avec des coins coupés (pour un effet
+                                angulaire)</li>
+                        </ul>
+                    </li>
+                    <pre><code>TextField(
+    value = tf1variable,
+    onValueChange = { tf1variable = it },
+    label = { Text("Nom") },
+    placeholder = { Text(text = "Entrez votre nom")},
+    textStyle = TextStyle(
+        color = Color.Blue,              // Couleur du texte
+        fontSize = 20.sp,                // Taille de la police
+        fontWeight = FontWeight.Bold,    // Poids de la police (ex: gras)
+        letterSpacing = 2.sp,       // espacement des caractères
+    ),
+    colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = Color(0xFFD6E4DE), // couleur de fond non-focussé
+        focusedContainerColor = Color.Cyan,     // couleur de fond quand focussé
+        cursorColor = Color.Red,           // Couleur du curseur
+        focusedIndicatorColor = Color.Red // Couleur du trait bas lorsque le TextField est focalisé
+    ),
+    shape = RoundedCornerShape(topStart = 15.dp, topEnd=15.dp),  // Coins arrondis de 12.dp
+    modifier = Modifier.size(300.dp, 70.dp)   // Largeur et hauteur
+                    )</code></pre>
+                    <p>La figure ci-dessous montre l'apparence du TextField avant d'avoir le focus, après avoir le focus
+                        et
+                        après avoir entré un texte</p>
+                    <img src="IMAGES/TextField.jpg" class="BlocCenter w200"><br>
+                </ul>
+                <h3 id="TFKEYB">Clavier</h3>
+                <p>Le composable TextField gère plusieurs aspects liés au clavier virtuel, permettant de
+                    personnaliser l'apparence du clavier et les actions qu'il déclenche</p>
+                <ol>
+                    <li>L'attribut <em>keyboardOptions</em></li>
+                    Ce paramètre permet de spécifier quelques options comme:
+                    <ul>
+                        <li>
+                            <b>KeyboardType :</b> Permet de choisir le type de clavier à afficher en fonction du
+                            type de contenu attendu dans le TextField. Par exemple, vous pouvez indiquer si le champ de
+                            texte
+                            doit accepter uniquement des chiffres, du texte multiligne, des mots de passe, etc
+                            <ul>
+                                <li><i>KeyboardType.Text :</i> Clavier standard pour la saisie de texte.</li>
+                                <li><i>KeyboardType.Number :</i> Clavier numérique, idéal pour saisir des nombres.</li>
+                                <li><i>KeyboardType.Decimal :</i> Clavier numérique, similaire à <i>Number</i>.</li>
+                                <li><i>KeyboardType.Phone :</i> Clavier adapté à la saisie de numéros de téléphone.</li>
+                                <li><i>KeyboardType.Email :</i> Clavier optimisé pour la saisie d'adresses e-mail
+                                    (comprend un
+                                    accès rapide à "@" et ".").</li>
+                                <li><i>KeyboardType.Password :</i> Clavier pour la saisie de mots de passe, souvent
+                                    utilisé en
+                                    conjonction avec visualTransformation.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>imeAction :</b> Permet de choisir le type du bouton de validation (souvent en bas à
+                            droite du clavier) comme "Done", "Go", "Next", "Search", etc.
+                            <ul>
+                                <li><i>ImeAction.Done :</i> Le clavier utilise la touche de validation &#x2714;.
+                                    On utilise cette option pour indiquer que l'utilisateur a terminé l'édition. </li>
+                                <li><i>ImeAction.Next :</i> Le clavier utilise la touche de validation <b>&rarrb;</b>.
+                                    Cette
+                                    option déplace le focus vers le champ suivant. Utilisé pour la
+                                    navigation entre plusieurs TextField.</li>
+                                <li><i>ImeAction.Previous :</i> Le clavier utilise la touche de validation
+                                    <b>&larrb;</b>.
+                                    Cette option déplace le focus vers le champ précédent. Utilisé pour
+                                    la navigation entre plusieurs TextField.
+                                </li>
+                                <li><i>ImeAction.Go :</i> Le clavier utilise la touche de validation <b>&rarr;</b>.
+                                    Cette
+                                    option indique que l'utilisateur est prêt à "aller" à l'action principale associée
+                                    au champ de texte. Souvent utilisé pour déclencher une action
+                                    immédiate comme une recherche ou une connexion</li>
+                                <li><i>ImeAction.Search : </i> Le clavier utilise la touche de validation &#x1F50D;
+                                    Cette option indique une action de recherche. Habituellement utilisé
+                                    dans des champs de texte où l'utilisateur entre une requête de recherche</li>
+                                <li><i>ImeAction.Send :</i> Le clavier utilise la touche de validation &#10148; Cette
+                                    option est uUtilisés pour envoyer un message ou un e-mail. </li>
+                            </ul>
+
+                        </li>
+                        <li>
+                            <b>capitalization :</b> Première lettre en majuscule
+                            <ul>
+                                <li><i>KeyboardCapitalization.Words :</i> La premiere lettre de chaque mot en majuscule
+                                </li>
+                                <li><i>KeyboardCapitalization.Sentences :</i> La premiere lettre de la saisie en
+                                    majuscule</li>
+                                <pre><code>keyboardOptions = KeyboardOptions( capitalization = KeyboardCapitalization.Sentences)</code></pre>
+                            </ul>
+
+                        </li>
+                    </ul>
+                    <li>L'attribut <em>keyboardActions</em></li>
+                    Ce paramètre permet de définir des actions spécifiques à effectuer lorsque
+                    l'utilisateur interagit avec les boutons du clavier virtuel, comme "Done", "Next", "Search", etc.
+                    <ul>
+                        <li><i>onDone = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton "Done" du
+                            clavier.</li>
+                        <li><i>onGo = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton "Go" du
+                            clavier.</li>
+                        <li><i>onNext = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton "Next" du
+                            clavier.</li>
+                        <li><i>onPrevious = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton
+                            "Previous" du clavier.</li>
+                        <li><i>onSearch = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton
+                            "Search" du clavier.</li>
+                        <li><i>onSend = {} :</i> Action à effectuer lorsque l'utilisateur appuie sur le bouton "Send" du
+                            clavier.</li>
+                    </ul>
+                    <li><em>Fermer le clavier</em></li>
+                    <p>Quand on termine une saisie en cliquant sur la touche de validation, le clavier reste ouvert. Si
+                        on désire le fermer, une façon de le faire consiste à retirer le focus au TextField.</p>
+                    <ol>
+                        <li>Déclarer un FocusManager. Par exemple :
+                            <pre><code>val focusManager1= LocalFocusManager.current</code></pre>
+                        </li>
+                        <li>Ajouter l'instruction suivante à l'option <i>onDone</i> de l'attribut <i>keyboardActions</i>
+                            <pre><code>focusManager1.clearFocus()  // pour fermer le clavier</code></pre>
+                        </li>
+                    </ol>
+                </ol><br>
+                <h3 id="FOCUS">Donner/Retirer le focus</h3>
+                <ol>
+                    <li>Déclarer un Focusrequester et un FocusManager. Par exemple :
+                        <pre><code>val focusRecuaster1 = remember { FocusRequester() }
+val focusManager1= LocalFocusManager.current</code></pre>
+                    </li>
+                    <li>Ajouter le modifier focusRequester au TextField
+                        <pre><code>Modifier.focusRequester(focusRecuaster1)</code></pre>
+                    </li>
+                    <li>Utiliser les instructions suivantes dans un bloc de type <i>onDone{ }</i>, <i>onClick{ }</i>,
+                        <i>.clickable{} </i>, etc
+                        <pre><code>focusManager1.clearFocus()  // pour retirer le focus
+focusRecuaster1.requestFocus()    //pour donner le focus
+</code></pre><br>
+                        On peut aussi utiliser un <b>LaunchedEffect</b> pour exécuter ces instructions d'une façon
+                        asynchrone sans passer par un cliquable. Par exemple pour donner le focus à un composable au
+                        moment de l'exécution de l'application
+                        <pre><code>LaunchedEffect(focusRecuaster1) {
+        focusRecuaster1.requestFocus()   // pour donner le focus
+}
+
+LaunchedEffect(focusManager1) {
+        focusManager1.clearFocus()   // pour retirer le focus
+}
+</code></pre>
+                    </li>
+                </ol><br>
+
+
+                <h3 id="ISFOCUS">Détecter si TextField a le focus</h3>
+                <ol>
+                    <li>Déclarer une variable booléenne de type MutableState. Par exemple :
+                        <pre><code>var isTFfocused by remember { mutableStateOf(false) }</code></pre>
+                    </li>
+                    <li>Ajouter ce modifier au TextField
+                        <pre><code>Modifier.onFocusChanged {isTFfocused = it.isFocused }</code></pre>
+                    </li>
+                    <li>Maintenant vous pouvez utiliser la variable dans votre code. Elle aura la valeur true ou false
+                        selon si le TextField est focussé ou non</li>
+                </ol><br>
+
+                <h3 id="TFHEITH">Problème de la taille verticale</h3>
+                <p>Comme on peut le voir sur la figure ci-dessous, Le TextField (jaune) est un container qui contient un
+                    objet Text() (vert). Les marges entre les deux sont fixées par défaut et on ne peut pas les
+                    modifier. Quand
+                    on diminue la taille verticale du TextField(.weight ou .height), les marges sont conservées et c'est
+                    la
+                    taille du Text() qui diminue d'où le 'clipage' du texte. Si on veut agir sur ces marges, il faut
+                    utiliser <i>BasicTextField()</i></p>
+                <img src="IMAGES/TF_heigth.jpg" class="BlocCenter"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="OTEXTFIELD">OutlinedTextField()</h2>
+                <p><b>OutlinedTextField</b> est le même composable que <b>TextField</b> avec quelques différence
+                    visuelles. OutlinedTextField se distingue par:</p>
+                <ul>
+                    <li>Une bordure visible qui entoure le champ de texte avec les 4 coins arrondis</li>
+                    <li>C'est la bordure qui joue le rôle d'indicateur de focus, il n'y a pas de trait en bas du
+                        composable</li>
+                    <li>Le label s'affiche par dessus la bordure, ce qui lui donne une allure plutôt sympa</li><br>
+                    <pre><code>var tf2variable by remember { mutableStateOf("") }        
+        OutlinedTextField(
+            value = tf2variable,
+            label = { Text("Prénom") },
+            placeholder = { Text(text = "Taper votre prénom")},
+            onValueChange ={textsaisi ->
+                tf2variable = textsaisi },
+            textStyle = TextStyle(fontSize = 20.sp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+            shape = RoundedCornerShape(size = 10.dp),
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color(0xFFD6E4DE),
+                focusedContainerColor = Color(0xFFE1F5F3),
+                cursorColor = Color.Blue,           // Couleur du curseur
+                focusedIndicatorColor = Color.Red // Couleur de bordure lorsque le TextField est focalisé
+            ),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done), // bouton OK
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    txt2 = tf2variable
+                    tf2variable = ""
+                    focusManager1.clearFocus()  // pour fermer le clavier
+                }
+            ),
+        )
+</code></pre><br>
+                    <img src="IMAGES/OTextField.jpg" class="BlocCenter">
+                </ul> <br>
+                <!-- ################################################################################################ -->
+                <h2 id="CHECKBOX">Checkbox()</h2>
+                <p>Le composable Checkbox fournit une case à cocher que l'utilisateur peut cocher ou décocher. Il est
+                    associé à une variable booléenne qui détermine son état, ainsi qu'une fonction
+                    lambda qui gère les modifications de cet état. Le composable ne propose pas un champ pour afficher
+                    un label à coté du Checkbox, il faut utiliser une <i>Row()</i> et y placer le <i>Checkbox()</i> et un <i>Text()</i></p>
+                <br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Checkbox<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.checkbox
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    var cb1state by remember { mutableStateOf(false) }
+    var cb2state by remember { mutableStateOf(false) }
+    var cb3state by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = cb1state,
+                onCheckedChange = {
+                    Toast.makeText(context, "Condition 1 est ${if (it) "Acceptée" else "refusée"}", Toast.LENGTH_SHORT).show()
+                    cb1state = it }
+            )
+            Text("Accepter condition 1 ")
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                checked = cb2state,
+                onCheckedChange = { newstate ->
+                    Toast.makeText(context, "Condition 2 est ${if (newstate) "Acceptée" else "refusée"}", Toast.LENGTH_SHORT).show()
+                    cb2state = newstate }
+            )
+            Text("Accepter condition 2 ")
+        }
+        Row( verticalAlignment = Alignment.CenterVertically){
+            Checkbox(
+                checked = cb3state,
+                onCheckedChange = { newstate ->
+                    Toast.makeText(context, "Condition 3 est ${if (newstate) "Acceptée" else "refusée"}", Toast.LENGTH_SHORT).show()
+                    cb3state = newstate }
+            )
+            Text("Accepter condition 3 ")
+        }
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+<img src="IMAGES/Checkbox.jpg" class="BlocCenter w200"><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

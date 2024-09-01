@@ -1,0 +1,437 @@
+
+/* Δ ≈ */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    overflow-y: hidden;
+}
+body a{
+    text-decoration: none;
+    color: black;
+}
+body a:hover {
+    background-color: #9ac4c4;
+}
+body ul, ol{
+    margin-left: 2rem;
+}
+body li {
+    margin-top: 1ch;
+    margin-right: 1ch;
+    text-align: justify;
+} 
+
+.li_niv1 {
+    margin-top: 1rem;
+}
+.sanspuce {
+    list-style-type: none;
+}
+
+header{
+    width: 100%;
+}
+header h1 {
+    background-color: #55a3a3;
+    font-weight: bold;
+    font-style: italic;
+    font-size: calc(1rem + 1.5vw);
+    color: rgb(113, 26, 10);
+    margin: auto; 
+}
+
+img{
+    max-width: 100%;
+}
+
+strong {
+    font-style: italic;
+}
+figcaption {
+    text-align: center;
+  }
+
+.PosterPageContainer {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
+.PostersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 9;
+    padding: 10px;
+    background-color: rgb(132, 152, 172);
+    overflow-y: auto;
+}
+
+
+.IndexHeader{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: #55a3a3;
+}
+.ArduinoHeader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    background-color: #55a3a3;
+}
+
+.PostersContainer figure {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    border: medium solid #813333;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.FigImgContainer {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FigImgContainer img {
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.PostersContainer figcaption {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    color:hwb(27 4% 58%);
+  }
+
+.TwoPanPageContainer {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    overflow-y: hidden;
+}
+
+.LeftPanel {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.RightPanel {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.LeftPanelHeader {
+    height: 7%;
+    width: 100%;
+    background-color: rgb(47, 132, 104);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.RightPanelHeader {
+    height: 7%;
+    width: 100%;
+    background-color: darkcyan;
+    display: flex;   
+    align-items: center;
+    justify-content: space-around;
+}
+
+.LeftPanelMenu {
+    height: 100%;
+    width: 100%;
+    padding-left: 2ch;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    background-color: #e0ebeb;
+    overflow-y: auto;
+}
+.RightPanelContent {
+    height: 93%;
+    width: 100%;
+    background-color: #f0f5f5;
+    overflow-y: auto;
+    padding-right: 1ch;
+    padding-left: 1ch;
+    line-height: 1.5;
+}
+
+.RightPanelContent a {
+    font-style: italic;
+    font-weight: bold;
+    color: blue;
+}
+
+.LeftPanelMenu a {
+    display: block;   
+}
+.ul2 {
+    margin-left: 1rem;
+}
+.LeftPanelMenu h2 {
+    margin-left: -0.5ch;
+    margin-top: 1ch;
+    color: #074461;
+}
+
+.LeftPanelMenu h3 {
+    font-size: 0.9rem;
+    margin-top: 1ch;
+    color:#1a5b79;
+}
+.LeftPanelMenu h4 {
+    margin-top: 1ch;
+    margin-left: 2ch;
+    font-size: 0.9rem;
+    color: #074461;
+}
+
+.RightPanelHeader h1 {
+    font-style: italic;
+    font-size: calc(0.5rem + 1.5vw);
+    color: white;
+}
+
+.RightPanelContent h2 {
+    margin-left: -1ch;
+    margin-right: -0.5ch;
+    margin-top: 1rem;
+    padding: 8px ;
+    font-style: italic;
+    color: brown;
+    background-color:rgb(136, 189, 190);
+}
+.RightPanelContent h3 {
+    margin-top: 1ch;
+    padding: 8px 8px 0px 8px;
+    font-style: italic;
+    color: rgb(126, 28, 28);
+}
+
+.RightPanelContent p {
+    margin: 1ch 1rem;
+    text-align: justify;
+}
+
+.RightPanelContent em{
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-weight: bold;
+    color: tomato;
+}
+.Burger {
+    display: none;
+}
+.ForPC{
+    display: bloc;
+}
+.xicon {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+}
+.xicon:hover{
+    background-color: #86d8d8;
+}
+
+.Enhanced{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: brown;
+    font-style: italic;
+}
+.EnhancedPlus{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    color:brown;
+    font-style: italic;
+}
+
+.FitContent{
+    width: fit-content;
+}
+.Row{
+    display: flex; 
+    justify-content: space-around; 
+    align-items: baseline;
+}
+.Float_R{
+    float: right;
+    margin-left: 1rem;
+}
+
+.CursorPointer {
+    cursor: pointer;
+}
+
+.CodeAreaContainer {
+    display: flex;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    max-width: 95%;
+}
+.CodeAreaHeader {
+    display: flex;
+    border-radius:5px 5px 0 0;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(139, 139, 200);
+    align-items: center;
+    padding-left: 10px;
+}
+pre {
+    background-color: #2d2d2d;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0 0 5px 5px;
+    overflow: auto;
+    max-height: 400px;
+}
+.CodeArea {  
+    height: 400px;
+    width: 90%;
+    color: white;
+    background-color: black;  
+    padding-left: 1ch;  
+    font-family: monospace;  
+    font-style: italic;
+    font-size: medium;  
+    resize: none;
+    border-radius: 0 0 10px 10px;
+    overflow: auto;
+}
+
+code {
+    font-family: monospace;
+    font-size: 1em;
+}
+.code2 {
+    padding-left: 1ch;
+    font-family: monospace;
+    font-style: italic;
+    font-size: medium;  
+    color: white;
+    background-color: rgb(24, 23, 23);  
+}
+
+.CopyBtn {
+    margin-right: 20px;
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Bold{
+    font-weight: bold;
+}
+.BoldItal{
+    font-weight: bold;
+    font-style: italic;
+}
+.CodeLine{
+    font-family:  monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    color: blue;
+    font-style: italic;
+}
+
+.BlocCenter {
+    display: block;
+    margin: auto;
+}
+
+.InlineCenter{
+    text-align: center !important ; 
+}
+.w200 {
+    width: 200px;
+}
+.w300 {
+    width: 300px;
+}
+.w400 {
+    width: 400px;
+}
+
+.encadre {
+    border: 2px solid black; /* Changez la couleur et l'épaisseur de la bordure si nécessaire */
+    padding: 5px; /* Ajoutez de l'espace entre le texte et la bordure */
+    display: inline-block; /* Assurez-vous que le texte soit encadré de manière appropriée */
+    border-radius: 5px; /* Optionnel : arrondir les coins */
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .RightPanel {
+        width: 100%;
+    }
+
+    .Burger {
+        display: block;
+    }
+    .ForPC{
+        display: none;
+    }
+    .LeftPanel {
+        position: fixed;
+        top: 0%;
+        left: -100%;
+        width: 98%;
+        transition: 0.5s;       
+    }
+
+    .LeftPanel.visible{
+        left: 0;
+    }
+    .Float_R {
+        float: none;
+        display: block;
+        margin: auto;
+    }
+    
+    .Code { 
+        font-size: 10px;
+    }
+    .RightPanelContent h2 {
+        font-size: 1rem;
+    }
+    .CodeAreaHeader {
+        font-size: 1.2ch;
+    }
+}

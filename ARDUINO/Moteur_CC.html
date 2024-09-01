@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Matlab, Python, TKinter, DC Motor"
+        name="keywords">
+    <title>Moteur CC</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <a href="#PROTECT">
+                    <h3>Commande Marche/Arrêt</h3>
+                </a>
+                <a href="#PWM">
+                    <h3>Contrôle de vitesse</h3>
+                </a>
+                <a href="#HBRIDGE">
+                    <h3>Contrôler le sens de rotation</h3>
+                </a>
+                <a href="#L298">
+                    <h3>Le pont en H L298</h3>
+                </a>
+                <a href="#L298_1">
+                    <h4>Le circuit</h4>
+                </a>
+                <a href="#L298_2">
+                    <h4>Table de vérité</h4>
+                </a>
+                <a href="#L298_3">
+                    <h4>Contrôle de vitesse</h4>
+                </a>
+                <a href="#L298_4">
+                    <h4>Le Branchement</h4>
+                </a>
+                <a href="#L298_5">
+                    <h4>Le module</h4>
+                </a>
+                <a href="#L298_VMAX">
+                    <h3>Exemple 1: Vitesse fixe</h3>
+                </a>
+                <a href="#L298_PWM">
+                    <h3>Exemple 2: Vitesse variable</h3>
+                </a>
+                <a href="#L298_JOY">
+                    <h3>Exemple 3: Commande par Joystick</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>Moteur CC</h1>
+            </div>
+            <div class="RightPanelContent">
+                <h2 id="INTRO">Introduction</h2>
+                <ul>
+                    <li>Un moteur CC (Courant Continu) ou DC (Direct Currant) doit être alimenté avec une
+                        <em>alimentation continue</em>
+                        (Batterie)
+                    </li>
+                    <li>Le <em>sens de rotation</em> dépend de la <em>polarité de la batterie</em>. Si on inverse la
+                        polarité, le moteur tourne dans l'autre sens</li>
+                    <img class="BlocCenter" src="IMAGES/MoteurCC_SensRot.png" alt="" style="width: 500px;">
+                </ul>
+                <h2 id="PROTECT">Commande Marche/Arrêt</h2>
+                <p> Si on contrôle le moteur à l'aide d'un commutateur électronique comme un transistor bipolaire ou un
+                    transistor MOS, il faut garder à l'esprit que le moteur est une charge inductive. A chaque coupure
+                    du courant il génère une surtension qui peut atteindre des centaines de Volts et détruire le
+                    transistor. Pour protéger le transistor il faut <strong>absolument</strong> ajouter une <em>diode de
+                        récupération</em></p>
+                <img class="BlocCenter" src="IMAGES/MoteurCC_protection.png" alt="" style="width: 400px;"><br>
+                <!-- ===================================================================================================================                -->
+                <h2 id="PWM">Contrôle de vitesse</h2>
+                <p>La commande de vitesse d'un moteur à courant continu (DC) se fait principalement par la
+                    <em>modulation de la largeur d'impulsion</em> (PWM, pour Pulse Width Modulation). Au lieu
+                    d'alimenter le moteur d'une manière permanente, on l'alimente a travers un commutateur commandé par
+                    un signal PWM.
+                </p>
+                <img class="BlocCenter" src="IMAGES/MoteurCC_PWM.png" alt="" style="width: 400px;"><br>
+                <p> Le signal PWM est caractérisé par une
+                    période fixe T. En faisant varier la largeur de l'impulsion active H au sein de cette période, on
+                    modifie le rapport cyclique, c'est-à-dire le ratio H/T. Ce rapport cyclique détermine la proportion
+                    de temps durant laquelle la tension est appliquée au moteur, influençant ainsi la puissance moyenne
+                    fournie et, par conséquent, la vitesse du moteur. Lorsque H est augmenté, le rapport cyclique
+                    augmente, ce qui accroît la vitesse du moteur. À l'inverse, en réduisant H, on diminue la vitesse
+                </p><br>
+                <!-- ===================================================================================================================                -->
+                <h2 id="HBRIDGE">Contrôler le sens de rotation</h2>
+                <p>Pour contrôler le sens de rotation du moteur, on le commande à l'aide d'un pont en H.</p>
+                <p>Un pont en H est tout simplement un ensemble de 4 interrupteurs. Si on ferme A et D, le moteur est
+                    alimenté dans un sens. Si on ferme B et C, le moteur est alimenté dans l'autre sens</p>
+                <img class="BlocCenter" src="IMAGES/MoteurCC_Hbridge.png" alt="" style="width: 400px;"><br>
+                <img class="BlocCenter" src="IMAGES/Hbridge_table.png" alt="" style="width: 400px;"><br>
+                <br>
+                <br><br>
+                <!-- ===================================================================================================================                -->
+                <h2 id="L298">Le pont en H L298</h2>
+                <h3 id="L298_1">Le circuit:</h3>
+                <p>Le circuit L298 fabriqué par STMicroelectronics contient deux ponts en H ce qui permet de
+                    contrôler deux moteurs à courant continu ou un moteur pas à pas bipolaire.</p>
+                <img class="BlocCenter" src="IMAGES/L298_1.png" alt=""><br>
+                <img class="BlocCenter" src="IMAGES/L298_2.png" alt=""><br>
+                <h3 id="L298_2">Table de vérité:</h3>
+                <img class="BlocCenter" src="IMAGES/L298_M_table.png" style="width: 400px;"><br>
+                <h3 id="L298_3">Contrôle de vitesse:</h3>
+                <p>Conformément à la table de vérité, si on applique un '1' (5V permanent) sur l'entré ENA (ou ENB), le
+                    moteur tourne à sa vitesse nominale</p>
+                <p>Pour controler la vitesse, on applique un signal PWM sur l'entrée ENA (ou ENB), La vitesse de
+                    rotation sera proportionnelle au rapport cyclique du signal PWM. La fréquence du signal PWM ne
+                    devrait pas être trop élevée, une valeur entre 60Hz et 500Hz me parait optimale. Voir <a
+                        href="digital_IO.html#PWM">Ce paragraphe</a> pour savoir comment modifier la
+                    fréquence
+                </p>
+                <h3 id="L298_4">Branchement:</h3>
+                <p>Le branchement du L298 avec un seul Moteur est indiqué ci-dessous :</p>
+                <img class="BlocCenter" src="IMAGES/L298_4.png" style="width: 500px;"><br>
+                <p>On y trouve :</p>
+                <ul>
+                    <li>Une alimentation 5V qui alimente les circuits logiques du L298</li>
+                    <li>Une alimentation allant de 4,5V à 46V pour alimenter le moteur. Il faut toujours prévoir 2Volts
+                        de plus que la tension nominale du moteur à cause de la chute de tension dans les transistors.
+                        Par exemple, si on a un moteur 12V, il faut prendre une alimentation de 14Volts</li>
+                    <li>Quatres diiodes de récupération</li>
+                    <li>Des condensateurs de filtrage</li>
+                </ul><br>
+                <h3 id="L298_5">Le Module:</h3>
+                <p>Le <em>module</em> L298 disponible dans le commerce a l'avantage d'être tout équipé et prêt à
+                    l'emploi. Il intègre :</p>
+                <img class="BlocCenter" src="IMAGES/L298_M1.jpg" style="width: 500px;">
+                <ul>
+                    <li>Un circuit L298 monté sur radiateur,</li>
+                    <li>Des bornier à vis pour faciliter le branchement des moteurs et des alimentations,</li>
+                    <li>8 diodes de protection, 4 pour chaque pont,</li>
+                    <li>Un jumper qui permet d'alimenter un régulateur qui fabrique l'alimentation 5V à partir de
+                        l'alimentation du moteur,</li>
+                    <li>Les entrée de contrôle (IN1, In2, ENA) du pont A et (IN3, In4, ENB) du pont B</li>
+                    <li>Deux Jumpers qui permettent si on le désire de relier les broches ENA et ENB à 5V</li>
+                    <li>Des condensateurs et une LED</li>
+                </ul><br>
+                <!-- ===================================================================================================================                -->
+                <h2 id="L298_VMAX">Exemple 1: Vitesse fixe </h2>
+                <p>Dans cet exemple, on a un seul moteur branché sur le pont A</p>
+                <ul>
+                    <li>On contrôle le sens de rotation à l'aides des broches IN1 et IN2</li>
+                    <li>La broche ENA est validée en permanence à l'aide de son jumper (ou reliée à 5V), le moteur
+                        tournera à sa vitesse
+                        max</li>
+                    <li>La source d'alimentation du moteur doit tenir compte de la chute de tension voisine de 2Volts
+                        perdue dans le pont</li>
+                    <li>Le jumper 5V est en place, l'alim 5V est produite localement à partie de l'alimentation du
+                        moteur</li>
+                    <li>On envoie des commandes à partir du moniteur série:
+                        <ul>
+                            <li>F ou f ==> Rotation avant (Forward)</li>
+                            <li>B ou b ==> Rotation Arrière (Backward)</li>
+                            <li>S ou s ==> Arrêt (Stop)</li>
+                        </ul>
+                    </li>
+                </ul><br>
+                <img class="BlocCenter" src="IMAGES/L298_max_speed.png" style="width: 400px;"><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Moteur CC, Avant/Arrière, vitesse fixe<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+                        <code>
+#define IN1 9
+#define IN2 8
+
+void setup() {
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  digitalWrite(IN1,LOW);
+  digitalWrite(IN2, LOW);
+  Serial.begin(9600);
+  Serial.println(F("F ou f  -->  Forward (Avant)"));
+  Serial.println(F("B ou b -->  Backward (Arrière)"));
+  Serial.println(F("S ou s -->  Stop (Arrêt)"));
+  Serial.println("Le moniteur Série ne doit pas envoyer de Fin de Ligne");
+}
+
+void loop() {
+  if (Serial.available()) {
+    char c = toupper(Serial.read());
+    Serial.println(" ---> " + String(c));
+    if (c == 'F') {
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW); // gauche
+    } else if (c == 'B') {
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+    } else if (c == 'S') {
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, LOW);
+    } else {
+      Serial.println(String(c)+" ---> Bad Command ");
+    }
+  }
+}
+</code>
+</pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- =================================================================================================================== -->
+                <h2 id="L298_PWM">Exemple 2: Vitesse Variable </h2>
+                <p>Dans cet exemple, on a un seul moteur branché sur le pont A</p>
+                <ul>
+                    <li>On contrôle le sens de rotation à l'aides des broches IN1 et IN2</li>
+                    <li>On contrôle la vitesse en appliquant un signal PWM sur la broche ENA. (enlever le jumper)</li>
+                    <li>La source d'alimentation du moteur doit tenir compte de la chute de tension voisine de 2Volts
+                        perdue dans le pont</li>
+                    <li>Le jumper 5V est en place, l'alim 5V est produite localement à partie de l'alimentation du
+                        moteur</li>
+                    <li>On envoie des commandes à partir du moniteur série. La commande est constituée d'un caractère
+                        majuscule ou minuscule (F, B, ou S)
+                        suivi d'un nombre N. Le caractère définit le sens de rotation, le nombre N (de 0 à 255)
+                        représente le
+                        paramètre de la fonction <strong>analogWrite()</strong> qui défini le rapport cyclique N/255 du
+                        signal PWM. Par exemple :
+                        <ul>
+                            <li>f 255 ==> Rotation avant, vitesse max</li>
+                            <li>F 50 ==> Rotation avant, vitesse faible</li>
+                            <li>B 127 ==> Rotation Arrière, vitesse médiane</li>
+                            <li>F 0 ou B 0 ==> Roue Libre</li>
+                            <li>S ou s ==> Arrêt (Stop)</li>
+                        </ul>
+                    </li>
+                    <li>On va utiliser la fonction <strong>Serial.parseInt()</strong> pour lire le paramètre N. Cette
+                        fonction laisse le retour à ligne de la commande '\r' '\n' dans le buffer de réception, d'où la
+                        nécessité de vider le buffer à chaque fois</li>
+                </ul><br>
+                <img class="BlocCenter" src="IMAGES/L298_PWM.png" style="width: 400px;"><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Moteur CC, Avant/Arrière, vitesse Variable<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+                        <code>
+#define ENA 10
+#define IN1 9
+#define IN2 8
+
+void setup() {
+  TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  analogWrite(ENA,0);
+  Serial.begin(9600);
+  Serial.setTimeout(5000);
+  Serial.println(F("F N -->  Forward (Avant), vitesse ~ N/255"));
+  Serial.println(F("B N -->  Backward (Arrière), vitesse ~ N/255"));
+  Serial.println(F("S  -->  Stop (Arrêt)"));
+  Serial.println("Le moniteur Série doit envoyer un Fin de Ligne");
+}
+
+void loop() {
+  if (Serial.available()) {
+    char c = toupper(Serial.read());
+    if(c == 'S'){
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, LOW);
+      return;
+    }
+    uint8_t N = Serial.parseInt();
+    clearInputBuffer();
+    Serial.println(String(c)+" --> "+String(N));
+    if (c == 'F') {
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW); // gauche
+      analogWrite(ENA,N);
+    } else if (c == 'B') {
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      analogWrite(ENA,N);
+    } else {
+      Serial.println(String(c)+" ---> Bad Command ");
+    }
+  }
+}
+
+void clearInputBuffer() {
+  do {
+    delay(2);
+    Serial.read();
+  } while (Serial.available());
+}
+                        </code>
+</pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- =================================================================================================================== -->
+                <h2 id="L298_JOY">Exemple 3: Commande par un Joystick </h2>
+                <img class="Float_R" src="IMAGES/Joystick.png" style="max-width: 200px;">
+                <p>Dans cet exemple, on va controller un moteur CC à l'aide d'un Joystick</p>
+                <ul>
+                    <li>Le joystick est constitué de deux potentiomètres Px et Py,</li>
+                    <li>Quand on bouge le joystick dans l'axe X, il fait tourner le potentiomètre Px</li>
+                    <li>Quand on bouge le joystick dans l'axe Y, il fait tourner le potentiomètre Py</li>
+                    <li>Si on branche le potentiomètre entre la masse et 5Volts, les deux
+                        tensions de sorties VRX et VRY (points milieux) vont varier entre 0 Volts et 5 Volts</li>
+                    <li>Si on applique une sortie (VRX ou VRY) à une entrée analogique du Arduino et on lit sa valeur
+                        avec la fonction <em> analogRead()</em> on obtient une valeurs comprise entre 0 et 1023</li>
+                    <img class="Float_R" src="IMAGES/Joystick_Rspns.png" style="max-width: 300px;">
+                    <li>Les premiers tests montrent que le joystick n'est pas parfait:</li>
+                    <ul>
+                        <li>Il n'est pas centré, à la position médiane, il ne délivre pas 2.5V,</li>
+                        <li>Les limites 0v d'un coté et 5V de l'autre sont atteintes bien avant que la position du
+                            joystick ne soit arrivée au maximum,</li>
+                        <li>Il semble que la tension obtenue sur la sortie du joystick (VRX ou VRY) ne varie pas
+                            linéairement avec les
+                            déplacements du potentiomètre: Un déplacement ΔP du joystick ne produit pas toujours la même
+                            variation de tension ΔV, </li>
+                        <li>Il faudra donc adapter les programmes à ces considérations.</li>
+                    </ul>
+                    <li>Pour notre exemple, on va faire simple. On va partager l'excursion (de chaque coté en trois
+                        plages):
+                        <ul>
+                            <li>Quand le joystick est au repos (position médiane), la valeur lue sur Arduino est voisine
+                                de 500. On va réserver une plage autour de cette valeur et l'affecter à l'action:
+                                <em>Arrêt</em>
+                            </li>
+                            <li>Quand on pousse un peu le Joystick, on va arriver dans une nouvelle plage que nous
+                                allons affecter à une rotation <em>Vitesse Faible</em></li>
+                            <li>Quand on pousse le Joystick, on va arriver dans une nouvelle plage que nous
+                                allons affecter à une rotation <em>Vitesse Forte </em></li>
+                            <li>On peut par exemple essayer les plages suivantes et les adapter ensuite après
+                                utilisation</li>
+                            <pre>
+[900→1023] ==&gt;  Rotation avant, Vitesse Forte
+[600→900]  ==&gt;  Rotation avant, Vitesse Faible
+[400→600]  ==&gt;  Arrêt
+[100→400]  ==&gt;  Rotation arrière, Vitesse Faible
+[0 → 100]  ==&gt;  Rotation arrière, Vitesse Forte
+                            </pre>
+                        </ul>
+                    </li>
+                </ul><br>
+                <img class="BlocCenter" src="IMAGES/Joystick_Plages_CC.png"><br>
+                <img class="BlocCenter" src="IMAGES/Mot_CC_L298_Joy_Schematic.png"><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+    <code>
+/*
+  0            100                400             600                900          1023
+  |Ariere fort|---arrière faible---|-----Arrêt-----|---Avant faible---|-Avant fort-|
+
+  Moteur branché sur pont A du L298
+  Joystick sur A0
+*/
+#define ENA 10
+#define IN1 9
+#define IN2 8
+
+#define PWML 100 // vitesse faible 
+#define PWMH 255 // vitesse forte
+#define N1  100  // modifier les paliers si nécessaire
+#define N2  400
+#define N3  600
+#define N4  900
+
+
+void setup() {
+  TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+}
+
+void loop() {
+  delay(10);
+  int N = analogRead(A0);
+  if (N < N1) {
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    analogWrite(ENA, PWMH); // arrière Fort
+  } else if (N < N2) {
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
+    analogWrite(ENA, PWML); // arrière Faible
+  } else if (N < N3)analogWrite(ENA, 0); // Roue libre
+  else if (N < N4) {
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite(ENA, PWML);  // Avant faible
+  }
+  else {
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite(ENA, PWMH); // Avant fort
+  }
+}
+    </code>
+</pre>
+                </div><br><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- #################################################################################################################################### -->
+
+</body>
+
+</html>

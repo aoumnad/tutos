@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Intro Arduino</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction </h3>
+                </a>
+                <a href="#COTEARDUINO">
+                    <h3>Branchement coté Arduino</h3>
+                </a>
+                <a href="#PROGARDUINO">
+                    <h3>Programme coté Arduino</h3>
+                </a>
+                <a href="#AS">
+                    <h3>Android Studio</h3>
+                </a>
+                <a href="#DEBUG">
+                    <h3>Débogage sur smartphone</h3>
+                </a>
+                <a href="#ASSHC05">
+                    <h3>Associer le HC-05 avec le smartphone</h3>
+                </a>
+                <a href="#APPANDRO">
+                    <h3>l'Application Androïde</h3>
+                </a>
+                <a href="#MANIFEST">
+                    <h3>Le manifest de l'application</h3>
+                </a>
+                <a href="#">
+                    <h3></h3>
+                </a>
+                <a href="#">
+                    <h3></h3>
+                </a>
+
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>C'est quoi Arduino ?</h1>
+            </div>
+            <div class="RightPanelContent">
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>Dans ce petit tuto, nous allons apprendre à établir une liaison Bluetooth entre un
+                    Smartphone Android et et une carte de prototypage type Arduino à l'aide d'un module Bluetooth HC-05
+                    (Je pense
+                    que n'importe quel autre module Bluetooth peut faire l'affaire)</p>
+                <p>On va faire simple, du coté du smartphone, on aura le choix entre 3 commandes à envoyer vers
+                    l'Arduino sous forme de caractères: </p>
+                <ul>
+                    <li>'A' ==> Allumer la LED embarquée sur l'Arduino (pin 13)</li>
+                    <li>'B' ==> Éteindre la LED embarquée sur l'Arduino (pin 13)</li>
+                    <li>'C' ==> Mesurer la tension analogique délivrée par le LM35 et transmettre le résultat de
+                        conversion
+                        vers le smartphone.</li>
+                </ul>
+                <img src="IMAGES/Bluetooth.png" class="BlocCenter w400">
+                <h2 id="COTEARDUINO">Branchement coté Arduino</h2>
+                <p>J'ai choisi d'utiliser un Arduino nano, c'est plus petit et ça a les mêmes performances.
+                    Le branchement du module bluetooth ne pose pas de problème. Si les E/S (TXD, RXD) de votre module
+                    Bluetooth fonctionnent à 3.3V, il faut prévoir un petit diviseur de potentiel pour abaisser un peu
+                    le 5V délivré par la sortie TXD de l' Arduino. (J'ai essayé une liaison directe, ça marche, mais il
+                    y a un risque d'endommager le HC-05, c'est vous qui voyez, il vaut mieux ne pas tenter le diable).
+                    On va aussi brancher un capteur de température LM35 sur la broche A0 histoire d'avoir quelque chose
+                    d'intéressant à transmettre vers le smartphone.</p>
+                <img class="BlocCenter w400" src="IMAGES/Nano_HC05_LM35.PNG">
+
+
+
+
+
+                <h2 id="PROGARDUINO">Programme coté Arduino</h2>
+                <p>Le programme n'a rien de spécial. On va quand même expliquer pourquoi on a utilisé l'instruction
+                    analogReference(INTERNAL): Le capteur LM35 délivre une tension proportionnelle à la température avec
+                    un rapport de 10mV par °C, si on travaille dans la plage [0 , 100]°C, la valeur max de la tension
+                    délivrée par le capteur est 100 * 10mV = 1V. Donc, il est conseillé de forcer l'ADC de l'Arduino à
+                    travailler dans une plage plus faible (que 5V) pour améliorer la précision. L'instruction
+                    analogReference(INTERNAL) fixe la référence de l'ADC à 1.1V = 1100mV. Une simple règle de 3 permet
+                    de déterminer la tension (V) du capteur à partir du résultat de convertisseur (NA). On divise
+                    ensuite par 10mV pour obtenir la température T en °C. <br>
+                    1100 mV --------> 1023 <br>
+                    V ----------------> NA <br>
+                    ==> V = (NA * 1100) / 1023 mV <br>
+                    ==> T = ( V / 10 mV ) = NA * 110 / 1023 °C <br><br>
+                    Remarque: Le programme Arduino se contente de faire la mesure et de transmettre le nombre NA vers le
+                    smartphone, c'est ce dernier qui se charge de calculer la température T et de l'afficher en °C</p>
+                <br>
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+/*
+ * Ce programme peut être utilisé avec une liaison série filaire
+   ou une interface Buetooth du genre HC-05
+ * Le hardware est constitué d'un Arduino avec une LED et
+   un capteur de température LM35
+ * On écoute le port série:
+    - Si on reçoit 'A', on allume la LED
+    - Si on reçoit 'B', on éteint la LED
+    - Si on reçoit 'C', on mesure le LM35 on on transmet le résultat de conversion LSB d'abord.
+ * On va utiliser l'instruction analogReference(INTERNAL) qui fixe la dynamique du
+   convertisseur à 1.1V, dans ce cas, si on note NA le nombre 10 bits issu de la
+   conversion, la température sera calculée ainsi: T = NA * 110.0 / 1023.0;
+*/
+#define LEDPIN 13
+#define LM35PIN A0
+char c=0;
+uint16_t NA;
+
+void setup() {
+  pinMode(LEDPIN, OUTPUT);
+  Serial.begin(9600);
+  analogReference(INTERNAL);
+}
+
+void loop() {
+  if (Serial.available() > 0){
+    c = Serial.read();
+    switch (c) {
+    case 'A':
+      digitalWrite(LEDPIN, HIGH);
+      break;
+    case 'B':
+      digitalWrite(LEDPIN,LOW);
+      break;
+    case 'C':
+      NA = analogRead(LM35PIN);
+      Serial.write((byte*) &NA , 2);  //ordre little Indian, LSB d'abord
+     break;
+    default:
+      break;
+    }
+  }
+}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <h2 id="AS">Android Studio</h2>
+                <p>Pour créer l'application qui sera installée sur le smartphone, les choses sont un peu plus
+                    compliquées.
+                    D'abord, il faut télécharger et installer Android Studio sur votre PC</p>
+                <p>Une fois installé, il faut commencer par faire quelques petits programmes simples pour se faire la
+                    main. Pour mettre en œuvre le Bluetooth dans une application Android il faut être familier avec la
+                    programmation sous Android: Activités, Boutons, TextView, ListView, Adaptateur de ListView, les
+                    Listners, les threads et les Handler de thread ...</p><br>
+                <h2 id="DEBUG">Débogage sur smartphone</h2>
+                <p>Pour mettre au point notre application Bluetooth, il faut faire les essais directement sur le
+                    smartphone. Les "virtual devices" d'Android Studio n'ont pas d'interface Bluetooth. Pour ce faire,
+                    il faut:</p>
+                <ul>
+                    <li>Brancher le smartphone sur un port USB du PC et installer son driver si ce n'est pas déjà fait,
+                    </li>
+                    <li>Configurer votre téléphone en mode développeur (à faire une seule fois). Sur le mien, La
+                        procédure est la
+                        suivante:<br>
+                        Paramètres → A propos du téléphone→ Cliquer 7 fois sur Numéro de build<br>
+                        Ce n'est pas une plaisanterie, il faut vraiment cliquer 7 fois</li>
+                    <li>Activer le mode débogage USB (sinon, Android Studio ne voie pas votre téléphone), sur le mien,
+                        la procédure
+                        est:<br>
+                        Paramètres → autres paramètres → Options développeurs → saisir le code de vérification (si
+                        demandé)&nbsp;&nbsp;&nbsp;&nbsp; → activer débogage USB</li>
+                    <li>Normalement, chaque fois que vous lancer <img alt="" src="IMAGES/AS_play.PNG">l'exécution
+                        du programme, AS vous montre une fenêtre qui vous permet de choisir entre votre téléphone ou
+                        l'Émulateur
+                        virtuel. Si cette fenêtre n'apparaît pas, c'est peut être que l'exécution est configurée sur
+                        l'un des deux.
+                        Pour vérifier et modifier si nécessaire: menu AS → Run → Edit configuration → Target → faire
+                        votre choix</li>
+                    <li>Des fois, si l'application est déjà sur le téléphone et on continue à travailler dessus, quand
+                        on lance
+                        l'exécution sur AS, le programme refuse de s'installer sur le téléphone. Ça m'est arrivé une
+                        fois (je ne sais
+                        pas pourquoi), J'ai désinstallé l'application, j'ai recommencé, ça a marché</li>
+                    <li>Une fois la première implantation réussie, après chaque modification du programme, il suffi de
+                        cliquer sur
+                        le bouton applay changer&nbsp;&nbsp; <img alt="" src="IMAGES/AS_refresh.PNG">
+                        (si actif) pour envoyer la nouvelle version sur le téléphone (c'est plus rapide)</li>
+                </ul>
+                <br>
+                <h2 id="ASSHC05">Associer le HC-05 avec le smartphone</h2>
+                <p>Utilisez l'icône Bluetooth&nbsp;<img alt="" src="IMAGES/BT_icon.PNG"> de votre smartphone pour
+                    afficher les équipements Bluetooth et associer le HC-05. La première fois, il demande un code pin,
+                    normalement
+                    c'est 1234. Cette opération est à faire une seule fois.</p>
+                <h2 id="APPANDRO">l'Application Androïde</h2>
+                <p>Une application androïde est constituée de plusieurs fichiers. Voici les plus importants</p>
+                <ul>
+                    <li>Un fichier xml de configuration de l'application -> manifeste</li>
+                    <li>Chaque activité (écran de l'application) est gérée par deux fichiers:
+                        <ul>
+                            <li>Un fichier xml qui décrit l'interface graphique (Layout)Un fichier java contenant le
+                                code des taches réalisées par l'activité</li>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Au démarrage d'Android Studio, les deux fichier layout et java (de l'activité principale) sont
+                    ouverts. On peut basculer de l'un à l'autre grâce à leurs onglets. Pour ouvrir un autre fichier, il
+                    faut utiliser l'explorateur de l'application (à gauche)</p>
+                <img class="BlocCenter" src="IMAGES/AS_files.PNG"><br>
+                <p>Démarrer Android Studio, et créer un nouveau projet</p><br>
+                <h2 id="MANIFEST">Le manifest de l'application</h2>
+                <p>Ouvrir le fichier AndroidManifest.xml et rajouter les modifications ci-dessous:</p>
+                <ul>
+                    <li>Ajouter les permissions</li>
+                    <li>Désactiver la rotation automatique</li>
+                </ul>
+                <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+            <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                onclick="CopyCode(this)">Copier</button> </div>
+                <pre>
+                    <code>
+                        &lt;?xml version="1.0" encoding="utf-8"?&gt;
+                        &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+                            package="com.example.bluetooth_tuto"&gt;
+                            <em>&lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;
+                            &lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /&gt;</em> 
+                        
+                            &lt;application
+                                android:allowBackup="true"
+                                android:icon="@mipmap/ic_launcher"
+                                android:label="@string/app_name"
+                                android:roundIcon="@mipmap/ic_launcher_round"
+                                android:supportsRtl="true"
+                                android:theme="@style/AppTheme"&gt;
+                                &lt;activity
+                                    android:name=".MainActivity" android:screenOrientation="portrait"&gt;
+                                    &lt;intent-filter&gt;
+                                        &lt;action android:name="android.intent.action.MAIN" /&gt;
+                        
+                                        &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+                                    &lt;/intent-filter&gt;
+                                &lt;/activity&gt;
+                            &lt;/application&gt;
+                        
+                        &lt;/manifest&gt;   
+                    </code>
+                </pre>
+          </div>
+          <!-- ============================= Fin Code ================================================ -->
+  
+
+
+
+
+                <h2 id=""></h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

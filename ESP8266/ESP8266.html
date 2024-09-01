@@ -1,0 +1,2897 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta
+        content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, DC Motor, WIFI, ESP8266, WEMOS D1"
+        name="keywords">
+    <title>WIFI with ESP8266</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <a href="#LEQUEL">
+                    <h3>Lequel choisir</h3>
+                </a>
+                <a href="#IDE">
+                    <h3>Environnement de programmation</h3>
+                </a>
+                <a href="#BRANCH">
+                    <h3>Branchement</h3>
+                </a>
+                <a href="#1TEST">
+                    <h3>Tester le module</h3>
+                </a>
+                <a href="#LM75">
+                    <h3>Mesure d'un capteur</h3>
+                </a>
+                <a href="#CONECT">
+                    <h3>Connexion WIFI avec IP Automatique</h3>
+                </a>
+                <a href="#CONECTFIX">
+                    <h3>Connexion WIFI avec IP Fixe</h3>
+                </a>
+                <a href="#CONECTMULTI">
+                    <h3>Connexion WIFI points d'accès multiples</h3>
+                </a>
+                <a href="#LED_1">
+                    <h3>Commander une LED par WIFI - 1</h3>
+                </a>
+                <a href="#LED_2">
+                    <h3>Commander une LED par WIFI - 2</h3>
+                </a>
+                <a href="#COMCOL">
+                    <h3>Commander et mesurer</h3>
+                    <a href="#COMCOL">
+                        <h4>La problématique</h4>
+                    </a>
+                    <a href="#BADSOL">
+                        <h4>Une solution pas terrible</h4>
+                    </a>
+                    <a href="#THESOL">
+                        <h4>La bonne solution</h4>
+                    </a>
+                </a>
+                <a href="#LECTPER">
+                    <h3>Acquisition périodique</h3>
+                </a>
+                <a href="#SPIFFS">
+                    <h3>File System dans la mémoire flash</h3>
+                </a>
+                <a href="#SPIFFSEXP">
+                    <h3>File System Explorer</h3>
+                </a>
+                <a href="#FSUP">
+                    <h3>L'outil LittleFS Data Upload</h3>
+                </a>
+                <a href="#HTMLFS">
+                    <h3>HTML dans le File System</h3>
+                </a>
+                <a href="#DLOG">
+                    <h3>Datalogger: l'objectif ultime</h3>
+                </a>
+                <a href="#DLOG3">
+                    <h3>Datalogger final</h3>
+                </a>
+                <a href="#OTA">
+                    <h3>OTA: téléversement Over The Air</h3>
+                </a>
+                <a href="#ESP-01">
+                    <h3>Le module ESP-01</h3>
+                </a><br>
+                <br>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png" alt="">
+                <h1>WIFI avec ESP8266</h1>
+            </div>
+            <div class="RightPanelContent">
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>Le ESP8266 est un microcontrôleur doté d'un module de communication WIFI. Il est fabriqué par le
+                    constructeur chinois ESPRESSIF. Il est commercialisé sous formes de différents modules plus au moins
+                    sophistiqués.</p>
+                <img src="IMAGES/esp8266_modules.jpg" class="BlocCenter">
+
+                <!-- ################################################################################################ -->
+                <h2 id="LEQUEL">Lequel choisir</h2>
+                <img src="IMAGES/D1mini_F.jpg" class="Float_R">
+                <p> Pour ma part, je préfère le <em>Wemos D1 mini</em>:</p>
+                <ul>
+                    <li>Processeur RISC 32 bits</li>
+                    <li>Horloge 80 à 160MHz</li>
+                    <li>4 Mo de mémoire programme</li>
+                    <li>9 E/S numériques</li>
+                    <li>1 Entrée analogique</li>
+                    <li>Bus I2C</li>
+                    <li>WIFI 802.11 b/g/n&nbsp; , 802.11 n support (2.4 GHz), up to 72.2 Mbps</li>
+                    <li>Connecteur USB pour le brancher facilement avec un PC</li>
+                    <li>le basculement entre mode Programmation et mode RUN se fait automatiquement pendant et après le
+                        téléversement</li>
+                    <li>Dispose d'un bouton RESET</li>
+                    <li>Bref, on achète et on commence à travailler tout de suite</li>
+                </ul>
+                <p> Beaucoup de gens parlent du module ESP-01. Je ne le conseille pas: </p>
+                <ul>
+                    <li>Il dispose de peu de mémoire (0.5Mo ou 1Mo),</li>
+                    <li>Il ne dispose que d'une seule E/S numérique. Par conséquent, on est obligé d'utiliser une carte
+                        de type Arduino pour interagir avec l'environnement étudié et réserver l'ESP-01 communication
+                        WIFI,</li>
+                    <li>Dans ce cas il faut communiquer avec lui à l'aide commandes AT. Le problème est que très souvent
+                        il ne réponde pas au commandes AT,</li>
+                    <li>Pour le flasher avec un firmware AT, il faut trouver le bon outil, il faut le mettre en mode
+                        programmation ce qui nécessite l'utilisation de deux boutons poussoir. Bref, c'est la galère,
+                    </li>
+                </ul>
+                <p> Je vais tout de même lui consacrer un <a href="#ESP-01">petit paragraphe</a> pour
+                    les gens qui
+                    veulent l'utiliser.</p>
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="IDE">Environnement de programmation</h2>
+                <p>On peut utiliser l'environnement de programmation ARDUINO-IDE mais il faut le
+                    configurer pour supporter les modules ESP8266,</p>
+                <ul>
+                    <li>Aller dans <strong>Fichier→préférences→URL de gestionnaire de cartes supplémentaires</strong> et
+                        ajouter le lien ci-dessous: <br>
+                        https://arduino.esp8266.com/stable/<br>package_esp8266com_index.json </li>
+                    <li>Aller dans <strong>Outils→Type de carte → gestionnaire de cartes</strong> faire une
+                        recherche <strong>esp8266 </strong>et installer le package intitulé: ...by ESP8266
+                        community V . . . </li>
+                    <li>Revenir à <strong>Outils→Type de carte</strong> et sélectionner votre module.
+                        Exemple: WeMos D1 R1 ou Generic ESP8266 module Pour le module ESP-01</li>
+                    <li>Une fois le module connectée au PC, Windows lui affecte un port COM. C'est ce port
+                        qu'il faut préciser dans <strong>Outils→ Port</strong> (Voir le gestionnaire de
+                        périphériques pour trouver le numéro du port COM)</li>
+                </ul>
+                <img class="BlocCenter" src="IMAGES/COMx.png">
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="BRANCH">Branchement</h2>
+                <p>Cela dépend des modules. Mais quelque soit le module il faut savoir qu'il supporte deux mode de
+                    fonctionnement:</p>
+                <ul>
+                    <li> Mode PROG: Dans ce mode le module attend qu'on lui téléverse un programme</li>
+                    <li>Mode RUN: Dans ce mode, le module exécute le programme qu'il contient</li>
+                </ul>
+                <p>Dans la suite de ce tutoriel, je vais utiliser le module <em>Wemos D1mini</em>. Ce module possède un
+                    port USB,
+                    il suffit de le brancher au PC avec un câble de chargeur téléphonique. Le basculement entre mode
+                    PROG et RUN est réalisé automatiquement par l'IDE-ARDUINO. Quand on téléverse un programme dans le
+                    module, l'IDE place le module en mode PROG et à la fin du téléversement, le module est replacé en
+                    mode RUN. Il arrive des fois que le programme ne démarre pas à la fin du téléversement, il suffit de
+                    cliquer sur le bouton RESET du module pour le placer en mode RUN.</p>
+                <p>Si vous utiliser un module qui n'as pas de connecteur USB comme l'ESP-01, voir <a href="#ESP-01">le
+                        paragraphe</a> réservé
+                    à ce module pour savoir comment le brancher. Pour basculer d'un mode à l'autre il faut utiliser un
+                    branchement avec un ou deux boutons poussoir.</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="1TEST">Tester le module</h2>
+                <p>Pour faire le premier essai, rien de mieux que de faire clignoter la LED présente sur le module. la
+                    LED est connectée sur la pate 2 du ESP8266 qui est elle même connectée à la broche D4 du module
+                    D1mini. Le mieux est d'utiliser la constante prédéfinie LED_BUILTIN qui s'adapte au module utilisé
+                </p>
+                <img src="IMAGES/D1miniPinout.jpg" class="BlocCenter">
+                <img src="IMAGES/Wemos_D1Pinout.png" class="BlocCenter">
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Clignoter LED<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+                            <code>
+void setup() {
+    pinMode(LED_BUILTIN, OUTPUT);
+}
+void loop() {
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(500);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(500);
+}
+                </code>
+                </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="LM75">Mesure d'un capteur</h2>
+                <p>Quand on utilise ce genre de module, c'est pour faire de la commande et de l'acquisition de données.
+                    Nous avons vu avec l'exemple de la LED que l'on peut commander une E/S numérique exactement comme
+                    sur un Arduino. Rappelons que le module Wemos D1 possède 9 E/S numérique (D0 ...D8) et une entrée
+                    analogique A0.</p>
+                <p>Dans ce paragraphe, on va réaliser une acquisition de données à partir d'un capteur doté d'une
+                    interface I2C. Pour des raisons de disponibilité, j'ai choisi le LM75. Le bus I2C est un standard et
+                    ce qui suit peut être adapté à n'importe quel autre capteur avec bus I2C. Pour avoir un peu plus
+                    d'information sur ce sujet, je vous conseille de jeter un coup d'œil <a target="_blank"
+                        href="../ARDUINO/bus_I2C.html">ICI</a></p>
+                <p>Le bus I2C adresse les circuits connectés sur le bus à l'aide d'une adresse 7 bits. Le LM75 possède 3
+                    entrée A2 A1 A0 qui permette à l'utilisateur de fixer l'adresse à laquelle le circuit va répondre,
+                    les 4 autres bits sont fixés en interne à 1001.</p>
+                <p>Pour ma part, j'ai soudé les 3 entrés A2 A1 A0 à la masse ce qui me donne l'adresse 1001000 = 0x48
+                </p>
+                <p class="InlineCenter"><img src="IMAGES/lm75_pinout.png">&nbsp;&nbsp;&nbsp;&nbsp;<img
+                        src="IMAGES/LM75_Adr.png"></p>
+                <img src="IMAGES/esp8266-lm75.png" class="BlocCenter">
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Mesurer et afficher sur le moniteur série<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+                            <code>
+                
+/* Programme esp_lm75.ino      A. Oumnad
+lecture de température sur un LM75A  (température sur 11 bits)
+les 3 bits d'adresse I2C du circuit sont fixé à 000 => adresse = 1001 000 = 0x48
+Le pointeur est fixé une seule fois dans le main()
+la fonction loop() lit le registre de température toutes les secondes sans préciser le pointeur à chaque fois
+*/
+#include &lt;Wire.h&gt;
+int8_t msb, lsb;
+float T ;
+#define DEV_ADR  0x48
+void setup()
+{
+Serial.begin(9600);  // initialiser l'interface série pour l'affichage
+Wire.begin();   // initialiser l'interface I2C
+Wire.beginTransmission(DEV_ADR);
+Wire.write(0);             // pointeur sur registre de température
+Wire.endTransmission();   
+}
+void loop()
+{
+Wire.requestFrom(DEV_ADR, 2); // demander 2 octets à partir de la position courante du pointeur
+msb = Wire.read();
+lsb = Wire.read();
+T = msb + (lsb>>5)*0.125;
+Serial.println("Température = " + String(T,3));
+delay(1000);
+}
+                </code>
+                </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="CONECT">Connexion WIFI avec IP Automatique</h2>
+                <img src="IMAGES/accespoint.jpg" class="BlocCenter">
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+ // Programme connect_IP_auto.ino            A. Oumnad
+//===========================================================================
+
+<em>#include &lt;ESP8266WiFi.h&gt;</em>
+
+// Modifier selon votre point d'accès WIFI
+<em>const char* mySSID = "votre SSID";
+const char* mypassword = "votre mot de passe";</em>
+
+void setup() {
+    Serial.begin(115200);  // pour le moniteur série
+    Serial.println("\r\n\r\n=====================================================");
+    // Connexion au point d'accès
+    Serial.print(" Connexion à ");
+    Serial.println(mySSID);
+
+    <em>WiFi.disconnect();
+    WiFi.mode(WIFI_STA);   
+    WiFi.begin(mySSID, mypassword);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }</em>
+
+    Serial.println();
+    Serial.print(" Connecté à  ");
+    Serial.println(mySSID);
+
+    // Afficher l'adresse IP affecté par le point d'accès
+    Serial.print(" L'adresse IP du ESP8266 est: ");
+    Serial.println(WiFi.localIP());
+    Serial.println("==========================================================");
+
+}
+
+void loop() {
+}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <!-- ################################################################################################ -->
+                <h2 id="CONECTFIX">Connexion WIFI avec IP Fixe</h2>
+                <p>On va se connecter à un point d'accès avec l'adresse IP fixe 192.168.0.50</p>
+                <p>Pour choisir l'adresse IP, il faut connaître l'adresse passerelle par défaut de votre point d'accès
+                    et la plage d'affectation automatique. Pour le savoir, assurez vous que votre PC est connecté à ce
+                    point d'accès et taper <em>ipconfig</em> dans la fenêtre de commande Windows</p>
+                <img src="IMAGES/local_IP.jpg" class="BlocCenter">
+                <p>Dans mon cas, le point d'accès a affecté l'adresse 192.168.0.104 à mon PC. On comprend que le DHCP
+                    commence l'affectation à partir de 192.168.0.100. J'ai décidé d'utiliser l'adresse fixe 192.168.0.50
+                    pour l'ESP8266. Comme ça je suis sur que le DHCP de mon point d'accès ne l'affecte à personne.</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Connexion avec adresse IP fixe<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+<code>
+    // Programme connect_IP_fixe.ino            A. Oumnad
+    //===========================================================================
+    
+    <em>#include &lt;ESP8266WiFi.h&gt;</em>
+    
+    // Modifier selon votre point d'accès WIFI
+    <em>const char* mySSID = "votre SSID";
+    const char* mypassword = "votre mot de passe";</em>
+    
+    //Paramètres IP de la connexion
+    <em>IPAddress IP(192, 168, 0, 50); //adresse fixe
+    IPAddress gateway(192, 168, 0, 1);   //passerelle par défaut
+    IPAddress subnet(255, 255, 255, 0);  //masque de sous réseau
+    IPAddress dns(8, 8, 8, 8);  //DNS</em>
+    
+    void setup(void){
+      //=========================== Initialiser le Moniteur Série ========================
+      Serial.begin(115200);
+      Serial.println("\r\n\r\n============================================================\r\n");
+    
+      //Connexion à un point d'accès
+      Serial.print(" Connexion à ");
+      Serial.println(mySSID);
+
+      <em>WiFi.disconnect();
+      WiFi.config(IP,gateway,subnet,dns);
+      WiFi.begin(mySSID, mypassword);
+      WiFi.mode(WIFI_STA); //mode station</em>
+     
+      // attendre l'établissement de la connexion
+      <em>while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+      }</em>
+
+      Serial.print("\r\nConnecté à ");
+      Serial.println(mySSID);
+      Serial.print("Adresse IP: ");
+      Serial.println(WiFi.localIP());
+    }
+    
+    void loop() {
+    }    
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- ################################################################################################ -->
+                <h2 id="CONECTMULTI">Connexion WIFI points d'accès multiples</h2>
+                <p>Nous allons définir plusieurs points d'accès. Le module se connecte à celui qui a le signal le plus
+                    fort</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Points d'accès multiples<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+<code>
+    //    Programme connect_AP_multi.ino     A. Oumnad
+    //=====================================================================
+    
+    <em>#include &lt;ESP8266WiFi.h&gt;      
+    #include &lt;ESP8266WiFiMulti.h&gt;
+    ESP8266WiFiMulti MywifiMulti;</em>     // instance de la classe ESP8266WiFiMulti
+    
+    void setup() {
+      Serial.begin(115200);
+      while(!Serial);
+      Serial.println("\r\n===================================================");
+    
+      <em>MywifiMulti.addAP("SSID 1", "mot de passe 1");
+      MywifiMulti.addAP("SSID 2", "mot de passe 2");
+      MywifiMulti.addAP("SSID 3", "mot de passe 3");
+      // ......</em>
+      Serial.println("Connecting ...");
+     
+      <em>while (MywifiMulti.run() != WL_CONNECTED) {
+        delay(1000);
+        Serial.print('.');
+      }</em>
+     
+      Serial.print("\r\nConnected to ");
+      Serial.println(WiFi.SSID());          
+      Serial.print("IP address:       ");
+      Serial.println(WiFi.localIP());   
+    }
+    
+    void loop() { }    
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- ################################################################################################ -->
+                <h2 id="LED_1">Commander une LED par WIFI - 1 (ESP8266WiFi)</h2>
+                <p>Nous y voila, dans ce paragraphe, nous allons utiliser le ESP8266 comme un <em>Objet Connecté</em>.
+                    Il sera configuré comme <em>serveur</em> et nous allons communiquer avec lui à partir d'une page web
+                    <em>client</em> sur un PC ou un smartphone.
+                </p>
+                <p>Dans cette première version, nous allons utiliser la librairie <em>ESP8266WiFi</em>. Son utilisation
+                    est un peut ardue, mais ça permet de comprendre comment se font les échanges de requêtes HTTP entre
+                    le serveur et le navigateur Client</p>
+                <img src="IMAGES/esp8266-server.png" class="BlocCenter">
+                <p>Pour commencer nous allons faire simple. La page web client sera constituée de deux boutons ALLUMER
+                    et ETEINDRE qui nous permettront d'allumer ou d'éteindre la LED du module ESP8266. </p>
+                <p>Le code html de la page web sera intégré dans le programme du ESP8266 (serveur). J'ai utilisé une
+                    page Web très basique. Si vous êtes à l'aise avec HTML/CSS vous pouvez la modifier à votre guise.
+                </p>
+                <p> Quand quelqu'un (un client) se connecte au serveur à l'aide d'un navigateur, le serveur lui enverra
+                    la page, ce qui donne quelque chose comme ça:</p>
+                <img src="IMAGES/client_ON_OFF.png" class="BlocCenter">
+                <ul>
+                    <li>Téléverser le code ci-dessous dans le module</li>
+                    <li>Ouvrir le moniteur série</li>
+                    <li>Cliquer sur le bouton RESET du module</li>
+                    <li>Le module (grace à la fonction setup() du programme) se connecte au point d'accès et affiche
+                        l'adresse IP qui lui a été affectée</li>
+                    <img src="IMAGES/LED_Connect.jpg" class="BlocCenter">
+                    <li>Saisir cette adresse IP dans un navigateur (PC ou Mobile)</li>
+                    <li>A partir de maintenant c'est la fonction loop() du programme qui gère les échanges entre le
+                        navigateur et le module</li>
+                </ul>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Allumer/Eteindre une LED<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>// Programme espLED_server.ino            A. Oumnad
+//===========================================================================
+
+#include &lt;ESP8266WiFi.h&gt;
+
+static const String pageweb = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;meta name="viewport" content="width=device-width"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER LED&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE LED&lt;/button&gt;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+// Modifier selon votre point d'accès WIFI
+const char* SSID = "votre SSID";
+const char* password = "votre mot de passe";
+
+WiFiServer MonServeur(80); // créer le serveur web sur le port 80
+WiFiClient MonClient; // créer le client
+
+#define LED_PIN  LED_BUILTIN
+
+void setup() {
+	Serial.begin(9600);  // pour le moniteur série
+	delay(10);
+	Serial.println();
+	Serial.println();
+	Serial.println("=====================================================");
+	Serial.println(" Test LED ON/OFF sur ESP8266");
+
+	// Sur le WemosD1, la LED est branché en pullup, il faut la commander avec une logique inversée
+	pinMode(LED_PIN, OUTPUT);
+	digitalWrite(LED_PIN, HIGH);  // éteindre la LED au départ
+
+	// Connexion au point d'accès
+	WiFi.disconnect();
+	WiFi.mode(WIFI_STA);
+	Serial.print(" Connexion à ");
+	Serial.println(SSID);
+	WiFi.begin(SSID, password);
+	while(WiFi.status() != WL_CONNECTED) {
+	delay(500);
+	Serial.print(".");
+	}
+	Serial.println();
+	Serial.print(" Connecté à  ");
+	Serial.println(SSID);
+
+	// Afficher l'adresse IP affecté par le point d'accès
+	Serial.print(" L'adresse IP du ESP8266 est: ");
+	Serial.println(WiFi.localIP());
+	Serial.println("==========================================================");
+	
+	// Démarrer le serveur web
+	MonServeur.begin();
+	Serial.println(" Serveur Web démarré");
+}
+
+void loop() {
+	// Si aucune page Web client ne se connecte, on ne fait rien
+	MonClient = MonServeur.available();
+	if (!MonClient) {
+			return;
+	}
+ delay(100);
+ // Lire la première ligne de la requête
+ if(MonClient.available() == 0)return;
+  String request = MonClient.readStringUntil('\r');
+	// un client s'est connecté
+	Serial.println(" Client connecté");
+	Serial.print(" Requête----&gt;"); // on affiche la requête reçue du client
+	Serial.print(request);
+	Serial.println("&lt;----");  
+
+	// Traiter la requête
+	if(request.indexOf("/ ") != -1){  // requête "/"  on affiche la page Web sur le client
+		envoyer_pageweb();
+	}
+	else if (request.indexOf("/LEDON") != -1){  // requête  "/LEDON"
+		digitalWrite(LED_PIN, LOW);         // allumer la LED (active LOW)
+		Serial.println(" LED allumée");     // notification sur le moniteur série
+		envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
+	}
+	else if (request.indexOf("/LEDOFF") != -1){     // requête  "/LEDOFF"
+		digitalWrite(LED_PIN, HIGH);            // éteindre la LED  (active LOW)
+		Serial.println(" LED Eteinte");         // notification sur le moniteur série
+		envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
+	}
+	else {
+		Serial.println(" Requête non prise en charge");
+		envoyer_reponsevide();
+	}
+	while(MonClient.available())MonClient.read(); //vider le buffer de réception
+	delay(5);
+	Serial.println(" Client déconnecté");
+	Serial.println("==========================================================");
+}
+
+void envoyer_pageweb(){
+	MonClient.println("HTTP/1.1 200 OK");
+	MonClient.println("Content-Type: text/html");
+	MonClient.println("Content-Length: " + String(pageweb.length()));
+	MonClient.println("Connection: close");
+	MonClient.println("");  //ligne vide
+	MonClient.println(pageweb);
+	Serial.println(" Page Web envoyée"); 
+}
+void envoyer_reponsevide(){
+	MonClient.println("HTTP/1.1 204 No Content");
+	MonClient.println("Connection: close");
+	MonClient.println("");  //ligne vide
+}
+
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <h3>Quelques explications sur le code :</h3>
+                <ul>
+                    <li>Tout le code html de la page web qui sera affichée sur le client est placé dans une variable de
+                        type <em>raw String</em></li>
+                    <pre><code>
+static const String pageweb = R"=====(
+     ....
+     ....
+)=====";                            
+                        </code></pre>
+                    <li>Déclarer (en global) deux variable SSID et password et les renseigner conformément à votre point
+                        d'accès</li>
+                    <pre><code>
+const char* SSID = "votre point d'accès";
+const char* password = "votre mot de passe";                            
+                        </code></pre>
+                    <li>déclarer (en global) un serveur et un client</li>
+                    <pre><code>
+WiFiServer MonServeur(80); // créer le serveur web sur le port 80
+WiFiClient MonClient; // créer le client
+                    </code></pre>
+                </ul>
+                <p>Quand on téléverse le programme dans le ESP8266. C'est la fonction setup() qui s'exécute en premier,
+                    on obtient la trace suivante sur le moniteur série.</p>
+                <img src="IMAGES/LED_Connect.jpg" class="BlocCenter">
+                <p>Donc le ESP8266 s'est connecté au point d'accès et a démarré le serveur Web et nous a communiqué son
+                    adresse IP.</p>
+                <p>A partir de maintenant c'est la fonction loop() qui se met à l'écoute et attend qu'un client
+                    utilisateur se connecte à partir de son navigateur. Si personne ne se connecte, on ne fait rien</p>
+                <pre><code>
+client = MonServer.available();
+      if (!client) {
+            return;
+      }                        
+                    </code></pre>
+                <p>Quand un client se connecte avec l'adresse IP fournie à partir d'un navigateur sur un PC ou un
+                    smartphone connecté sur le même point d'accès. Le navigateur envoie au serveur une <em>requête HTTP
+                        de
+                        type GET</em> :</p>
+                <pre><code>
+GET / HTTP/1.1
+Host: 192.168.1.101
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9,fr;q=0.8                        
+                </code></pre>
+                <p>Comme on peut le constater, la requête est constituée de plusieurs lignes. Pour l'instant, il n'y a
+                    que la première ligne qui nous intéresse: GET <em>/</em> &nbsp;&nbsp;HTTP/1.1</p>
+                <p>C'est la requête "<em>/</em> " qui demande au serveur de retourner la page web à afficher</p>
+                <p>Le programme du serveur détecte la connexion du client et lit la première ligne de la requête envoyée
+                    par celui-ci:</p>
+                <pre><code>
+String request = MonClient.readStringUntil('\r');                        
+                </code></pre>
+                <p>Il vérifie que c'est la requête "/ " (/ suivi d'un espace), et envoie la page web à l'aide de la
+                    fonction <i>envoyer_pageweb();</i></p>
+                <pre><code>
+if(request.indexOf("/ ") != -1){  // requête "/"  on affiche la page Web sur le client
+            envoyer_pageweb();
+}                        
+                </code></pre>
+                <p>La fonction <i>envoyer_pageweb()</i> est la suivante:</p>
+                <pre><code>
+void envoyer_pageweb(){
+    MonClient.println("HTTP/1.1 200 OK");
+    MonClient.println("Content-Type: text/html");
+    MonClient.println("Content-Length: " + String(pageweb.length()));
+    MonClient.println("Connection: close");
+    MonClient.println("");  //ligne vide
+    MonClient.println(pageweb);
+    Serial.println(" Page Web envoyée");
+}                        
+                </code></pre>
+                <p>Elle respecte le format d'une <a target="_blank"
+                        href="https://www.tutorialspoint.com/http/http_responses.htm">réponse HTTP</a>
+                    en envoyant:</p>
+                <pre><code>
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 221
+Connection: close
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt; &lt;meta name="viewport" content="width=device-width"&gt; &lt;/head&gt;
+    &lt;body&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href=&quot;LEDON&quot;&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href=&quot;LEDOFF&quot;&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt; 
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code></pre>
+                <ul>
+                    <li>La première ligne indique le status de la réponse. Le code <em>200 OK</em> indique que la
+                        requête a réussi. Vous trouverez <a target="_blank"
+                            href="https://developer.mozilla.org/fr/docs/Web/HTTP/Status">ICI </a>d'autres
+                        code de réponse HTTP</li>
+                    <li>Les trois lignes suivantes sont des entêtes qui envoient quelques information sur la page WEB.
+                        Elle ne sont pas vraiment obligatoire</li>
+                    <li>La ligne vide est obligatoire. Elle marque la séparation entre les entêtes et la page web&nbsp;
+                    </li>
+                    <li>La suite est constituée de la page web</li>
+                </ul>
+                <p>Quand le client reçoit la page web, il l'affiche sur le navigateur</p>
+                <img src="IMAGES/client_ON_OFF.png" class="BlocCenter">
+                <p>Ensuit, le navigateur envoie la requête "/favicon.ico" pour demander au serveur le fichier qui
+                    contient l'icône qui normalement sera affiché sur l'onglet de la page dans le navigateur. Pour ce
+                    qui nous concerne, nous allons ignorer cette requête. Mais le navigateur attend une réponse pour
+                    chaque requête, on lui envoie la réponse HTTP <em>204 No Content</em> pour lui indiquer qu'il n'y a
+                    pas de réponse à cette requête. C'est la fonction <i>envoyer_reponsevide()</i> qui s'en charge.</p>
+                <pre><code>
+else {
+            Serial.println(" Requête non prise en charge");
+            envoyer_reponsevide();
+}                        
+                    </code></pre><br>
+                <pre><code>
+void envoyer_reponsevide(){
+    MonClient.println("HTTP/1.1 204 No Content");
+    MonClient.println("Connection: close");
+    MonClient.println("");  //ligne vide
+}                        
+                    </code></pre>
+                <p>Maintenant si on clique sur le bouton ALLUMER, le navigateur envoie la requête GET "<em>/LEDON</em>"
+                </p>
+                <p>Le programme du ESP8266 détecte la requête, allume la LED et informe le navigateur qu'il n'a pas de
+                    réponse à cette requête.</p>
+                <pre><code>
+else if (request.indexOf("/LEDON") != -1){  // requête  "/LEDON"
+        digitalWrite(LED_PIN, LOW);         // allumer la LED (active LOW)
+        Serial.println(" LED allumée");     // notification sur le moniteur série
+        envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
+}                        
+                    </code></pre><br>
+                <img src="IMAGES/SerMon_LED-ON.png" class="BlocCenter"><br>
+                <p>Si on clique sur le bouton ETEINDRE, les choses se passent de la même façon, le navigateur envoie la
+                    requête GET "<em>/LEDOFF</em>"</p>
+                <p>Le programme du ESP8266 détecte la requête, éteint la LED et informe le navigateur qu'il n'a pas de
+                    réponse à cette requête.</p>
+                <pre><code>
+    else if (request.indexOf("/LEDOFF") != -1){     // requête  "/LEDOFF"
+        digitalWrite(LED_PIN, HIGH);            // éteindre la LED  (active LOW)
+        Serial.println(" LED Eteinte");         // notification sur le moniteur série
+        envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
+    }
+</code></pre><br>
+                <img src="IMAGES/SerMon_LED-OFF.png" class="BlocCenter"><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="LED_2">Commander une LED par WIFI - 2 (ESP8266WebServer)</h2>
+                <p>Dans ce paragraphe, nous allons faire exactement le même travail mais en utilisant la librairie
+                    <em>ESP8266WebServer</em>. Cette librairie fait appel à la librairie ESP8266WiFi pour créer des
+                    classes qui gèrent les échanges HTTP entre le client et le serveur. Par exemple, on n'a pas besoin
+                    de lire les requêtes du navigateur et faire les tests, on utilise la classe <em>.on</em> qui
+                    facilite grandement le travail. Exemple:
+                </p>
+                <p><em>myserver.on("/REQXX", fonctionxx);</em> dit au serveur: si tu reçois la requête
+                    <em>"/REQXX"</em>, exécutes la fonction <em>"fonctionxx"</em>.
+                </p>
+                <p>On peut trouver un peux plus d'information dans <a target="_blank"
+                        href="https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer">cette page</a>
+                </p>
+                <p>Voici le code entier :</p>
+                <br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+              <code>
+// Programme esp_LED_webserver.ino           A. Oumnad
+//==========================================================
+#include &lt;ESP8266WebServer.h&gt;
+
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;meta name="viewport" content="width=device-width"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+const char* ssid = "votre SSID";
+const char* password = "votre mot de passe";
+ESP8266WebServer monWebServer(80); //Server on port 80
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(9600);
+  while (!Serial);
+  Serial.println();
+  Serial.println();
+  Serial.println("============================================================");
+  Serial.println();
+
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED,OUTPUT);
+  digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);     //Connect to your WiFi router
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  monWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  monWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+  monWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+
+  //=========================== Démarrer le serveur ============================
+  monWebServer.begin();           
+  Serial.println("Serveur HTTP démarré");
+  Serial.println("==========================================================");
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+void loop(void){
+       monWebServer.handleClient();  // gérer les requêtes
+}
+
+//====================== Définir les fonctions qui réaliseront les tâches ========================
+void aff_page_web() {
+    monWebServer.send(200, "text/html", Page_Client); //Envoyer la page Web
+    Serial.println("-----&gt; Page Web envoyée");
+}
+
+void allumer_led() {
+    Serial.println("-----&gt; LED allumée");
+    digitalWrite(LED,LOW); //active LOW
+    monWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+
+void eteindre_led() {
+    Serial.println("-----&gt; LED éteinte");
+    digitalWrite(LED,HIGH); //active LOW
+    monWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+              </code>
+            </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <p>A partir de maintenant, nous allons toujours utiliser la librairie <em>ESP8266WebServer</em>. Elle
+                    est beaucoup plus efficace et facilite beaucoup le travail. Mais rien ne nous empêche de faire appel
+                    à
+                    des classes de la librairie de base <em>ESP8266WiFi</em></p>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="COMCOL">Commander et mesurer</h2>
+                <p>Dans l'exemple que nous avons traité, le client utilise une page Web qui ne fait qu'envoyer des
+                    commandes vers le serveur. Nous allons essayer maintenant d'ajouter la possibilité de recevoir des
+                    données venant du serveur.</p>
+                <p>Ceci va nous poser quelques petit soucis. En effet, sans précaution particulière, quand le serveur
+                    envoie quelque chose (des données) au navigateur, celui-ci efface la page web et la remplace par ce
+                    qu'il vient de
+                    recevoir.</p>
+                <p>Pour illustrer tout ça, on va rajouter un bouton <em>CAPTEUR</em> à notre page Web. En cliquant sur
+                    ce bouton, le navigateur envoie la requête <em>/SENSOR</em> au serveur pour lui demander d'envoyer
+                    la valeur de la température. On ajoute <em>target="_blank"</em> à la balise <em>&lt;a&gt;</em> du
+                    bouton pour dire au navigateur d'afficher la réponse dans un nouvel onglet</p>
+                <p>L'exemple n'utilise pas un vrai capteur mais envoie une donnée fictive qu'il modifie à chaque
+                    utilisation. Vous pouvez brancher un vrai capteur et remplacer la donnée fictive par la vrai mesure
+                </p>
+                <br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commander et mesurer<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>// Programme espCOLECT_00
+//===================================================
+
+#include &lt;ESP8266WebServer.h&gt;
+
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;  &lt;meta name="viewport" content="width=device-width"&gt; &lt;/head&gt;
+  &lt;body&gt;
+     &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;  
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a target="_blank" href="SENSOR"&gt;&lt;button&gt;CAPTEUR&lt;/button&gt;&lt;/a&gt;
+     &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN 
+const char* ssid = "VotreSSID";
+const char* password = "VotrePassword";
+ESP8266WebServer MonWebServer(80); //Server on port 80
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("\r\n============================================================\r\n");
+  
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED,OUTPUT);
+  digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);   
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());
+
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  MonWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  MonWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+  MonWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+  MonWebServer.on("/SENSOR", envoyerMesures);// requête /SENSOR   =&gt; appel fonction envoyerMesures
+
+  //=========================== Démarrer le serveur ============================
+  MonWebServer.begin();             
+  Serial.println("Serveur HTTP démarré");
+  Serial.println("==========================================================");
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+void loop(void){
+       MonWebServer.handleClient();  // gérer les requêtes
+}
+
+//====================== Définir les fonctions qui réaliseront les tâches ======================== 
+void aff_page_web() {
+ Serial.println("-----&gt; Afficher page WEB");
+ MonWebServer.send(200, "text/html", Page_Client); //Envoyer la page Web
+}
+//====================================================================
+void allumer_led() { 
+ Serial.println("-----&gt; Allumer la LED");
+ digitalWrite(LED,LOW); //active LOW
+ MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//====================================================================
+void eteindre_led() { 
+ Serial.println("-----&gt; Eteindre la LED");
+ digitalWrite(LED,HIGH); //active LOW
+ MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//====================================================================
+float T = 125.00;
+void envoyerMesures() {
+    MonWebServer.send(200, "text/html", String(T,3));
+    Serial.println("-----&gt; Donnée envoyée");
+    T = T + 0.125;
+}
+</code></pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <p>Voici le résultat, au début la page web s'affiche. Quand on clique sur le bouton CAPTEUR,
+                    le serveur nous envoie la valeur de la température, le navigateur ouvre un nouvel onglet
+                    et y affiche la valeur reçue</p><br>
+                <p class="InlineCenter">
+                    <img src="IMAGES/espCOLECT_00_0.jpg"> &nbsp;&nbsp; <img src="IMAGES/espCOLECT_00_1.jpg">
+                </p><br>
+                <p>Ce n'est pas vraiment terrible, mais on va essayer d'améliorer tout ça</p><br>
+                <h3 id="BADSOL">Solution 1 :</h3>
+                <p>On va rajouter à notre page Web un ou deux champs de type SPAN (ou autre) pour afficher les données
+                    mesurées. Pour l'instant, on n'utilise pas un vrai capteur, on envoie des données fictives, une
+                    correspondant à la température, l'autre à l'humidité</p>
+                <p>Au niveau du serveur, quand on reçoit la requête associée au bouton CAPTEUR, on n'envoie pas
+                    seulement les données, mais on en voie toute la page web en prenant soin d'actualiser les champs
+                    SPAN par les nouvelles mesures. Avec une page Web réduite comme la notre, cela ne pose pas de
+                    problème de
+                    rafraîchir toute la page Web à chaque fois qu'une donnée change. Avec une page Web plus volumineuse,
+                    cela peur rendre les choses moins fluides </p><br>
+                <p class="InlineCenter"><img src="IMAGES/PW_raff_all.jpg"> <img src="IMAGES/PW_raff_all-1.jpg"></p>
+                <p>Voici le code qui illustre cette solution,</p><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>//  Programme espCOLECT_raff_all              A. OUMNAD
+//======================================================
+#include &lt;ESP8266WebServer.h&gt;
+
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt; &lt;meta name="viewport" content="width=device-width"&gt; &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;  
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="SENSOR"&gt;&lt;button&gt;CAPTEUR&lt;/button&gt;&lt;/a&gt;
+        &lt;span style="background-color: yellow; margin-left: 2ch; "&gt;DATA1&lt;/span&gt;
+        &lt;span style="background-color: #00FFFF; margin-left: 2ch; "&gt;DATA2&lt;/span&gt;
+     &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+const char* ssid = "VotreSSID";
+const char* password = "VotrePassword";
+ESP8266WebServer MonWebServer(80); //Server on port 80
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void) {
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(9600);
+  while (!Serial);
+  Serial.println("\r\n============================================================\r\n");
+
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);     //Connect to your WiFi router
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  MonWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  MonWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+  MonWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+  MonWebServer.on("/SENSOR", envoyerMesures);// requête /SENSOR   =&gt; appel fonction envoyerMesures
+
+  //=========================== Démarrer le serveur ============================
+  MonWebServer.begin();
+  Serial.println("Serveur démarré");
+  Serial.println("==========================================================");
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+void loop(void) {
+  MonWebServer.handleClient();  // gérer les requêtes
+}
+
+
+//====================== Définir les fonctions qui réaliseront les tâches ========================
+void aff_page_web() {
+  Serial.println("-----&gt; Afficher page WEB");
+  MonWebServer.send(200, "text/html", Page_Client); //Envoyer la page Web
+}
+
+void allumer_led() {
+  Serial.println("-----&gt; Allumer la LED");
+  digitalWrite(LED, LOW); //active LOW
+  MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+
+void eteindre_led() {
+  Serial.println("-----&gt; Eteindre la LED");
+  digitalWrite(LED, HIGH); //active LOW
+  MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+
+float T = 25.0, H = 50;
+void envoyerMesures() {
+  Serial.println("-----&gt; Envoyer une donnée");
+  T = T + 0.125;
+  H = H + 1;
+  String Page_Tempo = Page_Client;
+  Page_Tempo.replace("DATA1", String(T, 3) );
+  Page_Tempo.replace("DATA2", String(H) );
+  MonWebServer.send(200, "text/html", Page_Tempo);
+}
+              </code></pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+                <h3 id="THESOL">Solution 2:</h3>
+                <p>Nous allons à présent explorer une solution qui consiste à utiliser <em>JavaScript</em> et des
+                    requêtes <em>AJAX</em> (Asynchronous JavaScript and XML) pour éviter un rafraîchissement complet de
+                    la page Web.</p><br>
+                <p>Les échanges se font comme suit: </p>
+                <ul>
+                    <li>Coté page Web, la fonction (Javascript) <strong>demanderMesures()</strong> demande les mesures
+                        et actualise les champs correspondant dans la page web</li>
+                    <li>Coté objet connecté, la fonction (C/C++) <strong>envoyerMesures()</strong> prend les mesures et
+                        les
+                        envoient à la page Web</li>
+                </ul>
+                <p>Il faut apporter des modification au code html de la page Web, le reste ne change pratiquement
+                    pas</p>
+                <ol>
+                    <li>On n'utilise plus la balise &lt;a&gt; pour les les boutons et liens concernés par le
+                        rafraîchissement partiel. On utilise la méthode <em>onclick= de Javascript</em> qui renvoie vers
+                        une fonction():</li>
+                    <pre><code>&lt;button onclick="demanderMesures()"&gt;CAPTEUR&lt;/button&gt;</code></pre>
+                    <li>Les objets à mettre à jour doivent avoir un Identificateur:</li>
+                    <pre><code>
+&lt;span <em>id="data_ID1"</em> style="background-color: yellow; margin-left: 2ch; "&gt;TEMPÉRATURE&lt;/span&gt;
+&lt;span <em>id="data_ID2"</em> style="background-color: #00FFFF; margin-left: 2ch; "&gt;HUMIDITÉ&lt;/span&gt;
+                        </code></pre>
+                    <li>Il faut insérer un bloc &lt;script&gt;...&lt;/script&gt; dans le bloc &lt;head&gt; de la page.
+                        Dans ce bloc script on ajoute:
+                        <ol>
+                            <li>Une variable AJAX</li>
+                            <pre><code>
+var ReqAjax = null;
+if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }                                
+                            </code></pre>
+                            <li>Une fonction JavaScript associée à l'événement onclick du bouton CAPTEUR</li>
+                            <pre><code>
+function demanderMesures(){
+    ReqAjax.open("GET","SENSOR",true);  //***envoyer une requête avec le texte SENSOR ***
+    ReqAjax.send();
+    ReqAjax.onreadystatechange = function(){
+        if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+            var reponse = this.responseText;
+            var rep = reponse.split(",");  // séparateur = ','
+            document.getElementById('data_ID1').innerHTML = rep[0];
+            document.getElementById('data_ID2').innerHTML = rep[1];
+        }
+    }
+}
+                            </code></pre>
+                        </ol>
+                    </li>
+                </ol><br>
+
+
+                <ol>
+                    <li>Quand on clique sur le bouton CAPTEUR, on appelle la fonction Javascript
+                        <strong>demanderMesures()</strong>
+                    </li>
+                    <li>La fonction <b><i>demanderMesures()</i></b> envoie la requête HTTP <b>/SENSOR</b></li>
+                    <li>Le programme détecte la requête /SENSOR et appelle la fonction <strong>envoyerMesures()</strong>
+                    </li>
+                    <li>La fonction <strong>envoyerMesures() </strong>
+                        <ul>
+                            <li>Prend les mesures et les formatent sous forme de chaînes S1, S2, ... </li>
+                            <li>Construit une chaîne constituée des mesures séparées par ',' <strong>S1,S2</strong></li>
+                            <li>Envoie cette chaîne comme réponse à la requête /SENSOR</li>
+                        </ul>
+                    </li>
+                    <li>La fonction javascript <strong>demanderMesures()</strong>
+                        <ul>
+                            <li>Reçoit la réponse</li>
+                            <li>La casse en deux pour récupérer S1 et S2</li>
+                            <li>Actualise les champs data_ID1 et data_ID2 par S1 et S2</li>
+                        </ul>
+                    </li>
+                </ol>
+                <br>
+                <p>Voici le code complet de cette solution. Cet exemple constitue une solution intéressante qui peut
+                    être adaptée pour faire des réalisations plus réalistes</p><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>//          Programme espCOLECT_raff_par.ino               A. OUMNAD
+//================================================================================
+#include &lt;ESP8266WebServer.h&gt;
+
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+  &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;script&gt;
+      var ReqAjax = null;
+      if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+      else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }
+
+      function demanderMesures(){
+        ReqAjax.open("GET","SENSOR",true);  //***envoyer une requête avec le texte SENSOR ***
+        ReqAjax.send();
+        ReqAjax.onreadystatechange = function(){
+            if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+                var reponse = this.responseText;
+                var rep = reponse.split(",");  // séparateur = ','
+                document.getElementById('data_ID1').innerHTML = rep[0];
+                document.getElementById('data_ID2').innerHTML = rep[1];
+            }
+        }
+      }
+    &lt;/script&gt; 
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="/LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="/LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;  
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;button onclick="demanderMesures()"&gt;CAPTEUR&lt;/button&gt;
+        &lt;span id="data_ID1"; style="background-color: yellow; margin-left: 2ch; "&gt;TEMPÉRATURE&lt;/span&gt;
+        &lt;span id="data_ID2"; style="background-color: #00FFFF; margin-left: 2ch; "&gt;HUMIDITÉ&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+const char* ssid = "VotreSSID";
+const char* password = "VotrePassword";
+ESP8266WebServer MonWebServer(80); //Server on port 80
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+    //=========================== Initialiser le Moniteur Série ========================
+    Serial.begin(9600);
+    while (!Serial);
+    Serial.println();
+    Serial.println();
+    Serial.println("============================================================");
+    Serial.println(" Test LED ON/OFF sur ESP8266 avec Librairie ESP8266WebServer");
+    Serial.println();
+
+    //=========================== Configurer et éteindre la LED ========================
+    pinMode(LED,OUTPUT);
+    digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+    Serial.print(" Connexion à ");
+    Serial.println(ssid);
+    WiFi.begin(ssid, password);     //Connect to your WiFi router
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println();
+    Serial.print("Connecté à ");
+    Serial.println(ssid);
+    Serial.print("Adresse IP: ");
+    Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+    //=========================== Dire au serveur ce qu'il a à faire ===============
+    MonWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+    MonWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+    MonWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+    MonWebServer.on("/SENSOR", envoyerMesures);// requête /SENSOR   =&gt; appel fonction envoyerMesures
+
+  //=========================== Démarrer le serveur ============================
+    MonWebServer.begin();                  //Start server
+    Serial.println("Serveur HTTP démarré");
+    Serial.println("==========================================================");
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+void loop(void){
+    MonWebServer.handleClient();  // gérer les requêtes
+}
+
+//====================== Définir les fonctions qui réaliseront les tâches ======================== 
+void aff_page_web() {
+    Serial.println("-----&gt; Afficher page WEB");
+    MonWebServer.send(200, "text/html", Page_Client); //Envoyer la page Web
+}
+//==============================================================
+void allumer_led() { 
+    Serial.println("-----&gt; Allumer la LED");
+    digitalWrite(LED,LOW); //active LOW
+    MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//==============================================================
+void eteindre_led() { 
+    Serial.println("-----&gt; Eteindre la LED");
+    digitalWrite(LED,HIGH); //active LOW
+    MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//==============================================================
+float T = 40.0, H = 50;
+void envoyerMesures() { 
+    Serial.println("-----&gt; Envoyer une donnée");
+    T = T+0.125;  // remplacer par une vraie mesure
+    H = H+1;    // remplacer par une vraie mesure
+    MonWebServer.send(200, "text/html", String(T,3)+","+String(H));
+    
+}
+</code></pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="LECTPER">Acquisition périodique</h2>
+                <p>Dans l'exemple précédent, on clique sur le bouton CAPTEUR pour demander une mesure. Dans
+                    beaucoup d'applications, on préfère un rafraîchissement automatique des mesures. Pour y arriver on
+                    va remplacer le bouton par un <em>timer JavaScript</em> qui appelle la fonction
+                    <i>demanderMesures()</i>
+                    à intervalles
+                    réguliers.
+                </p><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>//  Programme espCOLECT_raff_periodic.ino            A. OUMNAD
+//==================================================================================
+
+#include &lt;ESP8266WebServer.h&gt;
+
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html; charset=UTF-8" http-equiv="content-type"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;script&gt;
+      var ReqAjax = null;
+      if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+      else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }
+      
+      //  demarrer le timer qui invoque la fonction demanderMesures() toutes les 2 secondes
+      var myVar = setInterval(demanderMesures, 2000);
+      
+      function demanderMesures(){
+        ReqAjax.open("GET","SENSOR",true);  //***envoyer une requête avec le texte SENSOR ***
+        ReqAjax.send();
+        ReqAjax.onreadystatechange = function(){
+            if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+                var reponse = this.responseText;
+                var rep = reponse.split(",");  // séparateur = ','
+                document.getElementById('data_ID1').innerHTML = rep[0];
+                document.getElementById('data_ID2').innerHTML = rep[1];
+            }
+        }
+      }
+    &lt;/script&gt; 
+  &lt;/head&gt;
+  &lt;body&gt;
+     &lt;div style="text-align: center;"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;  
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;span id="data_ID1"; style="background-color: yellow; margin-left: 2ch; "&gt;TEMPÉRATURE&lt;/span&gt;
+        &lt;span id="data_ID2"; style="background-color: #00FFFF; margin-left: 2ch; "&gt;HUMIDITÉ&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+const char* ssid = "VotreSSID";
+const char* password = "VotrePassword";
+ESP8266WebServer MonWebServer(80); //Server on port 80
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+    //=========================== Initialiser le Moniteur Série ========================
+    Serial.begin(9600);
+    delay(10);
+    Serial.println();
+    Serial.println();
+    Serial.println("============================================================");
+    Serial.println(" Test LED ON/OFF sur ESP8266 avec Librairie ESP8266WebServer");
+    Serial.println();
+
+    //=========================== Configurer et éteindre la LED ========================
+    pinMode(LED,OUTPUT);
+    digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+    Serial.print(" Connexion à ");
+    Serial.println(ssid);
+    WiFi.begin(ssid, password);     //Connect to your WiFi router
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println();
+    Serial.print("Connecté à ");
+    Serial.println(ssid);
+    Serial.print("Adresse IP: ");
+    Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+    //=========================== Dire au serveur ce qu'il a à faire ===============
+    MonWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+    MonWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+    MonWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+    MonWebServer.on("/SENSOR", envoyerMesures);// requête /SENSOR   =&gt; appel fonction envoyerMesures
+
+  //=========================== Démarrer le serveur ============================
+    MonWebServer.begin();                  //Start server
+    Serial.println("Serveur HTTP démarré");
+    Serial.println("==========================================================");
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+void loop(void){
+    MonWebServer.handleClient();  // gérer les requêtes
+}
+
+//====================== Définir les fonctions qui réaliseront les tâches ======================== 
+void aff_page_web() {
+    Serial.println("-----&gt; Afficher page WEB");
+    MonWebServer.send(200, "text/html", Page_Client); //Envoyer la page Web
+}
+//==============================================================
+void allumer_led() { 
+    Serial.println("-----&gt; Allumer la LED");
+    digitalWrite(LED,LOW); //active LOW
+    MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//==============================================================
+void eteindre_led() { 
+    Serial.println("-----&gt; Eteindre la LED");
+    digitalWrite(LED,HIGH); //active LOW
+    MonWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+//==============================================================
+float T = 40.0, H = 50;
+void envoyerMesures() { 
+    Serial.println("-----&gt; Envoyer une donnée");
+    MonWebServer.send(200, "text/html", String(T,3)+","+String(H));
+    T = T+0.125;
+    H = H+1; 
+}
+</code></pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+                <!-- ################################################################################################ -->
+                <h2 id="SPIFFS">File System dans la mémoire flash</h2>
+                <p>L'ESP8266 dispose d'une zone mémoire flash dans laquelle on peut créer un système de fichier pour
+                    stocker des fichiers comme dans un disque normal. Voir <a target="_blank"
+                        href="https://arduino-esp8266.readthedocs.io/en/latest/filesystem.html">cette page</a>
+                    pour plus de détails</p>
+                <p>Il existe deux systèmes permettant de créer un système de fichier dans cette zone, <em>SPIFFS</em>
+                    <i>(Serial Peripheral Interface Flash File System)</i> et
+                    <em>LittleFS</em> <i>(Son petit frère)</i>. SPIFFS commence à devenir obsolète, les travaux de
+                    développement se concentrent sur
+                    LittleFS. Ce dernier gère mieux les dossier et il est plus rapide. Il est très facile de migrer les
+                    programmes d'un système vers l'autre car ils s'installent et s'utilisent exactement de la même
+                    façon. Les deux systèmes ne sont pas compatibles. Si vous créez des fichier dans un File System
+                    SPIFFS, vous ne pouvez pas y accéder à l'aide de LIttleFs et vise-versa. Il faut choisir un
+                    système et s'y tenir.
+                </p>
+                <p>Avant de créer un FileSystem, il faut sélectionner la taille selon votre module. Avec le Wemos D1
+                    mini, on a 4Mo de mémoire flash que l'on peut répartir entre mémoire programme, file système, OTA et
+                    autres fonctionnalités. La zone OTA <i>(Over The Air)</i> est une zone intermédiaire qui permet de
+                    téléverser le programme en utilisant le WiFi. Voir paragraphe dédié</p>
+                <p>Arduino-IDE permet de choisir la répartition de la mémoire. Dans la suite nous allons répartir
+                    notre mémoire approximativement comme suit: Mémoire programme: 2Mo, File System: 2Mo, OTA: 1Mo </p>
+                <br>
+                <img src="IMAGES/SPIFFS_Size.jpg" class="BlocCenter"><br>
+                <h3>Exemple: Créer - Écrire - Lire - Lister</h3>
+                <p>Dans l'exemple ci.dessous:</p>
+                <ul>
+                    <li>On crée le File système</li>
+                    <li>On ouvre (en écriture) le fichier texte <i>test0.csv</i> dans la racine. Si le fichier n'existe
+                        pas, il est
+                        crée. S'il existe, son contenu est effacé. J'ai choisi l'extension <i>.csv</i> car plus
+                        tard, je vais télécharger les fichiers dans le PC et les ouvrir avec Excel</li>
+                    <li>Écrire des données (10 par ligne). Les données sont séparées par ";" pour compatibilité avec
+                        Excel</li>
+                    <li>On ferme le fichier et on le reouvre en lecture</li>
+                    <li>On lit son contenu et on l'affiche sur le moniteur série</li>
+                </ul><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Écrire, Lire fichier dans File System<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+//Programme LittleFS_W_R_DIR
+//=============================================
+#include &lt;LittleFS.h&gt;
+
+void setup() {
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("\r\n============================================================");
+  // Créer le FileSystem
+  bool success = LittleFS.begin();
+  if (!success) {
+    Serial.println("Error mounting the file system");
+    return;
+  }
+  // ouvert fichier pour écriture  (w)
+  // s'il existe déjà, son contenu est effacé
+  String NOM_fichier = "/test0.csv" ; // test0.csv dans la racine
+  File ID_fichier = LittleFS.open(NOM_fichier, "w");
+  if (!ID_fichier) {
+    Serial.println( "Erreur ouverture fichier "  +  NOM_fichier  +  " en mode écriture"    );
+    return;
+  }
+  Serial.println("Ouverture du fichier " + NOM_fichier + " en mode écriture  réussie");
+  // Écriture quelques valeurs dans le fichier
+  float T = 25.0;
+  for (int j = 0; j &lt; 10; j++){
+      for (int i=0; i &lt; 10;i++){
+        ID_fichier.print(T);
+        ID_fichier.print(';');  // on utilise ; comme séparateur
+        T =T+0.11;
+      }
+      ID_fichier.println();
+  }
+  ID_fichier.close(); //fermeture du fichier
+  Serial.println("Écriture de données dans le fichier "+NOM_fichier+"  réussie");
+ 
+  // Ouverture du fichier pour lecture
+  ID_fichier = LittleFS.open(NOM_fichier, "r");
+  if (!ID_fichier) {
+    Serial.println("Erreur ouverture fichier "+NOM_fichier+" en mode lecture");
+    return;
+  }
+  Serial.println("Ouverture du fichier "+NOM_fichier+" en mode lecture  réussie");
+  Serial.println("===========================================================");
+  Serial.println("Voici le contenu du fichier:   ");
+  while (ID_fichier.available()) {
+    Serial.write(ID_fichier.read());
+  }
+  Serial.println();
+  ID_fichier.close();  // fermeture du fichier
+
+  // lister les fichier contenu dans le LittleFS
+  Serial.println("\r\n================DIR===============");
+  Dir mydir = LittleFS.openDir("/");
+  while (mydir.next()) {                  
+      String fichier = mydir.fileName();
+      size_t taille = mydir.fileSize();
+      Serial.println(fichier + "      " + taille);
+    }
+    Serial.println();
+}
+ 
+void loop() {}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+                <img class="BlocCenter" src="IMAGES/SPIFFS_w_r_l.jpg"><br>
+                <h3>Exemple: Supprimer tous les fichiers du File System</h3>
+                <p>Ici pas de page web client. Le téléversement et l'exécution du code dans le D1 mini permet de
+                    nettoyer
+                    le File System. Nous verrons plus tard des exemples avec plus de possibilités</p><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Supprimer tous les fichiers<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+// Programme LittleFS_del_all.ino              A. Oumnad
+//================================================================
+
+#include &lt;LittleFS.h&gt;
+ 
+void setup() {
+  Serial.begin(115200);
+  while(!Serial);
+  Serial.println("\r\n================================================");
+
+  // Monter le File System
+  bool success = LittleFS.begin();
+  if (!success) {
+    Serial.println("Erreur création système de fichier");
+    return;
+  }
+ 
+  Dir dossier = LittleFS.openDir("/");
+  while (dossier.next()) {                
+      String NOM_fichier = dossier.fileName();
+      if(LittleFS.remove(NOM_fichier))Serial.println(NOM_fichier+" supprimé avec succès");       
+      else Serial.println("Échec suppression  de "+NOM_fichier);
+    }
+}
+ 
+void loop() {}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br><img class="BlocCenter" src="IMAGES/SPIFFS_dell_all.jpg"><br>
+                <br>
+                <h3>Exemple: Télécharger un fichier à partir du File System</h3>
+                <p>Coté client, on a une page web avec un seul bouton "Télécharger" qui envoie la requête
+                    <i>/DOWNLOAD</i> vers le serveur D1 mini. Quand le serveur reçoit cette requête, il <i>stream le
+                        contenu du fichier test0.csv vers le client. On verra plus
+                        tard un exemple où l'on peut choisir le fichier à télécharger dans une liste.</i>
+                </p>
+                <img src="IMAGES/spiffs_download.jpg" class="BlocCenter">
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">télécharger un fichier<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+// Programme LittleFS_download.ino              A. Oumnad
+//=====================================================
+
+#include &lt;ESP8266WebServer.h&gt;
+#include &lt;LittleFS.h&gt;
+
+//=============== Définition de la Page Web du client ====================================================
+const String Page_main = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;meta content="text/html;charset=utf-8" http-equiv="Content-Type"&gt;
+    &lt;title&gt;LittleFS Download&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;div style="text-align: center;"&gt;
+     &lt;a href='/DOWNLOAD'&gt;&lt;button&gt;Télécharger&lt;/button&gt;&lt;/a&gt;
+  &lt;/div&gt;
+     &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+const char* SSID = "votre SSID";
+const char* password = "votre mot de passe";
+
+// ================Créer un serveur web sur le port 80=====================================
+ESP8266WebServer MonWebServer(80);
+File ID_fichier;
+
+//==================================setup()=======================================================
+void setup() {
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("\r\n===================================================");
+ 
+  // ======================Se connecter à un point d'accès WIFI============
+  WiFi.disconnect();
+  WiFi.mode(WIFI_STA);
+  Serial.print("Connection à    ");
+  Serial.println(SSID);
+  WiFi.begin(SSID, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\r\n Adresse IP");
+  Serial.print(WiFi.localIP());
+
+  // =====================définir les action à faire selon la requête HTTP envoyée par le client
+  MonWebServer.on("/", handleRoot);    
+  MonWebServer.on("/DOWNLOAD", handledownload);
+   // ======================= démarrer le serveur========================================
+  MonWebServer.begin();                  //Start server
+  Serial.println("\r\nLe serveur HTTP est démarré");
+
+  // ==================initialiser le FS
+  if (!LittleFS.begin()) {
+    Serial.println("\r\nErreur Creation File System");
+    while(1);
+  } 
+  Serial.println("\r\n================DIR===============");
+  Dir racine = LittleFS.openDir("/");
+  while (racine.next()) {                 
+      String fileName = racine.fileName();
+      size_t fileSize = racine.fileSize();
+      Serial.println(fileName + "      " + fileSize);
+    }
+    Serial.println();
+}
+
+//==============================================loop()=========================================
+void loop() {
+    MonWebServer.handleClient(); // voir si le client a envoyé quelque chose 
+}
+
+void handleRoot() {
+    MonWebServer.send(200, "text/html", Page_main); //Send web page
+    Serial.println("\r\nPage web envoyée");
+}
+
+void handledownload() {
+    String NOM_fichier = "test0.csv";
+    ID_fichier = LittleFS.open(NOM_fichier , "r");  //si on omet le / ==&gt; racine
+    if (ID_fichier) {
+        MonWebServer.sendHeader("Content-Type", "text/text");
+        MonWebServer.sendHeader("Content-Disposition", "attachment; filename = " + NOM_fichier );
+        MonWebServer.sendHeader("Connection", "close");
+        MonWebServer.streamFile(ID_fichier, "application/octet-stream");
+        ID_fichier.close();
+        Serial.println("\r\nFichier  " + NOM_fichier + " envoyé");
+    } else{
+        Serial.println("\r\nFichier  " + NOM_fichier + " introuvable");
+        MonWebServer.send(404, "text/html", "\r\nFichier  " + NOM_fichier + " introuvable");
+    }
+}
+</code>
+</pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="SPIFFSEXP">File System Explorer</h2>
+                <p>Voici enfin un <i><b>mini explorateur de fichiers</b></i> qui permet de réaliser les opérations
+                    essentielles dans la zone File System du D1 mini</p><br>
+                <img src="IMAGES/LittleFS_Explorer.jpg" class="BlocCenter"><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>
+//  Programme  LittleFS_explorer_webserver.ino             A. Oumnad
+//===============================================================
+
+#include &lt;ESP8266WebServer.h&gt;
+#include &lt;LittleFS.h&gt;
+
+const String Page_Top = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html; charset=UTF-8" http-equiv="content-type"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;LittleFS Explorer&lt;/title&gt;
+  &lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;ESP8266 LittleFS Explorer&lt;/h1&gt;
+&lt;p&gt;
+  =============================================&lt;br&gt;
+  LittleFS Total Space = TOTALSPACE  bytes&lt;br&gt;
+  LittleFS Used  Space = USEDSPACE   bytes&lt;br&gt;
+  =============================================&lt;br&gt;&lt;br&gt;
+&lt;/p&gt;
+)=====";
+
+const String Page_Botom = R"=====(
+&lt;!-- le tag &lt;form&gt; sera rajouté par le code pour englober la liste des fichiers --&gt;
+&lt;br&gt;
+  &lt;input name="tache" value="DELETE"  type="submit"&gt;
+  &lt;input name="tache" value="DOWNLOAD"  type="submit"&gt;
+&lt;/form&gt; 
+&lt;br&gt;=============================================&lt;br&gt;&lt;br&gt;
+&lt;form method="post" enctype="multipart/form-data" action="URI_UPLOAD"&gt;
+  &lt;input name="file2download" type="file"&gt;   
+  &lt;input name="REQ_UPLOAD" value="UPLOAD" type="submit"&gt; 
+&lt;/form&gt;
+&lt;br&gt;=============================================&lt;br&gt;&lt;br&gt;
+    &lt;a href="REQ_DELALL"&gt;&lt;button&gt;DELETE ALL&lt;/button&gt;&lt;/a&gt;
+    &lt;a href="REQ_FORMAT"&gt;&lt;button&gt;FORMAT&lt;/button&gt;&lt;/a&gt;
+&lt;/body&gt;&lt;/html&gt;
+)=====";
+
+const String Page_Delall = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;br&gt;&lt;br&gt;&lt;h2&gt; Vous allez supprimer tous les fichiers !&lt;/h2&gt;
+    &lt;a href='DEL_ALL_OK'&gt;&lt;button&gt;CONFIRMER&lt;/button&gt;&lt;/a&gt;
+    &lt;a href='/'&gt;&lt;button&gt;ANNULER&lt;/button&gt;&lt;/a&gt;&lt;br&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+const String Page_Format = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;br&gt;&lt;br&gt;&lt;h2&gt; Vous allez supprimer tous les fichiers du File System&lt;/h2&gt;
+    &lt;a href='FORMAT_OK'&gt;&lt;button&gt;CONFIRMER&lt;/button&gt;&lt;/a&gt;
+    &lt;a href='/'&gt;&lt;button&gt;ANNULER&lt;/button&gt;&lt;/a&gt;&lt;br&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+const char* monssid = "VotreSSID";
+const char* monpassword = "VotrePassword";
+ESP8266WebServer MonWebServer(80); // créer le serveur web sur le port 80
+String nomFichier, webpage;
+File UploadFileID;
+//==========================================================================
+void setup() {
+    Serial.begin(9600);  // pour le moniteur série
+    while(!Serial);
+    Serial.println("\r\n=====================================================");
+    // Connexion au point d'accès
+    WiFi.disconnect();
+    WiFi.mode(WIFI_STA);
+    Serial.print("Connexion à ");
+    Serial.println(monssid);
+    WiFi.begin(monssid, monpassword);
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println();
+    Serial.print("Connecté à  ");
+    Serial.println(monssid);
+    // Afficher l'adresse IP affecté par le point d'accès
+    Serial.print("L'adresse IP du ESP8266 est: ");
+    Serial.println(WiFi.localIP());
+    //==========================================================================
+    MonWebServer.on("/", handleroot);
+    MonWebServer.on("/REQ_DELALL", handledelall);
+    MonWebServer.on("/DEL_ALL_OK", handledelallok);
+    MonWebServer.on("/RADIO", handleradio);
+    MonWebServer.onFileUpload(handlefileupload);
+    MonWebServer.on("/URI_UPLOAD", handleupload);
+    MonWebServer.on("/REQ_FORMAT", handleformat);
+    MonWebServer.on("/FORMAT_OK", handleformatok);
+    //==========================================================================
+   
+    // Démarrer le serveur web
+    MonWebServer.begin();
+    Serial.println("Serveur Web démarré");
+    //Monter le File system
+    if (LittleFS.begin()) {
+        Serial.println("Montage File System LittleFS OK");
+    }else{
+        Serial.println("Echec Montage File system LittleFS");
+        while(1);
+    }
+    Serial.println("==========================================================");
+}
+
+//==========================================================================
+void loop(void){
+    MonWebServer.handleClient();  // gérer les requêtes des clients
+}
+
+//==========================================================================
+void page_refresh(void){
+    FSInfo fs_info;
+    LittleFS.info(fs_info); 
+    webpage = Page_Top;
+    webpage.replace("TOTALSPACE",String(fs_info.totalBytes));
+    webpage.replace("USEDSPACE",String(fs_info.usedBytes));
+    // form contient la liste des fichiers + les deux boutons situés dans Page_Botom
+    webpage += "&lt;form action='RADIO'&gt;";  
+    Dir racine = LittleFS.openDir("/");
+    while (racine.next()) {                 
+        nomFichier = racine.fileName();
+        size_t fileSize = racine.fileSize();
+        webpage += "&lt;input type='radio' name='filelist' value="+nomFichier+"&gt;&lt;label&gt;" +nomFichier+ " " +fileSize+ "&lt;/label&gt;&lt;br&gt;";
+    }
+    webpage += Page_Botom;
+    MonWebServer.send(200, "text/html", webpage);
+}
+
+//==========================================================================
+void handleroot(void){
+    Serial.print("==========================");
+    Serial.print(MonWebServer.uri());
+    Serial.println("==========================");
+    page_refresh();
+    Serial.println("Page Web envoyée");
+}
+
+//==========================================================================
+void handledelall(void){
+    Serial.print("==========================");
+    Serial.print(MonWebServer.uri());
+    Serial.println("==========================");
+    MonWebServer.send(200, "text/html", Page_Delall);
+}
+//==========================================================================
+void handledelallok(void){
+    Serial.print("==========================");
+    Serial.print(MonWebServer.uri());
+    Serial.println("==========================");
+    Dir dossier = LittleFS.openDir("/");
+    while (dossier.next()) {                      // List the file system contents
+        String NOM_fichier = dossier.fileName();
+        if(LittleFS.remove(NOM_fichier))Serial.println(NOM_fichier+" supprimé avec succès");      
+        else Serial.println("Echec suppression  ");
+    }
+    page_refresh();       
+}
+//==========================================================================
+void handleradio(void){
+    Serial.print("==========================");
+    Serial.print(MonWebServer.uri());
+    Serial.println("==========================");
+    nomFichier = MonWebServer.arg("filelist");
+    Serial.print("---&gt;");
+    Serial.print(nomFichier);
+    Serial.println("&lt;---");
+    if(nomFichier==""){
+        Serial.println("Il faut sélectionner un fichier");
+        MonWebServer.send(204, "text/html", "No Content");
+        return;
+    }
+    if(MonWebServer.arg("tache") == "DOWNLOAD"){
+        File ID_fichier = LittleFS.open("/"+nomFichier , "r");
+        if (ID_fichier) {
+            //int N = ID_fichier.available();
+            MonWebServer.sendHeader("Content-Type", "application/octet-stream");
+            MonWebServer.sendHeader("Content-Disposition", "attachment; filename="+nomFichier );
+            MonWebServer.sendHeader("Connection", "close");
+            MonWebServer.streamFile(ID_fichier, "application/octet-stream");
+            ID_fichier.close();
+        } else{
+            Serial.println();
+            Serial.println("Erreur ouverture fichier /" + nomFichier);
+        }
+    }
+    else if(MonWebServer.arg("tache") == "DELETE"){
+        if(LittleFS.remove("/"+nomFichier))Serial.println(nomFichier+" supprimé avec succès");      
+        else Serial.println("Echec suppression  ");
+        page_refresh();      
+    }
+}
+//==========================================================================
+void handlefileupload() {
+    Serial.print("==========================");
+    Serial.print("gestion POST type=file");
+    Serial.println("==========================");
+    if(MonWebServer.uri() != "/URI_UPLOAD") return;
+    HTTPUpload& upload2fs = MonWebServer.upload();
+    if(upload2fs.status == UPLOAD_FILE_START) {
+        nomFichier = upload2fs.filename;
+        if(nomFichier==""){
+            Serial.println("Il faut sélectionner un fichier");
+            MonWebServer.send(204, "text/html", "No Content");
+            return;
+        }
+        UploadFileID = LittleFS.open("/" + nomFichier, "w");
+        Serial.print("Ouverture fichier  "); Serial.println(nomFichier);    
+    } else if (upload2fs.status == UPLOAD_FILE_WRITE) {
+        if(UploadFileID){
+          Serial.print("Ecriture   "); Serial.print(upload2fs.currentSize); Serial.println("  Octets");
+          UploadFileID.write(upload2fs.buf, upload2fs.currentSize);
+        }
+    } else if (upload2fs.status == UPLOAD_FILE_END) {       
+        if (UploadFileID){
+            UploadFileID.close(); 
+            Serial.print("Fermeture fichier  "); Serial.println(nomFichier);        
+        }
+    }
+}
+//==========================================================================
+void handleupload(){
+    page_refresh();    
+}
+//==========================================================================
+void handleformat(){
+    MonWebServer.send(200, "text/html", Page_Format);
+    Serial.println("Page formatage envoyée");
+}
+//==========================================================================
+void handleformatok(){
+    const String Page_Echec_Format = "&lt;br&gt;&lt;br&gt;&lt;h2&gt;Echec Formatage&lt;/h2&gt;"
+    "&lt;a href='/'&gt;&lt;button&gt;OK&lt;/button&gt;&lt;/a&gt;&lt;br&gt;";
+    Serial.println("Formatage En cours");
+    bool formatted = LittleFS.format();
+    if(formatted){
+        page_refresh(); 
+        Serial.println("Formatage terminé avec succès");
+    }else{
+        MonWebServer.send(200, "text/html", Page_Echec_Format);
+        Serial.println("Echec Formatage");
+    }
+}
+              </code></pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="FSUP">L'outil FileSystem uploader: ESP8266LittleFS</h2>
+                <p>l s'agit d'un plugin à ajouter à l'IDE Arduino et qui permet d'uploder les fichiers qui se trouve
+                    dans le dossier data du projet vers le File System LittleFS</p>
+                <h3>Installation</h3>
+                <p>J'ai eu un peu de mal à installer une version qui marche. Après quelques recherches, J'ai fini par
+                    comprendre que cet outil utilise un script python. Or le package python installé par le
+                    gestionnaire de cartes ESP8266 est passé dernièrement de Python2 à Python3 qui ne sont pas vraiment
+                    compatibles. </p>
+                <p>J'ai fini par trouver une version qui marche avec Arduino-IDE 1.x <a target="_blank"
+                        href="https://github.com/earlephilhower/arduino-esp8266littlefs-plugin/releases">ICI</a></p>
+                <p>Une fois le fichier Zip téléchargé, extraire son contenu et copier le dossier ESP8266LittleFS dans le
+                    dossier tools de votre dossier de croquis (le mien s'appelle ARDUINO_IDE). Remarquez que le dossier
+                    ESP8266LittleFS contient lui même un dossier tools qui contient le fichier esp8266fs.jar. On doit
+                    obtenir une arborescence qui ressemble à ça:</p>
+                <img src="IMAGES/LittleFS_path.jpg"><br>
+                <p>Vous pouvez aussi le placer dans le dossier d'installation de l'IDE-Arduino</p>
+                <img src="IMAGES/LittleFS_path_2.jpg"><br>
+                <p><em>Ne pas oublier de Redémarrer L'IDE-Arduino après cette opération</em></p>
+                <h3>Utilisation</h3>
+                <ol>
+                    <li>Créer (si ce n'est pas déjà fait) un dossier <em>data</em> dans le dossier de votre projet
+                        Arduino-IDE. Le
+                        plus simple pour y aller: croquis → afficher le dossier des croquis</li>
+                    <li>Copier les fichiers à uploder dans le dossier data</li>
+                    <li>Dans le menu outils, cliquer sur ESP8266 LittleFs Data Upload</li>
+                    <img src="IMAGES/LittleFS_data_upload.jpg" class="BlocCenter"><br>
+                </ol>
+                <ul>
+                    <li><em>Il ne faut pas que le moniteur série soit ouvert car il utilise le même port COM</em></li>
+                    <li><em>Le téléversement efface les autres fichiers qui étaient dans le File-System</em></li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h2 id="HTMLFS">Héberger page Web dans le File System</h2>
+                <p>Dans tous les exemples que nous avons vus, le code HTML de la page web est inclus dans
+                    le fichier <i><b>.ino</b></i> qui gère le serveur. Nous allons voir dans cet exemple que le code
+                    html peut être
+                    placé dans le File System du module. Quand un client se connecte au serveur, celui-ci lui envoie la
+                    page web à partir du FileSystem. La procédure est la suivante:</p>
+                <ul>
+                    <li>Ecrire le code de la page web dans un fichier avec l'extension <i><b>.html</b></i></li>
+                    <li>Téléverser ce fichier dans le FileSystem. Le plus simple est de le placer dans le dossier data
+                        du projet et d'utiliser l'outil ESP8266 LittleFs Data Upload. On peut aussi utiliser notre
+                        FileSystem Explorer</li>
+                    <li>Adapter le code du serveur en vous inspirant de l'exemple ci-dessous</li>
+                </ul><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">PageWeb.html<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+              <code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+  &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;script&gt;
+      var ReqAjax = null;
+      if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+      else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }
+
+      function demanderMesures(){
+        ReqAjax.open("GET","SENSOR",true);  //***envoyer une requête avec le texte SENSOR ***
+        ReqAjax.send();
+        ReqAjax.onreadystatechange = function(){
+            if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+                var reponse = this.responseText;
+                var rep = reponse.split(",");  // séparateur = ','
+                document.getElementById('data_ID1').innerHTML = rep[0];
+                document.getElementById('data_ID2').innerHTML = rep[1];
+            }
+        }
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="/LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href="/LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt; 
+        &lt;br&gt;&lt;br&gt;&lt;br&gt;
+        &lt;button onclick="demanderMesures()"&gt;LIRE CAPTEUR&lt;/button&gt;
+        &lt;span id="data_ID1"; style="background-color: yellow; margin-left: 2ch; "&gt;TEMPÉRATURE&lt;/span&gt;
+        &lt;span id="data_ID2"; style="background-color: yellow; margin-left: 2ch; "&gt;HUMIDITÉ&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+              </code>
+            </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Code C (.ino)<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+              <code>
+//Programme html_in_FS.ino     A. Oumnad
+//=========================================================
+#include &lt;ESP8266WebServer.h&gt;
+#include &lt;LittleFS.h&gt;
+
+//=========================== Définir les variables globales ========================
+#define LED   2
+float T = 40.0, H = 50; 
+const char* ssid = "votre SSID";
+const char* password = "votre mot de passe";
+ESP8266WebServer myWebServer(80); //Server on port 80
+
+               
+//=======================SETUP=======================================
+void setup(void){
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(115200);
+  delay(10);
+  Serial.println();
+  Serial.println();
+  Serial.println("============================================================");
+  Serial.println();
+
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED,OUTPUT);
+  digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);     //Connect to your WiFi router
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  myWebServer.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  myWebServer.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+  myWebServer.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+  myWebServer.on("/SENSOR", envoyerMesures);// requête /SENSOR   =&gt; appel fonction envoyerMesures
+ 
+  //=========================== Monter le File system ============================
+  if(LittleFS.begin()){
+    Serial.println("Montage File system LittleFS OK");
+  }else{
+    Serial.println("Erreur montage File system LittleFS");
+        while(1);
+  }
+
+  //=========================== Démarrer le serveur ============================
+  myWebServer.begin();          
+  Serial.println("Serveur HTTP démarré");
+  Serial.println("==========================================================");
+}
+
+//=========================LOOP=====================================
+void loop(void){
+       myWebServer.handleClient();  // gérer les requêtes
+}
+
+void aff_page_web() {
+    File file_ID = LittleFS.open("PageWeb.html", "r");
+    if(file_ID){     
+        myWebServer.streamFile(file_ID, "text/html");
+        file_ID.close();
+        Serial.println("-----&gt; PageWeb.html envoyé");
+    }else{
+        Serial.println("Problème d'ouverture du fichier PageWeb.html");
+        Serial.println("Assurez vous de l'avoir téléversé à l'aide \r\n de l'outils LittleFS data upload");
+        String rep = ""
+        "Problème d'ouverture du fichier PageWeb.html \r\n"
+        "Assurez vous de l'avoir téléversé à l'aide \r\n"
+        "de l'outils LittleFS Data Upload \r\n";
+        myWebServer.send(404, "text/plain; charset=utf-8", rep);
+    }
+}
+
+void allumer_led() {
+ Serial.println("-----&gt; Allumer la LED");
+ digitalWrite(LED,LOW); //active LOW
+ myWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+
+void eteindre_led() {
+ Serial.println("-----&gt; Eteindre la LED");
+ digitalWrite(LED,HIGH); //active LOW
+ myWebServer.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+void envoyerMesures() {
+ Serial.println("-----&gt; Envoyer une donnée");
+ myWebServer.send(200, "text/html", String(T,3)+","+String(H));
+ T = T+0.125;
+ H = H+1;
+}
+              </code>
+            </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="DLOG">Datalogger: l'objectif ultime</h2>
+                <img src="IMAGES/datalogger.jpg" class="BlocCenter">
+                <h3>Objectif</h3>
+                <p>Dans les exemples précédents, le serveur envoyait des mesures fictives vers le client. Dans l'exemple
+                    qui suit, on va prendre de vraies mesures sur un capteur de température (LM75). On enregistre les
+                    données sur le File-System dans un fichier au format .csv, ensuite on télécharge le fichier pour le
+                    traiter sur Excel.</p>
+                <h3>Horodatage</h3>
+                <p>Pour dater les mesures, il faut utiliser un serveur NTP (Network Time Protocol). On peut y accéder à
+                    l'aide de la librairie <em>NTPclient</em>. La version installable par le gestionnaire de librairie
+                    ne
+                    contient pas toutes les fonctions comme getDate() et getFormattedDate()... Je vous conseille de
+                    télécharger <a target="_blank"
+                        href="https://github.com/arduino-libraries/NTPClient/files/1357589/NTPClient.zip"> cette
+                        version:</a> et de l'installer comme ça:</p>
+                <img src="IMAGES/ZIP_Library.jpg" class="BlocCenter"><br>
+                <p>Voici à quoi ressemble la page web</p>
+                <img src="IMAGES/datalogger_WB.jpg" class="Float_R w300">
+                <ul>
+                    <li>Les boutons ALLUMER, ETEINDRE contrôlent la LED. Elle n'a pas de fonction particulière, Je l'ai
+                        gardés juste pour tester la liaison. </li>
+                    <li>Au lieu d'avoir un bouton START_RECORDING pour démarrer l'enregistrement et STOP_RECORDING pour
+                        arreter
+                        l'enregistrement. J'ai expérimenté une solution avec un seul bouton:
+                        <ul>
+                            <li>Au départ le bouton affiche le label START_RECORDING</li>
+                            <li>Quand on clique sur le bouton, la fonction javascript envoie une requête contenant le
+                                label du bouton (START_RECORDING )</li>
+                            <li>Le serveur la détecte, démarre l'enregistrement des mesures et répond par le texte
+                                STOP_RECORDING</li>
+                            <li>La fonction javascript remplace le label du bouton par le texte de la réponse qui
+                                devient STOP_RECORDING</li>
+                            <li>Si maintenant on clique sur le bouton, la fonction javascript envoie une requête
+                                contenant le label actuel du bouton (STOP_RECORDING )</li>
+                            <li>Le serveur la détecte, arrête l'enregistrement des mesures et répond par le texte
+                                START_RECORDING</li>
+                            <li>La fonction javascript remplace le label du bouton par le texte de la réponse qui
+                                devient START_RECORDING</li>
+                        </ul>
+                    </li>
+                    <li>Le bouton TELECHARGER permet de télécharger le fichier des mesures</li>
+                </ul>
+                <p>Voici le code entier:</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Datalogger<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+              <code>
+// Programme dataloggerLM75.ino                      A. Oumnad
+//====================================================================
+
+#include &lt;ESP8266WebServer.h&gt;
+#include &lt;LittleFS.h&gt;
+#include &lt;NTPClient.h&gt;
+#include &lt;WiFiUdp.h&gt;
+#include &lt;Wire.h&gt;
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;script&gt;
+      var ReqAjax = null;
+      if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+      else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }
+     
+      function recordings(){
+        var   req_txt =  document.getElementById('R_bouton').value;
+        ReqAjax.open("GET",req_txt,true); 
+        ReqAjax.send(); // on envoie le label du bouton comme requête
+        ReqAjax.onreadystatechange = function(){
+            // on remplace le label du bouton par la réponse du serveur
+            if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+               document.getElementById('R_bouton').value = this.responseText;
+            }
+        }
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="LEDON"&gt;&lt;button&gt;ALLUMER&lt;/button&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;       
+        &lt;a href="LEDOFF"&gt;&lt;button&gt;ETEINDRE&lt;/button&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+        &lt;input id="R_bouton" value="START_RECORDING" onclick="recordings()" type="button"&gt;&lt;br&gt;&lt;br&gt;
+        &lt;a href='DOWNLOAD'&gt;&lt;button&gt;TELECHARGER&lt;/button&gt;&lt;/a&gt;              
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+#define LM75_I2C_ADR 0x48
+bool    rec_status = false;
+const char* ssid = "votre SSID";
+const char* password = "votre mot de passe";
+String DataFileName = "data00.csv" ;
+ESP8266WebServer MonWebServeur(80); //Server on port 80
+File DataFileID;
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", 3600);
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(115200);
+  while(!Serial);
+  Serial.println("\r\n\r\n============================================================\r\n");
+
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED,OUTPUT);
+  digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+  bool success = LittleFS.begin();
+  if (success) Serial.println("File system LittleFS monté avec succès");
+  else{
+    Serial.println("Error montage File System LittleFS");
+    return;
+  }
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);     //Connect to your WiFi router
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+  timeClient.begin();
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  MonWebServeur.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  MonWebServeur.on("/LEDON", allumer_led);  // requête /LEDON   =&gt; appel fonction  allumer_led
+  MonWebServeur.on("/LEDOFF", eteindre_led);// requête /LEDOFF   =&gt; appel fonction eteindre_led
+  MonWebServeur.on("/START_RECORDING", demarrer_R);
+  MonWebServeur.on("/STOP_RECORDING", arreter_R);
+  MonWebServeur.on("/DOWNLOAD", handledownload);
+  //=========================== Démarrer le serveur ============================
+  MonWebServeur.begin();                  //Start server
+  Serial.println("Serveur Web démarré");
+  Serial.println("==========================================================");
+  Wire.begin();  
+  Wire.beginTransmission(LM75_I2C_ADR);
+  Wire.write(0);             // pointeur sur registre de température
+  Wire.endTransmission();
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+unsigned long ancien=0, nouveau=0;
+float T = 0;
+int8_t msb;
+byte   lsb;
+void loop(void){
+       MonWebServeur.handleClient();  // gérer les requêtes
+       if(!rec_status)return;
+       nouveau = millis();
+       if ((unsigned long)(nouveau - ancien) &gt;= 5000) {  // une mesure toutes les 5 secondes à peu près
+            timeClient.update();
+            Wire.requestFrom(LM75_I2C_ADR, 2); // demander 2 octets à partir de la position courante du pointeur
+            msb = Wire.read();
+            lsb = Wire.read();
+            T = msb + (lsb &gt;&gt; 5) * 0.125;  //Température
+            DataFileID.print(timeClient.getFormattedDate()+";");
+            DataFileID.print(timeClient.getFormattedTime()+";");
+            DataFileID.println(T,1);
+            Serial.print(timeClient.getFormattedDate()+"          ");  
+            Serial.print(timeClient.getFormattedTime()+"          ");     
+            Serial.println(T,2);
+            ancien = nouveau;
+        }
+}
+
+//====================== Définir les fonctions qui réaliseront les tâches ========================
+void aff_page_web() {
+ MonWebServeur.send(200, "text/html", Page_Client); //Envoyer la page Web
+ Serial.println("-----&gt; Page WEB envoyée");
+}
+
+void allumer_led() {
+ Serial.println("-----&gt; Allumer la LED");
+ digitalWrite(LED,LOW); //active LOW
+ MonWebServeur.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+
+void eteindre_led() {
+ Serial.println("-----&gt; Eteindre la LED");
+ digitalWrite(LED,HIGH); //active LOW
+ MonWebServeur.send(204, "text/html", "No Content"); // pas de réponse HTTP
+}
+void demarrer_R() {
+  DataFileID = LittleFS.open(DataFileName, "w");
+  if (DataFileID)Serial.println("Ouverture fichier "+DataFileName+" Pour écriture Réussie");
+  else{
+    Serial.println("Erreur ouverture fichier "+DataFileName+" En écriture");
+    return;
+  }
+ rec_status = true;
+ MonWebServeur.send(200, "text/html", "STOP_RECORDING"); // réponse AJAX pour modifier le bouton
+ Serial.println("-----&gt; Enregistrement En cours");
+
+}
+void arreter_R() {
+ delay(10);
+ DataFileID.close();
+ Serial.println("-----&gt; enregistrement Arrêté");
+ rec_status = false;
+ MonWebServeur.send(200, "text/html", "START_RECORDING"); // réponse AJAX pour modifier le bouton
+ 
+}
+void handledownload() {
+  Serial.println("-----&gt; Téléchargement"); 
+  if( rec_status){
+    delay(10);
+    DataFileID.close();
+  }
+  DataFileID = LittleFS.open(DataFileName , "r");
+  if (DataFileID) {
+    Serial.println("Ouverture fichier "+DataFileName+" Pour Lecture Réussie");
+    MonWebServeur.sendHeader("Content-Type", "text/text");
+    MonWebServeur.sendHeader("Content-Disposition", "attachment; filename="+DataFileName );
+    MonWebServeur.sendHeader("Connection", "close");
+    MonWebServeur.streamFile(DataFileID, "application/octet-stream");
+    DataFileID.close();
+    if( rec_status)DataFileID = LittleFS.open(DataFileName , "a");  //Si enregistrement en cours, on continue
+  } else{
+    Serial.println("Echec Ouverture fichier "+DataFileName+" en Lecture");
+    MonWebServeur.send(404, "text/html", "Echec Ouverture fichier "+DataFileName+" en Lecture");
+  }
+}
+              </code>
+            </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+                <br>
+                <p>Une fois téléchargé, le fichier de mesures au format (.csv) est compatible avec Microsoft Excel</p>
+                <img src="IMAGES/datalogger_Excel.jpg" class="BlocCenter"><br>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="DLOG3">Datalogger final</h2>
+                <ul>
+                    <li>Pour changer un peu, on va utiliser une adresse IP fixe.</li>
+                    <li>Un timer (JavaScript) déclenche l'actualisation de la page toutes les secondes pour voir ce qui
+                        se passe sur l'ESP8266,</li>
+                    <li>L'ESP8266 prend une mesure de la température toutes les 5 secondes,</li>
+                    <li>Le champs <b>Température</b> permet de voir la dernière mesure de température. Il est actualisé
+                        avec la page toutes les secondes</li>
+                    <li>Si on clique sur <b>START RECORDING</b>, les températures mesurées sont sauvegardées dans le
+                        fichier data00.csv situé dans le file system SPIFFS du ESP8266. Le contenu précédent du fichier
+                        est effacé,</li>
+                    <li>Si on clique sur <b>RESUME RECORDING</b>, les températures mesurées sont ajoutées à la fin du
+                        fichier data00.csv,</li>
+                    <li>Si on clique sur <b>STOP RECORDING</b> (Visible seulement si l'enregistrement et en cours)
+                        l'enregistrement des mesures dans le fichier data00.csv est arrêté,</li>
+                    <li>Le champs <b>Recording Status</b> permet de savoir si l'enregistrement est en cours. Sur le D1
+                        mini c'est la LED qui joue ce rôle</li>
+                    <li>Le champ <b>Samples Recorded</b> affiche le nombre de mesures stockées dans le fichier,</li>
+                    <li>Le bouton <b>DOWNLOAD</b> permet de télécharger le fichier data00.csv qui peut être manipulé sur
+                        Excel. Si on clique sur ce bouton pendant l'enregistrement, ce dernier est arrêté.
+                    </li>
+                    <li>Pour dater les mesures, on utilise un serveur NTP (Network Time Protocol). Voir paragraphe
+                        précédent pour l'<a href="#NTPclient">installation</a>,</li>
+                </ul>
+                <p class="InlineCenter"><img src="IMAGES/datalogger_final_1.jpg">
+                    <span class="ForPC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <img src="IMAGES/datalogger_final_2.jpg">
+                </p><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Datalogger final<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+              <code>
+// Programme datalogger_LM75_final             A. Oumnad
+//================================================================
+
+#include &lt;NTPClient.h&gt;
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WebServer.h&gt;
+#include &lt;LittleFS.h&gt;
+#include &lt;WiFiUdp.h&gt;
+#include &lt;Wire.h&gt;
+//=========================== Définir la page Web ===================================
+String Page_Client = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;meta content="text/html; charset=utf-8" http-equiv="content-type"&gt;
+    &lt;title&gt;Datalogger&lt;/title&gt;
+    &lt;script&gt;
+      var ReqAjax = null;
+      if (window.XMLHttpRequest)  { ReqAjax =new XMLHttpRequest(); }
+      else    { ReqAjax =new ActiveXObject("Microsoft.XMLHTTP"); }
+  
+
+      //  demarrer le timer qui cadence l'actualisation des champs de la page
+      var myVar = setInterval(actualiser, 1000);    
+      function actualiser(){
+        ReqAjax.open("GET","ACTUALISER",true);  //***envoyer une requête avec le texte SENSOR ***
+        ReqAjax.send();
+        ReqAjax.onreadystatechange = function(){
+            if(ReqAjax.readyState == 4 && ReqAjax.status==200) { //***Traiter la réponse***
+                var reponse = this.responseText;
+                var rep = reponse.split(" ");
+                document.getElementById('TEMP_ID').innerHTML = rep[0] + " °C";
+                document.getElementById('ECH_ID').innerHTML = rep[1];
+                if(rep[2]=="1"){
+                    document.getElementById('RSTATUS').innerHTML = "ON";
+                    document.getElementById('START_R').style.visibility = "hidden";
+                    document.getElementById('RESUME_R').style.visibility = "hidden";
+                    document.getElementById('STOP_R').style.visibility = "visible";
+                }else{
+                    document.getElementById('RSTATUS').innerHTML = "OFF";
+                    document.getElementById('START_R').style.visibility = "visible";
+                    document.getElementById('RESUME_R').style.visibility = "visible";
+                    document.getElementById('STOP_R').style.visibility = "hidden";
+                }
+            }
+        }
+      }
+
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt; &lt;br&gt;
+    &lt;br&gt;
+    &lt;div style="text-align: center;"&gt; &lt;br&gt;
+      Température&lt;br&gt;
+      &lt;span id="TEMP_ID" style="display: inline-block; border-style: solid;width: 100px;"&gt;0 °C&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      &lt;a href="START_REC"&gt;&lt;button id="START_R"&gt;START RECORDING&lt;/button&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+      &lt;a href="RESUME_REC"&gt;&lt;button id="RESUME_R"&gt;RESUME RECORDING&lt;/button&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+      &lt;a href="STOP_REC"&gt;&lt;button id="STOP_R"&gt;STOP RECORDING&lt;/button&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+      Recording Status&lt;br&gt;
+      &lt;span id="RSTATUS" style="display: inline-block; border-style: solid; width: 109px; margin-left: -7px;"&gt;X&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      Samples Recorded&lt;br&gt;
+      &lt;span id="ECH_ID" style="display: inline-block; border-style: solid; width: 109px; margin-left: -7px;"&gt;0&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      &lt;a href="DOWNLOAD"&gt;&lt;button&gt;DOWNLOAD&lt;/button&gt;&lt;/a&gt;&lt;/div&gt;   
+  &lt;/body&gt;
+&lt;/html&gt;
+)=====";
+
+//=========================== Définir les variables globales ========================
+#define LED LED_BUILTIN
+#define LM75_I2C_ADR 0x48
+bool    record_status = false;
+const char* ssid = "votre SSID";
+const char* password = "votre mot de passe";
+String DataFileName = "data00.csv" ;
+File DataFileID;
+float T = 0;
+int N_ECH=0;
+int8_t msb;
+byte   lsb;
+// pour le serveur NTP
+WiFiUDP ntpUDP;
+NTPClient Date_heure(ntpUDP, "pool.ntp.org", 3600);
+//Server Web sur port 80
+ESP8266WebServer MonServeurWeb(80);
+
+//Adresse IP fixe
+IPAddress IP(192, 168, 0, 150); //adresse fixe
+IPAddress gateway(192, 168, 0, 1);   //adresse du point d'accès
+IPAddress subnet(255, 255, 255, 0);  //masque de sous réseau
+IPAddress dns(8, 8, 8, 8);  //DNS
+
+//====================== Définir les fonctions qui réaliseront les tâches ========================
+void aff_page_web() {
+ Serial.println("-----&gt; Afficher page WEB");
+ MonServeurWeb.send(200, "text/html", Page_Client); //Envoyer la page Web
+}
+
+
+void actualiser() {
+ //Serial.println("-----&gt; Actualiser");
+ MonServeurWeb.send(200, "text/html", String(T,3)+" "+String(N_ECH)+" "+String(record_status));
+}
+
+void demarrer_R() {
+  DataFileID = LittleFS.open(DataFileName, "w");  // ancien contenu effacé
+  if (!DataFileID) {
+    Serial.println("Erreur ouverture fichier "+DataFileName);
+    MonServeurWeb.send(204, "text/html", "No content");
+    return;
+  }
+  digitalWrite(LED,LOW);
+  Serial.println("-----&gt; Enregistrement En cours");
+  record_status = true;
+  N_ECH = 0;
+  MonServeurWeb.send(204, "text/html","No content");
+}
+
+void continue_R() {
+  DataFileID = LittleFS.open(DataFileName, "a");  // append
+  if (!DataFileID) {
+    Serial.println("Erreur ouverture fichier "+DataFileName);
+    MonServeurWeb.send(204, "text/html", "No content");
+    return;
+  }
+  digitalWrite(LED,LOW);
+  Serial.println("-----&gt; Enregistrement En cours");
+  record_status = true;
+  MonServeurWeb.send(204, "text/html","No content");
+}
+
+void arreter_R() {
+ delay(10);
+ DataFileID.close();
+ digitalWrite(LED,HIGH);
+ Serial.println("-----&gt; enregistrement Arrêté");
+ record_status = false;
+ MonServeurWeb.send(204, "text/html", "No content"); 
+}
+
+void handledownload() {
+  if(record_status){
+    delay(10);
+    DataFileID.close();
+    Serial.println("-----&gt; enregistrement Arrêté");
+    record_status = false;
+  }
+  DataFileID = LittleFS.open(DataFileName , "r");
+  if (DataFileID) {
+    Serial.println("-----&gt; Téléchargement en cours");
+    MonServeurWeb.sendHeader("Content-Type", "text/text");
+    MonServeurWeb.sendHeader("Content-Disposition", "attachment; filename="+DataFileName );
+    MonServeurWeb.sendHeader("Connection", "close");
+    MonServeurWeb.streamFile(DataFileID, "application/octet-stream");
+    DataFileID.close();
+  } else{
+    Serial.println();
+    Serial.println("Fichier introuvable");
+    MonServeurWeb.send(204, "text/html", "Fichier introuvable");
+  }
+}
+
+//==============================================================
+//                  SETUP
+//==============================================================
+void setup(void){
+  //=========================== Initialiser le Moniteur Série ========================
+  Serial.begin(115200);
+  while(!Serial);
+  Serial.println("\r\n\r\n============================================================\r\n");
+
+  //=========================== Configurer et éteindre la LED ========================
+  pinMode(LED,OUTPUT);
+  digitalWrite(LED,HIGH); // La LED de esp8266 est branchée à l'envers, (logique inversée)
+
+  // file System
+  bool success = LittleFS.begin();
+  if (!success) {
+    Serial.println("Error mounting the file system");
+    return;
+  }
+  //====================== Connexion à un point d'accès ========================
+  Serial.print(" Connexion à ");
+  Serial.println(ssid);
+  WiFi.disconnect();  //Prevent connecting to wifi based on previous configuration
+  WiFi.config(IP,gateway,subnet,dns);
+  WiFi.begin(ssid, password);
+  WiFi.mode(WIFI_STA); //WiFi mode station, connect to wifi router only
+ 
+  // Wait for connection
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.print("Connecté à ");
+  Serial.println(ssid);
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+
+ 
+  //=========================== Dire au serveur ce qu'il a à faire ===============
+  MonServeurWeb.on("/", aff_page_web);      // requête /   =&gt; appel fonction aff_page_web
+  MonServeurWeb.on("/ACTUALISER", actualiser);
+  MonServeurWeb.on("/START_REC", demarrer_R);
+  MonServeurWeb.on("/RESUME_REC", continue_R);
+  MonServeurWeb.on("/STOP_REC", arreter_R);
+  MonServeurWeb.on("/DOWNLOAD", handledownload);
+ 
+  //=========================== Démarrer le serveur ============================
+  MonServeurWeb.begin();                  //Start server
+  Serial.println("Serveur HTTP démarré");
+  Serial.println("==========================================================");
+ 
+  // initialiser I2c et le LM75
+  Wire.begin();  
+  Wire.beginTransmission(LM75_I2C_ADR);
+  Wire.write(0);             // pointeur sur registre de température
+  Wire.endTransmission();
+
+  // démarrer le client NTP
+  Date_heure.begin();
+
+}
+//==============================================================
+//                     LOOP
+//==============================================================
+unsigned long ancien=0, nouveau=0;
+void loop(void){
+       MonServeurWeb.handleClient();  // gérer les requêtes des clients
+       nouveau = millis();
+       if ((unsigned long)(nouveau - ancien) &gt;= 5000) {  // une mesure toutes les 5 secondes à peu près
+            Date_heure.update();
+            Wire.requestFrom(LM75_I2C_ADR, 2); // demander 2 octets à partir de la position courante du pointeur
+            msb = Wire.read();
+            lsb = Wire.read();
+            T = msb + (lsb &gt;&gt; 5) * 0.125;  //Température
+            if(record_status){
+                DataFileID.print(Date_heure.getFormattedDate()+";");
+                DataFileID.print(Date_heure.getFormattedTime()+";");
+                DataFileID.println(T,3);
+                Serial.print(Date_heure.getFormattedDate()+"          ");  
+                Serial.print(Date_heure.getFormattedTime()+"          ");     
+                Serial.println(T,3);
+                N_ECH++;
+            }
+            ancien = nouveau;
+        }
+}
+              </code>
+            </pre>
+                </div>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="OTA">OTA: Téléversement Over The Air</h2>
+                <p>Pendant la phase de développement d'un projet, il est tout à fait pratique de téléverser les
+                    programmes dans l'ESP8266 via une liaison série sur le câble USB. Quand le projet est terminé et le
+                    module est placé dans son boîtier final, il peut s'avérer nécessaire après utilisation d'apporter
+                    des mises à jour au programme. Dans ce cas, le téléversement via une connexion Wireless est bien
+                    plus pratique. On parle de mise à jour OTA (Over The Air). Pour y parvenir, il faut ajouter au
+                    programme une partie dont la tâche est de rester à l'écoute de l'IDE Arduino pour monitorer le
+                    téléversement. La nouvelle version du programme et d'abord copiée dans la zone mémoire OTA avant
+                    d'écraser l'ancienne version dans la mémoire programme. Pour cette raison, la mémoire programme doit
+                    avoir au moins la taille de la mémoire OTA. La figure ci-dessous illustre un exemple de répartition
+                    de la mémoire flash du module</p>
+                <img src="IMAGES/mem_PROG_FS_OTA.jpg" class="BlocCenter">
+                <p>Je n'ai pas d'exemple à vous proposer pour l'instant. Ça viendra peut être un jour</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="ESP-01">Le module ESP-01</h2>
+                <img src="IMAGES/ESP-01.png" class="Float_R">
+                <p>Bien que je n'aime pas trop ce module. Je lui consacre un petit paragraphe parce que je sais que
+                    beaucoup de gens l'ont déjà acheté.</p>
+                <p>Le module ESP8266 fonctionne dans deux modes différents:</p>
+                <ul>
+                    <li>Un mode <em>RUN</em> dans lequel il exécute le programme qu'il contient</li>
+                    <li>Un mode <em>PROG</em> dans lequel il attend de recevoir un programme (téléversement).</li>
+                    <li>Pour passer d'un mode à l'autre il faut utiliser deux bouton poussoir comme indiqué sur les
+                        figures ci-après</li>
+                </ul>
+                <h3>Programmer l'ESP-01 directement à partir du PC</h3>
+                <img src="IMAGES/esp-01-adapter.jpg" class="Float_R">
+                <p>l faut utiliser un adaptateur USB-Serial. Si vous avez essayé, vous savez déjà que ça ne marche pas
+                    bien. Même le petit adaptateur avec le connecteur jaune spécialement fait pour ça ne marche pas. Le
+                    problème vient du fait que ESP-01 n'a rien qui lui permet de passer d'un mode à l'autre. Pour le
+                    programmer, il faut le brancher à un adaptateur USB-Serial en ajoutant deux boutons poussoir comme
+                    indiqué sur la figure ci dessous:</p><br>
+                <img src="IMAGES/ESP-01_Serial_Laptop.jpg" class="BlocCenter">
+                <p>Les broches RST, EN et IO0 disposent de résistances de pull-up internes. Il n'est pas nécessaire de
+                    rajouter des résistances externes avec les boutons.</p><br>
+                <img src="IMAGES/5Vto3.3V.jpg" class="Float_R">
+                <p>Un autre problème vient s'ajouter: La majorité des modules USB-Serial du commerce délivrent un signal
+                    TX de 5V
+                    alors que le module ESP-01 attend un signal 3.3V sur sa pate RX. il faut essayer de trouver une
+                    USB-Serial qui délivre un TX de 3.3V ou alors prévoir un diviseur de tension pour abaisser la
+                    tension (moi je l'ai branché directement à mes risques et périls).</p><br>
+                <img src="IMAGES/breadboard-adapter.jpg" class="Float_R">
+                <p>Et comme si ça ne suffisait pas, le connecteur du ESP-01 n'a pas le bon écartement et ne peut être
+                    placé sur les carte d'essai breadboard. Il faut acheter (ou bricoler) un adaptateur.</p><br>
+                <p><em>Comme vous pouvez le constater, ce module n'est pas vraiment un cadeau. On ne pas pas dire que le
+                        gars qui l'a conçu soit très inspiré. J'en avais plusieurs, il ont tous fini à la poubelle.</em>
+                </p>
+                <h3>Procédure de programmation</h3>
+                <ol>
+                    <li>Si ce n'est pas déjà fait, effectuez les deux premières étapes du paragraphe: <a
+                            href="#IDE">Environnement de programmation</a></li>
+                    <li>Connecter l'adaptateur USB au PC et noter le port COM affecté par Windows (Gestion de
+                        périphériques)</li>
+                    <li>Dans l'IDE Arduino: (Outil→Port→choisir le port) , (Outil→type de carte→Generic ES8266)</li>
+                    <li>Placer le module en mode PROG: maintenir P appuyé, cliquer sur RST, relâcher P</li>
+                    <li>Ouvrir le programme Blink (fichier->Exemple-> basic->Blink)</li>
+                    <li>Téléverser</li>
+                    <li>Repasser en mode RUN: Cliquer sur le bouton RST </li>
+                </ol><br>
+                <h3>Programmer l'ESP-01 avec l'USB-Serial de l'Arduino</h3>
+                <p>Si vous n'avez pas un adaptateur USB-Serial, pas de panique, il y'en a un sur l'Arduino. Mais il faut
+                    faire attention car dans ce cas le module ESP-01 et branché en parallèle avec le processeur du
+                    Arduino. Par conséquent:</p>
+                <ol>
+                    <li>Il faut brancher le <em>RX avec le RX</em> et le <em>TX avec le TX</em></li>
+                    <li>Il ne faut pas que le processeur du Arduino contienne un programme qui utilise le port série. Le
+                        mieux est d'y téléverser un programme vide:</li>
+                    <div class="code2 w300">
+                        void setup(){} <br>
+                        void loop(){} <br>
+                    </div>
+                    <li>Il ne faut pas oublier de placer le module en mode PROG. une fois la
+                        programmation terminée, il faut le replacer en mode RUN pour voir l'exécution du programme</li>
+                </ol>
+                <img src="IMAGES/ESP-01_Arduino_Laptop.jpg" class="BlocCenter"><br>
+                <h3>Tester le module ESP-01 avec le programme Blink</h3>
+                <p>Ne pas faire ça si vous voulez utiliser votre module à l'aide des commandes AT car vous allez écraser
+                    le firmware AT</p>
+                <ul>
+                    <li>Si vous l'utiliser avec Arduino. Avant de brancher l'ESP-01, téléverser un programme vide dans
+                        l'Arduino</li>
+                    <li>Brancher l'ESP-01</li>
+                    <li>Outil→type de carte→Generic ESP8266</li>
+                    <li>Ouvrir le programme Blink (fichier-&gt;Exemple-&gt; basic-&gt;Blink)</li>
+                    <li>Placer le module en mode PROG: maintenir P appuyé, cliquer sur RST, relâcher P</li>
+                    <li>Téléverser</li>
+                    <li>Placer le module en mode RUN: Clic sur RST, la LED doit clignoter</li>
+                </ul>
+
+                <h3>Tester le module ESP-01 avec les commandes AT</h3>
+                <p>Pour tester si votre module contient un firmware AT:</p>
+                <ul>
+                    <li>Si vous l'utiliser avec Arduino. Avant de brancher l'ESP-01, téléverser un programme vide dans
+                        l'Arduino. Les deux fonctions setup() et loop() doivent être vides</li>
+                    <li>Brancher l'ESP-01</li>
+                    <li>Ouvrir le moniteur série et fixez la vitesse à 115200 baud<br>
+                    </li>
+                    <li>Cliquer sur le bouton RESET pour réinitialiser le module. Le moniteur série doit afficher
+                        quelques chose avec au moins une ligne lisible.</li>
+                    <li>Si ce n'est pas le cas, essayez avec la vitesse 9600 baud<br>
+                    </li>
+                    <li>Si vous avez votre ligne lisible, <br>
+                        * Taper AT et valider par Enter, le module doit répondre OK, <br>
+                        * Taper AT+CWMODE=3↵ le module doit répondre OK <br>
+                        * à partir de maintenant, le module doit reconnaître toutes les autres commandes
+                    </li>
+                    <li>Si ça ne marche pas, il faut téléverser un nouveau firmware AT dans le module
+                    </li>
+                </ul>
+                <h3>Flasher l'ESP-01 avec un firmware AT</h3>
+                <ul>
+                    <li>Télécharger <a target="_blank" href="https://github.com/nodemcu/nodemcu-flasher">le flasheur de
+                            NodeMCU</a></li>
+                    <li>Brancher le module à votre PC avec un adaptateur USB-Serial ou avec un Arduino comme indiqué
+                        plus haut. Si vous utiliser l'Arduino, assurez vous
+                        qu'il contienne un programme vide.</li>
+                    <li>Placer le ESP-01 en mode PROG</li>
+                    <li>Démarrer le flasheur (en chinois, mais il n'y a pas grand-chose à faire) </li>
+                    <li>Choisir le port COM (affecté par windows à votre USB-Serial ou à votre Arduino, voir
+                        gestionnaire de périphérique si nécessaire)</li>
+                    <li>Cliquer sur le bouton juste à droite de COM</li>
+                    <li>Une fois le flash terminé, fermer le programme et placer le module en mode RUN (bouton RST)</li>
+                    <li>Ouvrir un terminal de votre choix, (Moniteur série de Arduino-IDE ou TeraTerm ou autre),
+                        Sélectionner le port COM et la vitesse 9600 baud</li>
+                    <li>Taper AT et valider par ↵ le module doit répondre OK</li>
+                    <li>Taper AT+CWMODE=3↵ le module doit répondre OK</li>
+                    <li>à partir de maintenant, le module doit reconnaître toutes les autres commandes</li>
+                </ul><br><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

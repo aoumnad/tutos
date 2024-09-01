@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+    name="keywords">
+  <title>Mesure de distance</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+  <div class="TwoPanPageContainer">
+    <div id="LeftPanel_ID" class="LeftPanel">
+      <div class="LeftPanelHeader">
+        <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+        <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
+      </div>
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+        <a href="#INTRO">
+          <h3>HC-SR04</h3>
+        </a>
+        <a href="#EXMPLBASIC">
+          <h3>Exemple basique</h3>
+        </a>
+        <a href="#CTRPASS">
+          <h3>Exemple: Compteur de passage</h3>
+        </a>
+      </div>
+    </div>
+    <div class="RightPanel">
+      <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png"
+          alt="">
+        <h1>Mesure de distance</h1>
+      </div>
+      <div class="RightPanelContent">
+        <!-- ################################################################################################ -->
+        <h2 id="INTRO">HC-SR04</h2>
+        <img src="IMAGES/HC-SR04.png" class="BlocCenter">
+        <p>Le module HC-SR04 est un capteur ultrasonique utilisé pour mesurer des distances. Voici ses spécification
+          techniques :
+        </p>
+        <ul>
+          <li>Alimentation: 5V DC</li>
+          <li>Courant de fonctionnement: 15 mA</li>
+          <li>Fréquence ultrasonique: 40 kHz</li>
+          <li>Portée de mesure: 2 cm à 400 cm</li>
+          <li>Précision: ±3 mm</li>
+          <li>Angle de mesure: 15 degrés</li>
+        </ul>
+        <p>Son principe de fonctionnement est assez simple: </p>
+        <img src="IMAGES/HC-SR04_Signal.png" class="BlocCenter">
+        <ul>
+          <li>Il possède un émetteur et un récepteur ultrasoniques (Haut parleur, microphone),</li>
+          <li>Quand on lui applique une impulsion de 10µs (ou +) sur la broche <em>Trig</em>, il transmet une onde
+            sonore (8 périodes à 40 kHz),</li>
+          <li>L'onde sonore se propage dans l'air jusqu'à rencontrer un obstacle, puis elle est réfléchie vers le
+            capteur</li>
+          <li>Le transducteur de réception capte l'ondes réfléchie,</li>
+          <li>Le module délivre une impulsion dont la largeur est est égale au temps de propagation (aller/retour) sur
+            la broche <em>Echo</em>. Ce temps est souvent appelé temps de vol</li>
+          <li>Il suffit ensuite de mesurer la durée de cette impulsion et d'en déduire la distance :</li>
+          <img src="IMAGES/Formule_Distance.png" class="BlocCenter">
+          <li>La vitesse du son est généralement prise comme 344 m/s à température ambiante</li>
+        </ul> <br>
+        <h2 id="EXMPLBASIC">Exemple basique</h2>
+        <p>Chaque 1/2 seconde, on effectue une mesure de distance et on affiche le résultat sur le moniteur série</p>
+        <img src="IMAGES/HC-SR04_Branchement.png" class="BlocCenter">
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Mesurer la distance toutes les 1/2 secondes<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre>
+            <code>
+#define trigPin 7
+#define echoPin 6
+
+void setup() {
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    digitalWrite(trigPin, LOW);
+    Serial.begin(9600);
+}
+
+void loop() {
+    delay(500);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    float Tus = pulseIn(echoPin, HIGH); // temps en µs
+    float Dcm = Tus * 0.0344 / 2;  // distance en cm
+    Serial.print(Dcm,1);
+    Serial.print("     Cm   ");
+}
+</code>
+</pre>
+        </div>
+        <!-- ============================= Fin Code ================================================ -->
+        <!-- ################################################################################################ -->
+        <h2 id="CTRPASS">Compteur de passages</h2>
+        <p>On va par exemple compter les voitures à l'entrée d'un parking</p>
+        <p>La largeur du passage fait que les voiture passent à proximité du capteur (disons D = 1m à 2m). </p>
+        <p>On mesure continuellement la distance, si inférieur à D => présence obstacle </p>
+        <img src="IMAGES/HC-SR04_Car_Ctr.png" class="BlocCenter"><br>
+        <img src="IMAGES/HC-SR04_Counter.png" class="BlocCenter"><br>
+        <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Compteur de passage<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre>
+            <code>
+#define trigPin 12
+#define echoPin 11
+#define TRIG_D 100  // Intervalle de détection en cm
+#define TRIG_T TRIG_D*2/0.0344  // temps de vol correspondant (µs)
+#define LED 13
+#include <LCD_I2C.h>
+LCD_I2C lcd(0x27, 16, 2);
+
+int CTR = 0, newState, oldState;
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
+  digitalWrite(trigPin, LOW);
+  lcd.begin();
+  lcd.backlight();
+  lcd.print(CTR);
+  oldState = isObstacle();
+}
+
+void loop() {
+  newState = isObstacle();
+  digitalWrite(LED, newState);
+  if (newState - oldState == 1) {
+    CTR++;
+    lcd.clear();
+    lcd.print(CTR);
+  }
+  oldState = newState;
+  delay(100);
+}
+
+int isObstacle() {
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  float Tus = pulseIn(echoPin, HIGH);
+  if (Tus < TRIG_T) return 1;
+  else return 0;
+  }
+</code>
+</pre>
+        </div><br>
+        <!-- ============================= Fin Code ================================================ -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

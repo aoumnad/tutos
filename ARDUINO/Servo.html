@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, DC Motor, Servo, Servomoteur,
+         Matlab, Python, TKinter" name="keywords">
+    <title>Servo Moteur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#SERVO">
+                    <h3>Servo Moteur</h3>
+                </a>
+                <a href="#SERVOLIB">
+                    <h3>La librairie Servo</h3>
+                </a>
+                <a href="#EXMPLBASIC">
+                    <h3>Exemple basique</h3>
+                </a>
+                <a href="#LIMITS">
+                    <h3>Exemple: Limites du Servo</h3>
+                </a>
+                <a href="#SERVOJOY">
+                    <h3>Exemple: Commande par Joystick</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png">
+                <h1>Servomoteur</h1>
+            </div>
+            <div class="RightPanelContent">
+                <!-- ################################################################################################ -->
+                <h2 id="SERVO">Servo Moteur</h2>
+                <p>Un Servomoteur est un moteur CC auquel on a ajouté un peu d'électronique et un peu de mécanique pour
+                    en faire un positionneur angulaire</p><br>
+                <img src="IMAGES/Servo_bleu.png" class="BlocCenter">
+                <p>Le contrôle de position se fait à l'aide d'un signal PWM</p>
+                <img src="IMAGES/Servo_PWM_Signal.png" class="BlocCenter">
+                <p>Le branchement avec l'Arduino est très simple, une seule sortie PWM suffit. L'alimentation doit être
+                    choisie en fonction des spécifications du moteur</p>
+                <img src="IMAGES/Servo_Branchement.png" class="BlocCenter"><br>
+                <!-- ################################################################################################ -->
+                <h2 id="SERVOLIB">La librairie Servo</h2>
+                <p>La librairie Servo fait partie du package Arduino-IDE. Elle propose quelques fonctions permettant de
+                    contrôler facilement un Servomoteur</p>
+                <ul>
+                    <li><em>attach(pin, [min, max]); </em></li>
+                    <ul>
+                        <Li>Initialise la librairie et Définit la broche Arduino connectée au servomoteur</Li>
+                        <Li><em>pin : </em>Broche Arduino qui contrôle le Servomoteur</Li>
+                        <Li><em>[min, max] : </em>Ces deux paramètres sont optionnels. Ils définissent (en
+                            μs) la largeur d'impulsion minimale (pour 0°) et maximale (pour 180°), Par défaut [544,
+                            2400]</Li>
+                        <li>A l'exécution de cette fonction, le servo est envoyé à la position 90° </li>
+                    </ul>
+                    <li><em>write(A); </em></li>
+                    <ul>
+                        <Li>Positionner le Servo en précisant un angle</Li>
+                        <Li><em>A : </em>Nouvelle position en °, doit être compris entre 0 et 180</Li>
+                        <li>Si A &gt; 180, la fonction envoie 180</li>
+                        <li>Si A &lt; 0, la fonction envoie 0</li>
+                    </ul>
+                    <li><em>writeMicroseconds(U); </em></li>
+                    <ul>
+                        <Li>Positionner le Servo en précisant une largeur d'impulsion,</Li>
+                        <Li><em>U : </em>Largeur de l'impulsion en µs,</Li>
+                        <li>U doit être dans l'intervalle [min, max] définit par la fonction <strong>attach()</strong>
+                        </li>
+                        <li>Si A &gt; max, la fonction envoie max, le Servo va à 180°</li>
+                        <li>Si A &lt; min, la fonction envoie min, le Servo va à 0°</li>
+                    </ul>
+                    <li><em>read(); </em></li>
+                    <ul>
+                        <Li>retourne la position actuelle (en °) du Servo </Li>
+                    </ul>
+                    <li><em>detach(); </em></li>
+                    <ul>
+                        <li>Libère la broche préalablement attachée par attach()</li>
+                    </ul>
+                </ul><br>
+                <!-- ################################################################################################ -->
+                <h2 id="EXMPLBASIC">Exemple Basique</h2>
+                <p>Dans cet exemple, on envoie successivement le Servo aux positions 0°, 45°, 90°, 135°, 180° </p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+/* 
+ Test simple d'un servomoteur
+*/ 
+
+
+#include &lt;Servo.h&gt;
+Servo myServo; 
+void setup() {
+    myServo.attach(9); 
+}
+
+void loop() {
+    myServo.write(0);
+    delay(2000);
+    myServo.write(45);
+    delay(2000);
+    myServo.write(90);
+    delay(2000);
+    myServo.write(135);
+    delay(2000);
+    myServo.write(180);
+    delay(2000);
+}
+</code>
+</pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- ################################################################################################ -->
+                <h2 id="LIMITS">Exemple: Limites du Servo</h2>
+                <ul>
+                    <li>Quand on se procure un Servomoteur, on ne connaît pas avec précision la largeur <strong>min
+                        </strong>de l'impulsion PWW qui le positionne à 0° et la largeur <strong>max </strong> qui le
+                        positionne à 180 °,
+                        <ul>
+                            <li>Certains Servomoteur sont calibrés à [1000µs , 2000µs]</li>
+                            <li>D'autres sont calibrés à [540µs , 2400µs]</li>
+                            <li>D'autres on des intervalles différents</li>
+                        </ul>
+                    </li>
+                    <li>En plus, la plupart des Servomoteurs ne vont pas jusqu'à 180°. La position correspondant à
+                        l'impulsion max est souvent inférieure à 180°</li>
+                    <li>Le programme ci-dessous permet de spécifier la largeur de l'impulsion (en µs) et d'observer la
+                        position du Servomoteur,
+                        <ul>
+                            <li>On commence par une valeur &lt; 544 µs ==> Le Servo se positionne sur 0 °</li>
+                            <li>On augmente petit à petit jusqu'a ce que le Servo bouge, on note la valeur
+                                <strong>min</strong>
+                            </li>
+                            <li>On envoie une valeur &gt; 2400 µs ==> Le Servo se positionne sur son angle max qui
+                                est probablement légèrement inférieur à 180 °</li>
+                            <li>On diminue petit à petit jusqu'a ce que le Servo bouge, on note la valeur
+                                <strong>max</strong>
+                            </li>
+                            <li>Maintenant, on a le bon intervalle [min, max] de notre Servo, il faudra le préciser dans
+                                la fonction <strong>attach() </strong>des programmes à venir</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+            <code>
+
+#include &lt;Servo.h&gt;
+Servo myServo; 
+void setup() {
+    myServo.attach(9); 
+    Serial.begin(9600);
+    Serial.setTimeout(5000); //Timeout pou Serial.parseInt()
+    Serial.println("Entrer un nombre dans l'intervalle [540 , 2450]");
+    Serial.println("Valider par Retour Ligne (CR, LF ou les deux)");
+    Serial.print("OK> ");
+}
+
+void loop() {
+  if (Serial.available()){
+    int T = Serial.parseInt();
+    clearInputBuffer();
+    myServo.writeMicroseconds(T);
+    Serial.print("OK> ");
+  }    
+}
+
+void clearInputBuffer() {
+  do {
+    delay(2);
+    Serial.read();
+  } while (Serial.available());
+}
+</code>
+</pre>
+                </div><br><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <!-- ####################################################################################################### -->
+                <h2 id="SERVOJOY">Exemple : Commande par un Joystick </h2>
+                <img class="Float_R" src="IMAGES/Joystick.png" style="max-width: 200px;">
+                <p>Dans cet exemple, on va controller un Servomoteur à l'aide d'un Joystick</p>
+                <ul>
+                    <li>Le joystick est constitué de deux potentiomètres Px et Py,</li>
+                    <li>Quand on bouge le joystick dans l'axe X, il fait tourner le potentiomètre Px</li>
+                    <li>Quand on bouge le joystick dans l'axe Y, il fait tourner le potentiomètre Py</li>
+                    <li>Si on branche le potentiomètre entre la masse et 5Volts, les deux
+                        tensions de sorties VRX et VRY (points milieux) vont varier entre 0 Volts et 5 Volts</li>
+                    <li>Si on applique une sortie (VRX ou VRY) à une entrée analogique du Arduino et on lit sa valeur
+                        avec la fonction <em> analogRead()</em> on obtient une valeurs comprise entre 0 et 1023</li>
+                    <img class="Float_R w300" src="IMAGES/Joystick_Rspns.png">
+                    <li>Les premiers tests montrent que le joystick n'est pas parfait:</li>
+                    <ul>
+                        <li>Il n'est pas centré, à la position médiane, il ne délivre pas 2.5V,</li>
+                        <li>Les limites 0v d'un coté et 5V de l'autre sont atteintes bien avant que la position du
+                            joystick ne soit arrivée au maximum,</li>
+                        <li>Il semble que la tension obtenue sur la sortie du joystick (VRX ou VRY) ne varie pas
+                            linéairement avec les déplacements du potentiomètre: Un déplacement ΔP du joystick ne
+                            produit pas toujours la même variation de tension ΔV, </li>
+                        <li>Il faudra donc adapter les programmes à ces considérations.</li>
+                    </ul><br>
+                    <h3>Petit programme pour tester le Joystick</h3><br>
+                    <img src="IMAGES/Joystik_Test.png" class="BlocCenter">
+                    <p>Le petit programme ci dessous permet de tester le Joystick, repérer les axes X et Y et afficher
+                        les
+                        valeurs fournies par la fonction analogRead() selon la position du Joystick. </p><br>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre>
+    <code>
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    int Nx = analogRead(A0);
+    int Ny = analogRead(A1);
+    Serial.print("Nx ----> ");
+    Serial.print(Nx);
+    Serial.print("               Ny ----> ");
+    Serial.println(Ny);
+    delay(1000);
+}    </code>
+</pre>
+                    </div><br><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <h3>Contrôler le Servo par le Joystick</h3><br>
+                    <img class="BlocCenter" src="IMAGES/Servo_Joystick.png"><br>
+                    <li>Pour notre exemple, positionner le Servo de sorte à ce que le 0° soit à droite et le 180° soit à
+                        gauche</li>
+                    <li>Pour le joystick, on utilise l'axe des X. On connecte VRX à l'entrée A0 de l’Arduino.
+                        Positionner le joystick de sorte à avoir le connecteur vers la gauche. Ainsi quand on pousse à
+                        droite la valeur de N correspondant à VRX augmente vers 1023. Quand on pousse à gauche, la
+                        valeur de N diminue vers 0</li>
+                    <li>on va faire simple. En plus d'une plage médiane, on va partager l'excursion
+                        de chaque coté en deux plages (1ère plage et 2ème plage):
+                        <ul>
+                            <li>Quand le joystick est au repos (position médiane), la valeur lue sur Arduino est voisine
+                                de 500, on est dans la plage médiane => Servo sur <em>Position 90°</em>
+                            </li>
+                            <li>Quand on pousse un peu le Joystick vers la droite, on arrive dans 1ère plage droite,
+                                nous allons l'affecter à <em>Position 45°</em></li>
+                            <li>Quand on pousse le Joystick plus loin à droite, on arrive dans la 2ère plage droite,
+                                nous allons l'affecter à <em>Position 0°</em></li>
+                            <li>Si à partir de la position médiane, on pousse un peu le Joystick vers la gauche, on
+                                arrive dans 1ère plage gauche, nous allons l'affecter à <em>Position 135°</em></li>
+                            <li>Quand on pousse le Joystick plus loin à gauche, on arrive dans la 2ère plage gauche,
+                                nous allons l'affecter à <em>Position 180°</em></li>
+                            <li>On peut par exemple essayer les plages suivantes et les adapter ensuite après
+                                utilisation</li>
+                            <pre>
+                                <code>
+[0  →  100]  ==&gt;  Position 180°
+[100 → 400]  ==&gt;  Position 135°
+[400 → 600]  ==&gt;  Position 90°
+[600 → 900]  ==&gt;  Position 45°
+[900 → 1023] ==&gt;  Position 0°</code>
+                            </pre>
+                        </ul>
+                    </li>
+                </ul><br>
+                <img class="BlocCenter" src="IMAGES/Joystick_Plages_Servo.png"><br>
+                
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Commande Moteur CC par Joystick<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+    <code>
+/*
+  0     100                400         600                900   1023
+  |-180°-|-------135°-------|----90°----|--------45°-------|--0°--|
+
+  Servo contrôlé par la broche 9
+  Joystick sur A0
+*/
+#define SERVOPIN 9
+#define N1  100 // modifier les paliers si nécessaire
+#define N2  400
+#define N3  600
+#define N4  900
+
+#include <Servo.h>;
+Servo myServo;
+void setup() {
+  myServo.attach(SERVOPIN);
+}
+
+void loop() {
+  int N = analogRead(A0);
+  if (N < N1) myServo.write(180);
+  else if (N < N2) myServo.write(135);
+  else if (N < N3) myServo.write(90);
+  else if (N < N4) myServo.write(45);
+  else myServo.write(0);
+  delay(100);
+}
+    </code>
+</pre>
+                </div><br><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

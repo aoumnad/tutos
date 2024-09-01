@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Tutoriel Arduino" name="description">
+  <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+    name="keywords">
+  <title>Afficheur LCD</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+  <div class="TwoPanPageContainer">
+    <div id="LeftPanel_ID" class="LeftPanel">
+      <div class="LeftPanelHeader">
+        <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
+        <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+        <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
+      </div>
+      <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+        <a href="#LCD2x16">
+          <h3>LCD 2x16</h3>
+        </a>
+        <a href="#PINOUT">
+          <h3>Brochage de l'afficheur</h3>
+        </a>
+        <a href="#CHARSET">
+          <h3>Jeux de caractères</h3>
+        </a>
+        <a href="#LLQC">
+          <h3>La librairie LiquidCrystal</h3>
+        </a>
+        <a href="#LCD-I2C">
+          <h3>Afficheur LCD avec module I2C</h3>
+        </a>
+        <a href="#LCDI2CLIB">
+          <h3>Librairie LCD_I2C</h3>
+        </a>
+      </div>
+    </div>
+    <div class="RightPanel">
+      <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png"
+          alt="">
+        <h1>Afficheur LCD</h1>
+      </div>
+      <div class="RightPanelContent">
+        <h2 id="LCD2x16">LCD 2x16</h2>
+        <p>
+          Il existe plusieurs types et formats d'afficheurs LCD. Nous allons parler ici de l'afficheur LCD 2x16 qui
+          affiche deux lignes de texte de 16 caractères chacune. Ces afficheurs sont largement
+          utilisés dans les projets électroniques, les appareils domestiques et les équipements industriels en raison de
+          leur faible consommation d'énergie, de leur facilité d'utilisation et de leur bonne lisibilité.
+        </p><br>
+        <img class=" BlocCenter" src="IMAGES/lcd2x16_1.png" alt=""><br>
+        <p>
+          En réalité, même s'il n'y a que 16 caractères visibles, chaque ligne est est stockée dans une RAM de 40
+          caractères. Pour
+          voir les caractères cachés, il faut faire défiler l'affichage vers la gauche
+        </p>
+        <img class=" BlocCenter" src="IMAGES/LCD2lignes.png" alt=""><br>
+        <h2 id="PINOUT">Brochage de l'afficheur 2x16</h2><br>
+        <img class=" BlocCenter" src="IMAGES/LCD2x16Pinout.png" alt=""><br>
+        <ul>
+          <li class="li_niv1 Bold">
+            Le bus de données D0...D7
+          </li>
+          <p>La communication avec l'afficheur se fait en parallèle octet par octet sur ce bus. Cependant, l'afficheur
+            supporte un mode 4 bits qui utilise seulement 4 broches (D4...D7), dans ce cas, chaque octet est envoyé en
+            deux temps</p>
+          <li class="li_niv1 Bold">
+            Les broches de control RS, RW, E
+          </li>
+          <p>Ces broches permettent de gérer le flux de données et les commandes vers l'afficheur LCD</p>
+          <ul>
+            <li>RS (Register Select) : Cette broche permet de préciser si l'octet envoyé sur le bus de données est une
+              commande à interpréter ou un caractère à afficher
+            </li>
+            <li>
+              RW (Read/Write) : Cette broche permet de sélectionner entre les opérations de lecture (1) et d'écriture
+              (0) vers l'afficheur. Nous allons utiliser l'afficheur en mode écriture, cette broche sera reliée en
+              permanence à 0
+            </li>
+            <li>
+              E (Enable) : Cette broche est utilisée pour indiquer à l'afficheur LCD quand une donnée ou une commande
+              est disponible sur le bus de données.
+            </li>
+          </ul>
+          <li class="li_niv1 Bold">
+            Les broches d'alimentation Vdd et Vss
+          </li>
+          <ul>
+            <li>Vdd : 5V</li>
+            <li>Vss : GND</li>
+          </ul>
+          <li class="li_niv1 Bold">
+            La broche de control de contrast Vee
+          </li>
+          <p>Cette broche permet de contrôler le contraste de l'afficheur. Il faut la connecter au point milieu d'un
+            potentiomètre comme indiqué sur la figure plus bas dans ce document</p>
+          <li class="li_niv1 Bold">
+            Les broches de rétroéclairage (Backlight Control) :
+          </li>
+          <p>Certains afficheurs LCD disposent d'un rétroéclairage (backlight) pour améliorer la lisibilité de l'écran
+            dans des conditions de faible luminosité. Ces afficheurs ont deux broches supplémentaires (Anode et cathode)
+            pour alimenter une LED de rétroéclairage. Même si ce n'est pas obligatoire, il est conseillé d'insérer une
+            résistance de faible valeur dans le circuit d'alimentation de la LED de rétroéclairage </p>
+        </ul>
+        <h2 id="CHARSET">Jeux de caractère</h2>
+        <p>
+          L'afficheur n'utilise pas le code ASCII standard mais une version modifiée. Tous les afficheurs du commerce
+          n'utilisent pas le même jeu de caractères, il faut faire des essais:</p><br>
+        <ul>
+          <li>Hitachi HD44780UA00 : English-Japanese -> ASCII standard, caractères japonais, quelques caractères grec et
+            quelques
+            symbols mathématiques</li>
+          <li class="sanspuce"><img class=" BlocCenter" src="IMAGES/lcd_font_japon.png" alt=""></li>
+          <p class="InlineCenter">Exemple : Ω = 0xF4</p><br>
+          <br>
+          <li>Hitachi HD44780UA02 : English-European -> ASCII standard, caractères de l'Europe de l'ouest, quelques
+            caractères
+            cyrilliques et grecs </li>
+          <li class="sanspuce"><img class=" BlocCenter" src="IMAGES/HD44780_charset_europe.png" alt=""></li>
+          <p class="InlineCenter">Exemple : Ω = 0x9A</p><br>
+          <br>
+          <li>Winstar WH1602B-TMI-ET : English-European -> ASCII standard, caractères de l'Europe de l'ouest, quelques
+            caractères
+            grecs et quelques symboles mathématiques</li>
+          <li class="sanspuce">
+            <img class=" BlocCenter" src="IMAGES/LCD_europe.png" alt="">
+            <p class="InlineCenter">Exemple : Ω = 0xDE</p><br>
+          </li>
+        </ul>
+        <br>
+        <div class="InlineCenter">
+
+
+        </div><br><br>
+        <h2 id="LLQC">La librairie LiquidCrystal</h2>
+        <img class="Float_R " src="IMAGES/lcd-dec-hex-bin.png" alt="">
+        <p>
+          L'IDE Arduino intègre la bibliothèque LiquidCrystal qui permet d'utiliser ces afficheurs sans en connaître le
+          fonctionnement interne. L'afficheur est utilisé en mode 4 bits ce qui permet de le contrôler avec 6 sorties de
+          l'Arduino
+        </p>
+        <br>
+        <ul>
+          <li class="li_niv1 Enhanced">LiquidCrystal lcd(RS, E, d4, d5, d6, d7)</li>
+          <ul>
+            <li>Crée un objet pour commander l'afficheur LCD en mode 4 bits,</li>
+            <li><span class="Enhanced">lcd:</span> nom l'objet. On n'est pas obligé de l'appeler lcd, on peut l'appeler
+              ce que l'on veut </li>
+            <li><span class="Enhanced">RS:</span> Numéro de la sortie qui commande la broche RS du LCD,</li>
+            <li><span class="Enhanced">E:</span> Numéro de la sortie qui commande la broche E du LCD,</li>
+            <li><span class="Enhanced">d4, d5, d6, d7:</span> Numéro des sorties qui commandent les broches D4, D5, D6,
+              D7 du LCD,</li>
+            <li>La broche WR de l'afficheur doit être reliée à la masse,</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.begin(Nc, Nl)</li>
+          <ul>
+            <li>Initialise l'afficheur LCD</li>
+            <li>Nc: Nombre de caractères par ligne</li>
+            <li>Nl: Nombre de ligne de l'afficheur</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.clear()</li>
+          <ul>
+            <li>Efface l'afficheur et ramène le curseur au début de la première ligne</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.setCursor(col, lgn)</li>
+          <ul>
+            <li>Place le curseur à la position (col, lgn), les deux paramètres commencent à 0</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.print(donnée,[format])</li>
+          <ul>
+            <li>Affiche une chaîne ou un nombre:</li>
+            <li>lcd.print("Hello world"); // affiche la chaîne Hello World</li>
+            <li>lcd.print(1024); // Affiche le nombre 1024</li>
+            <li>lcd.print(85, BIN); // affiche le nombre 85 en binaire --> 1010101</li>
+            <li>lcd.print(255, HEX); // affiche le nombre 255 en hexadécimal --> FF</li>
+            <li>lcd.print(243.8765333); // affiche le nombre réel avec 2 chiffres à droite de la virgule</li>
+            <li>lcd.print(243.8765333,4); // affiche le nombre réel avec 4 chiffres à droite de la virgule</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.println(donnée,[format])</li>
+          <p>Identique à lcd.print() mais ajoute un retour à la ligne à la fin</p>
+          <li class="li_niv1 Enhanced">lcd.write(c)</li>
+          <ul>
+            <li>affiche le caractère de code ASCII c</li>
+            <li>lcd.write('X'); // affiche le caractère X</li>
+            <li>lcd.write(65); // Affiche le caractère A</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.scrollDisplayLeft()</li>
+          <ul>
+            <li>décaler l'affichage d'un caractère vers la gauche</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.scrollDisplayRight()</li>
+          <ul>
+            <li>décaler l'affichage d'un caractère vers la droite</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.cursor(); ou lcd.noCursor(); </li>
+          <ul>
+            <li>Montrer ou cacher le curseur</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.blink(); ou lcd.noBlink();</li>
+          <ul>
+            <li>Clignotement du curseur</li>
+          </ul>
+          <li class="li_niv1 Enhanced">lcd.display(); ou lcd.noDisplay();</li>
+          <ul>
+            <li>Allumer ou éteindre l'afficheur. Le Content n'est pas perdu</li>
+          </ul>
+        </ul><br><br>
+        <div class="CodeAreaContainer">
+          <div class="CodeAreaHeader">Exemple affichage sur LCD<button class="CopyBtn"
+              onclick="CopyCode(this)">Copier</button> </div>
+          <pre>
+  <code>
+#include &lt;LiquidCrystal.h&gt;
+LiquidCrystal lcd1(12, 11, 5, 4, 3, 2);
+
+void setup() {
+  int N = 195;
+  lcd1.begin(16, 2);
+  lcd1.print("DEC-HEX-BIN");
+  lcd1.setCursor(0,1);
+  lcd1.print(N);
+  lcd1.write('-');
+  lcd1.print(N,HEX);
+  lcd1.write('-');
+  lcd1.print(N,BIN);
+}
+
+void loop() {
+ }
+  </code>
+</pre>
+        </div> <br>
+        <h2 id="LCD-I2C">Afficheur LCD avec module I2C</h2>
+        <p>Le module d'interface I2C pour afficheur LCD 2x16 permet de connecter facilement un l'afficheur à un
+          microcontrôleur ou à une carte de type Arduino via le bus de communication I2C. Ce module simplifie la
+          connexion en réduisant le nombre de broches nécessaires pour contrôler l'afficheur à seulement deux, SDA et
+          SCL en plus de
+          l'alimentation.</p>
+        <img class="BlocCenter " src="IMAGES/LCD_I2C_1.jpg" alt=""><br>
+        <p>Le module se place derrière l'afficheur LCD et doit être soudé aux broches de celui-ci</p><br>
+        <img class="BlocCenter " src="IMAGES/LCD_I2C_back_2.png" alt=""><br>
+        Comme on l'observe sur la figure ci dessous :
+        <ul>
+          <li>La connexion est très fortement simplifiée</li>
+          <li>Le réglage de contraste est intégré au module (potentiomètre bleu)</li>
+          <li>Le jumper permet d'alimenter ou non la LED de BackLight</li>
+          <li>Sur certains modules, les trois Jumpers à souder A2 A1 A0 permettent de fixer l'adresse I2C du module. Si
+            on laisse un jumper
+            Ai intacts, on Ai = 1. Si on le soude à la masse qui est en face de lui, on Ai = 0 </li>
+          <li class="sanspuce">L'adresse I2C (7bits) est égale à 0 1 0 0 A2 A1 A0</li>
+          <li class="sanspuce">Si on laisse les trois jumpers intacts=> A2=1, A1=1, A0=1 => le module répond à l'adresse
+            I2C = 0100 111 = 0x27
+          </li>
+        </ul><br>
+        <img class="BlocCenter " src="IMAGES/LCD_I2C_connexion_3.png" alt=""><br><br>
+        <h2 id="LCDI2CLIB">Librairie LCD_I2C</h2>
+        <p>Il existe une multitudes de librairies qui permettent d'utiliser l'afficheur LCD à l'aide de ce module. Pour
+          ma part j'utilise la librairie LCD_I2C. Pour l'installer :</p><br>
+        <ul>
+          <li>Sur Arduino_IDE 2.3.x</li>
+          <li class="sanspuce"><img class="BlocCenter " src="IMAGES/LCD_I2C_LIB_2.png" alt=""></li><br>
+          <li>Sur Arduino_IDE 1.8.x</li>
+          <li class="sanspuce">Outils -> Gérer les bibliothèque -> attendre le téléchargement de la liste :</li>
+          <li class="sanspuce"><img class="BlocCenter " src="IMAGES/LCD_I2C_LIB_1.png" alt=""></li>
+        </ul><br>
+        <p>La librairie LCD_I2C offre les mêmes fonctions (avec les mêmes noms) que la librairie LiquidCrystal. De ce
+          fait, les programmes sont les mêmes, il n'y a que la déclaration et l'initialisation qui changent</p><br>
+        <ul>
+          <li class="BoldItal">LCD seul et Librairie LiquidCrystal</li>
+          <pre>
+            <code>
+<em>#include &lt;LiquidCrystal.h&gt;
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);</em>
+void setup(){
+  <em>lcd.begin(16,2); </em>
+  lcd.print("Hello World !");
+} 
+void loop() { }
+            </code>
+          </pre>
+          <br>
+          <li class="BoldItal">LCD avec module et Librairie LCD_I2C</li>
+          <pre>
+            <code>
+<em>#include &lt;LCD_I2C.h&gt;
+LCD_I2C lcd(0x27, 16, 2);</em>
+void setup(){
+  <em>lcd.begin();</em>
+  lcd.backlight();
+  lcd.print("Hello World !");
+} 
+void loop() { }
+            </code>
+          </pre>
+
+        </ul>
+        <br> <br> <br>
+      </div>
+    </div>
+</body>
+
+</html>
