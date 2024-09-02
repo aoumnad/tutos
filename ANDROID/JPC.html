@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr-fr">
+
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Intro Arduino</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
 </head>
+
 <body>
-    <p>En construction</p>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
+                    src="IMAGES/menu48.png" alt="">
+                <h1>Jetpack Compose</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>Jetpack Compose est une boîte à outils moderne conçue pour créer des applications Android en
+                    utilisant le langage de programmation Kotlin. Contrairement aux approches précédentes, où
+                    l'interface utilisateur était définie en XML et le code de logique en Java, Jetpack Compose
+                    centralise tout le processus dans Kotlin, simplifiant ainsi le développement.</p>
+                <p>Avec Jetpack Compose, les interfaces utilisateur sont construites en utilisant des fonctions
+                    composables, qui sont des blocs de code réutilisables permettant de créer des éléments d'interface
+                    tels que des boutons, des champs de saisie, des cases à cocher, et bien plus encore. Ces fonctions
+                    composables rendent le code plus lisible et modulaire, facilitant la gestion et la mise à jour de
+                    l'UI.</p>
+                <p>Une caractéristique clé de Jetpack Compose est la gestion de l'état et la recomposition automatique.
+                    Les éléments de l'interface sont automatiquement redessinés en réponse aux changements d'état grâce
+                    à une gestion efficace des variables d'état. En Kotlin, les variables de type <i>mutableState</i>
+                    permettent de suivre les changements dans l'état de l'application. Lorsqu'une variable de ce type
+                    est modifiée, les composables qui dépendent de cette variable sont automatiquement rafraîchis pour
+                    refléter les mises à jour. Cela simplifie la création d'interfaces dynamiques et réactives, tout en
+                    réduisant le besoin de gestion manuelle du cycle de vie de l'interface utilisateur</p>
+                <p>Jetpack Compose offre également une intégration fluide avec les autres composants de l'écosystème
+                    Android, ainsi que des outils puissants pour personnaliser et optimiser les performances de
+                    l'interface utilisateur, ce qui en fait un choix attrayant pour les développeurs Android cherchant à
+                    créer des expériences utilisateur modernes et performantes.</p>
+
+                <br>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code></code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+
+
+
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

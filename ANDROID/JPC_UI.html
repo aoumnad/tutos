@@ -118,6 +118,10 @@
                     <li><a href="#CHECKBOX">
                             <h3>Checkbox()</h3>
                         </a></li>
+                    <li><a href="#CUSTOM">
+                            <h3>Composable personnalisé</h3>
+                        </a>
+                    </li>
                 </ul>
 
 
@@ -1951,7 +1955,8 @@ LaunchedEffect(focusManager1) {
                 <p>Le composable Checkbox fournit une case à cocher que l'utilisateur peut cocher ou décocher. Il est
                     associé à une variable booléenne qui détermine son état, ainsi qu'une fonction
                     lambda qui gère les modifications de cet état. Le composable ne propose pas un champ pour afficher
-                    un label à coté du Checkbox, il faut utiliser une <i>Row()</i> et y placer le <i>Checkbox()</i> et un <i>Text()</i></p>
+                    un label à coté du Checkbox, il faut utiliser une <i>Row()</i> et y placer le <i>Checkbox()</i> et
+                    un <i>Text()</i></p>
                 <br>
 
                 <!-- =========================== Code ========================================================= -->
@@ -2031,8 +2036,114 @@ fun MyApp() {
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
 
-<img src="IMAGES/Checkbox.jpg" class="BlocCenter w200"><br><br>
+                <img src="IMAGES/Checkbox.jpg" class="BlocCenter w200"><br><br>
 
+                <!-- ################################################################################################ -->
+                <h2 id="CUSTOM">Composable personnalisé</h2>
+                <p>Il arrive qu'on soit amené à répéter plusieurs fois un composable avec une lourde mise en forme ce
+                    qui peut être assez fastidieux.</p>
+                <p>Dans ce cas il peut être intéressant de créer une fonction composable pour cet élément</p>
+                <br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">TextButton personnalisé<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.personalcomposable
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val context = LocalContext.current
+    Column(verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize())
+    {
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "B0")
+        }
+        MyTextButton(
+            text = "B1",
+            onClick = { Toast.makeText(context, "B1", Toast.LENGTH_SHORT).show()}
+        )
+        MyTextButton(
+            text = "B2",
+            onClick = {Toast.makeText(context, "B2", Toast.LENGTH_SHORT).show()}
+        )
+        MyTextButton(
+            text = "B3",
+            onClick = {}
+        )
+        MyTextButton(
+            text = "B4",
+            onClick = {}
+        )
+        MyTextButton(
+            text = "B5",
+            onClick = {}
+        )
+    }
+}
+@Composable
+fun MyTextButton(
+    text: String,
+    onClick: () -> Unit,
+) {
+    TextButton(
+        onClick = onClick,
+        border = BorderStroke(width = 1.dp, color = Color.Red),
+        shape = RoundedCornerShape(10.dp),
+        colors = ButtonDefaults.textButtonColors(
+            containerColor = Color.Green.copy(alpha = 0.3f)),
+        modifier = Modifier.size(width = 80.dp, height = 40.dp)
+    ) {
+        Text(text = text,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MyPreview() {
+        MyApp()
+}
+
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
 
 
             </div>

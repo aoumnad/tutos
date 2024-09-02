@@ -78,6 +78,7 @@
         "reponsevide",
         "REQXX",
         "RSTATUS",
+        "scalables",
         "sdir",
         "sduration",
         "spwm",
@@ -96,5 +97,6 @@
         "XMLHTTP",
         "αβδàç",
         "مرحبا"
-    ]
+    ],
+    "cSpell.language": "en,fr"
 }
