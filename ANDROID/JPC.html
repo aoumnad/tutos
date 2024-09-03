@@ -24,6 +24,9 @@
                 <a href="#INTRO">
                     <h3>Introduction</h3>
                 </a>
+                <a href="#BASICS">
+                    <h3>Notions de base</h3>
+                </a>
             </div>
         </div>
         <div class="RightPanel">
@@ -57,16 +60,130 @@
                 <p>Jetpack Compose offre également une intégration fluide avec les autres composants de l'écosystème
                     Android, ainsi que des outils puissants pour personnaliser et optimiser les performances de
                     l'interface utilisateur, ce qui en fait un choix attrayant pour les développeurs Android cherchant à
-                    créer des expériences utilisateur modernes et performantes.</p>
+                    créer des expériences utilisateur modernes et performantes.</p> <br>
 
-                <br>
+                <!-- ################################################################################################ -->
+                <h2 id="BASICS">Notions de base</h2>
+                <p>Nous allons examiner un bout de code minimaliste qui va nous permettre de prendre contact avec les
+                    <b><i>composables</i></b>, les variables de type <b><i>mutableState</i></b> et la notion de
+                    <b><i>recomposition</i></b>
 
 
-
+                <pre><code>    var taillexy by remember { mutableStateOf(20) }
+    Column {
+        Box( modifier = Modifier
+            .size(taillexy.dp, taillexy.dp)
+            .background(Color.Magenta)
+        )
+        Button( onClick = { taillexy += 10 } )
+        {
+            Text(text = "Agrandir")
+        }
+    }</code></pre>
+                </p><br>
+                <p>Dans ce bout de code est constitué d'une variable et de trois composables:</p>
+                <ul>
+                    <li><em>var taillexy by remember { mutableStateOf(20)}</em></li>
+                    C'est la déclaration de la variable <i>taillexy</i>. C'est une syntaxe un peu particulière. Pour
+                    l'instant nous allons nous focaliser sur les ponts suivants:
+                    <ul>
+                        <li><b><i>by :</i></b> Cet opérateur est utilisé pour déléguer une valeur à une variable. Pour
+                            l'instant,
+                            considérez-le comme une manière différente de faire une affectation <b>'='</b>. Ici, la
+                            variable
+                            taillexy est initialisée à 20.
+                        </li>
+                        <li><b><i>remember :</i></b> Cet opérateur indique que la variable conserve sa valeur même si le
+                            code est
+                            réexécuté. Contrairement à une variable ordinaire, elle ne revient pas à 20, même après une
+                            recomposition. C'est un peu similaire au mot clé <i>static </i> en langage C/C++</li>
+                        <li><b><i>mutableStateOf</i></b> signifie que cette variable est liée à un état de
+                            l'interface utilisateur l'UI. Si sa valeur change, l'UI sera recomposée automatiquement pour
+                            refléter le nouvel état</li>
+                    </ul>
+                    <li><em>Column( paramètres ) { contenu }</em></li>
+                    <b>Column </b>est composable de type <b>conteneur</b>. Les composables fils qui seront placé dedans
+                    sont répartis
+                    verticalement l'un en dessous de l'autre.
+                    <ul>
+                        <li>Entre ( ), on place les propriétés comme la taille la couleur la façon dont les fils seront
+                            répartis et alignés etc... <br>
+                            Dans, l'exemple, on omis les (), la colonne prendra les paramètres par défaut
+                        </li>
+                        <li>Ente { }, on place les fils de la colonne. Dans l'exemple, on a placé deux composables, un
+                            <b>box </b> et un <b>Button</b>
+                        </li>
+                    </ul>
+                    <li><em>Box( paramètres ) { contenu }</em> </li>
+                    <b>Box </b> est un conteneur de type 'Boite rectangulaire'. Ici on ne va rien mettre dedans d'où
+                    l'absence des {} <br>
+                    Il utilise un seul paramètre : <b><i>modifier</i></b> <br>
+                    Le paramètre <b>modifier</b> peut prendre plusieurs options. Ici il en a deux :
+                    <ul>
+                        <li><b><i>Modifier.size(taillexy.dp, taillexy.dp)</i></b> définit la largeur et la hauteur du
+                            Box. Ici on utilise notre variable <i>taillexy</i>. Au démarrage de l'application le Box
+                            aura une taille de 20.dp x 20.dp ( l'unité <b>dp</b> correspond à la densité de pixel)</li>
+                        <li><b><i>Modifier.background(Color.Magenta)</i></b> Couleur du Box</li>
+                    </ul>
+                    <li><em>Button( paramètres ) { contenu }</em> </li>
+                    C'est un simple bouton. Il a un seul paramètre et il contient le texte "Agrandir", tout le reste est
+                    par défaut <br>
+                    Le paramètre <b>onClick</b> définit ce qui se passe quand on clique sur le bouton. A chaque clic, la
+                    fonction lambda <b>{ taillexy += 10 } </b> est exécutée. Cette fonction ajoute 10 à la variable
+                    <i>taillexy. <br>
+                        <b><i>Comme c'est une variable d'état, le système détecte son changement et déclenche la
+                                recomposition de l'UI. Il en résulte que le composable Box est redessiné avec ses
+                                nouvelles dimensions</i></b>
+                    </i>
+                </ul><br>
+                <video controls class="BlocCenter w200">
+                    <source src="IMAGES/Recomposition.mp4" type="video/mp4">
+                </video><br>
+                <p>Voici le code entier. Si vous voulez l'essayer, créer un nouveau projet. Replacer le contenu de votre
+                    MainActivity par le code ci-dessous. Dans la première ligne, remplacez composebasics par le nom de votre projet
+                </p><br>
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">x<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
-                    <pre><code></code></pre>
+                    <div class="CodeAreaHeader">Concepts de base<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.composebasics
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            var boxsize by remember { mutableIntStateOf(20) }
+            Column {
+                Box( modifier = Modifier
+                    .size(boxsize.dp, boxsize.dp)
+                    .background(Color.Magenta)
+                )
+                Button( onClick = { boxsize += 10 } )
+                {
+                    Text(text = "Agrandir")
+                }
+            }
+        }
+    }
+}
+</code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
 
@@ -74,6 +191,8 @@
 
 
 
+
+                <br><br><br>
             </div>
         </div>
     </div>
