@@ -27,6 +27,9 @@
                 <a href="#BASICS">
                     <h3>Notions de base</h3>
                 </a>
+                <a href="#MODIFIER">
+                    <h3>Les Modifiers</h3>
+                </a>
             </div>
         </div>
         <div class="RightPanel">
@@ -140,7 +143,8 @@
                     <source src="IMAGES/Recomposition.mp4" type="video/mp4">
                 </video><br>
                 <p>Voici le code entier. Si vous voulez l'essayer, créer un nouveau projet. Replacer le contenu de votre
-                    MainActivity par le code ci-dessous. Dans la première ligne, remplacez composebasics par le nom de votre projet
+                    MainActivity par le code ci-dessous. Dans la première ligne, remplacez composebasics par le nom de
+                    votre projet (minuscule)
                 </p><br>
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
@@ -186,6 +190,30 @@ class MainActivity : ComponentActivity() {
 </code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
+
+                <!-- ################################################################################################ -->
+                <h2 id="MODIFIER">Les Modifiers</h2>
+                <p>Chaque composable peut être caractérisé par un ensemble de paramètres (attributs) qui définissent ses
+                    propriétés spécifiques: taille, couleur, style ...</p>
+                <p>Parmi ces paramètre, il y en a un qui n'est pas comme les autres, c'est le paramètre
+                    <em>modifier</em>. A première vue, il semble avoir le même rôle que les autres attributs car il sert
+                    aussi à modifier l'apparence du composable. Mais il a un fonctionnement spécifique, on peut lui
+                    affecter l'objet (classe) <b>Modifier</b> auquel on peut attribuer plusieurs options, et <strong>ces
+                        options seront exécutées séquentiellement</strong> pour formater le composable.
+                </p>
+                <p>Rien de mieux qu'un petit exemple</p>
+                <pre><code>     Box(modifier = Modifier
+        .size(300.dp, 300.dp)
+        .background(Color.Yellow)
+        .padding(40.dp)
+        .background(Color.Cyan)
+        .padding(40.dp)
+        .background(Color.Magenta)
+        .padding(40.dp)
+        .border(width=5.dp, Color.Blue)
+        .background(Color.Green)
+    )</code></pre><br>
+    <img src="IMAGES/Modifier.jpg" class="BlocCenter w 200">
 
 
 
