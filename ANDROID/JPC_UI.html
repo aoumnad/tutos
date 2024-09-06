@@ -118,6 +118,12 @@
                     <li><a href="#CHECKBOX">
                             <h3>Checkbox()</h3>
                         </a></li>
+                    <li><a href="#SWITCH">
+                            <h3>Switch()</h3>
+                        </a></li>
+                    <li><a href="#RADIOBUTTON">
+                            <h3>RadioButton()</h3>
+                        </a></li>
                     <li><a href="#CUSTOM">
                             <h3>Composable personnalisé</h3>
                         </a>
@@ -2039,6 +2045,161 @@ fun MyApp() {
                 <img src="IMAGES/Checkbox.jpg" class="BlocCenter w200"><br><br>
 
                 <!-- ################################################################################################ -->
+                <h2 id="SWITCH">Switch()</h2>
+                <p>Le composable Switch() fonctionne exactement comme un Checkbox(), il n'y a que le dessin qui n'est
+                    pas le même</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Switch()<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.aswitch
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    var switchState1 by remember { mutableStateOf(false) }
+    var switchState2 by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Condition 1")
+            Spacer(modifier = Modifier.width(8.dp))
+            Switch(
+                checked = switchState1,
+                onCheckedChange = {
+                    Toast.makeText(context, "Condition 1 est ${if (it) "Acceptée" else "refusée"}", Toast.LENGTH_SHORT).show()
+                    switchState1 = it }
+            )
+        }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Condition 2")
+            Spacer(modifier = Modifier.width(8.dp))
+            Switch(
+                checked = switchState2,
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = Color.Blue,
+                    uncheckedThumbColor = Color.Red,
+                    checkedTrackColor = Color.Magenta,
+                    uncheckedTrackColor = Color.DarkGray
+                ),
+                onCheckedChange = {
+                    Toast.makeText(context, "Condition 2 est ${if (it) "Acceptée" else "refusée"}", Toast.LENGTH_SHORT).show()
+                    switchState2 = it }
+            )
+        }
+    }
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <img src="IMAGES/SwitchUnchecked.jpg" class="BlocCenter w300"><br>
+                <img src="IMAGES/SwitchChecked.jpg" class="BlocCenter w300">
+
+                <!-- ################################################################################################ -->
+                <h2 id="RADIOBUTTON">RadioButton()</h2>
+                <p><strong>RadioButton() permet de choisir une option parmi plusieurs</strong></p><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">RadioButton()<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.radiobutton
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val options = listOf("Option 1", "Option 2","Option 3", "Option 4", "Option 5")
+    var selectedOption by remember { mutableStateOf(options[0]) }
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+
+        options.forEach { option ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(
+                    selected = selectedOption == option,
+                    onClick = { selectedOption = option }
+                )
+                Text(option)
+            }
+        }
+        Text(text = "L'option sélectionnée est : $selectedOption")
+    }//fin colonne
+}
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                 <img src="IMAGES/RadioButton.jpg" class="BlocCenter w300">
+
+                <!-- ################################################################################################ -->
                 <h2 id="CUSTOM">Composable personnalisé</h2>
                 <p>Il arrive qu'on soit amené à répéter plusieurs fois un composable avec une lourde mise en forme ce
                     qui peut être assez fastidieux.</p>
@@ -2047,7 +2208,8 @@ fun MyApp() {
 
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">TextButton personnalisé<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <div class="CodeAreaHeader">TextButton personnalisé<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
                     <pre><code>package com.example.personalcomposable
 
 import android.os.Bundle
