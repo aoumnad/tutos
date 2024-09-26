@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Rétractable avec Symbole</title>
+    <style>
+        /* Styles de base */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0;
+            margin-left: 1rem;
+        }
+
+        .sub-menu {
+            display: none; /* Cacher les sous-rubriques au départ */
+            padding-left: 20px; /* Indentation des sous-rubriques */
+        }
+
+        /* Style pour le symbole de la rubrique */
+        .rubrique {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .rubrique span {
+            display: inline-block;
+            transition: transform 0.3s ease; /* Transition pour la rotation */
+            margin-right: 10px;
+        }
+
+        /* Rotation du symbole lorsqu'il est ouvert */
+        .rubrique.open span {
+            transform: rotate(90deg); /* Rotation de la flèche à 90 degrés */
+        }
+
+        /* Styles pour les liens */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        h2, h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Rubrique 1 avec sous-rubriques -->
+<div class="rubrique" onclick="toggleMenu('sub-menu-1', this)">
+    <span>&gt;</span> <!-- Symbole '>' -->
+    <h2>Rubrique 1</h2>
+</div>
+<ul id="sub-menu-1" class="sub-menu">
+    <li>
+        <a href="#SRB1">
+            <h3>Sous rubrique 1</h3>
+        </a>
+    </li>
+    <li>
+        <a href="#SRB2">
+            <h3>Sous rubrique 2</h3>
+        </a>
+    </li>
+    <li>
+        <a href="#SRB3">
+            <h3>Sous rubrique 3</h3>
+        </a>
+    </li>
+    <li>
+        <a href="#SRB4">
+            <h3>Sous rubrique 4</h3>
+        </a>
+    </li>
+</ul>
+
+<!-- Rubrique 2 avec sous-rubriques -->
+<div class="rubrique" onclick="toggleMenu('sub-menu-2', this)">
+  <span>&gt;</span> <!-- Symbole '>' -->
+  <h2>Rubrique 2</h2>
+</div>
+<ul id="sub-menu-2" class="sub-menu">
+  <li>
+      <a href="#SRB1">
+          <h3>Sous rubrique 1</h3>
+      </a>
+  </li>
+  <li>
+      <a href="#SRB2">
+          <h3>Sous rubrique 2</h3>
+      </a>
+  </li>
+  <li>
+      <a href="#SRB3">
+          <h3>Sous rubrique 3</h3>
+      </a>
+  </li>
+  <li>
+      <a href="#SRB4">
+          <h3>Sous rubrique 4</h3>
+      </a>
+  </li>
+</ul>
+
+<script>
+    // Fonction pour montrer ou cacher le sous-menu
+    function toggleMenu(menuId, element) {
+        const menu = document.getElementById(menuId);
+        if (menu.style.display === "none" || menu.style.display === "") {
+            menu.style.display = "block"; // Montrer les sous-rubriques
+            element.classList.add("open"); // Ajouter la classe 'open' pour faire pivoter la flèche
+        } else {
+            menu.style.display = "none"; // Cacher les sous-rubriques
+            element.classList.remove("open"); // Retirer la classe 'open'
+        }
+    }
+</script>
+
+</body>
+</html>

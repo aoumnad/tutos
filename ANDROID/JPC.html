@@ -9,6 +9,7 @@
     <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
         name="keywords">
     <title>Intro Arduino</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
     <link rel="stylesheet" href="../styles.css">
     <script src="../scripts.js" defer></script>
 </head>
@@ -23,20 +24,33 @@
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
-                    <h3>Introduction</h3>
+                    <h2>Introduction</h2>
                 </a>
                 <a href="#BASICS">
-                    <h3>Notions de base</h3>
+                    <h2>Notions de base</h2>
                 </a>
-                <a href="#MODIFIER">
-                    <h3>Les Modifiers</h3>
-                </a>
+                <div class="rubrique" onclick="toggleMenu('androidstudio', this)">
+                    <span>&gt;</span>
+                    <h2>Android Studio</h2>
+                </div>
+                <div id="androidstudio" class="sub-rubrique">
+                    <a href="#AS">
+                        <h3>Présentation</h3>
+                    </a>
+                    <a href="#ASPROJECT">
+                        <h3>Créer un projet</h3>
+                    </a>
+                    <a href="#DEBUG">
+                        <h3>Tester le projet</h3>
+                    </a>
+                </div>
             </div>
         </div>
+        <!-- ################################################################################################################ -->
         <div class="RightPanel">
             <div class="RightPanelHeader"> <img onclick="montrerMenu()" class="Burger CursorPointer"
                     src="IMAGES/menu48.png" alt="">
-                <h1>Jetpack Compose</h1>
+                <h1>Jetpack Compose pour Débutant</h1>
             </div>
             <div class="RightPanelContent">
 
@@ -85,7 +99,7 @@
         }
     }</code></pre>
                 </p><br>
-                <p>Dans ce bout de code est constitué d'une variable et de trois composables:</p>
+                <p>Cce bout de code est constitué d'une variable et de trois composables:</p>
                 <ul>
                     <li><em>var taillexy by remember { mutableStateOf(20)}</em></li>
                     C'est la déclaration de la variable <i>taillexy</i>. C'est une syntaxe un peu particulière. Pour
@@ -110,12 +124,13 @@
                     sont répartis
                     verticalement l'un en dessous de l'autre.
                     <ul>
-                        <li>Entre ( ), on place les propriétés comme la taille la couleur la façon dont les fils seront
+                        <li>Entre ( ), on place les propriétés comme la taille, la couleur, la façon dont les fils
+                            seront
                             répartis et alignés etc... <br>
-                            Dans, l'exemple, on omis les (), la colonne prendra les paramètres par défaut
+                            Dans, l'exemple, on a omis les (), la colonne prendra les paramètres par défaut
                         </li>
                         <li>Ente { }, on place les fils de la colonne. Dans l'exemple, on a placé deux composables, un
-                            <b>box </b> et un <b>Button</b>
+                            <b>Box </b> et un <b>Button</b>
                         </li>
                     </ul>
                     <li><em>Box( paramètres ) { contenu }</em> </li>
@@ -193,28 +208,198 @@ class MainActivity : ComponentActivity() {
                 <!-- ============================= Fin Code ================================================ -->
 
                 <!-- ################################################################################################ -->
-                <h2 id="MODIFIER">Les Modifiers</h2>
-                <p>Chaque composable peut être caractérisé par un ensemble de paramètres (attributs) qui définissent ses
-                    propriétés spécifiques: taille, couleur, style ...</p>
-                <p>Parmi ces paramètre, il y en a un qui n'est pas comme les autres, c'est le paramètre
-                    <em>modifier</em>. A première vue, il semble avoir le même rôle que les autres attributs car il sert
-                    aussi à modifier l'apparence du composable. Mais il a un fonctionnement spécifique, on peut lui
-                    affecter l'objet (classe) <b>Modifier</b> auquel on peut attribuer plusieurs options, et <strong>ces
-                        options seront exécutées séquentiellement</strong> pour formater le composable.
-                </p>
-                <p>Rien de mieux qu'un petit exemple</p>
-                <pre><code>     Box(modifier = Modifier
-        .size(300.dp, 300.dp)
-        .background(Color.Yellow)
-        .padding(40.dp)
-        .background(Color.Cyan)
-        .padding(40.dp)
-        .background(Color.Magenta)
-        .padding(40.dp)
-        .border(width=5.dp, Color.Blue)
-        .background(Color.Green)
-    )</code></pre><br>
-    <img src="IMAGES/Modifier.jpg" class="BlocCenter w 200">
+                <h2 id="AS">Android Studio</h2>
+                <img src="IMAGES/AndroidStudioLogo.jpg" class="w200">
+                <p>Android Studio est l'environnement de développement intégré (IDE) officiel pour le développement
+                    d'applications Android. Basé sur IntelliJ IDEA, il offre une suite complète d'outils pour écrire,
+                    tester, déboguer et optimiser des applications Android. Il inclut un éditeur de code performant, un
+                    émulateur intégré de téléphones et tablettes android (et bien plus encore).</p>
+                <p>Android Studio est un gros <i>pavé</i>, il faut une bonne liaison Internet pour l'installer et un bon
+                    PC pour le faire tourner correctement.</p>
+                <img src="IMAGES/AS_IDE.jpg"><br>
+                <h3 id="ASPROJECT">Créer un projet Android Studio</h3>
+                <p>On trouve sur Internet plein de vidéos pour vous aider à commencer avec Android Studio</p>
+                <p>Pour commencer un nouveau projet:</p>
+                <ul>
+                    <li><em>New Project</em> &rarr; On obtient une fenêtre pour sélectionner le type de projet</li>
+                    <li>Choisir <em>Empty Activity</em> Jetpack Compose</li>
+                    <img src="IMAGES/EmptyActivityJPC.jpg" class="w200">
+                    <li>On obtient la fenêtre ci-dessous</li>
+                    <img src="IMAGES/NewProjectScrn.jpg">
+                    <ul>
+                        <li>Donner un nom à votre projet</li>
+                        <li>Vérifier que l'emplacement où il sera stocké vous convient</li>
+                        <li>Choisir la version Android minimale pour faire tourner votre application</li>
+                        <li>Terminer par le bouton <em>Finish</em></li>
+                    </ul>
+                    <li>Si vous avez ce pop-up, pas de panique, l'IDE vous indique que Microsoft Defender est actif et
+                        il va ralentir le travail sur le projet. Cliquez sur <b>Automatically</b> pour exclure ce projet
+                        de Microsoft Defender</li>
+                    <img src="IMAGES/MSdefender.jpg">
+                    <li>Android Studio ne démarre pas un projet réellement vide mais crée un exemple dy type "Hello
+                        World!". L'IDE affiche dans la barre d'état les opérations qu'il est en train
+                        d'effectuer sur le projet. Quand tout est terminé, vous pouvez le voir en haut à droite de
+                        l'écran</li>
+                    <img src="IMAGES/ItsOk.jpg">
+                </ul>
+                <p>Maintenant, on peut commencer à toucher à notre projet et le tester</p><br>
+                <h3 id="DEBUG">Tester le projet</h3>
+                <p>On a 3 façons pour tester et débeuguer un projet</p>
+                <ol>
+                    <li><b>Sur un vrai téléphone: </b>C'est la méthode qui marche bien, Pour y arriver il faut effectuer
+                        les étapes ci-dessous:
+                        <ul>
+                            <li>
+                                <b>Activer le mode développeur sur votre téléphone :</b><br> Allez dans les Paramètres
+                                &rarr; À
+                                propos du téléphone &rarr; cliquez 7 fois fois sur <i>Numéro de build</i>
+                            </li>
+                            <li><b>Activer le débogage USB :</b><br>
+                                Dans les paramètres, chercher <i>Options développeur</i> et activez Débogage USB.</li>
+                            <li><b>Connecter le téléphone via USB à votre ordinateur</b><br>
+                                Acceptez la demande de débogage USB sur votre téléphone.
+                            </li>
+                            <li>Votre téléphone apparaît dans la barre d'outils Android Studio, Cliquez sur le bouton
+                                <i>play</i> &#x25B6;, <br>
+                                L'étape <i>"Gradle buid running"</i> peut durer assez longtemps, ne soyez pas trop
+                                pressé
+                                <img src="IMAGES/DebugOnDevice.jpg">
+                            </li>
+                            <li>Maintenant, vous pouvez modifier votre appli et cliquer sur le bouton Run app,
+                                l'actualisation est plus rapide
+                                <img src="IMAGES/DebugRestart.jpg">
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>Sur un Émulateur: </b> Cette méthode est très gourmande en ressource processeur, elle
+                        nécessite un très bon PC
+                        <ul>
+                            <li>Cliquer sur Devices manager à droite de l'écran <img src="IMAGES/DeviceManager.jpg"
+                                    class="inline-image">
+                            </li>
+                            <li>Cliquer sur "+" &rarr; <i>Create virtual device</i>
+                                <img src="IMAGES/CreateNewDevice.jpg">
+                            </li>
+                            <li>Vous allez avoir plusieurs choix. Sur mon vieux PC (I5), le <i>Pixel 6a</i> avec l'OS
+                                <i>Android 10</i> (API 29) marche assez bien
+                            </li>
+                            <li>Maintenant démarrer votre téléphone virtuel
+                                <img src="IMAGES/EmulatorStart.jpg">
+                            </li>
+                            <li>Attendez que votre que votre <i>Virtual Device</i> soit démarré. La première fois ça
+                                peut prendre pas mal de temps. Si pour une raison ou une autre, l'émulateur se plante
+                                et que vous n'arrivez pas à l'arreter, allez dans le gestionnaire des taches et arreter
+                                le process <i>adb</i>
+                                <img src="IMAGES/Emulator.jpg">
+                            </li>
+                            <li>Maintenant que l'émulateur est démarré, lancer votre application
+                                <img src="IMAGES/ApplicationStart.jpg">
+                            </li>
+                            <li>Vous devez voir quelque chose de ce genre,
+                                <img src="IMAGES/AppOnEmulator.jpg">
+                            </li>
+                            <li>Si vous voulez déplacer l'émulateur dans l'écran, il faut modifier le mode de
+                                visualisation. Mois je préfère le faire flotter par dessus le contenu de l'écran. Dans
+                                la barre d'outils de <i>Running Devices</i>, Cliquez sur les trois ponts &rarr; View
+                                Mode &rarr; Float</li>
+                            <li>Maintenant vous pouvez modifier votre appli et actualiser
+                                <img src="IMAGES/AppRestart.jpg" alt=""><br>
+                                Vous pouvez par exemple l'alléger et ne garder que ce que l'on maîtrise à notre niveau
+                                d'apprentissage. <br><br>
+                                <pre><code>package com.example.monprojet
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.sp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MonApp()
+        }
+    }
+}
+
+@Composable
+fun MonApp() {
+    Text(
+        text = "Hello World!",
+        fontSize = 30.sp
+    )
+}
+
+</code></pre><br>
+                            </li>
+                            <li>Quand vous avez terminé, je vous conseille de:
+                                <ul>
+                                    <li>Fermer l'application <img src="IMAGES/AppStop.jpg" class="inline-image"></li>
+                                    <li>Cacher le panneau <i>Running Devices</i> <img src="IMAGES/RunDevices.jpg"
+                                            class="inline-image"></li>
+                                    <li>Arrêter l'émulateur <img src="IMAGES/EmulatorStop.jpg" class="inline-image">
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li><br>
+                    <li><b>Prévisualiser votre UI:</b> C'est assez pratique mais il y a du bon et du moins bon. Cés à
+                        vous de juger.
+                        <ul>
+                            <li>Les modification du code sont mises à jour automatiquement dans la @preview (Live Edit)
+                            </li>
+                            <li>L'UI ne s'affiche pas exactement comme sur un téléphone</li>
+                            <li>Par défaut, on ne peut pas interagir avec l'application (cliquer sur des boutons etc
+                                ...)</li>
+
+                            <li>Pour la mettre en œuvre il faut ajouter un <i>@preview</i> dans lequel on place une
+                                fonction composable qui affiche la totalité ou une partie de notre UI. On peut créer
+                                plusieurs preview
+                                <pre><code>package com.example.monprojet
+
+                                import android.os.Bundle
+                                import androidx.activity.ComponentActivity
+                                import androidx.activity.compose.setContent
+                                import androidx.compose.material3.Text
+                                import androidx.compose.runtime.Composable
+                                import androidx.compose.ui.tooling.preview.Preview
+                                import androidx.compose.ui.unit.sp
+                                
+                                class MainActivity : ComponentActivity() {
+                                    override fun onCreate(savedInstanceState: Bundle?) {
+                                        super.onCreate(savedInstanceState)
+                                        setContent {
+                                            MyApp()
+                                        }
+                                    }
+                                }
+                                
+                                @Composable
+                                fun MyApp() {
+                                    Text(
+                                        text = "Hello World!",
+                                        fontSize = 30.sp
+                                    )
+                                }
+                                <em>
+                                @Preview(showBackground = true)
+                                @Composable
+                                fun MyPreview() {
+                                        MyApp()
+                                }
+                            </em>
+                                </code></pre>
+                            </li>
+                            <li>On a trois mode de visualisation: Code seul, code est Preview, Preview seule
+                                <img src="IMAGES/Preview.jpg" alt="">
+                            </li>
+                            <li>Consultez la documentation pour voir toutes les possibilités du mode @preview</li>
+
+                        </ul>
+                    </li>
+                </ol>
 
 
 

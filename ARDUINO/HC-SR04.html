@@ -18,18 +18,18 @@
     <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
         <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-        <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+        <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
         <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
       </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#INTRO">
-          <h3>HC-SR04</h3>
+          <h2>HC-SR04</h2>
         </a>
         <a href="#EXMPLBASIC">
-          <h3>Exemple basique</h3>
+          <h2>Exemple basique</h2>
         </a>
         <a href="#CTRPASS">
-          <h3>Exemple: Compteur de passage</h3>
+          <h2>Exemple: Compteur de passage</h2>
         </a>
       </div>
     </div>
@@ -41,7 +41,7 @@
       <div class="RightPanelContent">
         <!-- ################################################################################################ -->
         <h2 id="INTRO">HC-SR04</h2>
-        <img src="IMAGES/HC-SR04.png" class="BlocCenter">
+        <img src="IMAGES/HC-SR04.png" >
         <p>Le module HC-SR04 est un capteur ultrasonique utilisé pour mesurer des distances. Voici ses spécification
           techniques :
         </p>
@@ -54,7 +54,7 @@
           <li>Angle de mesure: 15 degrés</li>
         </ul>
         <p>Son principe de fonctionnement est assez simple: </p>
-        <img src="IMAGES/HC-SR04_Signal.png" class="BlocCenter">
+        <img src="IMAGES/HC-SR04_Signal.png" >
         <ul>
           <li>Il possède un émetteur et un récepteur ultrasoniques (Haut parleur, microphone),</li>
           <li>Quand on lui applique une impulsion de 10µs (ou +) sur la broche <em>Trig</em>, il transmet une onde
@@ -65,12 +65,12 @@
           <li>Le module délivre une impulsion dont la largeur est est égale au temps de propagation (aller/retour) sur
             la broche <em>Echo</em>. Ce temps est souvent appelé temps de vol</li>
           <li>Il suffit ensuite de mesurer la durée de cette impulsion et d'en déduire la distance :</li>
-          <img src="IMAGES/Formule_Distance.png" class="BlocCenter">
+          <img src="IMAGES/Formule_Distance.png" >
           <li>La vitesse du son est généralement prise comme 344 m/s à température ambiante</li>
         </ul> <br>
         <h2 id="EXMPLBASIC">Exemple basique</h2>
         <p>Chaque 1/2 seconde, on effectue une mesure de distance et on affiche le résultat sur le moniteur série</p>
-        <img src="IMAGES/HC-SR04_Branchement.png" class="BlocCenter">
+        <img src="IMAGES/HC-SR04_Branchement.png" >
         <!-- =========================== Code ========================================================= -->
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Mesurer la distance toutes les 1/2 secondes<button class="CopyBtn"
@@ -105,9 +105,9 @@ void loop() {
         <h2 id="CTRPASS">Compteur de passages</h2>
         <p>On va par exemple compter les voitures à l'entrée d'un parking</p>
         <p>La largeur du passage fait que les voiture passent à proximité du capteur (disons D = 1m à 2m). </p>
-        <p>On mesure continuellement la distance, si inférieur à D => présence obstacle </p>
-        <img src="IMAGES/HC-SR04_Car_Ctr.png" class="BlocCenter"><br>
-        <img src="IMAGES/HC-SR04_Counter.png" class="BlocCenter"><br>
+        <p>On mesure continuellement la distance, si inférieur à D =&gt; présence obstacle </p>
+        <img src="IMAGES/HC-SR04_Car_Ctr.png" ><br>
+        <img src="IMAGES/HC-SR04_Counter.png" ><br>
         <!-- =========================== Code ========================================================= -->
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">Compteur de passage<button class="CopyBtn"
@@ -119,7 +119,7 @@ void loop() {
 #define TRIG_D 100  // Intervalle de détection en cm
 #define TRIG_T TRIG_D*2/0.0344  // temps de vol correspondant (µs)
 #define LED 13
-#include <LCD_I2C.h>
+#include &lt;LCD_I2C.h&gt;
 LCD_I2C lcd(0x27, 16, 2);
 
 int CTR = 0, newState, oldState;
@@ -152,7 +152,7 @@ int isObstacle() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   float Tus = pulseIn(echoPin, HIGH);
-  if (Tus < TRIG_T) return 1;
+  if (Tus &lt; TRIG_T) return 1;
   else return 0;
   }
 </code>

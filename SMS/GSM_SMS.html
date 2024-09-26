@@ -22,31 +22,31 @@
       </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#OBJECTIF">
-          <h3>Objectif</h3>
+          <h2>Objectif</h2>
         </a>
         <a href="#SIM900">
-          <h3>Module SIM900</h3>
+          <h2>Module SIM900</h2>
         </a>
         <a href="#PROGAT1">
-          <h3>Tester le module, Prog. AT1</h3>
+          <h2>Tester le module, Prog. AT1</h2>
         </a>
         <a href="#AT">
-          <h3>Quelques commandes AT</h3>
+          <h2>Quelques commandes AT</h2>
         </a>
         <a href="#ATSUCC">
-          <h3>Commandes AT successives</h3>
+          <h2>Commandes AT successives</h2>
         </a>
         <a href="#ATCOM">
-          <h3>Fonction pour envoyer une commande AT</h3>
+          <h2>Fonction pour envoyer une commande AT</h2>
         </a>
         <a href="#CLEARBUF">
-          <h3>Vider le buffer de réception</h3>
+          <h2>Vider le buffer de réception</h2>
         </a>
         <a href="#PROGAT2">
-          <h3>Programme AT2</h3>
+          <h2>Programme AT2</h2>
         </a>
         <a href="#SEND">
-          <h3>Envoyer un SMS</h3>
+          <h2>Envoyer un SMS</h2>
         </a>
         <a href="#SENDMS">
           <h4>&star; Par le moniteur Série</h4>
@@ -58,22 +58,22 @@
           <h4>&star; Par Programme, version robuste</h4>
         </a>
         <a href="#RECDISP">
-          <h3>Recevoir et afficher un SMS</h3>
+          <h2>Recevoir et afficher un SMS</h2>
         </a>
         <a href="#LEDSMS">
-          <h3>Contrôler une LED à distance</h3>
+          <h2>Contrôler une LED à distance</h2>
         </a>
         <a href="#LEDMOTCC">
-          <h3>Contrôler une LED et un moteur CC</h3>
+          <h2>Contrôler une LED et un moteur CC</h2>
         </a>
         <a href="#SMSREQRES">
-          <h3>Demander et recevoir une mesure par SMS</h3>
+          <h2>Demander et recevoir une mesure par SMS</h2>
         </a>
         <a href="#TRUCS2">
-          <h3>Envoyer SMS avec codage UCS2</h3>
+          <h2>Envoyer SMS avec codage UCS2</h2>
         </a>
         <a href="#RCVUCS2">
-          <h3>Recevoir SMS avec codage UCS2</h3>
+          <h2>Recevoir SMS avec codage UCS2</h2>
         </a>
 
       </div>
@@ -89,13 +89,13 @@
         <p>Dans ce tuto, on va apprendre à gérer un système distant à l'aide de messages SMS. L'avantage d'un tel
           système
           est la couverture du réseau GSM qui est quasi totale</p>
-        <img src="IMAGES/SMS_Control.jpg" class="BlocCenter">
+        <img src="IMAGES/SMS_Control.jpg">
 
         <!-- ################################################################################################ -->
         <h2 id="SIM900">Module SIM900</h2>
         <p>Dans ce tuto, nous allons utiliser le module SIM900A, mais tout ce qu'on va dire est valable pour d'autre
           modules GSM comme le SIM800</p><br>
-        <img src="IMAGES/SIM900A.jpg" class="BlocCenter">
+        <img src="IMAGES/SIM900A.jpg">
         <p>voici quelques considérations concernant ce module</p>
         <ol>
           <li><em>Schéma de branchement: </em>
@@ -117,7 +117,7 @@
               </li>
             </ul>
           </li>
-          <img src="IMAGES/SIM900_Connect.jpg" class="BlocCenter">
+          <img src="IMAGES/SIM900_Connect.jpg">
           <li><em>Alimentation: </em><br>
             <b>Ne pas alimenter le module par le 5V issu de l'Arduino</b>. Lors de la transmission vers le réseau
             GSM, le module consomme au moins 1A. Je vous conseille d'utiliser une alim (5V, 2A) pour être tranquille.
@@ -558,11 +558,11 @@ void ATcom(String cmd) {
             <p class="code2">Serial.println("Copier/Coller pour avoir ASCII(26) --&gt;\x1A&lt;--");</p>
           </li>
           <li>Comme c'est un caractère de contrôle, Le moniteur série affiche un petit carré à la place <img
-              src="IMAGES/CaractèreSUB26.jpg" class="BlocCenter"></li>
+              src="IMAGES/CaractèreSUB26.jpg"></li>
           <li>Maintenant il suffit de <b>copier</b> ce caractère et le <b>coller</b> à la fin du message</li>
         </ul><br>
         <p>Voici une capture d'écran du moniteur série illustrant l'envoi d'un SMS:</p><br>
-        <img src="IMAGES/Send_moniteur.jpg" class="BlocCenter"><br>
+        <img src="IMAGES/Send_moniteur.jpg"><br>
         <h3 id="SENDPROGS">Envoyer SMS par programme, version basique</h3>
 
         <!-- =========================== Code ========================================================= -->
@@ -831,7 +831,7 @@ void ATcom(String cmd) {
 }</code></pre>
         </div><br>
         <!-- ============================= Fin Code ================================================ -->
-        <img src="IMAGES/Message_recu.jpg" class="BlocCenter"><br>
+        <img src="IMAGES/Message_recu.jpg"><br>
         <!-- ################################################################################################ -->
         <h2 id="LEDSMS">Contrôler une LED à distance</h2>
         <p>Dans cet exemple, On va controller une LED à l'aide d'un message contenant les mots clé LEDON ou LEDOFF</p>
@@ -903,7 +903,8 @@ void ATcom(String cmd) {
         <!-- ################################################################################################ -->
         <h2 id="LEDMOTCC">Contrôler une LED et un moteur CC</h2>
         <p>Dans ce paragraphe on va contrôler une LED et un moteur CC</p><br>
-        <img src="IMAGES/SMS_Motor_CC.jpg" class="BlocCenter"><br>
+        <img src="IMAGES/SMS_Motor_CC.jpg"><br>
+        <p>On va utiliser des SMS avec les mots clé</p>
 
         <ul>
           <li><em>LEDON</em> Allumer la LED</li>
@@ -915,13 +916,14 @@ void ATcom(String cmd) {
               <li><b><i>dir: </i></b> Direction, 1 &rarr; en avant, 0 &rarr; en arrière</li>
               <li><b><i>durée: </i></b>Nombre de secondes (0 &rarr; permanent)</li>
               <li><b><i>pwm: </i></b>Paramètre compris entre 0 et 255 pour fixer la vitesse</li>
-              <li class="sanspuce"><strong>Exemples:</strong></li>
-              <li><strong>MOTOR(1,10,127) </strong>En avant pendant 10 secondes à vitesse médiane</li>
+              <li><strong>Exemples:</strong></li>
+              <ul>
+                <li><strong>MOTOR(1,10,127) </strong>En avant pendant 10 secondes à vitesse médiane</li>
+                <li><strong>MOTOR(0,0,255) </strong>En arrière vitesse max</li>
+              </ul>
+            </ul>
           </li>
-          <li><strong>MOTOR(0,0,255) </strong>En arrière vitesse max</li>
-          </li>
-        </ul>
-        <li>On peut réunir deux commandes dans le même SMS: exemple: <strong>LED_OFF MOTOR_STOP</strong></li>
+          <li>On peut réunir deux commandes dans le même SMS: exemple: <strong>LED_OFF MOTOR_STOP</strong></li>
         </ul>
         <br>
 
@@ -953,7 +955,7 @@ SoftwareSerial Module(11, 12); // (RX, TX)
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
-  TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
+  TCCR1B = TCCR1B &amp; B11111000 | B00000100;    // f = 122.55 Hz,  T = 8.16ms (D9, D10)
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
@@ -1035,7 +1037,7 @@ void ATcom(String cmd) {
           retourne un SMS (Response) avec la mesure demandée</p>
         <p>Considérons par exemple un cas de mesure de distance à l'aide d'un module à ultra-sons. On va voir que ça
           peut être très utile dans un cas pratique</p><br>
-        <img src="IMAGES/SMS_DISTANCE.jpg" class="BlocCenter">
+        <img src="IMAGES/SMS_DISTANCE.jpg">
         <p>Téléversez le programme ci-dessous et utilisez votre téléphone pour envoyer un SMS avec le mote clé
           <b>mesure</b> en majuscule ou en minuscule (mesure , MESURE, Mesure, ...)
         </p><br>
@@ -1141,7 +1143,7 @@ bool waitFor(String STR, uint32_t Tms) {
           <li>Comme nous allons parler de codage, voici un petit tableau avec les codes (Hex) d'un caractère normal et
             un
             caractère accentué</li>
-          <img src="IMAGES/Codage_Accent.jpg" class="BlocCenter">
+          <img src="IMAGES/Codage_Accent.jpg">
           <li>Par défaut, le module SIM900A utilise le codage <b>IRA </b> qui est un codage 7 bits quasi identique au
             code ASCII standard. Ce codage ne supporte pas les caractères accentués.</li>
           <li>Sur Arduino-IDE, Les chaîne de caractères sont codées en UTF-8. Avec ce codage, on peut coder 1112064
@@ -1383,12 +1385,12 @@ uint32_t unicode2utf8(uint16_t U) {
   uint32_t BT2;
   if (U &lt; 0x80)return (U);
   else if (U &lt; 0x800) {
-    BT0 = 0x80 | (U & 0x003F);
+    BT0 = 0x80 | (U &amp; 0x003F);
     BT1 = 0xC0 | (U &gt;&gt; 6);
     return (BT1 &lt;&lt; 8) | BT0;
   } else {
-    BT0 = 0x80 | (U & 0x003F);
-    BT1 = 0x80 | ( (U &gt;&gt; 6) & 0x003F );
+    BT0 = 0x80 | (U &amp; 0x003F);
+    BT1 = 0x80 | ( (U &gt;&gt; 6) &amp; 0x003F );
     BT2 = 0xE0 | ( (U &gt;&gt; 12) );
     return (BT2 &lt;&lt; 16) | (BT1 &lt;&lt; 8) | BT0;
   }

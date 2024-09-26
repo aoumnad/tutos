@@ -23,40 +23,40 @@
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
-                    <h3>Introduction</h3>
+                    <h2>Introduction</h2>
                 </a>
                 <a href="#LEQUEL">
-                    <h3>Lequel choisir</h3>
+                    <h2>Lequel choisir</h2>
                 </a>
                 <a href="#IDE">
-                    <h3>Environnement de programmation</h3>
+                    <h2>Environnement de programmation</h2>
                 </a>
                 <a href="#BRANCH">
-                    <h3>Branchement</h3>
+                    <h2>Branchement</h2>
                 </a>
                 <a href="#1TEST">
-                    <h3>Tester le module</h3>
+                    <h2>Tester le module</h2>
                 </a>
                 <a href="#LM75">
-                    <h3>Mesure d'un capteur</h3>
+                    <h2>Mesure d'un capteur</h2>
                 </a>
                 <a href="#CONECT">
-                    <h3>Connexion WIFI avec IP Automatique</h3>
+                    <h2>Connexion WIFI avec IP Automatique</h2>
                 </a>
                 <a href="#CONECTFIX">
-                    <h3>Connexion WIFI avec IP Fixe</h3>
+                    <h2>Connexion WIFI avec IP Fixe</h2>
                 </a>
                 <a href="#CONECTMULTI">
-                    <h3>Connexion WIFI points d'accès multiples</h3>
+                    <h2>Connexion WIFI points d'accès multiples</h2>
                 </a>
                 <a href="#LED_1">
-                    <h3>Commander une LED par WIFI - 1</h3>
+                    <h2>Commander une LED par WIFI - 1</h2>
                 </a>
                 <a href="#LED_2">
-                    <h3>Commander une LED par WIFI - 2</h3>
+                    <h2>Commander une LED par WIFI - 2</h2>
                 </a>
                 <a href="#COMCOL">
-                    <h3>Commander et mesurer</h3>
+                    <h2>Commander et mesurer</h2>
                     <a href="#COMCOL">
                         <h4>La problématique</h4>
                     </a>
@@ -68,31 +68,31 @@
                     </a>
                 </a>
                 <a href="#LECTPER">
-                    <h3>Acquisition périodique</h3>
+                    <h2>Acquisition périodique</h2>
                 </a>
                 <a href="#SPIFFS">
-                    <h3>File System dans la mémoire flash</h3>
+                    <h2>File System dans la mémoire flash</h2>
                 </a>
                 <a href="#SPIFFSEXP">
-                    <h3>File System Explorer</h3>
+                    <h2>File System Explorer</h2>
                 </a>
                 <a href="#FSUP">
-                    <h3>L'outil LittleFS Data Upload</h3>
+                    <h2>L'outil LittleFS Data Upload</h2>
                 </a>
                 <a href="#HTMLFS">
-                    <h3>HTML dans le File System</h3>
+                    <h2>HTML dans le File System</h2>
                 </a>
                 <a href="#DLOG">
-                    <h3>Datalogger: l'objectif ultime</h3>
+                    <h2>Datalogger: l'objectif ultime</h2>
                 </a>
                 <a href="#DLOG3">
-                    <h3>Datalogger final</h3>
+                    <h2>Datalogger final</h2>
                 </a>
                 <a href="#OTA">
-                    <h3>OTA: téléversement Over The Air</h3>
+                    <h2>OTA: téléversement Over The Air</h2>
                 </a>
                 <a href="#ESP-01">
-                    <h3>Le module ESP-01</h3>
+                    <h2>Le module ESP-01</h2>
                 </a><br>
                 <br>
             </div>
@@ -108,7 +108,7 @@
                 <p>Le ESP8266 est un microcontrôleur doté d'un module de communication WIFI. Il est fabriqué par le
                     constructeur chinois ESPRESSIF. Il est commercialisé sous formes de différents modules plus au moins
                     sophistiqués.</p>
-                <img src="IMAGES/esp8266_modules.jpg" class="BlocCenter">
+                <img src="IMAGES/esp8266_modules.jpg" >
 
                 <!-- ################################################################################################ -->
                 <h2 id="LEQUEL">Lequel choisir</h2>
@@ -162,7 +162,7 @@
                         qu'il faut préciser dans <strong>Outils→ Port</strong> (Voir le gestionnaire de
                         périphériques pour trouver le numéro du port COM)</li>
                 </ul>
-                <img class="BlocCenter" src="IMAGES/COMx.png">
+                <img  src="IMAGES/COMx.png">
                 <br>
 
                 <!-- ################################################################################################ -->
@@ -191,8 +191,8 @@
                     LED est connectée sur la pate 2 du ESP8266 qui est elle même connectée à la broche D4 du module
                     D1mini. Le mieux est d'utiliser la constante prédéfinie LED_BUILTIN qui s'adapte au module utilisé
                 </p>
-                <img src="IMAGES/D1miniPinout.jpg" class="BlocCenter">
-                <img src="IMAGES/Wemos_D1Pinout.png" class="BlocCenter">
+                <img src="IMAGES/D1miniPinout.jpg" >
+                <img src="IMAGES/Wemos_D1Pinout.png" >
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Clignoter LED<button class="CopyBtn"
@@ -232,7 +232,7 @@ void loop() {
                 </p>
                 <p class="InlineCenter"><img src="IMAGES/lm75_pinout.png">&nbsp;&nbsp;&nbsp;&nbsp;<img
                         src="IMAGES/LM75_Adr.png"></p>
-                <img src="IMAGES/esp8266-lm75.png" class="BlocCenter">
+                <img src="IMAGES/esp8266-lm75.png" >
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Mesurer et afficher sur le moniteur série<button class="CopyBtn"
@@ -242,7 +242,7 @@ void loop() {
                 
 /* Programme esp_lm75.ino      A. Oumnad
 lecture de température sur un LM75A  (température sur 11 bits)
-les 3 bits d'adresse I2C du circuit sont fixé à 000 => adresse = 1001 000 = 0x48
+les 3 bits d'adresse I2C du circuit sont fixé à 000 =&gt; adresse = 1001 000 = 0x48
 Le pointeur est fixé une seule fois dans le main()
 la fonction loop() lit le registre de température toutes les secondes sans préciser le pointeur à chaque fois
 */
@@ -263,7 +263,7 @@ void loop()
 Wire.requestFrom(DEV_ADR, 2); // demander 2 octets à partir de la position courante du pointeur
 msb = Wire.read();
 lsb = Wire.read();
-T = msb + (lsb>>5)*0.125;
+T = msb + (lsb &gt;&gt; 5)*0.125;
 Serial.println("Température = " + String(T,3));
 delay(1000);
 }
@@ -275,7 +275,7 @@ delay(1000);
 
                 <!-- ################################################################################################ -->
                 <h2 id="CONECT">Connexion WIFI avec IP Automatique</h2>
-                <img src="IMAGES/accespoint.jpg" class="BlocCenter">
+                <img src="IMAGES/accespoint.jpg" >
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Commandes avec paramètres<button class="CopyBtn"
@@ -330,7 +330,7 @@ void loop() {
                 <p>Pour choisir l'adresse IP, il faut connaître l'adresse passerelle par défaut de votre point d'accès
                     et la plage d'affectation automatique. Pour le savoir, assurez vous que votre PC est connecté à ce
                     point d'accès et taper <em>ipconfig</em> dans la fenêtre de commande Windows</p>
-                <img src="IMAGES/local_IP.jpg" class="BlocCenter">
+                <img src="IMAGES/local_IP.jpg" >
                 <p>Dans mon cas, le point d'accès a affecté l'adresse 192.168.0.104 à mon PC. On comprend que le DHCP
                     commence l'affectation à partir de 192.168.0.100. J'ai décidé d'utiliser l'adresse fixe 192.168.0.50
                     pour l'ESP8266. Comme ça je suis sur que le DHCP de mon point d'accès ne l'affecte à personne.</p>
@@ -440,7 +440,7 @@ void loop() {
                 <p>Dans cette première version, nous allons utiliser la librairie <em>ESP8266WiFi</em>. Son utilisation
                     est un peut ardue, mais ça permet de comprendre comment se font les échanges de requêtes HTTP entre
                     le serveur et le navigateur Client</p>
-                <img src="IMAGES/esp8266-server.png" class="BlocCenter">
+                <img src="IMAGES/esp8266-server.png" >
                 <p>Pour commencer nous allons faire simple. La page web client sera constituée de deux boutons ALLUMER
                     et ETEINDRE qui nous permettront d'allumer ou d'éteindre la LED du module ESP8266. </p>
                 <p>Le code html de la page web sera intégré dans le programme du ESP8266 (serveur). J'ai utilisé une
@@ -448,14 +448,14 @@ void loop() {
                 </p>
                 <p> Quand quelqu'un (un client) se connecte au serveur à l'aide d'un navigateur, le serveur lui enverra
                     la page, ce qui donne quelque chose comme ça:</p>
-                <img src="IMAGES/client_ON_OFF.png" class="BlocCenter">
+                <img src="IMAGES/client_ON_OFF.png" >
                 <ul>
                     <li>Téléverser le code ci-dessous dans le module</li>
                     <li>Ouvrir le moniteur série</li>
                     <li>Cliquer sur le bouton RESET du module</li>
                     <li>Le module (grace à la fonction setup() du programme) se connecte au point d'accès et affiche
                         l'adresse IP qui lui a été affectée</li>
-                    <img src="IMAGES/LED_Connect.jpg" class="BlocCenter">
+                    <img src="IMAGES/LED_Connect.jpg" >
                     <li>Saisir cette adresse IP dans un navigateur (PC ou Mobile)</li>
                     <li>A partir de maintenant c'est la fonction loop() du programme qui gère les échanges entre le
                         navigateur et le module</li>
@@ -615,7 +615,7 @@ WiFiClient MonClient; // créer le client
                 </ul>
                 <p>Quand on téléverse le programme dans le ESP8266. C'est la fonction setup() qui s'exécute en premier,
                     on obtient la trace suivante sur le moniteur série.</p>
-                <img src="IMAGES/LED_Connect.jpg" class="BlocCenter">
+                <img src="IMAGES/LED_Connect.jpg" >
                 <p>Donc le ESP8266 s'est connecté au point d'accès et a démarré le serveur Web et nous a communiqué son
                     adresse IP.</p>
                 <p>A partir de maintenant c'est la fonction loop() qui se met à l'écoute et attend qu'un client
@@ -699,7 +699,7 @@ Connection: close
                     <li>La suite est constituée de la page web</li>
                 </ul>
                 <p>Quand le client reçoit la page web, il l'affiche sur le navigateur</p>
-                <img src="IMAGES/client_ON_OFF.png" class="BlocCenter">
+                <img src="IMAGES/client_ON_OFF.png" >
                 <p>Ensuit, le navigateur envoie la requête "/favicon.ico" pour demander au serveur le fichier qui
                     contient l'icône qui normalement sera affiché sur l'onglet de la page dans le navigateur. Pour ce
                     qui nous concerne, nous allons ignorer cette requête. Mais le navigateur attend une réponse pour
@@ -729,7 +729,7 @@ else if (request.indexOf("/LEDON") != -1){  // requête  "/LEDON"
         envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
 }                        
                     </code></pre><br>
-                <img src="IMAGES/SerMon_LED-ON.png" class="BlocCenter"><br>
+                <img src="IMAGES/SerMon_LED-ON.png" ><br>
                 <p>Si on clique sur le bouton ETEINDRE, les choses se passent de la même façon, le navigateur envoie la
                     requête GET "<em>/LEDOFF</em>"</p>
                 <p>Le programme du ESP8266 détecte la requête, éteint la LED et informe le navigateur qu'il n'a pas de
@@ -741,7 +741,7 @@ else if (request.indexOf("/LEDON") != -1){  // requête  "/LEDON"
         envoyer_reponsevide();              // ce n'est pas la peine de rafraîchir la page
     }
 </code></pre><br>
-                <img src="IMAGES/SerMon_LED-OFF.png" class="BlocCenter"><br>
+                <img src="IMAGES/SerMon_LED-OFF.png" ><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="LED_2">Commander une LED par WIFI - 2 (ESP8266WebServer)</h2>
@@ -1500,7 +1500,7 @@ void envoyerMesures() {
                 <p>Arduino-IDE permet de choisir la répartition de la mémoire. Dans la suite nous allons répartir
                     notre mémoire approximativement comme suit: Mémoire programme: 2Mo, File System: 2Mo, OTA: 1Mo </p>
                 <br>
-                <img src="IMAGES/SPIFFS_Size.jpg" class="BlocCenter"><br>
+                <img src="IMAGES/SPIFFS_Size.jpg" ><br>
                 <h3>Exemple: Créer - Écrire - Lire - Lister</h3>
                 <p>Dans l'exemple ci.dessous:</p>
                 <ul>
@@ -1588,7 +1588,7 @@ void loop() {}
                 </div>
                 <!-- ============================= Fin Code ================================================ -->
                 <br>
-                <img class="BlocCenter" src="IMAGES/SPIFFS_w_r_l.jpg"><br>
+                <img  src="IMAGES/SPIFFS_w_r_l.jpg"><br>
                 <h3>Exemple: Supprimer tous les fichiers du File System</h3>
                 <p>Ici pas de page web client. Le téléversement et l'exécution du code dans le D1 mini permet de
                     nettoyer
@@ -1629,7 +1629,7 @@ void loop() {}
 </pre>
                 </div>
                 <!-- ============================= Fin Code ================================================ -->
-                <br><img class="BlocCenter" src="IMAGES/SPIFFS_dell_all.jpg"><br>
+                <br><img  src="IMAGES/SPIFFS_dell_all.jpg"><br>
                 <br>
                 <h3>Exemple: Télécharger un fichier à partir du File System</h3>
                 <p>Coté client, on a une page web avec un seul bouton "Télécharger" qui envoie la requête
@@ -1637,7 +1637,7 @@ void loop() {}
                         contenu du fichier test0.csv vers le client. On verra plus
                         tard un exemple où l'on peut choisir le fichier à télécharger dans une liste.</i>
                 </p>
-                <img src="IMAGES/spiffs_download.jpg" class="BlocCenter">
+                <img src="IMAGES/spiffs_download.jpg" >
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">télécharger un fichier<button class="CopyBtn"
@@ -1750,7 +1750,7 @@ void handledownload() {
                 <h2 id="SPIFFSEXP">File System Explorer</h2>
                 <p>Voici enfin un <i><b>mini explorateur de fichiers</b></i> qui permet de réaliser les opérations
                     essentielles dans la zone File System du D1 mini</p><br>
-                <img src="IMAGES/LittleFS_Explorer.jpg" class="BlocCenter"><br>
+                <img src="IMAGES/LittleFS_Explorer.jpg" ><br>
 
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
@@ -2045,7 +2045,7 @@ void handleformatok(){
                         plus simple pour y aller: croquis → afficher le dossier des croquis</li>
                     <li>Copier les fichiers à uploder dans le dossier data</li>
                     <li>Dans le menu outils, cliquer sur ESP8266 LittleFs Data Upload</li>
-                    <img src="IMAGES/LittleFS_data_upload.jpg" class="BlocCenter"><br>
+                    <img src="IMAGES/LittleFS_data_upload.jpg" ><br>
                 </ol>
                 <ul>
                     <li><em>Il ne faut pas que le moniteur série soit ouvert car il utilise le même port COM</em></li>
@@ -2226,7 +2226,7 @@ void envoyerMesures() {
 
                 <!-- ################################################################################################ -->
                 <h2 id="DLOG">Datalogger: l'objectif ultime</h2>
-                <img src="IMAGES/datalogger.jpg" class="BlocCenter">
+                <img src="IMAGES/datalogger.jpg" >
                 <h3>Objectif</h3>
                 <p>Dans les exemples précédents, le serveur envoyait des mesures fictives vers le client. Dans l'exemple
                     qui suit, on va prendre de vraies mesures sur un capteur de température (LM75). On enregistre les
@@ -2240,7 +2240,7 @@ void envoyerMesures() {
                     télécharger <a target="_blank"
                         href="https://github.com/arduino-libraries/NTPClient/files/1357589/NTPClient.zip"> cette
                         version:</a> et de l'installer comme ça:</p>
-                <img src="IMAGES/ZIP_Library.jpg" class="BlocCenter"><br>
+                <img src="IMAGES/ZIP_Library.jpg" ><br>
                 <p>Voici à quoi ressemble la page web</p>
                 <img src="IMAGES/datalogger_WB.jpg" class="Float_R w300">
                 <ul>
@@ -2466,7 +2466,7 @@ void handledownload() {
                 <!-- ============================= Fin Code ================================================ -->
                 <br>
                 <p>Une fois téléchargé, le fichier de mesures au format (.csv) est compatible avec Microsoft Excel</p>
-                <img src="IMAGES/datalogger_Excel.jpg" class="BlocCenter"><br>
+                <img src="IMAGES/datalogger_Excel.jpg" ><br>
 
 
                 <!-- ################################################################################################ -->
@@ -2771,7 +2771,7 @@ void loop(void){
                     d'écraser l'ancienne version dans la mémoire programme. Pour cette raison, la mémoire programme doit
                     avoir au moins la taille de la mémoire OTA. La figure ci-dessous illustre un exemple de répartition
                     de la mémoire flash du module</p>
-                <img src="IMAGES/mem_PROG_FS_OTA.jpg" class="BlocCenter">
+                <img src="IMAGES/mem_PROG_FS_OTA.jpg" >
                 <p>Je n'ai pas d'exemple à vous proposer pour l'instant. Ça viendra peut être un jour</p>
 
                 <!-- ################################################################################################ -->
@@ -2793,7 +2793,7 @@ void loop(void){
                     problème vient du fait que ESP-01 n'a rien qui lui permet de passer d'un mode à l'autre. Pour le
                     programmer, il faut le brancher à un adaptateur USB-Serial en ajoutant deux boutons poussoir comme
                     indiqué sur la figure ci dessous:</p><br>
-                <img src="IMAGES/ESP-01_Serial_Laptop.jpg" class="BlocCenter">
+                <img src="IMAGES/ESP-01_Serial_Laptop.jpg" >
                 <p>Les broches RST, EN et IO0 disposent de résistances de pull-up internes. Il n'est pas nécessaire de
                     rajouter des résistances externes avec les boutons.</p><br>
                 <img src="IMAGES/5Vto3.3V.jpg" class="Float_R">
@@ -2816,7 +2816,7 @@ void loop(void){
                         périphériques)</li>
                     <li>Dans l'IDE Arduino: (Outil→Port→choisir le port) , (Outil→type de carte→Generic ES8266)</li>
                     <li>Placer le module en mode PROG: maintenir P appuyé, cliquer sur RST, relâcher P</li>
-                    <li>Ouvrir le programme Blink (fichier->Exemple-> basic->Blink)</li>
+                    <li>Ouvrir le programme Blink (fichier-&gt;Exemple-&gt; basic-&gt;Blink)</li>
                     <li>Téléverser</li>
                     <li>Repasser en mode RUN: Cliquer sur le bouton RST </li>
                 </ol><br>
@@ -2835,7 +2835,7 @@ void loop(void){
                     <li>Il ne faut pas oublier de placer le module en mode PROG. une fois la
                         programmation terminée, il faut le replacer en mode RUN pour voir l'exécution du programme</li>
                 </ol>
-                <img src="IMAGES/ESP-01_Arduino_Laptop.jpg" class="BlocCenter"><br>
+                <img src="IMAGES/ESP-01_Arduino_Laptop.jpg" ><br>
                 <h3>Tester le module ESP-01 avec le programme Blink</h3>
                 <p>Ne pas faire ça si vous voulez utiliser votre module à l'aide des commandes AT car vous allez écraser
                     le firmware AT</p>

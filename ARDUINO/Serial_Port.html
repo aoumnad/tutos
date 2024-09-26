@@ -18,54 +18,54 @@
     <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
         <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-        <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+        <a href="../index.html"> <img src="../IMAGES/home48.png"> </a>
         <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
       </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#INTRO">
-          <h3>Introduction</h3>
+          <h2>Introduction</h2>
         </a>
         <a href="#PARSER">
-          <h3>Parallèle vs Série</h3>
+          <h2>Parallèle vs Série</h2>
         </a>
         <a href="#CABLE">
-          <h3>Câble de communication Série</h3>
+          <h2>Câble de communication Série</h2>
         </a>
         <a href="#BAUDRATE">
-          <h3>Vitesse de communication</h3>
+          <h2>Vitesse de communication</h2>
         </a>
         <a href="#SYNCHRO">
-          <h3>Synchronisation</h3>
+          <h2>Synchronisation</h2>
         </a>
         <a href="#UART">
-          <h3>L'UART</h3>
+          <h2>L'UART</h2>
         </a>
         <a href="#RBUFFER">
-          <h3>Buffer de réception</h3>
+          <h2>Buffer de réception</h2>
         </a>
         <a href="#TBUFFER">
-          <h3>Buffer de transmission</h3>
+          <h2>Buffer de transmission</h2>
         </a>
         <a href="#RS232">
-          <h3>Port Série Arduino ≠ RS232</h3>
+          <h2>Port Série Arduino ≠ RS232</h2>
         </a>
         <a href="#SERIAL">
-          <h3>La librairie Serial</h3>
+          <h2>La librairie Serial</h2>
         </a>
         <a href="#CONFLICT">
-          <h3>Conflit sur le port Série</h3>
+          <h2>Conflit sur le port Série</h2>
         </a>
         <a href="#EXPLS">
-          <h3>Exemples</h3>
+          <h2>Exemples</h2>
         </a>
         <a href="#EX1">
-          <h4>Communication basique</h3>
+          <h4>Communication basique</h4>
         </a>
         <a href="#EX2">
-          <h4>Contrôle d'une LED via le port série</h3>
+          <h4>Contrôle d'une LED via le port série</h4>
         </a>
         <a href="#EX3">
-          <h4>Chaîne de commande avec paramètre entier</h3>
+          <h4>Chaîne de commande avec paramètre entier</h4>
         </a>
       </div>
     </div>
@@ -83,74 +83,74 @@
           exhaustifs :</p>
         <ul>
           <li class="li_niv1 Bold">Ethernet</li>
-          <li class="sanspuce">Une norme de réseau local (LAN) qui spécifie
-            les aspects physiques et de liaison de données pour la
-            transmission de données sur des câbles Ethernet, </li>
+          Une norme de réseau local (LAN) qui spécifie
+          les aspects physiques et de liaison de données pour la
+          transmission de données sur des câbles Ethernet,
           <li class="li_niv1 Bold">Wi-Fi (IEEE 802.11) : </li>
-          <li class="sanspuce"> Une famille de normes de communication sans
-            fil qui permettent la connexion d'appareils à un réseau local sans
-            avoir besoin de câbles physiques, </li>
+          Une famille de normes de communication sans
+          fil qui permettent la connexion d'appareils à un réseau local sans
+          avoir besoin de câbles physiques,
           <li class="li_niv1 Bold">Bluetooth (IEEE 802.15.1) : </li>
-          <li class="sanspuce"> Une norme de communication sans fil à courte
+          Une norme de communication sans fil à courte
             portée utilisée pour connecter des appareils électroniques, tels
             que des smartphones, des écouteurs sans fil et des périphériques
-            informatiques, dans un réseau personnel (PAN), </li>
-          <li class="li_niv1 Bold">USB (Universal Serial Bus) : </li>
-          <li class="sanspuce"> Une norme de communication filaire utilisée
+            informatiques, dans un réseau personnel (PAN),
+          <li class="Bold">USB (Universal Serial Bus) : </li>
+          Une norme de communication filaire utilisée
             pour connecter des périphériques électroniques, tels que des
             claviers, des souris, des imprimantes, des caméras et des
             périphériques de stockage, à un ordinateur ou à d'autres appareils
-            hôtes, </li>
+            hôtes,
           <li class="li_niv1 Bold">GSM (Global System for Mobile
             Communications) : </li>
-          <li class="sanspuce"> Une norme de communication mobile utilisée
+          Une norme de communication mobile utilisée
             pour les réseaux de téléphonie mobile. Elle spécifie les normes
             pour la transmission de la voix et des données sur les réseaux
-            cellulaires, </li>
+            cellulaires,
           <li class="li_niv1 Bold">LTE (Long-Term Evolution) : </li>
-          <li class="sanspuce"> Une norme de communication sans fil utilisée
+          Une norme de communication sans fil utilisée
             pour les réseaux de téléphonie mobile de quatrième génération
             (4G), offrant des vitesses de données plus élevées et une
-            meilleure qualité de service que les normes précédentes, </li>
+            meilleure qualité de service que les normes précédentes,
           <li class="li_niv1 Bold">TCP/IP (Transmission Control
             Protocol/Internet Protocol) :</li>
-          <li class="sanspuce"> Alors que TCP et IP sont techniquement deux
+          Alors que TCP et IP sont techniquement deux
             protocoles distincts, ils sont souvent mentionnés ensemble car ils
             forment la base du fonctionnement d'Internet et des réseaux
             informatiques modernes. TCP gère la transmission des données de
             manière fiable et ordonnée, tandis qu'IP s'occupe du routage des
             paquets de données sur le réseau. Ensemble, ils permettent la
             communication et l'échange de données entre les appareils
-            connectés à Internet; </li>
+            connectés à Internet,
           <li class="li_niv1 Bold">NFC (Near Field Communication) : </li>
-          <li class="sanspuce"> Une norme de communication sans fil à courte
+          Une norme de communication sans fil à courte
             portée utilisée pour l'échange de données entre des dispositifs
             situés à proximité les uns des autres, souvent utilisée pour les
             paiements sans contact et le partage d'informations entre
-            appareils mobiles, </li>
+            appareils mobiles,
           <li class="li_niv1 Bold">I2C (Inter-Integrated Circuit) : </li>
-          <li class="sanspuce"> Un protocole de communication série utilisé
+          Un protocole de communication série utilisé
             pour la communication entre circuits intégrés sur une carte de
             circuit imprimé. Il est souvent utilisé pour connecter des
             composants tels que des capteurs, des afficheurs et des mémoires à
-            un microcontrôleur., </li>
+            un microcontrôleur,
           <li class="li_niv1 Bold">CAN (Controller Area Network) : </li>
-          <li class="sanspuce"> Un protocole de communication série largement
+          Un protocole de communication série largement
             utilisé dans l'industrie automobile pour permettre la
             communication entre les différents systèmes électroniques des
-            véhicules, tels que les moteurs, les freins, les airbags, etc, </li>
+            véhicules, tels que les moteurs, les freins, les airbags, etc,
           <li class="li_niv1 Bold">LoRa (Long Range) : </li>
-          <li class="sanspuce"> Une technologie de communication sans fil à
+          Une technologie de communication sans fil à
             longue portée conçue pour les réseaux bas débit, souvent utilisée
             dans les applications IoT pour la surveillance à distance, le
             suivi d'actifs, et d'autres cas d'utilisation nécessitant une
-            large couverture géographique, </li>
+            large couverture géographique,
           <li class="li_niv1 Bold">SPI (Serial Peripheral Interface) : </li>
-          <li class="sanspuce"> Un protocole de communication série synchrone
+          Un protocole de communication série synchrone
             utilisé pour la communication entre des périphériques
             électroniques sur une carte de circuit imprimé. Il est couramment
             utilisé pour connecter des microcontrôleurs à des capteurs, des
-            écrans, des modules de mémoire, et d'autres périphériques, </li>
+            écrans, des modules de mémoire, et d'autres périphériques,
         </ul>
         <br>
         <p>Toutes ces normes de communication ont un ancêtre
@@ -218,7 +218,7 @@
           fils sont utilisés, un dans chaque sens, avec un fil de masse
           supplémentaire servant de référence électrique. </p>
         <br>
-        <img class="BlocCenter " src="IMAGES/trans_cable.png" alt=""><br>
+        <img src="IMAGES/trans_cable.png" alt=""><br>
         <ul>
           <li>Tx: Transmit Data</li>
           <li>Rx: Receive Data</li>
@@ -262,7 +262,7 @@
           <li>La ligne Tx restera à 1 jusqu'au début de l'octet suivant</li>
         </ul>
         <br>
-        <img class="BlocCenter " src="IMAGES/signal_Z.png" alt=""><br>
+        <img src="IMAGES/signal_Z.png" alt=""><br>
         <p> Comme on peut le constater sur le signal, la transmission d'un
           octet commence toujours par une transition descendante. En détectant
           cette transition, le récepteur aligne son horloge sur celle de
@@ -272,7 +272,7 @@
         <h2 id="UART">L'UART</h2>
         <p>L'UART (Universal Asynchronous Receiver/Transmitter) est le moteur du port série. C'est un module intégré
           dans le microcontrôleur qui se charge de gérer les communications série. </p>
-        <img class="BlocCenter" src="IMAGES/UART.png" alt="">
+        <img src="IMAGES/UART.png" alt="">
         <ul>
           <li>Elle s'occupe de la sérialisation des données :</li>
           <ul>
@@ -309,7 +309,7 @@
           rythme déterminé par la vitesse de transmission (baud rate).</p>
         <br>
         <h2 id="RS232">Port Série Arduino ≠ RS232C</h2>
-        <img class="BlocCenter" src="IMAGES/Arduino_Tx_Rx.png" alt="">
+        <img src="IMAGES/Arduino_Tx_Rx.png" alt="">
         <p>Attention, le port série du Arduino n'est pas tout à fait
           compatible avec le standard de communication série RS232C</p>
         <ul>
@@ -329,7 +329,7 @@
               DTR, DSR, RTS, CTS, RI, DCD. Ces broches permettent aux deux
               machines qui communiquent de gérer les échanges et éviter les
               pertes de données </li>
-            <img class="BlocCenter " src="IMAGES/RS232_DB9.png" alt="">
+            <img src="IMAGES/RS232_DB9.png" alt="">
           </ul>
           <li class="li_niv1 Bold">Control de parité</li>
           <ul>
@@ -369,8 +369,8 @@
             </ul>
             <li><span class="Enhanced">Serial.write(chaîne); </span>Transmet
               le code UTF-8 de chaque caractère de la chaîne</li>
-            <li class="sanspuce"> Le code UTF-8 d'un caractère peut être
-              constitué de 1, 2 ou 3 octets</li>
+            Le code UTF-8 d'un caractère peut être
+              constitué de 1, 2 ou 3 octets
             <ul>
               <li><span class="CodeLine">Serial.write("A"); </span>//transmet
                 l'octet 65 = 0x41 = code du caractère A</li>
@@ -380,10 +380,9 @@
             <li><span class="Enhanced">Serial.write(tableau, n); </span>Transmet
               n octets du tableau</li>
             <ul>
-              <li class="sanspuce">byte B[] = {0x11, 0x22, 0x33, 0x44, 0x55};
-              </li>
-              <li class="sanspuce"><span class="CodeLine">Serial.write(B,3); </span>//transmit
-                3 octets du tableau B</li>
+              byte B[] = {0x11, 0x22, 0x33, 0x44, 0x55};
+              <span class="CodeLine">Serial.write(B,3); </span>//transmit
+                3 octets du tableau B
             </ul>
           </ul>
           <br>
@@ -391,8 +390,8 @@
           <ul>
             <li><span class="Enhanced">Serial.print(chaîne); </span>Transmet
               le code UTF-8 de chaque caractère de la chaîne</li>
-            <li class="sanspuce"> Le code UTF-8 d'un caractère peut être
-              constitué de 1, 2 ou 3 octets</li>
+            Le code UTF-8 d'un caractère peut être
+              constitué de 1, 2 ou 3 octets
             <ul>
               <li><span class="CodeLine">Serial.print("A"); </span>//transmet
                 l'octet 65 = 0x41 = code du caractère A</li>
@@ -516,7 +515,7 @@
         <p>Pour la même raison, lors de la pase d'exécution, il ne faut pas ouvrir le moniteur série car il va entrer en
           conflit avec le module</p>
         <br>
-        <img class="BlocCenter" src="IMAGES/Serial_Conflict.png" alt="">
+        <img src="IMAGES/Serial_Conflict.png" alt="">
         <br><br>
         <!-- =============================================================================================================== -->
         <h2 id="EXPLS">Exemples</h2>
@@ -536,7 +535,7 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() > 0) {
+  if (Serial.available() &gt; 0) {
     String msg = Serial.readString();
     Serial.print("Message reçu : ");
     Serial.println(msg);
@@ -563,7 +562,7 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() > 0) {
+  if (Serial.available() &gt; 0) {
     String command = Serial.readStringUntil('\n');
     command.trim(); // Supprimer les espaces blancs en début et fin de chaîne
     
@@ -611,8 +610,8 @@ void loop() {
     String cmd = Serial.readStringUntil(' ');
     int param = Serial.parseInt();
     clearInputBuffer();
-    Serial.println("Commande:     -->"+cmd+"<--");
-    Serial.println("parametre:    -->"+String(param)+"<--");
+    Serial.println("Commande:     --&gt;"+cmd+"&lt;--");
+    Serial.println("parametre:    --&gt;"+String(param)+"&lt;--");
   }
 }
 </code>

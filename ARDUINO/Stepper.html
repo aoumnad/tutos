@@ -18,7 +18,7 @@
         <div id="LeftPanel_ID" class="LeftPanel">
             <div class="LeftPanelHeader">
                 <img src="IMAGES/x1.png" id="XIcon" class="xicon Burger">
-                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="../index.html"> <img src="../IMAGES/home48.png"> </a>
                 <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
@@ -51,8 +51,8 @@
                 <!-- ######################################################################################################## -->
                 <h2 id="INTRO">Introduction</h2>
                 <p class="InlineCenter">
-                    <img src="IMAGES/Stepper_fonction.png" alt="">
-                    <img src="IMAGES/Stepper_teeths.png" style="width: 300px;">
+                    <img src="IMAGES/Stepper_fonction.png" class="inline-image">
+                    <img src="IMAGES/Stepper_teeths.png" class="inline-image w300">
                 </p>
                 <ul>
                     <li>Un moteur pas à pas est un type de moteur électrique qui se déplace par <em>pas discrets</em>
@@ -85,27 +85,28 @@
                         </ul>
                     </li>
                 </ul>
-                <p class="InlineCenter"><img class="w300" src="IMAGES/Stepper_28BYJ48.png"> &nbsp;
-                    <img class="w300" src="IMAGES/Stepper_28BYJ48_rdctr.png">
-                </p><br>
+                <p class="InlineCenter"><img class="inline-image w300" src="IMAGES/Stepper_28BYJ48.png"> &nbsp;
+                    <img class="inline-image w300" src="IMAGES/Stepper_28BYJ48_rdctr.png"></p>
+                
+                <br>
                 <!-- ######################################################################################################## -->
                 <h2 id="ULN2003">Le circuit ULN2003</h2>
                 <p>L'ULN2003 est un circuits intégrés de commande de moteur Pas-à-Pas très populaire. Il est composé
                     d'un réseau de 7 commutateurs (transistors Darlington), chacun capable de piloter des charges allant
                     jusqu'à à 500mA et 50V.</p>
-                <p class="InlineCenter"><img src="IMAGES/ULN2003_IC.png">
-                    <img src="IMAGES/ULN2003_schematic.png">
-                    <img src="IMAGES/ULN2003_Darlington.png">
+                <p class="InlineCenter"><img src="IMAGES/ULN2003_IC.png" class="inline-image">
+                    <img src="IMAGES/ULN2003_schematic.png" class="inline-image">
+                    <img src="IMAGES/ULN2003_Darlington.png" class="inline-image">
                 </p>
                 <p>Chaque commutateur permet de controller une bobine du moteur Pas-à-Pas. Pour l'alimentation du
                     moteur, il faut prévoir un Volt de plus à cause de la chute de tension (Vce) dans les
                     commutateur. Les diodes de récupération sont intégrées dans le circuit</p>
-                <img class="BlocCenter" src="IMAGES/ULN2003_Stepper_Connect.png"><br>
+                <img src="IMAGES/ULN2003_Stepper_Connect.png"><br>
                 <!-- ######################################################################################################## -->
                 <h2 id="ULN2003MOD">Le Module ULN2003</h2>
                 <p class="InlineCenter">
-                    <img class="w300" src="IMAGES/ULN2003_Module.png">
-                    <img class="w300" src="IMAGES/ULN2003_module_Stepper.png">
+                    <img  src="IMAGES/ULN2003_Module.png" class="inline-image w300">
+                    <img  src="IMAGES/ULN2003_module_Stepper.png" class="inline-image w300">
                 </p>
                 <p>Le module ULN2003 facilite grandement la connectique avec l'Arduino, le moteur et l'alimentation. Il
                     possède:</p>
@@ -120,21 +121,21 @@
                 <ul>
                     <li>Le mode couple normal consiste à alimenter les bobines l'une apres l'autre</li>
                     <p class="InlineCenter">
-                        <img src="IMAGES/Tork_Normal.png">
-                        <img src="IMAGES/Tork_Normal_Signal.png">
+                        <img src="IMAGES/Tork_Normal.png" class="inline-image">
+                        <img src="IMAGES/Tork_Normal_Signal.png" class="inline-image">
                     </p>
                     <li>Le mode couple fort consiste à alimenter les bobines deux par deux. On obtient un couple plus
                         fort mais la consommation de courant est doublée</li>
                     <p class="InlineCenter">
-                        <img src="IMAGES/Tork_Fort.png">
-                        <img src="IMAGES/Tork_Fort_Signal.png">
+                        <img src="IMAGES/Tork_Fort.png" class="inline-image">
+                        <img src="IMAGES/Tork_Fort_Signal.png" class="inline-image">
                     </p>
 
                 </ul>
 
                 <!-- ######################################################################################################## -->
                 <h2 id="EXMPLBASIC">Exemple basique</h2>
-                <img class="BlocCenter" src="IMAGES/Stepper_ULN2003_Arduino.png">
+                <img src="IMAGES/Stepper_ULN2003_Arduino.png">
                 <p>Dans cet exemple on va utiliser le moteur pas-à-pas 28BYJ-48. Ce moteur existe en plusieurs
                     versions. Nous utilisons une version 5V, 32 pas, réducteur 1/64, durée min d'un pas : 2 ms</p>
                 <ul>
@@ -152,7 +153,7 @@
                             <li><em>stepperInit(tork) : </em>Permet d'Initialiser les broches de control et choisir
                                 entre les modes couple Normal ou couple Fort.
                                 <ul>
-                                    <li><strong>tork : </strong> LOW (ou 0) ==> Couple normal. HIGH (ou 1)==> Couple
+                                    <li><strong>tork : </strong> LOW (ou 0) ==&gt; Couple normal. HIGH (ou 1)==&gt; Couple
                                         fort</li>
                                 </ul>
                             </li>
@@ -164,7 +165,7 @@
                                         (type : Entier)</li>
                                     <li><strong>steptime : </strong>Durée d'un pas en ms. Ce paramètre permet de fixer
                                         la vitesse de rotation. Ce paramètre est de type réel (float), on peut donner
-                                        des valeurs avec décimale
+                                        des valeurs avec décimale</li>
                                 </ul>
                             </li>
                         </ul>
@@ -194,8 +195,8 @@ void setup() {
   
   void stepperInit(byte tork) {
     // Initialiser les commandes
-    // tork = LOW ==> couple faible
-    // tork = HIGH ==> couple fort  
+    // tork = LOW ==&gt; couple faible
+    // tork = HIGH ==&gt; couple fort  
   pinMode(PINA, OUTPUT);
   pinMode(PINB, OUTPUT);
   pinMode(PINC, OUTPUT);
@@ -216,8 +217,8 @@ void stepperStep(int32_t steps, float step_time_ms) {
   D = digitalRead(PIND) ;
   
   //commencer le décalage
-  if (steps > 0) {
-    for (int i = 0; i < steps; i++) {
+  if (steps &gt; 0) {
+    for (int i = 0; i &lt; steps; i++) {
       S = D;
       D = C;
       C = B;
@@ -227,11 +228,11 @@ void stepperStep(int32_t steps, float step_time_ms) {
       digitalWrite(PINB, B);
       digitalWrite(PINC, C);
       digitalWrite(PIND, D);
-      if(step_time_ms > 1)delay(step_time_ms);
+      if(step_time_ms &gt; 1)delay(step_time_ms);
       else delayMicroseconds(step_time_ms * 1000 - 27);
     }
   } else {
-    for (int i = 0; i < abs(steps); i++) {
+    for (int i = 0; i &lt; abs(steps); i++) {
       S = A;
       A = B;
       B = C;
@@ -241,7 +242,7 @@ void stepperStep(int32_t steps, float step_time_ms) {
       digitalWrite(PINB, B);
       digitalWrite(PINC, C);
       digitalWrite(PIND, D);
-      if(step_time_ms > 1)delay(step_time_ms);
+      if(step_time_ms &gt; 1)delay(step_time_ms);
       else delayMicroseconds(step_time_ms * 1000 - 27);
     }
   }
@@ -266,9 +267,9 @@ void stepperStep(int32_t steps, float step_time_ms) {
                     </li>
                     <li><strong>Exemples de commandes :</strong>
                         <ul>
-                            <li>stepms 4.7 ==> Définir la durée du pas à 4.7 ms</li>
-                            <li>step 100 ==> Tourner en avant de 100 pas"</li>
-                            <li>step -200 ==> Tourner en arrière de 200 pas"</li>
+                            <li>stepms 4.7 ==&gt; Définir la durée du pas à 4.7 ms</li>
+                            <li>step 100 ==&gt; Tourner en avant de 100 pas"</li>
+                            <li>step -200 ==&gt; Tourner en arrière de 200 pas"</li>
                         </ul>
                     </li>
                 </ul>
@@ -287,9 +288,9 @@ void setup() {
   Serial.begin(9600);
   Serial.setTimeout(5000);
   Serial.println("Taper une commande suivie d'un paramètre :");
-  Serial.println("stepms 4.7   ---> Définir la durée d'un pas à 4.7 ms");
-  Serial.println("step 100     ---> En avant de 100 pas");
-  Serial.println("step -200    ---> En arrière de 200 pas");
+  Serial.println("stepms 4.7   ---&gt; Définir la durée d'un pas à 4.7 ms");
+  Serial.println("step 100     ---&gt; En avant de 100 pas");
+  Serial.println("step -200    ---&gt; En arrière de 200 pas");
   Serial.println("Valider par Enter  (CR, LF ou les deux)");
   stepperInit(LOW);
 }
@@ -300,7 +301,7 @@ void loop() {
     String cmd = Serial.readStringUntil(' ');
     float param = Serial.parseFloat();
     clearInputBuffer();
-    Serial.println("---->  " + cmd + "  " + String(param));
+    Serial.println("----&gt;  " + cmd + "  " + String(param));
     if(cmd == "step") stepperStep(param,T);
     else if (cmd == "stepms")T = param;
     else Serial.println("Mauvaise commande");
@@ -309,8 +310,8 @@ void loop() {
       
 void stepperInit(byte tork) {
   // Initialiser les commandes
-  // tork = LOW ==> couple faible
-  // tork = HIGH ==> couple fort
+  // tork = LOW ==&gt; couple faible
+  // tork = HIGH ==&gt; couple fort
   pinMode(PINA, OUTPUT);
   pinMode(PINB, OUTPUT);
   pinMode(PINC, OUTPUT);
@@ -331,8 +332,8 @@ void stepperStep(int32_t steps, float step_time_ms) {
   D = digitalRead(PIND) ;
   
   //commencer le décalage
-  if (steps > 0) {
-    for (int i = 0; i < steps; i++) {
+  if (steps &gt; 0) {
+    for (int i = 0; i &lt; steps; i++) {
       S = D;
       D = C;
       C = B;
@@ -342,11 +343,11 @@ void stepperStep(int32_t steps, float step_time_ms) {
       digitalWrite(PINB, B);
       digitalWrite(PINC, C);
       digitalWrite(PIND, D);
-      if(step_time_ms > 10)delay(step_time_ms);
+      if(step_time_ms &gt; 10)delay(step_time_ms);
       else delayMicroseconds(step_time_ms * 1000 - 27);
     }
   } else {
-    for (int i = 0; i < abs(steps); i++) {
+    for (int i = 0; i &lt; abs(steps); i++) {
       S = A;
       A = B;
       B = C;
@@ -356,7 +357,7 @@ void stepperStep(int32_t steps, float step_time_ms) {
       digitalWrite(PINB, B);
       digitalWrite(PINC, C);
       digitalWrite(PIND, D);
-      if(step_time_ms > 10)delay(step_time_ms);
+      if(step_time_ms &gt; 10)delay(step_time_ms);
       else delayMicroseconds(step_time_ms * 1000 - 27);
     }
   }

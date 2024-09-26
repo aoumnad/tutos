@@ -1,11 +1,1004 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr-fr">
+
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Navigation</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
 </head>
+<!-- ##################################################################################################################### -->
+
 <body>
-    <h3>En Construction</h3>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h2>Introduction</h2>
+                </a>
+                <a href="#PREP">
+                    <h2>Préparation</h2>
+                </a>
+                <a href="#IMPLEMENT">
+                    <h2>Mise en œuvre simple</h2>
+                </a>
+                <a href="#IMPLEMENT2">
+                    <h2>Mise en œuvre recommandée</h2>
+                </a>
+                <a href="#IMPFINAL">
+                    <h2>Mise en œuvre finale</h2>
+                </a>
+            </div>
+        </div>
+        <!-- ##################################################################################################################### -->
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png">
+                <h1>Type-Safe Navigation</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>La majorité des applications Android sont des applications multi-écrans. </p>
+                <p>Dans Jetpack Compose, la navigation entre écrans repose sur un composable appelé <b>NavHost</b>, qui contient les
+                    différentes destinations de l'application. Le <b>NavController</b> gère les interactions de
+                    navigation,
+                    permettant de passer d'un écran à un autre. Les destinations sont définies à l'aide de la fonction
+                    <b>composable()</b>, et les routes peuvent inclure des arguments pour transmettre des données entre
+                    les écrans. Le <b>NavController</b> fournit des méthodes comme <b>navigate(), popBackStack(), et
+                    navigateUp()</b> pour gérer les transitions et la pile de retour
+                </p>
+                <p>La première version de la librairie de navigation est assez fastidieuse à utiliser surtout quand il
+                    s'agit de naviguer vers un écran en passant des paramètres</p>
+                <p>A partir de la version 2.8.0 dite <b><i>"Type-Safe Navigation"</i></b> publiée en 2024, la syntaxe de
+                    la librairie est devenue un peu plus <i>"amicale"</i> grace à la sérialisation du langage Kotlin.
+                    C'est cette version qui sera abordée dans ce tutoriel</p>
+                <br>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PREP">Préparation</h2>
+                <p>Pour pouvoir utiliser la librairie de navigation, il faut quelques ajustement dans les fichiers du
+                    gradle:</p>
+                <ol>
+                    <li><b>Dans le fichier <i>libs.versions.toml</i>, ajouter:</b></li><br>
+                    [versions] <br>
+                    …<br>
+                    composeNavigation = "2.8.0"<br>
+                    serialization = "1.6.3"<br><br>
+
+                    [libraries] <br>
+                    …<br>
+                    navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref =
+                    "composeNavigation" }<br>
+                    kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core",
+                    version.ref = "serialization"}<br><br>
+
+                    [plugins] <br>
+                    …<br>
+                    kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"
+                    }<br><br>
+
+                    <li><b>Dans le fichier <i>build.gradle.kts (Module :app)</i>, ajouter:</b></li><br>
+
+                    plugins { <br>
+                    …<br>
+                    alias(libs.plugins.kotlin.serialization)<br>
+                    }<br><br>
+
+                    dependencies {<br>
+                    …<br>
+                    implementation(libs.navigation.compose)<br>
+                    implementation(libs.kotlinx.serialization.core)<br>
+                    }<br><br>
+
+                    <li><b>Synchroniser le gradle</b></li>
+                    <img src="IMAGES/SyncGradle.jpg" alt="">
+                </ol>
+                <br>
+                <!-- ################################################################################################ -->
+                <h2 id="IMPLEMENT">Mise en œuvre simple</h2>
+                <p>L'implémentation exposée dans ce paragraphe n'est pas conseillée par la documentation officielle car
+                    elle consiste à passer le <i>NavController</i> en paramètre aux fonctions qui composent les écrans.
+                    Je l'expose tout de même car je la trouve plus facile à mettre en place</p>
+                <ol><br>
+                    <li>Pour chaque écran <b>sans paramètres</b>, déclarer un <b>objet</b> serializable</li>
+                    <pre><code>@Serializable
+object EcranHome
+
+@Serializable
+object EcranA
+                    </code></pre><br>
+                    <li>Pour chaque écran <b>avec paramètres</b>, déclarer une <b>classe</b> serializable</li>
+                    <pre><code>
+@Serializable
+data class EcranB(
+    val param1: String,
+    val param2: Int,
+    ...
+)
+</code></pre><br>
+                    <li>Utiliser <b>NavHost()</b> pour définir un graphe de navigation</li>
+                    <pre><code>
+    val myNavController = rememberNavController()
+    NavHost(navController = myNavController, startDestination = EcranHome)
+    {
+        composable &lt;EcranHome&gt; {
+            ComposerEcranHome(myNavController)
+        }
+        composable &lt;EcranA&gt; {
+            ComposerEcranA(myNavController)
+        }
+        
+        composable &lt;EcranB&gt; {
+            val args = it.toRoute&lt;EcranB&gt;()
+            ComposerEcranB(myNavController, args)
+        }
+    }
+                    </code></pre><br>
+                    <li>Définir les fonctions Composables qui construisent chaque écran. </li>
+                    <ul>
+                        <li>Ecran sans paramètres</li>
+                        <pre><code>fun ComposerEcranA(myNavController: NavController) {
+        ...
+        ...
+}</code></pre><br>
+                        <li>Ecran avec paramètres:</li>
+                        <pre><code>fun ComposerEcranB(myNavController: NavController, args: EcranB) {
+        ...
+        ...
+}</code></pre><br><br>
+                        <li>Pour naviguer vers un écran sans paramètres: </li>
+                        <pre><code>myNavController.navigate(EcranA)</code></pre><br>
+                        <li>Pour naviguer vers un écran avec paramètres: </li>
+                        <pre><code>myNavController.navigate(EcranB(param1 = "Dubois", param2 = 25))</code></pre><br>
+                        <li>Pour retourner à l'écran précédent: </li>
+                        <pre><code>myNavController.navigateUp()</code></pre><br>
+                        <li>Pour naviguer vers l'écran Home et effacer la pile de retour:</li>
+                        <pre><code>myNavController.navigate(EcranHome){
+    popUpTo(myNavController.graph.startDestinationId) { inclusive = true }
+    launchSingleTop = true
+}</code></pre><br>
+                        <li>Pour accéder à un paramètre: args.param</li>
+                        <pre><code>fun ComposerEcranB(myNavController: NavController, args: EcranB) {
+        ...
+        Text(text = "${args.param1} , ${args.param2}  ans")
+        ...
+}</code></pre>
+                    </ul>
+                </ol>
+                <br>
+                <h3>Exemple</h3>
+                <p>Voici un petit exemple constitué de trois écrans. Pour l'instant toute l'application est dans le même
+                    fichier. On verra plus tard comment améliorer l'architecture de l'application
+                </p>
+                <img src="IMAGES/Navig_Ex1.jpg">
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Exemple de Navigation<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.navigationtuto1
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Button
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Navigateur()
+        }
+    }
+}
+
+@Serializable
+object Home
+
+@Serializable
+object Clients
+
+@Serializable
+data class Profil(
+    val name: String,
+    val age: Int
+)
+
+@Composable
+fun Navigateur(){
+    val myNavController = rememberNavController()
+    NavHost(navController = myNavController, startDestination = Home)
+    {
+        composable &lt;Home&gt; {
+            ScreenHome(myNavController)
+        }
+        composable &lt;Clients&gt; {
+            ScreenClients(myNavController)
+        }
+
+        composable &lt;Profil&gt; {
+            val profil = it.toRoute&lt;Profil&gt;()
+            ScreenProfil(myNavController, profil)
+        }
+    }
+}
+
+@Composable
+fun ScreenHome(myNavController: NavController) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            Text(
+                text = "Home",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Button(onClick = { myNavController.navigate(Clients) }) {
+            Text(text = "Liste des clients", fontSize = 20.sp)
+        }
+    }
+}
+
+@Composable
+fun ScreenClients(myNavController: NavController) {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = { myNavController.navigateUp() })
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Clients",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        TextButton(onClick = {  myNavController.navigate(Profil(name = "Dubois", age = 25)) }) {
+            Text(text = "Dubois", fontSize = 20.sp)
+        }
+        TextButton(onClick = {  myNavController.navigate(Profil(name = "Leblanc", age = 35)) }) {
+            Text(text = "Leblanc", fontSize = 20.sp)
+        }
+        TextButton(onClick = {  myNavController.navigate(Profil(name = "Lenoir", age = 45)) }) {
+            Text(text = "Lenoir", fontSize = 20.sp)
+        }
+    }
+}
+
+@Composable
+fun ScreenProfil(myNavController: NavController, profil: Profil) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = { myNavController.navigateUp() })
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Profil",
+                fontSize = 30.sp,
+                color = Color.White,
+            )
+            FilledIconButton(onClick = { myNavController.navigate(Home){
+                popUpTo(myNavController.graph.startDestinationId) { inclusive = true }
+                launchSingleTop = true
+            } })
+            {
+                Icon(imageVector = Icons.Default.Home, contentDescription = null)
+            }
+        }
+        Text(text = "Nom:  ${profil.name}", fontSize = 20.sp)
+        Text(text = "Age:  ${profil.age}  ans", fontSize = 20.sp)
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <!-- ################################################################################################ -->
+                <h2 id="IMPLEMENT2">Mise en œuvre recommandée</h2>
+                <p>La documentation <a target="_blank"
+                        href="https://developer.android.com/guide/navigation/use-graph/navigate?hl=fr">officielle</a>
+                    recommande de ne pas passer le <i>navcontroller</i> comme paramètre et passer plutôt des événements
+                    correspondant à une destination. </p>
+                <p>Il y a assez peu de changements par rapport à l'implémentation présentée plus haut. Reprenons
+                    l'exemple avec trois écrans</p><br>
+                <img src="IMAGES/Navig_Ex1.jpg" alt="">
+                <ol><br>
+                    <li>Pour chaque écran <b>sans paramètres</b>, déclarer un <b>objet</b> serializable</li>
+                    <pre><code>
+    @Serializable
+    object Home
+    
+    @Serializable
+    object Clients
+                        </code></pre><br>
+                    <li>Pour chaque écran <b>avec paramètres</b>, déclarer une <b>classe</b> serializable</li>
+                    <pre><code>
+    @Serializable
+    data class Profil(
+        val name: String,
+        val age: Int,
+        ...
+    )
+    </code></pre><br>
+                    <li>Utiliser <b>NavHost()</b> pour définir un graphe de navigation
+
+                        <pre><code>
+        val myNavController = rememberNavController()
+        NavHost(navController = myNavController, startDestination = EcranHome)
+        {
+            // Définir le graphe de navigation ici
+        }
+                        </code></pre><br>
+                        On peut commencer par créer les événements qui décrivent les destinations de navigation
+                        <pre><code>
+    // Navigation vers l'écran précédent
+    val navigateBack: () -&gt; Unit = { myNavController.navigateUp() }
+
+    // Navigation vers l'écran Home en effaçant la pile de retour
+    val navigateHome: () -&gt; Unit = {
+        myNavController.navigate(Home) {
+            popUpTo(myNavController.graph.startDestinationId) { inclusive = true }
+            launchSingleTop = true
+        }
+    }
+
+    // Navigation (sans paramètres) vers l'écran 'Clients'
+    val navigateToClients: () -&gt; Unit = { myNavController.navigate(Clients) }
+
+    // Navigation (avec paramètres) vers l'écran 'Profil'
+    val navigateToProfil: (Profil) -&gt; Unit =  { profil -&gt; myNavController.navigate(profil) }
+</code></pre><br>
+                        Ensuite, on peut définir les nœuds du graphe de navigation dans lesquels on précise les
+                        fonctions qui construisent les écrans en leur passant les événements de navigation dont ils
+                        auront besoin.
+                        <pre><code>    composable&lt;Home&gt; {
+        ScreenHome(navigateToClients)
+    }
+    composable&lt;Clients&gt; {
+        ScreenClients(navigateBack,navigateToProfil)
+    }
+    composable&lt;Profil&gt; {
+        val profil = it.toRoute&lt;Profil&gt;() // arguments
+        ScreenProfil(navigateBack, navigateHome, profil)
+    }</code></pre>
+                    </li><br>
+                    <li>Définir les fonctions Composables qui construisent chaque écran. </li>
+                    <ul>
+                        <li>Ecran Home</li>
+                        <pre><code>
+@Composable
+fun ScreenHome(navigateToClients: () -&gt; Unit) {
+    ...
+    Button(onClick = navigateToClients) {
+        Text(text = "Clients")
+    }
+    ...
+}
+</code></pre><br>
+                        <li>Ecran Clients</li>
+                        <pre><code>
+@Composable
+fun ScreenClients(navigateBack: () -&gt; Unit, navigateToProfil: (Profil) -&gt; Unit) {
+    ...
+    TextButton(onClick = { navigateToProfil(Profil("Dubois",25)) }) {
+        Text(text = "Dubois",
+            fontSize = 20.sp,
+            )
+    }
+    ...
+}
+</code></pre><br>
+                        <li>Ecran Profil</li>
+                        <pre><code>@Composable
+fun ScreenProfil(navigateBack: () -&gt; Unit, navigateHome: () -&gt; Unit, profil: Profil) {
+    ...
+    FilledIconButton(onClick = navigateBack)
+    {
+        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+    }
+    ...
+    FilledIconButton(onClick = navigateHome)
+    {
+        Icon(imageVector = Icons.Default.Home, contentDescription = null)
+    }
+    ...
+    Text(text = "Nom:  ${profil.name}")
+    Text(text = "Age:  ${profil.age}  ans")
+    ...
+}</code></pre>
+                    </ul>
+                </ol>
+                <br>
+                <p>Voici le code entier. Tout dans le même fichier.</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Navigation<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package com.example.navigationts4
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Button
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Navigateur()
+        }
+    }
+}
+
+@Serializable
+object Home
+
+@Serializable
+object Clients
+
+@Serializable
+data class Profil(
+    val name: String,
+    val age: Int,
+)
+
+
+@Composable
+fun Navigateur() {
+    val myNavController = rememberNavController()
+    NavHost(navController = myNavController, startDestination = Home)
+    {
+        // Navigation vers l'écran précédent
+        val navigateBack: () -&gt; Unit = { myNavController.navigateUp() }
+        // Navigation vers l'écran Home en effaçant la pile de retour
+        val navigateHome: () -&gt; Unit = {
+            myNavController.navigate(Home) {
+                popUpTo(myNavController.graph.startDestinationId) { inclusive = true }
+                launchSingleTop = true
+            }
+        }
+        // Navigation (sans paramètres) vers l'écran 'Clients'
+        val navigateToClients: () -&gt; Unit = { myNavController.navigate(Clients) }
+        // Navigation (avec paramètres) vers l'écran 'Profil'
+        val navigateToProfil: (Profil) -&gt; Unit =  { profil -&gt; myNavController.navigate(profil) }
+
+        composable&lt;Home&gt; {
+            ScreenHome(navigateToClients)
+        }
+
+        composable&lt;Clients&gt; {
+            ScreenClients(navigateBack,navigateToProfil)
+        }
+        composable&lt;Profil&gt; {
+            val profil = it.toRoute&lt;Profil&gt;()  //Arguments
+            ScreenProfil(navigateBack, navigateHome, profil)
+        }
+    }
+}
+
+@Composable
+fun ScreenHome(navigateToClients: () -&gt; Unit) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            Text(
+                text = "Home",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Button(onClick = navigateToClients) {
+            Text(text = "Clients")
+        }
+    }
+}
+
+
+@Composable
+fun ScreenClients(navigateBack: () -&gt; Unit, navigateToProfil: (Profil) -&gt; Unit) {
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = navigateBack)
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Clients",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Dubois",25)) }) {
+            Text(text = "Dubois",
+                fontSize = 20.sp,
+                )
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Lenoir",30)) }) {
+            Text(text = "Lenoir",
+                fontSize = 20.sp,
+            )
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Leblanc",45)) }) {
+            Text(text = "Leblanc",
+                fontSize = 20.sp,
+            )
+        }
+    }
+}
+
+@Composable
+fun ScreenProfil(navigateBack: () -&gt; Unit, navigateHome: () -&gt; Unit, profil: Profil) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = navigateBack)
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Profil",
+                fontSize = 30.sp,
+                color = Color.White,
+            )
+            FilledIconButton(onClick = navigateHome)
+            {
+                Icon(imageVector = Icons.Default.Home, contentDescription = null)
+            }
+        }
+        Text(text = "Nom:  ${profil.name}")
+        Text(text = "Age:  ${profil.age}  ans")
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <h2 id="IMPFINAL">Navigation, Implémentation finale</h2>
+                <p>On reprend le code précédent mais on le réorganise en plusieurs fichiers</p>
+                <img src="IMAGES/FichiersDuPackage.jpg" alt="">
+                <ul>
+                    <li>Créer un nouveau projet</li>
+                    <li>Compléter les fichiers du gradle comme indiqué dans le paragraphe <i>Préparation</i></li>
+                    <li>Alléger le fichier MainActivity</li>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">MainActivity.kt<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.navigationfinal
+                
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Navigateur()
+        }
+    }
+}</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <li>Créer un nouveau fichier pour le navigateur</li>
+                    <i>Clic droit sur le package com.example.xxxx &rarr; new &rarr; Kotlin Class/File &rarr; donner un
+                        nom de fichier &rarr; Clic sur File &rarr; Valider par Enter</i>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Navigateur.kt<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.navigationfinal
+
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
+
+@Serializable
+object Home
+
+@Serializable
+object Clients
+
+@Serializable
+data class Profil(
+    val name: String,
+    val age: Int,
+)
+
+
+@Composable
+fun Navigateur() {
+    val myNavController = rememberNavController()
+    NavHost(navController = myNavController, startDestination = Home)
+    {
+        // Navigation vers l'écran précédent
+        val navigateBack: () -&gt; Unit = { myNavController.navigateUp() }
+        // Navigation vers l'écran Home en effaçant la pile de retour
+        val navigateHome: () -&gt; Unit = {
+            myNavController.navigate(Home) {
+                popUpTo(myNavController.graph.startDestinationId) { inclusive = true }
+                launchSingleTop = true
+            }
+        }
+        // Navigation (sans paramètres) vers l'écran 'Clients'
+        val navigateToClients: () -&gt; Unit = { myNavController.navigate(Clients) }
+        // Navigation (avec paramètres) vers l'écran 'Profil'
+        val navigateToProfil: (Profil) -&gt; Unit =  { profil -&gt; myNavController.navigate(profil) }
+
+        composable&lt;Home&gt; {
+            ScreenHome(navigateToClients)
+        }
+
+        composable&lt;Clients&gt; {
+            ScreenClients(navigateBack,navigateToProfil)
+        }
+        composable&lt;Profil&gt; {
+            val profil = it.toRoute&lt;Profil&gt;()  //Arguments
+            ScreenProfil(navigateBack, navigateHome, profil)
+        }
+    }
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <li>Créer un fichier pour chaque écran</li>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">ScreenHome.kt<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.navigationfinal
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun ScreenHome(navigateToClients: () -&gt; Unit) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            Text(
+                text = "Home",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        Button(onClick = navigateToClients) {
+            Text(text = "Clients")
+        }
+    }
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">ScreenClients.kt<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.navigationfinal
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun ScreenClients(navigateBack: () -&gt; Unit, navigateToProfil: (Profil) -&gt; Unit) {
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = navigateBack)
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Clients",
+                fontSize = 30.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Dubois",25)) }) {
+            Text(text = "Dubois",
+                fontSize = 20.sp,
+            )
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Lenoir",30)) }) {
+            Text(text = "Lenoir",
+                fontSize = 20.sp,
+            )
+        }
+        TextButton(onClick = { navigateToProfil(Profil("Leblanc",45)) }) {
+            Text(text = "Leblanc",
+                fontSize = 20.sp,
+            )
+        }
+    }
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">ScreenProfil.kt<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.navigationfinal
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun ScreenProfil(navigateBack: () -&gt; Unit, navigateHome: () -&gt; Unit, profil: Profil) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        /*======== Barre de Titre et navigation =========================*/
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp)
+                .background(Color.Blue)
+        )
+        {
+            FilledIconButton(onClick = navigateBack)
+            {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+            }
+            Text(
+                text = "Profil",
+                fontSize = 30.sp,
+                color = Color.White,
+            )
+            FilledIconButton(onClick = navigateHome)
+            {
+                Icon(imageVector = Icons.Default.Home, contentDescription = null)
+            }
+        }
+        Text(text = "Nom:  ${profil.name}")
+        Text(text = "Age:  ${profil.age}  ans")
+    }
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                </ul>
+
+                <br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

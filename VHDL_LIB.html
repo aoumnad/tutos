@@ -18,7 +18,7 @@
         <div id="LeftPanel_ID" class="LeftPanel">
             <div class="LeftPanelHeader">
                 <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-                <a href="index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#MXR_AC1">
@@ -145,7 +145,7 @@
                     </div>
                     <pre>
 <code>
-    -- Multiplexeur 4=>1, Affectation conditionnelle
+    -- Multiplexeur 4=&gt;1, Affectation conditionnelle
     library IEEE;
     use IEEE.STD_LOGIC_1164.all;
     entity mux_4to1_V3 is
@@ -174,7 +174,7 @@
                         vecteur<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
                     <pre>
             <code>
-                -- Multiplexeur 4=>1, Affectation Conditionnelle
+                -- Multiplexeur 4=&gt;1, Affectation Conditionnelle
                 -- Entées de type vecteur
                 library IEEE;
                 use IEEE.STD_LOGIC_1164.all;
@@ -282,10 +282,10 @@
     process (E,S) is
     begin
         case S is
-            when "00" => Z &lt;= E(0);
-            when "01" => Z &lt;= E(1);
-            when "10" => Z &lt;= E(2);
-            when "11" => Z &lt;= E(3);
+            when "00" =&gt; Z &lt;= E(0);
+            when "01" =&gt; Z &lt;= E(1);
+            when "10" =&gt; Z &lt;= E(2);
+            when "11" =&gt; Z &lt;= E(3);
         end case;
     end process;
     end bhv;
@@ -423,9 +423,9 @@
        process (E,S) is
         begin
             case X is
-                when "00" => Y &lt;= A;
-                when "01" => Y &lt;= B;
-                when OTHERS => Y &lt;= "0000";
+                when "00" =&gt; Y &lt;= A;
+                when "01" =&gt; Y &lt;= B;
+                when OTHERS =&gt; Y &lt;= "0000";
             end case;
         end process;   
     end archi;
@@ -528,10 +528,10 @@
        begin
         S &lt;= "1111";
         case A is
-            when "00" => S(0) &lt;= E;
-            when "01" => S(1) &lt;= E;
-            when "10" => S(2) &lt;= E;
-            when "11" => S(3) &lt;= E;
+            when "00" =&gt; S(0) &lt;= E;
+            when "01" =&gt; S(1) &lt;= E;
+            when "10" =&gt; S(2) &lt;= E;
+            when "11" =&gt; S(3) &lt;= E;
         end case;
          end process;
     end archi;
@@ -547,8 +547,8 @@
 <code>
     -- Décodeur/Démultiplexeur avec Généricité
     -- Sortie sélectionnée=Entrée, Les autres dépendent du paramètre:
-    -- paramètre = '0' => sorties non sélectionnée = 0
-    -- paramètre = '1' => sorties non sélectionnée = 1
+    -- paramètre = '0' =&gt; sorties non sélectionnée = 0
+    -- paramètre = '1' =&gt; sorties non sélectionnée = 1
     library IEEE;
     use IEEE.STD_LOGIC_1164.all;
     
@@ -629,7 +629,7 @@
                 EQU &lt;= '1';
                 SUP &lt;= '0';
                 INF &lt;= '0';
-            elsif       A > B    then
+            elsif       A &gt; B    then
                 EQU &lt;= '0';
                 SUP &lt;= '1';
                 INF &lt;= '0';
@@ -661,8 +661,8 @@
     architecture archi of cmprtrG is
     begin
         EQU &lt;= '1' when A = B else '0';
-        SUP &lt;= '1' when A > B else '0';
-        INF &lt;= '1' when A < B else '0';   
+        SUP &lt;= '1' when A &gt; B else '0';
+        INF &lt;= '1' when A &lt; B else '0';   
     end archi;
     </code>
                     </pre>
@@ -726,7 +726,7 @@
     architecture archi of uadderG is
     signal    UA, UB : unsigned(n-1 downto 0);
     signal    UQ : unsigned(n  downto 0);
-    constant CinZ: unsigned(n downto 1) := (others => '0');
+    constant CinZ: unsigned(n downto 1) := (others =&gt; '0');
     begin
         UA &lt;= unsigned(A);
         UB &lt;= unsigned(B);
@@ -928,10 +928,10 @@
           ones := "0000";
           tens := "0000";
           for i in 1 to 4 loop
-             if ones >= 5 then
+             if ones &gt;= 5 then
                 ones := ones + 3;
              end if;
-             if tens >= 5 then
+             if tens &gt;= 5 then
                 tens := tens + 3;
              end if;
             shiftreg:= shift_left(shiftreg, 1);
@@ -953,7 +953,7 @@
                     <pre>
 <code>
     ---------------------------------------------------------------------
-    --  Composant bin2bcd_2d  -> convertisseur binaire vers bcd
+    --  Composant bin2bcd_2d  -&gt; convertisseur binaire vers bcd
     --  la taille de l'entrée binaire = paramètre binwidth
     --  le paramètre binwidth peut prendre les valeurs 4, 5 ou 6  bits
     --  La sortie bcd est constituée de 2 digits
@@ -988,11 +988,11 @@
           D10 := "0000";
      
           for i in 1 to binwidth loop
-             if D1 >= 5 then
+             if D1 &gt;= 5 then
                 D1 := D1 + 3;
              end if;
     
-             if D10 >= 5 then
+             if D10 &gt;= 5 then
                 D10 := D10 + 3;
              end if;
              regdecalage := shift_left(regdecalage, 1);
@@ -1013,7 +1013,7 @@
                     <pre>
 <code>
     ----------------------------------------------------------------
-    --  Composant bin2bcd_3d  -> convertisseur binaire vers bcd géneric
+    --  Composant bin2bcd_3d  -&gt; convertisseur binaire vers bcd géneric
     --  la taille de l'entrée binaire = paramètre binwidth
     --  le paramètre binwidth peut prendre les valeurs 4 à 9  bits
     --  La sortie bcd est constituée de 3 digits
@@ -1050,13 +1050,13 @@
           D100 := "0000";
      
           for i in 1 to binwidth loop
-             if D1 >= 5 then
+             if D1 &gt;= 5 then
                 D1 := D1 + 3;
              end if;
-             if D10 >= 5 then
+             if D10 &gt;= 5 then
                 D10 := D10 + 3;
              end if;
-             if D100 >= 5 then
+             if D100 &gt;= 5 then
                 D100 := D10 + 3;
              end if;
              regdecalage := shift_left(regdecalage, 1);
@@ -1079,7 +1079,7 @@
 <code>
 
     ----------------------------------------------------------------
-    --  Composant bin2bcd_4d  -> convertisseur binaire vers bcd géneric
+    --  Composant bin2bcd_4d  -&gt; convertisseur binaire vers bcd géneric
     --  la taille de l'entrée binaire = paramètre binwidth
     --  le paramètre binwidth peut prendre les valeurs 4 à 13  bits
     --  La sortie bcd est constituée de 4 digits
@@ -1117,16 +1117,16 @@
           D100 := "0000";
           D1000 := "0000";
           for i in 1 to binwidth loop
-             if D1 >= 5 then
+             if D1 &gt;= 5 then
                 D1 := D1 + 3;
              end if;
-             if D10 >= 5 then
+             if D10 &gt;= 5 then
                 D10 := D10 + 3;
              end if;
-             if D100 >= 5 then
+             if D100 &gt;= 5 then
                 D100 := D100 + 3;
              end if;
-             if D1000 >= 5 then
+             if D1000 &gt;= 5 then
                 D1000 := D1000 + 3;
              end if;
              regdecalage := shift_left(regdecalage, 1);
@@ -1163,7 +1163,7 @@
         process (CLK, CLR)
         begin
             if CLR = '0' then
-                Q &lt;= (others => '0');
+                Q &lt;= (others =&gt; '0');
             elsif (CLK'event and CLK = '1') then
                 Q(n-2 downto 0) &lt;= Q(n-1 downto 1);
                 Q(n-1) &lt;= SI;
@@ -1193,7 +1193,7 @@
         process (CLK, ACLR, APL)
         begin
             if ACLR = '0' then
-                QO &lt;= (others => '0');
+                QO &lt;= (others =&gt; '0');
             elsif APL = '0' then
                 QO &lt;= QI; -- Chargement // Asynchrone
             elsif (CLK'event and CLK = '1' and LR = '0') then
@@ -1229,7 +1229,7 @@
         process (CLK, ACLR)
         begin
             if ACLR = '0' then
-                QO &lt;= (others => '0');
+                QO &lt;= (others =&gt; '0');
             elsif (rising_edge(CLK) and SL = '0') then
                 QO &lt;= QI; -- Chargement // Synchrone
             elsif(rising_edge(CLK) and SL='1' and LR = '0') Then
@@ -1269,7 +1269,7 @@
         variable PQ: unsigned(n-1 downto 0) ;
             begin
             if ACLR = '0' then
-                PQ := (others=>'0');
+                PQ := (others=&gt;'0');
             elsif (rising_edge(CLK) and CE='1') then
                 PQ := PQ + 1;
             end if;
@@ -1302,7 +1302,7 @@
          process (CLK, ACLR, ALD)
         begin
             if ACLR = '0' then
-                PQ &lt;= (others => '0');
+                PQ &lt;= (others =&gt; '0');
             elsif ALD = '0' then
                 PQ &lt;= unsigned(QI);
             elsif (rising_edge(CLK) and CE='1' and UD = '0') then
@@ -1371,7 +1371,7 @@
     end entity;
     
     architecture   archi   of   divfreq_nbits     is
-       signal CTR : unsigned(n-1 downto 0) := (others=>'0');
+       signal CTR : unsigned(n-1 downto 0) := (others=&gt;'0');
         begin
         process (clk_in)       
             begin
@@ -1428,10 +1428,10 @@
                     <pre>
 <code>
     ----------------------------------------------------------------------------
-    -- Machine à états décrite par 3 process => meilleure lisibilité (Lire ceci)
+    -- Machine à états décrite par 3 process =&gt; meilleure lisibilité (Lire ceci)
     -- clk: horloge voisine de 366Hz
     -- reset: Réinitialisation de lafficheur (actif au niveau bas --_--)
-    -- RS:  RS=0 =>  DATA est une commande, RS=1 => DATA est un caractère
+    -- RS:  RS=0 =&gt;  DATA est une commande, RS=1 =&gt; DATA est un caractère
     -- GO:  envoyer DATA vers l'afficheur (actif au niveau bas --_--)
     -- DATA: Bus de données 
     -- Au PON ou reset, le driver Initialise l'afficheur et attend;
@@ -1475,7 +1475,7 @@
         begin
             if clk'event and clk = '1' then
                 case Etat_present is
-                    when PON=>
+                    when PON=&gt;
                         cnt := cnt + 1;
                         if cnt = 16 then  -- 16*2.7ms = 43ms
                             cnt := 0;
@@ -1483,37 +1483,37 @@
                         else
                             Etat_futur &lt;= PON;
                         end if;
-                    when S38A=>
+                    when S38A=&gt;
                         Etat_futur &lt;= S38B;  --un seul coup d'horloge
-                    when S38B=>
+                    when S38B=&gt;
                         Etat_futur &lt;= S38C;
-                    when S38C=>
+                    when S38C=&gt;
                         Etat_futur &lt;= S38D;
-                    when S38D=>
+                    when S38D=&gt;
                         Etat_futur &lt;= S0DA;
-                    when S0DA =>
+                    when S0DA =&gt;
                         Etat_futur &lt;= S0DB;
-                    when S0DB =>
+                    when S0DB =&gt;
                         Etat_futur &lt;= S06A;
-                    when S06A =>
+                    when S06A =&gt;
                         Etat_futur &lt;= S06B;
-                    when S06B =>
+                    when S06B =&gt;
                         Etat_futur &lt;= S01A;
-                    when S01A =>
+                    when S01A =&gt;
                         Etat_futur &lt;=  S01B;
-                    when S01B =>
+                    when S01B =&gt;
                         Etat_futur &lt;= RDY;
-                    when RDY =>
+                    when RDY =&gt;
                         if GO = '0' then
                             Etat_futur &lt;= SNDA;
                         else
                             Etat_futur &lt;= RDY;
                         end if;
-                    when SNDA =>
+                    when SNDA =&gt;
                         Etat_futur &lt;=  SNDB;
-                    when SNDB =>
+                    when SNDB =&gt;
                         Etat_futur &lt;= WAITE;
-                    when WAITE =>
+                    when WAITE =&gt;
                         if GO = '1' then
                             Etat_futur &lt;= RDY;
                         else
@@ -1527,63 +1527,63 @@
         Combinatoire_Sorties: process(Etat_present,RS,DATA)
             begin
             case Etat_present is
-                when PON=>
+                when PON=&gt;
                     LCD_E &lt;= '0';
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00000000";
-                when S38A=>
+                when S38A=&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00111000";
                     LCD_E &lt;= '1';
-                when S38B=>
+                when S38B=&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00111000";
                     LCD_E &lt;= '0';
-                when S38C=>
+                when S38C=&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00111000";
                     LCD_E &lt;= '1';
-                when S38D=>
+                when S38D=&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00111000";
                     LCD_E &lt;= '0';
-                when S0DA =>
+                when S0DA =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00001101";
                     LCD_E &lt;= '1';
-                when S0DB =>
+                when S0DB =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00001100";
                     LCD_E &lt;= '0';
-                when S06A =>
+                when S06A =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00000110";
                     LCD_E &lt;= '1';
-                when S06B =>
+                when S06B =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00000110";
                     LCD_E &lt;= '0';
-                when S01A =>
+                when S01A =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00000001";
                     LCD_E &lt;= '1';
-                when S01B =>
+                when S01B =&gt;
                     LCD_RS &lt;= '0';
                     LCD_DATA &lt;= "00000001";
                     LCD_E &lt;= '0';
-                when RDY =>
+                when RDY =&gt;
                     LCD_RS &lt;= '1';
                     LCD_DATA &lt;= "01000011";
                     LCD_E &lt;= '0';
-                when SNDA =>
+                when SNDA =&gt;
                     LCD_RS &lt;= RS;
                     LCD_DATA &lt;= DATA;
                     LCD_E &lt;= '1';
-                when SNDB =>
+                when SNDB =&gt;
                     LCD_RS &lt;= RS;
                     LCD_DATA &lt;= DATA;
                     LCD_E &lt;= '0';
-                when WAITE =>
+                when WAITE =&gt;
                     LCD_RS &lt;= '1';
                     LCD_DATA &lt;= "01000011";
                     LCD_E &lt;= '0';
@@ -1592,7 +1592,7 @@
     end rtl;
 </code>
                     </pre>
-                    <img src="IMAGES/LCD1.PNG" class="BlocCenter">
+                    <img src="IMAGES/LCD1.PNG" >
                 </div><br>
             </div>
         </div>

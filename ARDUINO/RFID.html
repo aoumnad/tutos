@@ -18,30 +18,30 @@
         <div id="LeftPanel_ID" class="LeftPanel">
             <div class="LeftPanelHeader">
                 <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-                <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
                 <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
-                    <h3>Introduction</h3>
+                    <h2>Introduction</h2>
                 </a>
                 <a href="#ACCESS">
-                    <h3>Exemple: Contrôle d'accès</h3>
+                    <h2>Exemple: Contrôle d'accès</h2>
                 </a>
                 <a href="#RWDATA">
-                    <h3>Les blocs mémoire du tag</h3>
+                    <h2>Les blocs mémoire du tag</h2>
                 </a>
                 <a href="#BLOCKREAD">
-                    <h3>Exemple: Lecture d'un bloc</h3>
+                    <h2>Exemple: Lecture d'un bloc</h2>
                 </a>
                 <a href="#BLOCKWRBYTES">
-                    <h3>Exemple: Écriture d'un Bloc</h3>
+                    <h2>Exemple: Écriture d'un Bloc</h2>
                 </a>
                 <a href="#RWTEXT">
-                    <h3>Exemple: Lecture/Écriture de texte</h3>
+                    <h2>Exemple: Lecture/Écriture de texte</h2>
                 </a>
                 <a href="#ACCESSV2">
-                    <h3>Exemple: Contrôle d'accès V2</h3>
+                    <h2>Exemple: Contrôle d'accès V2</h2>
                 </a>
             </div>
         </div>
@@ -108,7 +108,7 @@
                             <li>Les autres blocs sont des blocs de données accessibles en lecture/écriture</li>
                         </ul>
                     </li>
-                    <img src="IMAGES/RFID_Tag_1k_Memory.jpg" class="BlocCenter">
+                    <img src="IMAGES/RFID_Tag_1k_Memory.jpg" >
                 </ul>
                 <h3>Applications de la RFID</h3>
                 <ul>
@@ -152,7 +152,7 @@
                     </li>
                 </ol><br>
                 <h3>Schéma de branchement</h3>
-                <img src="IMAGES/RFID_RC522_Arduino.jpg" class="BlocCenter w400">
+                <img src="IMAGES/RFID_RC522_Arduino.jpg" class="w400">
                 <h3>Descriptif du programme</h3>
                 <ul>
                     <li>Le programme contient une liste d'identifiants UID autorisés</li>
@@ -175,13 +175,13 @@
             <code>
 /*
    ARDUINO                      RC522
-   GND        <-----------------> GND
-   3.3V       <-----------------> 3.3V
-   SCK(D13)   <-----------------> SCK
-   MISO(D12)  <-----------------> MISO
-   MOSI(D11)  <-----------------> MOSI
-   SS(D10)     <-----------------> SS
-   D9         <-----------------> RST
+   GND        ---&lt;--------------&gt; GND
+   3.3V       ---&lt;--------------&gt; 3.3V
+   SCK(D13)   ---&lt;--------------&gt; SCK
+   MISO(D12)  ---&lt;--------------&gt; MISO
+   MOSI(D11)  ---&lt;--------------&gt; MOSI
+   SS(D10)     ---&lt;--------------&gt; SS
+   D9         ---&lt;--------------&gt; RST
 */
 
 #include "SPI.h"
@@ -220,8 +220,8 @@ void loop() {
   String UID = "";  // l'UID de type String
   bool authorized = false;
   // placer les 4 octets de l'ID dans un String
-  for (byte i = 0; i < mfrc522.uid.size; i++) {
-    UID += String(mfrc522.uid.uidByte[i] < 0x10 ? "0" : ""); //ex: 0x6 --> 0x06
+  for (byte i = 0; i &lt; mfrc522.uid.size; i++) {
+    UID += String(mfrc522.uid.uidByte[i] &lt; 0x10 ? "0" : ""); //ex: 0x6 --&gt; 0x06
     UID += String(mfrc522.uid.uidByte[i], HEX);
     UID += " ";  // les octets sont séparé par un espace
   }
@@ -229,7 +229,7 @@ void loop() {
   UID.toUpperCase();  // mettre en majuscule
 
   // vérifier si l'ID détecté est autorisé
-  for (int i = 0; i < sizeof(authorizedIDs) / sizeof(authorizedIDs[0]); i++) {
+  for (int i = 0; i &lt; sizeof(authorizedIDs) / sizeof(authorizedIDs[0]); i++) {
     if (UID.equals(authorizedIDs[i])) {
       authorized = true;
       break;
@@ -238,9 +238,9 @@ void loop() {
 
   // Afficher le statut d'autorisation
   if (authorized) {
-    Serial.println("Tag détecté  --->" + UID + "<----    AUTORISÉ");
+    Serial.println("Tag détecté  ---&gt;" + UID + "&lt;----    AUTORISÉ");
   } else {
-    Serial.println("Tag détecté  --->" + UID + "<----    NON AUTORISÉ");
+    Serial.println("Tag détecté  ---&gt;" + UID + "&lt;----    NON AUTORISÉ");
   }
 }
 </code>
@@ -249,14 +249,14 @@ void loop() {
                 <!-- ============================= Fin Code ================================================ -->
                 <!-- ################################################################################################ -->
                 <h2 id="RWDATA">Les blocs mémoire du tag</h2>
-                <img src="IMAGES/RFID_Tag_1k_Memory.jpg" class="BlocCenter">
+                <img src="IMAGES/RFID_Tag_1k_Memory.jpg" >
                 <ul>
                     <li>Chaque secteur est constitué de 4 blocs de 16 octets chacun. 3 blocs de données (B0, B1, B2) et
                         un bloc de contrôle
                         B3 (Trailer Block). C'est ce bloc qui nous intéresse ici </li>
                     <li>Le Trailer bloc de chaque secteur contient 2 clés d'authentification key_A et key_B et 3
                         bits d'accès C0, C1 et C2</li>
-                    <img src="IMAGES/RFID_TrailerBloc.jpg" class="BlocCenter">
+                    <img src="IMAGES/RFID_TrailerBloc.jpg" >
                     <li>Les clés d'authentification permettent de contrôler l'accès aux blocs du secteur</li>
                     <li>Les bits d'accès définissent les autorisations de chaque clé</li>
                     <li>Les clés Key_A et Key_B sont constituées de 6 octets chacune. Leur valeur par défaut est {0xFF
@@ -266,7 +266,7 @@ void loop() {
                         contrôle</li>
                     <li>L'accès à chacun des 4 blocs du secteur est géré par son propre triplet {C0, C1, C2}, voici comment les
                         bits sont réparti dans les 3 octets 6, 7 et 8.</li>
-                    <img src="IMAGES/RFID_AccesBits.jpg" class="BlocCenter">
+                    <img src="IMAGES/RFID_AccesBits.jpg" >
                     <li>On remarquera que le triplet de chaque bloc est répété 2 fois</li>
                     <li>Pour les blocs de donnés, la combinaison la plus permissive est {C0,C1,C2}={0,0,0}. Elle permet
                         d'accéder aux blocs en lecture et en écriture avec la clé Key_A ou la clé Key_B</li>
@@ -279,10 +279,10 @@ void loop() {
                         </ul>
                     </li>
                     <li>Avec ces deux combinaisons on obtient les octets 6, 7 et 8 suivants:</li>
-                    <img src="IMAGES/RFID_Bytes_6-7-8.jpg" class="BlocCenter">
+                    <img src="IMAGES/RFID_Bytes_6-7-8.jpg" >
                     <li>Les autres possibilités sont listées dans les tableau ci dessous</li>
-                    <img src="IMAGES/RFID_Data_Bloc_Acces.jpg" class="BlocCenter"><br>
-                    <img src="IMAGES/RFID_Trailer_Acces.jpg" class="BlocCenter">
+                    <img src="IMAGES/RFID_Data_Bloc_Acces.jpg" ><br>
+                    <img src="IMAGES/RFID_Trailer_Acces.jpg" >
                 </ul><br>
                 <!-- ################################################################################################ -->
                 <h2 id="BLOCKREAD">Exemple: Lecture d'un Bloc</h2>
@@ -343,7 +343,7 @@ void loop() {
   }
   
   // afficher les octets lus
-  for (byte i = 0; i < 16; i++) {
+  for (byte i = 0; i &lt; 16; i++) {
     Serial.print(buffer[i],HEX);
     Serial.print(" ");
   }
@@ -418,7 +418,7 @@ void loop() {
     return;
   }
   Serial.println("Données écrites : ");
-  for (byte i = 0; i < 16; i++) {
+  for (byte i = 0; i &lt; 16; i++) {
     Serial.print(data[i]);
     Serial.print(" ");
   }
@@ -437,7 +437,7 @@ void loop() {
     return;
   }
   Serial.println("Données lues : ");
-  for (byte i = 0; i < 16; i++) {
+  for (byte i = 0; i &lt; 16; i++) {
     Serial.print(buff[i]);
     Serial.print(" ");
   }
@@ -513,9 +513,9 @@ void loop() {
   // Lecture lecture et affichage du bloc 4 et 5
   String prenom = readBlock(4);
   String nom = readBlock(5);
-  Serial.print("------>");
+  Serial.print("------&gt;");
   Serial.print(prenom + " " + nom);
-  Serial.println("<----------");
+  Serial.println("---&lt;-------");
   mfrc522.PICC_HaltA(); // Halt PICC
   mfrc522.PCD_StopCrypto1(); // Stop encryption on PCD
 }
@@ -525,7 +525,7 @@ byte writeStr(byte block, String str) {
   byte buffer[16];
   byte len = str.length();
   str.getBytes(buffer, 17);
-  for (byte i = len; i < 16 ; i++) {
+  for (byte i = len; i &lt; 16 ; i++) {
     buffer[i] = ' ';
   }
 
@@ -569,7 +569,7 @@ String readBlock(byte block) {
   }
 
   String result = "";
-  for (byte i = 0; i < 16; i++) {
+  for (byte i = 0; i &lt; 16; i++) {
     result += char(buffer[i]);
   }
   result.trim();
@@ -593,13 +593,13 @@ String readBlock(byte block) {
             <code>
 /*
    ARDUINO                      RC522
-   GND        <-----------------> GND
-   3.3V       <-----------------> 3.3V
-   SCK(D13)   <-----------------> SCK
-   MISO(D12)  <-----------------> MISO
-   MOSI(D11)  <-----------------> MOSI
-   SS(D10)    <-----------------> SS
-   D9         <-----------------> RST
+   GND        ---&lt;--------------&gt; GND
+   3.3V       ---&lt;--------------&gt; 3.3V
+   SCK(D13)   ---&lt;--------------&gt; SCK
+   MISO(D12)  ---&lt;--------------&gt; MISO
+   MOSI(D11)  ---&lt;--------------&gt; MOSI
+   SS(D10)    ---&lt;--------------&gt; SS
+   D9         ---&lt;--------------&gt; RST
 */
 
 #include "SPI.h"
@@ -642,8 +642,8 @@ void loop() {
   String UID = "";  // l'UID de type String
   bool authorized = false;
   // placer les 4 octets de l'ID dans un String
-  for (byte i = 0; i < mfrc522.uid.size; i++) {
-    UID += String(mfrc522.uid.uidByte[i] < 0x10 ? "0" : ""); //ex: 0x6 --> 0x06
+  for (byte i = 0; i &lt; mfrc522.uid.size; i++) {
+    UID += String(mfrc522.uid.uidByte[i] &lt; 0x10 ? "0" : ""); //ex: 0x6 --&gt; 0x06
     UID += String(mfrc522.uid.uidByte[i], HEX);
     UID += " ";  // les octets sont séparé par un espace
   }
@@ -651,7 +651,7 @@ void loop() {
   UID.toUpperCase();  // mettre en majuscule
 
   // vérifier si l'ID détecté est autorisé
-  for (int i = 0; i < sizeof(authorizedIDs) / sizeof(authorizedIDs[0]); i++) {
+  for (int i = 0; i &lt; sizeof(authorizedIDs) / sizeof(authorizedIDs[0]); i++) {
     if (UID.equals(authorizedIDs[i])) {
       authorized = true;
       break;
@@ -696,7 +696,7 @@ String readBlock(byte block) {
   }
 
   String result = "";
-  for (byte i = 0; i < 16; i++) {
+  for (byte i = 0; i &lt; 16; i++) {
     result += char(buffer[i]);
   }
   result.trim();

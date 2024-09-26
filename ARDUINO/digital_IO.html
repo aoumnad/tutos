@@ -14,16 +14,16 @@
     <div id="LeftPanel_ID" class="LeftPanel">
       <div class="LeftPanelHeader">
         <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-        <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+        <a href="../index.html"> <img src="../IMAGES/home48.png"> </a>
         <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
       </div>
       <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
         <a href="#DEF">
-          <h3>Définition</h3>
+          <h2>Définition</h2>
         </a> <a href="#DIR">
-          <h3>Direction d'une E/S</h3>
+          <h2>Direction d'une E/S</h2>
         </a> <a href="#OUT">
-          <h3>Sortie Numérique</h3>
+          <h2>Sortie Numérique</h2>
         </a> <a href="#BLINK">
           <h4>Le programme Blink</h4>
         </a><a href="#BLINK1">
@@ -35,7 +35,7 @@
         </a> <a href="#PWMSWP">
           <h4>Exemple PWM</h4>
         </a><a href="#DIGINPUT">
-          <h3>Entrées Numériques</h3>
+          <h2>Entrées Numériques</h2>
         </a><a href="#BUTTONLED">
           <h4>Un bouton pour contrôler une LED</h4>
         </a><a href="#2BUTTON2LED">
@@ -113,7 +113,7 @@
           résistance, vous risquez de détruire la carte Arduino. </p>
         <p> Si vous utilisez l'IDE Arduino, le programme Blink se trouve
           dans: Fichier → Examples → Basics → Blink </p>
-        <p> Sinon vous pouvez tout simplement commencer un nouveau programme (file -> new) et copier coller le programme
+        <p> Sinon vous pouvez tout simplement commencer un nouveau programme (file -&gt; new) et copier coller le programme
           ci-dessous </p>
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">
@@ -228,7 +228,7 @@ void loop() {
           </pre>
         </div> <br>
         <h2 id="PWM">Signal PWM</h2>
-        <img class="BlocCenter" src="IMAGES/PWM.png" alt="">
+        <img  src="IMAGES/PWM.png" alt="">
         <p>Un signal PWM (Pulse Width Modulation) ou MLI (Modulation de largeur
           d'impulsion) est un signal dont le rapport cyclique TH /T est
           réglable.</p>
@@ -261,75 +261,75 @@ void loop() {
             <code>
 <em> Pour Arduino Uno, Nano, et autres cartes utilisant ATmega 8, 168 ou 328</em>
  
-//--------------fréquences PWM sur les broches D5 & D6 -----------------------
-TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
-TCCR0B = TCCR0B & B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
-TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
-TCCR0B = TCCR0B & B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
-TCCR0B = TCCR0B & B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
+//--------------fréquences PWM sur les broches D5 &amp; D6 -----------------------
+TCCR0B = TCCR0B &amp; B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
+TCCR0B = TCCR0B &amp; B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
  
-//--------------Set PWM frequency for D9 & D10 ------------------------------
-TCCR1B = TCCR1B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
-TCCR1B = TCCR1B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
-TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
-TCCR1B = TCCR1B & B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
+//--------------Set PWM frequency for D9 &amp; D10 ------------------------------
+TCCR1B = TCCR1B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
+TCCR1B = TCCR1B &amp; B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
  
-//------------- Set PWM frequency for D3 & D11 ------------------------------
-TCCR2B = TCCR2B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
-TCCR2B = TCCR2B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR2B = TCCR2B & B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
-TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
-TCCR2B = TCCR2B & B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
-TCCR2B = TCCR2B & B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
-TCCR2B = TCCR2B & B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
+//------------- Set PWM frequency for D3 &amp; D11 ------------------------------
+TCCR2B = TCCR2B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
+TCCR2B = TCCR2B &amp; B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
  
 
 <em>Pour Arduino Mega1280, Mega2560, MegaADK et autres cartes utilisant ATmega1280 ou ATmega2560</em>
 
-//------------- Set PWM frequency for D4 & D13 ------------------------------
-TCCR0B = TCCR0B & B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
-TCCR0B = TCCR0B & B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
-TCCR0B = TCCR0B & B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
-TCCR0B = TCCR0B & B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
-TCCR0B = TCCR0B & B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
+//------------- Set PWM frequency for D4 &amp; D13 ------------------------------
+TCCR0B = TCCR0B &amp; B11111000 | B00000001;    // f = 62500.00 Hz, T = 0.016ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (*)
+TCCR0B = TCCR0B &amp; B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
 
-//------------- Set PWM frequency for D11 & D12 -----------------------------
-TCCR1B = TCCR1B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
-TCCR1B = TCCR1B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR1B = TCCR1B & B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
-TCCR1B = TCCR1B & B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
-TCCR1B = TCCR1B & B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
+//------------- Set PWM frequency for D11 &amp; D12 -----------------------------
+TCCR1B = TCCR1B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (*)
+TCCR1B = TCCR1B &amp; B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
  
-//------------- Set PWM frequency for D9 & D10 ------------------------------
-TCCR2B = TCCR2B & B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
-TCCR2B = TCCR2B & B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
-TCCR2B = TCCR2B & B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
-TCCR2B = TCCR2B & B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
-TCCR2B = TCCR2B & B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
-TCCR2B = TCCR2B & B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
-TCCR2B = TCCR2B & B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
+//------------- Set PWM frequency for D9 &amp; D10 ------------------------------
+TCCR2B = TCCR2B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (*)
+TCCR2B = TCCR2B &amp; B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000111;    // f = 30.64 Hz,	T = 32.637ms
  
-//------------- Set PWM frequency for D2, D3 & D5 ---------------------------
-TCCR3B = TCCR3B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
-TCCR3B = TCCR3B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
-TCCR3B = TCCR3B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
-TCCR3B = TCCR3B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
-TCCR3B = TCCR3B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
+//------------- Set PWM frequency for D2, D3 &amp; D5 ---------------------------
+TCCR3B = TCCR3B &amp; B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR3B = TCCR3B &amp; B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR3B = TCCR3B &amp; B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR3B = TCCR3B &amp; B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR3B = TCCR3B &amp; B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
  
-//------------- Set PWM frequency for D6, D7 & D8 ---------------------------
-TCCR4B = TCCR4B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
-TCCR4B = TCCR4B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
-TCCR4B = TCCR4B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
-TCCR4B = TCCR4B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
-TCCR4B = TCCR4B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
+//------------- Set PWM frequency for D6, D7 &amp; D8 ---------------------------
+TCCR4B = TCCR4B &amp; B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR4B = TCCR4B &amp; B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR4B = TCCR4B &amp; B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR4B = TCCR4B &amp; B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR4B = TCCR4B &amp; B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
  
-//------------- Set PWM frequency for D44, D45 & D46 ------------------------
-TCCR5B = TCCR5B & B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
-TCCR5B = TCCR5B & B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
-TCCR5B = TCCR5B & B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
-TCCR5B = TCCR5B & B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
-TCCR5B = TCCR5B & B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
+//------------- Set PWM frequency for D44, D45 &amp; D46 ------------------------
+TCCR5B = TCCR5B &amp; B11111000 | B00000001;    // f = 31372.55 Hz, T = 0.032ms
+TCCR5B = TCCR5B &amp; B11111000 | B00000010;    // f = 3921.16 Hz,  T = 0.255ms
+TCCR5B = TCCR5B &amp; B11111000 | B00000011;    // f = 490.20 Hz,   T = 2.04ms (*)
+TCCR5B = TCCR5B &amp; B11111000 | B00000100;    // f = 122.55 Hz,   T = 8.16ms
+TCCR5B = TCCR5B &amp; B11111000 | B00000101;    // f = 30.64 Hz,    T = 32.637ms
             </code>
           </pre>
         <br>
@@ -525,11 +525,11 @@ void loop() {
         <p>Les boutons poussoir est les interrupteurs sont sujet à des
           rebondissements mécaniques. Quand on clique sur un bouton, au lieux
           d'obtenir une impulsion propre comme ça:</p>
-        <img class="BlocCenter" src="IMAGES/cleanpulse.png" alt="">
+        <img  src="IMAGES/cleanpulse.png" alt="">
         <p>On obtient plutôt quelque chose qui ressemble à ça. Je n'ai pris en
           compte que les rebonds du début du clic, ce qui est le cas pour la
           plupart des boutons</p>
-        <img class="BlocCenter" src="IMAGES/rebonds_start.png" alt=""> <br>
+        <img  src="IMAGES/rebonds_start.png" alt=""> <br>
         <p>La meilleure façon de traiter les rebonds est de les filtrer par un
           montage électronique. On peut aussi essayer de les gérer par software.
           Il est très difficile de mettre au point un programme efficace à 100%

@@ -7,11 +7,10 @@
 }
 
 body {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 1.2rem;
+    font-family: sans-serif;
     overflow-y: hidden;
 }
-body a {
+body a{
     text-decoration: none;
     color: black;
 }
@@ -30,11 +29,13 @@ body li {
 .li_niv1 {
     margin-top: 1rem;
 }
+.sanspuce {
+    list-style-type: none;
+}
 
 header{
     width: 100%;
 }
-
 header h1 {
     background-color: #55a3a3;
     font-weight: bold;
@@ -44,15 +45,16 @@ header h1 {
     margin: auto; 
 }
 
-
+img{
+    max-width: 100%;
+}
 
 strong {
     font-style: italic;
 }
-
 figcaption {
     text-align: center;
-}
+  }
 
 .PosterPageContainer {
     width: 100vw;
@@ -82,7 +84,6 @@ figcaption {
     flex: 1;
     background-color: #55a3a3;
 }
-
 .PosterPageHeader{
     width: 100%;
     display: flex;
@@ -165,7 +166,7 @@ figcaption {
 }
 
 .LeftPanelMenu {
-    height: 93%;
+    height: 100%;
     width: 100%;
     padding-left: 2ch;
     font-size: large;
@@ -174,7 +175,6 @@ figcaption {
     background-color: #e0ebeb;
     overflow-y: auto;
 }
-
 .RightPanelContent {
     height: 93%;
     width: 100%;
@@ -191,57 +191,28 @@ figcaption {
     color: blue;
 }
 
-
-
 .LeftPanelMenu a {
     display: block;   
 }
-
+.ul2 {
+    margin-left: 1rem;
+}
 .LeftPanelMenu h2 {
-    /* margin-left: -0.5ch;
-    margin-top: 1ch; */
-    font-size: 1rem;
-    margin: 0;
+    margin-left: -0.5ch;
     margin-top: 1ch;
-    color: #0d75a5;
+    color: #074461;
 }
 
 .LeftPanelMenu h3 {
     font-size: 0.9rem;
-    margin: 0;
-    margin-left: 1ch;
     margin-top: 1ch;
     color:#1a5b79;
 }
-
 .LeftPanelMenu h4 {
     margin-top: 1ch;
     margin-left: 2ch;
     font-size: 0.9rem;
     color: #074461;
-}
-
-.rubrique {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    margin: 0;
-}
-
-.sub-rubrique {
-    display: none; /* Cacher les sous-rubriques par défaut */
-    margin-left: 20px; /* Indentation pour les sous-rubriques */
-}
-
-.rubrique span {
-    display: inline-block;
-    transition: transform 0.3s ease; /* Transition pour la rotation */
-    margin-right: 5px;
-    margin-top: 1ch;
-}
-
-.rubrique.open span {
-    transform: rotate(90deg); /* Rotation de la flèche */
 }
 
 .RightPanelHeader h1 {
@@ -269,18 +240,6 @@ figcaption {
 .RightPanelContent p {
     margin: 1ch 1rem;
     text-align: justify;
-}
-
-.RightPanelContent img{
-    max-width: 100%;
-    display: block;
-    margin: auto;
-}
-
-.RightPanelContent img.inline-image {
-    display: inline;
-    margin: 0;
-    vertical-align: middle;
 }
 
 .RightPanelContent em{
@@ -317,7 +276,14 @@ figcaption {
     font-style: italic;
 }
 
-
+.FitContent{
+    width: fit-content;
+}
+.Row{
+    display: flex; 
+    justify-content: space-around; 
+    align-items: baseline;
+}
 .Float_R{
     float: right;
     margin-left: 1rem;
@@ -336,7 +302,6 @@ figcaption {
     flex-direction: column;
     max-width: 95%;
 }
-
 .CodeAreaHeader {
     display: flex;
     border-radius:5px 5px 0 0;
@@ -346,7 +311,6 @@ figcaption {
     align-items: center;
     padding-left: 10px;
 }
-
 pre {
     background-color: #2d2d2d;
     color: white;
@@ -356,7 +320,6 @@ pre {
     overflow: auto;
     max-height: 400px;
 }
-
 .CodeArea {  
     height: 400px;
     width: 90%;
@@ -372,10 +335,9 @@ pre {
 }
 
 code {
-    /* font-family: monospace; */
-    font-size: 1rem;
+    font-family: monospace;
+    font-size: 1em;
 }
-
 .code2 {
     padding-left: 1ch;
     font-family: monospace;
@@ -393,16 +355,13 @@ code {
     border-radius: 5px;
     cursor: pointer;
 }
-
 .Bold{
     font-weight: bold;
 }
-
 .BoldItal{
     font-weight: bold;
     font-style: italic;
 }
-
 .CodeLine{
     font-family:  monospace;
     font-size: 1rem;

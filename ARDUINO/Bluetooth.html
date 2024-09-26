@@ -18,7 +18,7 @@
         <div id="LeftPanel_ID" class="LeftPanel">
             <div class="LeftPanelHeader">
                 <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-                <a href="../index.html"> <img src="IMAGES/home48.png" alt=""> </a>
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
                 <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="45px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
@@ -70,13 +70,13 @@
                 <p>On va faire simple, du coté du smartphone, on aura le choix entre 3 commandes à envoyer vers
                     l'Arduino sous forme de caractères: </p>
                 <ul>
-                    <li>'A' ==> Allumer la LED embarquée sur l'Arduino (pin 13)</li>
-                    <li>'B' ==> Éteindre la LED embarquée sur l'Arduino (pin 13)</li>
-                    <li>'C' ==> Mesurer la tension analogique délivrée par le LM35 et transmettre le résultat de
+                    <li>'A' ==&gt; Allumer la LED embarquée sur l'Arduino (pin 13)</li>
+                    <li>'B' ==&gt; Éteindre la LED embarquée sur l'Arduino (pin 13)</li>
+                    <li>'C' ==&gt; Mesurer la tension analogique délivrée par le LM35 et transmettre le résultat de
                         conversion
                         vers le smartphone.</li>
                 </ul>
-                <img src="IMAGES/Bluetooth.png" class="BlocCenter w400">
+                <img src="IMAGES/Bluetooth.png" class="w400">
                 <h2 id="COTEARDUINO">Branchement coté Arduino</h2>
                 <p>J'ai choisi d'utiliser un Arduino nano, c'est plus petit et ça a les mêmes performances.
                     Le branchement du module bluetooth ne pose pas de problème. Si les E/S (TXD, RXD) de votre module
@@ -85,7 +85,7 @@
                     y a un risque d'endommager le HC-05, c'est vous qui voyez, il vaut mieux ne pas tenter le diable).
                     On va aussi brancher un capteur de température LM35 sur la broche A0 histoire d'avoir quelque chose
                     d'intéressant à transmettre vers le smartphone.</p>
-                <img class="BlocCenter w400" src="IMAGES/Nano_HC05_LM35.PNG">
+                <img class="w400" src="IMAGES/Nano_HC05_LM35.PNG">
 
 
 
@@ -100,10 +100,10 @@
                     analogReference(INTERNAL) fixe la référence de l'ADC à 1.1V = 1100mV. Une simple règle de 3 permet
                     de déterminer la tension (V) du capteur à partir du résultat de convertisseur (NA). On divise
                     ensuite par 10mV pour obtenir la température T en °C. <br>
-                    1100 mV --------> 1023 <br>
-                    V ----------------> NA <br>
-                    ==> V = (NA * 1100) / 1023 mV <br>
-                    ==> T = ( V / 10 mV ) = NA * 110 / 1023 °C <br><br>
+                    1100 mV --------&gt; 1023 <br>
+                    V ----------------&gt; NA <br>
+                    ==&gt; V = (NA * 1100) / 1023 mV <br>
+                    ==&gt; T = ( V / 10 mV ) = NA * 110 / 1023 °C <br><br>
                     Remarque: Le programme Arduino se contente de faire la mesure et de transmettre le nombre NA vers le
                     smartphone, c'est ce dernier qui se charge de calculer la température T et de l'afficher en °C</p>
                 <br>
@@ -140,7 +140,7 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() > 0){
+  if (Serial.available() &gt; 0){
     c = Serial.read();
     switch (c) {
     case 'A':
@@ -213,7 +213,7 @@ void loop() {
                 <h2 id="APPANDRO">l'Application Androïde</h2>
                 <p>Une application androïde est constituée de plusieurs fichiers. Voici les plus importants</p>
                 <ul>
-                    <li>Un fichier xml de configuration de l'application -> manifeste</li>
+                    <li>Un fichier xml de configuration de l'application -&gt; manifeste</li>
                     <li>Chaque activité (écran de l'application) est gérée par deux fichiers:
                         <ul>
                             <li>Un fichier xml qui décrit l'interface graphique (Layout)Un fichier java contenant le
@@ -225,7 +225,7 @@ void loop() {
                 <p>Au démarrage d'Android Studio, les deux fichier layout et java (de l'activité principale) sont
                     ouverts. On peut basculer de l'un à l'autre grâce à leurs onglets. Pour ouvrir un autre fichier, il
                     faut utiliser l'explorateur de l'application (à gauche)</p>
-                <img class="BlocCenter" src="IMAGES/AS_files.PNG"><br>
+                <img  src="IMAGES/AS_files.PNG"><br>
                 <p>Démarrer Android Studio, et créer un nouveau projet</p><br>
                 <h2 id="MANIFEST">Le manifest de l'application</h2>
                 <p>Ouvrir le fichier AndroidManifest.xml et rajouter les modifications ci-dessous:</p>

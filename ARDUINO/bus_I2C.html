@@ -18,24 +18,24 @@
         <div id="LeftPanel_ID" class="LeftPanel">
             <div class="LeftPanelHeader">
                 <img src="IMAGES/x3.png" id="XIcon" class="xicon Burger">
-                <a href="../index.html"> <img src="IMAGES/home48.png"> </a>
+                <a href="../index.html"> <img src="../IMAGES/home48.png"> </a>
                 <a href="arduino.html"> <img src="IMAGES/Back2Arduino.png" height="40px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
-                    <h3>Introduction</h3>
+                    <h2>Introduction</h2>
                 </a>
                 <a href="#PROTOCOL">
-                    <h3>Protocole</h3>
+                    <h2>Protocole</h2>
                 </a>
                 <a href="#WIRE">
-                    <h3>I2C sur Arduino</h3>
+                    <h2>I2C sur Arduino</h2>
                 </a>
                 <a href="#RESUME">
-                    <h3>En résumé</h3>
+                    <h2>En résumé</h2>
                 </a>
                 <a href="#EXMPL">
-                    <h3>Exemple : EEPROM 24C64</h3>
+                    <h2>Exemple : EEPROM 24C64</h2>
                 </a>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     communication entre microcontrôleurs et divers périphériques tels que des capteurs, des mémoires,
                     des horloges temps réel, et des DAC/ADC.
                 </p><br>
-                <img class="BlocCenter" src="IMAGES/bus_I2C.png" alt=""><br>
+                <img  src="IMAGES/bus_I2C.png" alt=""><br>
                 <p>Voici quelques aspects clés du bus I2C :</p>
                 <ul>
                     <li>
@@ -124,7 +124,7 @@
                     <p>Le protocole I2C jongle avec cette situation pour organiser l'échange des données entre les
                         deux
                         composants.</p>
-                    <img class="BlocCenter" src="IMAGES/I2C_line.png" alt="">
+                    <img  src="IMAGES/I2C_line.png" alt="">
 
                     <li class="EnhancedPlus">Bus Libre</li>
                     <p>Quand le bus est libre, les deux lignes SDA et SCL sont au niveau haut. C'est la condition
@@ -136,29 +136,29 @@
                     <p>Quand un Master veut prendre le contrôle du bus et démarrer une séquence de communication, il
                         génère un signal <strong>Start</strong> condition sur le bus en ramenant les deux lignes à 0
                     </p>
-                    <img class="BlocCenter" src="IMAGES/I2C_START.png" alt=""><br>
+                    <img  src="IMAGES/I2C_START.png" alt=""><br>
 
                     <li class="EnhancedPlus">Stop Condition</li>
                     <p>Quand un Master veut terminer une séquence de communication et libérer le bus, il génère un
                         signal <strong>stoP</strong> condition en ramenant les deux ligne à 1</p>
-                    <img class="BlocCenter" src="IMAGES/I2C_STOP.png" alt=""><br>
+                    <img  src="IMAGES/I2C_STOP.png" alt=""><br>
 
                     <li class="EnhancedPlus"> Écrire un bit sur le bus</li>
                     <p>Le circuit qui écrit force la ligne SDA à 0 ou à 1 pendant l'impulsion de l'horloge sur SCL
                         (c'est
                         toujours le master qui génère l'horloge)</p>
-                    <img class="BlocCenter" src="IMAGES/I2C_W1_W0.png" alt=""><br>
+                    <img  src="IMAGES/I2C_W1_W0.png" alt=""><br>
 
                     <li class="EnhancedPlus">L' acknowledge</li>
                     <p>L'acknowledge est l'accusé de réception. Il est placé par le circuit (qui vient de recevoir
                         un
                         octet) sur la ligne SDA pendant le 9ème coup d'horloge.</p>
                     <ul>
-                        <li>SDA=0 ==> acknowledge positif (ACK), SDA=1 ==> acknowledge négatif (NoACK),</li>
+                        <li>SDA=0 ==&gt; acknowledge positif (ACK), SDA=1 ==&gt; acknowledge négatif (NoACK),</li>
                         <li>Si c'est le master qui envoie, alors c'est le slave qui place l'acknowledge</li>
                         <li>Si c'est le master qui reçoit, alors c'est lui même qui place l'acknowledge</li>
                     </ul><br>
-                    <img class="BlocCenter" src="IMAGES/I2C_Acknowledge.png" alt=""><br>
+                    <img  src="IMAGES/I2C_Acknowledge.png" alt=""><br>
                     <li class="EnhancedPlus">Début d'une séquence de communication</li>
                     <p>Une séquence de communication doit toujours commencer comme suit:</p>
                     <ul>
@@ -167,14 +167,14 @@
                         <li>Le master envoie le bit R/W pour indiquer s'il veut envoyer des données vers le slave ou
                             s'il veut en recevoir</li>
                         <ul>
-                            <li>R/W = 0 => il veut envoyer</li>
-                            <li>R/W = 1 => il veut recevoir</li>
+                            <li>R/W = 0 =&gt; il veut envoyer</li>
+                            <li>R/W = 1 =&gt; il veut recevoir</li>
                         </ul>
                         <li>Le slave place l'acknowledge pendant le 9ème coup d'horloge</li>
                     </ul>
-                    <img class="BlocCenter" src="IMAGES/I2C_debut_echange.png" alt=""><br>
+                    <img  src="IMAGES/I2C_debut_echange.png" alt=""><br>
                     <li class="EnhancedPlus">Séquence de transmission (master → slave)</li>
-                    <img class="BlocCenter" src="IMAGES/I2C_master_W.png" alt=""><br>
+                    <img  src="IMAGES/I2C_master_W.png" alt=""><br>
                     <ul>
                         <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=0</em> pour
                             préciser qu'il
@@ -187,7 +187,7 @@
                         <li>Le master termine la séquence en envoyant un stoP ce qui libère le bus</li>
                     </ul><br>
                     <li class="EnhancedPlus">Séquence de réception (master ← slave)</li>
-                    <img class="BlocCenter" src="IMAGES/I2C_master_R.png" alt=""><br>
+                    <img  src="IMAGES/I2C_master_R.png" alt=""><br>
                     <ul>
                         <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=1</em>
                             pour préciser qu'il démarre une séquence de <em>réception</em></li>
@@ -298,7 +298,7 @@ Wire.readBytes(TAB,N);
                     </pre> <br>
                 </ul><br>
                 <h2 id="EXMPL">Écriture, Lecture dans une mémoire EEPROM 24C64</h2>
-                <img class="BlocCenter" src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
+                <img  src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
                 <ul>
                     <li>La 24C64 est une mémoire permanente (flash) de capacité 8 ko. Elle est organisée par page de 32
                         octets.
@@ -342,86 +342,83 @@ Wire.readBytes(TAB,N);
                 <div class="CodeAreaContainer">
                     <div class="CodeAreaHeader">Ecriture/Lecture dans une EEPROM 24C64<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
-                    <pre>
-    <code>
-#define MEM_I2C_ADR 0x57 //1010 111
-#include <Wire.h>
+                    <pre><code>#define MEM_I2C_ADR 0x57 //1010 111
+#include &lt;Wire.h&gt;
 
 void setup() {
-  Serial.begin(9600);
-  Wire.begin();
-  // on rempli la moitié de la 1ère page
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x00); // first page
-  Wire.write("abcdefghijklmnop"); // 16 caractères
-  Wire.endTransmission(); // On envoie 18 octets (2+16)
-  delay(10);
-  
-  // on rempli la 2ème moitié de la page
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x10);
-  Wire.write("QRSTUVWXYZABCDEF");
-  Wire.endTransmission(); // On envoie 18 octets (2+16)
-  delay(10); // flashing duration
-  
-  // on rempli la 1ère moitié de la 3ème page
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x40);
-  for (uint8_t i = 0; i < 16; i++)Wire.write(i);
-  Wire.endTransmission();
-  delay(10);
+    Serial.begin(9600);
+    Wire.begin();
+    // on rempli la moitié de la 1ère page
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x00); // first page
+    Wire.write("abcdefghijklmnop"); // 16 caractères
+    Wire.endTransmission(); // On envoie 18 octets (2+16)
+    delay(10);
+    
+    // on rempli la 2ème moitié de la page
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x10);
+    Wire.write("QRSTUVWXYZABCDEF");
+    Wire.endTransmission(); // On envoie 18 octets (2+16)
+    delay(10); // flashing duration
+    
+    // on rempli la 1ère moitié de la 3ème page
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x40);
+    for (uint8_t i = 0; i &lt; 16; i++)Wire.write(i);
+    Wire.endTransmission();
+    delay(10);
 
-  // on rempli la 2ème moitié de la 3ème page
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x50);
-  for (uint8_t i = 16; i < 32 ; i++)Wire.write(i);
-  Wire.endTransmission();
-  delay(10);
+    // on rempli la 2ème moitié de la 3ème page
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x50);
+    for (uint8_t i = 16; i &lt; 32 ; i++)Wire.write(i);
+    Wire.endTransmission();
+    delay(10);
 
-  // On positionne l'adresse courante
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x00);
-  Wire.endTransmission();
-  // On reçoit 32 caractères vers le buffer de réception
-  Wire.requestFrom(MEM_I2C_ADR, 32);
-  // on récupère les caractères dans le buffer de réception
-  for (int i = 0; i < 32; i++) {
+    // On positionne l'adresse courante
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x00);
+    Wire.endTransmission();
+    // On reçoit 32 caractères vers le buffer de réception
+    Wire.requestFrom(MEM_I2C_ADR, 32);
+    // on récupère les caractères dans le buffer de réception
+    for (int i = 0; i &lt; 32; i++) {
     char c = Wire.read();
     Serial.print(c);
-  }
-  Serial.println();
-  
-  // On positionne l'adresse courante sur 3ème page
-  Wire.beginTransmission(MEM_I2C_ADR);
-  Wire.write(0x00);
-  Wire.write(0x40);
-  Wire.endTransmission();
-  // on reçoit 32 octets dans le buffer de réception
-  Wire.requestFrom(MEM_I2C_ADR, 32);
-  // on récupère les octets dans le buffer de réception
-  for (int i = 0; i < 32; i++) {
+    }
+    Serial.println();
+    
+    // On positionne l'adresse courante sur 3ème page
+    Wire.beginTransmission(MEM_I2C_ADR);
+    Wire.write(0x00);
+    Wire.write(0x40);
+    Wire.endTransmission();
+    // on reçoit 32 octets dans le buffer de réception
+    Wire.requestFrom(MEM_I2C_ADR, 32);
+    // on récupère les octets dans le buffer de réception
+    for (int i = 0; i &lt; 32; i++) {
     if(i % 8 == 0)Serial.println();
     uint8_t k = Wire.read();
     Serial.print(k);
     Serial.print(" ");
-  }
-  Serial.println();
+    }
+    Serial.println();
 }
 
 void loop() {
-}
-    </code>
-</pre>
+}</code></pre>
                 </div>
                 <br>
-                <img class="BlocCenter" src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
+                <img  src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
