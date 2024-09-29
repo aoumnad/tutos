@@ -47,82 +47,85 @@
                     <a href="#LAZYCOLUMN">
                         <h3>LazyColumn() { }</h3>
                     </a>
-            </div>
+                </div>
 
-            <div class="rubrique" onclick="toggleMenu('composables', this)">
-                <span>&gt;</span>
-                <h2>Quelques Composables</h2>
-            </div>
-            <div id="composables" class="sub-rubrique">
-                <a href="#TEXT">
-                    <h3>Text( )</h3>
-                </a>
-                <a href="#BUTTON">
-                    <h3>Button, OutlinedButton, TextButton</h3>
-                </a>
-                <a href="#BOX">
-                    <h3>Box()</h3>
-                </a>
-                <a href="#ICON">
-                    <h3>Icon()</h3>
-                </a>
-                <a href="#ICONBUTTON">
-                    <h3>IconButton(), FilledIconButton()</h3>
-                </a>
-                <a href="#FAB">
-                    <h3>FloatingActionButton</h3>
-                </a>
-                <a href="#SPACER">
-                    <h3>Spacer()</h3>
-                </a>
-                <a href="#IMAGE">
-                    <h3>Image()</h3>
-                </a>
-                <div class="rubrique" onclick="toggleMenu('textfield', this)">
+                <div class="rubrique" onclick="toggleMenu('composables', this)">
                     <span>&gt;</span>
-                    <h2>TextField()</h2>
+                    <h2>Composables usuels</h2>
                 </div>
-                <div id="textfield" class="sub-rubrique">
-                    <a href="#TEXTFIELD">
-                        <h3>Concept de Base</h3>
+                <div id="composables" class="sub-rubrique">
+                    <a href="#TEXT">
+                        <h3>Text( )</h3>
                     </a>
-                    <a href="#TFLOOK">
-                        <h3>Apparence</h3>
+                    <a href="#BUTTON">
+                        <h3>Button, OutlinedButton, TextButton</h3>
                     </a>
-                    <a href="#TFKEYB">
-                        <h3>Clavier</h3>
+                    <a href="#BOX">
+                        <h3>Box()</h3>
                     </a>
-                    <a href="#FOCUS">
-                        <h3>Donner/Retirer le focus</h3>
+                    <a href="#ICON">
+                        <h3>Icon()</h3>
                     </a>
-                    <a href="#ISFOCUS">
-                        <h3>Détecter le focus</h3>
+                    <a href="#ICONBUTTON">
+                        <h3>IconButton(), FilledIconButton()</h3>
                     </a>
-                    <a href="#TFHEITH">
-                        <h3>Taille verticale</h3>
+                    <a href="#FAB">
+                        <h3>FloatingActionButton</h3>
+                    </a>
+                    <a href="#SPACER">
+                        <h3>Spacer()</h3>
+                    </a>
+                    <a href="#IMAGE">
+                        <h3>Image()</h3>
+                    </a>
+                    <div class="rubrique" onclick="toggleMenu('textfield', this)">
+                        <span>&gt;</span>
+                        <h2>TextField()</h2>
+                    </div>
+                    <div id="textfield" class="sub-rubrique">
+                        <a href="#TEXTFIELD">
+                            <h3>Concept de Base</h3>
+                        </a>
+                        <a href="#TFLOOK">
+                            <h3>Apparence</h3>
+                        </a>
+                        <a href="#TFKEYB">
+                            <h3>Clavier</h3>
+                        </a>
+                        <a href="#FOCUS">
+                            <h3>Donner/Retirer le focus</h3>
+                        </a>
+                        <a href="#ISFOCUS">
+                            <h3>Détecter le focus</h3>
+                        </a>
+                        <a href="#TFHEITH">
+                            <h3>Taille verticale</h3>
+                        </a>
+                    </div>
+                    <a href="#OTEXTFIELD">
+                        <h3>OutlinedTextField()</h3>
+                    </a>
+                    <a href="#CHECKBOX">
+                        <h3>Checkbox()</h3>
+                    </a>
+                    <a href="#SWITCH">
+                        <h3>Switch()</h3>
+                    </a>
+                    <a href="#RADIOBUTTON">
+                        <h3>RadioButton()</h3>
+                    </a>
+                    <a href="#CUSTOM">
+                        <h3>Composable personnalisé</h3>
+                    </a>
+                    <a href="#ALERTD">
+                        <h3>Alert Dialog</h3>
                     </a>
                 </div>
-                <a href="#OTEXTFIELD">
-                    <h3>OutlinedTextField()</h3>
+                <a href="#MODIFIER">
+                    <h2>Les Modifiers</h2>
                 </a>
-                <a href="#CHECKBOX">
-                    <h3>Checkbox()</h3>
-                </a>
-                <a href="#SWITCH">
-                    <h3>Switch()</h3>
-                </a>
-                <a href="#RADIOBUTTON">
-                    <h3>RadioButton()</h3>
-                </a>
-                <a href="#CUSTOM">
-                    <h3>Composable personnalisé</h3>
-                </a>
-            </div>
-            <a href="#MODIFIER">
-                <h2>Les Modifiers</h2>
-            </a>
 
-            <br><br>
+                <br><br>
             </div>
         </div>
         <div class="RightPanel">
@@ -284,7 +287,7 @@ class MainActivity : ComponentActivity() {
                 </p>
                 <p>On peut obtenir des mises en page assez élaborées en plaçant des lignes dans des colonnes
                     et des colonnes dans des lignes.</p><br>
-                <img src="IMAGES/ColumnRow.jpg" >
+                <img src="IMAGES/ColumnRow.jpg">
                 <h3 id="COLUMN">Column( ){ }</h3>
                 <ul>
                     <li>Permet de positionner (d'empiler) les éléments (Composables) <b>verticalement</b></li>
@@ -1299,7 +1302,7 @@ fun MyApp() {
         }</code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
-                <img src="IMAGES/icons.jpg" ><br>
+                <img src="IMAGES/icons.jpg"><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="ICONBUTTON">IconButton(), FilledIconButton()</h2>
@@ -1400,7 +1403,7 @@ fun MyApp() {
 </code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
-                <img src="IMAGES/IconButton.jfif" ><br>
+                <img src="IMAGES/IconButton.jfif"><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="FAB">FloatingActionButton (FAB)</h2>
@@ -1519,7 +1522,7 @@ Spacer(modifier = Modifier.width(20.dp))  // Espacement horizontale
                 <p>Commencer par copier les images dans le dossier <b>drawable</b> de votre application. Le nom des
                     fichiers ne doit contenir que des lettres minuscule (a - z), des chiffres (0 - 9) et le caractère
                     underscore '_'</p><br>
-                <img src="IMAGES/DrawableImages.jpg" ><br>
+                <img src="IMAGES/DrawableImages.jpg"><br>
                 <pre><code>    Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
@@ -1549,7 +1552,7 @@ Spacer(modifier = Modifier.width(20.dp))  // Espacement horizontale
     }
 
 </code></pre><br>
-                <img src="IMAGES/Images.jpg" > <br>
+                <img src="IMAGES/Images.jpg"> <br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="TEXTFIELD">TextField()</h2>
@@ -1906,7 +1909,7 @@ LaunchedEffect(focusManager1) {
                     la
                     taille du Text() qui diminue d'où le 'clipage' du texte. Si on veut agir sur ces marges, il faut
                     utiliser <i>BasicTextField()</i></p>
-                <img src="IMAGES/TF_heigth.jpg" ><br>
+                <img src="IMAGES/TF_heigth.jpg"><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="OTEXTFIELD">OutlinedTextField()</h2>
@@ -1945,7 +1948,7 @@ LaunchedEffect(focusManager1) {
             ),
         )
 </code></pre><br>
-                    <img src="IMAGES/OTextField.jpg" >
+                    <img src="IMAGES/OTextField.jpg">
                 </ul> <br>
                 <!-- ################################################################################################ -->
                 <h2 id="CHECKBOX">Checkbox()</h2>
@@ -2133,7 +2136,8 @@ fun MyApp() {
 
                 <!-- =========================== Code ========================================================= -->
                 <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">RadioButton()<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+                    <div class="CodeAreaHeader">RadioButton()<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
                     <pre><code>package com.example.radiobutton
 
 import android.os.Bundle
@@ -2188,7 +2192,7 @@ fun MyApp() {
 </code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
-                 <img src="IMAGES/RadioButton.jpg" class="w300">
+                <img src="IMAGES/RadioButton.jpg" class="w300">
 
                 <!-- ################################################################################################ -->
                 <h2 id="CUSTOM">Composable personnalisé</h2>
@@ -2297,7 +2301,150 @@ fun MyPreview() {
 </code></pre>
                 </div><br>
                 <!-- ============================= Fin Code ================================================ -->
-                  <!-- ################################################################################################ -->
+
+                <!-- ################################################################################################ -->
+                <h2 id="ALERTD">Alert Dialog</h2>
+                <p>Le composant <b>AlertDialog</b> affiche une boite de dialogue pop-up par dessus l'interface
+                    utilisateur pour permettre à l'utilisateur d'effectuer des taches comme:</p>
+                <ul>
+                    <li>Confirmation d'une action, par exemple lors de la suppression d'un fichier,</li>
+                    <li>Demander des entrées utilisateur, par exemple dans une application de liste de tâches,</li>
+                    <li>Présenter une liste d'options, comme choisir un pays dans la configuration d'un profil</li>
+                </ul>
+                <img src="IMAGES/AlertDialogSample.jpg">
+                <p>Le composable <b>AlertDialog</b> peut être personnalisé à l'aide de plusieurs paramètres spécifiques:
+                </p>
+                <img src="IMAGES/AlertDialogParameters.jpg" alt="">
+                <p>En général, les plus utilisés sont:</p>
+                <ul>
+                    <li><b><i>onDismissRequest = { ... }</i></b></li>
+                    permet de définir les tâches qui seront exécutées quand on désire quitter en cliquant en dehors du
+                    Dialogue
+                    <li><b><i>title = { ... }</i></b></li>
+                    Permet de définir le titre du dialogue qui s'affiche en haut de la boite. C'est un conteneur, en
+                    général, le titre est placé dans un composable <i>Text()</i>. On peut essayer d'y placer d'autres
+                    composables
+                    <li><b><i>texte = { ... }</i></b></li>
+                    C'est aussi un conteneur. Il s'affiche en dessous du titre. En général on y place un message dans un
+                    composable <i>Text()</i>. On peut aussi y placer d'autres composables comme un <i>TextField()</i>
+                    pour
+                    saisir une donnée,
+                    <li><b><i>confirmButton = { ... }</i></b></li>
+                    C'est aussi un conteneur. On y place le bouton de confirmation,
+                    <li><b><i>dismissButton = { ... }</i></b></li>
+                    C'est aussi un conteneur. On y place le bouton d'annulation,
+                </ul><br>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Exemple<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>package com.example.alertdialog1
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    var statusMSG by remember { mutableStateOf("Status inconu") }
+    var showDialog1 by remember { mutableStateOf(false) }
+    Column(horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()) {
+        Button(onClick = {
+            showDialog1 = true
+        }) {
+            Text(text = "Montrer Dialog")
+        }
+        Text(text = statusMSG)
+    }
+    if (showDialog1) {
+        AlertDialog(
+            onDismissRequest = {
+                statusMSG = "Ignoré"
+                showDialog1 = false
+            },
+            title = { Text(text = "Alerte!", color = Color.Red) },
+            text = {  Text(text = "Voulez-vous vraiment supprimer le fichier", fontSize = 20.sp)  },
+            confirmButton = {
+                Button(onClick = {
+                    statusMSG = "Confirmé"
+                    showDialog1 = false
+                }) {
+                    Text(text = "Confirmer")
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    statusMSG = "Annulé"
+                    showDialog1 = false
+                }) {
+                    Text("Annuler")
+                }
+            }
+        )
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <p>L'interface utilisateur contient un bouton <i>Montrer Dialog</i> et un champ de texte.
+                    Quand on clique sur le bouton, une boite de dialogue s'ouvre. Au retour du Dialogue, le champ de
+                    texte affichera un status correspondant au choix qui a été fait dans le dialogue.
+                </p>
+                <ul>
+                    <li>Si on quitte le dialogue en cliquant en dehors de la boite, on retourne avec le status
+                        <i>Ignoré</i>.
+                    </li>
+                    <li>Si on quitte le dialogue en cliquant sur le bouton <i>Confirmer</i>, on retourne avec le status
+                        <i>Confirmé</i>.
+                    </li>
+                    <li>Si on quitte le dialogue en cliquant sur le bouton <i>Annuler</i>, on retourne avec le status
+                        <i>Annulé</i>.
+                    </li>
+                    <img src="IMAGES/AlertDialogExStart.jpg" alt=""><br> <img src="IMAGES/AlertDialogSample.jpg" alt="">
+                    <li>L'appel à <i>AlertDialog</i> ne peut se faire qu'à partir d'une fonction composable. C'est pour
+                        cette raison qu'on ne peut pas l'appeler dans le <i>onClick</i> du bouton <i>Montrer Dialog</i>.
+                        De ce fait, on crée une variable d'état booléenne (ici <i>showDialog1</i> ) qui nous permettra
+                        de controller l'apparition de la boite de dialogue. <br>
+                        <p>L'appel à <i>AlertDialog</i> est placé dans la fonction composable <i>MyApp()</i> mais il est
+                            conditionné par l'état de la variable <i>showDialog1</i></p>
+                        <p>Quand on clique sur le bouton <i>Montrer Dialog</i>, on place la variable à <i>true</i>. Le
+                            changement de la variable provoque la recomposition de <i>MyApp()</i> qui conduit à
+                            l'ouverture de la boite de dialogue puisque l'état de la variable est <i>true</i></p>
+                        <p>A partir du dialogue, si on clique sur <i>Confirmer, Annuler</i> ou en dehors de la boite,
+                            alors la variable est placée à <i>false</i>. Le changement provoque la recomposition de L'UI
+                            entraînant la fermeture de la boîte de dialogue lors de la recomposition.</p>
+
+                    </li>
+                </ul><br>
+
+
+
+
+                <!-- ################################################################################################ -->
                 <h2 id="MODIFIER">Les Modifiers</h2>
                 <p>Chaque composable peut être caractérisé par un ensemble de paramètres (attributs) qui définissent ses
                     propriétés spécifiques: taille, couleur, style ...</p>
@@ -2319,7 +2466,7 @@ fun MyPreview() {
         .border(width=5.dp, Color.Blue)
         .background(Color.Green)
     )</code></pre><br>
-    <img src="IMAGES/Modifier.jpg" class="w 200">
+                <img src="IMAGES/Modifier.jpg" class="w 200">
                 <br><br><br><br>
 
             </div>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Datastore</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h2>Introduction</h2>
+                </a>
+                <a href="#PDSTART">
+                    <h2>Mise en place</h2>
+                </a>
+                <a href="#PDSEX1">
+                    <h2>Exemple 1</h2>
+                </a>
+                <a href="#PDSEX2">
+                    <h2>Exemple 2</h2>
+                </a>
+                <a href="#PDSEX3">
+                    <h2>Exemple 3</h2>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png">
+                <h1>Preferences Datastore</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p><b><i>Preferences DataStore</i></b> est une solution de stockage de données qui vous permet de stocker <i>assez
+                        facilement</i> de petites quantité de données dans la mémoire permanente. Les donnés sont
+                    stockées sous forme de <b>clé-valeur</b>. Les clés permettent ensuite de retrouver les données.
+                    DataStore utilise les coroutines Kotlin et Flow pour stocker les données de manière asynchrone.
+                    Preferences Datastore est idéal pour de petites quantités de données comme les préférences
+                    utilisateur. Pour des volumes de données plus importants, il est recommandé d'utiliser une base de
+                    données comme Room.
+                </p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="PDSTART">Mise en place</h2>
+                <p>Pour pouvoir utiliser la librairie du datastore, il faut quelques ajustement dans les fichiers du
+                    gradle:</p>
+                <ol>
+                    <li>Accéder à la <a target="_blank"
+                            href="https://developer.android.com/topic/libraries/architecture/datastore?hl=fr"> doc
+                            officielle </a>pour savoir qu'elle est la version actuelle de la librairie</li>
+                    <img src="IMAGES/PDS_version.jpg">
+
+                    <li>Dans le fichier <b><i>libs.versions.toml</i></b>, ajouter:</li><br>
+                    [versions] <br>
+                    …<br><em>pdsversion = "1.1.1"</em><br><br>
+
+                    [libraries] <br>
+                    …<br>
+                    <em>androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences",
+                        version.ref = "pdsversion" }</em>
+                    <br><br>
+                    <li>Dans le fichier <b><i>build.gradle.kts (Module :app)</i></b>, ajouter:</li><br>
+                    dependencies {<br>
+                    <ul>
+                        …<br>
+                        <em>implementation (libs.androidx.datastore.preferences)</em> <br>
+                    </ul>
+
+                    }<br><br>
+                    <li><b>Synchroniser le gradle</b></li>
+                    <img src="IMAGES/SyncGradle.jpg" alt="">
+                </ol>
+
+                <br>
+                <!-- ################################################################################################ -->
+                <h2 id="PDSEX1">Exemple 1</h2>
+                <p>Dans cet exemple, on va réaliser une implémentation très simple pour tester le datastore</p>
+                <ul>
+                    <li>Pour commencer, on va tout placer dans le fichier MainActivity. On verra plus tard comment
+                        séparer la gestion du datastore dans un fichier dédié.</li>
+                    <li>L'application est minimale. Elle est constituée d'un champ de saisie, un bouton
+                        <i>Sauvegarder</i>, un bouton <i>Lire</i> et un autre champ de saisie utilisé pour l'affichage
+                    </li>
+                    <img src="IMAGES/PDS_ex1.jpg">
+                    <li>Quand on clique sur le bouton <i>Sauvegarder</i>, le texte contenu dans champ de saisie est
+                        enregistré
+                        dans le datastore avec une clé spécifique. Si on clique sur le bouton <i>Lire</i>, le texte
+                        sauvegardé
+                        esr récupérée dans le datastore est affiché dans le champ d'affichage. L'opération de lecture
+                        utilise la même clé utilisée lors de l'écriture.</li>
+                    <li>C'est une implémentation asynchrone, la lecture du datastore est déclenchée par le clic sur
+                        le bouton <i>Lire</i>. On verra plus tard comment déclencher la lecture d'une donnée dès que le
+                        système détecte son changement </li>
+                    <li>Pour s'assurer que la donnée est bien stockée dans une mémoire permanente, fermez l'application,
+                        redémarrer la et cliquez sur le bouton <i>Lire</i></li>
+                </ul>
+                <br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Exemple 1<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>package package com.example.pdatastore1
+
+import android.content.Context
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+<em>val Context.dataStore by preferencesDataStore(name = "settings")
+val key = stringPreferencesKey("STR_KEY")</em>
+
+@Composable
+fun MyApp() {
+    <em>val context = LocalContext.current
+    val scope = rememberCoroutineScope()</em>
+    var textToSave by remember { mutableStateOf("") }
+    var savedText by remember { mutableStateOf("") }
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
+    ) {
+        OutlinedTextField(
+            value = textToSave,
+            onValueChange = { textToSave = it },
+        )
+
+        Button(onClick = {
+            <em>scope.launch {
+                writeString(context, textToSave)
+            }</em>
+        }) {
+            Text(text = "Sauvegarder")
+        }
+
+        Button(onClick = {
+            <em>scope.launch {
+                savedText = readString(context).first()
+            }</em>
+        }) {
+            Text(text = "Lire")
+        }
+
+        OutlinedTextField(
+            value = savedText,
+            onValueChange = { savedText = it }
+        )
+    }
+}
+<em>
+suspend fun writeString(context: Context, value: String) {
+    context.dataStore.edit { preferences -&gt;
+        preferences[key] = value
+    }
+}
+
+fun readString(context: Context): Flow&lt;String&gt; {
+    return context.dataStore.data.map { preferences -&gt;
+        preferences[key] ?: ""
+    }
+}
+
+//fun readString(context: Context) = context.dataStore.data.map { it[key] ?: ""  }
+</em>
+
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+                <h3>Quelques explications sur le code</h3>
+                <ul>
+                    <li>
+                        <pre><code>val Context.dataStore by preferencesDataStore(name = "settings")</code></pre>
+                        On déclare un DataStore nommé "settings" associé au contexte de l'application. Il est déclaré
+                        en globale pour être accessible dans les fonctions <i>writeString</i> et <i>readString</i>.
+                    </li>
+                    <li>
+                        <pre><code>val key = stringPreferencesKey("STR_KEY")</code></pre>
+                        Définit une clé unique pour identifier les données dans DataStore
+                    </li>
+                    <li>Le composable principal, <i>MyApp()</i>, gère deux champs de texte et deux boutons. Le premier
+                        champ de texte permet de saisir les données à sauvegarder (textToSave), l'autre sert à
+                        afficher les données sauvegardées (savedText). Le bouton <i>Sauvegarder</i> demande la
+                        sauvegarde. Le bouton <i>Lire</i> demande la relecture </li>
+                    <li>
+                        <pre><code>suspend fun writeString(context: Context, value: String) {
+    context.dataStore.edit { preferences -&gt;
+        preferences[key] = value
+    }
+}
+</code></pre>
+                        Cette fonction permet de sauvegarder une chaîne dans le datastore. C'est une fonction de type
+                        <i>suspend</i>, elle suspend momentanément l'exécution du reste de l'application. Il faut
+                        l'appeler dans une <i>coroutine</i> d'où la variable <i>scope</i> déclarée dans MyApp()
+                        <pre><code>scope.launch {
+                writeString(context, textToSave)
+            }</code></pre>
+                    </li><br>
+                    <li>
+                        <pre><code>fun readString(context: Context): Flow&lt;String&gt; {
+    return context.dataStore.data.map { preferences -&gt;
+        preferences[key] ?: ""
+    }
+}</code></pre>
+                        Cette fonction permet de lire une chaîne dans le datastore. Elle n'est pas de type
+                        <i>suspend</i>, on n'est pas obligé de l'appeler dans une <i>coroutine</i>, nous l'avons tout de
+                        même fait, car cette fonction retourne un flux de données <i>(Flow&lt;String&gt;)</i>, et la
+                        méthode <i>.first()</i> qui permet de récupérer le premier élément du flux doit être exécutée
+                        dans une <i>coroutine</i>
+                        <pre><code>scope.launch {
+                savedText = readString(context).first()
+            }</code></pre><br>
+                        On peut utiliser une syntaxe différente pour la fonction de lecture:
+                        <pre><code>fun readString(context: Context) = context.dataStore.data.map { it[key] ?: ""  }</code></pre>
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="PDSEX2">Exemple 2</h2>
+                <p>Nous allons reprendre le même exemple que précédemment, mais cette fois on va placer la gestion du
+                    datastore dans un fichier à part. C'est comme ça que l'on procédera dorénavant.</p>
+                <ol>
+                    <li>Ajouter les dépendances dans le gradle comme indiqué dans le paragraphe <i>Mise en place</i>
+                    </li>
+                    <li>Ajouter un <b>package</b> au projet. La première lettre du nom du package doit être en
+                        minuscule. On
+                        peut par exemple l'appeler <i>data</i></li>
+                    <i>ClicDroit(app/kotlin+java/com.example.nomappli) &rarr; new &rarr; pakage &rarr; data &rarr; Enter
+                    </i>
+                    <li>Dans ce package, ajouter une <b>dataclasse</b> que l'on peut appeler <i>PDSmanager</i></li>
+                    Clicdroit(data) &rarr; new &rarr; Kotlin class/file &rarr; PDSmanager &rarr; clic(Data class) &rarr;
+                    Enter <br>
+                    Le fichier PDSmanager.kt s'ouvre. C'est là que l'on va créer le datastore et les fonctions
+                    associées <br>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Exemple 2: le Datastore manager<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button>
+                        </div>
+                        <pre><code>package com.example.pdatastore2.data
+
+import android.content.Context
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+private val Context.dataStore by preferencesDataStore("PDSEX2")
+
+data class PDSmanager(private val context: Context){
+
+    suspend fun writeString(strkey: String, value: String) {
+        val key = stringPreferencesKey(strkey)
+        context.dataStore.edit { preferences -&gt;
+            preferences[key] = value
+        }
+    }
+
+    fun readString(strkey: String,): Flow&lt;String&gt; {
+        val key = stringPreferencesKey(strkey)
+        return context.dataStore.data.map { preferences -&gt;
+            preferences[key] ?: ""
+        }
+    }
+}
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                    <li>Adapter l'UI comme suit:</li>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Exemple 2: MainActivity<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.pdatastore2
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import com.example.pdatastore2.data.PDSmanager
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+
+@Composable
+fun MyApp() {
+    val myPDSmanager = PDSmanager(LocalContext.current)
+    val coroutineScope = rememberCoroutineScope()
+    var textToSave by remember { mutableStateOf("") }
+    var savedText by remember { mutableStateOf("") }
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
+    ) {
+        OutlinedTextField(
+            value = textToSave,
+            onValueChange = { textToSave = it },
+        )
+
+        Button(onClick = {
+            coroutineScope.launch {
+                myPDSmanager.writeString("KEY2", textToSave)
+            }
+        }) {
+            Text(text = "Sauvegarder")
+        }
+
+        Button(onClick = {
+            coroutineScope.launch {
+                savedText = myPDSmanager.readString("KEY2").first()
+            }
+        }) {
+            Text(text = "Lire")
+        }
+
+        OutlinedTextField(
+            value = savedText,
+            onValueChange = { savedText = it },
+        )
+    }
+}
+
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                </ol><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="PDSEX3">Exemple 3</h2>
+                <p>On va reprendre l'exemple précédent. On va supprimer le bouton <i>Lire</i>. On va faire de sorte que
+                    la donnée sauvegardée soit actualisée automatiquement dans l'application dès son changement dans le
+                    datastore</p>
+                <ul>
+                    <li>Le PDSmanager ne change pas</li>
+                    <li>Adapter l'UI comme suit:</li>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Exemple 3: MainActivity<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>package com.example.pdatastore3
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import com.example.pdatastore3.data.PDSmanager
+import kotlinx.coroutines.launch
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApp()
+        }
+    }
+}
+
+
+@Composable
+fun MyApp() {
+    val myPDSmanager = PDSmanager(LocalContext.current)
+    val coroutineScope = rememberCoroutineScope()
+    var textToSave by remember { mutableStateOf("") }
+    <em>val savedText by myPDSmanager.readString("KEY3").collectAsState(initial = "")</em>
+    
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
+    ) {
+        OutlinedTextField(
+            value = textToSave,
+            onValueChange = { textToSave = it },
+        )
+
+        Button(onClick = {
+            coroutineScope.launch {
+                myPDSmanager.writeString("KEY3", textToSave)
+            }
+        }) {
+            Text(text = "Sauvegarder")
+        }
+        
+        Text(text =savedText,
+            modifier = Modifier
+                .size(300.dp, 50.dp)
+                .border( width=2.dp, Color.Blue, shape = RoundedCornerShape(5.dp) )
+                .wrapContentHeight(Alignment.CenterVertically)
+                .padding(start = 10.dp)
+        )
+    }
+}
+
+</code></pre>
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
+                </ul>
+                <p></p>
+                <p></p>
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
