@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Bluetooth</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <a href="#ASSOC">
+                    <h3>Association des équipements</h3>
+                </a>
+                <a href="#MINAPI">
+                    <h3>Minimum SDK</h3>
+                </a>
+                <a href="#PERM">
+                    <h3>Autorisation dans le manifest</h3>
+                </a>
+                <a href="#APP">
+                    <h3>Structure de l'application</h3>
+                </a>
+                <div class="rubrique" onclick="toggleMenu('rbrq1', this)">
+                    <span>&gt;</span>
+                    <h2>Fichier MainActivity.kt</h2>
+                </div>
+                <div id="rbrq1" class="sub-rubrique">
+                    <a href="#GCONST">
+                        <h3>Constantes globales</h3>
+                    </a>
+                    <a href="#BLCLASS">
+                        <h3>Classe pour connecter un device Bluetooth</h3>
+                    </a>
+                    <a href="#COMMCLASS">
+                        <h3>Classe de communication Bluetooth</h3>
+                    </a>
+                    <div class="rubrique" onclick="toggleMenu('mainActivity', this)">
+                        <span>&gt;</span>
+                        <h2>Classe MainActivity</h2>
+                    </div>
+                    <div id="mainActivity" class="sub-rubrique">
+                        <a href="#BLOBJECTS">
+                            <h3>Déclarations</h3>
+                        </a>
+                        <div class="rubrique" onclick="toggleMenu('onCreate', this)">
+                            <span>&gt;</span>
+                            <h2>La fonction onCreate()</h2>
+                        </div>
+                        <div id="onCreate" class="sub-rubrique">
+                            <a href="#ADAPTERINIT">
+                                <h3>Initialiser le bluetoothAdapter</h3>
+                            </a>
+                            <a href="#ACTLUNCHER">
+                                <h3>Enregistrer le luncher d'activation du Bluetooth</h3>
+                            </a>
+                            <a href="#AUTLUNCHER">
+                                <h3>Enregistrer le luncher de demande d'autorisation</h3>
+                            </a>
+                            <a href="#HANDLER">
+                                <h3>Configurer le Handler de messages</h3>
+                            </a>
+                            <a href="#ACTCON">
+                                <h3>Activer le Bluetooth et connecter le HC-05</h3>
+                            </a>
+                            <a href="#CALLUI">
+                                <h3>Composer l'UI</h3>
+                            </a>
+                            <a href="#ACTFUNC">
+                                <h3>La fonction activerBluetooth()</h3>
+                            </a>
+                        </div>
+                        <a href="#HC05">
+                            <h3>La fonction connectHC05()</h3>
+                        </a>
+                    </div>
+                    <a href="#MYUI">
+                        <h3>La fonction composable MyUI()</h3>
+                    </a>
+                </div>
+                <a href="#CODE">
+                    <h3>Le code entier</h3>
+                </a><br>
+                <a href="#ARDUINO">
+                    <h3>Coté Arduino</h3>
+                </a>
+
+
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png">
+                <h1>Bluetooth</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>La mise en œuvre du Bluetooth sous Jetpack Compose est assez ardue. La <a class="link"
+                        target="_blank"
+                        href="https://developer.android.com/develop/connectivity/bluetooth/setup">Documentation
+                        officielle</a> est loin d'être suffisante
+                </p>
+                <p>Je vais exposer l'exemple d'une application basique qui communique avec le module Bluetooth HC05
+                    connecté à un Arduino. L'application va nous permettre de contrôler un petit système constitué d'une
+                    LED, un Buzzer et un capteur analogique</p>
+                <img src="IMAGES/BluetoothApp1.jpg" alt="">
+                <br>
+                <p>L'UI de l'application est constituée par :</p>
+                <ul>
+                    <li>Une zone de texte qui nous permet de suivre le status de l'application</li>
+                    <li>Un bouton qui permet d'effacer la zone de status</li>
+                    <li>Un bouton pour connecter le HC-05</li>
+                    <li>Un bouton pour déconnecter le HC-05</li>
+                    <li>Un Switch qui permet d'allumer/éteindre la LED. Quand on le place sur position 'ON', il envoie
+                        le
+                        caractère 'A' vers le Arduino. Quand on le place sur position 'OFF', il envoie le caractère 'B'
+                        vers le Arduino</li>
+                    <li>Un Switch qui permet d'allumer/éteindre le buzzer. Comme le switch de la LED, celui-ci envoie
+                        soit le
+                        caractère 'C', soit le caractère 'D'</li>
+                    <li>Le bouton READ envoie le caractère 'E' vers l'Arduino pour lui de mander la valeur du capteur
+                        analogique. La réponse retournée est affichée dans le champ de texte voisin</li>
+                </ul><br>
+                <h2 id="ASSOC">Association des équipement Bluetooth</h2>
+                <p>Avant de commencer à travailler sur l'application, précisons un point important:</p>
+                <ul>
+                    <li>Pour un équipement Bluetooth, Il y a une différence entre être <b>associé</b> et être
+                        <b>connecté,</b>
+                    </li>
+                    <li>Être associés signifie que deux appareils sont conscients de l'existence l'un de l'autre, ont
+                        une
+                        clé de liaison partagée qui peut être utilisée pour l'authentification et sont capables
+                        d'établir
+                        une connexion chiffrée l'un avec l'autre,</li>
+                    <li>Être connecté signifie que les appareils partagent actuellement un canal RFCOMM et sont capables
+                        de transmettre des données entre eux. Les API Bluetooth actuelles nécessitent que les appareils
+                        soient associés avant qu'une connexion RFCOMM puisse être établie,</li>
+                    <li><strong>Pour notre application, l'association des équipement Bluetooth sera faite avec le
+                            service
+                            Bluetooth du téléphone avant
+                            de lancer l'application</strong></li>
+
+                </ul><br>
+                <h2 id="MINAPI">Minimum SDK</h2>
+                <p>Lors de la création du projet, choisir l'Appi 31 ou ultérieure comme minimum SDK</p>
+                <img src="IMAGES/BluetoothMinSDK.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="PERM">Autorisation Dans le manifest</h2>
+                <p>Ajouter la permission d'utiliser le Bluetooth au fichier <i>AndroidManifest.xml</i> </p>
+                <img src="IMAGES/BluetoothManifest.jpg" alt=""><br>
+                <pre><code>...
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"&gt;
+    <em>&lt;uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /&gt;</em>
+    &lt;application
+    ...</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="APP">Structure de l'application</h2>
+                <p>Pour faciliter l'analyse, toute l'application sera placée dans un seule fichier: MainActivity.kt </p>
+                <p>L'application sera constituée des blocs suivants:
+                <ul>
+                    <li>Declaration de quelques constantes globales et classes Bluetooth</li>
+                    <li>La classe MainActivity</li>
+                    <li>Fonctions utilisateur </li>
+                    <li>Fonction composable UI qui dessine l'interface utilisateur</li>
+                </ul>
+                </p>
+                <!-- ################################################################################################ -->
+                <h2 id="GCONST">Constantes globales</h2>
+                <pre><code>private val MY_UUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+const val CONNECTION_FAILED: Int = 0
+const val CONNECTION_SUCCESS: Int = 1
+const val WRITE_ERROR: Int = 2
+const val DISCONNECTION_SUCCESS: Int = 3
+const val DISCONNECTION_FAILED: Int = 4
+</code></pre><br>
+                <!-- ################################################################################################ -->
+                <h2 id="BLCLASS">Classe pour connecter un device Bluetooth</h2><br>
+                <pre><code>//######## Classe pour connecter un device Bluetooth ###############################################
+@SuppressLint("MissingPermission")
+class ConnectThread(private val monDevice: BluetoothDevice, private val handler: Handler) :
+    Thread() {
+    private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
+        monDevice.createRfcommSocketToServiceRecord(MY_UUID)
+    }
+
+    override fun run() {
+        mmSocket?.let { socket -&gt;
+            try {
+                socket.connect()
+                handler.obtainMessage(CONNECTION_SUCCESS).sendToTarget()
+            } catch (e: Exception) {
+                handler.obtainMessage(CONNECTION_FAILED).sendToTarget()
+            }
+            dataExchangeInstance = DataExchange(socket, handler)
+        }
+    }
+}
+</code></pre><br>
+                <!-- ################################################################################################ -->
+                <h2 id="COMMCLASS">Classe d'échange à travers le bluetooth</h2>
+                <p>Cette classe contient les méthodes permettant de communiquer avec le HC-05</p>
+                <pre><code>//######## Classe d'échange à travers le bluetooth ##########################################
+class DataExchange(private val mmSocket: BluetoothSocket, private val handler: Handler) : Thread() {
+    private val mmInStream: InputStream = mmSocket.inputStream
+    private val mmOutStream: OutputStream = mmSocket.outputStream
+
+    // Envoyer une donnée à travers le bluetooth
+    fun write(str: String) {
+        try {
+            mmOutStream.write(str.toByteArray())
+        } catch (_: IOException) {
+            handler.obtainMessage(WRITE_ERROR).sendToTarget()
+        }
+    }
+
+    // Envoyer une requête (string) et lire la réponse (String)
+    fun request(outstr: String, length: Int): String {
+        val mmBuffer = ByteArray(length)
+        // vider le buffer d'entrée
+        while (mmInStream.available() &gt; 0) mmInStream.read()  // vider lebuffer
+        // transmettre le string de sortie
+        try {
+            mmOutStream.write(outstr.toByteArray())
+        } catch (_: IOException) {
+        }
+        // lire le string reçu
+        var numBytesReaded = 0
+        try {
+            while (numBytesReaded &lt; length) {
+                val num = mmInStream.read(mmBuffer, numBytesReaded, length - numBytesReaded)
+                if (num == -1) {
+                    break
+                }
+                numBytesReaded += num
+            }
+            return String(mmBuffer, 0, numBytesReaded)
+        } catch (e: IOException) {
+            return "erreur"
+        }
+    }
+
+    // déconnecter l'équipement connecté
+    fun cancel() {
+        try {
+            mmSocket.close()
+            handler.obtainMessage(DISCONNECTION_SUCCESS).sendToTarget()
+        } catch (e: IOException) {
+            handler.obtainMessage(DISCONNECTION_FAILED).sendToTarget()
+        }
+    }
+}
+</code></pre><br>
+                <p>En plus de la classe, il faut déclarer une instance de la classe qui sera initialisée par la classe
+                    qui connecte le HC-05</p>
+                <pre><code>//######## Instances de la classe d'échange ########################################################
+var dataExchangeInstance: DataExchange? = null</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h2>La classe MainActivity</h2>
+                <h3 id="BLOBJECTS">Déclarations des variables Bluetooth et autres objets</h3>
+                <p>A placer avant la fonction onCreate()</p>
+                <pre><code>    private lateinit var bluetoothAdapter: BluetoothAdapter
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher&lt;String&gt;
+    private lateinit var bluetoothActivationLauncher: ActivityResultLauncher&lt;Intent&gt;
+    private lateinit var handler: Handler
+    private val status = mutableStateOf("")</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ADAPTERINIT">Initialiser le bluetoothAdapter</h3>
+                <p>A placer dans la fonction onCreate en dessous de super.onCreate()</p>
+                <pre><code>bluetoothAdapter = getSystemService(BluetoothManager::class.java).adapter</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ACTLUNCHER">Enregistrer le luncher d'activation du Bluetooth</h3>
+                <p>Ce luncher nous servira plus tard pour activer le Bluetooth et connecter le HC-05. Un luncher démarre
+                    une tâche asynchrone (comme une coroutine ou une tâche en arrière-plan) qui se déroule sans bloquer
+                    le flux principal du code
+                </p>
+                <pre><code>// Enregistrement du luncher d'activation du Bluetooth
+        bluetoothActivationLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { response -&gt;
+            if (response.resultCode == RESULT_OK) {
+                status.value += "Bluetooth activé\nTentative de connexion au HC-05\n"
+                status.value += connectHC05(bluetoothAdapter, handler)
+            } else {
+                Toast.makeText(this, "L'appli ne peut pas fonctionner sans Bluetooth", Toast.LENGTH_LONG).show()
+                this.finish()
+            }
+        }</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="AUTLUNCHER">Enregistrer le luncher de demande d'autorisation</h3>
+                <p>Ce luncher nous servira plus tard pour demander l'autorisation d'utiliser le bluetooth</p>
+                <pre><code>// Enregistrement du luncher de demande d'autorisation
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean -&gt;
+            if (isGranted) {
+                status.value += "Autorisation acceptée\n"
+                activerBluetooth()
+            } else {
+                Toast.makeText(this, "L'app ne peut pas fonctionner sans cette autorisation", Toast.LENGTH_LONG).show()
+                this.finish()
+            }
+        }</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="HANDLER">Configurer le Handler de messages</h3>
+                <p>Les échanges via Bluetooth sont gérés par des threads, qui sont des processus d'arrière-plan
+                    s'exécutant en parallèle du reste du code. Le Handler permet la communication entre ces threads et
+                    l'interface utilisateur. Les threads envoient des messages sous forme de codes ou d'identifiants
+                    spécifiques, que le Handler intercepte pour mettre à jour la variable status. Cette variable est
+                    ensuite utilisée dans l'interface utilisateur pour afficher les informations relatives à la
+                    connexion ou aux actions effectuées.</p>
+                <pre><code>// Configuration du handler de messages
+        handler = Handler(Looper.getMainLooper()) { msg -&gt;
+            when (msg.what) {
+                CONNECTION_FAILED -&gt; {
+                    status.value += "Connexion à HC-05 échoué\n"
+                    true
+                }
+
+                CONNECTION_SUCCESS -&gt; {
+                    status.value += "Connexion à HC-05 réussie\n"
+                    true
+                }
+
+                WRITE_ERROR -&gt; {
+                    status.value += "Erreur de transmission\n"
+                    true
+                }
+
+                DISCONNECTION_SUCCESS -&gt; {
+                    status.value += "Déconnexion réussie\n"
+                    true
+                }
+
+                DISCONNECTION_FAILED -&gt; {
+                    status.value += "La déconnexion a échoué\n"
+                    true
+                }
+
+                else -&gt; false
+            }
+        }</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ACTCON">Activer le Bluetooth et connecter le HC-05</h3>
+                <p>C'est ici que commence réellement le travail
+                <ul>
+                    <ul>
+                        <li>On vérifie si l'appli dispose déjà de l'autorisation d'utiliser le Bluetooth</li>
+                        <li>Si oui, on appelle la fonction <i>activerBluetooth()</i>. Cette fonction est placée juste
+                            après
+                            <i>onCreate()</i>, nous allons en parler dans un instant.
+                        </li>
+                        <li>Si non, on démarre le luncher qui demande l'autorisation</li>
+                    </ul>
+                </ul>
+                </p>
+                <pre><code>// Vérifier si l'appli dispose de l'autorisation Bluetooth
+        // activer le bluetooth et connecter le HC-05
+        val bluetoothPermission = android.Manifest.permission.BLUETOOTH_CONNECT
+        if (ContextCompat.checkSelfPermission(
+                this,
+                bluetoothPermission
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            status.value += "Autorisation déjà accordée\n"
+            activerBluetooth()  // activer Bluetooth et connecter le HC-05
+        } else {
+            status.value += "On va demander l'autorisation\n"
+            requestPermissionLauncher.launch(bluetoothPermission) // demander l'autorisation
+        }</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CALLUI">Appeler la fonction composable MyUI()</h3>
+                <p>La fonction MyUI() compose l'Interface utilisateur. On l'appelle dans le bloc <i>setContent { }</i>.
+                    On a terminé la fonction <i>onCreate()</i> </p>
+                <pre><code>// ================= UI Jetpack Compose ====================================================
+        setContent {
+            MyUI(bluetoothAdapter, handler, status)
+        }</code></pre><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ACTFUNC">La fonction activerBluetooth()</h3>
+                <p>Cette fonction est placée dans la classe MainActivity après <i>onCreate</i></p>
+                <ul>
+                    <li>On vérifie si le Bluetooth est déjà activé</li>
+                    <li>Si oui, on appelle la fonction <i>connectHC05()</i></li>
+                    <li>Sinon, on lance le luncher qui demande l'activation du Bluetooth</li>
+                </ul>
+                <pre><code>// Fonction pour Activer le Bluetooth et se connecter au HC-05
+    private fun activerBluetooth() {
+        if (bluetoothAdapter.isEnabled) {
+            status.value += "Bluetooth déjà actif\nTentative de connexion\n"
+            status.value += connectHC05(bluetoothAdapter, handler)
+        } else {
+            status.value += "Bluetooth non actif\nOn demande l'activation\n"
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            bluetoothActivationLauncher.launch(enableBtIntent)
+        }
+    }</code></pre>
+                <br><!-- ################################################################################################ -->
+                <h2 id="HC05">La fonction connectHC05</h2>
+                <p>Cette fonction découvre la listes des équipements Bluetooth associés. Si le HC-05 en fait partie elle
+                    le connecte.</p>
+                <p>Elle est placée en dehors de la classe <i>MainActivity</i> car on l'appelle aussi à partir
+                    l'interface Utilisateur <i>MyUI()</i></p>
+                <pre><code>//#### Fonction pour connecter le HC-05#############################################################
+@SuppressLint("MissingPermission")
+private fun connectHC05(bluetoothAdapter: BluetoothAdapter?, handler: Handler): String {
+    // récupérer la liste des équipements associés
+    val pairedDevices: Set&lt;BluetoothDevice&gt;? = bluetoothAdapter?.bondedDevices
+    // localiser le HC-05 dans la liste
+    val hc05Device = pairedDevices?.find { it.name == "HC-05" }
+    // Si le HC-05 est associé, essayer de le connecter
+    if (hc05Device != null) {
+        ConnectThread(hc05Device, handler).start()
+        // les messages d'état sont remonté de ConnectThread() vers le handler
+        return ""
+    } else {
+        return "HC-05 Non Associé\n"
+    }
+}</code></pre><br>
+                <br><!-- ################################################################################################ -->
+                <h2 id="MYUI">La fonction MyUI() qui compose l'interface utilisateur</h2>
+                <p>L'interface utilisateur (UI) est assez basique. Elle est composée par la fonction composable MyUI().
+                    Elle contient:</p>
+                <ul>
+                    <li>Un <b>champ de texte</b> qui affiche la trace des étapes importante du déroulement de
+                        l'application</li>
+                    <li>Un bouton <b>Clear Status</b> qui permet d'effacer cette zone de texte</li>
+                    <li>Un bouton <b>Connecter</b> qui permet de connecter le HC-05 s'il ne l'est pas déjà</li>
+                    <li>Un bouton <b>déconnecter</b> qui permet de déconnecter le HC-05</li>
+                    <li>Un switch <b>LED</b> qui permet d'envoyer l'ordre d'<b>Allumer/Eteindre</b> la LED vers le
+                        Arduino</li>
+                    <li>Un switch <b>BUZZER</b> qui permet d'envoyer l'ordre d'<b>Allumer/Eteindre</b> le buzzer vers le
+                        Arduino</li>
+                    <li>Un bouton <b>READ</b> qui permet d'envoyer la requête de lecture du capteur analogique vers le
+                        Arduino. La réponse de ce dernier est affichée dans le champ de texte à droite du bouton </li>
+                </ul>
+                <pre><code>//The UI ###########################################################################################
+@Composable
+fun MyUI(
+    bluetoothAdapter: BluetoothAdapter?,
+    handler: Handler,
+    connectStatus: MutableState&lt;String&gt;
+) {
+    val capteur1 = remember { mutableStateOf("Rien") }
+    var isLedChecked by remember { mutableStateOf(false) }
+    var isBuzzerChecked by remember { mutableStateOf(false) }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            text = connectStatus.value,
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+                .background(Color(0x80E2EBEA))
+                .padding(start = 16.dp)  // marge intérieure
+        )
+
+        // Bouton pour effacer le statut
+        Button(onClick = { connectStatus.value = "" }) {
+            Text(text = "Clear Status")
+        }
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    dataExchangeInstance?.cancel()
+                    connectStatus.value += "Tentative de Connexion\n"
+                    connectStatus.value += connectHC05(
+                        bluetoothAdapter,
+                        handler
+                    )
+                }
+            ) {
+                Text("Connecter")
+            }
+
+            Button(
+                onClick = {
+                    dataExchangeInstance?.cancel()
+                    connectStatus.value += "Tentative de Déconnexion\n"
+                }
+            ) {
+                Text("Déconnecter")
+            }
+        }
+
+        // LED et Buzzer avec Switch
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "LED ")
+            Switch(
+                checked = isLedChecked,
+                onCheckedChange = {
+                    isLedChecked = it
+                    if (isLedChecked) dataExchangeInstance?.write("A")
+                    else dataExchangeInstance?.write("B")
+                },
+                thumbContent = if (isLedChecked) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else null
+            )
+            Spacer(modifier = Modifier.width(48.dp))
+            Text(text = "BUZZER ")
+            Switch(
+                checked = isBuzzerChecked,
+                onCheckedChange = {
+                    isBuzzerChecked = it
+                    if (isBuzzerChecked) dataExchangeInstance?.write("C")
+                    else dataExchangeInstance?.write("D")
+                },
+                thumbContent = if (isBuzzerChecked) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else null
+            )
+        }
+
+        // Lire le capteur
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    val str = dataExchangeInstance?.request("E", 5)
+                    if (str != null) {
+                        capteur1.value = str
+                    } else connectStatus.value = "rien"
+                },
+                modifier = Modifier.padding(start = 48.dp)
+            ) {
+                Text("  READ  ")
+            }
+
+            Text(
+                text = capteur1.value,
+                modifier = Modifier
+                    .padding(start = 96.dp)
+                    .background(Color(0x80E2EBEA))
+                    .padding(horizontal = 16.dp)  // marge intérieure
+            )
+        }
+    }
+}
+</code></pre><br>
+                <br><!-- ################################################################################################ -->
+                <h2 id="CODE">Le code entier</h2>
+                <p>Voici le code entier de l'application</p><br>
+
+
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Bluetooth - HC05<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code>@file:Suppress("LiftReturnOrAssignment")
+
+package com.example.bluetoothhc05a
+
+import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothSocket
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+import java.util.UUID
+
+//######## constantes  partagés ####################################################################
+private val MY_UUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+const val CONNECTION_FAILED: Int = 0
+const val CONNECTION_SUCCESS: Int = 1
+const val WRITE_ERROR: Int = 2
+const val DISCONNECTION_SUCCESS: Int = 3
+const val DISCONNECTION_FAILED: Int = 4
+
+//######## Classe pour connecter un device Bluetooth ###############################################
+@SuppressLint("MissingPermission")
+class ConnectThread(private val monDevice: BluetoothDevice, private val handler: Handler) :
+    Thread() {
+    private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
+        monDevice.createRfcommSocketToServiceRecord(MY_UUID)
+    }
+
+    override fun run() {
+        mmSocket?.let { socket -&gt;
+            try {
+                socket.connect()
+                handler.obtainMessage(CONNECTION_SUCCESS).sendToTarget()
+            } catch (e: Exception) {
+                handler.obtainMessage(CONNECTION_FAILED).sendToTarget()
+            }
+            dataExchangeInstance = DataExchange(socket, handler)
+        }
+    }
+}
+
+//######## Classe d'échange à travers le bluetooth ##########################################
+class DataExchange(private val mmSocket: BluetoothSocket, private val handler: Handler) : Thread() {
+    private val mmInStream: InputStream = mmSocket.inputStream
+    private val mmOutStream: OutputStream = mmSocket.outputStream
+
+    // Envoyer une donnée à travers le bluetooth
+    fun write(str: String) {
+        try {
+            mmOutStream.write(str.toByteArray())
+        } catch (_: IOException) {
+            handler.obtainMessage(WRITE_ERROR).sendToTarget()
+        }
+    }
+
+    // Envoyer une requête (string) et lire la réponse (String)
+    fun request(outstr: String, length: Int): String {
+        val mmBuffer = ByteArray(length)
+        // vider le buffer d'entrée
+        while (mmInStream.available() &gt; 0) mmInStream.read()  // vider lebuffer
+        // transmettre le string de sortie
+        try {
+            mmOutStream.write(outstr.toByteArray())
+        } catch (_: IOException) {
+        }
+        // lire le string reçu
+        var numBytesReaded = 0
+        try {
+            while (numBytesReaded &lt; length) {
+                val num = mmInStream.read(mmBuffer, numBytesReaded, length - numBytesReaded)
+                if (num == -1) {
+                    break
+                }
+                numBytesReaded += num
+            }
+            return String(mmBuffer, 0, numBytesReaded)
+        } catch (e: IOException) {
+            return "erreur"
+        }
+    }
+
+    // déconnecter l'équipement connecté
+    fun cancel() {
+        try {
+            mmSocket.close()
+            handler.obtainMessage(DISCONNECTION_SUCCESS).sendToTarget()
+        } catch (e: IOException) {
+            handler.obtainMessage(DISCONNECTION_FAILED).sendToTarget()
+        }
+    }
+}
+
+//######## Instances de la classe d'échange ########################################################
+var dataExchangeInstance: DataExchange? = null
+
+
+//###### Classe main activity Mainactivity #########################################################
+class MainActivity : ComponentActivity() {
+    // Déclarations des variables Bluetooth et autres objets
+    private lateinit var bluetoothAdapter: BluetoothAdapter
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher&lt;String&gt;
+    private lateinit var bluetoothActivationLauncher: ActivityResultLauncher&lt;Intent&gt;
+    private lateinit var handler: Handler
+    private val status = mutableStateOf("")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialisation du Bluetooth Adapter
+        bluetoothAdapter = getSystemService(BluetoothManager::class.java).adapter
+
+        // Enregistrement du luncher d'activation du Bluetooth
+        bluetoothActivationLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { response -&gt;
+            if (response.resultCode == RESULT_OK) {
+                status.value += "Bluetooth activé\nTentative de connexion au HC-05\n"
+                status.value += connectHC05(bluetoothAdapter, handler)
+            } else {
+                Toast.makeText(
+                    this,
+                    "L'appli ne peut pas fonctionner sans Bluetooth",
+                    Toast.LENGTH_LONG
+                ).show()
+                this.finish()
+            }
+        }
+
+        // Enregistrement du luncher de demande d'autorisation
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean -&gt;
+            if (isGranted) {
+                status.value += "Autorisation acceptée\n"
+                activerBluetooth()
+            } else {
+                Toast.makeText(
+                    this,
+                    "L'app ne peut pas fonctionner sans cette autorisation",
+                    Toast.LENGTH_LONG
+                ).show()
+                this.finish()
+            }
+        }
+
+        // Configuration du handler de messages
+        handler = Handler(Looper.getMainLooper()) { msg -&gt;
+            when (msg.what) {
+                CONNECTION_FAILED -&gt; {
+                    status.value += "Connexion à HC-05 échoué\n"
+                    true
+                }
+
+                CONNECTION_SUCCESS -&gt; {
+                    status.value += "Connexion à HC-05 réussie\n"
+                    true
+                }
+
+                WRITE_ERROR -&gt; {
+                    status.value += "Erreur de transmission\n"
+                    true
+                }
+
+                DISCONNECTION_SUCCESS -&gt; {
+                    status.value += "Déconnexion réussie\n"
+                    true
+                }
+
+                DISCONNECTION_FAILED -&gt; {
+                    status.value += "La déconnexion a échoué\n"
+                    true
+                }
+
+                else -&gt; false
+            }
+        }
+
+        // ##################### C'set ici que le travail commence #################################
+        // Vérifier si l'appli dispose de l'autorisation Bluetooth
+        // activer le bluetooth et connecter le HC-05
+        val bluetoothPermission = android.Manifest.permission.BLUETOOTH_CONNECT
+        if (ContextCompat.checkSelfPermission(
+                this,
+                bluetoothPermission
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            status.value += "Autorisation déjà accordée\n"
+            activerBluetooth()  // activer Bluetoouth et connecter le HC-05
+        } else {
+            status.value += "On va demander l'autorisation\n"
+            requestPermissionLauncher.launch(bluetoothPermission) // demander l'autorisation
+        }
+
+        // ================= UI Jetpack Compose ====================================================
+        setContent {
+            MyUI(bluetoothAdapter, handler, status)
+        }
+    }
+
+
+    // ==============================================================================================
+    // Fonction pour Activer le Bluetooth et se connecter au HC-05
+    private fun activerBluetooth() {
+        if (bluetoothAdapter.isEnabled) {
+            status.value += "Bluetooth déjà actif\nTentative de connexion\n"
+            status.value += connectHC05(bluetoothAdapter, handler)
+        } else {
+            status.value += "Bluetooth non actif\nOn demande l'activation\n"
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            bluetoothActivationLauncher.launch(enableBtIntent)
+        }
+    }
+}
+
+
+//#### Fonction pour connecter le HC-05#############################################################
+@SuppressLint("MissingPermission")
+private fun connectHC05(bluetoothAdapter: BluetoothAdapter?, handler: Handler): String {
+    // récupérer la liste des équipements associés
+    val pairedDevices: Set&lt;BluetoothDevice&gt;? = bluetoothAdapter?.bondedDevices
+    // localiser le HC-05 dans la liste
+    val hc05Device = pairedDevices?.find { it.name == "HC-05" }
+    // Si le HC-05 est associé, essayer de le connecter
+    if (hc05Device != null) {
+        ConnectThread(hc05Device, handler).start()
+        // les messages d'état sont remonté de ConnectThread() vers le handler
+        return ""
+    } else {
+        return "HC-05 Non Associé\n"
+    }
+}
+
+
+//The UI ###########################################################################################
+@Composable
+fun MyUI(
+    bluetoothAdapter: BluetoothAdapter?,
+    handler: Handler,
+    connectStatus: MutableState&lt;String&gt;
+) {
+    val capteur1 = remember { mutableStateOf("Rien") }
+    var isLedChecked by remember { mutableStateOf(false) }
+    var isBuzzerChecked by remember { mutableStateOf(false) }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        Text(
+            text = connectStatus.value,
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+                .background(Color(0x80E2EBEA))
+                .padding(start = 16.dp)  // marge intérieure
+        )
+
+        // Bouton pour effacer le statut
+        Button(onClick = { connectStatus.value = "" }) {
+            Text(text = "Clear Status")
+        }
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    dataExchangeInstance?.cancel()
+                    connectStatus.value += "Tentative de Connexion\n"
+                    connectStatus.value += connectHC05(
+                        bluetoothAdapter,
+                        handler
+                    )
+                }
+            ) {
+                Text("Connecter")
+            }
+
+            Button(
+                onClick = {
+                    dataExchangeInstance?.cancel()
+                    connectStatus.value += "Tentative de Déconnexion\n"
+                }
+            ) {
+                Text("Déconnecter")
+            }
+        }
+
+        // LED et Buzzer avec Switch
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "LED ")
+            Switch(
+                checked = isLedChecked,
+                onCheckedChange = {
+                    isLedChecked = it
+                    if (isLedChecked) dataExchangeInstance?.write("A")
+                    else dataExchangeInstance?.write("B")
+                },
+                thumbContent = if (isLedChecked) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else null
+            )
+            Spacer(modifier = Modifier.width(48.dp))
+            Text(text = "BUZZER ")
+            Switch(
+                checked = isBuzzerChecked,
+                onCheckedChange = {
+                    isBuzzerChecked = it
+                    if (isBuzzerChecked) dataExchangeInstance?.write("C")
+                    else dataExchangeInstance?.write("D")
+                },
+                thumbContent = if (isBuzzerChecked) {
+                    {
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                        )
+                    }
+                } else null
+            )
+        }
+
+        // Lire le capteur
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                onClick = {
+                    val str = dataExchangeInstance?.request("E", 5)
+                    if (str != null) {
+                        capteur1.value = str
+                    } else connectStatus.value = "rien"
+                },
+                modifier = Modifier.padding(start = 48.dp)
+            ) {
+                Text("  READ  ")
+            }
+
+            Text(
+                text = capteur1.value,
+                modifier = Modifier
+                    .padding(start = 96.dp)
+                    .background(Color(0x80E2EBEA))
+                    .padding(horizontal = 16.dp)  // marge intérieure
+            )
+        }
+    }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <br><!-- ################################################################################################ -->
+                <h2 id="ARDUINO">Coté Arduino</h2>
+                <img src="IMAGES/HC05-Arduino.jpg" alt="">
+                <ul>
+                    <li>Sur Arduino + HC-05, La communication Bluetooth est ramenée à une simple communication série
+                    </li>
+                    <li>Coté Arduino, on utilise un port série software (7,8) pour connecter le HC-05. Ainsi le port
+                        série
+                        Hardware (0,1) sert (éventuellement) à afficher des messages de <i>debugging</i> sur le moniteur
+                        série
+                    </li>
+                    <li>Le port série du HC-05 utilise la logique 3.3V. il faut prévoir un diviseur de tension pour
+                        abaisser un peu le niveau 5V de la broche Tx de l'Arduino</li>
+                    <li>Pour la LED, on utilise la LED intégrée sur la carte</li>
+                    <li>Le buzzer est branché sur la broche 11</li>
+                    <li>Pour simplifier, on n'utilise pas un vrai capteur analogique. Quand l'application demande une
+                        mesure, on lui envoie une valeur fictive juste pour tester la connexion</li>
+                </ul><br>
+                <p>Voici le code Arduino</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Code pou HV-05<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>#include &lt;SoftwareSerial.h&gt;
+// Rx(0), Tx(1) = Port COMM physique &lt;--&gt; moniteur Série
+// Rx(7), Tx(8) = Port COMM Software &lt;--&gt; module HC-05
+/*   
+     _________________                ______________
+     |   Arduino     |                |  Moniteur   |
+     |         Rx(0) |&lt;---------------|  Série      |
+     |         Tx(1) |---------------&gt;|             |
+     |               |                ---------------
+     |               |                _______________
+     |         Rx(7) |&lt;---------------|Tx  Module   |
+     |         Tx(8) |----/\/\/------&gt;|Rx   HC-05   |
+     |               |                |             |
+     |           5V  |----------------|Vcc          |
+     |           GND |----------------|GND          |
+     |               |                ---------------
+     -----------------            
+*/
+
+SoftwareSerial SerialGSM(7,8); // (RX, TX)
+#define LEDPIN 13
+#define BUZPIN 11
+void setup() {
+  Serial.begin(9600);
+  SerialGSM.begin(9600);
+  Serial.println("HC-05");
+  pinMode(LEDPIN, OUTPUT);
+  digitalWrite(LEDPIN, LOW);
+  pinMode(BUZPIN, OUTPUT);
+  digitalWrite(BUZPIN,HIGH);//buzzer active LOW
+}
+float R = 35.00;  // valeur fictive du capteur analogique
+void loop() {
+   if (SerialGSM.available() &gt; 0){
+    char c = SerialGSM.read();
+    Serial.println(c);
+    switch (c) {
+    case 'A':
+      digitalWrite(LEDPIN, HIGH);
+      break;
+    case 'B':
+      digitalWrite(LEDPIN,LOW);
+      break;
+     case 'C':
+      digitalWrite(BUZPIN, LOW); // active LOW
+      break;
+    case 'D':
+      digitalWrite(BUZPIN,HIGH);
+      break;
+    case 'E':
+      SerialGSM.print(R);
+      R += 0.5;
+     break;
+    default:
+      break;
+    }
+  }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

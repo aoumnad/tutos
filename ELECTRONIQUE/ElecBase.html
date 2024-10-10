@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="Diode, Transistor, Ampli-Op, Amplificateur Opérationnel, 555" name="keywords">
+    <title>Electronique de Base</title>
+    <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#MILLMAN">
+                    <h2>Théorème de Millman</h2>
+                </a>
+                <a href="#THEVENIN">
+                    <h2>Théorème de Thévenin</h2>
+                </a>
+                <div class="rubrique" onclick="toggleMenu('rbrq1', this)">
+                    <span>&gt;</span>
+                    <h2>La diode</h2>
+                </div>
+                <div id="rbrq1" class="sub-rubrique">
+                    <a href="#RB1">
+                        <h3>intro rub 1</h3>
+                    </a>
+                    <a href="#RB1SR1">
+                        <h3>Rub 1: Sous rubrique 1</h3>
+                    </a>
+                    <a href="#RB1SR2">
+                        <h3>rib 1: Sous rubrique 2</h3>
+                    </a>
+                </div>
+
+                <div class="rubrique" onclick="toggleMenu('rbrq2', this)">
+                    <span>&gt;</span>
+                    <h2>Rubrique 2</h2>
+                </div>
+                <div id="rbrq2" class="sub-rubrique">
+                    <a href="#RB2">
+                        <h3>rub 2: intro</h3>
+                    </a>
+                    <a href="#RB2SR1">
+                        <h3>Rub 2: Sous rubrique 1</h3>
+                    </a>
+                    <a href="#RB2SR2">
+                        <h3>Rub 2: Sous rubrique 2</h3>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png">
+                <h1>Electronique de base</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="MILLMAN">Théorèmes de Millman</h2>
+                <img src="IMAGES/MillmanSchema1.jpg" alt="">
+                <p>Que l'on peut représenter d'une manière plus simple par:</p>
+                <img src="IMAGES/MillmanSchema.jpg" class="w300">
+                <img src="IMAGES/MillmanFormule.jpg" alt="">
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="THEVENIN">Théorèmes de Thévenin</h2>
+                <img src="IMAGES/TheveninEquivalent.jpg" alt="">
+                La valeur de <em>Veq</em> est déterminée à partir du montage original comme suit:
+                <ul>
+                    <li>On déconnecte le reste du montage</li>
+                    <li>On calcule la tension au point A à l'aide du théorème de Millman</li>
+                    <img src="IMAGES/TheveninVeq.jpg" alt="">
+                </ul><br>
+                La valeur de <em>Req</em> est déterminée à partir du montage original comme suit:
+                <ul>
+                    <li>On déconnecte le reste du montage</li>
+                    <li>On annule toutes les sources</li>
+                    <li>On calcule la résistance entre le point A et la masse</li>
+                    <img src="IMAGES/TheveninReq.jpg" alt="">
+                </ul><br>
+                <h3>Exemple</h3>
+                <p>Dans le montage suivant, on va remplacer l'étage d'entrée par son équivalent Thévenin pour faciliter le calcul de Ib</p>
+                <img src="IMAGES/TheveninExemple1.jpg" alt="">
+                <p>Ce qui donne un montage équivalent plus simple</p>
+                <img src="IMAGES/TheveninExemple2.jpg" alt="">
+                <p>Ce qui permet de calculer Ib en écrivant la loi d'Ohm dans la maille d'entrée</p>
+                <p class="math">Veq = Req Ib + 0.7 + Re( Ib + &beta;Ib )</p>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="RB1">Rubrique 1</h2>
+                <p>intro rubrique 1</p><br>
+                <h3 id="RB1SR1">Sous rubrique 1</h3>
+                <p>contenu sous rubrique 1</p>
+                <h3 id="RB1SR2">Sous rubrique 2</h3>
+                <p>contenu sous rubrique 2</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="RB2">Rubrique 2</h2>
+                <p>intro rubrique 2</p><br>
+                <h3 id="RB2SR1">Sous rubrique 1</h3>
+                <p>contenu sous rubrique 1</p>
+                <h3 id="RB2SR2">Sous rubrique 2</h3>
+                <p>contenu sous rubrique 2</p>
+
+                <br><br><br>
+
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">XXXXX<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
+                    </div>
+                    <pre><code></code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -435,6 +435,10 @@ code {
     display: inline-block; /* Assurez-vous que le texte soit encadré de manière appropriée */
     border-radius: 5px; /* Optionnel : arrondir les coins */
 }
+.math {
+    font-family: 'Cambria Math', serif;
+    font-style: italic;
+}
 
 
 @media screen and (max-width: 768px) {
