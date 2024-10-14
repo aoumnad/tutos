@@ -265,6 +265,11 @@ figcaption {
     font-style: italic;
     color: rgb(126, 28, 28);
 }
+.RightPanelContent h4 {
+    margin-top: 1ch;
+    margin: 1ch 1rem;
+    font-style: italic;
+}
 
 .RightPanelContent p {
     margin: 1ch 1rem;
@@ -437,7 +442,7 @@ code {
 }
 .math {
     font-family: 'Cambria Math', serif;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 

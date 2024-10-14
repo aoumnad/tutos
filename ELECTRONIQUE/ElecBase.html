@@ -22,48 +22,56 @@
                 <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#CODCOL">
+                    <h2>Code de couleurs des résistances</h2>
+                </a>
+                <a href="#MASSE">
+                    <h2>La masse</h2>
+                </a>
                 <a href="#MILLMAN">
                     <h2>Théorème de Millman</h2>
                 </a>
                 <a href="#THEVENIN">
                     <h2>Théorème de Thévenin</h2>
                 </a>
-                <div class="rubrique" onclick="toggleMenu('rbrq1', this)">
+
+                <div class="rubrique" onclick="toggleMenu('diode', this)">
                     <span>&gt;</span>
                     <h2>La diode</h2>
                 </div>
-                <div id="rbrq1" class="sub-rubrique">
-                    <a href="#RB1">
-                        <h3>intro rub 1</h3>
+                <div id="diode" class="sub-rubrique">
+                    <a href="#DIODEINTRO">
+                        <h3>Introduction</h3>
                     </a>
-                    <a href="#RB1SR1">
-                        <h3>Rub 1: Sous rubrique 1</h3>
+                    <a href="#DIODEXMPL">
+                        <h3>Exemples</h3>
                     </a>
-                    <a href="#RB1SR2">
-                        <h3>rib 1: Sous rubrique 2</h3>
+
+                    <a href="#REDMONO">
+                        <h3>Redressement Mono-alternance</h3>
+                    </a>
+
+                    <a href="#REDTPM">
+                        <h3>Redressement Double-alternance V1</h3>
+                    </a>
+                    <a href="#REDPONT">
+                        <h3>Redressement Double-alternance V2</h3>
+                    </a>
+                    <a href="#FLTRMONO">
+                        <h3>Filtrage par condensateur en tête</h3>
                     </a>
                 </div>
-
-                <div class="rubrique" onclick="toggleMenu('rbrq2', this)">
+                <div class="rubrique" onclick="toggleMenu('transistor', this)">
                     <span>&gt;</span>
-                    <h2>Rubrique 2</h2>
+                    <h2>Le transistor bipolaire</h2>
                 </div>
-                <div id="rbrq2" class="sub-rubrique">
-                    <a href="#RB2">
-                        <h3>rub 2: intro</h3>
-                    </a>
-                    <a href="#RB2SR1">
-                        <h3>Rub 2: Sous rubrique 1</h3>
-                    </a>
-                    <a href="#RB2SR2">
-                        <h3>Rub 2: Sous rubrique 2</h3>
+                <div id="transistor" class="sub-rubrique">
+                    <a href="#TRANSISTOR">
+                        <h3>Introduction</h3>
                     </a>
                 </div>
-
-
             </div>
         </div>
-        <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <div class="RightPanel">
             <div class="RightPanelHeader">
@@ -73,7 +81,72 @@
             <div class="RightPanelContent">
 
 
+                <!-- ################################################################################################ -->
+                <h2 id="CODCOL">Code de couleurs des résistances</h2>
+                <p>Les résistances vendues dans le commerce sont marquées avec un code de couleur qui permet de
+                    reconnaître leurs valeurs. Les systèmes les plus utilisés sont le système à 4 anneaux et le système
+                    à 5 annaux.</p>
+                <img src="IMAGES/CodCol.jpg" alt="">
+                <h3>Code à 4 anneaux</h3>
+                <img src="IMAGES/CodCol4.jpg" alt="">
+                <p>La lecture se fait de gauche à droite à partir de l'extrémité ou sont groupés les anneaux. Les deux
+                    premiers anneaux indiquent la valeur des chiffres significatifs. Le troisième anneau indique le
+                    nombre de zéros. Le quatrième anneau indique la tolérance : Or = 5%, Argent = 10 %</p>
+                <p>Ainsi, la résistance de la figure (<b>V B R Or</b>) a une valeur de : 56 00 Ω ± 5%</p><br>
 
+                <h3>Code à 5 anneaux</h3>
+                <img src="IMAGES/CodCol5.jpg" alt="">
+                <p>La lecture se fait de gauche à droite à partir de l'extrémité ou sont groupés les anneaux. Les trois
+                    premiers anneaux indiquent la valeur des chiffres significatifs. Le quatrième anneau indique le
+                    nombre de zéros. Le cinquième anneau indique la tolérance : Rouge = 2%, Or = 5%, Argent = 10 %</p>
+                <p>Ainsi, la résistance de la figure (<b>J Vi Ve R Or</b>) a une valeur de : 47500 Ω ± 5%</p><br>
+
+                <h3>Valeur normalisées des résistances et condensateurs</h3>
+                <p>Quand on désire acheter une résistance ou un condensateur, on trouve dans le commerce des valeurs
+                    biens définies. Les valeurs normalisées sont des séries de
+                    valeurs définies par des normes internationales pour assurer que les composants utilisés en
+                    électronique sont facilement disponibles et suffisamment précis pour la plupart des applications.
+                    Ces valeurs sont regroupées dans des séries appelées séries de préférences E, qui sont normalisées
+                    selon les normes de la CEI (Commission électrotechnique internationale).</p>
+                <p>Les séries les plus courantes pour les résistances et les condensateurs :</p>
+                <ul>
+                    <li><b>Série E6 : </b>10, 15, 22, 33, 47, 68</li>
+                    <li><b>Série E12 : </b>100, 120, 150, 180, 220, 270, 330, 390, 470, 560, 680, 820</li>
+                    <li><b>Série E24 : </b>100, 110, 120, 130, 150, 160, 180, 200, 220, 240, 270, 300, 330, 360, 390,
+                        430, 470, 510, 560, 620, 680, 750, 820, 910</li>
+                </ul>
+                <p>Par exemple, dans la série E6, on trouvera les valeurs : <br>
+                    1&ohm;, 1.5&ohm;, 2.2&ohm;, 3.3&ohm;, 4.7&ohm;, 6.8&ohm;, <br>
+                    10&ohm;, 15&ohm;, 22&ohm;, 33&ohm;, 47&ohm;, 68&ohm;, <br>
+                    100&ohm;, 150&ohm;, 220&ohm;, 330&ohm;, 470&ohm;, 680&ohm;, <br>
+                    1k&ohm;, 1.5k&ohm;, 2.2k&ohm;, 3.3k&ohm;, 4.7k&ohm;, 6.8k&ohm;, <br>
+                    10k&ohm;, 15k&ohm;, 22k&ohm;, 33k&ohm;, 47k&ohm;, 68k&ohm;, <br>
+                    100k&ohm;, 150k&ohm;, 220k&ohm;, 330k&ohm;, 470k&ohm;, 680k&ohm;, <br>
+                    1M&ohm;, 1.5M&ohm;, 2.2M&ohm;, 3.3M&ohm;, 4.7M&ohm;, 6.8M&ohm;, <br>
+                    10M&ohm;, 15M&ohm;, 22M&ohm;, 33M&ohm;, 47M&ohm;, 68M&ohm;, <br>
+                    100M&ohm;, 150M&ohm;, 220M&ohm;, 330M&ohm;, 470M&ohm;, 680M&ohm;, <br>
+                </p>
+                <!-- ################################################################################################ -->
+                <h2 id="MASSE">La masse</h2>
+                <p>Quand on parle de tension, il s'agit d'une différence de potentiel entre deux points d'un circuit.
+                    Ainsi, dans la figure ci-dessous, on a : <br>
+                    V<sub>AB</sub> = V<sub>A</sub> - V<sub>B</sub> <br>
+                    V<sub>BC</sub> = V<sub>B</sub> - V<sub>C</sub> <br>
+                </p>
+
+                <img src="IMAGES/Masse.jpg" alt="">
+                <p>En électronique, on a l'habitude de considérer un point du circuit comme <b>référence</b> de tension
+                    (tension zéro) qu'on appelle <b>la masse</b>. Les tensions aux différents points du circuit seront
+                    calculées par rapport à ce point. En général, on prend pour masse la borne négative de
+                    l'alimentation. Ainsi sur la figure, c'est le point M qui constitue la masse, on a donc
+                    V<sub>M</sub> = 0</p>
+                <p>Quand on parle de la tension en un point, c'est par rapport à la masse :</p>
+                <ul>
+                    <li>V<sub>A</sub> est la tension au point A par rapport à la masse (V<sub>A</sub> - V<sub>M</sub>)
+                    </li>
+                    <li>V<sub>B</sub> est la tension au point B par rapport à la masse (V<sub>B</sub> - V<sub>M</sub>)
+                    </li>
+                </ul>
                 <!-- ################################################################################################ -->
                 <h2 id="MILLMAN">Théorèmes de Millman</h2>
                 <img src="IMAGES/MillmanSchema1.jpg" alt="">
@@ -99,7 +172,8 @@
                     <img src="IMAGES/TheveninReq.jpg" alt="">
                 </ul><br>
                 <h3>Exemple</h3>
-                <p>Dans le montage suivant, on va remplacer l'étage d'entrée par son équivalent Thévenin pour faciliter le calcul de Ib</p>
+                <p>Dans le montage suivant, on va remplacer l'étage d'entrée par son équivalent Thévenin pour faciliter
+                    le calcul de Ib</p>
                 <img src="IMAGES/TheveninExemple1.jpg" alt="">
                 <p>Ce qui donne un montage équivalent plus simple</p>
                 <img src="IMAGES/TheveninExemple2.jpg" alt="">
@@ -108,30 +182,342 @@
 
 
                 <!-- ################################################################################################ -->
-                <h2 id="RB1">Rubrique 1</h2>
-                <p>intro rubrique 1</p><br>
-                <h3 id="RB1SR1">Sous rubrique 1</h3>
-                <p>contenu sous rubrique 1</p>
-                <h3 id="RB1SR2">Sous rubrique 2</h3>
-                <p>contenu sous rubrique 2</p>
+                <h2 id="DIODEINTRO">La diode</h2>
+                <ul>
+                    <li>La diode a un composant qui conduit dans un seul sens,</li>
+                    <li>Elle est réalisée à l'aide d'une jonction PN obtenue en collant un SC (N) à un SC (P) d'où
+                        l'appellation diode à Jonction
+                    </li>
+                    <img src="IMAGES/DiodeFig0.jpg" alt="">
+                    <li>Comme on le constate sur la caractéristique tension-courant, Elle a un seuil de conduction. Elle
+                        commence à conduire doucement quand V<sub>D</sub> est de l'ordre de 0.3V . Elle est franchement
+                        conductrice
+                        quand V<sub>D</sub> est de l'ordre de 0.7V
+                    </li>
+                    <img src="IMAGES/DiodeFig1.jpg" alt="">
+                    <img src="IMAGES/DiodeCaracteristic.jpg" alt="">
+                    <li>Pour faciliter, on adopte une caractéristique idéalisée
+                        <img src="IMAGES/DiodeCar_simple.jpg" alt="">
+
+                        <ul>
+                            <li>Vd &lt; 0.7 V &rArr; diode Bloquée (interrupteur ouvert), Id = 0</li>
+                            <li>Vd = 0.7 V &rArr; diode conductrice, Le courant doit être limité par une résistance
+                            </li>
+                        </ul><br>
+
+                    </li>
+
+                </ul>
+                <h3>Règle simple :</h3>
+                <ul>
+                    <li>Il faut toujours avoir une résistance dans le circuit de la diode pour fixer la valeur du
+                        courant quand la diode est passante,</li>
+                    <li>La résistance peut être d'un coté ou de l'autre. On peut même avoir deux résistances, une de
+                        chaque coté,</li>
+                    <li>Pour savoir si la diode est passante, on compare les tensions de chaque coté du circuit,
+                        résistance incluse,</li>
+                    <li class="Enhanced">Si la tension coté Anode est supérieure (d'au moins 0.7V) à la tension coté
+                        cathode, alors la
+                        diode est passante. La diode pred 0.7V, les reste se retrouve aux bornes de la résistance ce qui
+                        permet de déterminer la valeur du courant.</li>
+                </ul>
+                <img src="IMAGES/Diode_Off_On_2.jpg" alt=""><br>
+                <!-- ################################################################################################ -->
+                <h3 id="DIODEXMPL">Exemple 1</h3>
+                <img src="IMAGES/DiodeEx1.jpg" alt="">
+                <p>Calculer la valeur de R pour que le courant I dans le circuit soit égal à 10 mA </p>
+                <h4>Solution :</h4>
+
+                <p class="math">Vcc = 5V, &rArr; Diode passante, Vd = 0.7V <br>
+                    Vcc = RI + 0.7 <br>
+                    R = (Vcc - 0.7)/I <br>
+                    R = (5 - 0.7) / (10 * 10<sup>-3</sup>) &#8486; <br>
+                    R = 430 &#8486;</p><br>
 
                 <!-- ################################################################################################ -->
-                <h2 id="RB2">Rubrique 2</h2>
-                <p>intro rubrique 2</p><br>
-                <h3 id="RB2SR1">Sous rubrique 1</h3>
-                <p>contenu sous rubrique 1</p>
-                <h3 id="RB2SR2">Sous rubrique 2</h3>
-                <p>contenu sous rubrique 2</p>
+                <h3>Exemple 2 : </h3>
+                <img src="IMAGES/DiodeEx2.jpg" alt="">
+                <p>Calculer la valeur de R pour que la puissance Pd dissipée dans la diode soit égale à 100 mW
+                </p>
+                <h4>Solution :</h4>
+                <p class="math">Vcc = 5V, &rArr; Diode passante, Vd = 0.7V <br>
+                    Pd = 0.7V * Id = 100 mW &rArr; Id = 100 mW / 0.7V <br>
+                    R = (Vcc - 0.7)/Id = (10 - 0.7) * 0.7V / 100mW <br>
+                    R = 65 &#8486;
+                </p><br>
 
-                <br><br><br>
+                <!-- ################################################################################################ -->
+                <h3>Exemple 3 : </h3>
+                <img src="IMAGES/DiodeEx3.jpg" alt="">
+                <p>Donner l'état de la diode et la valeur du courant Id dans les deux cas suivants: <br>
+                    a) R1 = 1K <br>
+                    b) R1 = 10K
 
-                <!-- =========================== Code ========================================================= -->
-                <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">XXXXX<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
-                    </div>
-                    <pre><code></code></pre>
-                </div><br>
-                <!-- ============================= Fin Code ================================================ -->
+                </p>
+                <h4>Solution :</h4>
+                <p>On simplifie le montage à l'aide du théorème de Thévenin</p>
+                <img src="IMAGES/DiodeEx3Eq.jpg" alt="">
+                <p class="math">Veq = (V1 * R2 + V2 * R1) / (R1 + R2) <br>
+                    Req = (R1 * R2)/ (R1 + R2)
+                </p>
+                <b>
+                    <p>a) R1 = 1K</p>
+                </b>
+                <ul>
+                    <p class="math">
+                        Veq = 5V, Req = 667 &#8486; <br>
+                        Veq &gt; 0.7V &rArr; <b>Diode passante</b>, Vd = 0.7V <br>
+                        Id = (5V - 0.7V) / 0.667K = 6.45 mA
+                    </p>
+                </ul>
+
+                <b>
+                    <p>b) R1 = 10K</p>
+                </b>
+                <ul>
+                    <p class="math">
+                        Veq = -2.5V, Req = 1667 &#8486; <br>
+                        Veq &lt; 0.7V &rArr; <b>Diode bloquée</b> <br>
+                        Id = 0
+                    </p>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3>Exemple 4 : </h3>
+                <img src="IMAGES/DiodeEx4.jpg" alt="">
+                <h4>Solution :</h4>
+                <p>Pour analyser le montage, on se base sur la règle citée plus haut</p>
+                <h4>a) A=0V, B=0V </h4>
+                <ul>
+                    D1 passante , Vd1 = 0,7V = (Vs - V<sub>A</sub>)<br>
+                    D2 passante , Vd2 = 0.7V = (Vs - V<sub>B</sub>)<br>
+                    &rArr; <b>Vs = 0.7V</b>
+                </ul>
+                <h4>b) A=0V, B=5V </h4>
+                <ul>
+                    D1 passante , Vd1 = 0,7V &rArr; Vs = 0.7V<br>
+                    D2 bloquée car Vd2 = (Vs - V<sub>B</sub>) = 0.7 - 5 = -4.3V<br>
+                    &rArr; <b>Vs = 0.7V</b>
+                </ul>
+                <h4>c) A=5V, B=0V </h4>
+                <ul>
+                    D2 passante , Vd2 = 0,7V &rArr; Vs = 0.7V<br>
+                    D1 bloquée car Vd1 = (Vs - V<sub>A</sub>) = 0.7 - 5 = -4.3V<br>
+                    &rArr; <b>Vs = 0.7V</b>
+                </ul>
+                <h4>d) A=5V, B=5V </h4>
+                <ul>
+                    D1 bloquée &equiv; circuit ouvert<br>
+                    D2 bloquée &equiv;circuit ouvert<br>
+                    &rArr; Courant nul dans la résistance <br>
+                    &rArr; Vs = Vcc = 5V (Vcc - Vs = RI = 0)
+                </ul>
+                <img src="IMAGES/DiodeEx4TabV.jpg" alt="">
+                <p>Ce tableau est un tableau électrique. On va essayer de le transformer en table de vérité logique</p>
+                <p>Si on considère que :</p>
+                <ul>
+                    <li>Une tension <em>faible</em> [0V…1V] &rArr; niveau logique <em>0</em> </li>
+                    <li>Une tension <em>forte</em> [4V…5V] &rArr; niveau logique <em>1</em> </li>
+                </ul>
+                <p> le tableau devient :</p>
+                <img src="IMAGES/DiodeEx4TabL.jpg" alt="">
+                <p>C'est la table de vérité d'une <em>porte ET</em>. Nous avons réalisé notre premier circuit logique,
+                    premier pas dans le monde numérique </p>
+                <img src="IMAGES/PorteET.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3>Exemple 5 : </h3>
+                <img src="IMAGES/DiodeEx5.jpg" alt="">
+                <h4>Solution :</h4>
+                <p>Pour analyser le montage, on se base sur la règle citée plus haut</p>
+                <h4>a) A=0V, B=0V </h4>
+                <ul>
+                    D1 bloquée &equiv; circuit ouvert<br>
+                    D2 bloquée &equiv; circuit ouvert<br>
+                    &rArr; Courant nul dans la résistance <br>
+                    &rArr; Vs = 0
+                </ul><br>
+                <h4>b) A=0V, B=5V </h4>
+                <ul>
+                    D1 bloquée &equiv; circuit ouvert<br>
+                    D2 passante, Vd2 = 0,7V = VB - Vs &rArr; Vs = 5 - 0.7V = 4.3V
+                </ul><br>
+                <h4>b) A=5V, B=0V </h4>
+                <ul>
+                    D1 passante, Vd1 = 0,7V = VA - Vs &rArr; Vs = 5 - 0.7V = 4.3V <br>
+                    D2 bloquée &equiv; circuit ouvert<br>
+                </ul><br>
+                <h4>b) A=5V, B=5V </h4>
+                <ul>
+                    D1 passante, Vd1 = 0,7V = VA - Vs <br>
+                    D2 passante, Vd2 = 0,7V = VB - Vs <br>
+                    &rArr; Vs = 5 - 0.7V = 4.3V
+                </ul><br>
+                <img src="IMAGES/DiodeEx5TabE.jpg" alt="">
+                <p>Ce tableau est un tableau électrique. On va essayer de le transformer en table de vérité logique</p>
+                <p>Si on considère que :</p>
+                <ul>
+                    <li>Une tension <em>faible</em> [0V…1V] &rArr; niveau logique <em>0</em> </li>
+                    <li>Une tension <em>forte</em> [4V…5V] &rArr; niveau logique <em>1</em> </li>
+                </ul>
+                <p> le tableau devient :</p>
+                <img src="IMAGES/DiodeEx5TabL.jpg" alt="">
+                <p>C'est la table de vérité d'une <em>porte OU</em></p>
+                <img src="IMAGES/PorteOU.jpg" alt=""><br>
+
+
+
+                <br>
+                <!-- ################################################################################################ -->
+                <h3 id="REDMONO">Redressement Mono-alternance : </h3>
+                <p>Le redressement des signaux alternatifs est une fonction importante en électronique. L'usage le plus
+                    courant consiste à convertir le courant alternatif (CA) en courant continu (CC). Cette conversion
+                    est essentielle dans de nombreux appareils électroniques qui nécessitent une alimentation en courant
+                    continu.</p>
+                <img src="IMAGES/DiodeRedMono.jpg" alt="">
+                <img src="IMAGES/DiodeRedMonoCourbes.jpg" alt="">
+                <p>Pendant l'alternance positive, dès que Ve devient &gt; 0.7V, la diode devient passante, (Vd = 0.7V).
+                    La tension de sortie Vs suit Ve à 0.7V près, sa valeur crête est égale à E' = E - 0.7</p>
+                <p>Pendant l'alternance négative, la diode se bloque. Elle est équivalente à un interrupteur ouvert, la
+                    tension de sortie est égale à 0.</p>
+                <p>On constate sur la Figure que la tension de sortie est toujours positive mais elle est encore
+                    loin d'être continue.</p>
+                <p>La composante continue est égale à la valeur moyenne</p>
+                <img src="IMAGES/DiodeRedMonoMoy.jpg" alt=""><br>
+                <p>La tension redressée peut dans certains cas être utilisée pour alimenter un
+                    moteur à courant continu. Le moteur tournera comme s'il était alimenté par une tension continue
+                    égale à la valeur moyenne</p>
+
+                <h4>Tension inverse maximale</h4>
+                <p>A l'instant 3&pi;/2, la tension inverse aux bornes de la diode atteint sa valeur maximale :</p>
+                <p>Vd = Ve - Vs = -E - 0 = -E</p>
+                <p>Cette tension ne doit pas dépasser la valeur précisée dans la datasheet</p>
+                <p>Voici un exemple de datasheet:</p>
+                <img src="IMAGES/DiodeVrmax.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="REDTPM">Redressement Double-alternance, transfo à point milieu : </h3>
+                <img src="IMAGES/DiodeRedTPM.jpg" alt="">
+                <p>Si on prend le point milieu du transformateur comme référence, les tensions de sortie du
+                    transformateur V1 et V2 sont en opposition de phase.</p>
+                <img src="IMAGES/DiodeRedTPMphases.jpg" alt="">
+                <p>Pendant l'alternance positive de V1, (négative de V2), la diode D1 conduit et alimente la charge.
+                    D2 est bloquée</p>
+                <p class="math"> Vs = V1 - 0.7 </p>
+                <img src="IMAGES/DiodeRedTPMalter1.jpg" alt="">
+                <p>Pendant l'alternance positive de V2, (négative de V1), la diode D2 conduit et alimente la charge.
+                    D1 est bloquée</p>
+                <p class="math">Vs = V2 - 0.7 </p>
+                <img src="IMAGES/DiodeRedTPMalter2.jpg" alt="">
+
+                <p>La charge est ainsi alimentée pendant les deux alternances. La tension Vs est représentée sur
+                    la Figure ci-dessous. Sa valeur max est E'= E -0.7 </p>
+                <img src="IMAGES/DiodeRedTPMoutput.jpg" alt="">
+                <p>La composante continue est égale à la valeur moyenne</p>
+                <img src="IMAGES/DiodeRedDoubMoy.jpg" alt=""><br> <br>
+                <h4>Tension inverse maximale</h4>
+                <p>Pendant la première alternance, la diode D2 est bloquée. A l'instant &pi;/2, elle subit sa tension
+                    inverse la plus importante </p>
+                <ul>
+                    <li>La tension sur son Anode est : V<sub>A</sub> = V2(&pi;/2) = -E </li>
+                    <li>La tension sur sa cathode est: V<sub>K</sub> = Vs(&pi;/2) = E'</li>
+                    <li>La tension inverse est : V<sub>RM</sub> = V<sub>K</sub> - V<sub>A</sub> = E' - (-E) = E - 0.7 +
+                        E = 2E - 0.7 </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="REDPONT">Redressement Double-alternance, montage à pont : </h3>
+                <p>Ici on utilise un transformateur simple et un pont redresseur à 4 diodes </p>
+                <img src="IMAGES/DiodeRedPont.jpg" alt="">
+                <p>A 'entrée du pont, on a un signal sinusoidal simple</p>
+                <img src="IMAGES/DiodeRedPontInput.jpg" alt="">
+                <p>Pendant l'alternance positive de Ve, les diodes D1 et D2 sont passantes et alimentent la charge. Les
+                    diodes D3 et D4 sont bloquées</p>
+                <p class="math">Vs = Ve - 2x0.7</p>
+                <img src="IMAGES/DiodeRedPontAlter1.jpg" alt="">
+                <p>Pendant l'alternance négative de Ve, les diodes D3 et D4 sont passantes et alimentent la charge dans
+                    le même sens que précédemment. Les
+                    diodes D1 et D2 sont bloquées</p>
+                <p class="math">Vs = Ve - 2x0.7</p>
+                <img src="IMAGES/DiodeRedPontAlter2.jpg" alt="">
+                <p>La charge est ainsi alimentée pendant les deux alternances. La tension Vs est représentée sur
+                    la Figure ci-dessous. Sa valeur max est E'= E -2x0.7 </p>
+                <img src="IMAGES/DiodeRedTPMoutput.jpg" alt="">
+                <p>La composante continue est égale à la valeur moyenne</p>
+                <img src="IMAGES/DiodeRedDoubMoy.jpg" alt=""><br>
+                <h4>Tension inverse maximale</h4>
+                <p>Pendant la première alternance, la diode D3 est bloquée. A l'instant &pi;/2, elle subit sa tension
+                    inverse la plus importante </p>
+                <ul>
+                    <li>La tension sur sa cathode est: V<sub>K</sub> = Ve(&pi;/2) - Vd1 = E - 0.7</li>
+                    <li>La tension sur son Anode est : V<sub>A</sub> = 0 (référence) </li>
+                    <li>La tension inverse est : V<sub>RM</sub> = V<sub>K</sub> - V<sub>A</sub> = E - 0.7 - 0 = E - 0.7
+                    </li>
+                </ul>
+                <!-- ################################################################################################ -->
+                <h3 id="FLTRMONO">Filtrage par condensateur en tête</h3>
+                <img src="IMAGES/DiodMonoFiltr.jpg" alt="">
+                <p>Le filtrage est réalisé à l'aide d'un condensateur de forte valeur placé en parallèle avec la charge
+                    RL </p>
+                <p>Pendant la demi-période positive, dès que Ve&gt;0.7V, la diode conduit. Le
+                    condensateur commence à se charger jusqu'à ce que Ve atteigne sa valeur de crête E, Vs est alors
+                    égale à E'=E-0.7 (point b). A cause de la résistance quasi nulle de la diode, la charge du
+                    condensateur suit parfaitement la tension d'entrée Ve, elles sont juste décalées de 0.7V. Dès que Ve
+                    commence à diminuer, Vs ne peut pas la suivre car le condensateur est chargé, la diode se bloque, Le
+                    condensateur se décharger alors dans la charge R<sub>L</sub> avec la constante de temps &tau; =
+                    R<sub>L</sub> C. Quand on
+                    arrive au point a, Ve devient supérieure à Vs, la diode conduit, et le condensateur se charge de
+                    nouveau jusqu'à E'=E-07. On est arrivé au point b, le cycle recommence</p>
+                <p>La diode ne conduit que pendant les intervalles [a, b], le reste du temp, c'est le condensateur qui
+                    alimente la charge</p>
+                <p>Si la valeur de C est importante, la décharge est lente et quasi-horizontale. L'allure de Vs
+                    s'approchant d'une tension continue. </p>
+                <img src="IMAGES/DiodMonoFiltr_Signal0.jpg" alt=""><br>
+
+                <h4>Calcul de l'ondulation &Delta;V</h4>
+                <p>On va commencer par le redressement mono-alternance</p>
+                <img src="IMAGES/DiodMonoFiltrOnd.jpg" alt="">
+                <p>Le calcul exact de l'ondulation n'est pas évident. On va faire une approximation.</p>
+                <p>L'équation de Vs pendant la décharge est : <span class="math">Vs = E' e<sup>-t/(RC)</sup></span></p>
+                <p>Si on note E1 la valeur de Vs à l'instant to, on aura :</p>
+                <p class="math">E1= E' e<sup>-to/(RC)</sup>, &Delta;V = E'- E1</p>
+                <p>La valeur de E1 est très difficile à calculer car on ne connaît pas la valeur de to, (instant de
+                    l'intersection d'une exponentielle et un sinus)</p>
+                <p>Si la valeur de C est importante, la décharge est quasi horizontale, l'instant to sera très proche de
+                    la période T. La valeur de E2 = Vs(T) sera très proche de E1. </p>
+                <p class="math">E1= E' e<sup>-T/(RC)</sup></p>
+                <p class="math">&Delta;V = E'- E2 = E' - E'e<sup>-T/(RC)</sup> = E'( 1-e<sup> - T/(RC)</sup> )</p>
+                <p>On va encore simplifier cette expression en utilisant l'approximation <b>e <sup>x</sup> &approx; 1 +
+                        x </b>pour x faible</p>
+                <p>Pour cela il faut d'abord vérifier que Le terme <i>-T/(RC)</i> est faible devant l'unité</p>
+                <p>Prenons un exemple réaliste :</p>
+                <p>On désire réaliser une alim (5V, 100mA) :</p>
+                <p class="math"> E'&approx; 5V <br>
+                    R = 5V/0,1A = 50 Ω <br>
+                    Choisissons C = 4700 µF <br>
+                    f = 50 Hz, &rArr; T = 20 ms <br>
+                    T/(RC) = 20 m / (50 . 4700 µ) = 0.08 <br>
+                </p>
+                <p>Cette valeur justifie l'approximation</p>
+                <p class="math">&Delta;V = E'( 1 - (1 - T/(RC)) )</p>
+                <p class="math encadre">&Delta;V = E'/(RCf)</p>
+                <p>En général la résistance de charge R n'est pas connue. C'est plutôt le courant Io que l'alimentation
+                    doit
+                    être capable délivrer à la charge qui est défini</p>
+                <p class="math">E' = R Io &rArr; R = E'/Io</p>
+                <p class="math encadre">&Delta;V = E'/(RCf) = Io/(Cf)</p>
+
+                <p>Pour le redressement <strong>double-alternance</strong>, le calcul est le même sauf qu'il faut remplacer T par T/2</p>
+
+                <img src="IMAGES/DiodDoubleFiltrOnd.jpg" alt="">
+                <p class="math encadre">&Delta;V = E'/(2RCf) = Io / (2Cf)</p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="TRANSISTOR">Le transistor bipolaire</h2>
+                <p>Cette section est en cours de rédaction</p>
+
+
+
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
