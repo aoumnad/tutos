@@ -27,6 +27,7 @@ body li {
     text-align: justify;
 } 
 
+
 .li_niv1 {
     margin-top: 1rem;
 }
@@ -282,7 +283,7 @@ figcaption {
     margin: auto;
 }
 
-.RightPanelContent img.inline-image {
+.RightPanelContent img.inline {
     display: inline;
     margin: 0;
     vertical-align: middle;
@@ -441,8 +442,11 @@ code {
     border-radius: 5px; /* Optionnel : arrondir les coins */
 }
 .math {
-    font-family: 'Cambria Math', serif;
-    /* font-style: italic; */
+    font-family: 'Cambria math', serif;
+}
+.mathi {
+    font-family: 'Cambria math', serif;
+    font-style: italic;
 }
 
 

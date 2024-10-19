@@ -10,6 +10,7 @@
     <title>Electronique de Base</title>
     <link rel="icon" href="IMAGES/JPC_logo.png" type="image/png">
     <link rel="stylesheet" href="../styles.css">
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../scripts.js" defer></script>
 </head>
 
@@ -69,6 +70,25 @@
                     <a href="#TRANSISTOR">
                         <h3>Introduction</h3>
                     </a>
+                    <a href="#POL">
+                        <h3>Polarisation du transistor</h3>
+                    </a>
+                    <a href="#POLRB">
+                        <h3>Polarisation par une seule résistance de base</h3>
+                    </a>
+                    <a href="#POLPONT">
+                        <h3>Polarisation par pont</h3>
+                    </a>
+                    <a href="#AMPLI">
+                        <h3>Transistor en amplification</h3>
+                    </a>
+                    <a href="#EMCOM">
+                        <h3>Montage émetteur commun</h3>
+                    </a>
+                    <a href="#AMPUSAGE">
+                        <h3>Exemple d'utilisation</h3>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -507,14 +527,400 @@
                 <p class="math">E' = R Io &rArr; R = E'/Io</p>
                 <p class="math encadre">&Delta;V = E'/(RCf) = Io/(Cf)</p>
 
-                <p>Pour le redressement <strong>double-alternance</strong>, le calcul est le même sauf qu'il faut remplacer T par T/2</p>
+                <p>Pour le redressement <strong>double-alternance</strong>, le calcul est le même sauf qu'il faut
+                    remplacer T par T/2</p>
 
                 <img src="IMAGES/DiodDoubleFiltrOnd.jpg" alt="">
                 <p class="math encadre">&Delta;V = E'/(2RCf) = Io / (2Cf)</p><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="TRANSISTOR">Le transistor bipolaire</h2>
-                <p>Cette section est en cours de rédaction</p>
+                <img src="IMAGES/Trans0.jpg" alt="">
+                <p>Le transistor est constitué de 3 couches de semi-conducteurs. On distingue les transistor NPN et les
+                    transistor PNP
+                </p>
+                <ul>
+                    <li>La base traversée par le courant IB, est utilisée comme entrée de commande,</li>
+                    <li>Le collecteur, traversé par le courant IC, est le utilisé comme borne de sortie,</li>
+                    <li>L'émetteur traversé par le courant IE, est le plus souvent utilisé comme référence</li>
+                </ul>
+                <p>Le transistor bipolaire a de multiples usages parmi lesquels on peut citer :</p>
+                <ul>
+                    <li><b>Amplificateur</b>: pour amplifier des signaux de faible amplitude</li>
+                    <li><b>Oscillateur</b>: pour générer des signaux sinusoïdaux</li>
+                    <li><b>Commutateur</b>: pour réaliser des circuits logiques ou commander une charge comme un moteur
+                        ou une lampe…</li>
+                </ul><br>
+                <!-- ################################################################################################ -->
+                <h3>Model simplifié</h3>
+                <p>La physique du transistor est complexe. dans ce tuto on va se contenter d'utiliser un modèle très
+                    simplifié suffisant pour analyser et concevoir de nombreux montages</p>
+                <p><em>Le transistor est un ampli de courant</em></p>
+                <p class="InlineCenter"><span class="math encadre">Ic = &beta; Ib</span></p>
+                <ul>
+                    <li class="math">Ie = Ic + Ib</li>
+                    <li>La jonction base-émetteur (diode) détermine l'état du transistor. Quand elle conduit , le
+                        transistor conduit, et on a Vbe= 0.7V et un courant Ib ≠ 0
+                    </li>
+                    <li>La tension Vce est imposée par le circuit extérieur</li>
+                    <li>La jonction base-collecteur fonctionne en inverse à cause de l'effet transistor, "il vaut mieux
+                        l'oublier"</li>
+                </ul><br>
+                <!-- ################################################################################################ -->
+                <h3 id="POL">Polarisation du transistor</h3>
+                <p>La polarisation d'un transistor bipolaire consiste à appliquer des tensions continues spécifiques
+                    à ses trois bornes (base, collecteur et émetteur) afin de le faire conduire et de fixer le point de
+                    fonctionnement {Ic, Vce} dans une région de fonctionnement souhaitée adaptée à l'utilisation
+                    (Amplification, Commutation, ...)</p>
+                <ul>
+                    <li>Le circuit à l'entrée (coté base) consiste à faire conduire la jonction base émetteur pour
+                        obtenir un
+                        courant Ib avec la valeur souhaitée,</li>
+                    <li>Le transistor impose alors un courant Ic = β Ib,</li>
+                    <li>Le circuit de sortie (coté collecteur et émetteur) permet de fixer la valeur de Vce</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="POLRB">Polarisation par une seule résistance de base</h3>
+                <img src="IMAGES/TransPolRb.jpg" alt="">
+                <p>C'est un montage facile mais le point de fonctionnement dépend fortement de la valeur de Rb. On
+                    risque d'avoir une dérive importante du point de fonctionnement avec le vieillissement des
+                    composants ou les variation de température
+                </p>
+                <ul>
+                    <li>On calcule le courant Ib </li>
+                    <p class="math">Vcc = Rb Ib + 0.7 + Re Ie <br>
+                        Ie = Ic + Ib = (β+1) Ib ≈ β Ib <br>
+                        Ib = (Vcc - 0.7) / (Rb + &beta;Re)
+
+                    </p>
+                    <li>On en déduit le courant <span class="math">Ic = β Ib</span> </li>
+                    <li>On calcule Vce </li>
+                    <p class="math">Vcc = Rc Ic + Vce + ReIe (Ic ≈ Ie) <br>
+                        Vce = Vcc- (Rc + Re) Ic <br>
+                    </p>
+                    <li>On peut si on le désire calculer Ve et Vc </li>
+                    <p class="math">Ve = Re Ie, Vc = Ve + Vce </p>
+                    <li>Si le transistor a un faible &beta;, ne pas négliger Ib devant Ic</li>
+                </ul><br>
+
+                <h4>Exemple 1 :</h4>
+                <img src="IMAGES/TranPolRbEx1.jpg" alt="">
+                <p>Calculer Ib, Ic, Vce, Ve, Vb, Vc </p>
+                <h4>Solution :</h4>
+                <p>On fait le calcul exact, on ne néglige pas Ib devant Ic. Si vous faites l'approximation, les
+                    résultats sont presque les mêmes </p>
+                <p class="math">Ib = (Vcc - 0.7) / (Rb + (&beta;+1)Re) = 0.013 mA <br>
+                    Ic = Ic = β Ib = 1.328 mA <br>
+                    Ie = Ic + Ib = 1.341 mA <br>
+                    Vc = Vcc - Rc Ic = 6.689 V <br>
+                    Ve = Re Ie = 1.341 V <br>
+                    Vce = Vc - Ve = 5.347 V <br>
+                </p><br>
+
+                <h4>Exemple 2 :</h4>
+                <img src="IMAGES/TransPolRbEx2.jpg" alt="">
+                <p>Calculer les résistances pour avoir VE=2V, IC=1mA, VCE=5V </p>
+                <h4>Solution :</h4>
+                <p>Dans ce cas, in va supposer que Ie &approx; Ic</p>
+                <p class="math">Ve = Re Ie &rArr; Re = Ve / Ie = 2K <br>
+                    Rc Ic = Vcc - Vce - Ve = 12 - 5 - 2 = 5V <br>
+                    Rc = 5V / 1 mA = 5K <br>
+                    Vb = Ve + 0.7 = 2.7V <br>
+                    Vcc - Vb = Rb Ib <br>
+                    Rb = (Vcc - Vb) / Ib <br>
+                    Rb = (12 - 2.7) / (1mA / 100) = 930K
+                </p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="POLPONT">Polarisation par pont</h3>
+                <img src="IMAGES/TheveninExemple1.jpg" alt="">
+                <p>C'est un montage plus intéressant car il permet d'obtenir un point de fonctionnement plus stable
+                </p>
+                <p>On remplace l'étage d'entrée par son équivalent Thévenin pour faciliter
+                    le calcul de Ib</p>
+                <img src="IMAGES/TheveninExemple2.jpg" alt="">
+                <p>Ce qui permet de calculer Ib en écrivant la loi d'Ohm dans la maille d'entrée</p>
+                <p class="math">Veq = Req Ib + 0.7 + Re( Ib + &beta;Ib ) <br>
+                    Ib = (Veq - 0.7) / (Req + (&beta;+1)Re)
+                </p> <br>
+                <h4>Exemple 1 :</h4>
+                <img src="IMAGES/TransPolPontEx1.jpg" alt="">
+                <p>Calculer Ib, Ic, Ve , Vc , Vce </p><br>
+                <h4>Solution :</h4>
+                <p class="math">Veq = 1.818 <br>
+                    Req = 8,485 K <br>
+                    Ib = 0,005 mA <br>
+                    Ic = 0.531 mA <br>
+                    Ie = 0.537 mA <br>
+                    Vc = Vcc - Rc Ic = 6.688 V <br>
+                    Ve = Re Ie = 1.073 V <br>
+                    Vce = Vc - Ve = 5.614 V <br>
+                    Vb = Ve + 0.7 = 1. 77 V
+                </p> <br>
+
+                <h4 id="POLEX2">Exemple 2 :</h4>
+                <img src="IMAGES/TransPolPontEx2.jpg" alt="">
+                <p>Calculer les résistances pour avoir : VE=2V, Ic=1mA, Vce=5V, I1 = 20 x Ib
+                </p><br>
+
+                <h4>Solution :</h4>
+                <p class="math"> Ib = Ic / &beta; = 0.01 mA <br>
+                    Ie = Ib + Ic = 1.01 mA <br>
+                    Re = Ve / Ie = 1.98 K <br>
+                    Rc Ic = 5V &rArr; Rc = 5 K <br>
+                    Vb = Ve + 0.7V = 2.7V <br>
+                    I1 = 20 Ib = 0.2 mA <br>
+                    I2 = I1 - Ib = 0.19 mA <br>
+                    Rb1 = (Vcc - Vb) / I1 = 46.5 K <br>
+                    Rb2 = Vb / I2 = 14.2 K <br>
+                </p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="AMPLI">Transistor en amplification</h3>
+                <img src="IMAGES/TransAmpli.jpg" alt="">
+                <ul>
+                    <li>La polarisation fait conduire le transistor et stabiliser les courants et les tensions en un
+                        point de fonctionnement { I<sub>B0</sub> , I<sub>C0</sub>, V<sub>CE0</sub>}
+                    </li>
+                    <li>Si on fait varier légèrement le courant de base de ΔIb autour de sa valeur de repos
+                        I<sub>B0</sub>, cela
+                        entraînera une variation plus importante du courant de collecteur, amplifiée par le facteur β,
+                        ce qui donne ΔIc = β ΔIb</li>
+                    <li>La tension de sortie (Vce) est régie par la loi d'Ohm : Vce = Vcc - Rc Ic </li>
+                    <li>Par conséquent, toute variation du courant de collecteur (ΔIc) provoque une variation de la
+                        tension de sortie (ΔVce), qui peut être exprimée par la relation : ΔVce = -Rc ΔIc = - Rc β ΔIb.
+                        Le signe négatif indique que l'augmentation du courant Ic entraîne une diminution de la tension
+                        Vce.</li>
+                    <li>Pour définir le gain en tension (la relation entre la variation de la tension de sortie ΔVs et
+                        celle de la tension d'entrée ΔVe), il faut encore relier la variation du courant de base ΔIb à
+                        la variation de la tension d'entrée ΔVe. Cette relation dépend de l'impédance d'entrée dynamique
+                        du transistor, souvent représentée par le paramètre h11 dans le modèle hybride π, que nous
+                        allons introduire plus tard.</li>
+
+                </ul>
+                <img src="IMAGES/TransAmpliSignaux.jpg" alt="">
+                <h4>Illustration graphique</h4>
+                <img src="IMAGES/TransAmpliGraphic.jpg" alt=""><br>
+
+                <h4>Capacités de liaison</h4>
+                <img src="IMAGES/TransAmpliLiaison.jpg" alt="">
+                <p>Pour brancher un générateur à l'entrée et une charge à la sortie sans modifier le point de
+                    fonctionnement, on fait appel à des capacités de liaison.</p>
+                <p>Une capacité de liaison se comporte comme :</p>
+                <ul>
+                    <li>Un circuit ouvert pour le continu,</li>
+                    <li>Un court-circuit pour l'alternatif</li>
+                </ul><br>
+
+                <h4>Schéma équivalent du transistor </h4>
+                <p>Autour d'un point de polarisation, les relations entre les faibles variations de tension et de
+                    courant sont décrite d'une façon simplifiée par les équations ci-contre. d'où le schéma équivalent
+                    ci-dessous
+                </p>
+                <ul>
+                    <li class="math"> v<sub>be</sub> = h<sub>11</sub> i<sub>b</sub></li>
+                    <li class="math"> i<sub>c</sub> = β i<sub>b</sub></li>
+                </ul>
+                <img src="IMAGES/TransSchEqui.jpg" alt="">
+                <p>h11 représente l'impédance d'entrée du transistor. Sa valeur dépend du transistor et du point de
+                    fonctionnement statique. La formule suivante donne une valeur approchée (ampirique)
+                </p>
+                <img src="IMAGES/Transh11.jpg" alt="">
+                <p>Par exemple, si un transistor de β = 100 est polarisé avec un courant statique I<sub>E</sub> = 2mA,
+                    on aura h11 = 26 * 100 / 2 = 1300 Ω</p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="EMCOM">Montage émetteur commun</h3>
+                <img src="IMAGES/TransEmCom.jpg" alt="">
+                <p>Le montage émetteur commun (EC) est l'un des circuits les plus utilisés en électronique pour
+                    amplifier un signal. Il est appelé "émetteur commun" car l'électrode de l'émetteur est partagée
+                    entre l'entrée et la sortie du circuit. Il est caractérisé par :</p>
+                <ul>
+                    <li>Gain en tension <b>Av</b> </li>
+                    <li>Impédance d'entrée <b>Ze</b></li>
+                    <li>Impédance de sortie <b>Zs</b></li>
+                </ul>
+                <p>Pour déterminer les expression de Av, Ze et Zs, on dresse le schéma équivalent en dynamique du
+                    montage. Sur ce schéma, Vcc est reliée à la masse, en effet Vcc est une constante, donc ΔVcc = 0,
+                    elle donc considérée comme une masse vu le montage ne concerne que les signaux variables.</p>
+                <ul>
+                    <li>On commence par placer le schéma équivalent du transistor</li>
+                    <li>On place la masse reliée à l'émetteur</li>
+                    <li>Sur le collecteur on Rc qui va à Vcc, donc on la relie à la masse</li>
+                    <li>Sur la base, on a deux résistance qui vont à la masse, on les remplace par une seule résistance
+                        Rb = Rb1 // Rb2 </li>
+                    Les condensateur de liaison sont remplacés par des fils
+                </ul>
+                <img src="IMAGES/TransEmcomEqui.jpg" alt=""><br>
+
+                <h4>Gain en tension :</h4>
+                <p>On écrit les lois d'Ohm à l'entrée et à la sortie</p>
+                <p class="math">ve = h11 ib <br>
+                    vs = - Rc ic = - Rc β ib<br>
+                    <span class="encadre">Av = vs / ve = - β Rc / h11</span>
+                </p><br>
+
+                <h4>Impédance d'entrée</h4>
+                <p>Par définition, Ze = ve / ie</p>
+                <img src="IMAGES/TransEmcomZe.jpg" alt="">
+                <p>Or, d'après le schéma,</p>
+                <p class="math">ve = (Rb // h11) ie</p>
+                <p class="encadre"> Ze = Rb // h11 = (Rb h11) / (Rb + h11)</p><br>
+
+                <h4>Impedance de sortie</h4>
+                <p>Par définition
+                    <img src="IMAGES/TransZsFormule.jpg" alt="" class="inline">
+                </p>
+                <img src="IMAGES/TransZsSch.jpg" alt="">
+                <img src="IMAGES/TransZs.jpg" alt=""> <br>
+
+                <h4>Emballement thermique</h4>
+                <p>Le montage émetteur commun tel qu'il est présenté ci-dessus présente l'inconvénient suivant: Sous
+                    l'effet du courant Ic qui traverse le transistor, la température de celui-ci augmente légèrement à
+                    cause la puissance dissipée par effet joule. Cette augmentation de température augmente le nombre de
+                    porteurs dans le semi-conducteur par le mécanisme de création de paires électrons-trou. La
+                    conséquence directe est l'augmentation du courant Ib qui engendre une augmentation
+                    du courant Ic qui à son tour va engendrer une augmentation supplémentaire de la température du
+                    transistor et provoquer ce qu'on appelle un emballement thermique qui finit très rapidement par une
+                    saturation du transistor. </p>
+                <p>Pour remédier à ce problème, on ajoute une résistance sur l'émetteur du transistor. Cette résistance
+                    joue un rôle de stabilisation de la température car elle assure une contre réaction négative : si Ic
+                    augmente, alors la tension VE = RE IE augmente donc la tension Vbe = Vb - Ve diminue provoquant la
+                    diminution de Ib et donc de Ic jusqu'à ce que un point d'équilibre soit atteint.</p><br>
+                <img src="IMAGES/TransEmcomRe.jpg" alt="">
+                <p>Recalculons le gain du montage avec la résistance RE</p>
+                <img src="IMAGES/TransEmcomReAv.jpg" alt=""><br>
+
+                <h4>Application numérique</h4>
+                <p>On va comparer les gain Av des montage sans et avec la résistance Re, avec des points de
+                    fonctionnement très voisins</p>
+                <ol>
+                    <li>Pour le montage sans Re, on va prendre Vcc = 12V, β = 100 et calculer les résistances pour
+                        avoir le point de fonctionnement { Vce = 5V, Ic = 1mA, I1/Ib = 10}</li>
+                    <p>On trouve : </p>
+                    <p class="math">Rb1 = 113K <br>
+                        Rb2 = 7.78K <br>
+                        Rc = 7K <br>
+                        h11 = 2.574 K <br>
+                        <b>Av = - β Rc / h11 &approx; -272</b>
+                    </p>
+                    <li>Pour le montage avec Re, on va prendre Vcc = 12V, β = 100 et calculer les résistances pour
+                        avoir le point de fonctionnement similaire au precedent { Vce = 5V, Ve = 1V, Ic = 1mA, I1/Ib =
+                        10}</li>
+                    <p>On trouve : </p>
+                    <p class="math">Rb1 = 103K <br>
+                        Rb2 = 19K <br>
+                        Rc = 6K <br>
+                        Re = 1K <br>
+                        <b>Av = - Rc / Re = - 6</b>
+                    </p>
+                </ol>
+                <p><strong>On constate que la résistance d'émetteur Re joue un rôle important pour la stabilisation de
+                        la
+                        température, mais elle a une influence <em>néfaste</em> sur le gain en tension Av</strong></p>
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h3>Émetteur commun, Version finale</h3>
+                <img src="IMAGES/TransEmcomFinal.jpg" alt="">
+                <p>Pour garder la résistance Re et éviter son influence sur le gain, on place un condensateur (de
+                    découplage) en parallèle sur Re. Ce condensateur n'intervient pas en continu,
+                    donc la résistance Re joue pleinement son rôle de stabilisation thermique, alors qu'en alternatif,
+                    le condensateur est remplacé par un fil qui court-circuite la résistance Re ce qui nous ramène au
+                    schéma équivalent du montage sans Re</p>
+                <img src="IMAGES/TransEmcomEqui.jpg" alt="">
+                <img src="IMAGES/TransEmcomAv.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="AMPUSAGE">Exemple d'utilisation</h3>
+                <img src="IMAGES/TransAmpUsage.jpg" alt="">
+                <b>Le générateur est caractérisé par :</b>
+                <ul>
+                    <li>Tension interne : Vg = 10 mV (C'est la tension que l'on mesure à la sortie du générateur <b>à vide</b> )</li>
+                    <li>Impédance de sortie : Zg = 100 Ω </li>
+                </ul><br>
+                <b>A) Etude Statique</b>
+                <ul>
+                    Calculer Ib, Ic, IE, VE, VCE
+                </ul><br>
+                <b>B) Etude Dynamique</b>
+                <ul>
+                    <li>Calculer le gain en tension Av</li>
+                    <li>Calculer l'impédance d'entrée Ze</li>
+                    <li>Calculer l'impédance de sortie Zs</li>
+                </ul><br>
+                <b>C) Application</b>
+                <ul>Calculer la tension de sortie aux bornes de la charge RL</ul> <br>
+
+                <h4>Solution :</h4>
+
+                <b>A) Etude Statique</b>
+                <p>Grace au condensateurs de liaison, le point de fonctionnement statique est indépendant du générateur
+                    et de la charge</p>
+                <p class="math">Veq = 2.08 V <br>
+                    Req = 34.71 K <br>
+                    Ib = 0.01 mA <br>
+                    Ic = 1.08 mA <br>
+                    IE = 1.09 mA <br>
+                    VE = 1.09 V <br>
+                    Vce = 2.23 V <br>
+                </p> <br>
+
+                <b>C) Etude dynamique</b>
+                <p class="math">h11 = 3.09 K <br>
+                    Av = -336.32 <br>
+                    Rb = Rb1 // Rb2 = 34.71 K <br>
+                    Ze = 2.84 K <br>
+                    Zs = 8 K <br>
+                </p> <br>
+
+                <b>C) Application</b>
+                <img src="IMAGES/TransEmcomAdapt.jpg" alt="">
+                <p>L'impédance d'entrée Ze de l'ampli forme un <b>diviseur de potentiel</b> avec l'impédance de
+                    sortie Zg du générateur. Avant de brancher le générateur, on pouvait mesurer une tension égale à Vg
+                    à la sortie du générateur, c'est sa tension de sortie à vide. Après avoir branché le générateur à
+                    l'ampli, la tension de sortie du générateur qui est aussi la tension d'entrée de l'ampli devient
+                </p>
+                $$Ve = {Ze \over Ze + Zg} Vg$$
+                <p>Cette tension est toujours inférieure à Vg puisque le rapport \({Ze \over Ze + Zg}\) est toujours
+                    inférieur à 1. </p>
+                <p>Nous appellerons ce rapport : <b>facteur d'adaptation à l'entrée FAe</b>.</p>
+                <p>Pour minimiser la perte dûe à l'adaptation, il faut que FAe soit voisin de 1. Pour cela il faut avoir
+                    Ze&Gt;Zg. De cette façon on peut négliger Zg dans le dénominateur et on obtient :</p>
+                <p class="math InlineCenter"> FAe &approx; 1 , Ve &approx; Vg</p>
+                <p>Voila pourquoi on dit que : </p>
+                <ul>
+                    <li><em>Un bon amplificateur doit avoir une grande impédance d'entrée.</em></li>
+                    <li><em>Un bon générateur (source) doit avoir une faible impédance de sortie</em></li>
+                </ul><br>
+
+                <p>La charge R<sub>L</sub> forme un diviseur de tension avec l'impédance de sortie Zs. La tension de
+                    sortie
+                    obtenue aux bornes de la charges est donnée par:</p>
+                $$Vs = {R_L \over R_L + Zs} Vi = {R_L \over R_L + Zs} Av Ve$$
+                <p>Là aussi, il y a perte d'amplitude car le rapport \({R_L \over R_L + Zs}\)est toujours inférieur à 1.
+                    Nous appellerons ce rapport <b>facteur d'adaptation à la sortie FAs</b>.</p>
+                <p>Pour minimiser la perte dûe à l'adaptation, il faut que FAs soit voisin de 1. Pour cela il faut avoir
+                    Zs&Lt;RL. De cette façon on peut négliger Zs dans le dénominateur et on obtient :</p>
+                <p class="math InlineCenter"> FAs &approx; 1 , Vs &approx; Vi</p>
+                <p>Voila pourquoi on dit que : </p>
+                <p><em>Un bon ampli doit avoir une impédance de sortie Zs aussi faible que possible</em></p>
+                <p><em>Malheureusement, ce n'est pas le cas du montage émetteur commun</em></p>
+                <p><b>Finalement, en tenant compte de l'interaction de l'ampli avec le générateur et la charge, le vrai
+                        gain du montage est donné par :</b></p>
+
+                $$Vs = {Ze \over Ze + Zg} Av {R_L \over R_L + Zs} Vg$$
+                <p>Dans le cas de notre exemple, nous avons :</p>
+                <p class="math">
+                    FAe = 2.84K / (2.84 k + 0.1K) = 0.97  (Facteur acceptable) <br>
+                    Fas = 1k / (1k + 8K) = 0.1111 (très mauvais facteur d'adaptation en sortie) <br>
+                    Vs = 0.97 * 336.32 * 0.1111 * 10 mV &approx; 361 mV = 0.36V  (!! pas terrible du tout)
+                </p>
+
+
+
+
 
 
 
