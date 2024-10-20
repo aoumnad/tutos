@@ -26,7 +26,10 @@ body li {
     margin-right: 1ch;
     text-align: justify;
 } 
-
+sub {
+    vertical-align: sub;
+    font-size: small
+  }
 
 .li_niv1 {
     margin-top: 1rem;
@@ -467,6 +470,7 @@ code {
         top: 0%;
         left: -100%;
         width: 98%;
+        z-index: 9999;
         transition: 0.5s;       
     }
 
