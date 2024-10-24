@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="Diode, Transistor, Ampli-Op, Amplificateur Opérationnel, 555" name="keywords">
+    <title>Cellule RC</title>
+    <link rel="icon" href="IMAGES/RC_logo.jpg" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h2>Introduction</h2>
+                </a>
+                <a href="#REGLE1">
+                    <h2>Règle du Repos</h2>
+                </a>
+                <a href="#REGLE2">
+                    <h2>Règle de la Cellule RC</h2>
+                </a>
+                <a href="#REGLE3">
+                    <h2>Règle de la Cellule CR</h2>
+                </a>
+                <a href="#REGLE4">
+                    <h2>Règle de l'exponentielle</h2>
+                </a>
+                <a href="#EXO1">
+                    <h2>Exemple 1, RC</h2>
+                </a>
+                <a href="#EXO2">
+                    <h2>Exemple 2, CR</h2>
+                </a>
+                <a href="#EXO3">
+                    <h2>Exemple 3, RC Thévenin</h2>
+                </a>
+                <a href="#EXO4">
+                    <h2>Exemple 4, CR Thévenin</h2>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="IMAGES/menu48.png">
+                <h1>Transitoires dans les cellules RC/CR</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <img src="IMAGES/RC_CR.jpg" alt="">
+                <p>Quand on applique un signal impulsionnel à une cellule RC ou CR, il n'est pas toujours evident de
+                    prévoir et calculer l'allure du signal de sortie</p><br>
+                <img src="IMAGES/RC_objectif.jpg" alt="">
+                <p>Nous allons apprendre quelques règles simples qui permettre d'atteindre cet objectif sans ce lancer
+                    dans des calculs fastidieux</p><br>
+
+                <h3>RC, CR, quelle est la différence ?</h3>
+                <p>En réalité, c'est le même circuit, mais pour simplifier, on fait deux approches distinctes et
+                    utiliser des règles propres à chaque cas
+                </p>
+                <ul>
+                    <li>Si Ve est appliquée sur R, nous parlerons de cellule RC</li>
+                    <li>Si Ve est appliquée sur C, nous parlerons de cellule CR</li>
+                </ul>
+                <img src="IMAGES/RCouCR.jpg" alt=""><br>
+
+                <h3 id="REGLE1">Règle du Repos</h3>
+                <p class="encadre">Avant le début ou après la fin d'un phase transitoire (charge/décharge), le circuit
+                    et à l'état de
+                    <b>repos</b>.
+                    Le courant dans la résistance R est nul, on a <em>La même tension des deux cotés de R</em>
+                </p><br>
+                <h3 id="REGLE2">Règle de la Cellule RC</h3>
+                <p class="encadre">Dans un circuit RC, au repos, Vs = Ve, ensuite, chaque fois que Ve <i>'saute'</i>
+                    vers une nouvelle valeur,
+                    <em>Vs la suit exponentiellement</em>
+                    (charge/décharge) avec la constante de temps τ = RC
+                </p>
+                <img src="IMAGES/RC_regle2.jpg" alt=""><br>
+
+                <h3 id="REGLE3">Règle de la Cellule CR</h3>
+                <p class="encadre">Dans un circuit CR, au repos, Vs = V<sub>R</sub> (tension de l'autre coté de R).
+                    Ensuite, chaque fois que Ve <i>'saute'</i> de ΔV, Vs <em>saute du même saut ΔV, ensuite
+                        elle revient exponentiellement à l'état de repos</em> (V<sub>R</sub> ) avec la constante de
+                    temps τ = RC,
+                </p>
+                <img src="IMAGES/RC_regle3.jpg" alt=""><br>
+
+                <h3 id="REGLE4">Règle de l'exponentielle</h3>
+                <p>L'équation de charge ou de décharge d'un condensateur dans le cas général est : </p>
+                $$ V(t) = V_\infty - (V_\infty - V_0)e^{-\frac{t}{τ}}$$
+                <img src="IMAGES/RC_exponentielle.jpg" alt="">
+                <ul>
+                    <li>Excursion totale : \( ΔV = V_\infty - V_0 \)</li>
+                    <li>À l'instant τ, le signal a parcouru &approx; les 2/3 de ΔV</li>
+                    <li>À l'instant 5τ, le signal a parcouru la totalité de ΔV</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="EXO1">Exemple 1, RC</h3>
+                <img src="IMAGES/Exo1_Sch.jpg" alt="">
+                <img src="IMAGES/Exo_Ve.jpg" alt="">
+                <p>Dessiner le signal de sortie Vs et calculer ses valeurs aux instants remarquables </p><br>
+
+                <h4>Solution :</h4>
+                <ul>
+                    <li>On commence par calculer la constante de temps,\(τ = RC = 10 \times 10^3 \times 100 \times
+                        10^{-9} = 1 ms \) </li>
+                    <li>Entre 0 et l'instant t<sub>o</sub>, on est au repos, donc Vs = Ve = 4V</li>
+                    <li>à l'instant t<sub>o</sub>, Ve passe à 10V, Vs la suit exponentiellement. On commence à la tracer
+                        grossièrement au crayon, on affinera les calculs plus tard,
+                        <ul>
+                            <li>t<sub>o</sub> devient l'origine des temps de l'exponentielle</li>
+                            <li>la valeur Initiale est Vo = 4V, la valeur finale est V<sub>&infin;</sub> = 10V</li>
+                            <li>A l'instant τ = 1ms, elle aura traversé les 2/3 de ΔV </li>
+                        </ul>
+                        <img src="IMAGES/RC_Ex1_1.jpg" alt="">
+                    </li>
+                    <li>Les choses ne continue pas comme ça, à l'instant t<sub>1</sub>, Ve passe à -5V, Vs la suit
+                        exponentiellement, Pour tracer approximativement :
+                        <ul>
+                            <li>On note E1 la valeur de Vs à l'instant t1, L'excursion totale est: ΔV = E1 - (-5)</li>
+                            <li>t1 devient l'origine des temps de cet intervalle, à l'instant τ, la capa s'est déchargée
+                                de 2/3ΔV. Ceci permet de tracer grossièrement l'exponentielle de la décharge</li>
+                        </ul>
+                    </li>
+                    <li>
+                        A l'instant t2, Ve passe à 0V, Vs la suit exponentiellement, Pour tracer approximativement :
+                        <ul>
+                            <li>On note E2 la valeur de Vs à l'instant t2, L'excursion totale est: ΔV = 0 - E2</li>
+                            <li>t2 devient l'origine des temps de cet intervalle, à l'instant τ, la capa s'est chargée
+                                de 2/3ΔV. Ceci permet de tracer grossièrement l'exponentielle de la charge</li>
+                        </ul>
+                    </li>
+                    <img src="IMAGES/RC_Ex1_2.jpg" alt="">
+                    <li><b>Calcul de E1:</b>
+                        <ul>
+                            <li>Il faut déterminer l'équation de l'exponentielle dans l'intervalle [to, t1] en utilisant
+                                la règle de l'exponentielle</li>
+                            <li>On place le 0 des temps en to, Vo = 4V, V<sub>&infin;</sub> = 10V</li>
+                            <li>\( V_s(t) = 10 - (10 - 4)e^{-\frac{t}{1\,ms}} \)</li>
+                            <li>\( E_1 = 10 - (10 - 4)e^{-\frac{2\,ms}{1\,ms}} = 9.188V\)</li>
+                        </ul>
+                    </li>
+                    <li><b>Calcul de E2:</b>
+                        <ul>
+                            <li>Il faut déterminer l'équation de l'exponentielle dans l'intervalle [t1, t2]</li>
+                            <li>On place le 0 des temps en t1, Vo = E1, V<sub>&infin;</sub> = -5V</li>
+                            <li>\( V_s(t) = -5 - (-5 - 9.188)e^{-\frac{t}{1\,ms}} \)</li>
+                            <li>\( E_2 = -5 - (-5 - 9.188)e^{-\frac{3\,ms}{1\,ms}} = -4.29V\)</li>
+                        </ul>
+                    </li>
+                    <li>Maintenant on peut ajuster le dessin si c'est nécessaire</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="EXO2">Exemple 2, CR</h3>
+                <img src="IMAGES/RC_Exo2_Sch.jpg" alt="">
+                <img src="IMAGES/Exo_Ve.jpg" alt="">
+                <p>Dessiner le signal de sortie Vs et calculer ses valeurs aux instants remarquables </p><br>
+
+                <h4>Solution :</h4>
+                <ul>
+                    <li>On commence par calculer la constante de temps,\(τ = RC = 10 \times 10^3 \times 100 \times
+                        10^{-9} = 1 ms \) </li>
+                    <li>L'état de repos de Vs est égal à 0V (règle du repos), entre 0 et to Vs = 0V</li>
+                    <li>Al'instant to, Ve saute de 6V vers le haut, Vs en fait de même et passe à E1 = 0 + 6V = 6V.
+                        Ensuite Vs revient exponentiellement vers 0V (valeur de repos). <br>
+                        Vo = 6V, V<sub>&infin;</sub> = 0V &rArr; \( V_s(t) = 0 - (0 - 6)e^{-\frac{t}{1\,ms}} \) <br>
+                        \( E_2 = 6 e^{-\frac{2\,ms}{1\,ms}} = 0.812V\)
+                    </li>
+                    <li>A l'instant t1, Ve saute 15V vers le bas, Vs en fait de même et arrive à E3 = E2 - 15 = -14.188V
+                        <br>
+                        Ensuite Vs revient exponentiellement vers 0V (valeur de repos). <br>
+                        Vo = -14.188V, V<sub>&infin;</sub> = 0V &rArr; \( V_s(t) = 0 - (0 + 14.188)e^{-\frac{t}{1\,ms}}
+                        \) <br>
+                        \( E_3 = -14.188 e^{-\frac{3\,ms}{1\,ms}} = -0.7V\)
+                    </li>
+                    <li>A l'instant t2, Ve saute 5V vers le haut, Vs en fait de même et arrive à E4 = E3 + 5 = 4.3V
+                        <br>
+                        Ensuite Vs revient exponentiellement vers 0V (valeur de repos). <br>
+                        Vo = 4.3V, V<sub>&infin;</sub> = 0V &rArr; \( V_s(t) = 0 - (0 - 4.3)e^{-\frac{t}{1\,ms}} \; = \;
+                        4.3e^{-\frac{t}{1\,ms}}\) <br>
+                    </li>
+                </ul>
+                <img src="IMAGES/RC_Ex2_VeVs.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="EXO3">Exemple 3, RC Thévenin</h3>
+                <img src="IMAGES/RC_Ex3_Sch.jpg" alt="">
+                <img src="IMAGES/RC_Ex3_Ve.jpg" alt="">
+                <p>Dessiner le signal de sortie Vs et calculer ses valeurs aux instants remarquables </p><br>
+                <h4>Solution :</h4>
+                <ul>
+                    <li>On commence par remplacer les deux résistances par leur schéma équivalent de Thévenin pour
+                        obtenir une cellule RC normale. (Voir <a href="ElecBase.html#THEVENIN"
+                            target="_blank">paragraphe</a> sur Théorème de Thévenin)</li>
+                    <img src="IMAGES/RC_EX3_SchEqui.jpg" alt="">
+                    <li>Req = R1 // R2 = 6K</li>
+                    <li>Veq = (R2 Ve + R1 Vr) / (R1 + R2) = 0.6 Ve + 2V
+                        <ul>
+                            <li>Ve est définie par morceaux, nous allons faire de même pour Veq</li>
+                            <li>Ve = 0 &rArr; Veq = 2V</li>
+                            <li>Ve = 10 &rArr; Veq = 8V</li>
+                            <img src="IMAGES/RC_Ex3_Veq.jpg" alt="">
+                        </ul>
+                    </li>
+                    <li>Maintenant on fait l'étude de la cellule RC en faisant attention de prendre Veq comme signal
+                        d'entrée </li>
+                    <li>On commence par calculer la constante de temps,\(τ = Req C = 6 \times 10^3 \times 10 \times
+                        10^{-9} = 60 µs \) </li>
+                    <li>Entre 0 et to, on est au repos, donc Vs = Veq = 2V</li>
+                    <li>à l'instant to, Veq passe à 8V, Vs la suit exponentiellement <br>
+                        On place le 0 des temps en to. Vo = 2V, V<sub>&infin;</sub> = 8V <br>
+                        \( V_s(t) = 8 - (8 - 2)e^{-\frac{t}{60\,µs}} \) , à l'instant t= 100 µs, Vs atteint la valeur E
+                        <br>
+                        \( E = 8 - 6e^{-\frac{100\,µs}{60\,µs}} \; = \; 6.87V\)
+                    </li>
+                    <li>à l'instant t1, Veq passe à 2V, Vs la suit exponentiellement <br>
+                        On place le 0 des temps en t1. Vo = 6.87V, V<sub>&infin;</sub> = 2V <br>
+                        \( V_s(t) = 2 - (2 - 6.87)e^{-\frac{t}{60\,µs}} \; = \; 2 + 4.87e^{-\frac{t}{60\,µs}}\) <br>
+                    </li> <br>
+                    <img src="IMAGES/RC_Ex3_VeqVs.jpg" alt="">
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="EXO4">Exemple 4, CR Thévenin</h3>
+                <img src="IMAGES/RC_Ex4_Sch.jpg" alt="">
+                <img src="IMAGES/RC_Ex3_Ve.jpg" alt="">
+                <p>Dessiner le signal de sortie Vs et calculer ses valeurs aux instants remarquables </p><br>
+                <h4>Solution :</h4>
+                <ul>
+                    <li>On commence par remplacer les deux résistances par leur schéma équivalent de Thévenin pour
+                        obtenir une cellule CR normale. (Voir <a href="ElecBase.html#THEVENIN"
+                            target="_blank">paragraphe</a> sur Théorème de Thévenin)</li>
+                    <img src="IMAGES/RC_EX4_SchEq.jpg" alt="">
+                    <li>Req = R1 // R2 = 7.5K</li>
+                    <li>Veq = R2 Vr / (R1 + R2) = 3.75V </li>
+                    <li>Entre 0 et to, on est au repos, donc Vs = Veq = 3.75V</li>
+                    <li>A l'instant to, Ve saute de 10V vers le haut, Vs en fait de même et passe à E1 = 3.75V + 10V =
+                        13.75V.
+                        Ensuite Vs revient exponentiellement vers 3.75V (valeur de repos). <br>
+                        Vo = 13.75V, V<sub>&infin;</sub> = 3.75V <br>
+                        \( V_s(t) = 3.75 - (3.75 - 13.75)e^{-\frac{t}{75\,µs}} \) <br>
+                        \( V_s(t) = 3.75 + 10e^{-\frac{t}{75\,µs}} \) <br>
+                        \( E_2 = 3.75 + 10 e^{-\frac{100\,µs}{75\,µs}} = 6.39V\)
+                    </li>
+                    <li>A l'instant t1, Ve saute de 10V vers le bas, Vs en fait de même et arrive à E3 = E2 - 10 =
+                        -3.61V <br>
+                        Ensuite Vs revient exponentiellement vers 3.75V (valeur de repos). <br>
+                        Vo = -3.61V, V<sub>&infin;</sub> = 3.75V <br>
+                        \( V_s(t) = 3.75 - (3.75 + 3,61)e^{-\frac{t}{75\,µs}} \) <br>
+                        \( V_s(t) = 3.75 - 7.36e^{-\frac{t}{75\,µs}} \) <br>
+                    </li><br>
+                    <img src="IMAGES/RC_Ex4_VeVs.jpg" alt="">
+                </ul>
+
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
