@@ -454,6 +454,15 @@ code {
     font-style: italic;
 }
 
+.CadreCentre {
+    
+    display: inline-block; 
+    text-align: center ; 
+    border: 2px solid black; 
+    border-radius: 5px; 
+    padding: 5px; 
+    /* background-color: #007bff; */
+}
 
 @media screen and (max-width: 768px) {
 

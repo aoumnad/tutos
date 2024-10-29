@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Ampli-Op</title>
+    <link rel="icon" href="IMAGES/AmpliOp.jpg" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#PRES">
+                    <h2>Présentation</h2>
+                </a>
+                <div class="rubrique" onclick="toggleMenu('ampoplin', this)">
+                    <span>&gt;</span>
+                    <h2>Ampli-Op en Linéaire</h2>
+                </div>
+                <div id="ampoplin" class="sub-rubrique">
+                    <a href="#INTROLIN">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#INVRSR">
+                        <h3>Ampli Inverseur</h3>
+                    </a>
+                    <a href="#NINVRSR">
+                        <h3>Ampli Non Inverseur</h3>
+                    </a>
+                    <a href="#SUIVEUR">
+                        <h3>Montage suiveur</h3>
+                    </a>
+                    <a href="#SOMMINV">
+                        <h3>Sommateur Inverseur</h3>
+                    </a>
+                    <a href="#SOMMNINV">
+                        <h3>Sommateur Non Inverseur</h3>
+                    </a>
+                    <a href="#AMPLIDIFF">
+                        <h3>Différenciateur</h3>
+                    </a>
+                    <a href="#PGBP">
+                        <h3>Bande passante d'un amplificateur</h3>
+                    </a>
+                    <a href="#CASCADE">
+                        <h3>Deux Ampli_Ops en cascade</h3>
+                    </a>
+                    <a href="#INTGRTR">
+                        <h3>Intégrateur Inverseur</h3>
+                    </a>
+                    <a href="#INTGRTRNI">
+                        <h3>Intégrateur Non Inverseur</h3>
+                    </a>
+                </div>
+                <div class="rubrique" onclick="toggleMenu('ampopnlin', this)">
+                    <span>&gt;</span>
+                    <h2>Ampli-Op en Linéaire</h2>
+                </div>
+                <div id="ampopnlin" class="sub-rubrique">
+                    <a href="#INTRONLIN">
+                        <h3>Introduction</h3>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Amplificateur Opérationnel</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PRES">Présentation</h2>
+                <img src="IMAGES/AO_AmpliDiff.jpg" alt="">
+                <p>C'est un amplificateur Différentiel \(V_s = A(V^+ - V^-) \). Il est caractérisé par :</p>
+                <ul>
+                    <li>Très grand gain : A &approx; 10<sup>6</sup> </li>
+                    <li>L'impédance d'entrée sur chacune de ces entrées est très élevée. Le plus souvent on la
+                        considère comme infinie, ce qui implique que les courants d'entrée sont nuls </li>
+                    <li>Très faible impédance de sortie Zs ≈ 0 </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTROLIN">Ampli-Op en fonctionnement Linéaire</h2>
+                <p>Pour utiliser l'amplificateur opérationnel dans des applications telles que l'amplification ou le
+                    filtrage, il doit fonctionner en mode linéaire, ce qui nécessite l'emploi d'une contre-réaction
+                    négative.</p>
+                <img src="IMAGES/AmpOpLin.jpg" alt="">
+                <p>En mode linéaire, on utilisera l'approximation suivante :</p>
+                <p class="InlineCenter"><span class="encadre"> $$\quad V^+ \; = \; V^- \quad$$</span></p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="INVRSR">Amplificateur Inverseur</h2>
+                <img src="IMAGES/AO_Invrsr.jpg" alt="">
+                <p>V<sup>+</sup> = 0, donc V<sup>-</sup> = 0 = masse virtuelle</p>
+                $$ V_e = R_1\; i $$
+                $$ V_s = -R_2\; i $$
+                $$ V_s \; = \; -\frac{R_2}{R_1}\; V_e $$
+                <p>On peut faire une autre approche sans passer par les courants</p>
+                <p>Puisque le courant d'entrée dans l'Ampli-Op est nul, on peut calculer l'expression de la tension sur
+                    l'entrée (-) à l'aide du théorème de Millman sans tenir coopte de l'Ampli-Op</p>
+                $$V^- \; = \; \frac{R_1V_s+R_2V_e}{R_1 + R_2} $$
+                <p>Comme V<sup>+</sup> = V<sup>-</sup> , on aura :</p>
+                $$\frac{R_1V_s+R_2V_e}{R_1 + R_2} \; = \; 0$$
+                <p>Ce qui donne :</p>
+                <p class="InlineCenter"><span class="encadre">$$ V_s \; = \; -\frac{R_2}{R_1}\; V_e $$</span></p>
+                <br><em>On remarque que le gain du montage ne dépend pas du gain propre de l'Ampli-OP mais seulement des
+                    résistances externes. C'est la conséquence directe de l'approximation \(V^+=V^-\)</em><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="NINVRSR">Amplificateur Non Inverseur</h2>
+                <img src="IMAGES/AO_NInvrsr.jpg" alt="">
+                $$ V^+ = V_e $$
+                $$ V^- = \frac{R_1}{R_1+R_2}V_s $$
+                <p>Comme V+ = V-</p>
+                $$ V_e = \frac{R_1}{R_1+R_2}V_s $$
+                <p class="InlineCenter"><span class="encadre"> $$ V_s \; = \; \left(1 + \frac{R_2}{R_1} \right)\; V_e
+                        $$</span></p>
+
+                <ul>
+                    <li>Ce montage a l'avantage d'avoir une très grande impédance d'entrée. Il n'y aura pas de perte
+                        d'adaptation même si Ve est issue d'une source ayant une mauvaise impédance de sortie</li>
+                    <li>Ce montage ne peut pas être utilisé comme atténuateur</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h2 id="SUIVEUR">Montage suiveur</h2>
+                <img src="IMAGES/AO_Suiveur.jpg" alt="">
+                <p class="InlineCenter"><span class="encadre">\( v_s\; = \; v_e\)</span></p>
+                <p class="InlineCenter"><span class="encadre">\( Z_e\; \approx \; \infty\)</span> <span
+                        class="encadre">\( Z_s\; \approx \; 0 \)</span></p>
+                <p>Ce montage de gain <em>1</em> est très utilisé comme <em>adaptateur d'impédance</em> car il a une
+                    impédance d'entrée quasi infinie et une impédance de sortie quasi nulle</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="SOMMINV">Sommateur Inverseur</h2>
+                <img src="IMAGES/AO_SommInv.jpg" alt="">
+                <p>
+                    \(v^- \; = \; \frac{\frac{v_1}{R_1} + \frac{v_2}{R_2} + \frac{v_s}{R_B}
+                    }{\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_B}} \) ,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \( v^+ \; = \;
+                    0\)
+                </p>
+                <p>En appliquant &nbsp;&nbsp;&nbsp; \( v^+ = v^- \) , on obtient</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s \; = \; -R_B \left( \frac{v_1}{R_1} \; + \;
+                        \frac{v_2}{R_2} \right) $$</span></p><br>
+                <p>Si on prend \( R_1 = R_2 = R_A\), on obtient : </p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s \; = \; -\frac{R_B}{R_A}(v_1 + v_2) $$</span></p>
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="SOMMNINV">Sommateur Non Inverseur</h2>
+                <img src="IMAGES/AO_SommNinv.jpg" alt="">
+                <p>\( v^+ = \frac{R_2v_1 + R_1 v_2}{R_1 + R_2} \) &nbsp;&nbsp;&nbsp;&nbsp; \( v^- = \frac{R_A}{R_A +
+                    R_B}v_s \)</p>
+                <p>En appliquant &nbsp;&nbsp;&nbsp; \( v^+ = v^- \) , on obtient</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = \frac{R_A + R_B}{R_A(R_1 + R_2)} (R_2 v_1 + R_1
+                        v_2) $$</span></p>
+                <p>Si on prend \( R_1 = R_2 \), on obtient :</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = \frac{R_A + R_B}{2R_A}(v_1 + v_2) $$</span></p>
+                <p>Si en plus \( R_A = R_B \), on obtient :</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = v_1 + v_2 $$</span></p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="AMPLIDIFF">Différenciateur</h2>
+                <img src="IMAGES/AO_Diff.jpg" alt="">
+                <p>\(v^+ = \frac{R_2}{R_1+R_2}v_2 \) &nbsp;&nbsp;&nbsp;&nbsp;\( v^- = \frac{R_B\;v_1 + R_A\; v_s}{R_A +
+                    R_B} \)</p>
+                <p>En appliquant &nbsp;&nbsp;&nbsp; \( v^+ = v^- \) , on obtient</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = \frac{R_A + R_B}{R_A} \left( \frac{R_2}{R_1 +
+                        R_2}v_2 \; - \; \frac{R_B}{R_A + R_B}v_1 \right) $$</span></p>
+                <p>Si on prend \( \frac{R_A}{R_B}= \frac{R_1}{R_2} \) on obtient un amplificateur de différence</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = \frac{R_B}{R_A}(v_2 - v_1) $$</span></p>
+                <p>Si on prend \( R_1=R_2\) et \( R_A=R_B\) on obtient :</p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = v_2 - v_1 $$</span></p>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PGBP">Bande passante d'un amplificateur</h2>
+                <p>Quand on réalise un amplificateur de gain Av, on s'aperçoit qu'il n'arrive pas à maintenir son gain
+                    pour les fréquences élevées. A partir d'une fréquence fo, le gain commence à chuter. Cette
+                    fréquence est appelée <b>fréquence de coupure</b> ou <b>bande passante</b> de l'amplificateur</p>
+                <img src="IMAGES/AO_BP.jpg" alt="">
+                <p>Si on trace la réponse en fréquence de plusieurs amplificateurs ayant des gains différents réalisés
+                    avec le même Ampli_Op, on obtient le réseau de courbes suivant :</p>
+                <img src="IMAGES/AO_PGBP.jpg" alt="">
+                <p>On s'aperçoit que le gain et la bande passante sont inversement proportionnels. Quand on augmente le
+                    premier, on perd sur le deuxième et vice versa.</p>
+                <p>Cette constatation découle d'une propriété fondamentale d'un amplificateur: <b><i>Le produit gain
+                            bande passante est une constante</i></b></p>
+                <p class="encadre"><em>PGBP = Gain &times Bande passante = Constante</em></p>
+                <p>Par exemple, pour le réseau de courbes ci-dessus, on a utilisé un Ampli_Op caractérisé par : <b>BGBP
+                        = 1 MHz</b></p>
+                <p>Ce paramètre est à chercher dans la datasheet du circuit. Il est souvent désigné par <b><i>Unity Gain
+                            Bandwidth</i></b> (Bande passante pour gain unité)</p>
+                <p>Par exemple, avec un Ampli_Op caractérisé par PGBP=1MHz (comme le 741), il est impossible de réaliser
+                    un ampli audio de gain 1000. En effet, pour l'audio, il faut une bande passante de 20Khz. Ce qui
+                    nécessite un Amp-OP caractérisé par PGBP &ge; 1000 &times 20KHz = 2MHz</p>
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="CASCADE">Deux Ampli_Ops en cascade</h2>
+                <img src="IMAGES/AO_Cascade.jpg" alt="">
+                <p>Quand on met deux Ampli_OPs en cascade, on n'a pas de perte d'adaptation vu que l'impédance de
+                    sortie est quasiment nulle. Pour l'amplificateur non inverseur, on a en plus l'impédance
+                    d'entrée quasi infinie.</p>
+                <p>L'amplificateur global sera caractérisé par :</p>
+                <ul>
+                    <li>Gain : \( A_v = A_{v1}\times A_{v2} \)</li>
+                    <li>Bande passante : \( f_0 = min(f_{01}, f_{02})\)</li>
+                </ul>
+                <h3>Exemple :</h3>
+                <p>Nous allons vérifier tout ça à l'aide de l'Ampli_Op TL081 caractérisé par un PGBP légèrement
+                    supérieur à 3 MHz </p><br>
+                <h4>Un premier ampli de gain 11</h4>
+                <img src="IMAGES/AO_ExCascade_SchA1.jpg" alt="">
+                <img src="IMAGES/AO_ExCascade_A1.jpg" alt="">
+                <p>Gain : Av1 = 11 (20.8 dB)</p>
+                <p>Bande passante (3 dB) : fo = 326 KHz</p>
+                <p>PGBP = 11 &times; 326 KHz &approx; 3.58 MHz</p><br>
+
+                <h4>Un deuxième ampli de gain 101</h4>
+                <img src="IMAGES/AO_ExCascade_SchA2.jpg" alt="">
+                <img src="IMAGES/AO_ExCascade_A2.jpg" alt="">
+                <p>Gain : Av1 = 101 (40.1 dB)</p>
+                <p>Bande passante (3 dB) : fo = 34.1 KHz KHz</p>
+                <p>PGBP = 101 &times; 34.1 KHz &approx; 3.44 MHz</p><br>
+
+                <h4>Les deux en cascade</h4>
+                <img src="IMAGES/AO_ExCascade_SchA1A2.jpg" alt="">
+                <img src="IMAGES/AO_ExCascade_A1A2.jpg" alt="">
+                <p>Gain : Av1 = 1111 (60.9 dB)</p>
+                <p>Bande passante (3 dB) : fo = 34.1 KHz</p><br>
+                <p>Ceci confirme que le gain total est le produit des deux gains et la bande passante est la plus faible
+                    des deux</p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTGRTR">Intégrateur Inverseur</h2>
+                <img src="IMAGES/AO_Integrateur.jpg" alt="">
+                $$ V_e = R \; i \quad ⇒ \quad i = \frac{1}{R}V_e $$
+                $$ i= C\frac{dV_c}{dt} \; = -C\frac{dV_s}{dt} $$
+                $$ \frac{1}{R}V_e \; = -C\frac{dV_s}{dt} $$
+                <p class="InlineCenter"><span class="encadre">$$ V_s \; = - \frac{1}{RC} \int V_e(t)dt $$</span></p><br>
+                <h4>Problème de l'intégrateur</h4>
+                <p>Normalement, si on intègre un signal alternatif; pendant l'alternance positive, le condensateur
+                    intègre (cumule) un courant dans un sens. Pendant l'autre alternance, le condensateur intègre un
+                    courant de même valeur dans l'autre sens, on obtient un signal de sortie centré sur 0 (valeur
+                    moyenne nulle)</p>
+                <p>Malheureusement, dans la pratique, les choses ne se passent pas exactement comme prévu. Pendant une
+                    alternance, le condensateur va intégrer un petit peu plus de courant que pendant l'autre alternance.
+                    La valeur moyenne du signal de sortie va augmenter (ou diminuer) continuellement jusqu'à saturation
+                    de la sortie de l'Ampli_Op. Ce dysfonctionnement est en général dû à une de ces cause (ou de leur
+                    cumul) : </p>
+                <ul>
+                    <li>Même si le courant d'entrée \(i_i\) de l'Ampli_Op est très faible, il n'est pas tout à fait nul
+                        et il a toujours le même sens (entrant). Pendant l'alternance positive du signal d'entrée, le
+                        condensateur intègre le courant \( (i_e - i_i)\). Pendant l'alternance négative, il intègre le
+                        courant \( (i_e + i_i)\).</li>
+                    <li>Les deux demi-alternances du signal d'entrée peuvent ne pas avoir exactement la même durée</li>
+                    <li>Les deux demi-alternances du signal d'entrée peuvent ne pas avoir exactement la même amplitude
+                    </li>
+                    <li>Ces trois raisons peuvent conduire à l'accumulation d'une composante continue dans le
+                        condensateur et la saturation de l'amplificateur</li>
+                </ul><br>
+                <h4>La solution</h4>
+                <p>Pour remédier à ce problème, on rajoute une résistance de fuite Rf en parallèle sur le condensateur.
+                    Cette résistance va décharger la composante continue qui s'accumule dans le condensateur et assurer
+                    que le signal de sortie reste centré sur zéro</p>
+                <img src="IMAGES/AO_IntegrateurRf.jpg" alt="">
+                <p>Il faut que la valeur de la résistance soit importante pour ne pas influencer sur le fonctionnement
+                    de l'intégrateur. Pour essayer de trouver une règle pour le choix de Rf, je vais comparer les
+                    fonction de transfer de l'intégrateur pur avec celle de l'intégrateur avec Rf </p>
+                <p>Si on sait que l'impédance d'un condensateur est \( \frac{1}{jCω} \), il est assez facile de
+                    déterminer les fonction de transfert. On exprime V- à l'aide de Millman, et fait V- = V+ = 0</p>
+                <ul>
+                    <li>Intégrateur pur : \( \frac{V_s}{V_e} = - \frac{1}{RC} \frac{1}{jCω} \)</li>
+                    <li>Intégrateur corrigé : \( \frac{V_s}{V_e} = - \frac{R_f}{R} \frac{1}{1+jR_fCω} \)</li>
+                    <li>Si on fait de sorte que \(R_fCω ≫1 \), on peut négliger le 1 et on aura à peu près la même fonction de
+                        transfert pour les deux montages <br>
+                        Par exemple : Si f = 1kHz, C = 100nf &rArr; \(\frac{1}{Cω} = 1592 \), Une résistance R<sub>f</sub>
+                        entre 15k&Omega; et 100 K&Omega; devrait faire l'affaire
+                    </li>
+                </ul><br>
+
+                <h4>Exemple :</h4>
+                <img src="IMAGES/AO_IntegrEx.jpg" alt="">
+                <img src="IMAGES/AO_IntegrEx1Crb.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTGRTRNI">Intégrateur Non Inverseur</h2>
+                <img src="IMAGES/AO_Integrateur_NI.jpg" alt="">
+                <p>\( V_e - v = R i_1 = RC \frac{dv}{dt} \)</p>
+                <p>\( v = Ri_2 = RC \frac{dV_s}{dt}- RC \frac{dv}{dt} \)</p>
+                <p>Si on ajoute les deux équations on obtient :</p>
+                <p>\( V_e = RC  \frac{dV_s}{dt} \)  </p>
+                <p class="InlineCenter"><span class="encadre">$$ V_s \; =  \frac{1}{RC} \int V_e(t)dt $$</span></p>
+
+                <h4>Exemple :</h4>
+                <img src="IMAGES/AO_IntegrNI_Ex.jpg" alt="">
+                <img src="IMAGES/AO_IntegrNI_Ex_Crb.jpg" alt=""><br>
+
+                 <!-- ################################################################################################ -->
+                 <h2 id="INTRONLIN">Ampli-Op en fonctionnement Non Linéaire</h2>
+                 <p>Cette section est en cours de rédaction</p>
+
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+
+
+
+
+
+                <p class="InlineCenter"><span class="encadre"></span></p>
+                <p class="InlineCenter"><span class="encadre"></span></p>
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
