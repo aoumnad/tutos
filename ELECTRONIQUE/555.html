@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>555</title>
+    <link rel="icon" href="IMAGES/555_logo.jpg" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#555INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <a href="#555AST">
+                    <h3>Astable</h3>
+                </a>
+                <a href="#555ASTEX">
+                    <h3>Exemple Astable</h3>
+                </a>
+                <a href="#555MONO">
+                    <h3>Monostable</h3>
+                </a>
+                <a href="#555MONOEX">
+                    <h3>Exemple Monostable</h3>
+                </a>
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Le timer 555</h1>
+            </div>
+            <div class="RightPanelContent">
+
+                <!-- ################################################################################################ -->
+                <h2 id="555INTRO">Introduction</h2>
+                <p>Le timer 555 est un circuit intégré très populaire grâce à sa simplicité et sa
+                    polyvalence.</p>
+                <p>Il peut fonctionner dans différents modes, notamment comme astable pour générer des signaux carrés,
+                    ou monostable pour réaliser un temporisateur. </p>
+                <img src="IMAGES/555.jpg" alt="">
+                <img src="IMAGES/555_SchBloc.jpg" alt="">
+                <p>Il est constitué de :</p>
+                <ul>
+                    <li>Deux comparateurs avec les seuils 1/3Vcc et 2/3Vcc</li>
+                    <li>Une bascule RS</li>
+                    <li>Un interrupteur commandé</li>
+                    <li>La broche 4 (Clr ou Reset) est la broche de remise à zéro. Elle est active au niveau bas: <br>
+                        • Clr = 0 &rArr; Sortie forcée à 0 et interrupteur K fermé <br>
+                        • Clr = 1 &rArr; Le 555 fonctionne normalement <br>
+                    </li>
+                </ul>
+                <p>Le tableau ci dessous résume fonctionnement du 555:</p>
+                <img src="IMAGES/555_Table.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="555AST">Astable</h2>
+                <img src="IMAGES/555_Astable.jpg" alt="">
+                <p>C'est un oscillateur à relaxation qui génère un signal carré </p>
+                <ul>
+                    <li>Condition initiale : C déchargée. V6=0, V2=0, on est dans l'état 1 (tableau), Vs = Vcc,
+                        l'interrupteur K est ouvert (OFF). La capacité se charge vers Vcc à travers Ra+Rb</li>
+                    <li>A l'instant t1, on passe dans l'état 2, la situation reste inchangée, la capacité continue de se
+                        charger</li>
+                    <li>A l'instant t2, on passe dans l'état 3, l'interrupteur se ferme (ON), C se décharge vers 0 à
+                        travers Rb</li>
+                    <li>A l'instant t3, on passe de nouveau dans l'état 1, l'interrupteur s'ouvre (OFF), la capacité se
+                        charge à travers Ra+Rb et le cycle recommence</li>
+                </ul><br>
+
+
+                <img src="IMAGES/555_Astable_Crb.jpg" alt="">
+                <p>\(T_0 \; = \; (R_A \; + \; R_B) \; C \; Ln(3) \)</p>
+                <p>\(T_{dch}\;=\;R_B\;C\;Ln(2) \)</p>
+                <p>\(T_{ch} \; = \; (R_A \; + \; R_B) \; C \; Ln(2) \)</p>
+                <p class="InlineCenter"><span class="encadre">\(T \; = \; (R_A \; + \; 2R_B) \; C \; Ln(2) \)</span></p>
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="555ASTEX">Exemple Astable</h2>
+                <p>Un petit exemple qui montre comment utiliser deux 555 pour générer des trains d'impulsion</p>
+                <img src="IMAGES/555_Ast_Ex.jpg" alt="">
+                <img src="IMAGES/555_Ast_Ex_Crb.jpg" alt="">
+                <p>Le deuxième astable a une condensateur 10 fois plus faible, il est donc 10 fois plus rapide. Mais il
+                    ne fonctionne pas tout le temp. Il reçoit la sortie du premier astable sur son entrée <i>CLR</i>,
+                    il n'est validé que quand cette dernière est au niveau haut.</p>
+                <p>Cet exemple montre bien que la première impulsion est toujours plus large que les autres du fait que
+                    la capacité commence à ce charger à partir de 0</p>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="555MONO">Monostable</h2>
+                <img src="IMAGES/555_Monostable.jpg" alt="">
+                <p>C'est un temporisateur. On le déclenche, il délivre une impulsion de largeur T et il revient à son
+                    état de repos. </p>
+                <p>Au repos, l'entrée de déclenchement doit être au niveau haut. Pour déclencher, il la faut la faire
+                    descendre en dessous de 1/3Vcc. La largeur de l'impulsion de déclenchement doit être supérieure à
+                    1µs</p>
+                <img src="IMAGES/555_Mono_Crb.jpg" alt="">
+                <ul>
+                    <li>Au repos, V2=Vcc, V6=0 (condensateur vide), état 2, l'interrupteur K est fermé (ON), Vs=0. Nous
+                        allons vérifier qu'après chaque déclenchement, le 555 revient à cet état</li>
+                    <li>A l'instant t1 (déclenchement), Ve=V2 passe à une valeur inférieure à 1/3 Vcc, on passe dans
+                        l'état 1, l'interrupteur K s'ouvre (OFF), la capacité commence à se charger vers Vcc à travers R
+                    </li>
+                    <li>A l'instant t2, V2 repasse à Vcc, on est dans l'état 2, la situation reste inchangée, K reste
+                        bloqué et la capacité continue de se charger. <b><i>Il est impératif que la largeur de
+                                l'impulsion de déclenchement soit inférieure à la constante de temps RC, sinon le
+                                montage ne fonctionnera pas.</i></b></li>
+                    <li>à l'instant t3, Vc devient supérieure à 2/3Vcc, on se trouve
+                        dans l'état 3, l'interrupteur conduit est la capacité se décharge instantanément, la tension à
+                        ses bornes passe aussitôt en dessous de 2/3Vcc et on se retrouve à l'état 2 ( état initial) :
+                        V2=Vcc, Vs = 0, Vc=0, K conducteur</li>
+                </ul>
+                <p>La détermination de T ne pose pas de problème. On écrit <a href="RC.html#REGLE4"
+                        target="_blank">l'équation</a> de la charge et on l'égalise avec 2/3Vcc à l'instant T (t3) </p>
+
+                <p class="InlineCenter"><span class="encadre">\(T \; = \; RC \; Ln(3) \)</span></p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="555MONOEX">Exemple Monostable</h2>
+                <img src="IMAGES/555_Mono_Ex.jpg" alt="">
+
+                <p>Dans ce exemple, on un Astable qui génère un signal carré. Ce signal carré est appliqué à une <a
+                        href="RC.html#REGLE3" target="_blank">cellule CR</a> pour générer des impulsions étroites qui
+                    sont appliquées à l'entrée de déclenchement du monostables. Les impulsions qui descendent en dessous
+                    de 1/3Vcc permettent de déclencher le monostable. Au niveau de 1/3Vcc, les impulsion doivent avoir
+                    une largeur d'au moins 1µs</p>
+                <img src="IMAGES/555_Mono_Ex_Crb.jpg" alt="">
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

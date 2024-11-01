@@ -53,6 +53,9 @@
                     <a href="#AMPLIDIFF">
                         <h3>Différenciateur</h3>
                     </a>
+                    <a href="#CURNTENSION">
+                        <h3>Convertisseur Courant-Tension</h3>
+                    </a>
                     <a href="#PGBP">
                         <h3>Bande passante d'un amplificateur</h3>
                     </a>
@@ -73,6 +76,15 @@
                 <div id="ampopnlin" class="sub-rubrique">
                     <a href="#INTRONLIN">
                         <h3>Introduction</h3>
+                    </a>
+                    <a href="#DETSEUIL">
+                        <h3>Détecteur de seuil</h3>
+                    </a>
+                    <a href="#TRIGSHMITT">
+                        <h3>Le Trigger de Schmitt</h3>
+                    </a>
+                    <a href="#ASTABLE">
+                        <h3>Multivibrateur Astable</h3>
                     </a>
                 </div>
 
@@ -191,8 +203,19 @@
                 <p>Si on prend \( \frac{R_A}{R_B}= \frac{R_1}{R_2} \) on obtient un amplificateur de différence</p>
                 <p class="InlineCenter"><span class="encadre">$$ v_s = \frac{R_B}{R_A}(v_2 - v_1) $$</span></p>
                 <p>Si on prend \( R_1=R_2\) et \( R_A=R_B\) on obtient :</p>
-                <p class="InlineCenter"><span class="encadre">$$ v_s = v_2 - v_1 $$</span></p>
+                <p class="InlineCenter"><span class="encadre">$$ v_s = v_2 - v_1 $$</span></p><br>
 
+                <!-- ################################################################################################ -->
+                <h2 id="CURNTENSION">Convertisseur Courant-Tension</h2>
+                <p>Il arrive souvent que l'on désire convertir un courant en une tension proportionnelle par exemple
+                    pour pouvoir la numériser à l'aide d'un microcontrôleur</p>
+                <img src="IMAGES/AO_CurrTens.jpg" alt="">
+                <p>\( v^- = 0 = masse \; virtuelle \)</p>
+                <p class="InlineCenter"><span class="encadre">$$ V_s \; = -\; R \; i$$</span></p>
+                <p class="InlineCenter">
+                    <img src="IMAGES/AO_CurrTens_Ex1.jpg" alt="" class="inline">
+                    <img src="IMAGES/AO_CurrTens_Ex2.jpg" alt="" class="inline">
+                </p>
 
                 <!-- ################################################################################################ -->
                 <h2 id="PGBP">Bande passante d'un amplificateur</h2>
@@ -296,9 +319,11 @@
                 <ul>
                     <li>Intégrateur pur : \( \frac{V_s}{V_e} = - \frac{1}{RC} \frac{1}{jCω} \)</li>
                     <li>Intégrateur corrigé : \( \frac{V_s}{V_e} = - \frac{R_f}{R} \frac{1}{1+jR_fCω} \)</li>
-                    <li>Si on fait de sorte que \(R_fCω ≫1 \), on peut négliger le 1 et on aura à peu près la même fonction de
+                    <li>Si on fait de sorte que \(R_fCω ≫1 \), on peut négliger le 1 et on aura à peu près la même
+                        fonction de
                         transfert pour les deux montages <br>
-                        Par exemple : Si f = 1kHz, C = 100nf &rArr; \(\frac{1}{Cω} = 1592 \), Une résistance R<sub>f</sub>
+                        Par exemple : Si f = 1kHz, C = 100nf &rArr; \(\frac{1}{Cω} = 1592 \), Une résistance
+                        R<sub>f</sub>
                         entre 15k&Omega; et 100 K&Omega; devrait faire l'affaire
                     </li>
                 </ul><br>
@@ -313,38 +338,129 @@
                 <p>\( V_e - v = R i_1 = RC \frac{dv}{dt} \)</p>
                 <p>\( v = Ri_2 = RC \frac{dV_s}{dt}- RC \frac{dv}{dt} \)</p>
                 <p>Si on ajoute les deux équations on obtient :</p>
-                <p>\( V_e = RC  \frac{dV_s}{dt} \)  </p>
-                <p class="InlineCenter"><span class="encadre">$$ V_s \; =  \frac{1}{RC} \int V_e(t)dt $$</span></p>
+                <p>\( V_e = RC \frac{dV_s}{dt} \) </p>
+                <p class="InlineCenter"><span class="encadre">$$ V_s \; = \frac{1}{RC} \int V_e(t)dt $$</span></p>
 
                 <h4>Exemple :</h4>
                 <img src="IMAGES/AO_IntegrNI_Ex.jpg" alt="">
                 <img src="IMAGES/AO_IntegrNI_Ex_Crb.jpg" alt=""><br>
 
-                 <!-- ################################################################################################ -->
-                 <h2 id="INTRONLIN">Ampli-Op en fonctionnement Non Linéaire</h2>
-                 <p>Cette section est en cours de rédaction</p>
+                <!-- ################################################################################################ -->
+                <h2 id="INTRONLIN">Ampli-Op en fonctionnement Non Linéaire</h2>
+                <img src="IMAGES/AONL.jpg" alt="">
+                <p>Quand on utilise l'amplificateur opérationnel en boucle ouverte ou avec une contre-réaction positive,
+                    il fonctionne en mode <em>comparateur</em>. Dans ce mode, l'amplificateur opérationnel compare les
+                    tensions appliquées à ses deux entrées (non-inverseuse et inverseuse) et produit une sortie
+                    qui ne peut prendre qu'une des deux valeurs de saturation maximale: Saturation positive
+                    <em>V<sub>OH</sub></em> ou saturation négative <em>V<sub>OL</sub></em>
+                </p>
 
+                <p class="InlineCenter"><span class="encadre">$$V^+ \; \gt V^- \; ⇒ \; V_s \; = \; V_{OH}$$ $$V^- \; \gt
+                        V^+ \; ⇒ \; V_s \; = \; V_{OL}$$</span></p>
 
-
-
+                <p>Les tension de saturation <b>V<sub>OH</sub></b> et <b>V<sub>OL</sub></b> son voisines (mais pas
+                    égales) au tension d'alimentation Vcc et Vee de l'Ampli-Op</p>
+                <p>Dans la suite de ce tuto, j'utiliserai souvent V<sub>OH</sub> = +12V , V<sub>OL</sub> = -12V</p>
 
                 <!-- ################################################################################################ -->
-                <h2 id=""></h2>
+                <h2 id="DETSEUIL">Détecteur de seuil</h2>
+                <p>Utilisé pour déclencher une action lorsqu'un signal dépasse un certain seuil. Par exemple, un
+                    comparateur peut allumer une LED lorsque la température dépasse une valeur critique, ou activer un
+                    relais lorsque le niveau de tension atteint un certain point.</p>
+                <img src="IMAGES/AONL_DetSeuil_Sch.jpg" alt="">
+                <img src="IMAGES/AONL_DetSeuil_Crb.jpg" alt="">
+
+                <h4>Problème du Détecteur seuil</h4>
+                <p>Un comparateur à seuil unique change d'état dès que le signal d'entrée traverse le seuil fixe, ce qui
+                    le rend sensible aux fluctuations rapides et au bruit électrique. Cela peut entraîner des
+                    oscillations indésirables autour du point de commutation, surtout avec un signal d'entrée bruité qui
+                    traverse lentement le seuil
+                </p>
+                <img src="IMAGES/AONL_DetSeuil_Prob.jpg" alt="">
+                <p>Pour cette raison, on va lui préférer un comparateur à deux seuils comme le Trigger de Schmitt</p>
+
                 <!-- ################################################################################################ -->
-                <h2 id=""></h2>
+                <h2 id="TRIGSHMITT">Le Trigger de Schmitt</h2>
+                <img src="IMAGES/AONL_Shmitt.jpg" alt="">
+                <p>Le trigger de Schmitt est un comparateur à deux seuils. La différence entre les seuils crée une "zone
+                    morte" appelée hystérésis, qui empêche les commutations intempestives dues à un signal bruité.</p>
+                <p>Le seuil de comparaison sur l'entrée (V+) dépend de la tension de référence (fixe) Vr et de la
+                    tension de sortie Vs.</p>
+                <p class="InlineCenter"><span class="encadre">$$V^+ \, = \; \frac{R_2V_s+R_1V_r}{R_1+R_2} $$</span></p>
+                <p>Vs peut prendre deux valeurs, soit V<sub>OH</sub> soit V<sub>OL</sub>. Il en résulte que V+ peut
+                    aussi prendre deux valeurs distinctes et on obtient un comparateur à deux seuils de comparaison.
+                    Nous les appelleront \(V_{TH}\) et \(V_{TL}\)</p>
+                <div class="FlexCenter">
+                    <ul>
+                        <li>\(V_s\: = \: V_{OH} \quad ⇒ \quad V^+\; = \frac{R_2V_{OH}\;+\;R_1V_r}{R_1+R_2} \quad = \quad
+                            V_{TH}\) </li>
+                        <li>\(V_s\; = \; V_{OL} \quad ⇒ \quad V^+\; = \frac{R_2V_{OL}\;+\;R_1V_r}{R_1+R_2} \quad = \quad
+                            V_{TL}\) </li>
+                    </ul>
+                </div>
+                <img src="IMAGES/AONL_Shmitt_Crb.jpg" alt="">
+                <p>Comme on peut le constater sur la figure, dès que le signal d'entrée coupe le seuil courant, La
+                    sortie bascule vers l'autre tension de saturation ce qui provoque le changement de seuil. A partir
+                    de là, le signal doit varier d'une valeur au moins égale à l'hystérésis pour déclencher un nouveau
+                    basculement.</p><br>
+
+                <h4>Exercice 1 :</h4>
+                <img src="IMAGES/AONL_Shmitt_Ex1.jpg" alt="">
+                <p>Calculer les seuils de comparaison \(V_{TH}\) et \(V_{TL}\), </p>
+                <p>(On prend \(V_{OH}=+12V\), \(V_{OL}=-12V\))</p><br>
+
+                <h4>Exercice 2 :</h4>
+                <img src="IMAGES/AONL_Shmitt.jpg" alt="">
+                <p>Calculer Vr et le rapport \(\frac{R_1}{R_2}\) pour avoir les seuils \(V_{TH}= 9V\) et \(V_{TL}= 3V\)
+                </p>
+                <p>(On prend \(V_{OH}=+12V\), \(V_{OL}=-12V\))</p><br>
+
                 <!-- ################################################################################################ -->
-                <h2 id=""></h2>
-                <!-- ################################################################################################ -->
-                <h2 id=""></h2>
+                <h2 id="ASTABLE">Multivibrateur Astable</h2>
+                <img src="IMAGES/AONL_Astable.jpg" alt="">
+                <p>Le multivibrateur astable utilise un trigger de Schmitt associé à un circuit RC pour obtenir un
+                    générateur de signal carré. C'est ce qu'on appelle un Oscillateur à relaxation</p>
+                <img src="IMAGES/AONL_Astable_Crb.jpg" alt="">
+                <p>Le Trigger de Schmitt oblige l'Ampli-Op à fonctionner en comparateur et fixe les seuils de
+                    comparaison. Le cycle d'oscillation est contrôlé par le chargement et le déchargement du
+                    condensateurs. Lorsque le condensateur atteint le seuil de comparaison courant, il déclenche le
+                    basculement du circuit vers l'autre état. Ce processus se répète continuellement, produisant un
+                    signal périodique.</p>
+                <p class="InlineCenter"><span class="encadre">$$T_{ch} = RC\; Ln\left(
+                        \frac{V_{OH}-V_{TL}}{V_{OH}-V_{TH}} \right) $$</span></p>
+                <p class="InlineCenter"><span class="encadre">$$T_{dch} = RC\; Ln\left(
+                        \frac{V_{TH}-V_{OL}}{V_{TL}-V_{OL}} \right) $$</span></p><br>
+
+                <h4>Analyse du circuit :</h4>
+                <ul>
+                    <li>État initial : Capa déchargée &rArr; V-=0; Vs=Voh &rArr; V+=Vth</li>
+                    <li>La capa (V-) se charge ver Voh avec la constante de temp RC (L'ampli-Op la compare avec V+=Vth)
+                    </li>
+                    <li>Dès que V- devient &gt; à Vth, Vs bascule à Vol, V+ bascule à Vtl</li>
+                    <li>Maintenant la capa voit Vol de l'autre coté de R. Elle se décharge vers Vol avec la constante de
+                        temps RC</li>
+                    <li>Dès que V- devient &lt; à Vtl, Vs bascule à Voh, V+ bascule à Vth</li>
+                    <li>La capa se charge vers Voh et le cycle recommence</li>
+                </ul>
+
+                <h3>Version Symétrique</h3>
+                <img src="IMAGES/AONL_Astable_Sym.jpg" alt="">
+                <p>Si on prend Vr = 0, on aura :</p>
+                <p>\( V_{TH} = \frac{R_2}{R_1+R_2}V_{OH} \)</p>
+                <p>\( V_{TL} = \frac{R_2}{R_1+R_2}V_{OL} \)</p>
+                Si les alimentations sont symétriques, on aura \( V_{OH} = - V_{OL} = V_{sat}\) et les seuils aussi
+                seront symétriques
+                <p>\( V_{TH} = - V_{TL}=\frac{R_2}{R_1+R_2}V_{sat} = V_T\)</p>
+                <img src="IMAGES/AONL_Astable_Sym_Crb.jpg" alt="">
+                <p class="InlineCenter"><span class="encadre">$$\frac{T}{2} = RC\; Ln\left(
+                        \frac{V_{sat}+V_{T}}{V_{sat}-V_{T}} \right) $$</span></p>
+                <p class="InlineCenter"><span class="encadre">$$T = 2RC\; Ln\left(
+                        \frac{R_1+2R_2}{R_1} \right) $$</span></p>
+                <p>Si R1 = R2 :</p>
+                <p class="InlineCenter"><span class="encadre">$$T = 2RC\; Ln(3)$$</span></p>
 
 
 
-
-
-                <p class="InlineCenter"><span class="encadre"></span></p>
-                <p class="InlineCenter"><span class="encadre"></span></p>
-
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
