@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C, Moteur pas à pas, stepper, Moteur CC, Motor CC, Matlab, Python, TKinter"
+        name="keywords">
+    <title>Filtres</title>
+    <link rel="icon" href="IMAGES/Filtres.jpg" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../scripts.js" defer></script>
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h3>Introduction</h3>
+                </a>
+                <div class="rubrique" onclick="toggleMenu('bode', this)">
+                    <span>&gt;</span>
+                    <h2>Les courbes de Bode</h2>
+                </div>
+                <div id="bode" class="sub-rubrique">
+                    <a href="#BODE">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#BODETRACE">
+                        <h3>Tracé des courbes de Bode</h3>
+                    </a>
+                    <a href="#MODULEASY">
+                        <h3>Comportement Asymptotique du module</h3>
+                    </a>
+                    <a href="#PHASEASY">
+                        <h3>Comportement Asymptotique de la phase</h3>
+                    </a>
+                    <a href="#GRAPHBIB">
+                        <h3>Bibliothèque graphique de Bode</h3>
+                    </a>
+                    <a href="#BODEPRODUIT">
+                        <h3>Tracé du produit h1(f) &times; h2(f)</h3>
+                    </a>
+                    <a href="#BODERAP">
+                        <h3>Tracé du rapport h1(f) / h2(f)</h3>
+                    </a>
+                    <a href="#BODEEX">
+                        <h3>Exemple</h3>
+                    </a>
+                </div>
+                <div class="rubrique" onclick="toggleMenu('pb1ord', this)">
+                    <span>&gt;</span>
+                    <h2>Filtres passe-bas du premier ordre</h2>
+                </div>
+                <div id="pb1ord" class="sub-rubrique">
+                    <a href="#PB1ORDINTRO">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#PB1ORDMODULE">
+                        <h3>Courbe du module</h3>
+                    </a>
+                    <a href="#PB1ORDPHASE">
+                        <h3>Courbe de la phase</h3>
+                    </a>
+                    <a href="#PB1ORDPASSIF">
+                        <h3>Réalisation par filtre passif</h3>
+                    </a>
+                    <a href="#PB1ORDACTIF">
+                        <h3>Réalisation par filtre actif</h3>
+                    </a>
+                </div>
+                <!-- ################################################################ -->
+                <div class="rubrique" onclick="toggleMenu('ph1ord', this)">
+                    <span>&gt;</span>
+                    <h2>Filtres passe-haut du premier ordre</h2>
+                </div>
+                <div id="ph1ord" class="sub-rubrique">
+                    <a href="#PH1ORDINTRO">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#PH1ORDMODULE">
+                        <h3>Courbe du module</h3>
+                    </a>
+                    <a href="#PH1ORDPHASE">
+                        <h3>Courbe de la phase</h3>
+                    </a>
+                    <a href="#PH1ORDPASSIF">
+                        <h3>Réalisation par filtre passif</h3>
+                    </a>
+                    <a href="#PH1ORDACTIF">
+                        <h3>Réalisation par filtre actif</h3>
+                    </a>
+                </div>
+                 <!-- ################################################################ -->
+                 <div class="rubrique" onclick="toggleMenu('pb2ord', this)">
+                    <span>&gt;</span>
+                    <h2>Filtres passe-bas du 2ème ordre</h2>
+                </div>
+                <div id="pb2ord" class="sub-rubrique">
+                    <a href="#PB2ORDINTRO">
+                        <h3>Introduction</h3>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Les Filtres Analogiques</h1>
+            </div>
+            <div class="RightPanelContent">
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>Un filtre est un dispositif électronique dont le gain varie en fonction de la fréquence. Il permet
+                    donc de laisser passer certains signaux tout en bloquant d'autres. L'art du filtrage réside dans la
+                    conception de circuits capables de transmettre les signaux utiles et de supprimer les signaux
+                    indésirables.</p>
+                <p>Un filtre passe-bas, par exemple, laisse passer les signaux de basses fréquences et bloque les
+                    signaux de fréquences élevées. La figure ci-dessous illustre la réponse en fréquence idéale d'un
+                    filtre passe-bas, représentée par une courbe montrant le gain en fonction de la fréquence. La
+                    <b>fréquence de coupure</b>, notée <strong>fo</strong> définit la limite de <b>la bande
+                        passante</b>, correspondant à l'intervalle
+                    de fréquences <strong>[0, fo]</strong>. Toute onde sinusoïdale entrant dans le filtre avec une
+                    fréquence située dans
+                    cette bande passante sera transmise à la sortie. En revanche, une onde sinusoïdale d'une fréquence
+                    supérieure à fo sera complètement atténuée
+                </p>
+                <img src="IMAGES/Fltr_PB_Ideal.jpg" alt="">
+                <p>Dans la pratique, on ne sait pas réaliser un filtre parfait (idéal). Les filtres réels ont une
+                    réponse semblable à celle représentée sur la Figure ci-dessous. </p>
+                <img src="IMAGES/Fltr_PB_Reel.jpg" alt="">
+
+
+                <h4>Différents Types de filtres</h4>
+                <p>Les filtres les plus couramment utilisés sont les suivants:</p>
+                <p class="InlineCenter"><img src="IMAGES/Fltr_PB_PH.jpg" alt="" class="inline"><img
+                        src="IMAGES/Fltr_PBD_CBD.jpg" alt="" class="inline"></p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="BODE">Les courbes de Bode</h2>
+                <p>La fonction de transfert <b><i>h(f)</i></b> d'un filtre permet de déterminer le signal de sortie pour
+                    chaque valeur
+                    de f. Le fait que les filtres sont réalisés à l'aide de selfs et de condensateurs dont
+                    les impédances comporte une composante imaginaire (jLω) ou (1/jCω), la
+                    fonction de transfert est complexe. Pour calculer le signal de sortie, il faut extraire le module et
+                    l'argument de la fonction de transfert.</p>
+                <ul>
+                    <li>Le module <b><i>H(f)</i></b> correspond au <b>gain</b> du filtre. Il permet de calculer
+                        l'amplitude du signal de sortie,</li>
+                    <li>L'argument <b><i>φ(f)</i></b> correspond à la phase du filtre. Il permet de calculer le
+                        <b>déphasage</b> du signal de sortie par rapport au signal d'entrée,
+                    </li>
+                </ul>
+                <p>Les courbes de Bode représentent le tracé de H(f), et φ(f) en fonction de la fréquence. Elle
+                    permettent d'avoir un aperçu rapide du comportement fréquentiel du filtre. </p>
+                <ul>
+                    <li>Le tracé se fait sur une échelle de fréquence logarithmique,</li>
+                    <li>Le gain est représenté en Décibels: \(H_{dB}=20Log_{10}(H) \)</li>
+                    <li>La phase peut être représentée en degrés ou en radians</li>
+                </ul>
+                <img src="IMAGES/Fltr_Bode_G.jpg" alt="">
+                <img src="IMAGES/Fltr_Bode_Ph.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="BODETRACE">Tracé des courbes de Bode</h3>
+                <p>Avant de commencer l'étude concrète des filtres, nous allons faire une petite étude mathématique de
+                    quelques fonctions complexes et tracer leurs courbes de Bode. Ceci nous simplifiera beaucoup les
+                    choses par la suite.</p>
+                <p>On va faire l'étude d'une fonction du premier ordre simple </p>
+                <p class="FlexCenter">\( h(f) = 1 + j \frac{f}{f_o} \)</p>
+                <p>Cette fonction a un module est une phase : </p>
+                $$ H(f)=\sqrt{1+\left( \frac{f}{f_o} \right)^2} $$
+                $$ φ(f)=Arctg\left( \frac{f}{f_o} \right) $$
+                <h3 id="MODULEASY">Comportement Asymptotique du module :</h3>
+                <ul>
+                    <li> \(H_{dB}(f)=20log(H(f)) \; = \; 10log \left( 1+\left( \frac{f}{f_o} \right)^2 \right) \)</li>
+                    <li> Quand \( f \ll f_o \) , HdB(f) se confond avec 10log(1)=0 : <b><i>asymptote horizontale</i></b>
+                    </li>
+                    <li>Quand \( f \gg f_o \) , HdB(f) se confond avec \( H_\infty = 20log\left( \frac{f}{f_o}
+                        \right)=20log(f)-20log(f_o) \) <br>
+                        L'axe des x n'est pas gradué en f mais en <i>x=log(f)</i>, donc :<br>
+                        \(H_{\infty} = 20x - 20x_o\) C'est une droite de pente <i>20dB/décade</i> qui coupe l'axe des
+                        <i>f</i> au
+                        point <i>f=fo</i> <br>
+                        On a une pente de <i>20dB/décade</i> car \( H_\infty(10f) - H_\infty(f) = 20log(10f) - 20log(f)
+                        = 20log(10) = 20 \)
+                    </li>
+                    <li>Quand f = fo , \( H_{dB}(f_o) = 10 log(2) = 3dB \)</li>
+                    <img src="IMAGES/Fltr_Bode_H1er.jpg" alt="">
+
+                </ul><br>
+                <h3 id="PHASEASY">Comportement Asymptotique de la phase :</h3>
+                <ul>
+                    <li>\( φ(f)=Arctg\left( \frac{f}{f_o} \right) \)</li>
+                    <li>\( f \ll f_o \; , \; φ(f) \to arctg(0) = 0 \) : Asymptote horizontale passant par 0</li>
+                    <li>\( f \gg f_o \; , \; φ(f) \to arctg(\infty) = \pi / 2 \) : Asymptote horizontale passant par
+                        \(\pi / 2\)</li>
+                    <li>\( f = f_o \; , \; φ(f) = arctg(1) = \pi / 4 = 45^o \)</li>
+                    <img src="IMAGES/Fltr_Bode_Ph1er.jpg" alt="">
+                </ul><br>
+                <!-- ################################################################################################ -->
+                <h3 id="GRAPHBIB">Bibliothèque graphique de Bode </h3>
+                <p>Voici un ensemble d'études Asymptotiques pour quelques fonction de transfert usuelles</p>
+                <p>\( H_o=|h_o| \)</p>
+                <img src="IMAGES/Fltr_Bode_lib1.jpg" alt="">
+                <img src="IMAGES/Fltr_Bode_lib2.jpg" alt=""><br>
+                <!-- ################################################################################################ -->
+                <h3 id="BODEPRODUIT">Tracé du produit h1(f) &times; h2(f)</h3>
+                <ul>
+                    <li>Module : \( H(f) = H_1(f) \times H_2(f) \Rightarrow H_{dB}(f) = H_{1dB}(f) + H_{2dB}(f) \)</li>
+                    <li>Argument: \( φ(f) = φ_1(f) + φ_2(f)\) </li>
+                    <li>En définitive il faut faire <b>la somme</b> des modules et des phases</li>
+                </ul><br>
+
+                <h3 id="BODERAP">Tracé du rapport h1(f) / h2(f)</h3>
+                <ul>
+                    <li>Module : \( H(f) = \frac{H_1(f)}{H_2(f)} \Rightarrow H_{dB}(f) = H_{1dB}(f) - H_{2dB}(f) \)</li>
+                    <li>Argument: \( φ(f) = φ_1(f) - φ_2(f)\) </li>
+                    <li>En définitive il faut faire <b>la différence</b> des modules et des phases</li>
+                </ul><br>
+
+                <h3 id="BODEEX">Exemple</h3>
+                <p>On va tracer les courbes de Bode de la fonction de transfert:</p>
+                <p>$$ h(f)= \frac{1+j\frac{f}{10000} }{1+j\frac{f}{1000}} $$</p>
+                <p>Nous avons le rapport de deux premiers ordre \( 1+j\frac{f}{f_o} \)</p>
+                <p>Pour le numérateur, f<sub>o</sub>=10kHz, pour le dénominateur, f<sub>o</sub>=1kHz</p>
+                <h4>Courbe du gain</h4>
+                <ul>
+                    <li>On prend un papier semi-log. On renseigne l'axe des f de sorte que les deux fréquences (1kHz et
+                        10 kHz) soient
+                        situées à peu près au milieu. On renseigne l'axe vertical avec le 0 à peu près au milieu</li>
+                    <li>On utilise la bibliothèque de Bode pour tracer les asymptotes du numérateur et du dénominateur
+                        (Courbes vertes)</li>
+                    <li>On trace la différence (N - D) des asymptotes (courbe bleu). Pour les parties obliques, on fait
+                        la différence
+                        des pentes</li>
+                    <li>Tracer la courbe définitive (courbe rouge) en essayant de tendre vers les asymptotes. On peut
+                        calculer un ou deux points pour améliorer la précision de la courbe</li>
+                </ul>
+                <img src="IMAGES/Fltr_Bode_ExH.jpg" alt=""><br>
+                <h4>Courbe de la phase</h4>
+                <ul>
+                    <li>On prend un papier semi-log. On renseigne l'axe des f comme pour le gain,</li>
+                    <li>Graduer l'axe des y soit en radiants (placer &pi;/2 et -&pi;/2 ) soit en degré (placer 90° et -
+                        90°),</li>
+                    <li>On utilise la bibliothèque de Bode pour tracer les asymptotes du numérateur et du dénominateur,
+                    </li>
+                    <li>On trace la différence (N - D) des asymptotes (courbe bleu),</li>
+                    <li>Tracer la courbe définitive (courbe rouge) en essayant de tendre vers les asymptotes. Pour
+                        améliorer la précision de la courbe, On peut calculer la phase pour f=3kHz : <br>
+                        φ(3kHz) = arctan(3/10) - arctg(3/1) &approx; -0.96 rad</li>
+                </ul>
+                <img src="IMAGES/Fltr_Bode_ExP.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="PB1ORDINTRO">Filtres passe-bas du premier ordre</h2>
+                <p>Ce sont les filtres dont la fonction de transfert est de la forme mathématique suivante :</p>
+                $$ h(ω)=\frac{h_o}{1+j\frac{ω}{ω_o}} $$
+                <p>ou</p>
+                $$ h(f)=\frac{h_o}{1+j\frac{f}{f_o}} $$
+                <ul>
+                    <li>\(h_o\) est une constante qui peut être positive ou négative</li>
+                    <li>\(ω_o\) est la pulsation de coupure. \(f_o\) est la fréquence de coupure. \(ω_o=2 πf_o\) </li>
+                </ul>
+                <!-- ################################################################################################ -->
+                <h3 id="PB1ORDMODULE">Courbe du module</h3>
+                <p><b>Le module</b> de la fonction de transfert est : <br>
+                    $$ H(f)= \frac{H_o}{\sqrt{1+\left( \frac{f}{f_o} \right)^2}} $$
+                    \(H_o=|h_o|\) est le <b>gain statique</b>, C'est le gain du filtre pour le
+                    continu est les basses fréquences (Gain dans la bande passante)</p>
+                <p>On utilisant la bibliothèque graphique de Bode, on obtient :</p>
+                <img src="IMAGES/Fltr_PB1ord_Module.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PB1ORDPHASE">Courbe de la phase</h3>
+                <p><b>La phase</b> de la fonction de transfert est : <br>
+                    $$ φ(f) = sπ-arctg\left( \frac{f}{f_o} \right) \quad avec \quad \left\{ \begin{array}{l}
+                    s=0 \quad si \quad h_o \gt 0 \\
+                    s=1 \quad si \quad h_o \lt 0
+                    \end{array} \right.$$</p>
+                <p>On utilisant la bibliothèque graphique de Bode, on obtient :</p>
+                <img src="IMAGES/Fltr_PB1ord_Phase.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PB1ORDPASSIF">Réalisation par filtre passif</h3>
+                <img src="IMAGES/Fltr_PB1ord_Passif.jpg" alt="">
+                <p>Les filtres passifs doivent leur nom au fait qu'ils n'utilisent que des composants passifs comme des
+                    résistances, des capacités et des selfs.</p>
+                <p>Pour déterminer la fonction de transfert du filtre, il suffit de se rappeler que l'impédance d'une
+                    capacité est \(\frac{1}{jCω}\) et d'appliquer la règle du diviseur de potentiel (théorème de
+                    Millman):</p>
+                $$ h(f)= \frac{V_s}{V_e} = \frac{1}{1+jRCω} = \frac{1}{1+jRC2πf}$$
+                <p>L'identification avec l'expression générale \(h(f)=\frac{h_o}{1+j\frac{f}{f_o}}\) donne :</p>
+                <ul>
+                    <li>\(h_o=1\ \;,\; H_o=1 \;,\; H_{odB}=20log(H_o)=0 \)</li>
+                    <li>\(f_o= \frac{1}{2πRC}\)</li>
+                    <li>\(h_o\) positif, la phase décroît de 0 à \(-\frac{π}{2} \) (0° à -90°)</li>
+                </ul><br>
+                <h4>Tracé des courbes</h4>
+                <p>Il suffit de reprendre les courbes du cas général et d'adapter les graduation</p>
+                <p>Prenons par exemple le cas d'un filtre avec R=16 k&ohm; , C = 10 nF</p>
+                <p>fo =1/( 2π RC) = 944.7 Hz &approx; 1 kHz</p>
+                <img src="IMAGES/Fltr_PB1ord_Ex_H.jpg" alt="">
+                <img src="IMAGES/Fltr_PB1ord_Ex_P.jpg" alt=""><br>
+
+                <h4>Calcul pour une fréquence donnée</h4>
+                <p>Si on applique un signal sinusoïdal d'amplitude Ae = 5V et de fréquence fe = 2 kHz,
+                    Le signal de sortie sera un signal sinusoïdal de fréquence fe, d'amplitude H(fe) &times; Ae et il
+                    sera retardé par rapport au signal d'entrée de φ(fe) radiants
+                </p>
+                <ul>
+                    <li>H(fe) = 0.4252. Le signal de sortie aura une amplitude As = 0.4252 &times; 5V = 2.126V,</li>
+                    <li>φ( fe ) = -1,1317 rad. Le signal de sortie sera retardé par rapport au signal d'entrée de 1.132
+                        rad. Pour avoir le retard en temps, il suffit de se rappeler que pour un signal sinusoïdal, on a
+                        <b>φ = ωt</b>. D'où : retard = 1.132 / (2×π×2000 Hz) s = 0.09 ms
+                    </li>
+                    <img src="IMAGES/Fltr_PB1ord_Ex_VeVs.jpg" alt="">
+                </ul>
+
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PB1ORDACTIF">Réalisation par filtre actif</h3>
+                <img src="IMAGES/Fltr_PB1ord_Actif.jpg" alt="">
+                <p>Si on note Z2 = R2 // C, on obtient la structure d'un amplificateur Inverseur. La fonction de
+                    transfert sera :</p>
+                <p>\(h(f)=\frac{V_s}{V_e}=-\frac{Z_2}{R_1} \) </p>
+                <p>\( Z_2= \frac{R_2}{1+jR_2Cω} \)</p>
+                $$ h(f) = \frac{-\frac{R_2}{R_1}}{1+j2πR_2Cω} $$
+                <p>L'identification avec l'expression générale \(h(f)=\frac{h_o}{1+j\frac{f}{f_o}}\) donne :</p>
+                <ul>
+                    <li>\( h_o=-\frac{R_2}{R_1} \)</li>
+                    <li>\(f_o= \frac{1}{2πR_2C}\)</li>
+                </ul><br>
+                <h4>Tracé des courbes</h4>
+                <p>Pour la courbe du gain, on calcule \(f_o\) et \(H_{0dB}\) et on les place dans la courbes du cas
+                    général</p>
+
+                <p>Exemple : R2 = 1.6k, R1 = 0.5k, C=10nF &rArr; f<sub>o</sub> &approx; 10kHz, Ho=3.2 , H<sub>odB</sub>
+                    &approx; 10 dB </p>
+                <img src="IMAGES/Fltr_PB1ordA_Ex_H.jpg" alt="">
+                <p>Pour la courbe de la phase, il faut remarquer que ho est négatif, donc la phase décroît de π à π/2
+                </p>
+                <img src="IMAGES/Fltr_PB1ordA_Ex_P.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PH1ORDINTRO">Filtres passe-haut du premier ordre</h2>
+                <p>Ce sont les filtres dont la fonction de transfert est de la forme mathématique suivante :</p>
+                $$ h(f)=\frac{jh_o \frac{f}{f_o}}{1+j\frac{f}{f_o}} $$
+                <ul>
+                    <li>\(h_o\) est une constante qui peut être positive ou négative</li>
+                    <li>\(f_o\) est la fréquence de coupure.</li>
+                </ul>
+                <!-- ################################################################################################ -->
+                <h3 id="PH1ORDMODULE">Courbe du module</h3>
+                <p><b>Le module</b> de la fonction de transfert est : <br>
+                    $$ H(f)= \frac{H_o \frac{f}{f_o}}{\sqrt{1+\left( \frac{f}{f_o} \right)^2}} $$
+                    \(H_o=|h_o|\) est le le gain dans la bande passante (hautes fréquences)</p>
+                <p>On utilisant la bibliothèque graphique de Bode, on obtient :</p>
+                <img src="IMAGES/Fltr_PH1ord_Module.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PH1ORDPHASE">Courbe de la phase</h3>
+                <p><b>La phase</b> de la fonction de transfert est : <br>
+                    $$ φ(f) = s\frac{π}{2}-arctg\left( \frac{f}{f_o} \right) \quad avec \quad \left\{ \begin{array}{l}
+                    s=1 \quad si \quad h_o \gt 0 \\
+                    s=-1 \quad si \quad h_o \lt 0
+                    \end{array} \right.$$</p>
+                <p>On utilisant la bibliothèque graphique de Bode, on obtient :</p>
+                <img src="IMAGES/Fltr_PH1ord_Phase.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PH1ORDPASSIF">Réalisation par filtre passif</h3>
+                <img src="IMAGES/Fltr_PH1ord_Passif.jpg" alt="">
+                <p>Les filtres passifs doivent leur nom au fait qu'ils n'utilisent que des composants passifs comme des
+                    résistances, des capacités et des selfs.</p>
+                <p>Pour déterminer la fonction de transfert du filtre, il suffit de se rappeler que l'impédance d'une
+                    capacité est \(\frac{1}{jCω}\) et d'appliquer la règle du diviseur de potentiel (théorème de
+                    Millman):</p>
+                $$ h(f)= \frac{V_s}{V_e} = \frac{j2πRCf}{1+j2πRCf}$$
+                <p>L'identification avec l'expression générale \(h(f)=\frac{jh_o \frac{f}{f_o}}{1+j\frac{f}{f_o}}\)
+                    donne :</p>
+                <ul>
+                    <li>\(h_o=1\ \;,\; H_o=1 \;,\; H_{odB}=20log(H_o)=0 \)</li>
+                    <li>\(f_o= \frac{1}{2πRC}\)</li>
+                    <li>\(h_o\) positif, la phase \(φ(f) = \frac{π}{2}-arctg\left( \frac{f}{f_o} \right)\) décroît de
+                        \(\frac{π}{2} \) à 0 (90° à 0°)</li>
+                </ul><br>
+                <h4>Tracé des courbes</h4>
+                <p>Il suffit de reprendre les courbes du cas général et d'adapter les graduation</p>
+                <p>Prenons par exemple le cas d'un filtre avec R=16 k&ohm; , C = 10 nF</p>
+                <p>fo =1/( 2π RC) = 944.7 Hz &approx; 1 kHz</p>
+                <img src="IMAGES/Fltr_PH1ord_Ex_H.jpg" alt="">
+                <img src="IMAGES/Fltr_PH1ord_Ex_P.jpg" alt=""><br>
+
+                <h4>Calcul pour une fréquence donnée</h4>
+                <p>Si on applique un signal sinusoïdal \( V_e = A_e sin(2πf_et)\) d'amplitude Ae = 5V et de fréquence fe
+                    = 2 kHz,
+                    Le signal de sortie sera un signal sinusoïdal de fréquence fe, d'amplitude H(fe) &times; Ae et il
+                    sera déphasé par rapport au signal d'entrée de φ(fe) radiants
+                </p>
+                <ul>
+                    <li>H(fe) = 0.89, Le signal de sortie aura une amplitude As = 0.89 &times; 5V = 4.47V,</li>
+                    <li>φ(fe) = 0.46 rad. Le signal de sortie sera en avance par rapport au signal d'entrée de 0.46
+                        rad. Pour avoir l'avance en temps, il suffit de se rappeler que pour un signal sinusoïdal, on a
+                        <b>φ = ωt</b>. D'où : avance = 0.46 / (2×π×2000 Hz) s = 36.7 µs
+                    </li>
+                    <img src="IMAGES/Fltr_PH1ord_Ex_VeVs.jpg" alt="">
+                </ul>
+
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="PH1ORDACTIF">Réalisation par filtre actif</h3>
+                <img src="IMAGES/Fltr_PH1ord_Actif.jpg" alt="">
+                <p>\( Z_2=R//C_2= \frac{R}{1+jRC_2ω} \)</p>
+                <p>\(Z_1= \frac{1}{jC_1ω} \)</p>
+                <p>\(h(f)=\frac{V_s}{V_e}=-\frac{Z_2}{Z_1} \) </p>
+                $$ h(f) = -\frac{jRC_1ω}{1+jRC_2ω} = -\frac{j2πRC_1f}{1+j2πRC_2f}$$
+                <p>L'identification avec l'expression générale \(h(f)=\frac{jh_o\frac{f}{f_o}}{1+j\frac{f}{f_o}}\) donne
+                    :</p>
+                <ul>
+                    <li>\( h_o=-\frac{C_1}{C_2} \)</li>
+                    <li>\(f_o= \frac{1}{2πRC_2}\)</li>
+                </ul><br>
+                <h4>Tracé des courbes</h4>
+                <p>Pour la courbe du gain, on calcule \(f_o\) et \(H_{0dB}\) et on les place dans la courbes du cas
+                    général</p>
+
+                <p>Exemple : R = 16k, C1 = 3.3nF, C2=1nF &rArr; f<sub>o</sub> &approx; 10kHz, Ho=3 ,
+                    H<sub>odB</sub>=10.37 dB &approx; 10 dB </p>
+                <img src="IMAGES/Fltr_PH1ordA_Ex_H.jpg" alt="">
+                <p>Pour la courbe de la phase, il faut remarquer que ho est négatif, donc la phase décroît de π à π/2
+                </p>
+                <img src="IMAGES/Fltr_PH1ordA_Ex_P.jpg" alt=""><br>
+
+                <p>Si on applique un signal sinusoïdal \( V_e = A_e sin(2πf_et)\) d'amplitude Ae = 5V et de fréquence fe
+                    = 5 kHz,
+                    Le signal de sortie sera un signal sinusoïdal de fréquence fe, d'amplitude H(fe) &times; Ae et il
+                    sera déphasé par rapport au signal d'entrée de φ(fe) radiants
+                </p>
+                <ul>
+                    <li>H(fe) = 1.48, Le signal de sortie aura une amplitude As = 1.48 &times; 5V = 7.4V,</li>
+                    <li>φ(fe) = -2.037 rad. Le signal de sortie sera en retard par rapport au signal d'entrée de 2.037
+                        rad. Pour avoir le déphasage en temps, il suffit de se rappeler que pour un signal sinusoïdal, on a
+                        <b>φ = ωt</b>. D'où : déphasage = 2.037 / (2×π×5000 Hz) s = 65 µs
+                    </li>
+                    <img src="IMAGES/Fltr_PH1ordA_Ex_VeVs.jpg" alt="">
+                </ul>
+
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PB2ORDINTRO">Filtres passe-bas du 2ème ordre</h2>
+                <p>En cours de rédaction</p>
+
+
+
+
+
+
+
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
