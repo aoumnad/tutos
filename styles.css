@@ -21,11 +21,7 @@ body a:hover {
 body ul, ol{
     margin-left: 2rem;
 }
-body li {
-    margin-top: 1ch;
-    margin-right: 1ch;
-    text-align: justify;
-} 
+
 sub {
     vertical-align: sub;
     font-size: small
@@ -277,7 +273,12 @@ figcaption {
     margin: 1ch 1rem;
     font-style: italic;
 }
-
+.RightPanelContent li {
+    margin-top: 1ch;
+    margin-right: 1ch;
+    margin-left: 1rem;
+    text-align: justify;
+}  
 .RightPanelContent p {
     margin: 1ch 1rem;
     text-align: justify;
@@ -499,5 +500,8 @@ code {
     }
     .CodeAreaHeader {
         font-size: 1.2ch;
+    }
+    .RightPanelContent p, li {
+        text-align:left
     }
 }
