@@ -501,7 +501,10 @@ code {
     .CodeAreaHeader {
         font-size: 1.2ch;
     }
-    .RightPanelContent p, li {
-        text-align:left
+    .RightPanelContent p {
+        text-align:left;
+    }
+    .RightPanelContent li {
+        text-align:left;
     }
 }
