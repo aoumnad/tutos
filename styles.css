@@ -19,7 +19,8 @@ body a:hover {
     background-color: #9ac4c4;
 }
 body ul, ol{
-    margin-left: 2rem;
+    margin-left: 2.5rem;
+    
 }
 
 sub {
@@ -276,7 +277,7 @@ figcaption {
 .RightPanelContent li {
     margin-top: 1ch;
     margin-right: 1ch;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
     text-align: justify;
 }  
 .RightPanelContent p {
