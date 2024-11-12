@@ -143,6 +143,30 @@
                         <h3>Réalisation à l'aide d'un filtre actif</h3>
                     </a>
                 </div>
+
+                <!-- ################################################################ -->
+                <div class="rubrique" onclick="toggleMenu('pbd2ord', this)">
+                    <span>&gt;</span>
+                    <h2>Filtres passe-bande du 2ème ordre</h2>
+                </div>
+                <div id="pbd2ord" class="sub-rubrique">
+                    <a href="#PBD2ORDINTRO">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#PBD2ORDMODULE">
+                        <h3>Courbe du module</h3>
+                    </a>
+                    <a href="#PBD2ORDPHASE">
+                        <h3>Courbe de la phase</h3>
+                    </a>
+                    <a href="#PBD2OACTIF">
+                        <h3>Réalisation à l'aide d'un filtre actif</h3>
+                    </a>
+                    <a href="#PBD2OF1F2">
+                        <h3>Calcul de f1 et f2</h3>
+                    </a>
+                </div>
+
             </div>
         </div>
         <div class="RightPanel">
@@ -550,8 +574,10 @@
 
                 <p>Nous savons que \( φ\left( \frac{z_1}{z_2}\right)=φ(z_1)-φ(z_2) \)</p>
                 <h4>Pour le Numérateur : </h4>
-                <p> $$ φ(N)\ =\left\{\begin{matrix}0&si&h_o \gt 0\\\pi&si&h_o \lt
-                    0\\\end{matrix}\right. $$</p>
+                <p> $$ φ(N)\ =\begin{cases}
+                    0 &si &h_o \gt 0\\
+                    \pi &si &h_o \lt 0\\
+                    \end{cases} $$</p>
                 <h4>Pour le Dénominateur :</h4>
                 <p>On a un nombre complexe z = a + jb, on a souvent tendance à dire
                     rapidement que
@@ -597,7 +623,7 @@
                 <ul>
                     <li>\(h_o=1\)</li>
                     <li>\(f_o= \frac{1}{2π\sqrt{LC}} \)</li>
-                    <li>\( \frac{R}{2}\sqrt{\frac{C}{L}} \)</li>
+                    <li>\(\zeta = \frac{R}{2}\sqrt{\frac{C}{L}} \)</li>
                 </ul><br>
 
                 <h4>Exemple :</h4>
@@ -661,7 +687,8 @@
                 H(f)=\frac{H_0\left(\frac{f}{f_0}\right)^2}{\sqrt{\left(1-\left(\frac{f}{f_0}\right)^2\right)^2+4
                 \zeta^2\left(\frac{f}{f_0}\right)^2}}
                 $$
-                <p>On utilise la bibliothèque graphique pour tracer les asymptotes et on calcule quelques points pour tracer</p>
+                <p>On utilise la bibliothèque graphique pour tracer les asymptotes et on calcule quelques points pour
+                    tracer</p>
                 <img src="IMAGES/FPH2O_Tab.jpg" alt="">
                 <img src="IMAGES/FPH2O_CrbGain.jpg" alt="">
                 <p>Ce réseau de courbe permet de faire deux remarques importantes :</p>
@@ -679,10 +706,10 @@
 
                 <p>Nous savons que \( φ\left( \frac{N}{D}\right)=φ(N)-φ(D) \)</p>
                 <h4>Pour le Numérateur : </h4>
-                <p> $$ φ(N)\ =\left\{\begin{matrix}
-                    \pi&si&h_o \gt 0\\
-                    0&si&h_o \lt 0\\
-                    \end{matrix}\right. $$</p><br>
+                <p> $$ φ(N)\ =\begin{cases}
+                    \pi &si &h_o \gt 0\\
+                    0 &si &h_o \lt 0\\
+                    \end{cases} $$</p><br>
 
                 <h4>Pour le dénominateur :</h4>
                 <p>On a un nombre complexe z = a + jb</p>
@@ -693,11 +720,13 @@
 
                 \[
                 φ(x) = \begin{cases}
-                Arctg\frac{2\zeta\frac{f}{f_o}}{1-\left(\frac{f}{f_0}\right)^2} &si &f \le f_o\\
+                Arctg\frac{2\zeta\frac{f}{f_o}}{1-\left(\frac{f}{f_0}\right)^2} &si &f \lt f_o\\
                 \frac{π}{2} &si& f = f_o\\
                 Arctg\frac{2\zeta\frac{f}{f_o}}{1-\left(\frac{f}{f_o}\right)^2}+\pi &si &f \gt f_o\\
                 \end{cases}
                 \]
+                <br>
+                <img src="IMAGES/FPH2O_CrbPhase.jpg" alt="">
 
 
 
@@ -713,12 +742,13 @@
                 <img src="IMAGES/FPH2O_SallenKey_AO.jpg" alt="">
                 <p>Si on identifie la fonction de transfert de Sallen-Key avec l'expression générale d'un filtre passe
                     haut de 2ème ordre
-                    \( h(ω) = \frac{-h_o\left( \frac{ω}{ω_o}\right)^2}{1+j2\zeta\frac{ω}{ω_o}-\left( \frac{ω}{ω_o}\right)^2} \) , on obtient :
+                    \( h(ω) = \frac{-h_o\left( \frac{ω}{ω_o}\right)^2}{1+j2\zeta\frac{ω}{ω_o}-\left(
+                    \frac{ω}{ω_o}\right)^2} \) , on obtient :
                 </p>
                 <ul>
                     <li>\( ω_o = \frac{1}{RC} \;,\; f_o= \frac{1}{2πRC} \) ce qui permet de calculer R et C,</li>
                     <li>k = 3-2&zeta; ce qui permet de calculer R1 et R2</li>
-                    <li>\(h_o=k\)  </li>
+                    <li>\(h_o=k\) </li>
                 </ul><br>
                 <h4>Exemple :</h4>
                 <p>On dédire réaliser un filtre passe bas du second ordre qui a une fréquence de coupure de fo = 2000 Hz
@@ -726,19 +756,140 @@
                 <p>On fixe C = 50nF, on calcule R = 1/(2πCfo) = 1.59k</p>
                 <p>k = 3 - 2ζ = 2 &rArr; 1 + R2/R1 = 2 &rArr; il suffit de prendre R2=R1 = 10k</p>
                 <p>Le gain dans la bande passante est Ho = |ho| = 2 (6dB)</p>
-               <img src="IMAGES/FPH2O_SallenKey_AO_Ex.jpg" alt="">
+                <img src="IMAGES/FPH2O_SallenKey_AO_Ex.jpg" alt="">
                 <img src="IMAGES/FPH2O_SallenKey_Ex_G.jpg" alt="">
                 <img src="IMAGES/FPH2O_SallenKey_Ex_P.jpg" alt="">
 
+                <!-- ################################################################################################ -->
+                <h2 id="PBD2ORDINTRO">Filtres passe-bande du 2ème ordre</h2>
+                <p>Les filtres passe-bande de second ordre ont une fonction de transfert de la forme :</p>
+                $$ h(ω) = \frac{jh_o\left( \frac{ω}{ω_o}\right)}{1+j\frac{\Delta ω}{ω_o}\frac{ω}{ω_o}-\left(
+                \frac{ω}{ω_o}\right)^2}
+                $$
+                $$ h(f) = \frac{jh_o\left( \frac{f}{f_o}\right)}{1+j\frac{\Delta f}{f_o} \frac{f}{f_o}-\left(
+                \frac{f}{f_o}\right)^2}
+                $$
+                <ul>
+                    <li>\(f_o\) est la fréquence centrale du filtre</li>
+                    <li>\( \Delta f = f_2 - f_1\) est la bande passante à 3 dB (\(\Delta ω = 2 \pi \Delta f\))</li>
+                    <li>\( Q=\frac{ω_o}{\Delta ω} = \frac{f_o}{\Delta f} = \frac{1}{2\zeta}\) est le facteur de qualité
+                        du filtre. </li>
+                </ul>
+                <img src="IMAGES/FPBD2OLin.jpg" alt="">
+                <img src="IMAGES/FPBD2OdB.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="PBD2ORDMODULE">Courbe du module</h2>
+                $$
+                H=\frac{H_0\left(\frac{f}{f_0}\right)}{\sqrt{\left(1-\left(\frac{f}{f_0}\right)^2\right)^2+\left(\frac{\Delta
+                f}{f_0}\right)^2\left(\frac{f}{f_0}\right)^2}}
+                $$
+                <p>Pour tracer les courbes on aura besoin de quelques valeur remarquables de H</p>
+                <ul>
+                    <li>Le gain maximum : &nbsp;&nbsp;&nbsp; \( H(f_o)=H_o\frac{f_o}{\Delta f}=H_oQ = \frac{H_o}{2\zeta}
+                        \)</li>
+                    <li>Gain pour \(f=2f_o\) et \( f=f_o/2 \) : &nbsp;&nbsp;&nbsp; \(
+                        H(2f_o)=H(f_o/2)=\frac{H_o}{\sqrt{\frac{9}{4}-\frac{1}{Q^2}}} \) </li>
+                    <li>Gain pour \(f=f_1\) et \(f=f_2\) : &nbsp;&nbsp;&nbsp;\( H(f_1)=H(f_2)=\frac{H(f_o)}{\sqrt{2}} =
+                        \frac{H_oQ}{\sqrt{2}} \)</li>
+                </ul><br>
+                <img src="IMAGES/FPBD2O_TabGain.jpg" alt=""><br>
+                <img src="IMAGES/FPBD2O_CrbGain.jpg" alt="">
 
 
 
 
+                <!-- ################################################################################################ -->
+                <h2 id="PBD2ORDPHASE">Courbe de la phase</h2>
+                <p>Rappelons la fonction de transfert :
+                    \( h(f) = \frac{jh_o\left( \frac{f}{f_o}\right)}{1+j\frac{\Delta f}{f_o} \frac{f}{f_o}-\left(
+                    \frac{f}{f_o}\right)^2} \)</p>
+
+                <p>Nous savons que \( φ\left( \frac{N}{D}\right)=φ(N)-φ(D) \)</p>
+                <h4>Pour le Numérateur : </h4>
+                <p> $$ φ(N)\ =\begin{cases}
+                    \frac{\pi}{2} &si &h_o \gt 0\\
+                    -\frac{\pi}{2} &si &h_o \lt 0\\
+                    \end{cases} $$</p><br>
+
+                <h4>Pour le dénominateur :</h4>
+                <p>On a un nombre complexe z = a + jb</p>
+                <p>\( a = 1-\left( \frac{f}{f_o}\right)^2 \), son signe depend de la position de f par rapport à fo.
+                </p>
+                <p>\( b=j\frac{\Delta f}{f_o} \frac{f}{f_o} \) est toujours positif.</p>
+                <p>On obtient :</p>
+
+                \[
+                φ(x) = \begin{cases}
+                Arctg\frac{2\zeta\frac{f}{f_o}}{1-\left(\frac{f}{f_0}\right)^2} &si &f \lt f_o\\
+                \frac{π}{2} &si& f = f_o\\
+                Arctg\frac{2\zeta\frac{f}{f_o}}{1-\left(\frac{f}{f_o}\right)^2}+\pi &si &f \gt f_o\\
+                \end{cases}
+                \]
+                <br>
+                <img src="IMAGES/FPBD2O_CrbPhase.jpg" alt="">
 
 
+                <!-- ################################################################################################ -->
+                <h2 id="PBD2OACTIF">Réalisation à l'aide d'un filtre actif</h2>
+                <img src="IMAGES/FPBD2O_Deliyanis.jpg" alt="">
+                <p>Ces filtres peuvent être réalisés à l'aide de plusieurs structures à ampli-op différentes, nous avons
+                    retenu la structure de Delyiannis dont la fonction de transfert est :</p>
 
+                $$F(p)=\frac{-j\frac{kRC}{k-1}\omega }{1+j\left( 2-\frac{1}{k-1} \right)RC\omega
+                -{{R}^{2}}{{C}^{2}}{{\omega }^{2}}}$$
 
+                <p>L'identification avec :</p>
+                $$ h(ω) = \frac{jh_o\left( \frac{ω}{ω_o}\right)}{1+j\frac{\Delta ω}{ω_o}\frac{ω}{ω_o}-\left(
+                \frac{ω}{ω_o}\right)^2}
+                $$
 
+                <ul>
+                    <li>\( ω_o = \frac{1}{RC} \;,\; f_o= \frac{1}{2πRC} \) ce qui permet de calculer R et C,</li>
+                    <li> \(2-\frac{1}{k-1}=\frac{\Delta f}{{{f}_{o}}} \;\Rightarrow\;k=1+\frac{1}{2-\tfrac{\Delta
+                        f}{{{f}_{o}}}}\) , sachant que \( k=1+\frac{R_2}{R_1} \) on
+                        obtient : <span class="encadre">\(\frac{{{R}_{1}}}{{{R}_{2}}}=2-\frac{\Delta f}{{{f}_{o}}}
+                            \)</span> </li>
+                    <li>\( h_o = -\frac{k}{k-1}=\frac{\Delta f}{f_o}-3 \) , Le calcul de \(h_o\) peut être utile pour le
+                        tracé de courbes ou le
+                        calcul du gain </li>
+                </ul><br>
+                <h4>Exemple :</h4>
+                <p>On désire réaliser un filtre passe bande qui a une fréquence centrale fo=10kHz et une largeur de
+                    bande à 3 dB &Delta;f = 5kHz</p>
+                <ul>
+                    <li>On fixe C=10nF et on calcule R=1,59k</li>
+                    <li>\(\frac{R_1}{R_2} = 1.5 \), on prend \(R_1=15k\quad,\quad R_2 = 10k\)</li>
+                </ul>
+                <img src="IMAGES/FPBD2O_Ex.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="PBD2OF1F2">Calcul de f1 et f2</h2>
+                <p>Quand on trace la courbe de gain en dB sur ue échelle logarithmique en x, on obtient une courbe
+                    symétrique autour de fo. Ceci est trompeur car l'échelle n'est pas linéaire. Si on trace sur une
+                    échelle linéaire, on constate que la courbe du gain n'est pas symétrique. Il en est de même des fréquence de coupure f1 et f2</p>
+                <img src="IMAGES/FPBD_Asymetric.jpg" alt="">
+                <p>Le calcul des valeurs de f1 et f2 n'est pas trivial. </p> 
+                <p>Le gain pour ces fréquences est égal au gain max divisé par  \(\sqrt2\) (-3dB).
+                Elles constituent donc la solution de l'équation \( H(f) = H(f_o)\sqrt2 \) </p>
+
+                $$
+                \frac{H_o\left(\frac{f}{f_0}\right)}{\sqrt{\left(1-\left(\frac{f}{f_0}\right)^2\right)^2+
+                \left(\frac{1}{Q}\right)^2\left(\frac{f}{f_0}\right)^2}} = \frac{H_oQ}{\sqrt{2}}
+                $$
+                <p>si on pose \( u=\frac{f}{f_o} \) on obtient après simplification :</p>
+                <p>\( Q^2u^4-(2Q^2+1)u^2+Q^2 = 0 \)</p>
+                <p>Si on note \( x=u^2 \) on obtient une equation du second ordre :</p>
+                <p>\( Q^2x^2-(2Q^2+1)x+Q^2 = 0 \)</p>
+                <p>Le discriminant est :</p>
+                <p>\( \Delta = 4Q^2+1 \)</p>
+                <p>Les solutions en x sont :</p>
+                <p>\( x1 =\frac{2Q^2+1 - \sqrt{4Q^2+1}}{2Q^2} \)</p>
+                <p>\( x2 =\frac{2Q^2+1 + \sqrt{4Q^2+1}}{2Q^2} \)</p>
+                <p>Les solution en f sont données par :</p>
+                <p>\( \frac{f}{fo}=u=\sqrt{x} \)</p>
+                <p>\(f1 = f_o\sqrt{x1}\)</p>
+                <p>\(f2 = f_o\sqrt{x2}\)</p>
 
 
 

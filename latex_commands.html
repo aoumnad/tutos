@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Commandes LaTeX Courantes</title>
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        /* ul {
+            list-style-type: none;
+        } */
+
+        li {
+            margin: 5px 0;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Liste des Commandes LaTeX Courantes</h1>
+
+    <h2>Espacements</h2>
+    <ul>
+        <li><code>\,</code> : petit espace</li>
+        <li><code>\:</code> : espace moyen</li>
+        <li><code>\;</code> : grand espace</li>
+        <li><code>\quad</code> : espace d'une longueur de 1 "em"</li>
+        <li><code>\qquad</code> : espace d'une longueur de 2 "em"</li>
+    </ul>
+
+    <h2>Commandes pour symboles mathématiques</h2>
+    <ul>
+        <li><code>\times</code> : multiplication (×)</li>
+        <li><code>\div</code> : division (÷)</li>
+        <li><code>\pm</code> : plus ou moins (±)</li>
+        <li><code>\cdot</code> : produit scalaire (⋅)</li>
+        <li><code>\infty</code> : infini (∞)</li>
+        <li><code>\forall</code> : pour tout (∀)</li>
+        <li><code>\exists</code> : il existe (∃)</li>
+        <li><code>\sum</code> : somme (∑)</li>
+        <li><code>\prod</code> : produit (∏)</li>
+        <li><code>\int</code> : intégrale (∫)</li>
+        <li><code>\cup</code> : union (∪)</li>
+        <li><code>\cap</code> : intersection (∩)</li>
+        <li><code>\Rightarrow</code> : flèche double à droite (⇒)</li>
+    </ul>
+
+    <h2>Fractions et puissances</h2>
+    <ul>
+        <li><code>\frac{num}{den}</code> : fraction (numérateur/dénominateur)</li>
+        <li><code>a^b</code> : exposant (a<sup>b</sup>)</li>
+        <li><code>a_b</code> : indice (a<sub>b</sub>)</li>
+        <li><code>a \over b</code> : fraction simplifiée (a / b)</li>
+    </ul>
+
+    <h2>Racines</h2>
+    <ul>
+        <li><code>\sqrt{x}</code> : racine carrée (√x)</li>
+        <li><code>\sqrt[n]{x}</code> : racine nième (ⁿ√x)</li>
+    </ul>
+
+    <h2>Relations logiques et comparaisons</h2>
+    <ul>
+        <li><code>=</code> : égal (=)</li>
+        <li><code>\neq</code> : différent (≠)</li>
+        <li><code>\approx</code> : approximativement égal (≈)</li>
+        <li><code>\lt</code> : inférieur (\(\lt\))</li> 
+        <li><code>\gt</code> : supérieur (\(\gt\))</li> 
+        <li><code>\leq</code> : inférieur ou égal (≤)</li>
+        <li><code>\geq</code> : supérieur ou égal (≥)</li>
+        <li><code>\gg</code> : beaucoup plus grand que (≫)</li>
+        <li><code>\ll</code> : beaucoup plus petit que (≪)</li>
+        <li><code>\in</code> : appartient à (∈)</li>
+        <li><code>\notin</code> : n'appartient pas à (∉)</li>
+        <li><code>\subset</code> : sous-ensemble (⊂)</li>
+        <li><code>\supset</code> : sur-ensemble (⊃)</li>
+        <li><code>\subseteq</code> : sous-ensemble ou égal (⊆)</li>
+        <li><code>\supseteq</code> : sur-ensemble ou égal (⊇)</li>
+    </ul>
+
+    <h2>Accents et symboles sur les lettres</h2>
+    <ul>
+        <li><code>\hat{x}</code> : chapeau sur une lettre (x̂)</li>
+        <li><code>\bar{x}</code> : barre sur une lettre (x̄)</li>
+        <li><code>\vec{x}</code> : flèche sur une lettre (x⃗)</li>
+        <li><code>\dot{x}</code> : point au-dessus (ẋ)</li>
+        <li><code>\ddot{x}</code> : deux points au-dessus (ẍ)</li>
+        <li><code>\tilde{x}</code> : tilde sur une lettre (x̃)</li>
+    </ul>
+
+    <h2>Parenthèses et délimiteurs</h2>
+    <ul>
+        <li><code>\left( ... \right)</code> : parenthèses redimensionnables</li>
+        <li><code>\left[ ... \right]</code> : crochets redimensionnables</li>
+        <li><code>\left\{ ... \right\}</code> : accolades redimensionnables</li>
+        <li><code>|x|</code> : valeur absolue (|x|)</li>
+        <li><code>\langle ... \rangle</code> : angle (⟨ ... ⟩)</li>
+    </ul>
+
+    <h2>Divers</h2>
+    <ul>
+        <li><code>\text{}</code> : insérer du texte dans une formule</li>
+        <li><code>\lim</code> : limite (lim)</li>
+        <li><code>\to</code> : flèche vers (→)</li>
+        <li><code>\overline{}</code> : barre supérieure (sur toute la longueur d'une expression)</li>
+        <li><code>\underline{}</code> : souligner une expression</li>
+    </ul>
+
+    <h2>Les cas</h2>
+    <code>\(
+    φ(x) = \begin{cases}
+    aaaaa&bbbbbb&ccccc\\
+    ddddddddddddd&eeeeeee\\
+    ffff&ggg&hhhh&kkkkkk\\
+    \end{cases}
+    \)</code> <br>
+    \(
+    φ(x) = \begin{cases}
+    aaaaa&bbbbbb&ccccc\\
+    ddddddddddddd&eeeeeee\\
+    ffff&ggg&hhhh&kkkkkk\\
+    \end{cases}
+    \)
+
+    <h2>Matrices</h2>
+    <ul>
+        <li><code>\( matrice \)</code> ; Matrice alignée à gauche</li>
+        <li><code>\[ matrice \]</code> ou <code>$$ matrice $$</code>; Matrice au centre de la ligne</li>
+        <li>Matrice Sans délimiteur :
+            <code>\(
+    \begin{matrix}
+    a_{11} &a_{12} &a_{13} \\
+    a_{21} &a_{22} &a_{23} \\
+    a_{31} &a_{32} &a_{33}
+    \end{matrix}
+    \)</code>
+            <p> \(
+                \begin{matrix}
+                a_{11} &a_{12} &a_{13} \\
+                a_{21} &a_{22} &a_{23} \\
+                a_{31} &a_{32} &a_{33}
+                \end{matrix}
+                \)</p>
+        </li>
+
+        <li>Matrice entre crochets <code>bmatrix</code> : <br>
+            <code>\(
+    \begin{bmatrix}
+    a_{11} &a_{12} &a_{13} \\
+    a_{21} &a_{22} &a_{23} \\
+    a_{31} &a_{32} &a_{33}
+    \end{bmatrix}
+    \)</code>
+            <p> \(
+                \begin{bmatrix}
+                a_{11} &a_{12} &a_{13} \\
+                a_{21} &a_{22} &a_{23} \\
+                a_{31} &a_{32} &a_{33}
+                \end{bmatrix}
+                \)</p>
+        </li>
+
+        <li>Matrice entre parenthèses <code>pmatrix</code> : <br>
+            <code>\(
+    \begin{pmatrix}
+    a_{11} &a_{12} &a_{13} \\
+    a_{21} &a_{22} &a_{23} \\
+    a_{31} &a_{32} &a_{33}
+    \end{pmatrix}
+    \)</code>
+            <p> \(
+                \begin{pmatrix}
+                a_{11} &a_{12} &a_{13} \\
+                a_{21} &a_{22} &a_{23} \\
+                a_{31} &a_{32} &a_{33}
+                \end{pmatrix}
+                \)</p>
+        </li>
+
+        <li>Matrice entre barres verticales <code>vmatrix</code>: <br>
+            <code>\(
+    \begin{vmatrix}
+    a_{11} &a_{12} &a_{13} \\
+    a_{21} &a_{22} &a_{23} \\
+    a_{31} &a_{32} &a_{33}
+    \end{vmatrix}
+    \)</code>
+            <p> \(
+                \begin{vmatrix}
+                a_{11} &a_{12} &a_{13} \\
+                a_{21} &a_{22} &a_{23} \\
+                a_{31} &a_{32} &a_{33}
+                \end{vmatrix}
+                \)</p>
+        </li>
+
+
+    </ul>
+
+
+
+
+
+</body>
+
+</html>
