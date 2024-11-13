@@ -25,7 +25,7 @@
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
                 <a href="#INTRO">
-                    <h3>Introduction</h3>
+                    <h2>Introduction</h2>
                 </a>
                 <div class="rubrique" onclick="toggleMenu('bode', this)">
                     <span>&gt;</span>
@@ -166,6 +166,9 @@
                         <h3>Calcul de f1 et f2</h3>
                     </a>
                 </div>
+                <a href="#FPBDLB">
+                    <h2>Passe Bande à Large Bande</h2>
+                </a>
 
             </div>
         </div>
@@ -867,11 +870,12 @@
                 <h2 id="PBD2OF1F2">Calcul de f1 et f2</h2>
                 <p>Quand on trace la courbe de gain en dB sur ue échelle logarithmique en x, on obtient une courbe
                     symétrique autour de fo. Ceci est trompeur car l'échelle n'est pas linéaire. Si on trace sur une
-                    échelle linéaire, on constate que la courbe du gain n'est pas symétrique. Il en est de même des fréquence de coupure f1 et f2</p>
+                    échelle linéaire, on constate que la courbe du gain n'est pas symétrique. Il en est de même des
+                    fréquence de coupure f1 et f2</p>
                 <img src="IMAGES/FPBD_Asymetric.jpg" alt="">
-                <p>Le calcul des valeurs de f1 et f2 n'est pas trivial. </p> 
-                <p>Le gain pour ces fréquences est égal au gain max divisé par  \(\sqrt2\) (-3dB).
-                Elles constituent donc la solution de l'équation \( H(f) = H(f_o)\sqrt2 \) </p>
+                <p>Le calcul des valeurs de f1 et f2 n'est pas trivial. </p>
+                <p>Le gain pour ces fréquences est égal au gain max divisé par \(\sqrt2\) (-3dB).
+                    Elles constituent donc la solution de l'équation \( H(f) = H(f_o)\sqrt2 \) </p>
 
                 $$
                 \frac{H_o\left(\frac{f}{f_0}\right)}{\sqrt{\left(1-\left(\frac{f}{f_0}\right)^2\right)^2+
@@ -889,7 +893,34 @@
                 <p>Les solution en f sont données par :</p>
                 <p>\( \frac{f}{fo}=u=\sqrt{x} \)</p>
                 <p>\(f1 = f_o\sqrt{x1}\)</p>
-                <p>\(f2 = f_o\sqrt{x2}\)</p>
+                <p>\(f2 = f_o\sqrt{x2}\)</p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="FPBDLB">Passe Bande à Large Bande</h2>
+                <p>Pour réaliser un filtre passe-bande à large bande passante, il est recommandé d'utiliser un filtre
+                    passe haut et un filtre passe-bas en cascade.</p>
+                <p>La fréquence de coupure basse \(f_{ol}\) correspond à la fréquence de coupure du filtre passe haut.
+                    La fréquence de coupure haute \(f_{oh}\) correspond à la fréquence de coupure du filtre passe bas.
+                </p>
+                <p>Si \(h_{o1}\) et \(h_{o2}\) sont respectivement les gains dans la bande passante des 2 filtres. Le
+                    gain dans la bande
+                    passante du filtre résultant est \(h_o=h_{o1} \times h_{o2}\) \( (H_{odB}=h_{o1dB} + h_{o2dB}) \)
+                </p>
+                <img src="IMAGES/FPBD_LB.jpg" alt=""><br>
+
+                <h4>Exemple :</h4>
+                <p>Réalisons un filtre passe bande tel que la fréquence de coupure basse fol = 1 kHz et la fréquence
+                    de coupure haute est foh = 10 kHz. On prendra un amortissement ζ = 0.6.</p>
+                    <p>Avec les structures de Sallen-Key, si on prend C=50nF et R1=10 k  on trouve :</p>
+                    <ul>
+                        <li>Passe bas, fo = 10kHz : R=318 &ohm;  , R2 = 8 k , gain dans la bande passante: h01=1.8  (5.1 dB)</li>
+                        <li>Passe haut, fo = 1kHz : R=3.18 k  , R2 = 8 k , gain dans la bande passante: h02=1.8 (5.1 dB)</li>
+                        <li>Le filtre résultant aura un gain dans la bande passante ho= 1.8 &times; 1.8 = 3.24 (10.2 dB)</li>
+                    </ul><br>
+                    <img src="IMAGES/FPBD2O_LB_Sch.jpg" alt=""><br>
+                    <img src="IMAGES/FPBD_LB_Crb.jpg" alt="">
+
+
 
 
 
