@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Arduino</title>
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+#entete {  
+  background-color: #336666;  
+  font-family: Calibri;  
+  font-size: 2vmax;  
+  font-weight: bold;  
+  font-style: italic;  
+  color: yellow;  
+  text-align: center;  
+  width: 100%;  
+  position: fixed;  
+  top: 0px;  
+  margin-top: 0px;  
+  height: 5%;  
+  margin-bottom: 0px;  
+  left: 0px;
+}
+
+#contenu {  
+  background-color: #ccccff;  
+  width: 99%;  
+  height: 95%;  
+  overflow: auto;  
+  font-family: Calibri;  
+  font-size: large;  
+  padding-right: 1ch;  
+  text-align: justify;  
+  font-style: italic;  
+  position: fixed;  
+  top: 5%;  
+  left: 0%;  
+  padding-left: 0.5ch;
+}
+
+.titre {  
+  font-family: "Arial Rounded MT";  
+  font-size: x-large;  
+  font-weight: bold;  
+  text-decoration: underline;  
+  color: #cc0000;  
+  font-style: italic;
+}
+
+.description {  
+  margin-top: 0.5ch;  
+  margin-right: 1ch;  
+  margin-bottom: 0ch;  
+  margin-left: 2ch;  
+  font-style: italic;  
+  font-family: Calibri;  
+  font-size: large;  
+  text-align: justify;
+}
+
+.description2 {  
+  margin-top: 0ch;  
+  margin-right: 4ch;  
+  margin-bottom: 0ch;  
+  margin-left: 5.5ch;  
+  font-style: italic;  
+  font-family: Calibri;  
+  font-size: large;  
+  text-align: justify;
+}
+
+.code {  
+  font-size: medium;  
+  background-color: #ccffff;  
+  padding-left: 1ch;  
+  margin-left: 3ch;  
+  margin-right: 2ch;  
+  font-family: Calibri;  
+  font-style: italic;
+}
+
+.code2 {  
+  font-size: medium;  
+  background-color: #ccffff;  
+  padding-left: 1ch;  
+  margin-left: 6ch;  
+  margin-right: 2ch;  
+  font-family: Calibri;  
+  font-style: italic;
+}
+
+.PP {  
+  font-weight: bold;  
+  font-size: x-large;  
+  margin-left: 2ch;  
+  color: #333399;  
+  font-style: italic;  
+  margin-bottom: 0.5ch;
+}
+
+.PS {  
+  font-weight: bold;  
+  margin-left: 5ch;
+}
+
+.PS2 {  
+  margin-left: 5.5ch;
+}
+
+.visible {  
+  font-weight: bold;  
+  color: #990000;  
+  font-style: italic;
+}
+
+.LibFonc {  
+  font-weight: bold;  
+  color: #990000;  
+  font-style: italic;  
+  margin-left: 2ch;  
+  margin-bottom: 0ch;
+}
+
+.Float_R {  
+  float: right;  
+  margin-left: 1ch;
+}
+
+.S_Titre {  
+  font-weight: bold;  
+  font-style: italic;  
+  color: #000099;  
+  margin-left: 1ch;  
+  font-size: x-large;  
+  margin-bottom: 0ch;
+}
+
+.P1 {  
+  margin-left: 1ch;  
+  margin-top: 0ch;  
+  margin-bottom: 0ch;
+}
+
+.P2 {  
+  margin-left: 4ch;  
+  margin-top: 0ch;  
+  margin-bottom: 0ch;
+}
+
+.P3 {  
+  margin-left: 7ch;  
+  margin-top: 0ch;  
+  margin-bottom: 0ch;
+}
+
+.P0 {  
+  margin-top: 0ch;  
+  margin-bottom: 0ch;  
+  margin-left: 0ch;
+}
+
+.indice {  
+  vertical-align: bottom;  
+  font-size: 60%;
+}
+
+</style> <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C" name="keywords">
+  </head>
+  <body style="                                  background-color: #ccccff;">
+    <div id="entete">Manipulation de Matrices</div>
+    <br>
+    <div style="font-family: Consolas;" id="contenu">La donnée de base manipulée par MATLAB&nbsp;&nbsp; est la matrice,
+      d'où son nom MATrice LABoratory. Une matrice peut être rectangulaire, en forme de vecteur ou tout simplement
+      constituée d'un seul élément. Les données constituant une matrice peuvent être des nombres réels ou des nombres
+      complexes. L'utilisation d'une matrice ne demande aucune déclaration préalable. <br>
+      <br>
+      <div id="fixe_droite">
+        <table style="text-align: left; margin-left: auto; margin-right: 0px;" border="0" cellpadding="5" cellspacing="0">
+          <tbody align="center">
+            <tr>
+              <td style="background-color: #9999ff; text-align: center;">Matrice&nbsp; A</td>
+            </tr>
+            <tr>
+              <td>16&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp; 13<br>
+                <div> &nbsp;5&nbsp;&nbsp; 11&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 8</div>
+                &nbsp;9&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp; 12<br>
+                &nbsp;4&nbsp;&nbsp; 14&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 1</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; background-color: #9999ff;">Matrice&nbsp; B</td>
+            </tr>
+            <tr>
+              <td>1&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+                1&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+                1&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+                1&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      Dans la suite de ce document, nous utiliserons souvent deux matrices A et B qui s'afficheront en permanence sur
+      l'écran. <br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="defmat" name="defmat"></a>Définir Une matrice </h1>
+      Une matrice est le plus souvent le résultat d'un calcul. Elle peut aussi être définie par une fonction
+      particulière. Elle peut aussi être définie par une commande d'affectation simple:<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A = [16&nbsp; 2&nbsp;&nbsp; 3&nbsp; 13; 5&nbsp; 11&nbsp; 10&nbsp;&nbsp; 8; 9&nbsp; 7
+        6&nbsp; 12; 4 14 15 1]</span><br>
+      <br>
+      <br>
+      Si on ne termine pas la ligne de commande par le caractère de ponctuation ";" MATLAB&nbsp; affiche le résultat de
+      l'affectation dans la&nbsp; fenêtre de commande :<br>
+      A = <br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      Cette matrice est maintenant mémorisée dans l'espace de travail MATLAB&nbsp;&nbsp; et pourra être utilisée durant
+      toute la séance de travail courante. L'instruction <em><strong>who </strong></em>donne la liste des variables
+      mémorisées dans l'espace de travail MATLAB.L'instruction whos donne la liste des variables avec leur taille et
+      leur classe(type)<br>
+      <br>
+      <br>
+      <br>
+      <h1 class="titre1"> <a id="operations" name="operateurs"></a>OPÉRATIONS SUR LES MATRICES<br>
+        <br>
+      </h1>
+      <h2 class="titre"> <a id="oparith" name="oparith"></a>Opérateurs arithmétiques</h2>
+      <h2 class="titre"> </h2>
+      <div style="margin-left: 40px;"> +&nbsp;&nbsp;&nbsp; Addition<br>
+        -&nbsp;&nbsp;&nbsp; Soustraction<br>
+        *&nbsp;&nbsp;&nbsp; multiplication<br>
+        /&nbsp;&nbsp;&nbsp; Division<br>
+        \&nbsp;&nbsp;&nbsp; division à gauche<br>
+        ^&nbsp;&nbsp;&nbsp; puissance<br>
+        '&nbsp;&nbsp;&nbsp; transposition ou complexe conjugué<br>
+        .*&nbsp;&nbsp;&nbsp; multiplication de matrice "point par point"<br>
+        ./&nbsp;&nbsp;&nbsp; division de matrice "point par point"<br>
+        .^&nbsp;&nbsp;&nbsp; puissance de matrice "point par point"</div>
+      <br>
+      <div style="margin-left: 40px;">
+        <h3><a class="titre" id="ajoutconstante">Ajouter retrancher une constante:</a></h3>
+        <span class="matcmd">&gt;&gt; X = A + 100</span><br>
+        X =<br>
+        &nbsp;&nbsp; 116&nbsp;&nbsp; 102&nbsp;&nbsp; 103&nbsp;&nbsp; 113<br>
+        &nbsp;&nbsp; 105&nbsp;&nbsp; 111&nbsp;&nbsp; 110&nbsp;&nbsp; 108<br>
+        &nbsp;&nbsp; 109&nbsp;&nbsp; 107&nbsp;&nbsp; 106&nbsp;&nbsp; 112<br>
+        &nbsp;&nbsp; 104&nbsp;&nbsp; 114&nbsp;&nbsp; 115&nbsp;&nbsp; 101<br>
+        <br>
+        <h3 class="titre"> <a id="ajoutmatrice"> Ajouter retrancher une matrice</a></h3>
+        <h3> </h3>
+      </div>
+      <div style="margin-left: 40px;"> <span class="matcmd">&gt;&gt; X = A - A</span><br>
+        X =<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</div>
+      <br>
+      <div style="margin-left: 40px;"> <span class="matcmd">&gt;&gt;&nbsp; B=[1 2 2 3;1 0 0 3;1 0 0 3;1 2 2 3]</span><br>
+        &nbsp; B=<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        <br>
+        <span class="matcmd">&gt;&gt; y = A + B</span><br>
+        y =<br>
+        &nbsp;&nbsp;&nbsp; 17&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 16<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 11<br>
+        &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 15<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 17&nbsp;&nbsp;&nbsp;&nbsp; 4<span style="text-decoration: underline;"></span><br>
+        <br>
+        <h3 class="titre"> <a id="multconst">Multiplier diviser par une constante</a></h3>
+        <span class="matcmd">&gt;&gt; X = A * 2</span><br>
+        X =<br>
+        &nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 26<br>
+        &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp; 16<br>
+        &nbsp;&nbsp;&nbsp; 18&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp; 24<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+        <br>
+        <span class="matcmd">&gt;&gt; X = A / 2</span><br>
+        X =<br>
+        &nbsp;&nbsp;&nbsp; 8.0000&nbsp;&nbsp;&nbsp; 1.0000&nbsp;&nbsp;&nbsp; 1.5000&nbsp;&nbsp;&nbsp; 6.5000<br>
+        &nbsp;&nbsp;&nbsp; 2.5000&nbsp;&nbsp;&nbsp; 5.5000&nbsp;&nbsp;&nbsp; 5.0000&nbsp;&nbsp;&nbsp; 4.0000<br>
+        &nbsp;&nbsp;&nbsp; 4.5000&nbsp;&nbsp;&nbsp; 3.5000&nbsp;&nbsp;&nbsp; 3.0000&nbsp;&nbsp;&nbsp; 6.0000<br>
+        &nbsp;&nbsp;&nbsp; 2.0000&nbsp;&nbsp;&nbsp; 7.0000&nbsp;&nbsp;&nbsp; 7.5000&nbsp;&nbsp;&nbsp; 0.5000<br>
+        <br>
+        <br>
+        <h3 class="titre"> <a id="multmat">Multiplication de matrice</a></h3>
+        <br>
+        <span class="matcmd">&gt;&gt; A * B</span><br>
+        ans =<br>
+        &nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 58&nbsp;&nbsp;&nbsp; 58&nbsp;&nbsp; 102<br>
+        &nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 26&nbsp;&nbsp;&nbsp; 26&nbsp;&nbsp; 102<br>
+        &nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 42&nbsp;&nbsp;&nbsp; 42&nbsp;&nbsp; 102<br>
+        &nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp; 102<br>
+        <br>
+        C'est une vraie multiplication de matrice<br>
+        <br>
+        <h3 class="titre"> <a id="powerconst">Matrice puissance une constante</a></h3>
+        <span class="matcmd">&gt;&gt; A ^ 2</span><br>
+        ans =<br>
+        &nbsp;&nbsp; 345&nbsp;&nbsp; 257&nbsp;&nbsp; 281&nbsp;&nbsp; 273<br>
+        &nbsp;&nbsp; 257&nbsp;&nbsp; 313&nbsp;&nbsp; 305&nbsp;&nbsp; 281<br>
+        &nbsp;&nbsp; 281&nbsp;&nbsp; 305&nbsp;&nbsp; 313&nbsp;&nbsp; 257<br>
+        &nbsp;&nbsp; 273&nbsp;&nbsp; 281&nbsp;&nbsp; 257&nbsp;&nbsp; 345<br>
+        <br>
+        matrice A à la puissance 2 ( A * A)<br>
+        <br>
+        <span class="matcmd">&gt;&gt; A ^ 3</span><br>
+        <br>
+        ans =<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10426&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        9306&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9386&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10186<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9546&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        10026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9946&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9786<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9866&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        9706&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9626&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10106<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9466&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        10266&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10346&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9226<br>
+        <br>
+        matrice A à la puissance 3 ( A * A * A)<br>
+        <br>
+        <br>
+        <h3 class="titre"> <a id="powermat">Matrice puissance une matrice</a></h3>
+        <br>
+        <span class="matcmd">&gt;&gt; A ^ B</span><br>
+        ??? Error using ==&gt;&gt; ^<br>
+        Matrix dimensions must agree.<br>
+        <br>
+        On ne sait pas calculer une matrice carrée puissance une matrice carré <br>
+        <br>
+        <br>
+        <h3 class="titre"> <a id="multtab" name="multtab"></a>Multiplication élément par élément (mode tableau) </h3>
+        <br>
+        Chaque élément de A est multiplié par l'élément correspondant dans B.<br>
+        On utilise l'opérateur <span class="matcmd">.*</span><br>
+        <span class="matcmd">&gt;&gt; X = A .* B</span><br>
+        X =<br>
+        &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 39<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 24<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 36<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        <br>
+        <br>
+        <h3 class="titre"><a id="divtab" name="divtab"> </a>Division élément par élément (mode tableau) </h3>
+        <br>
+        Chaque élément de A est divisé par l'élément correspondant dans B.<br>
+        On utilise l'opérateur <span class="matcmd">./<span style="color: black;"></span></span><br>
+        <br>
+        <span class="matcmd">&gt;&gt; X = A ./ B<br>
+        </span> Warning: Divide by zero<br>
+        X =<br>
+        &nbsp;&nbsp; 16.0000&nbsp;&nbsp;&nbsp; 1.0000&nbsp;&nbsp;&nbsp; 1.5000&nbsp;&nbsp;&nbsp; 4.3333<br>
+        &nbsp;&nbsp;&nbsp; 5.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Inf&nbsp;&nbsp;&nbsp; 2.6667<br>
+        &nbsp;&nbsp;&nbsp; 9.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Inf&nbsp;&nbsp;&nbsp; 4.0000<br>
+        &nbsp;&nbsp;&nbsp; 4.0000&nbsp;&nbsp;&nbsp; 7.0000&nbsp;&nbsp; 7.5000&nbsp;&nbsp;&nbsp;&nbsp; 0.3333 <br>
+        <br>
+        Remarquer que la division par zéro a généré un simple warning. Le calcul global est terminé. Les division par
+        zéro produisent <em><strong>inf</strong></em> <br>
+        <br>
+        <br>
+        <h3 class="titre"><a id="powerktab" name="powerktab"> </a>Puissance n élément par élément (mode tableau) </h3>
+        <br>
+        Chaque élément de A est élevé a la puissance n.<br>
+        On utilise l'opérateur <span class="matcmd">.^<span style="color: black;"></span></span><br>
+        <br>
+        <span class="matcmd">&gt;&gt; A .^ 2</span><br>
+        <br>
+        ans =<br>
+        <br>
+        &nbsp;&nbsp; 256&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        9&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 169<br>
+        &nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 121&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 100&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; 64<br>
+        &nbsp;&nbsp;&nbsp; 81&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 49&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        36&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 144<br>
+        &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 196&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 225&nbsp;&nbsp; &nbsp;
+        &nbsp; &nbsp; 1<br>
+        <br>
+        <br>
+        <h3 class="titre"><a id="powertab" name="powertab"> </a>Puissance élément par élément (mode tableau) </h3>
+        <br>
+        Chaque élément de A est élevé a la puissance de l'élément correspondant dans B.<br>
+        On utilise l'opérateur <span class="matcmd">.^<span style="color: black;"></span></span><br>
+        <br>
+        <br>
+        <span class="matcmd">&gt;&gt; X = A .^ B<span style="color: black;"></span></span><br>
+        X =<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2197<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        512<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1728<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        196&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        225&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      </div>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="opcomp" name="oplogic"></a>Opérateurs de comparaison</h2>
+      Ces opérateurs sont essentiellement utilisés avec les instruction <em>if else</em>, <em>while </em>...<br>
+      <br>
+      <div style="margin-left: 40px;"> ==&nbsp;&nbsp;&nbsp; est égal à<br>
+        ~=&nbsp;&nbsp;&nbsp; est différent de<br>
+        &gt; &nbsp;&nbsp; supérieur à<br>
+        &lt;&nbsp;&nbsp;&nbsp; inférieur à<br>
+        &gt;=&nbsp;&nbsp;&nbsp; supérieur ou égal à<br>
+        &lt;=&nbsp;&nbsp;&nbsp; inférieur ou égal à<br>
+        <br>
+        <em>Exemple:<br>
+          if a == b<br>
+          &nbsp;&nbsp; faire quelque chose<br>
+          else<br>
+          &nbsp;&nbsp; faire autre chose<br>
+          end<br>
+        </em></div>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="oplogic" name="oplogic"></a>Opérateur logiques</h2>
+      <div style="margin-left: 40px;"> Ces opérateurs sont utilisés avec des grandeurs logiques. Une grandeur logique
+        peut avoir deux valeurs: <em><strong>true </strong></em>ou <em><strong>false</strong></em>. Les grandeurs
+        numériques peuvent aussi être manipulé comme logique: tout ce qui est différent de 0 est true, 0 = <em><strong>false
+            </strong></em><br> <em> </em><br>
+        &amp;&nbsp;&nbsp;&nbsp; ET logique --&gt; (a &amp; b) est varie si a est vraie <strong>ET </strong>b est vraie<br>
+        |&nbsp;&nbsp;&nbsp; OU logique<br>
+        ~&nbsp;&nbsp;&nbsp; NON logique<br>
+        xor&nbsp; OU exclusif<br>
+        <br>
+        <em>Exemple:</em><br>
+        <em> if a == b</em>&nbsp; &amp; b &gt; c<br>
+        <em> &nbsp;&nbsp; faire quelque chose</em><br>
+        <em> else</em><br>
+        <em> &nbsp;&nbsp; faire autre chose</em><br>
+        <em> end</em><br>
+        <em></em></div>
+      <em> </em><em> </em><br>
+      <br>
+      <h2 class="titre"> <a id="oplogicc" name="oplogicc"></a>Opérateurs logique de court-circuit</h2>
+      <br>
+      <strong>&amp;&amp;&nbsp; </strong>similaire à &amp; sauf que le 2ème opérande n'est évalué que si le premier est
+      vrai<br>
+      <strong>||</strong>&nbsp; similaire à | sauf que le 2ème opérande n'est évalué que si le premier est vrai<br>
+      <br>
+      Dans beaucoup de cas, ceci va éviter des message d'erreur. Par exemple, si la variable x n'existe pas et le
+      programme rencontre:<br>
+      <div style="margin-left: 40px;"><em>if x &gt; 0<br>
+          &nbsp; y = log(x);<br>
+          end<br>
+        </em></div>
+      <br>
+      Le programme va générer le message d'erreur&nbsp; <span style="color: red;">??? Undefined function or variable
+        'x'</span><br>
+      On peut éviter le message d'erreur comme suit:<br>
+      <br>
+      <div style="margin-left: 40px;"><em>if exist('x')&nbsp;&nbsp; &amp;&amp;&nbsp;&nbsp;&nbsp; x &gt; 0<br>
+          &nbsp; y = log(x);<br>
+          end<br>
+        </em></div>
+      <br>
+      La variable x ne sera comparée à 0 que si elle existe<br>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"><a id="oplogicbb" name="oplogicbb"></a>Opérateurs logiques bit par bits</h2>
+      Ce sont les opération logiques classique (NOT, AND, OR, XOR) sur les bits d'un nombre entier. Exemple:<br>
+      a = 211 --&gt;&nbsp; 11010011<br>
+      b = 227 --&gt;&nbsp; 11100011<br>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="1">
+        <tbody>
+          <tr>
+            <td><em><strong>bitand</strong></em></td>
+            <td>AND bit par bit</td>
+            <td>bitand(a, b) --&gt; 195 --&gt;&nbsp; 11000011</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp; 11010011<br>
+              &nbsp; .&nbsp; 11100011<br>
+              &nbsp; --------------<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 11000011</td>
+          </tr>
+          <tr>
+            <td style="width: 60.717px;"><em><strong>bitor</strong></em></td>
+            <td>OR bit par bit</td>
+            <td>bitor(a,b) --&gt; 243 --&gt;&nbsp; 11110011</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp; 11010011<br>
+              &nbsp; .&nbsp; 11100011<br>
+              &nbsp; --------------<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 11110011</td>
+          </tr>
+          <tr>
+            <td><em><strong>bitxor</strong></em></td>
+            <td>XOR bit par bit</td>
+            <td>bitxor(a,b)&nbsp; --&gt; 48&nbsp; --&gt;&nbsp; 110000</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp; 11010011<br>
+              &nbsp; .&nbsp; 11100011<br>
+              &nbsp; --------------<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 00110000</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><em><strong>bitcmp</strong></em></td>
+            <td style="width: 172.351px;" rowspan="2">Complément = NOT<br>
+              <div style="text-align: left;">il faut préciser le type car les zéros de gauche deviennent des uns</div>
+            </td>
+            <td style="width: 426.117px;">bitcmp(uint8(a)) --&gt; 44 = 101100<br>
+              <br>
+            </td>
+            <td style="width: 160.35px;">&nbsp;&nbsp;&nbsp;&nbsp; 11010011<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⇓<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 00101100</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;">bitcmp(uint16(a)) -&gt; 65324 = 1111111100101100<br>
+            </td>
+            <td>&nbsp;0000000011010011<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⇓<br>
+              &nbsp;1111111100101100 </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"><a id="fonclogic" name="fonctlogic"></a>Fonctions logiques prédéfinies</h2>
+      <br>
+      Voici une liste de fonction logiques prise comme telle dans la doc officielle<br class="Apple-interchange-newline">
+      <table class="body" style="margin: 0px 0px 12px; padding: 0px; border: 1px solid #cccccc; outline: 0px none; vertical-align: baseline; background-color: transparent; border-collapse: collapse; border-spacing: 2px; width: 100%;">
+        <colgroup><col width="20%"><col width="80%"> </colgroup>
+        <tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px;  vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  itemprop="url" href="http://www.mathworks.com/help/matlab/ref/exist.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: rgb(255, 255, 255); color: rgb(0, 74, 160); text-decoration: none; font-family: Arial, Helvetica, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 17px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-position: initial initial; background-repeat: initial initial;"><span
+                    itemprop="name" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><tt
+                      style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 1.2em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">exist</tt></span></a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2"> Check existence of variable, function, folder, or class </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px;  vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isa.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isa</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2"> Detect object of given MATLAB class or Java®&nbsp;class </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isappdata.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isappdata</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2"> Determine if object has specific application-defined data </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/iscell.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">iscell</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is cell array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/iscellstr.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">iscellstr</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is cell array of strings</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ischar.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ischar</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is character array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/iscom.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">iscom</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is Component Object Model (COM) object</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isdir.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isdir</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is folder</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isempty.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isempty</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is empty array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isequal.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isequal</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if arrays are numerically equal</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isequaln.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isequaln</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if arrays are numerically equal, treating&nbsp;NaNs as equal</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isevent.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isevent</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is Component Object Model (COM) object event</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isfield.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isfield</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is MATLAB structure array field</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isfinite.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isfinite</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                finite elements of array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isfloat.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isfloat</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is floating-point array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isglobal.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isglobal</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is global variable</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ishandle.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ishandle</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                valid graphics object handles</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ishold.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ishold</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if graphics hold state is on</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isinf.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isinf</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                infinite elements of array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isinteger.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isinteger</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is integer array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isinterface.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isinterface</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is Component Object Model (COM) interface</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isjava.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isjava</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is Java object</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/iskeyword.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">iskeyword</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is MATLAB keyword</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isletter.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isletter</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                elements that are alphabetic letters</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/islogical.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">islogical</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is logical array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ismac.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ismac</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if running MATLAB for Macintosh OS X platform</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ismember.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ismember</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                members of specific set</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ismethod.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ismethod</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is object method</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isnan.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isnan</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                elements of array that are not a number (NaN)</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isnumeric.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isnumeric</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is numeric array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isobject.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isobject</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is MATLAB object</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/ispc.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">ispc</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if running MATLAB for PC (Windows®) platform</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isprime.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isprime</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                prime elements of array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isprop.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isprop</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is object property</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isreal.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isreal</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if all array elements are real numbers</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isscalar.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isscalar</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is scalar</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/issorted.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">issorted</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if set elements are in sorted order</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isspace.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isspace</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Detect
+                space characters in array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/issparse.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">issparse</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is sparse array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isstrprop.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isstrprop</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if string is of specified category</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isstruct.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isstruct</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is MATLAB structure array</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isstudent.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">sstudent</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if Student Version of MATLAB</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isunix.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isunix</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if running MATLAB for UNIX platform.</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isvarname.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isvarname</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(255, 255, 255); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is valid variable name</p>
+            </td>
+          </tr>
+          <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"
+            valign="top">
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;"><a
+                  href="http://www.mathworks.com/help/matlab/ref/isvector.html" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; color: rgb(0, 74, 160); text-decoration: none; background-position: initial initial; background-repeat: initial initial;">isvector</a></p>
+            </td>
+            <td style="margin: 0px; padding: 6px 5px; border-top-width: 0px; border-right-width: 1px; border-left-width: 0px; border-right-style: solid; border-bottom-style: none; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); outline: 0px; font-size: 1.1em; vertical-align: top; background-color: rgb(246, 246, 246); text-align: left; color: rgb(64, 64, 64); line-height: 17px; background-position: initial initial; background-repeat: initial initial;"
+              bgcolor="#F2F2F2">
+              <p style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 12px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">Determine
+                if input is vector</p>
+            </td>
+          </tr>
+        </tbody>
+        <tbody class="footnotes" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 11px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;">
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="indices" name="indices"></a>Les indices et l'opérateur : (deux points) </h1>
+      A(i,j) est l'élément situé à la ligne i et à la colonne j<br>
+      <span class="matcmd">&gt;&gt; A(2,3)</span><br>
+      ans =&nbsp;&nbsp;&nbsp; 10<br>
+      <br>
+      L'opérateur <span class="matcmd">:</span> est fondamental sous MATLAB , il permet de définir une suite
+      d'éléments. En l'utilisant dans les indices, on peut accéder à une partie d'une matrice <br>
+      &nbsp; <br>
+      <span class="matcmd">&gt;&gt; 3 : 10</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; 10<br>
+      <br>
+      <span class="matcmd">&gt;&gt; 0:0.5:3</span><br>
+      ans =&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0.5000&nbsp;&nbsp;&nbsp; 1.0000&nbsp;&nbsp;&nbsp; 1.5000&nbsp;&nbsp;&nbsp;
+      2.0000&nbsp;&nbsp;&nbsp; 2.5000&nbsp;&nbsp;&nbsp; 3.0000<br>
+      <br>
+      <span class="matcmd">&gt;&gt; 10:-2:4</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;
+      4<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(3:4,2:3)</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(2,2:4)</span>&nbsp; (colonnes 2 à 4 de la 2ème ligne)<br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(2,:)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (deuxième ligne)<br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(:,4)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (quatrième colonne)<br>
+      ans = <br>
+      &nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      Si on essaye d'utiliser un élément en dehors de la matrice, il se produit une erreur :<br>
+      <span class="matcmd">&gt;&gt; A(10,1)</span><br>
+      ???&nbsp; Index exceeds matrix dimensions.<br>
+      <br>
+      D'un autre coté, si on définit un nouvel élément de la matrice en de hors de la taille initiale, la matrice est
+      redimensionnée pour inclure le nouvel élément, les éléments non définis sont complétés par des zéros :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(3,6) = 33</span><br>
+      A = <br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;
+      13&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;
+      12&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 33<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      <br>
+      Rien de plus facile que de retrouver notre matrice originale, voici deux façons de faire :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A = A(:,1:4)</span><br>
+      A =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      &gt;&gt; A(:,5:6)=[]<br>
+      A =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      On peut aussi accéder à plusieurs éléments non contigus<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A([1 3],[2 4])</span>&nbsp;&nbsp; (ligne 1 et 3, colonnes 2 et 4)<br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      En utilisant cette technique, on peut par exemple permuter deux colonnes d'une matrice: Sur toutes les lignes,
+      prendre les colonnes 1, 3, 2 et 4 (je reconnais que ce n'est pas très évident)<br>
+      &nbsp; <br>
+      <span class="matcmd">&gt;&gt; A(:,[1 3 2 4])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      On peut faire quasiment tout ce qu'on veut :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(:,[1 1 2 2 3 3 4 4])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;
+      10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;
+      15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A([1 2 3 4 4 3 2 1],[1 1 2 2 3 3 4 4])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;
+      10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;
+      15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;
+      15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;
+      10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp; 13<br>
+      <br>
+      Il arrive qu'on désire fabriquer une matrice en répétant plusieurs fois la même ligne ou la même colonne :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X=1:4</span><br>
+      X =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      <br>
+      <span class="matcmd">&gt;&gt; Y=X([1 1 1 1],:)</span><br>
+      Y = <br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      <br>
+      <br>
+      <span class="matcmd">&gt;&gt; V=(2:2:8)'</span><br>
+      V =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      <br>
+      <span class="matcmd">&gt;&gt;&nbsp; U=V(:,[1 1 1 1])</span><br>
+      U =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(:,[3 3 3 3 3])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;
+      3&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 15<br>
+      <br>
+      Même pour une matrice carrée, un élément peut être désigné par un seul indice. Les éléments sont numérotés comme
+      si la matrice était constituée d'une seule colonne: <br>
+      <br>
+      <span class="matcmd">&gt;&gt; A(6)</span><br>
+      ans =&nbsp;&nbsp;&nbsp; 11<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X=[A(6) A(10) A(15)]</span><br>
+      X =&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="concat" name="concat"></a>Concaténation </h1>
+      <span class="matcmd">X=[A A]</span><br>
+      X =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;
+      16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;
+      12&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      <em class="matcmd"><strong>&gt;&gt; X = [A; A]</strong></em><br>
+      X =<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="transpo" name="transpo"></a>Transposition </h1>
+      Elle est obtenue à l'aide du caractère de ponctuation&nbsp; '<br>
+      <span class="matcmd">&gt;&gt; B = A'</span><br>
+      B =&nbsp;&nbsp;&nbsp; <br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 14<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 15<br>
+      &nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="sum" name="sum"></a>La fonction de sommation sum </h1>
+      La fonction sum calcule la somme colonne par colonne, mais dans le cas où la matrice se réduit à un vecteur ligne,
+      elle calcule la somme de tous les éléments du vecteur :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X = sum(A)</span><br>
+      X = 34&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 34<br>
+      <br>
+      <br>
+      <span class="matcmd">&gt;&gt; Y = sum(X)</span><br>
+      Y =&nbsp;&nbsp; 136<br>
+      <br>
+      Pour transformer un vecteur ligne en vecteur colonne et vice versa, il suffit de transposer<br>
+      <span class="matcmd">&gt;&gt; Z = X'</span><br>
+      Z =<br>
+      &nbsp;&nbsp;&nbsp; 34<br>
+      &nbsp;&nbsp;&nbsp; 34<br>
+      &nbsp;&nbsp;&nbsp; 34<br>
+      &nbsp;&nbsp;&nbsp; 34<br>
+      <br>
+      Pour calculer la somme lignes par lignes, il suffit de transposer avant d'utiliser la fonction sum&nbsp; :<br>
+      <br>
+      <span class="matcmd">&gt;&gt; sum(A')</span><br>
+      ans =&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 34&nbsp;&nbsp;&nbsp; 34<br>
+      <br>
+      A remarquer que si on n'affecte le résultat à aucune variable, MATLAB&nbsp; l'affecte à la variable ans qui est
+      une variable tampon qui contient toujours le résultat de la dernière opération.<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="diag" name="diag"></a>La fonction Diag: </h1>
+      <div> </div>
+      Cette fonction retourne une colonne contenant la diagonale d'une matrice<br>
+      <br>
+      <span class="matcmd">&gt;&gt; V=diag(A)</span><br>
+      V =<br>
+      &nbsp;&nbsp;&nbsp; 16<br>
+      &nbsp;&nbsp;&nbsp; 11<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <span class="matcmd">&gt;&gt; H=diag(A)'</span><br>
+      H =&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="flip" name="flip"></a>Les fonctions fliplr et flipud </h1>
+      Ces deux fonctions permettent de retourner une matrice de gauche à droite ou de droite à gauche<br>
+      <br>
+      <span class="matcmd">&gt;&gt; fliplr(H)</span><br>
+      ans&nbsp; =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 16<br>
+      <br>
+      <span class="matcmd">&gt;&gt; flipud(V)</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp; 11<br>
+      &nbsp;&nbsp;&nbsp; 16<br>
+      <br>
+      <span class="matcmd">&gt;&gt; fliplr(A)</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp; 13&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 16<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+      &nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      <br>
+      <span class="matcmd">&gt;&gt; flipud(A)</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 14&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 12<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 13<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="ones" name="ones"></a>Les fonctions ones et zeros: </h1>
+      Les fonctions zeros et ones permettent de générer des matrices remplie avec des zéros ou des uns.<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X = zeros(3)</span><br>
+      X =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X = ones(4)</span><br>
+      X =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <span class="matcmd">&gt;&gt; X=zeros(3,5)</span><br>
+      X =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="length" name="length"></a>Les fonctions length et size </h1>
+      La fonction length retourne la longueur d'un vecteur (ligne ou colone) et la fonction size retourne la dimension
+      d'une matrice<br>
+      <br>
+      <span class="matcmd">&gt;&gt; x=5:9</span><br>
+      x =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      <br>
+      <span class="matcmd">&gt;&gt; l=length(x)</span><br>
+      l =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+      <br>
+      <span class="matcmd">&gt;&gt; Y=[x;x;x]</span><br>
+      Y =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      <br>
+      <span class="matcmd">&gt;&gt; k=size(Y)</span><br>
+      k =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+      <br>
+      <span class="matcmd">&gt;&gt; k(1)</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      <br>
+      <span class="matcmd">&gt;&gt; k(2)</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="minmax" name="minmax"></a>Les fonctions min et max </h1>
+      Les fonctions min et max retournent le plus petit et le plus grand élément d'un vecteur.<br>
+      <br>
+      soit le vecteur:<br>
+      x =&nbsp; 21.52&nbsp;&nbsp;&nbsp;&nbsp; 67.96&nbsp;&nbsp;&nbsp;&nbsp; 90.89&nbsp;&nbsp;&nbsp;&nbsp;
+      25.01&nbsp;&nbsp;&nbsp;&nbsp; 86.09&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 47.13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50.60<br>
+      <br>
+      <span class="matcmd">&gt;&gt; min(x)</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 21.52<br>
+      <br>
+      <span class="matcmd">&gt;&gt; max(x)</span><br>
+      ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 90.89<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="fix" name="fix"></a>la fonction fix </h1>
+      La fonction fix retourne la partie entière d'un nombre<br>
+      <br>
+      <span class="matcmd">&gt;&gt; K = 123.456</span><br>
+      <span class="matcmd">&gt;&gt; fix(K)</span><br>
+      ans =&nbsp; 123<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="reshape" name="reshape"></a>La fonction reshape</h1>
+      La fonction <em>reshape() </em>permet de redimensionner une matrice.<br>
+      <br>
+      <span class="matcmd">&gt;&gt; a = [1 2 3 4; 5 6 7 8; 9 10 11 12]</span><br>
+      a =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      <span class="matcmd">&gt;&gt; b = reshape(a,2,6)</span><br>
+      b =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;
+      3&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      <span class="matcmd">&gt;&gt; reshape(a,1,[])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      <span class="matcmd">&gt;&gt; reshape(a,4,[])</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 11<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+      <span class="matcmd">&gt;&gt; reshape(a,[],2)</span><br>
+      ans =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 7<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; 11<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 12<br>
+      <br>
+    </div>
+  </body>
+</html>

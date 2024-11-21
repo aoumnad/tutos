@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Tutoriel Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab - Graphiques 3D" name="description">
+    <meta content="Matlab, 3D, plot3, mesh, surf" name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style=" background-color: silver; width: 99%; height: 100%;">
+    <div id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <object id="counter" data="compteur.php?name=graphiques3d_count.txt"></object>
+    <div id="sctn_ttl">
+      <h1>Les graphiques 3D</h1>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html"></object>
+    <div id="contenu">Faute de pouvoir donner un cours détaillé sur les
+      graphiques 3D, je me contenterai de donner quelques exemples pouvant
+      servir de fil conducteur<br>
+      <br>
+      <h1 class="titre"> <a id="ligne3d" name="ligne3d"></a>lignes 3D</h1>
+      <br>
+      Le tracé de ligne en 3 dimensions est réalisé essentiellement par la
+      fonction <em><strong>plot3()</strong></em><br>
+      <br>
+      <em><strong>Exemple 1:</strong></em><br>
+      Tapez le petit programme suivant et&nbsp; donnez lui le nom plot3tst1.m.
+      Exécutez le et observer le résultat<br>
+      <br>
+      <span class="matcmd">x = [0 1 2 2 2 2 2 2 2 2 1 0];<br>
+        y = [0 0 0 0 1 2 2 1 0 0 0 0];<br>
+        z = [0 0 0 1 1 1 2 2 2 3 3 3];<br>
+        close all;<br>
+        plot3(x,y,z,'-s','linewidth',2);<br>
+        axis ij<br>
+        grid;<br>
+        xlabel('axe des X');<br>
+        ylabel('axe des Y');<br>
+        zlabel('axe des Z');</span><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/gr3d1.PNG"> <br>
+        <br>
+        <div style="text-align: left;">La fonction <em><strong>axis </strong></em>a
+          plusieurs utilisations possibles, en voici un exemple:<br>
+          <br>
+          <div style="text-align: center;"><img alt="" src="images/axis.PNG"><br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <em><strong>Exemple 2:</strong></em><br>
+      <br>
+      <span class="matcmd">t = 0:pi/50:10*pi;<br>
+        plot3(sin(t),cos(t),t,'linewidth',2)<br>
+        grid on<br>
+        axis square<br>
+        xlabel('sin(t)');<br>
+        ylabel('cos(t)');<br>
+        zlabel('t');</span><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/gr3d3.PNG"><br>
+      </div>
+      &nbsp;<br>
+      <br>
+      <h1 class="titre"> <a id="groupligne3d" name="groupligne3d"></a>Groupe de
+        lignes 3D</h1>
+      Si x, y, z sont des matrices, plot3() trace plusieurs lignes. Chaque ligne
+      correspond à une <em><strong>colonne </strong></em>z(x,y). La fonction <span
+
+        class="matcmd">meshgrid()</span> permet de définir les matrices x et y
+      correspondants à tous les points (x,y) du plan xy. Ensuite il suffit de
+      calculer l'élévation z de chaque point (x,y) et on a un objet 3D<br>
+      <br>
+      Voyons comment on peu définir tous les points du plan xy ci-dessous<br>
+      <div style="text-align: center;"><br>
+        <img src="images/axexy.PNG"><br>
+        <br>
+      </div>
+      <span class="matcmd">x = 0:10</span>&nbsp; --&gt; x =
+      [0&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;
+      4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; 10]<br>
+      <span class="matcmd">y = 0:3</span>&nbsp; --&gt; y = [0 1 2 3]<br>
+      <br>
+      <span class="matcmd">[yy, xx] = mesgrid(y,x)</span><br>
+      Le résultat est obtenu sous forme de deux matrices, une pour les x,
+      l'autre pour les y<br>
+      <br>
+      yy =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      <br>
+      <br>
+      xx =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+      0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+      2&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;
+      3&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp;
+      4&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;
+      5&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 7<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;
+      8&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;
+      9&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp; 9<br>
+      &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;
+      10&nbsp;&nbsp;&nbsp; 10<br>
+      <br>
+      Il reste maintenant à définir la matrice z qui définit l'élévation de
+      chaque point (x,y). C'est ce qui est présenté sur l'exemple ci dessous.<br>
+      <br>
+      <em><strong>Exemple 3:<br>
+          <br>
+        </strong></em><span class="matcmd">x = 0:10;<br>
+        y = 0:3;<br>
+        [yy, xx] = meshgrid(y, x);<br>
+        z=zeros(11,4);<br>
+        z(:,1) = [0 1 0 1 0 1 0 1 0 1 0];&nbsp; % 1ère colonne = courbe 1<br>
+        z(:,2) = [0 0 1 1 1 0 0 1 1 0 0];&nbsp; % 2ème colonne = courbe 2<br>
+        z(:,3) = [0 1 1 0 0 0 1 1 0 1 1];&nbsp; % 3ème colonne = courbe 3<br>
+        z(:,4) = [0 0 1 1 2 2 1 1 0 0 1];&nbsp; % 4ème colonne = courbe 4<br>
+        close all;<br>
+        plot3(xx, yy, z, 'LineWidth',2);grid;<br>
+      </span><br>
+      <div style="text-align: center;"><img alt="" src="images/plot3mat.PNG"><br>
+      </div>
+      <br>
+      <em><strong>Exemple 4:</strong></em><br>
+      Dans l'exemple ci-dessous, on va tracer la fonction <em><strong>sinc(t-to)</strong></em>
+      qui n'est rien d'autre que la fonction <em>sinc(t)</em> décalée de <em>to</em>.
+      Rappelons au passage que <em>sinc(t)=sinc(πt)/t</em>. <br>
+      <br>
+      <span class="matcmd">t = 0:0.1:10;&nbsp; % axe des x<br>
+        to = 0:2:6;&nbsp;&nbsp;&nbsp; <br>
+        [tt, tt0] = meshgrid(t,t0);<br>
+        dt = tt - tt0 + eps;&nbsp;&nbsp; % le eps est ajouté juste pour éviter
+        la division par 0<br>
+        z = sin(pi*dt) ./ (dt);<br>
+        close all,<br>
+        plot3(tt, yy0, abs(z));<br>
+        axis('ij');<br>
+        grid;<br>
+        xlabel('t');<br>
+        ylabel('to');<br>
+        zlabel('sinc(t-t0)');<br>
+      </span><br>
+      <div style="text-align: center;"><img alt="" src="images/gr3d2.PNG"><br>
+      </div>
+      &nbsp;<br>
+      <br>
+      <h1 class="titre"> <a id="surf3d" name="surf3d"></a>Surfaces 3D</h1>
+      <br>
+      Les fonctions intervenant dans le tracé de surfaces 3D son nombreuses.
+      Parmi elles : <em><strong>mesh,&nbsp; surf, meshgrid, camlight</strong></em>
+      …<br>
+      <br>
+      Voici quelques propriété de l'objet surface:<br>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 25%; background-color: #ccffff;"><em><strong>Propriété</strong></em></td>
+            <td style="text-align: center; background-color: #ccffff;"><em><strong>Description</strong></em></td>
+          </tr>
+          <tr>
+            <td><em><strong>EdgeColor</strong></em></td>
+            <td>Couleur des contours des facettes individuelles constituant la
+              surface.<br>
+              Valeurs : ColorSpec, none, flat, interp(olation)</td>
+          </tr>
+          <tr>
+            <td><em><strong>FaceColor</strong></em></td>
+            <td>Couleur des facettes individuelles constituant la surface.<br>
+              Valeurs : ColorSpec, none, flat, interp(olation)</td>
+          </tr>
+          <tr>
+            <td><em><strong>FaceLighting</strong></em></td>
+            <td>Détermine la méthode d'application de l'éclairage<br>
+              {none} | flat | gouraud | phong</td>
+          </tr>
+          <tr>
+            <td><em><strong>LineStyle</strong></em></td>
+            <td>Style de ligne</td>
+          </tr>
+          <tr>
+            <td style="text-align: left;"><em><strong>LineWidth</strong></em></td>
+            <td> Epaisseur du trait</td>
+          </tr>
+          <tr>
+            <td><em><strong>Marker</strong></em></td>
+            <td> Marqueur à placer sur les intersections des lignes</td>
+          </tr>
+          <tr>
+            <td><em><strong>MarkerSize</strong></em></td>
+            <td> Taille des marqueurs</td>
+          </tr>
+          <tr>
+            <td><em><strong>MeshStyle</strong></em></td>
+            <td>Précise les lignes à tracer&nbsp; {both} | row | column</td>
+          </tr>
+          <tr>
+            <td><em><strong>Visible</strong></em></td>
+            <td>Rend la surface visible ou invisible</td>
+          </tr>
+          <tr>
+            <td><em><strong>Parent</strong></em> </td>
+            <td> Pour préciser sur quel axe sera tracé la surface </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="mesh" name="mesh"></a>La fonction mesh()</h1>
+      La fonction <em><strong>mesh() </strong></em>trace des surfaces de type
+      fil de fer.<br>
+      <br>
+      <em><strong> Exemple 1:</strong></em><br>
+      Exécuter le programme ci-dessous et observez les trois figures, les
+      fonctions meshc() et meshz() rajoutent une projection sur le plan xy<br>
+      <br>
+      <span class="matcmd">[x,y] = meshgrid(-5:0.2:5);<br>
+        r = sqrt(x.^2 + y.^2) + eps;<br>
+        z = sin(pi*r) ./ r;<br>
+        close all;<br>
+        mesh(x, y, z);<br>
+        figure;<br>
+        meshc(x, y, z);<br>
+        figure;<br>
+        meshz(x, y, z);<br>
+      </span><br>
+      <img style="width: 33%;" alt="" src="images/mesh1.PNG"><img style="width: 33%;"
+
+        alt="" src="images/mesh2.PNG"><img style="width: 33%;" alt="" src="images/mesh3.PNG"><br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="surf" name="surf"></a>La fonction surf()</h1>
+      La fonction <em><strong>surf() </strong></em>trace des surfaces avec
+      plus de possibilités que la fonction mesh().<br>
+      <br>
+      <em><strong> Exemple 2:</strong></em><br>
+      Exécutez le programme ci-dessous et observez les résultats.<br>
+      <br>
+      <span class="matcmd">[x,y] = meshgrid(-5 : 0.2 : 5);<br>
+        r = sqrt(x.^2 + y.^2) + eps;<br>
+        z = sin(pi*r) ./ r;<br>
+        close all;<br>
+        surf(x, y, z);<br>
+        figure;<br>
+        surf(x, y,
+        z,'FaceColor','interp','FaceLighting','phong','EdgeColor','none');<br>
+        daspect([5 5 5])<br>
+        axis tight<br>
+        view(-50,30)<br>
+        camlight left<br>
+      </span><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/surf1.PNG">&nbsp;<br>
+        <br>
+        <img alt="" src="images/surf2.PNG"></div>
+      <br>
+      Exemple 3 :<br>
+      Exécuter le programme ci-dessous et et observez les résultats.<br>
+      <br>
+      <span class="matcmd">[X,Y,Z] = peaks(30);<br>
+        close all;<br>
+        surf(X,Y,Z)<br>
+        axis([-3 3 -3 3 -10 5])<br>
+        figure;<br>
+surf(X,Y,Z,'FaceColor','interp','FaceLighting','phong','EdgeColor','none');<br>
+        axis tight<br>
+        camlight left<br>
+      </span><br>
+      Réduisez la fenêtre MATLAB afin que la figure 2 soit visible et essayer
+      les commandes suivantes tout en observant leur effet sur la figure.<br>
+      <br>
+      <span class="matcmd"> view(30,30)<br>
+        view(45,30)<br>
+        view(60,30)<br>
+        view(135,30)<br>
+        view(-135,30)<br>
+        view(-45,30)<br>
+        view(30,60)<br>
+      </span><br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

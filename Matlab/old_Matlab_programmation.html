@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Didacticiel matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab, Programmation" name="description">
+    <meta content="Matlab, matlab GUI, if else, for, while, break, return, fprintf, all, any, exist, find, input, deblank, findstr, strcmp, strcat, strrep, char, num2str, dec2bin, bin2dec, dec2hex, hex2dec"
+
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style="   background-color: silver; width: 99%; height: 100%;">
+    <div id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <object id="counter" data="compteur.php?name=programmation_count.txt"></object>
+    <div id="sctn_ttl">
+      <h1>Programmation sous Matlab</h1>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html"></object>
+    <div id="contenu">
+      <h1 class="titre"> <a id="ifelse" name="ifelse"></a>IF, ELSE, ELSEIF
+        &nbsp;&nbsp; </h1>
+      <br>
+      Essayer le petit programme suivant :<br>
+      &nbsp;&nbsp; <br>
+      <span class="code">A = input('A = ');<br>
+        B = input('B = ');<br>
+        if&nbsp;&nbsp;&nbsp; A &lt; B<br>
+        &nbsp;&nbsp; disp('A &lt; B')<br>
+        elseif&nbsp;&nbsp;&nbsp; A &gt; B<br>
+        &nbsp;&nbsp; disp('A &gt; B')<br>
+        else<br>
+        &nbsp;&nbsp; disp('A = B')<br>
+        end</span><br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="switchcase" name="swichcase"></a>SWITCH – CASE
+        – OTHERWISE </h1>
+      <br>
+      L'utilisation de switch-case est illustrée par le petit programme suivant.<br>
+      &nbsp;&nbsp; <br>
+      <span class="code">fprintf('\n\n');<br>
+        disp('1&nbsp;&nbsp; :&nbsp;&nbsp; FRANCAIS');<br>
+        disp('2&nbsp;&nbsp; :&nbsp;&nbsp; ENGLISH');<br>
+        disp('3&nbsp;&nbsp; :&nbsp;&nbsp; ITALIANO');<br>
+        k = input('\nfaites votre choix&nbsp;&nbsp; :&nbsp; ');<br>
+        fprintf('\n\n');<br>
+        switch k<br>
+        &nbsp;&nbsp; case 1<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('Bonjour');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = input('Veuillez introduire votre
+        nom&nbsp; : ','s');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(['A bientôt&nbsp;&nbsp; ' nom])<br>
+        &nbsp;&nbsp; case 2<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('Hello&nbsp; !');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = input('Please, introduce your
+        name&nbsp; : ','s');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(['See you later&nbsp;&nbsp; ' nom])<br>
+        &nbsp;&nbsp; case 3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('désolé, je ne parle pas italien');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('sorry, I do not speek italien');<br>
+        &nbsp;&nbsp; otherwise<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf('\nvous n''avez pas fait le bon
+        choix\n');<br>
+        end;</span><br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="for" name="for"></a>LA BOUCLE FOR </h1>
+      <br>
+      L'utilisation de la boucle <em><strong>for </strong></em>est illustrée
+      par les deux petits programmes suivants.<br>
+      <br>
+      <span class="code">t=0:0.01:3.5;<br>
+        c='rgbmck:';<br>
+        close all;<br>
+        hold on;<br>
+        for i = 1 : length(c)<br>
+        &nbsp;&nbsp; plot(t,i*sin(i*t),c(i));<br>
+        end;<br>
+        grid;</span><br>
+      <br>
+      _________________________<br>
+      <br>
+      <span class="code">k=32;<br>
+        disp(char(ones(1,73)*95));<br>
+        for l = 1 : 28<br>
+        &nbsp;&nbsp; for c = 1 : 8<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprintf('|%3d&nbsp;&nbsp; %c
+        ',k,char(k));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k = k+1;<br>
+        &nbsp;&nbsp; end<br>
+        &nbsp;&nbsp; fprintf('|\n')<br>
+        end<br>
+        disp(char(ones(1,73)*173));</span><br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="bouclewhile" name="bouclewhile"></a>LA BOUCLE
+        WHILE </h1>
+      L'utilisation de la boucle <em><strong>while </strong></em>est illustrée
+      par le petit programme suivant.<br>
+      <br>
+      <span class="code">n=65;<br>
+        while&nbsp; n &gt; 32 &amp; n &lt; 256<br>
+        &nbsp;&nbsp; fprintf('Le caractère de code ASCII %d est
+        %c\n\n',n,char(n));<br>
+        &nbsp;&nbsp; c=input('taper un caractère&nbsp;&nbsp; : ','s');<br>
+        &nbsp;&nbsp; n=fix(c);<br>
+        &nbsp;&nbsp; fprintf('le code ASCII de %c&nbsp; est %d\n',c,n)<br>
+        &nbsp;&nbsp; n = input('\ntaper un nombre [33 à 255] : ');<br>
+        end;<br>
+      </span><br>
+      <br>
+      <h1 class="titre"> <a id="break" name="break"></a>L'INSTRUCTION BREAK </h1>
+      &nbsp;&nbsp; L'instruction break permet de quitter une boucle for ou une
+      boucle while avant sa fin normale.<br>
+      <br>
+      <span class="code">while&nbsp; 1<br>
+        &nbsp;&nbsp; c=input('taper un caractère&nbsp; (f = fin) : ','s');<br>
+        &nbsp;&nbsp; if c == 'f'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        break;&nbsp;&nbsp; end;<br>
+        &nbsp;&nbsp; fprintf('le code ASCII de %c&nbsp; est %d\n',c,fix(c))<br>
+        end;<br>
+      </span><br>
+      <br>
+      <h1 class="titre"> <a id="return" name="return"></a>L'INSTRUCTION RETURN
+      </h1>
+      &nbsp;&nbsp; L'instruction return permet de quitter une fonction ou le
+      programme principal avant sa fin normale<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="fonctions" name="fonctions"></a>LES FONCTIONS </h1>
+      &nbsp;&nbsp; Une fonction est un programme m-file qui retourne quelque
+      chose. <br>
+      &nbsp;&nbsp; Tapez le programme suivant et sauvegardez le sous le nom am.m<br>
+      &nbsp;&nbsp; <br>
+      <span class="code">function m = am(fp,fm,im)<br>
+        &nbsp;&nbsp; % m = am(fp,fm,im)<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>% fp :
+        fréquence de la porteuse<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>% fm :
+        fréquence du signal modulant<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>% im :
+        indice de modulation<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>T=3/fm;<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>te=1/fp/10;<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>t=0:te:T-te;<br>
+      </span><span class="code"><span class="code">&nbsp;&nbsp; </span>m=(1+im*cos(2*pi*fm*t))
+        .* sin(2*pi*fp*t);<br>
+        end<br>
+        &nbsp;</span>&nbsp; <br>
+      Le <em>end </em>à la fin de la fonction n'est pas obligatoire mais il
+      est préférable de le mettre.<br>
+      <br>
+      Essayez le en tapant les commandes suivantes :<br>
+      <br>
+      <span class="matcmd">help am<br>
+        x = am(1000,100,0.5);<br>
+        plot(x);grid;<br>
+      </span><br>
+      <br>
+      <h1 class="titre"> <a id="fonctionslogiques" name="fonctionslogiques"></a>LES
+        FONCTIONS LOGIQUES </h1>
+      <br>
+      <h2 class="titre"> all</h2>
+      La fonction all(x) est vrai si tout les éléments de x sont différent de
+      zéro. Essayer les deux commandes suivantes:<br>
+      <br>
+      <span class="matcmd">all(1:10)<br>
+        all(-1:1)<br>
+      </span><br>
+      <h2 class="titre"> any</h2>
+      &nbsp;&nbsp; La fonction <em><strong>any(x) </strong></em>est vrai si au
+      moins un élément de x est non nul. Essayer les commandes ci-dessous:<br>
+      <br>
+      <span class="matcmd">any([0 0 0 1])<br>
+        any(zeros(3))<br>
+      </span><br>
+      <h2 class="titre"> exist</h2>
+      &nbsp;&nbsp; <em><strong>exist('x')</strong></em> est vrai si la variable
+      ou la fonction x existe dans l'espace de travail ou dans le chemin de
+      recherche de MATLAB . Elle retourne :<br>
+      --&gt; 0 si x n'existe pas<br>
+      --&gt; 1 si la variable x est définie<br>
+      --&gt; 2 si la fonction x existe (dans le chemin de recherche MATLAB )<br>
+      --&gt; 7 si le dossier x existe (dans le chemin de recherche MATLAB )<br>
+      --&gt; voir help exist pour plus de détail<br>
+      <br>
+      <h2 class="titre"> find(x) </h2>
+      &nbsp;&nbsp; Cherche les indices des éléments non nul du vecteur x<br>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre"> [i,j] = find(x)</h2>
+      &nbsp;&nbsp; Cherche les indices ligne et colon des éléments non nul de la
+      matrice x<br>
+      <br>
+      <span class="matcmd"> A = [0 0 75 0 0 0 -23 0 0 0 0];<br>
+        i = find(A);<br>
+      </span>&nbsp;&nbsp;&nbsp;&nbsp; i =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      3&nbsp;&nbsp;&nbsp;&nbsp; 7<br>
+      <br>
+      <span class="matcmd">A(i)</span><br>
+      ans = 75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -23<br>
+      <br>
+      <span class="matcmd"> find(a&gt;0)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+      <br>
+      <span class="matcmd"> find(a&lt;0)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7<br>
+      <br>
+      <span class="matcmd">find(a==0)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;&nbsp;
+      4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;
+      10&nbsp;&nbsp;&nbsp; 11<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="fprintf" name="fprintf"></a>LA FONCTION FPRINTF
+      </h1>
+      La fonction <em><strong>fprintf </strong></em>permet d'écrire des
+      informations sur l'écran ou dans un fichier. La syntaxe pour l'écran est
+      la suivante :<br>
+      <span class="matcmd">fprintf(format, A, B, C . . .)</span><br>
+      &nbsp;&nbsp; <br>
+      <em><strong>format </strong></em>est une chaîne de caractère qui précise
+      comment les données A, B, C doivent être affichées à l'écran. on utilise
+      une syntaxe similaire à celle du langage C:&nbsp;&nbsp;&nbsp; <span class="matcmd">%7.3f</span><br>
+      --&gt; 7 est le nombre total de chiffres, le point compris<br>
+      --&gt; 3 est le nombre de chiffre après la virgule (précision)<br>
+      --&gt; f : spécificateur de type, voir tableau ci-dessous<br>
+      <table style="width: 100%;" border="1" cellpadding="4" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 141.3px; background-color: #ccffff;">Spécification</td>
+            <td style="width: 717.283px; background-color: #ccffff;">Description</td>
+          </tr>
+          <tr>
+            <td>%c</td>
+            <td>un seul caractère</td>
+          </tr>
+          <tr>
+            <td>%d</td>
+            <td>décimal, utilisé en général pour les nombres entier</td>
+          </tr>
+          <tr>
+            <td>%e</td>
+            <td>Notation exponentielle.&nbsp; ex :&nbsp; 3.1415e+00)</td>
+          </tr>
+          <tr>
+            <td>%f </td>
+            <td>notation en virgule fixe</td>
+          </tr>
+          <tr>
+            <td>%g </td>
+            <td>format libre</td>
+          </tr>
+          <tr>
+            <td>%o</td>
+            <td>Représentation octale (unsigned)</td>
+          </tr>
+          <tr>
+            <td>%s</td>
+            <td>chaîne de caractères</td>
+          </tr>
+          <tr>
+            <td>%u</td>
+            <td>Décimal non signé</td>
+          </tr>
+          <tr>
+            <td>%x</td>
+            <td>Hexadécimal (lettres a-f)</td>
+          </tr>
+          <tr>
+            <td>%X</td>
+            <td>Hexadécimal (lettres A-F)</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      Tout texte inclus dans la chaîne format sera reproduit à l'écran. Certains
+      caractères de contrôle peuvent être introduits en les précédant de \ comme
+      cela est indiqué dans le tableau ci-dessous.<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> &gt; fprintf('\npi = %g&nbsp; = %d =&nbsp; %f
+        =&nbsp; %4.2f&nbsp; = %e\n',pi,pi,pi,pi,pi)</span><br>
+      pi = 3.14159&nbsp; = 3.14e+000 =&nbsp; 3.141593 =&nbsp; 3.14&nbsp; =
+      3.141593e+000<br>
+      <br>
+      <span class="matcmd"> &gt; fprintf('Pi = %5.3f\nLe double de pi est
+        %20.18f\n',pi,2*pi);</span><br>
+      Pi = 3.142<br>
+      Le double de pi est 6.283185307179586200<br>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="4" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 141.3px; background-color: #ccffff;">Caractère<br>
+            </td>
+            <td style="width: 717.283px; background-color: #ccffff;">Description<br>
+            </td>
+          </tr>
+          <tr>
+            <td>\b</td>
+            <td>Backspace</td>
+          </tr>
+          <tr>
+            <td>\f</td>
+            <td>Form feed</td>
+          </tr>
+          <tr>
+            <td>\n</td>
+            <td>New line</td>
+          </tr>
+          <tr>
+            <td>\r</td>
+            <td>Carriage return</td>
+          </tr>
+          <tr>
+            <td>\t</td>
+            <td>Horizontal tab</td>
+          </tr>
+          <tr>
+            <td>\\</td>
+            <td>Backslash</td>
+          </tr>
+          <tr>
+            <td>\'' ou&nbsp; ''</td>
+            <td>apostrophe</td>
+          </tr>
+          <tr>
+            <td>%%</td>
+            <td>%</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="input" name="input"></a>SAISIE D'UNE DONNEE AU
+        CLAVIER </h1>
+      La fonction <em><strong>input </strong></em>permet de saisir une donnée
+      au clavier durant l'exécution d'un programme. La donnée peut être un
+      scalaire, une matrice ou une chaîne de caractère<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd">X = input('tapez un nombre&nbsp;&nbsp; :&nbsp;&nbsp;
+        ');</span><br>
+      Affiche le message : tapez un nombre&nbsp; et attend qu'une donnée soit
+      introduite au clavier. La valeur introduite est affectée à la variable X.
+      Si on veut introduire une chaîne de caractères, il faut la taper entre
+      guillemets., sinon il faut utiliser le format suivant. Dans ce cas, les
+      guillemets son inutiles car MATLAB&nbsp; s'attend à une chaîne.<br>
+      <span class="matcmd"> X = input('tapez une chaine&nbsp;&nbsp;
+        :&nbsp;&nbsp; ' , 's');</span><br>
+      &nbsp;&nbsp; <br>
+      &nbsp;&nbsp; <br>
+      <span class="P_ttl"></span><br>
+      <h1 class="titre"> <a id="string" name="string"></a>MANIPULATION DE
+        CHAINES DE CARACTERES </h1>
+      &nbsp;&nbsp; Taper <em>help strfun</em> pour avoir une liste exhaustive
+      des fonctions manipulant les chaînes de caractères. En voici
+      quelques-unes.<br>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre"> deblank(X)</h2>
+      &nbsp;&nbsp; supprime les blancs qui se trouvent à la fin de la chaîne X<br>
+      <br>
+      <h2 class="titre"> findstr(str1, str2)</h2>
+      Cherche les indices du début de la petite chaîne dans la grande chaîne<br>
+      <span class="matcmd">str1 = 'Find the starting indices of the shorter
+        string.';<br>
+        str2 = 'the';<br>
+        findstr(str1,str2)<br>
+      </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ans =&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 30<br>
+      <br>
+      <h2 class="titre">strcmp(str1,str2)</h2>
+      &nbsp;&nbsp; compare les deux chaîne str1 et str2<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> strcmp('yes','yes ')</span><br>
+      &nbsp;&nbsp;&nbsp; ans =&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+      <br>
+      <span class="matcmd">strcmp('yes','yes')</span><br>
+      &nbsp;&nbsp; ans =&nbsp;&nbsp; 1<br>
+      <br>
+      <h2 class="titre">strcat(str1, str2, str3,. . . )</h2>
+      <br>
+      Concaténation de chaînes<br>
+      <br>
+      <span class="matcmd"> s = strcat('bonjour','monsieur')</span><br>
+      &nbsp;&nbsp; s =&nbsp;&nbsp; bonjourmonsieur<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> s = strcat('bonjour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ','monsieur')</span><br>
+      &nbsp;&nbsp; s = bonjourmonsieur<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> s =
+        strcat('bonjour','&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; monsieur')</span><br>
+      &nbsp;&nbsp; s = bonjour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; monsieur<br>
+      <br>
+      Pour mieux gérer le problème des espaces, il vaut mieux utiliser:<br>
+      <span class="matcmd">s = ['Bonjour'&nbsp; '&nbsp;&nbsp; '&nbsp;
+        'Monsieur']</span><br>
+      &nbsp; s = Bonjour&nbsp;&nbsp; Monsieur <br>
+      <br>
+      <h2 class="titre">strrep(str1, str2, str3)</h2>
+      &nbsp;&nbsp; Recherche str2 dans str1 et la remplace par str3<br>
+      <br>
+      <span class="matcmd">S = 'j''ai passé une très bonne soirée'<br>
+        X = strrep(S,'bonne','mauvaise')<br>
+      </span>&nbsp;&nbsp;&nbsp; X = j'ai passé une très mauvaise soirée<br>
+      <br>
+      <h2 class="titre">char(n)</h2>
+      &nbsp;&nbsp; Retourne le caractère de code ASCII n<br>
+      <br>
+      <span class="matcmd">char(65)</span><br>
+      &nbsp;&nbsp;&nbsp; ans = A<br>
+      <br>
+      <span class="matcmd"> char(65:75)</span><br>
+      &nbsp;&nbsp;&nbsp; ans = ABCDEFGHIJK<br>
+      <br>
+      <h2 class="titre">num2str()</h2>
+      Convertit un nombre en une chaîne de caractère afin qu'on puisse
+      l'utiliser dans une fonction qui manipule des chaînes.&nbsp; Essayer le
+      petit programme suivant :<br>
+      &nbsp;&nbsp; <br>
+      <span class="code">fp=1000;<br>
+        fm=100;<br>
+        im=0.5;<br>
+        y = am(fp,fm,im);<br>
+        S='signal modulé en amplitude&nbsp; '<br>
+        S = [S 'fp=' num2str(fp) ' fm=' num2str(fm) '&nbsp; im =' num2str(im)];<br>
+        plot(y);<br>
+        title(S);<br>
+        &nbsp;</span>&nbsp; <br>
+      <br>
+      &nbsp;&nbsp; <br>
+      <h1 class="titre"> <a id="conversion" name="conversion"></a>CONVERSION
+        ENTRE BASE DE NUMÉRATION </h1>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre">dec2bin()</h2>
+      &nbsp;&nbsp; Décimal vers binaire<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> b = dec2bin(13)</span><br>
+      &nbsp;&nbsp; b = 1101<br>
+      &nbsp;&nbsp; <br>
+      dec2bin retourne une chaîne de caractère. Si on désire que le résultat
+      soit un tableau de nombres, on peut utiliser la forme suivante :<br>
+      <br>
+      <span class="matcmd">n = dec2bin(13)-48</span><br>
+      <br>
+      n =<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;
+      1&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre">bin2dec</h2>
+      &nbsp;&nbsp; Binaire vers décimal<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> bin2dec('010111')</span><br>
+      &nbsp;&nbsp; ans =&nbsp;&nbsp; 23<br>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre">dec2hex</h2>
+      &nbsp;&nbsp; Décimal vers Hexadécimal<br>
+      <br>
+      <span class="matcmd"> dec2hex(888)</span><br>
+      &nbsp;&nbsp; ans = 378<br>
+      &nbsp;&nbsp; <br>
+      <h2 class="titre">hex2dec</h2>
+      &nbsp;&nbsp; Hexadécimal vers décimal<br>
+      &nbsp;&nbsp; <br>
+      <span class="matcmd"> hex2dec('12B')</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans =&nbsp;&nbsp;&nbsp; 299<br>
+      &nbsp;&nbsp; <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

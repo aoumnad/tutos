@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Didacticiel Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab - Espace de travail" name="description">
+    <meta content="Matlab, matlab GUI, who, whos, disp, clear, delete, cd, dir, what, path, which, save , load"
+
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style=" background-color: silver; width: 99%; height: 100%;">
+    <div id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <object id="counter" data="compteur.php?name=workspace_count.txt"></object>
+    <div id="sctn_ttl">
+      <h1>L'espace de travail Matlab</h1>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html"></object>
+    <div id="contenu">
+      <h1 class="titre"><a id="whowhos" name="whowhos"></a>Les commandes who,
+        whos, disp et clear</h1>
+      <span class="matcmd P_Sttl"><br>
+        who</span><br>
+      La commande <em><strong>who </strong></em>permet d'afficher toute les
+      variables définies dans l'espace de travail.<br>
+      <br>
+      <span class="matcmd P_Sttl">whos</span><br>
+      La commande <em><strong>whos </strong></em>permet d'afficher toute les
+      variables définies dans l'espace de travail en précisant leurs dimensions
+      et leur classe de stockage<br>
+      <br>
+      <span class="matcmd P_Sttl">disp</span><br>
+      La commande <em><strong>disp </strong></em>permet d'afficher un texte ou
+      la valeur d'une variable sans afficher le nom de la variable suivi du
+      signe égal<br>
+      <span class="matcmd">disp('Voici la matrice magic(4)');disp(magic(4));</span><br>
+      <br>
+      <span class="matcmd P_Sttl">clear</span><br>
+      Efface toutes les variables de l'espace de travail. Les variables globales
+      sont effacées de l'espace de travail mais restent disponibles pour toute
+      fonction les ayant déclarées comme globales<br>
+      <br>
+      <span class="matcmd P_Sttl">clear all</span><br>
+      Efface toutes les variables (locales ou globales) ainsi que toutes les
+      fonctions précompilées de l'espace de travail.<br>
+      <br>
+      <span class="matcmd P_Sttl">clear var1 var2 fonc1</span><br>
+      Efface les variables var1 et var2 ainsi que la fonction précompilée fonc1
+      de l'espace de travail.<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="cddir" name="cddir"></a>Les commandes cd, dir,
+        what, path, which</h1>
+      <span class="matcmd P_Sttl"><br>
+        cd</span><br>
+      La commande cd sans paramètre affiche la directory courante = répertoire
+      (dossier) de travail<br>
+      <br>
+      <span class="matcmd P_Sttl">cd dossier </span><br>
+      La commande cd dossier change le répertoire de travail. ex :<br>
+      <span class="matcmd">cd c:\mondossier_matlab</span><br>
+      <br>
+      <span class="matcmd P_Sttl">dir </span><br>
+      La commande dir retourne la liste des fichiers contenu dans le répertoire
+      courant<br>
+      &nbsp;<br>
+      <span class="matcmd P_Sttl">dir dossier </span><br>
+      La commande dir dossier retourne la liste des fichiers contenu dans le
+      répertoire dossier. Exemples<br>
+      <span class="matcmd">dir c:\<br>
+        dir c:\windows\command</span><br>
+      <br>
+      <span class="matcmd P_Sttl">what </span><br>
+      Le commande what retourne la liste des m-files et mat-files contenus dans
+      le répertoire de travail.<br>
+      <br>
+      <span class="matcmd P_Sttl">path</span><br>
+      <span class="matcmd"></span>Affiche la liste des dossiers contenus dans le
+      chemin de recherche.<br>
+      <br>
+      <span class="matcmd P_Sttl">path(path, 'newpath')</span><br>
+      Ajoute le dossier newpath à la fin de la liste de recherche<br>
+      <br>
+      <span class="matcmd P_Sttl">path('newpath',path)</span><br>
+      Ajoute le dossier newpath au début de la liste de recherche<br>
+      <br>
+      Quand on tape une commande, par exemple : » xyz , MATLAB&nbsp; essaye
+      d'interpréter la commande en essayant successivement les étapes suivantes
+      :<br>
+      <ul>
+        <li>Cherche à afficher la valeur de xyz comme si c'était une variable</li>
+        <li>Cherche à interpréter&nbsp; xyz comme si c'était une implantée dans
+          le noyau MATLAB&nbsp; (built-in function).</li>
+        <li>Cherche la fonction xyz.m&nbsp; dans le répertoire de travail</li>
+        <li>Cherche la fonction xyz.m dans la path MATLAB&nbsp; ou chemin de
+          recherche MATLAB&nbsp; qui contient le nom d'un ensemble de dossier
+          qu'on peut consulter ou modifier soit à l'aide de la commande path,
+          soit à l'aide du path bowser de MATLAB&nbsp;&nbsp; </li>
+      </ul>
+      <span class="matcmd"></span><br>
+      <span class="matcmd P_Sttl">which fonctionX</span><br>
+      Retourne le chemin complet de la fonction fonctionX. La recherche se fait
+      seulement dans les dossier inclus dans le path de MATLAB . pour voir cette
+      liste tapez la commande path.<br>
+      <br>
+      <span class="matcmd P_Sttl">which camlight</span><br>
+      C:\MATLABR11\toolbox\matlab\graph3d\camlight.m<br>
+      <br>
+      <span class="matcmd P_Sttl">which fichierX</span><br>
+      la commande which fichierX retourne le chemin complet du fichier fichierX<br>
+      <span class="matcmd">which remezf.dll</span><br>
+      C:\MATLABR11\toolbox\signal\signal\remezf.dll<br>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="sauvegarde" name="sauvegarde"></a>Sauvegarder
+        les données dans un fichier</h1>
+      <br>
+      <h2 class="titre"> les instructions save et load:</h2>
+      La commande <em><strong>save </strong></em>permet de sauvegarder tout ou
+      partie de l'espace de travail dans un fichier .mat. La commande load
+      permet de retrouver les variables sauvegardées dans un fichier .mat<br>
+      <br>
+      <span class="matcmd">x = 1:10;<br>
+        y = 21:30;<br>
+        save bidon x y<br>
+        <br>
+        what<br>
+      </span><em>M-files in the current directory C:\A_MES_DOCS\Acours\MATLAB<br>
+        <br>
+        am&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        tst2plot3&nbsp;&nbsp;&nbsp; tstfor3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        tstplot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        tstview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        figured&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tstbreak&nbsp;&nbsp;&nbsp;&nbsp;
+        tstif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tstsubplot&nbsp;&nbsp;
+        tstwhile&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        <br>
+        MAT-files in the current directory C:\A_MES_DOCS\Acours\MATLAB<br>
+        <br>
+        bidon<br>
+      </em><br>
+      <span class="matcmd">clear<br>
+        x<br>
+      </span><em>??? Undefined function or variable 'x'.</em><br>
+      <span class="matcmd">y</span><br>
+      <em>??? Undefined function or variable 'y'.</em><br>
+      <br>
+      &nbsp;<br>
+      <span class="matcmd">load bidon<br>
+        x<br>
+      </span><em>x =&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;
+        2&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;
+        4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp;
+        6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;
+        8&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp; 10</em><br>
+      <span class="matcmd">y</span><br>
+      <em>y =&nbsp;&nbsp;&nbsp;&nbsp; 21&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;&nbsp;
+        23&nbsp;&nbsp;&nbsp; 24&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp;
+        26&nbsp;&nbsp;&nbsp; 27&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp;&nbsp;
+        29&nbsp;&nbsp;&nbsp; 30</em><br>
+      <br>
+      Pour sauvegarder dans un fichier texte afin que les données puissent être
+      consultées par un éditeur de texte quelconque, il faut utiliser
+      l'option&nbsp; -ascii<br>
+      <br>
+      <span class="matcmd">save bidon.txt x y -ascii</span><br>
+      <br>
+      On peut aussi préparer un fichier de donnée à l'aide d'un éditeur de texte
+      et le lire avec la commande load.<br>
+      <br>
+      <br>
+      <h2 class="titre"> Sauvegarde dans un fichier formaté</h2>
+      Tapez le programme ci-dessous, exécutez le, ouvrez le fichier magic.txt à
+      l'aide d'un éditeur de texte et faites les constatation qui s'imposent.<br>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">% programme tstfichier.m<br>
+              <br>
+              a=magic(4);<br>
+              fid = fopen('magic.txt','w');<br>
+              for i=1:4<br>
+              &nbsp;&nbsp; fprintf(fid,'%2d&nbsp; %2d&nbsp; %2d&nbsp;
+              %2d\r\n',a(i,:));<br>
+              end;<br>
+              fprintf(fid,'\r\n');<br>
+              fprintf(fid,'%2d&nbsp; %2d&nbsp; %2d&nbsp; %2d\r\n',a);<br>
+              fprintf(fid,'\r\n');<br>
+              fprintf(fid,'%2d&nbsp; %2d&nbsp; %2d&nbsp; %2d\r\n',a');<br>
+              fprintf(fid,'\r\n');<br>
+              fprintf(fid,'%2d&nbsp; %2d\r\n',a');<br>
+              fclose(fid);</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      &nbsp;<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

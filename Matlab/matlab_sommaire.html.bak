@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Introduction au logiciel Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab" name="description">
+    <meta content="Matlab, matlab GUI" name="keywords">
+    <style type="text/css">
+#sousttl {  
+  margin-left: 20px;
+}
+
+.T1 {  
+  font-weight: bold;
+}
+
+.T2 {  
+  margin-left: 15px;
+}
+
+.T3 {  
+  margin-left: 30px;
+}
+
+.T4 {  
+  margin-left: 15px;
+}
+
+.slide_top {  
+  line-height: 20pt;
+        font-weight: bold;
+}
+
+.slide_bdy {  
+  overflow: auto;  
+  background-color: #cccccc;  
+  max-height: 350px;
+}
+
+</style></head>
+  <body> <a target="_top" href="../index.html"><strong><img style="width: 17px; height: 17px;" alt="" src="images/home.png"></strong></a><br>
+    <strong><a class="slide_top" target="_top" href="Matlab_Intro.html">INTRODUCTION</a></strong><br>
+    <a href="#" class="matrices_top slide_top"><strong>MANIPULATION DE MATRICES</strong></a><br>
+    <div class="matrices_bdy slide_bdy"><strong><a target="_top" href="Matlab_matrice.html"> </a></strong>
+      <div class="T2"> <a target="_top" href="Matlab_matrice.html"> Introduction</a><br>
+        <a target="_top" href="Matlab_matrice.html#defmat">Définir une matrice</a><br>
+        <a target="_top" href="Matlab_matrice.html#operations"><strong>Opérations sur les matrices</strong></a></div>
+      <div class="T2"><a target="_top" href="Matlab_matrice.html#oparith">Opérateurs arithmétiques </a><br>
+        <a target="_top" href="Matlab_matrice.html#opcomp">Opérateurs de comparaison </a><br>
+        <a target="_top" href="Matlab_matrice.html#oplogic">Opérateurs logiques</a><br>
+        <a target="_top" href="Matlab_matrice.html#oplogicc">Opérateurs logiques de court-circuit</a><br>
+        <a target="_top" href="Matlab_matrice.html#oplogicbb">Opérateurs logiques bit par bit</a><br>
+        <a target="_top" href="Matlab_matrice.html#fonclogic">Fonctions logiques prédéfinies</a><br>
+        <a target="_top" href="Matlab_matrice.html#indices">Les indices et l'opérateur : (deux points)</a><br>
+        <a target="_top" href="Matlab_matrice.html#concat">Concaténation de matrices</a><br>
+        <a target="_top" href="Matlab_matrice.html#transpo">Transposition d'une matrice</a><br>
+        <a target="_top" href="Matlab_matrice.html#sum">La fonction de sommation sum&nbsp;</a>&nbsp;&nbsp; <br>
+        <a target="_top" href="Matlab_matrice.html#diag">La fonction Diag</a><br>
+        <a target="_top" href="Matlab_matrice.html#flip">Les fonctions fliplr et flipud</a><br>
+        <a target="_top" href="Matlab_matrice.html#ones">Les fonctions ones et zeros</a><br>
+        <a target="_top" href="Matlab_matrice.html#length">Les fonctions length et size</a><br>
+        <a target="_top" href="Matlab_matrice.html#minmax">Les fonctions min et max</a><br>
+        <a target="_top" href="Matlab_matrice.html#fix">la fonction fix</a><span style="color: #0000ee;"><span style="text-decoration: underline;"></span></span><br>
+        <a target="_top" href="Matlab_matrice.html#reshape">La fonction reshape</a></div>
+    </div>
+    <a style="font-weight: bold;" href="#" class="types_top slide_top"> LES TYPES DE DONNÉES</a><br>
+    <div class="T2 types_bdy slide_bdy"><a target="_top" href="Matlab_types.html">Introduction</a><br>
+      <a target="_top" href="Matlab_types.html#logicalx">Le type logical</a><br>
+      <a target="_top" href="Matlab_types.html#typecharxx"> Le type char </a><br>
+      <a target="_top" href="Matlab_types.html#typenum"> Les types Numériques</a><br>
+      <a target="_top" href="Matlab_types.html#typecell"> le type cellule</a><br>
+      <a target="_top" href="Matlab_types.html#convnum"> Conversion entre types numériques</a><br>
+      <a target="_top" href="Matlab_types.html#convstr"> Conversion entre nombres et string</a><span style="color: #0000ee;"><span
+          style="text-decoration: underline;"></span></span><br>
+      <a target="_top" href="Matlab_types.html#convcell">Conversion de matrices de cellules</a><br>
+      <a target="_top" href="Matlab_types.html#identiftype">Identifier le type d'une donnée</a><br>
+      <a target="_top" href="Matlab_types.html#constantes">Quelques constantes et fonctions utiles</a></div>
+    <a href="#"><strong class="workspace_top slide_top">L'ESPACE DE TRAVAIL MATLAB</strong></a><br>
+    <div class="T2 workspace_bdy slide_bdy"><a target="_top" href="Matlab_Espacedetravail.html#whowhos">Les commandes
+        who, whos, disp et Clear</a><br>
+      <a target="_top" href="Matlab_Espacedetravail.html#cddir"> Les commandes cd, dir, what, path, which</a><br>
+      <a target="_top" href="Matlab_Espacedetravail.html#sauvegarde"> Sauvegarder des données dans un fichier</a> <br>
+    </div>
+    <a class="prog_top slide_top" href="#"> <strong>PROGRAMMATION SOUS MATLAB</strong></a><br>
+    <div class="T2 prog_bdy slide_bdy"><a target="_top" href="Matlab_programmation.html#ifelse">if, else, elseif </a><br>
+      <a target="_top" href="Matlab_programmation.html#switchcase">switch – case – otherwise</a><br>
+      <a target="_top" href="Matlab_programmation.html#for"> La boucle for</a><br>
+      <a target="_top" href="Matlab_programmation.html#bouclewhile"> La boucle while</a><br>
+      <a target="_top" href="Matlab_programmation.html#break"> L'instruction break</a><br>
+      <a target="_top" href="Matlab_programmation.html#return"> L'instruction return</a><br>
+      <a target="_top" href="Matlab_programmation.html#fonctions"> Les fonctions</a><br>
+      <a target="_top" href="Matlab_programmation.html#fonctionslogiques"> Les fonctions logiques</a><br>
+      <a target="_top" href="Matlab_programmation.html#fprintf"> la fonction fprintf</a><br>
+      <a target="_top" href="Matlab_programmation.html#input"> Saisie d'une donnée au clavier</a><br>
+      <a target="_top" href="Matlab_programmation.html#string"> Manipulation de chaînes de caractères</a><br>
+      <a target="_top" href="Matlab_programmation.html#conversion"> Fonctions de conversion</a><br>
+    </div>
+    <a class="graphics_top slide_top" href="#"> <strong>LES GRAPHIQUES - Notions de base</strong> </a><br>
+    <div class="T2 graphics_bdy slide_bdy"><a target="_top" href="Matlab_Graphiques.html">Tracer une courbe</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#grid"> La commande grid</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#couleur"> Couleur du trait </a><br>
+      <a target="_top" href="Matlab_Graphiques.html#types_trait">Types de trait</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#linewidth">Épaisseurde trait</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#axe_x"> L'axe des x</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#axis"> Modification des limites des axes</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#graduation"> Contrôle de la graduation des axes</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#close"> La commande close</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#figure"> La commande figure</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#holdon"> La commande hold on</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#Anotation"> Annotation d'un graphique</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#ginput"> Lire la position de la souris: ginput</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#hierarchy"> La hiérarchie des objets graphiques</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#root"> L'objet root</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#objetfigure"> L'objet figure</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#axe"> L'objet axe</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#subplot"> La fonction subplot()</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#ligne">L'objet Ligne</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#objettext"> L'objet texte</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#exemples">Exemples</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#valdefaut">Les valeurs par défaut des propriétés</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#changeparent"> Recopier un objet d'un parent à l'autre</a><br>
+      <a target="_top" href="Matlab_Graphiques.html#delete"> Comment détruire un objet</a><br>
+    </div>
+    <a style="font-weight: bold;" class="graphics3d_top slide_top" href="#"> LES GRAPHIQUES 3D</a><br>
+    <div class="graphics3d_bdy slide_bdy T2"><a target="_top" href="Matlab_graphiques3D.html#ligne3d"> Lignes 3D</a><br>
+      <a target="_top" href="Matlab_graphiques3D.html#groupligne3d"> Groupe de lignes 3D</a><br>
+      <a target="_top" href="Matlab_graphiques3D.html#surf3d"> Surfaces 3D</a><br>
+      <a target="_top" href="Matlab_graphiques3D.html#mesh"> La fonction mesh()</a><br>
+      <a target="_top" href="Matlab_graphiques3D.html#surf">La fonction surf()</a></div>
+    <a class="gui_top slide_top" href="#"><strong> </strong></a><strong><a class="slide_top images_top" href="matlab_sommaire.html#">LES
+        IMAGES sous MATLAB</a><br>
+    </strong>
+    <div class="T2 slide_bdy images_bdy"><a target="_top" href="Matlab_images.html#intro">Introduction</a><br>
+      <a target="_top" href="Matlab_images.html#imindex">Les images indexées</a><br>
+      <a target="_top" href="Matlab_images.html#imRGB">Les images RGB (TrueColor)</a><br>
+      <a target="_top" href="Matlab_images.html#immono">Les images monochromes</a></div>
+    <a class="gui_top slide_top" href="#"><strong>L'INTERFACE GRAPHIQUE GUI</strong></a><br>
+    <div class="gui_bdy slide_bdy">
+      <div class="T2"><a target="_top" href="matlab_GUI.html">Introduction</a></div>
+      <div class="T2"><a target="_top" href="matlab_GUI.html#objgraph">Objets graphiques</a></div>
+      <div class="T2"><a target="_top" href="matlab_GUI.html#objfenetre">Objet fenêtre</a></div>
+      <div class="T2"><a target="_top" href="matlab_GUI.html#abreveations">Abréviations</a><br>
+      </div>
+      <div class="T2"> <a target="_top" href="Matlab_Graphiques.html#valdefaut">Valeurs par défaut des propriétés</a></div>
+      <div class="T2"> <a target="_top" href="matlab_controles.html">Les Contrôles Uicontrol</a></div>
+      <div> </div>
+      <div class="T3"><a target="_top" href="matlab_controles.html#checkbox">Le contrôle Checkbox</a><br>
+        <a target="_top" href="matlab_controles.html#pushbutton">Le contrôle Pushbutton</a><br>
+        <a target="_top" href="matlab_controles.html#edit">Le contrôle Edit</a><br>
+        <a target="_top" href="matlab_controles.html#text">Le contrôle Text</a><br>
+        <a target="_top" href="matlab_controles.html#Togglebutton">Le controle Togglebutton</a><br>
+        <a target="_top" href="matlab_controles.html#radiobutton">Le contrôle Radiobutton</a><br>
+        <a target="_top" href="matlab_controles.html#listbox">Le contrôle ListBox</a><br>
+        <a target="_top" href="matlab_controles.html#popupmenu">Le contrôle PopupMenu</a><br>
+        <a target="_top" href="matlab_controles.html#slider"> <span style="color: #0000ee;"><span style="text-decoration: underline;"></span></span>Le
+          contrôle Slider</a></div>
+      <a class="T2" target="_top" href="matlab_controles.html#autrgui"> Les autres contrôles</a><br>
+      <div class="T3"><a target="_top" href="matlab_controles.html#uimenu"> Le Contrôle Uimenu </a><br>
+        <a target="_top" href="matlab_controles.html#uitoolbar">Le contrôle Uitoolbar </a><br>
+        <a target="_top" href="matlab_controles.html#uitoolbar">Le contrôle Uipushtool </a><br>
+        <a target="_top" href="matlab_controles.html#uitoolbar">Le contrôle Uitoggletool</a><br>
+        <a target="_top" href="matlab_controles.html#uibuttongroup"><span style="color: #0000ee;"><span style="text-decoration: underline;"></span></span>Le
+          contrôle UibuttonGroup&nbsp;<span style="color: #0000ee;"><span style="text-decoration: underline;"> </span></span></a><br>
+        <a target="_top" href="matlab_controles_2.html#uitoolbar"> </a></div>
+      <div class="T2"><a target="_top" href="Matlab_partage_donnees.html"> Passage de données aux fonctions callback</a></div>
+      <div class="T3"><a target="_top" href="Matlab_partage_donnees.html#nested">Fonctions imbriqués</a><br>
+        <a target="_top" href="Matlab_partage_donnees.html#varglob">Variables globales</a><br>
+        <a target="_top" href="Matlab_partage_donnees.html#param">Passage de paramètres</a><br>
+        <a target="_top" href="Matlab_partage_donnees.html#guidata">La fonction guidata()</a></div>
+    </div>
+    <a style="font-weight: bold;" class="datashare_top" href="matlab_sommaire.html#"> </a><a style="font-weight: bold;"
+      class="serial_top slide_top" href="#">LE PORT SÉRIE</a><br>
+    <div class="T2 slide_bdy serial_bdy"><a target="_top" href="Matlab_Serial.html#serial">Créer un objet serial</a><br>
+      <a target="_top" href="Matlab_Serial.html#openport">Ouvrir un port</a><br>
+      <a target="_top" href="Matlab_Serial.html#closeport">Fermer un port</a><br>
+      <a target="_top" href="Matlab_Serial.html#deleteport">Supprimer l'objet serial</a><br>
+      <a target="_top" href="Matlab_Serial.html#goodpractice">Pour éviter les problèmes</a><br>
+      <a target="_top" href="Matlab_Serial.html#txstr">Transmettre une Chaîne</a><br>
+      <a target="_top" href="Matlab_Serial.html#rxstr">Recevoir une Chaîne</a><br>
+      <a target="_top" href="Matlab_Serial.html#txint">Transmettre un Entier</a><br>
+      <a target="_top" href="Matlab_Serial.html#rxint">Recevoir un Entier</a><br>
+      <a target="_top" href="Matlab_Serial.html#txrxfloat">Transmettre et Recevoir un Réel</a><br>
+      <a target="_top" href="Matlab_Serial.html#serialtimer">Lecture Écriture Périodique</a><br>
+      <a target="_top" href="Matlab_Serial.html#serialevent"> Lecture sur événement</a><br>
+      <a target="_top" href="Matlab_Serial.html#serialdebug"> Un petit programme très utile</a><br>
+    </div>
+    <a style="font-weight: bold;" class="time_top slide_top" href="#"> GESTION DU TEMPS</a><br>
+    <div class="T2 slide_bdy time_bdy"><a target="_top" href="Matlab_temps.html#timer"> Le Timer</a><br>
+      <a target="_top" href="Matlab_temps.html#tictoc">Tic, Toc</a><br>
+      <a target="_top" href="Matlab_temps.html#clock">Clock</a><br>
+      <a target="_top" href="Matlab_temps.html#pause">Pause</a></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+ 
+    $(document).ready(function(){
+ 
+        $(".matrices_bdy").hide();
+        $(".types_bdy").hide();
+        $(".workspace_bdy").hide();
+        $(".prog_bdy").hide();
+        $(".graphics_bdy").hide();
+        $(".graphics3d_bdy").hide();
+        $(".gui_bdy").hide();
+        $(".serial_bdy").hide();
+        $(".time_bdy").hide();
+        $(".datashare_bdy").hide();
+        $(".images_bdy").hide();
+      
+        $('.matrices_top').click(function(){
+            $(".matrices_bdy").slideToggle();
+        });
+        $('.types_top').click(function(){
+            $(".types_bdy").slideToggle();
+        });
+        $('.workspace_top').click(function(){
+            $(".workspace_bdy").slideToggle();
+        });
+        $('.prog_top').click(function(){
+            $(".prog_bdy").slideToggle();
+        });
+        $('.graphics_top').click(function(){
+            $(".graphics_bdy").slideToggle();
+        });
+        $('.graphics3d_top').click(function(){
+            $(".graphics3d_bdy").slideToggle();
+        });
+        $('.gui_top').click(function(){
+            $(".gui_bdy").slideToggle();
+        });
+        $('.serial_top').click(function(){
+            $(".serial_bdy").slideToggle();
+        });
+        $('.time_top').click(function(){
+            $(".time_bdy").slideToggle();
+        });
+        $('.datashare_top').click(function(){
+            $(".datashare_bdy").slideToggle();
+        });
+        $('.images_top').click(function(){
+            $(".images_bdy").slideToggle();
+        });
+     });
+ 
+     </script>
+  </body>
+</html>

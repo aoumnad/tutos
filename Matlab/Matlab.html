@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>Matlab</title>
+  <style type="text/css">
+    #headerdiv {
+      background-color: #336666;
+      font-family: Calibri;
+      color: yellow;
+      text-align: center;
+      height: auto;
+      width: 30%;
+      position: fixed;
+      font-style: italic;
+    }
+
+    #logo {
+      float: left;
+      width: 23%;
+    }
+
+    #navigdiv {
+      background-color: #99ffff;
+      width: 30%;
+      overflow: auto;
+      position: fixed;
+      top: 12ch;
+      height: 86%;
+    }
+
+    #Contenudiv {
+      background-color: #ccccff;
+      width: 68.5%;
+      position: fixed;
+      left: 31%;
+      font-family: Calibri;
+      overflow: auto;
+      height: 99%;
+      top: 1ch;
+    }
+
+    .rubrique {
+      font-family: Calibri;
+      background-color: #ccccff;
+      width: auto;
+      height: auto;
+      margin-top: 1px;
+      margin-right: 5px;
+      margin-bottom: 0px;
+      margin-left: 2px;
+      padding-left: 4px;
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #000099;
+      border-right-color: #000099;
+      border-bottom-color: #000099;
+      border-left-color: #000099;
+      -webkit-border-radius: 2px 2px 2px 2px;
+      border-radius: 2px 2px 2px 2px;
+      font-weight: bold;
+      font-style: italic;
+      font-size: medium;
+      padding-top: 0px;
+      color: #cc0000;
+      -epub-text-transform: uppercase;
+      text-transform: uppercase;
+    }
+
+    .Srubrique {
+      font-family: Calibri;
+      background-color: #e0e0b3;
+      width: auto;
+      height: auto;
+      margin-top: 1px;
+      margin-right: 5px;
+      margin-bottom: 0px;
+      margin-left: 4ch;
+      padding-left: 4px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      border-bottom-width: 0px;
+      border-left-width: 0px;
+      border-top-style: none;
+      border-right-style: none;
+      border-bottom-style: none;
+      border-left-style: none;
+      border-top-color: #000099;
+      border-right-color: #000099;
+      border-bottom-color: #000099;
+      border-left-color: #000099;
+      -webkit-border-radius: 2px 2px 2px 2px;
+      border-radius: 2px 2px 2px 2px;
+      font-style: italic;
+      font-size: small;
+      padding-top: 0px;
+      color: black;
+    }
+
+    .SR {
+      margin-left: 6.5ch;
+    }
+
+    .FR {
+      float: right;
+    }
+  </style>
+  <meta content="Abdelmajid OUMNAD" name="author">
+  <meta content="Didacticiel Matlab" name="description">
+  <meta content="Matlab" name="keywords">
+</head>
+
+<body style="background-color: silver;">
+  <div id="headerdiv"> <img id="logo" alt="" src="images/matlab.jpg"><a href="../index.html"><img
+        style="background-color: #2bdfff; " class="FR" src="../IMAGES/home48.png"></a>
+    <h1>MATLAB </h1>
+  </div>
+  <div id="navigdiv"><a target="CONTENU" href="Matlab_Intro.html"> </a> <a target="CONTENU" href="Matlab_Intro.html">
+      <p class="rubrique">Introduction</p>
+    </a> <a target="CONTENU" href="Matlab_matrice.html">
+      <p class="rubrique">Manipulation de matrices</p>
+    </a> <a target="CONTENU" href="Matlab_matrice.html#defmat">
+      <p class="Srubrique">Définir une matrice</p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#oparith">
+      <p class="Srubrique">Opérateurs arithmétiques<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#opcomp">
+      <p class="Srubrique">Opérateurs de comparaison<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#oplogic">
+      <p id="oplogic" class="Srubrique">Opérateurs Logiques<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#oplogicc">
+      <p class="Srubrique">Opérateurs logiques de court-circuit<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#oplogicbb">
+      <p class="Srubrique">Opérateurs logiques bit par bit<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#fonclogic">
+      <p class="Srubrique">Fonctions Logiques Prédéfinies<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#indices">
+      <p class="Srubrique">Les indices et l'opérateur <strong>:</strong> (deux points)<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#concat">
+      <p class="Srubrique">Concaténation de matrices<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#transpo">
+      <p class="Srubrique">Transposition d'une matrice<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#sum">
+      <p class="Srubrique">La fonction de sommation sum<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#diag">
+      <p class="Srubrique">La fonction Diag<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#flip">
+      <p class="Srubrique">Les fonctions fliplr et flipud<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#ones">
+      <p class="Srubrique">Les fonctions ones et zeros<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#length">
+      <p class="Srubrique">Les fonctions length et size<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#minmax">
+      <p class="Srubrique">Les fonctions min et max<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#fix">
+      <p class="Srubrique">la fonction fix<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_matrice.html#reshape">
+      <p class="Srubrique">La fonction reshape<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_Types.html">
+      <p class="rubrique">Les types de DonnÉEs<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#logicalx">
+      <p class="Srubrique">Le type logical<br>
+      </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#typecharxx">
+      <p class="Srubrique">Le type char </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#typenum">
+      <p class="Srubrique">Les types Numériques </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#typecell">
+      <p class="Srubrique">Le type cellule </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#convnum">
+      <p class="Srubrique">Conversion entre types numériques </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#convstr">
+      <p class="Srubrique">Conversion entre nombres et string </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#convcell">
+      <p class="Srubrique">Conversion de matrices de cellules </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#identiftype">
+      <p class="Srubrique">Identifier le type d'une donnée </p>
+    </a><a target="CONTENU" href="Matlab_Types.html#constantes">
+      <p class="Srubrique">Quelques constantes et fonctions utiles </p>
+    </a><a target="CONTENU" href="Matlab_Espacedetravail.html#">
+      <p class="Srubrique"> </p>
+    </a><a target="CONTENU" href="Matlab_Espacedetravail.html">
+      <p class="rubrique">Espace de travail Matlab </p>
+    </a><a target="CONTENU" href="Matlab_Espacedetravail.html#whowhos">
+      <p class="Srubrique">Les commandes who, whos, disp et Clear </p>
+    </a><a target="CONTENU" href="Matlab_Espacedetravail.html#cddir">
+      <p class="Srubrique">Les commandes cd, dir, what, path, which </p>
+    </a><a target="CONTENU" href="Matlab_Espacedetravail.html#sauvegarde">
+      <p class="Srubrique">Sauvegarder des données dans un fichier </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html">
+      <p class="rubrique">Programmation sous Matlab </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#ifelse">
+      <p class="Srubrique">if, else, elseif </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#switchcase">
+      <p class="Srubrique">switch – case – otherwise </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#for">
+      <p class="Srubrique">La boucle for </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#bouclewhile">
+      <p class="Srubrique">La boucle while </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#break">
+      <p class="Srubrique">L'instruction break </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#return">
+      <p class="Srubrique">L'instruction return </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#fonctions">
+      <p class="Srubrique">Les fonctions </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#fonctionslogiques">
+      <p class="Srubrique"> Les fonctions logiques </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#fprintf">
+      <p class="Srubrique"> La fonction fprintf </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#input">
+      <p class="Srubrique"> Saisie d'une donnée au clavier </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#string">
+      <p class="Srubrique"> Manipulation de chaînes de caractères </p>
+    </a><a target="CONTENU" href="Matlab_Programmation.html#conversion">
+      <p class="Srubrique"> Conversion entre bases de Numération </p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html">
+      <p class="rubrique">Les Graphiques</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html">
+      <p class="Srubrique"> Tracer une courbe</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#grid">
+      <p class="Srubrique"> La commande grid</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#couleur">
+      <p class="Srubrique"> Couleur du trait</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#types_trait">
+      <p class="Srubrique"> Types de trait</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#linewidth">
+      <p class="Srubrique"> Épaisseur de trait</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#axe_x">
+      <p class="Srubrique"> L'axe des x</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#axis">
+      <p class="Srubrique">Modification des limites des axes</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#graduation">
+      <p class="Srubrique"> Contrôle de la graduation des axes</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#close">
+      <p class="Srubrique"> La commande close</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#figure">
+      <p class="Srubrique"> La commande figure</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#holdon">
+      <p class="Srubrique"> La commande hold on</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#Anotation">
+      <p class="Srubrique"> Annotation d'un graphique</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#ginput">
+      <p class="Srubrique"> Lire la position de la souris: ginput</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#hierarchy">
+      <p class="Srubrique"> La hiérarchie des objets graphiques</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#root">
+      <p class="Srubrique"> L'objet root</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#objetfigure">
+      <p class="Srubrique"> L'objet figure</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#axe">
+      <p class="Srubrique"> L'objet axe</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#subplot">
+      <p class="Srubrique">La fonction subplot()</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#ligne">
+      <p class="Srubrique"> L'objet Ligne</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#objettext">
+      <p class="Srubrique"> L'objet texte</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#exemples">
+      <p class="Srubrique">Quelques Exemples</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#valdefaut">
+      <p class="Srubrique"> Les valeurs par défaut des propriétés</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#changeparent">
+      <p class="Srubrique"> Recopier un objet d'un parent à l'autre</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques.html#delete">
+      <p class="Srubrique"> Détruire un objet</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html">
+      <p class="rubrique">Les Graphiques 3D</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html#ligne3d">
+      <p class="Srubrique"> Lignes 3D</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html#groupligne3d">
+      <p class="Srubrique"> Groupe de lignes 3D</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html#surf3d">
+      <p class="Srubrique"> Surfaces 3D</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html#mesh">
+      <p class="Srubrique"> La fonction mesh()</p>
+    </a><a target="CONTENU" href="Matlab_Graphiques3D.html#surf">
+      <p class="Srubrique"> La fonction surf()</p>
+    </a><a target="CONTENU" href="Matlab_Images.html">
+      <p class="rubrique">Les Images sous Matlab</p>
+    </a><a target="CONTENU" href="Matlab_Images.html">
+      <p class="Srubrique">Introduction</p>
+    </a><a target="CONTENU" href="Matlab_Images.html#imindex">
+      <p class="Srubrique"> Les images indexées</p>
+    </a><a target="CONTENU" href="Matlab_Images.html#imRGB">
+      <p class="Srubrique"> Les images RGB (TrueColor)</p>
+    </a><a target="CONTENU" href="Matlab_Images.html#immono">
+      <p class="Srubrique"> Les images monochromes</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html">
+      <p class="rubrique">Matlab GUI</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html">
+      <p class="Srubrique">Introduction</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html#objgraph">
+      <p class="Srubrique"> Objets graphiques</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html#objfenetre">
+      <p class="Srubrique"> Objet fenêtre</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html#abreveations">
+      <p class="Srubrique"> Abréviations</p>
+    </a><a target="CONTENU" href="Matlab_GUI.html#defauprop">
+      <p class="Srubrique"> Valeurs par défaut des propriétés</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html">
+      <p class="Srubrique"> Les Contrôles Uicontrol</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#checkbox">
+      <p class="Srubrique SR"> Le contrôle Checkbox</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#pushbutton">
+      <p class="Srubrique SR"> Le contrôle Pushbutton</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#edit">
+      <p class="Srubrique SR"> Le contrôle Edit</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#text">
+      <p class="Srubrique SR">Le contrôle Text</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#Togglebutton">
+      <p class="Srubrique SR"> Le controle Togglebutton</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#radiobutton">
+      <p class="Srubrique SR"> Le contrôle Radiobutton</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#listbox">
+      <p class="Srubrique SR"> Le contrôle ListBox</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#popupmenu">
+      <p class="Srubrique SR"> Le contrôle PopupMenu</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#slider">
+      <p class="Srubrique SR">Le contrôle Slider</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#autrgui">
+      <p class="Srubrique Srubrique0"> Les autres contrôles</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#uibuttongroup">
+      <p class="Srubrique SR">Le contrôle uibuttongroup</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#uimenu">
+      <p class="Srubrique SR"> Le Contrôle Uimenu</p>
+    </a><a target="CONTENU" href="Matlab_Controles.html#uitoolbar">
+      <p class="Srubrique SR">Les contrôles Uitoolbar, Uipushtool et Uitoggletool</p>
+    </a><a target="CONTENU" href="Matlab_Partage_Donnees.html">
+      <p class="Srubrique"> Passage de données aux fonctions callback</p>
+    </a><a target="CONTENU" href="Matlab_Partage_Donnees.html#nested">
+      <p class="Srubrique SR"><span style="font-weight: bold;"> Fonctions imbriquées</span></p>
+    </a><a target="CONTENU" href="Matlab_Partage_Donnees.html#varglob">
+      <p class="Srubrique SR"> Variables globales</p>
+    </a><a target="CONTENU" href="Matlab_Partage_Donnees.html#param">
+      <p class="Srubrique SR"> Passage de paramètres</p>
+    </a><a target="CONTENU" href="Matlab_Partage_Donnees.html#guidata">
+      <p class="Srubrique SR"> La fonction guidata()</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html">
+      <p class="rubrique"> LE PORT SÉRIE</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#serial">
+      <p class="Srubrique"> Créer un objet serial</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#openport">
+      <p class="Srubrique"> Ouvrir un port</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#closeport">
+      <p class="Srubrique"> Fermer un port</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#deleteport">
+      <p class="Srubrique"> Supprimer l'objet serial</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#goodpractice">
+      <p class="Srubrique"><span style="font-weight: bold;"> Pour éviter les problèmes</span></p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#txstr">
+      <p class="Srubrique"> Transmettre une Chaîne</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#rxstr">
+      <p class="Srubrique">Recevoir une Chaîne</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#txint">
+      <p class="Srubrique"> Transmettre un Entier</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#rxint">
+      <p class="Srubrique"> Recevoir un Entier</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#txrxfloat">
+      <p class="Srubrique"> Transmettre et Recevoir un Réel</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#serialtimer">
+      <p class="Srubrique"> Lecture Écriture Périodique</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#serialevent">
+      <p class="Srubrique"> Lecture sur événement</p>
+    </a><a target="CONTENU" href="Matlab_Serial.html#serialdebug">
+      <p class="Srubrique"> Un petit programme très utile</p>
+    </a><a target="CONTENU" href="Matlab_Temps.html">
+      <p class="rubrique"> GESTION DU TEMPS</p>
+    </a><a target="CONTENU" href="Matlab_Temps.html">
+      <p class="Srubrique"> Le Timer</p>
+    </a><a target="CONTENU" href="Matlab_Temps.html#tictoc">
+      <p class="Srubrique"> Tic, Toc</p>
+    </a><a target="CONTENU" href="Matlab_Temps.html#clock">
+      <p class="Srubrique">Clock</p>
+    </a><a target="CONTENU" href="Matlab_Temps.html#pause">
+      <p class="Srubrique">Pause</p>
+    </a> <br>
+    <a href="../index.html"><img alt="" src="../images/homeClick.gif"></a><br>
+    <br>
+    <br>
+    .
+  </div>
+  <br>
+  <br>
+  <br>
+  <iframe id="Contenudiv" name="CONTENU" src="Matlab_Intro.html"></iframe>&gt;
+</body>
+
+</html>

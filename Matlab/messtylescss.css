@@ -1,0 +1,123 @@
+#entete {  
+  background-color: #336666;  
+  font-family: Calibri;  
+  font-size: 2.5vmax;  
+  font-weight: bold;  
+  font-style: italic;  
+  color: yellow;  
+  text-align: center;
+  text-transform: uppercase;  
+  width: 100%;  
+  position: fixed;  
+  top: 0px;  
+  margin-top: 0px;  
+  height: 5%;  
+  margin-bottom: 0px;  
+  left: 0px;
+}
+
+#contenu {  
+  background-color: #ccccff;  
+  width: 99%;  
+  height: 95%;  
+  overflow: auto;  
+  font-family: Calibri;  
+  font-size: large;  
+  padding-right: 1ch;  
+  text-align: justify;  
+  font-style: italic;  
+  position: fixed;  
+  top: 5%;  
+  left: 0%;  
+  padding-left: 0.5ch;
+}
+
+
+#icone {  
+  width: 20%;  
+  height: 90%;  
+  float: left;  
+  padding-top: 1%;  
+  padding-right: 1%;  
+  padding-bottom: 1%;  
+  padding-left: 1%;
+}
+
+.titre {  
+  font-style: italic;  
+  color: #cc0000;  
+  margin-top: 0px;  
+  margin-right: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;
+}
+
+.prog {  
+  font-family: Consolas;  
+  font-style: italic;
+  font-size: medium;
+  background-color: #99ffff; 
+}
+
+.matcmd {  
+  font-family: Consolas, monaco, monospace;  
+  font-weight: bold;  
+  font-style: italic;  
+  color: #000099;
+}
+
+.figure {  
+  float: right;  
+  width: 35%;  
+  margin-left: 5px;
+}
+
+.float_R {  
+  float: right;  
+  margin-left: 5px;
+}
+
+.visible_maron {  
+  color: #cc0000;  
+  font-weight: bold;
+}
+
+.visible_maron_I {  
+  color: #cc0000;  
+  font-weight: bold;  
+  font-style: italic;
+}
+
+.visible_bleu_I {  
+  color: blue;  
+  font-style: italic;
+}
+
+.visible_bleu_I_G {  
+  color: blue;  
+  font-weight: bold;  
+  font-style: italic;
+}
+
+#fixe_droite {  
+  background-color: #ccffff;  
+  position: fixed;  
+  right: 1em;  
+  bottom: 1em;
+}
+
+.titre1 {  
+  font-size: 30pt;  
+  color: #3366ff;  
+  margin-top: 0px;  
+  margin-right: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;
+}
+
+.code {  
+  font-style: italic;  
+  font-family: Consolas;  
+  color: blue;
+}
+

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Matlab</title>
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Didacticiel Matlab" name="description">
+    <meta content="Matlab" name="keywords">
+  </head>
+  <body style="                                   background-color: #ccccff;">
+    <div id="entete">&nbsp;Passage de données aux fonctions callback</div>
+    <br>
+    <div id="contenu">La structure classique d'un programme qui génère une interface graphique comporte une fonction
+      principale (qui porte le nom du fichier m-file) et un ensemble d'autre fonctions, y compris les fonction callback
+      des objets graphiques. <br>
+      Les objet graphique sont en général crée dans la fonction principale. Leurs identificateurs sont donc connus de
+      celle-ci. Le problème se pose quand les autres fonctions ont besoin d'accéder au objets graphiques, ils ont besoin
+      de leurs identificateurs. L'objectif de cette section est de monter comment la fonction principale peut partager
+      ces identificateurs avec les autres fonctions.<br>
+      <br>
+      <h2 class="titre"> <a id="nested" name="nested"></a>Fonctions imbriquées</h2>
+      Une fonction imbriquée <em>(nested function)</em> dans une autre fonction partage ses variables. Elle peut les
+      lire et les modifier. Donc, si toutes les fonctions callback sont imbriquées dans la fonction principale, elles
+      auront accès à toutes ses variables y compris les identificateurs (handles) des objet graphiques.<br>
+      C'est la méthode la plus simple, mais elle demande quelques précautions dans la gestion des variable. Si, on crée
+      une variable&nbsp; dans une fonction pour un usage local, et par mégarde, on lui donne un nom déjà utilisé dans la
+      fonction principale, on aura écrasé une variable existence sans faire attention, ce qui peux s'avérer néfaste pour
+      le fonctionnement du programme. <br>
+      <br>
+      Exemple<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function handles_nested()<br>
+              &nbsp;&nbsp;&nbsp; % Utilisation des fonctions imbriquése pour partager les données avec la<br>
+              &nbsp;&nbsp;&nbsp; % fonction principale<br>
+              &nbsp;&nbsp;&nbsp; close all<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.15], 'MenuBar', 'none');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; e1 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.7 0.3 0.2], 'str', 22);<br>
+              &nbsp;&nbsp;&nbsp; e2 = uicontrol(fh, 'style', 'Edit', 'Posit',[0.5 0.4 0.3 0.2], 'str', '44');<br>
+              &nbsp;&nbsp;&nbsp; e3 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.1 0.3 0.2]);<br>
+              &nbsp;&nbsp;&nbsp; b1 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.4 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Alpha', 'call', @alphaa);<br>
+              &nbsp;&nbsp;&nbsp; b2 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.1 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Num', 'call', @numm);<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function numm(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n1 = str2num(get(<span class="rouge">e1</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n2 = str2num(get(<span class="rouge">e2</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(<span class="rouge">e3</span>, 'string',n1+n2);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function alphaa(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s1 = get(<span class="rouge">e1</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 = get(<span class="rouge">e2</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(<span class="rouge">e3</span>, 'string',[s1 s2]);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              end<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="varglob" name="varglob"></a>Variables globales</h2>
+      Une autre solution consiste à ne pas utiliser les fonctions imbriquées mais de déclarer des variables globales.<br>
+      J'ai cru comprendre (à travers le web) que les puritains n'aiment pas trop cette solution. Pour ma part, je ne lui
+      trouve pas vraiment de grands inconvénients, surtout pour une application de petite taille.<br>
+      Avec cette solution, chaque fonction a ses variables locales. Les variables locales de plusieurs fonctions peuvent
+      porter le même nom tout en étant tout à fait indépendantes les unes des autres.<br>
+      <br>
+      Exemple:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function handle_global()<br>
+              &nbsp;&nbsp;&nbsp; global e1 e2 e3<br>
+              &nbsp;&nbsp;&nbsp; close all<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.15],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar', 'none');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; e1 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.7 0.3 0.2], 'str', 22);<br>
+              &nbsp;&nbsp;&nbsp; e2 = uicontrol(fh, 'style', 'Edit', 'Posit',[0.5 0.4 0.3 0.2], 'str', '44');<br>
+              &nbsp;&nbsp;&nbsp; e3 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.1 0.3 0.2]);<br>
+              &nbsp;&nbsp;&nbsp; b1 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.4 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Alpha', 'call', @alphaa);<br>
+              &nbsp;&nbsp;&nbsp; b2 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.1 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Num', 'call', @numm);<br>
+              end<br>
+              <br>
+              function numm(obj,event)<br>
+              &nbsp;&nbsp;&nbsp; global e1 e2 e3<br>
+              &nbsp;&nbsp;&nbsp; n1 = str2num(get(e1, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; n2 = str2num(get(e2, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; set(e3, 'string',n1+n2);<br>
+              end<br>
+              <br>
+              function alphaa(obj,event)<br>
+              &nbsp;&nbsp;&nbsp; global e1 e2 e3<br>
+              &nbsp;&nbsp;&nbsp; s1 = get(e1, 'string');<br>
+              &nbsp;&nbsp;&nbsp; s2 = get(e2, 'string');<br>
+              &nbsp;&nbsp;&nbsp; set(e3, 'string',[s1 s2]);<br>
+              end</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="param" name="param"></a>Passage de paramètres</h2>
+      Une autre solution consiste à passer des paramètres aux fonctions au moment de les appeler<br>
+      <ul>
+        <li>Pour une fonction normale: <span class="matcmd">nom_fonction(x, y, z, ...)</span> </li>
+        <li>Pour une fonction callback:&nbsp; <span class="matcmd">'callback', {@nom_fonction x y z}</span></li>
+      </ul>
+      <br>
+      Exemple:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function handle_param()<br>
+              &nbsp;&nbsp;&nbsp; % passage des handles comme paramètres au moment de l'appel des fonctions<br>
+              &nbsp;&nbsp;&nbsp; close all<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.15],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar', 'none');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; e1 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.7 0.3 0.2], 'str', 22);<br>
+              &nbsp;&nbsp;&nbsp; e2 = uicontrol(fh, 'style', 'Edit', 'Posit',[0.5 0.4 0.3 0.2], 'str','44');<br>
+              &nbsp;&nbsp;&nbsp; e3 = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.1 0.3 0.2]);<br>
+              &nbsp;&nbsp;&nbsp; b1 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.4 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Alpha', 'callback', {@alphaa e1 e2 e3});<br>
+              &nbsp;&nbsp;&nbsp; b2 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.1 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Num', 'callback', {@numm e1 e2 e3});<br>
+              end<br>
+              <br>
+              function numm(obj,event, e1, e2, e3)<br>
+              &nbsp;&nbsp;&nbsp; n1 = str2num(get(e1, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; n2 = str2num(get(e2, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; set(e3, 'string',n1+n2);<br>
+              end<br>
+              <br>
+              function alphaa(obj,event, e1, e2, e3)<br>
+              &nbsp;&nbsp;&nbsp; s1 = get(e1, 'string');<br>
+              &nbsp;&nbsp;&nbsp; s2 = get(e2, 'string');<br>
+              &nbsp;&nbsp;&nbsp; set(e3, 'string',[s1 s2]);<br>
+              end</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      Si on a beaucoup de variables à passer, on peut les regrouper dans une structure et passer le nom de la structure<br>
+      <br>
+      Exemple:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function handle_param_struct()<br>
+              &nbsp;&nbsp;&nbsp; % les handle sont groupés dans une structure qui est passée en<br>
+              &nbsp;&nbsp;&nbsp; % paramètre au fonctions appelées<br>
+              &nbsp;&nbsp;&nbsp; close all<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.15],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar', 'none');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e1</span> = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.7 0.3
+              0.2], 'str', 22);<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e2</span> = uicontrol(fh, 'style', 'Edit', 'Posit',[0.5 0.4 0.3
+              0.2], 'str', '44');<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e3</span> = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.1 0.3
+              0.2]);<br>
+              &nbsp;&nbsp;&nbsp; b1 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.4 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Alpha', 'call', {@alphaa <span class="rouge">hs</span>});<br>
+              &nbsp;&nbsp;&nbsp; b2 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.1 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Num', 'call', {@numm <span class="rouge">hs</span>});<br>
+              end<br>
+              <br>
+              function numm(obj,event, <span class="rouge">ids</span>)<br>
+              &nbsp;&nbsp;&nbsp; n1 = str2num(get(<span class="rouge">ids.e1</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; n2 = str2num(get(<span class="rouge">ids.e2</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; set(<span class="rouge">ids.e3</span>, 'string',n1+n2);<br>
+              end<br>
+              <br>
+              function alphaa(obj,event, <span class="rouge">ids</span>)<br>
+              &nbsp;&nbsp;&nbsp; s1 = get(<span class="rouge">ids.e1</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp; s2 = get(<span class="rouge">ids.e2</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp; set(<span class="rouge">ids.e3</span>, 'string',[s1 s2]);<br>
+              end<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"><a id="guidata" name="guidata"></a> La fonction guidata()</h2>
+      La fonction guidata() permet de sauvegarder/restaurer des variables dans l'espace de travail de l'interface
+      graphique.<br>
+      <br>
+      <ul>
+        <li>Pour sauvegarder la variable x dans l'espace de la fenêtre <em> fh</em>:&nbsp;&nbsp;&nbsp; <span class="matcmd">guidata(fh,x)</span>
+        </li>
+        <li>Pour la récupérer:&nbsp;&nbsp; <span class="matcmd">x = guidata(fh)</span> <br>
+        </li>
+      </ul>
+      Là aussi, il est préférable de regrouper les variables dans une structure, ce qui revient à sauvegarder plusieurs
+      variables d'un coup.&nbsp; Il existe une fonction appelée <em>guihandles()</em> qui permet de créer une structure
+      d'identificateurs d'objets. Nous allons nous en passer car elle n'apporte pas grand chose à moins d'utiliser la
+      propriété <em>tag </em>lors de la création des objets graphiques.<br>
+      <br>
+      Exemple:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function handle_guidata()<br>
+              &nbsp;&nbsp;&nbsp; close all<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.15], 'MenuBar', 'none');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e1</span> = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.7 0.3
+              0.2], 'str', 22);<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e2</span> = uicontrol(fh, 'style', 'Edit', 'Posit',[0.5 0.4 0.3
+              0.2], 'str', '44');<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hs.e3</span> = uicontrol(fh, 'style', 'EDIT', 'Posit',[0.5 0.1 0.3
+              0.2]);<br>
+              &nbsp;&nbsp;&nbsp; b1 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.4 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Alpha', 'call', @alphaa);<br>
+              &nbsp;&nbsp;&nbsp; b2 = uicontrol(fh, 'style', 'pushbutton', 'position',[0.1 0.1 0.3 0.2],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Num', 'call', @numm);<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">guidata(fh, hs);</span><br>
+              end<br>
+              <br>
+              function numm(obj,event)<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">ids = guidata(obj);</span><br>
+              &nbsp;&nbsp;&nbsp; n1 = str2num(get(<span class="rouge">ids.e1</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; n2 = str2num(get(<span class="rouge">ids.e2</span>, 'string'));<br>
+              &nbsp;&nbsp;&nbsp; set(<span class="rouge">ids.e3</span>, 'string',n1+n2);<br>
+              end<br>
+              <br>
+              function alphaa(obj,event)<br>
+              &nbsp;&nbsp;&nbsp; <span class="rouge">hndl = guidata(obj);</span><br>
+              &nbsp;&nbsp;&nbsp; s1 = get(<span class="rouge">hndl.e1</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp; s2 = get(<span class="rouge">hndl.e2</span>, 'string');<br>
+              &nbsp;&nbsp;&nbsp; set(<span class="rouge">hndl.e3</span>, 'string',[s1 s2]);<br>
+              end<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </body>
+</html>

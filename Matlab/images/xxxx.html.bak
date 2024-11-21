@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>xxxx</title>
+    <style type="text/css">
+.vhdl {
+  font-family: Consolas;
+  font-size: medium;
+  font-style: italic;
+  background-color: #ccffff;
+}
+
+.Titre {
+  font-size: x-large;
+  font-weight: bold;
+  font-style: italic;
+  color: #cc0000;
+}
+
+.Navigation {
+  font-size: medium;
+  font-weight: bold;
+  font-style: italic;
+  color: #cc0000;
+  line-height: 200%;
+  font-family: "Calibri";
+}
+
+</style> <meta name="author" content="A. Oumnad">
+  </head>
+  <body>
+    <table style="width: 80%;  height: 80px; margin-left: auto; margin-right: auto;"
+      border="0">
+      <tbody>
+        <tr>
+          <td style="background-color: #66cccc; text-align: center; vertical-align: middle;">
+            <h1 style="text-align: center;"><i>Recueil de Programmes VHDL</i></h1>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <table style="width: 100%;" cellspacing="20%" cellpadding="10" border="0">
+      <tbody>
+        <tr>
+          <td style="background-color: #ffcc66; width: 40%; text-align: left; vertical-align: top;"
+            class="Navigation"><a href="#MXR_AC1" id="NAVIG">Multiplexeur,
+              affectation Conditionnelle</a><br>
+            <a href="#MXR_AC2">Multiplexeur, Affectation Conditionnelle, Entrée
+              type vecteur</a><br>
+            <a href="#MXR_AS1">Multiplexeur, affectation Sélective</a><br>
+            <a href="#MXR_AS2">Multiplexeur, Affectation Sélective, Entrée type
+              vecteur</a><br>
+            <span style="color: #0000ee;"><a href="#MXR_P_CW">Multiplexeur,
+                Process, Case-When</a><br>
+              <a href="#MXR_P_IF">Multiplexeur, Process, if-then</a> </span><span
+              style="color: #0000ee;"></span><br>
+            <span style="color: #0000ee;"> </span><a href="#DMXR_AC">DéMultiplexeur,
+              affectation Conditionnelle</a><br>
+            <a href="#DMXR_P_CW">DéMultiplexeur, Process, Case-When</a><br>
+            <a href="#DCR_DMXR_G1">Décodeur/Démultiplexeur paramétrable</a><br>
+            <a href="#BCD-7SEG">Décodeur bcd-7segments Anode Commune</a><br>
+            <a href="#CMPRTR_P_IF">Comparateur 2 x 4 bits (Process, if-then)</a><br>
+            <a href="#CMPRTR_AC_G">Comparateur 2 x N, Affectation Conditionnelle</a><br>
+            <a href="#ADDR_U4_U4">Additionneur Unsigned 4bits =&gt;&nbsp;
+              Unsigned 4bits</a><br>
+            <a href="#ADDER_UN_UN">Additionneur Unsigned n bits =&gt;&nbsp;
+              Unsigned n bits</a><br>
+            <a href="#Adder_S4_S4">Additionneur Signed 4bit =&gt; Signed 4bits</a><br>
+            <a href="#ADDER_SN_SN">Additionneur Signed n bit =&gt; Signed n bits</a><br>
+            <a href="#ADDER_S4_S5">Additionneur Signed 4bit =&gt; Signed 5 bits</a><br>
+            <a href="#ADDER_SN_SN+1">Additionneur Signed n bit =&gt; Signed n+1
+              bits</a><br>
+            <a href="#VAL_ABS">Valeur Absolue</a><br>
+            <a href="#BIN_BCD_2D">Décodeur binaire 4 bits vers bcd 2 digits</a><br>
+            <a href="#BIN_BCD_2D_G">Décodeur binaire (4, 5 ou 6 bits) vers bcd 2
+              digits</a><br>
+            <a href="#BIN_BCD_3D_G">Décodeur binaire (4 à 9 bits) vers bcd 3
+              digits</a><span style="color: #0000ee;"> </span><br>
+            <a href="#BIN_BCD_4D_G">Décodeur binaire (4 à 13 bits) vers bcd 4
+              digits</a><br>
+            <a href="#SHIFT_REG">Registre à décalage</a><br>
+            <span style="color: #0000ee;"><a href="#SHIFT_REG_AL">Registre à
+                décalage, Chargement parallèle Asynchrone</a><br>
+            </span><a href="#SHIFT_REG_SL"><span style="color: #0000ee;">Registre
+                à décalage, Chargement parallèle Synchrone</span></a><br>
+            <span style="color: #0000ee;"><a href="#CTR_N">Compteur N bits</a><br>
+              <a href="#CTR_N_UNIV">Compteur N bits Universel</a><br>
+              <a href="#DECADE">Compteur modulo 10</a><br>
+              <a href="#DIV_FREQ_nb">Diviseur de fréquence n bits (2^n)</a><br>
+              <a href="#DIV_FRED_2N">Diviseur de fréquence par 2xN</a><br>
+              <br>
+            </span> </td>
+          <td style="background-color: #ffffcc; width: 60%; text-align: left; vertical-align: top;"><a
+              name="MXR_AC1" id="MXR_AC1"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Multiplexeur,
+                    Affectation conditionnelle<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="maclasse vhdl">-- Multiplexeur 4=&gt;1, Affectation
+                    conditionnelle <br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    entity mux_4to1_V3 is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; E0,E1,E2,E3,A0,A1 : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; S: out std_logic<br>
+                    &nbsp; );<br>
+                    end mux_4to1_V3;<br>
+                    architecture archi of mux_4to1_V3 is<br>
+                    signal A : std_logic_vector(1 downto 0) := (A1,A0);<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; S &lt;= <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E0 when A = "00" else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E1 when A = "01" else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E2 when A = "10" else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E3 when A = "11" else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; '0';<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_AC" id="MXR_AC2"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre"><span class="Titre">Multiplexeur,
+                      Affectation Conditionnelle, Entrées type vecteur</span><a
+                      href="#NAVIG"><button name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Multiplexeur 4=&gt;1, Affectation
+                    Conditionnelle<br>
+                    -- Entées de type vecteur<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity mux_4to1_aff_cond is<br>
+                    &nbsp;&nbsp;&nbsp; port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic_vector(3 downto
+                    0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S: in std_logic_vector(1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; Z: out std_logic<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    end mux_4to1_aff_cond;<br>
+                    <br>
+                    architecture archi of mux_4to1_aff_cond is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; Z &lt;= <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E(0) when S = "00"
+                    else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E(1) when S = "01"
+                    else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E(2) when S = "10"
+                    else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; E(3) when S = "11"
+                    else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; '0';<br>
+                    end archi;<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_AS1" id="MXR_AS1"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Multiplexeur,
+                    Affectation Sélective<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="maclasse vhdl">-- Affectation Sélective bis<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    entity mux_4to1_V4 is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; E0,E1,E2,E3,A0,A1 : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; S: out std_logic<br>
+                    &nbsp; );<br>
+                    end mux_4to1_V4;<br>
+                    architecture archi of mux_4to1_V4 is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp;
+                    std_logic_vector'(A1,A0)&nbsp;&nbsp;&nbsp;&nbsp; select<br>
+                    &nbsp;&nbsp;&nbsp; S &lt;= &nbsp;&nbsp;&nbsp; E0
+                    &nbsp;&nbsp;&nbsp; when &nbsp;&nbsp;&nbsp; "00",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp; E1 &nbsp;&nbsp;&nbsp; when
+                    &nbsp;&nbsp;&nbsp; "01",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; E2 &nbsp;&nbsp;&nbsp; when
+                    &nbsp;&nbsp;&nbsp; "10",<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp; E3 &nbsp;&nbsp;&nbsp; when
+                    &nbsp;&nbsp;&nbsp; "11",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; '0' &nbsp;&nbsp; when &nbsp;&nbsp;&nbsp;
+                    others;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_AS2" id="MXR_AS2"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Multiplexeur,
+                    Affectation Sélective, Entrées type vecteur<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Multiplexeur, Affectation Sélective<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity mux_4to1_aff_cond is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic_vector(3 downto
+                    0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S: in std_logic_vector(1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; Z: out std_logic<br>
+                    &nbsp; );<br>
+                    end mux_4to1_aff_cond;<br>
+                    <br>
+                    architecture archi of mux_4to1_aff_cond is<br>
+                    begin<br>
+                    with S select<br>
+                    &nbsp;&nbsp;&nbsp; Z &lt;= E(0) when "00",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E(1) when
+                    "01",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E(2) when
+                    "10",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E(3) when
+                    "11",<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '0'&nbsp;
+                    when others;<br>
+                    end archi;<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_P_CW" id="MXR_P_CW"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Multiplexeur,
+                    Process, Case-When<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity mux_4to1_P_case is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic_vector(3 downto
+                    0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S: in std_logic_vector(1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; Z: out std_logic<br>
+                    &nbsp; );<br>
+                    end mux_4to1_P_case;<br>
+                    <br>
+                    architecture bhv of mux_4to1_P_case is<br>
+                    begin<br>
+                    process (E,S) is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; case S is<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "00" =&gt; Z
+                    &lt;= E(0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "01" =&gt; Z
+                    &lt;= E(1);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "10" =&gt; Z
+                    &lt;= E(2);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "11" =&gt; Z
+                    &lt;= E(3);<br>
+                    &nbsp;&nbsp;&nbsp; end case;<br>
+                    end process;<br>
+                    end bhv;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_P_IF" id="MXR_P_IF"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Multiplexeur,
+                    Process, IF-Then<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity mux_4to1 is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; A,B,C,D : in STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S0,S1: in STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; Z: out STD_LOGIC<br>
+                    &nbsp; );<br>
+                    end mux_4to1;<br>
+                    <br>
+                    architecture bhv of mux_4to1 is<br>
+                    begin<br>
+                    process (A,B,C,D,S0,S1) is<br>
+                    begin<br>
+                    &nbsp; if (S0 ='0' and S1 = '0') then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Z &lt;= A;<br>
+                    &nbsp; elsif (S0 ='1' and S1 = '0') then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Z &lt;= B;<br>
+                    &nbsp; elsif (S0 ='0' and S1 = '1') then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Z &lt;= C;<br>
+                    &nbsp; else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Z &lt;= D;<br>
+                    &nbsp; end if;<br>
+                    end process;<br>
+                    end bhv;</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_P_IF" id="DMXR_AC"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">DéMultiplexeur,
+                    Affectation Conditionnelle<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="maclasse vhdl">-- Démultiplexeur: Affectation
+                    Conditionnelle<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity dmuxV2_1to4_AC&nbsp; is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; A : in&nbsp; std_logic_vector(1
+                    downto 0);&nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S : out std_logic_vector(3 downto
+                    0)&nbsp;&nbsp;&nbsp; <br>
+                    &nbsp; );<br>
+                    end dmuxV2_1to4_AC;<br>
+                    <br>
+                    architecture archi of dmuxV2_1to4_AC is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; S(0)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "00" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; '1';<br>
+                    &nbsp;&nbsp;&nbsp; S(1)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "01" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; '1';<br>
+                    &nbsp;&nbsp;&nbsp; S(2)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "10" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; '1';<br>
+                    &nbsp;&nbsp;&nbsp; S(3)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "11" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; '1';<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="DMXR_P_CW" id="DMXR_P_CW"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">DéMultiplexeur,
+                    Process, Case-When<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Démultiplexeur: Process case-when<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    <br>
+                    entity dmuxV2_1to4_Pss is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; A : in&nbsp; std_logic_vector(1
+                    downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S : out std_logic_vector(3 downto
+                    0)<br>
+                    );<br>
+                    end dmuxV2_1to4_Pss;<br>
+                    <br>
+                    architecture archi of dmuxV2_1to4_Pss is<br>
+                    begin<br>
+                    &nbsp;&nbsp; process (E,A) is<br>
+                    &nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; S &lt;= "1111";<br>
+                    &nbsp;&nbsp;&nbsp; case A is<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "00" =&gt; S(0)
+                    &lt;= E;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "01" =&gt; S(1)
+                    &lt;= E;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "10" =&gt; S(2)
+                    &lt;= E;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; when "11" =&gt; S(3)
+                    &lt;= E;<br>
+                    &nbsp;&nbsp;&nbsp; end case;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="DCR_DMXR_G1" id="DCR_DMXR_G1"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Décodeur/Démultiplexeur
+                    paramétrable<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Décodeur/Démultiplexeur avec Généricité<br>
+                    -- Sortie sélectionnée=Entrée, Les autres dépendent du
+                    paramètre:<br>
+                    -- paramètre = '0' =&gt; sorties non sélectionnée = 0<br>
+                    -- paramètre = '1' =&gt; sorties non sélectionnée = 1<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all;<br>
+                    <br>
+                    entity dmuxG_1to4_AC&nbsp; is<br>
+                    generic&nbsp;&nbsp;&nbsp; ( DO :&nbsp;&nbsp;&nbsp; std_logic
+                    := '1'&nbsp;&nbsp;&nbsp; );<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; E : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; S : out std_logic_vector(3 downto
+                    0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; A : in&nbsp; std_logic_vector(1
+                    downto 0)<br>
+                    &nbsp; );<br>
+                    end dmuxG_1to4_AC;<br>
+                    <br>
+                    architecture archi of dmuxG_1to4_AC is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; S(0)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "00" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; DO;<br>
+                    &nbsp;&nbsp;&nbsp; S(1)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "01" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; DO;<br>
+                    &nbsp;&nbsp;&nbsp; S(2)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "10" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; DO;<br>
+                    &nbsp;&nbsp;&nbsp; S(3)&nbsp;&nbsp;&nbsp;
+                    &lt;=&nbsp;&nbsp;&nbsp; E&nbsp;&nbsp;&nbsp;
+                    when&nbsp;&nbsp;&nbsp; A = "11" &nbsp;&nbsp;&nbsp;
+                    else&nbsp;&nbsp;&nbsp; DO;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="BCD-7SEG" id="BCD-7SEG"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Décodeur
+                    bcd-7segments Anode Commune<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">library ieee; <br>
+                    use ieee.std_logic_1164.all; <br>
+                    entity&nbsp;&nbsp;&nbsp;&nbsp;
+                    bcd7seg_ac&nbsp;&nbsp;&nbsp;&nbsp; is <br>
+                    &nbsp;&nbsp;&nbsp; port&nbsp; (&nbsp;&nbsp;&nbsp; BCD&nbsp;
+                    : in&nbsp;&nbsp;&nbsp; STD_LOGIC_VECTOR (3&nbsp;&nbsp;
+                    downto&nbsp;&nbsp; 0); <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    SEG&nbsp; : out&nbsp; STD_LOGIC_VECTOR (6&nbsp;&nbsp;
+                    downto&nbsp;&nbsp; 0)&nbsp;&nbsp;&nbsp; );&nbsp; <br>
+                    end&nbsp;&nbsp; bcd7seg_AC; <br>
+                    architecture ARCH_DEC&nbsp; of&nbsp;&nbsp;&nbsp;
+                    bcd7seg_ac&nbsp;&nbsp;&nbsp; is <br>
+                    begin<br>
+                    SEG&nbsp;&nbsp; &lt;=&nbsp;&nbsp;&nbsp; "1000000"&nbsp; when
+                    BCD="0000" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "1111001"&nbsp; when
+                    BCD="0001" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0100100"&nbsp; when
+                    BCD="0010" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0110000"&nbsp; when
+                    BCD="0011" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0011001"&nbsp; when
+                    BCD="0100" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0010010"&nbsp; when
+                    BCD="0101" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0000010"&nbsp; when
+                    BCD="0110" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "1111000"&nbsp; when
+                    BCD="0111" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0000000"&nbsp; when
+                    BCD="1000" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0010000"&nbsp; when
+                    BCD="1001" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0001000"&nbsp; when
+                    BCD="1010" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0000011"&nbsp; when
+                    BCD="1011" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "1000110"&nbsp; when
+                    BCD="1100" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0100001"&nbsp; when
+                    BCD="1101" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0000110"&nbsp; when
+                    BCD="1110" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "0001110"&nbsp; when
+                    BCD="1111" else <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "1111111" ; <br>
+                    end ARCH_DEC ;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="CMPRTR_P_IF" id="CMPRTR_P_IF"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre"><span class="Titre">Comparateur
+                      2 x 4 bits&nbsp; (Process, if-then)</span><a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">--Comparateur 2 x 4 bits<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    entity cmprtr4b is<br>
+                    &nbsp;&nbsp;&nbsp; port( A,B : in&nbsp; std_logic_vector(3
+                    downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; EQU,SUP,INF :&nbsp;
+                    out&nbsp; std_logic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br>
+                    end cmprtr4b;<br>
+                    architecture archi of cmprtr4b is<br>
+                    begin<br>
+                    &nbsp;&nbsp; process (A, B) is<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (A = B) Then <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; EQU
+                    &lt;= '1';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SUP
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; INF
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    elsif&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; A &gt;
+                    B&nbsp;&nbsp;&nbsp; then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; EQU
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SUP
+                    &lt;= '1';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; INF
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; else<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; EQU
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SUP
+                    &lt;= '0';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; INF
+                    &lt;= '1';<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="CMPRTR_AC_G" id="CMPRTR_AC_G"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Comparateur
+                    2 x N, Affectation Conditionnelle<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">--Comparateur 2 x N&nbsp; (Généricité)<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    entity cmprtrG is<br>
+                    &nbsp;&nbsp;&nbsp; generic(n : natural := 4 );<br>
+                    &nbsp;&nbsp;&nbsp; port( A,B : in&nbsp; std_logic_vector(n-1
+                    downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; EQU,SUP,INF :&nbsp;
+                    out std_logic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br>
+                    end cmprtrG ;<br>
+                    architecture archi of cmprtrG is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; EQU &lt;= '1' when A = B else '0';<br>
+                    &nbsp;&nbsp;&nbsp; SUP &lt;= '1' when A &gt; B else '0';<br>
+                    &nbsp;&nbsp;&nbsp; INF &lt;= '1' when A &lt; B else
+                    '0';&nbsp;&nbsp;&nbsp; <br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="ADDR_U4_U4" id="ADDR_U4_U4"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Unsigned 4bits =&gt;&nbsp; Unsigned 4bits<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur Entrées 4 bits non-signés<br>
+                    -- Sortie 4 bits non signés<br>
+                    -- C_out : Flag de débordement<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity U_adder_4b is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; C_in&nbsp;&nbsp;&nbsp; : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; : in&nbsp;
+                    std_logic_vector(3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; :
+                    out&nbsp;&nbsp;&nbsp; std_logic_vector(3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; C_out : out std_logic<br>
+                    );<br>
+                    end U_adder_4b;<br>
+                    <br>
+                    architecture archi of U_adder_4b is<br>
+                    signal&nbsp;&nbsp;&nbsp; UA, UB : unsigned(3 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; UQ : unsigned(4&nbsp; downto 0);<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; UA &lt;= unsigned(A);<br>
+                    &nbsp;&nbsp;&nbsp; UB&nbsp; &lt;= unsigned(B);<br>
+                    &nbsp;&nbsp;&nbsp; UQ &lt;= ('0'&amp;UA)&nbsp; +&nbsp;
+                    ('0'&amp;UB) + ("0000"&amp;C_in);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector( UQ(3 downto 0) );<br>
+                    &nbsp;&nbsp;&nbsp; C_out &lt;= UQ(4);<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="MXR_P_IF" id="ADDER_UN_UN"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Unsigned n bits =&gt;&nbsp; Unsigned n bits<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur n bits non signés<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity uadderG is<br>
+                    generic(n : integer := 4 );<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; C_in&nbsp;&nbsp;&nbsp; : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; : in&nbsp;
+                    std_logic_vector(n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; :
+                    out&nbsp;&nbsp;&nbsp; std_logic_vector(n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; C_out : out std_logic<br>
+                    );<br>
+                    end uadderG;<br>
+                    <br>
+                    architecture archi of uadderG is<br>
+                    signal&nbsp;&nbsp;&nbsp; UA, UB : unsigned(n-1 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; UQ : unsigned(n&nbsp; downto 0);<br>
+                    constant CinZ: unsigned(n downto 1) := (others =&gt; '0'); <br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; UA &lt;= unsigned(A);<br>
+                    &nbsp;&nbsp;&nbsp; UB &lt;= unsigned(B);<br>
+                    &nbsp;&nbsp;&nbsp; UQ &lt;= ('0'&amp;UA)&nbsp; +&nbsp;
+                    ('0'&amp;UB) + (CinZ&amp;C_in);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector( UQ(n-1 downto 0) );<br>
+                    &nbsp;&nbsp;&nbsp; C_out &lt;= UQ(n);<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="Adder_S4_S4" id="Adder_S4_S4"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Signed 4bit =&gt; Signed 4 bits<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur 4 bits signés<br>
+                    -- Sortie 4 bits [S3 S2 S1 S0] , V = oVerflow <br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity S_adder_4b is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; : in&nbsp;
+                    std_logic_vector(3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; :
+                    out&nbsp;&nbsp;&nbsp; std_logic_vector(3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp; : out std_logic );<br>
+                    end S_adder_4b;<br>
+                    <br>
+                    architecture archi of S_adder_4b is<br>
+                    signal&nbsp;&nbsp;&nbsp; SA, SB : signed(3 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; SQ : signed(4&nbsp; downto 0);<br>
+                    begin<br>
+                    &nbsp;&nbsp; SA&nbsp; &lt;= signed(A);<br>
+                    &nbsp;&nbsp;&nbsp; SB&nbsp; &lt;= signed(B);<br>
+                    &nbsp;&nbsp;&nbsp; SQ&nbsp; &lt;= (SA(3)&amp;SA)&nbsp;
+                    +&nbsp; (SB(3)&amp;SB);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector( SQ(3 downto 0) );<br>
+                    &nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp; &lt;= SQ(4)&nbsp;
+                    XOR&nbsp; SQ(3);<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="ADDER_SN_SN" id="ADDER_SN_SN"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Signed n bit =&gt; Signed n bits<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur n bits signés<br>
+                    -- Sortie 4 bits [Sn-1 .. S0] , V = oVerflow <br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity S_adderG is<br>
+                    generic ( n : natural := 4 );<br>
+                    port( &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; : in&nbsp;
+                    std_logic_vector(n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; :
+                    out&nbsp;&nbsp;&nbsp; std_logic_vector(n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp; : out
+                    std_logic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br>
+                    end S_adderG;<br>
+                    <br>
+                    architecture archi of S_adderG is<br>
+                    signal&nbsp;&nbsp;&nbsp; SA, SB : signed(n-1 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; SQ : signed(n&nbsp; downto 0);<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; SA &lt;= signed(A);<br>
+                    &nbsp;&nbsp;&nbsp; SB &lt;= signed(B);<br>
+                    &nbsp;&nbsp;&nbsp; SQ &lt;= (SA(n-1)&amp;SA)&nbsp; +&nbsp;
+                    (SB(n-1)&amp;SB);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector( SQ(n-1 downto 0) );<br>
+                    &nbsp;&nbsp;&nbsp; V&nbsp;&nbsp;&nbsp;&nbsp; &lt;=
+                    SQ(n)&nbsp; XOR&nbsp; SQ(n-1);<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="ADDER_S4_S5" id="ADDER_S4_S5"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Signed 4bit =&gt; Signed 5 bits<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur signé<br>
+                    -- Entrées 4 bits signés<br>
+                    -- Sortie 5 bits signés <br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity S_adder4b5b is<br>
+                    port(<br>
+                    &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
+                    in&nbsp; std_logic_vector(3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; :&nbsp;
+                    out&nbsp;&nbsp;&nbsp;&nbsp; std_logic_vector(4 downto 0)<br>
+                    );<br>
+                    end S_adder4b5b;<br>
+                    <br>
+                    architecture archi of S_adder4b5b is<br>
+                    signal&nbsp;&nbsp;&nbsp; SA, SB : signed(3 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; SQ : signed(4&nbsp; downto 0);<br>
+                    begin<br>
+                    &nbsp;&nbsp; SA &lt;= signed(A);<br>
+                    &nbsp;&nbsp;&nbsp; SB &lt;= signed(B);<br>
+                    &nbsp;&nbsp;&nbsp; SQ &lt;= (SA(3)&amp;SA)&nbsp; +&nbsp;
+                    (SB(3)&amp;SB);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(SQ);<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="ADDER_SN_SN+1" id="ADDER_SN_SN+1"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td style="background-color: #33ccff;" class="Titre">Additionneur
+                    Signed n bit =&gt; Signed n+1 bits<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Additionneur signé<br>
+                    -- Entrées n bits signés<br>
+                    -- Sortie n+1 bits signés <br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.all; <br>
+                    use ieee.numeric_std.all;<br>
+                    entity S_adder_n_np1_G is<br>
+                    generic ( n : natural := 4 );<br>
+                    port( &nbsp;&nbsp;&nbsp; A,B &nbsp;&nbsp;&nbsp; : in&nbsp;
+                    std_logic_vector(n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp; :
+                    out&nbsp;&nbsp;&nbsp; std_logic_vector(n downto 0)<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    end S_adder_n_np1_G ;<br>
+                    <br>
+                    architecture archi of S_adder_n_np1_G is<br>
+                    signal&nbsp;&nbsp;&nbsp; SA, SB : signed(n-1 downto 0);<br>
+                    signal&nbsp;&nbsp;&nbsp; SQ : signed(n&nbsp; downto 0);<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; SA &lt;= signed(A);<br>
+                    &nbsp;&nbsp;&nbsp; SB &lt;= signed(B);<br>
+                    &nbsp;&nbsp;&nbsp; SQ &lt;= (SA(n-1)&amp;SA)&nbsp; +&nbsp;
+                    (SB(n-1)&amp;SB);<br>
+                    &nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector( SQ );<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="VAL_ABS" id="VAL_ABS"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Valeur
+                    Absolue<a href="#NAVIG"><button name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Valeur absolue<br>
+                    <br>
+                    library ieee;<br>
+                    use ieee.std_logic_1164.all;<br>
+                    use ieee.numeric_std.all;<br>
+                    <br>
+                    entity val_abs is<br>
+                    &nbsp;&nbsp;&nbsp; generic&nbsp;&nbsp;&nbsp; (<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; n : natural := 4<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    &nbsp;&nbsp;&nbsp; port &nbsp;&nbsp;&nbsp; (<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; a : in&nbsp;
+                    signed&nbsp;&nbsp;&nbsp; (n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; b : out signed (n-1
+                    downto 0)<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    end entity;<br>
+                    <br>
+                    architecture rtl of val_abs is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; b &lt;= abs(a);<br>
+                    end rtl;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="BIN_BCD_2D" id="BIN_BCD_2D"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Décodeur
+                    binaire 4 bits vers bcd 2 digits<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Binaire 4 bits vers bcd 2 digits<br>
+                    <br>
+                    library ieee;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    use IEEE.NUMERIC_STD.ALL;<br>
+                    <br>
+                    entity bin4_bcd is<br>
+                    &nbsp;&nbsp; Port ( <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binaire&nbsp;&nbsp;&nbsp; :
+                    in&nbsp; std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1&nbsp;&nbsp;&nbsp; : out
+                    std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10&nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0)<br>
+                    &nbsp;&nbsp; );<br>
+                    end bin4_bcd;<br>
+                    <br>
+                    architecture archi of bin4_bcd is<br>
+                    begin<br>
+                    &nbsp;&nbsp; bin_to_bcd : process (binaire)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable shiftreg :
+                    unsigned(11 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp; alias bin is shiftreg (3 downto
+                    0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias ones is shiftreg (7
+                    downto 4);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias tens is shiftreg
+                    (11&nbsp;&nbsp;&nbsp; downto 8);<br>
+                    &nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bin := unsigned(binaire);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ones := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tens := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i in 1 to 4 loop<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ones
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ones := ones + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if tens
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    tens := tens + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if; <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shiftreg:=
+                    shift_left(shiftreg, 1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end loop;<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(tens);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(ones);<br>
+                    &nbsp;&nbsp; end process;<br>
+                    <br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="BIN_BCD_2D_G" id="BIN_BCD_2D_G"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Décodeur
+                    binaire (4, 5 ou 6 bits) vers bcd 2 digits<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">---------------------------------------------------------------------<br>
+                    --&nbsp; Composant bin2bcd_2d&nbsp; -&gt; convertisseur
+                    binaire vers bcd<br>
+                    --&nbsp; la taille de l'entrée binaire = paramètre binwidth<br>
+                    --&nbsp; le paramètre binwidth peut prendre les valeurs 4, 5
+                    ou 6&nbsp; bits<br>
+                    --&nbsp; La sortie bcd est constituée de 2 digits<br>
+--------------------------------------------------------------------<br>
+                    <br>
+                    library ieee;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    use IEEE.NUMERIC_STD.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    <br>
+                    entity bin2bcd_2d is<br>
+                    &nbsp; generic (binwidth : integer := 6);<br>
+                    &nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp; Port ( <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binaire&nbsp;&nbsp;&nbsp; :
+                    in&nbsp; std_logic_vector (binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unite &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dix &nbsp;&nbsp;&nbsp; : out
+                    std_logic_vector (3 downto 0)<br>
+                    &nbsp;&nbsp; );<br>
+                    end bin2bcd_2d;<br>
+                    <br>
+                    architecture archi of bin2bcd_2d is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process (binaire)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --constant
+                    digits : integer := 4;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable regdecalage :
+                    unsigned(binwidth+7 downto 0);<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias bininp is
+                    regdecalage(binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D1 is
+                    regdecalage(binwidth+3 downto binwidth);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D10 is
+                    regdecalage(binwidth+7 downto binwidth+4);<br>
+                    &nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bininp := unsigned(binaire);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D1 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D10 := "0000";<br>
+                    &nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i in 1 to binwidth loop<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D1 &gt;=
+                    5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D1 := D1 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D10
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D10 := D10 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regdecalage
+                    := shift_left(regdecalage, 1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end loop;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dix&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(D10);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unite&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(D1);<br>
+                    &nbsp;&nbsp; end process;<br>
+                    <br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="BIN_BCD_3D_G" id="BIN_BCD_3D_G"></a>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Décodeur
+                    binaire (4 à 9 bits) vers bcd 3 digits<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">----------------------------------------------------------------<br>
+                    --&nbsp; Composant bin2bcd_3d&nbsp; -&gt; convertisseur
+                    binaire vers bcd géneric<br>
+                    --&nbsp; la taille de l'entrée binaire = paramètre binwidth<br>
+                    --&nbsp; le paramètre binwidth peut prendre les valeurs 4 à
+                    9&nbsp; bits<br>
+                    --&nbsp; La sortie bcd est constituée de 3 digits<br>
+----------------------------------------------------------------<br>
+                    <br>
+                    library ieee;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    use IEEE.NUMERIC_STD.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    <br>
+                    entity bin2bcd_3d is<br>
+                    &nbsp; generic (binwidth : integer := 9);<br>
+                    &nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp; Port ( <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binaire&nbsp;&nbsp;&nbsp; :
+                    in&nbsp; std_logic_vector (binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_100 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0)<br>
+                    &nbsp;&nbsp; );<br>
+                    end bin2bcd_3d;<br>
+                    <br>
+                    architecture archi of bin2bcd_3d is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process (binaire)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable regdecalage :
+                    unsigned(binwidth+11 downto 0);<br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias bininp is
+                    regdecalage(binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D1 is
+                    regdecalage(binwidth+3 downto binwidth);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D10 is
+                    regdecalage(binwidth+7 downto binwidth+4);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D100 is
+                    regdecalage(binwidth+11 downto binwidth+8);<br>
+                    &nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bininp := unsigned(binaire);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D1 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D10 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D100 := "0000";<br>
+                    &nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i in 1 to binwidth loop<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D1 &gt;=
+                    5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D1 := D1 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D10
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D10 := D10 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D100
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D100 := D10 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regdecalage
+                    := shift_left(regdecalage, 1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end loop;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_100&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(D100);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(D10);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(D1);<br>
+                    &nbsp;&nbsp; end process;<br>
+                    <br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="BIN_BCD_4D_G" id="BIN_BCD_4D_G"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Décodeur
+                    binaire (4 à 13 bits) vers bcd 4 digits<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">----------------------------------------------------------------<br>
+                    --&nbsp; Composant bin2bcd_4d&nbsp; -&gt; convertisseur
+                    binaire vers bcd géneric<br>
+                    --&nbsp; la taille de l'entrée binaire = paramètre binwidth<br>
+                    --&nbsp; le paramètre binwidth peut prendre les valeurs 4 à
+                    13&nbsp; bits<br>
+                    --&nbsp; La sortie bcd est constituée de 4 digits<br>
+--------------------------------------------------------------------<br>
+                    <br>
+                    library ieee;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    use IEEE.NUMERIC_STD.ALL;&nbsp;&nbsp;&nbsp; <br>
+                    <br>
+                    entity bin2bcd_4d is<br>
+                    &nbsp; generic (binwidth : integer := 13);<br>
+                    &nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp; Port ( <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binaire&nbsp;&nbsp;&nbsp; :
+                    in&nbsp; std_logic_vector (binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_100 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1000 &nbsp;&nbsp;&nbsp; :
+                    out std_logic_vector (3 downto 0)<br>
+                    &nbsp;&nbsp; );<br>
+                    end bin2bcd_4d;<br>
+                    <br>
+                    architecture archi of bin2bcd_4d is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; process (binaire)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable regdecalage :
+                    unsigned(binwidth+15 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias bininp is
+                    regdecalage(binwidth-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D1 is
+                    regdecalage(binwidth+3 downto binwidth);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D10 is
+                    regdecalage(binwidth+7 downto binwidth+4);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D100 is
+                    regdecalage(binwidth+11 downto binwidth+8);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alias D1000 is
+                    regdecalage(binwidth+15 downto binwidth+12);<br>
+                    &nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bininp := unsigned(binaire);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D1 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D10 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D100 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; D1000 := "0000";<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i in 1 to binwidth loop<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D1 &gt;=
+                    5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D1 := D1 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D10
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D10 := D10 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D100
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D100 := D100 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if D1000
+                    &gt;= 5 then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    D1000 := D1000 + 3;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regdecalage
+                    := shift_left(regdecalage, 1);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end loop;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1000&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(D1000);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_100&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(D100);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_10&nbsp;&nbsp;&nbsp;
+                    &lt;= std_logic_vector(D10);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bcd_1&nbsp;&nbsp;&nbsp; &lt;=
+                    std_logic_vector(D1);<br>
+                    &nbsp;&nbsp; end process;<br>
+                    <br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="SHIFT_REG"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;"> Registre
+                    à décalage<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;<br>
+                    <br>
+                    entity &nbsp;&nbsp;&nbsp; shift_register_G
+                    &nbsp;&nbsp;&nbsp; is<br>
+                    &nbsp;&nbsp;&nbsp; generic( n&nbsp;&nbsp;&nbsp; :
+                    &nbsp;&nbsp;&nbsp; natural&nbsp;&nbsp;&nbsp; &nbsp;:=
+                    &nbsp;&nbsp;&nbsp; 4);<br>
+                    &nbsp;&nbsp;&nbsp; Port (&nbsp;&nbsp;&nbsp; SI, CLK,
+                    CLR&nbsp;&nbsp; : in&nbsp; STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Q :
+                    inout STD_LOGIC_VECTOR (n-1&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; downto&nbsp;&nbsp;
+                    0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br>
+                    end shift_register_G;<br>
+                    <br>
+                    architecture archi of shift_register_G is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; process (CLK, CLR)<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if CLR = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Q
+                    &lt;= (others =&gt; '0');<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif (CLK'event and
+                    CLK = '1') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    Q(n-2 downto 0) &lt;= Q(n-1 downto 1);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    Q(n-1) &lt;= SI;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            x<br>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="SHIFT_REG_AL"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Registre
+                    à décalage, Chargement parallèle Asynchrone<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">&nbsp;library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;<br>
+                    entity Univ_Sh_Reg_AsyL is<br>
+                    &nbsp;&nbsp;&nbsp; generic(n : natural := 4);<br>
+                    &nbsp;&nbsp;&nbsp; Port (&nbsp;&nbsp;&nbsp; SIL, SIR, LR,
+                    CLK, APL, ACLR&nbsp;&nbsp; : in&nbsp; STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QI&nbsp;&nbsp;&nbsp; :
+                    in STD_LOGIC_VECTOR (n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO : inout
+                    STD_LOGIC_VECTOR (n-1 downto 0));<br>
+                    end Univ_Sh_Reg_AsyL;<br>
+                    architecture archi of Univ_Sh_Reg_AsyL is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; process (CLK, ACLR, APL)<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if ACLR = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO
+                    &lt;= (others =&gt; '0');<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif APL = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO
+                    &lt;= QI; -- Chargement // Asynchrone<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif (CLK'event and
+                    CLK = '1' and LR = '0') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-2 downto 0) &lt;= QO(n-1 downto 1);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-1) &lt;= SIL;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif (CLK'event and
+                    CLK = '1' and LR = '1') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-1 downto 1) &lt;= QO(n-2 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(0) &lt;= SIR;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            x<br>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="SHIFT_REG_SL"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Registre
+                    à décalage, Chargement parallèle Synchrone<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">Library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.ALL; <br>
+                    entity Univ_Sh_Reg_SyL is<br>
+                    &nbsp;&nbsp;&nbsp; generic(n : natural := 4);<br>
+                    &nbsp;&nbsp;&nbsp; Port (&nbsp;&nbsp;&nbsp; SIL, SIR, LR,
+                    CLK, SL, ACLR&nbsp;&nbsp; : in&nbsp; STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QI&nbsp;&nbsp;&nbsp; :
+                    in STD_LOGIC_VECTOR (n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO : inout
+                    STD_LOGIC_VECTOR (n-1 downto 0));<br>
+                    end Univ_Sh_Reg_SyL;<br>
+                    &nbsp;<br>
+                    architecture archi of Univ_Sh_Reg_SyL is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; process (CLK, ACLR)<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if ACLR = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO
+                    &lt;= (others =&gt; '0'); <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif
+                    (rising_edge(CLK) and SL = '0') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO
+                    &lt;= QI; -- Chargement // Synchrone<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif(rising_edge(CLK)
+                    and SL='1' and LR = '0') Then <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-2 downto 0) &lt;= QO(n-1 downto 1);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-1) &lt;= SIL;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif(rising_edge(CLK)
+                    and SL='1' and LR = '1') Then <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(n-1 downto 1) &lt;= QO(n-2 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    QO(0) &lt;= SIR;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="CTR_N"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Compteur
+                    n bits<a href="#NAVIG"><button name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl"><span style="font-family: serif;"></span>--
+                    Compteur&nbsp; n bits<br>
+                    library ieee ;<br>
+                    use ieee.std_logic_1164.all;<br>
+                    use ieee.numeric_std.all;<br>
+                    <br>
+                    entity counter_nb is<br>
+                    &nbsp;&nbsp;&nbsp; generic(n: natural := 4);<br>
+                    &nbsp;&nbsp;&nbsp; port(&nbsp;&nbsp;&nbsp; CLK, ACLR,
+                    CE&nbsp; :&nbsp;&nbsp;&nbsp; in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp; Q&nbsp;&nbsp;&nbsp;
+                    :&nbsp;&nbsp;&nbsp; out std_logic_vector(n-1 downto 0)<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    end entity&nbsp;&nbsp; counter_nb;<br>
+                    <br>
+                    architecture archi of counter_nb&nbsp;&nbsp;&nbsp;
+                    is&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; process(CLK, ACLR, CE)<br>
+                    &nbsp;&nbsp;&nbsp; variable PQ: unsigned(n-1 downto 0) ;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if ACLR = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    := (others=&gt;'0');<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif
+                    (rising_edge(CLK) and CE='1') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    := PQ + 1;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Q &lt;=
+                    std_logic_vector(PQ);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="CTR_N_UNIV"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Compteur
+                    n bits universel<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Compteur&nbsp; n bits universel<br>
+                    library IEEE;<br>
+                    use IEEE.STD_LOGIC_1164.ALL;<br>
+                    use ieee.numeric_std.all;<br>
+                    entity Counter_nb_univ_ALd&nbsp;&nbsp;&nbsp; is<br>
+                    &nbsp;&nbsp;&nbsp; generic(n : natural := 4);<br>
+                    &nbsp;&nbsp;&nbsp; Port ( UD, CLK, ALD, ACLR, CE&nbsp;&nbsp;
+                    : in&nbsp; STD_LOGIC;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QI&nbsp;&nbsp;&nbsp; :
+                    in STD_LOGIC_VECTOR (n-1 downto 0);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; QO : inout
+                    STD_LOGIC_VECTOR (n-1 downto 0)&nbsp;&nbsp;&nbsp; );<br>
+                    End&nbsp;&nbsp; Counter_nb_univ_Ald;<br>
+                    architecture archi of Counter_nb_univ_ALd is<br>
+                    signal PQ: unsigned(n-1 downto 0) ;<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; process (CLK, ACLR, ALD)<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if ACLR = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    &lt;= (others =&gt; '0');<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif ALD = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    &lt;= unsigned(QI);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif
+                    (rising_edge(CLK) and CE='1' and UD = '0') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    &lt;= PQ + 1;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif
+                    (rising_edge(CLK) and CE='1' and UD = '1') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; PQ
+                    &lt;= PQ - 1;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;&nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; QO &lt;= std_logic_vector(PQ);<br>
+                    end archi;<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="DECADE"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Compteur
+                    modulo 10<a href="#NAVIG"><button name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Compteur&nbsp; modulo 10<br>
+                    library ieee;<br>
+                    use ieee.std_logic_1164.all;<br>
+                    use ieee.numeric_std.all;<br>
+                    <br>
+                    entity&nbsp;&nbsp; counter_10&nbsp;&nbsp; is<br>
+                    &nbsp;&nbsp;&nbsp; port &nbsp;&nbsp;&nbsp; (
+                    &nbsp;&nbsp;&nbsp; clk, Aclr&nbsp;&nbsp;&nbsp; &nbsp; : in
+                    std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    Q&nbsp;&nbsp;&nbsp; : out std_logic_vector(3&nbsp; downto
+                    0)&nbsp;&nbsp;&nbsp; );<br>
+                    end entity;<br>
+                    <br>
+                    architecture archi&nbsp; of counter_10&nbsp; i s<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; process (clk, Aclr)<br>
+                    &nbsp;&nbsp;&nbsp; variable cnt: unsigned(3 downto 0)
+                    :=&nbsp; "0000";<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if Aclr = '0' then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; cnt
+                    := "0000";<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; elsif (clk'event and
+                    clk='1') then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if
+                    (cnt = 9) then cnt := "0000";<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    else cnt := cnt + 1; end if;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Q &lt;=
+                    std_logic_vector(cnt);<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end rtl;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="DIV_FREQ_nb"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Diviseur
+                    de fréquence n bits (2^n)<a href="#NAVIG"><button name="top"
+                        type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Diviseur de fréquence N bits<br>
+                    LIBRARY ieee;<br>
+                    USE ieee.std_logic_1164.all;<br>
+                    USE ieee.numeric_std.all;<br>
+                    <br>
+                    entity &nbsp;&nbsp;&nbsp; divfreq_nbits&nbsp;&nbsp;&nbsp;
+                    &nbsp;is <br>
+                    &nbsp;&nbsp; generic(n: natural&nbsp; :=&nbsp; 4);<br>
+                    &nbsp;&nbsp;&nbsp; port(&nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clk_in&nbsp; :
+                    in&nbsp; STD_LOGIC; <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; clk_out&nbsp; :
+                    out&nbsp; STD_LOGIC <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; );&nbsp;
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+                    end entity; <br>
+                    <br>
+                    architecture&nbsp;&nbsp; archi&nbsp;&nbsp; of&nbsp;&nbsp;
+                    divfreq_nbits &nbsp;&nbsp;&nbsp; is<br>
+                    &nbsp;&nbsp; signal CTR : unsigned(n-1 downto 0) :=
+                    (others=&gt;'0');<br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; process (clk_in)&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    if(rising_edge(clk_in))then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; CTR &lt;=
+                    CTR+1;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    &nbsp;&nbsp;&nbsp; clk_out &lt;= CTR(n-1);<br>
+                    end archi;<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="DIV_FRED_2N"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">Diviseur
+                    de frequence par 2N<a href="#NAVIG"><button name="top" type="button"
+                        style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl">-- Diviseur de fréquence par 2xN <br>
+                    library ieee;<br>
+                    use ieee.std_logic_1164.all;<br>
+                    use ieee.numeric_std.all;<br>
+                    <br>
+                    entity divfreq_2N is<br>
+                    &nbsp;&nbsp;&nbsp; generic &nbsp;&nbsp;&nbsp; (&nbsp; N :
+                    natural := 5&nbsp; &nbsp;&nbsp;&nbsp; );<br>
+                    &nbsp;&nbsp;&nbsp; port &nbsp;&nbsp;&nbsp; (<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    clk_in&nbsp;&nbsp;&nbsp; : in std_logic;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    clk_out&nbsp;&nbsp;&nbsp; : inout std_logic<br>
+                    &nbsp;&nbsp;&nbsp; );<br>
+                    end entity;<br>
+                    <br>
+                    architecture&nbsp;&nbsp; archi&nbsp; of&nbsp;&nbsp;
+                    divfreq_2N&nbsp;&nbsp; is<br>
+                    begin<br>
+                    &nbsp;&nbsp;&nbsp; process (clk_in)<br>
+                    &nbsp;&nbsp;&nbsp; variable&nbsp;&nbsp; cnt :
+                    natural&nbsp;&nbsp; range 0 to N-1 := 0;&nbsp;&nbsp;&nbsp; <br>
+                    &nbsp;&nbsp;&nbsp; begin<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if
+                    (rising_edge(clk_in)) then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if
+                    (cnt = N-1) then<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; cnt := 0;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; clk_out &lt;= not(clk_out);<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                    else cnt := cnt + 1; end if;<br>
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end if;<br>
+                    &nbsp;&nbsp;&nbsp; end process;<br>
+                    end archi;<br>
+                    <br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <br>
+            <a name="xxx" id="xxx"></a><br>
+            <table style="width: 100%;" border="0">
+              <thead>
+                <tr>
+                  <td class="Titre" style="background-color: #33ccff;">X<a href="#NAVIG"><button
+                        name="top" type="button" style="width: 41px; height: 30px; float: right; margin-left: 13px;">⏫</button></a>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vhdl"><br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            x<br>
+            <br>
+            <br>
+            <br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <span> </span>
+  </body>
+</html>

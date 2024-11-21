@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Tutoriel Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab, GUI" name="description">
+    <meta content="Matlab, matlab GUI, figure, set, get" name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style="    background-color: silver; width: 99%; height: 100%;">
+    <div id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <object id="counter" data="compteur.php?name=gui_count.txt"></object>
+    <div id="sctn_ttl">
+      <h1>L'interface GUI Matlab</h1>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html" &gt;=""></object>
+    <div id="contenu">
+      <h1 class="titre"> Introduction </h1>
+      <br>
+      Il y a deux façons de réaliser une interface graphique Matlab, <br>
+      <br>
+      <ul>
+        <li>Utiliser l'outil graphique <em><strong>Guide </strong></em>qui
+          facilite beaucoup la vie mais qui ne permet pas de comprendre vraiment
+          ce que l'on fait. Il génère deux fichiers dont l'un ne peut pas être
+          édité et l'autre pas très facile à déchiffrer. Il suffit d'avoir un
+          petit problème dans l'un des deux fichiers et on n'arrive plus à
+          ouvrir l'interface graphique.</li>
+        <br>
+        <li>La deuxième méthode consiste à tout écrire soit même. C'est un peu
+          plus compliqué, un peu plus long, mais on maîtrise tout. Le programme
+          tient dans un seul script que l'on peut retoucher comme bon il nous
+          semble. C'est cette méthode que j'ai décidé de décrire ici. Il ne
+          s'agit pas d'un cours très détaillé mais&nbsp; plutôt d'un exemple
+          permettant de monter une interface graphique rapidement.</li>
+      </ul>
+      <br>
+      <h1 class="titre"> <a id="objgraph" name="objgraph"></a>Les objets
+        graphiques </h1>
+      Les objets graphiques les plus importants sont:<br>
+      <ul>
+        <li> <em>l'objet<strong> fenêtre</strong></em>: C'est le conteneur
+          principal qui va recevoir tous les autres objets graphiques. Il est
+          crée à l'aide de la fonction <em><strong>figure()</strong></em>. </li>
+        <li>
+          <p>L'objet <em><strong>axes</strong></em>: C'est le conteneur qui
+            reçoit les tracés et tout ce qui va avec.</p>
+        </li>
+        <li>
+          <p><em>Les <strong>Contrôles</strong></em>: Boutons, case à cocher,
+            champs de saisie, liste déroulantes...Il sont tous crée à l'aide de
+            la fonction <strong>uicontrol()</strong>. </p>
+        </li>
+        <li><em><strong>Les menus</strong></em>: Il sont crée par la fonction <em><strong>uimenu()</strong></em>.</li>
+        <li>
+          <p>Les <em><strong>panneaux</strong></em>: Ce sont des conteneurs
+            permettant de regrouper d'autres contrôles. On les crée avec la
+            fonction <em><strong>uipannel()</strong></em>.</p>
+        </li>
+        <li>Les <em><strong>groupes</strong></em>: Ce sont des panneaux
+          particuliers permettant de gérer un ensemble de contrôles comme les
+          radiobuttons. On les crée avec la fonction <em><strong>uibuttongroup()&nbsp;
+              </strong></em>.</li>
+      </ul>
+      <br>
+      <h1 class="titre"><a id="objfenetre" name="objfenetre"></a>L'objet fenêtre
+      </h1>
+      Pour commencer, il faut créer une fenêtre qui contiendra les autres
+      contrôles. Pour ça, on utilise la fonction <em><strong>figure()</strong></em>.
+      La fonction a beaucoup de paramètres, mais on n'est pas obligé de tous les
+      préciser.<br>
+      <br>
+      Voici quelques propriété de l'objet figure:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 15%;"><em><strong>CloseRequestFcn</strong></em></td>
+            <td>Permet de définir le nom de la fonction qui sera appelée si on
+              ferme la fenêtre à l'aide de la fonction close ou en cliquant le x
+              rouge. Cette fonction peut servir (entre autres) à fermer les
+              fichiers et les ports ouverts avant de quitter <img alt="" src="images/xrouge.PNG"><br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>Position</strong></em></td>
+            <td><a target="_blank" href="images/position.PNG">Position&nbsp;</a>
+              de la fenêtre par rapport à l'écran. On peut changer les unités à
+              l'aide de la propriété <em><strong>units<br>
+                </strong></em>On peut utiliser get(0,'ScreenSize') qui retourne
+              les dimensions de l'écran (ex [1 1 1280 800]) histoire de donner à
+              la fenêtre des dimensions correctes. </td>
+          </tr>
+          <tr>
+            <td><em><strong>Visible </strong></em></td>
+            <td>Définit si la fenetre est visible ou pas, il peut prendre les
+              valeur <em><strong>on </strong></em>ou <em><strong>off</strong></em></td>
+          </tr>
+          <tr>
+            <td><em><strong>Enable<br>
+                </strong></em> </td>
+            <td>définit si le contrôle est opérationnel ou non. Elle peut
+              prendre les valeurs {on} , inactive , off<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>color<br>
+                </strong></em> </td>
+            <td>Couleur de fond de la fenetre. On peut utiliser une matrice
+              [rouge&nbsp; vert&nbsp;&nbsp; bleu] ou les couleurs prédéfinies: <br>
+              'r' ou 'red', 'g' ou 'green' , 'b' ou 'blue' , 'y' ou 'yellow' ,
+              'm' ou 'magenta' , 'c' ou 'cyan' , 'w' ou 'white' , 'k' ou 'black'
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>MenuBar</strong></em></td>
+            <td>Pour afficher ou non la barre des menus et la barre d'outils que
+              matlab affiche par défaut dans la fenêtre. Les valeurs possibles
+              sont {<em>figure</em>} pour oui et <em>none </em>pour non</td>
+          </tr>
+          <tr>
+            <td><em><strong>name</strong></em></td>
+            <td>Titre de la fenêtre</td>
+          </tr>
+          <tr>
+            <td><em><strong>NumberTitle</strong></em></td>
+            <td>Pour afficher ou non le numéro de figure. Valeurs: {on}, off</td>
+          </tr>
+          <tr>
+            <td><em><strong>Pointer</strong></em></td>
+            <td>Pointeur de la souris quand celui ci survole la fenêtre. Valeurs
+              possibles: crosshair | {arrow} | watch | topl | <br>
+              topr | botl | botr | circle | cross | fleur | left | right | top |
+              bottom | fullcrosshair | ibeam | custom | hand</td>
+          </tr>
+          <tr>
+            <td><em><strong>Resize</strong></em></td>
+            <td>détermine si on peut redimensionner la fenêtre ou non. Valeurs
+              possibles:&nbsp; {on} | off</td>
+          </tr>
+          <tr>
+            <td><em><strong>Toolbar</strong></em></td>
+            <td>Pour afficher ou non la barre d'outils par défaut des fenêtres
+              Matlab. valeurs possibles: none | {auto} | figure<br>
+              avec l'option par défaut: <em>auto</em>, la barre d'outil est
+              affichée mais elle est supprimée dès qu'on place un contrôle dans
+              la fenêtre</td>
+          </tr>
+          <tr>
+            <td><em><strong>Units</strong></em></td>
+            <td>Unité de mesure pour le paramètre Position. Les valeurs
+              possibles sont<br>
+              &nbsp;inches | centimeters | normalized | points | {pixels} |
+              characters</td>
+          </tr>
+        </tbody>
+      </table>
+      Pour plus de détail: <a href="http://www.mathworks.com/help/matlab/ref/figure_props.html">http://www.mathworks.com/help/matlab/ref/figure_props.html</a><br>
+      <br>
+      <em style="color: #333399;">fh = figure('Position',[400 300 350 160]);</em><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/figure0.PNG"><br>
+      </div>
+      <br>
+      Dans l'exemple ci-dessus, <em><strong>fh </strong></em>représente
+      l'identificateur (handler) de la figure, on peut lui donner le non que
+      l'on veut. Le paramètre <em><strong>'position'</strong></em> définit la
+      position et les dimensions de la fenêtre. Sous Matlab, l'origine des
+      coordonnées x,y est située au coin bas-gauche de l'écran.&nbsp; (400,300)
+      est la position du coin bas gauche de la fenêtre par rapport à l'origine.
+      350 est la largeur de la fenêtre, 160 est sa hauteur.<br>
+      <br>
+      Si on veut se débarrasser de la barre des menus:<br>
+      <em style="color: #333399;">fh = figure('Position',[400 300 350
+        160],'Menubar','None');</em><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/figure1.PNG"><br>
+      </div>
+      <br>
+      Pour se débarrasser du numéro de figure et lui donner un nom, on utilise
+      les paramètres <em><strong>'NumberTitle'</strong></em> et <em><strong>'name'</strong></em>,
+      <br>
+      On peut les rajouter après la création de la fenêtre à l'aide de la
+      fonction <em><strong>set():</strong></em><br>
+      <em style="color: #333399;">set(fh, 'NumberTitle', 'off', 'name' , 'Ce que
+        vous voulez')</em><br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/figure3.PNG"><br>
+        <br>
+        <br>
+      </div>
+      <br>
+      <br>
+      <h1 class="titre"> <a id="abreveations" name="abreveations"></a>Les
+        Abréviations </h1>
+      Les propriété ont souvent des noms assez long. Matlab accepte qu'on
+      utilise seulement les premiers caractères d'une propriété. Par exemple: '<em>back</em>'
+      à la place de '<em>backgroud</em>' , '<em>norm</em>' à la place de '<em>normalized</em>'<br>
+      <br>
+      Les valeurs par défaut des propriétés Toutes les propriété des objets
+      graphiques ont des valeurs par défaut. Quand on crée un contrôle, on ne
+      précise jamais toutes ces propriétés. Matlab utilise les valeurs par
+      défaut pour toutes les propriétés qui n?ont pas été précisées.<br>
+      Dans la documentation Matlab, la valeurs par défaut est précisée entre {
+      }. Par exemple, la propriété <em><strong>Units </strong></em>du contrôle
+      <em><strong>Uicontrol </strong></em>peut prendre les valeurs: <em>
+        {pixels} | normalized | inches | centimeters | points | characters</em>
+      . La valeur par défaut de cette propriété est <em><strong>pixels</strong>.<br>
+      </em><br>
+      Il est possible de modifier la valeur par défaut d'une&nbsp; propriété
+      pour un contrôle donné. Pour designer la valeur par défaut de la propriété
+      d'un contrôle, on colle les 3 mots: <em>default</em>, <em>nom du
+        contrôle</em>, <em>nom de la propriété</em>. Par exemple:
+      defaultuicontrolunits est la désignation la la valeur par <strong>défaut
+      </strong>de la proprité <strong>units </strong>pour le contrôle <strong>uicontrol</strong><br>
+      Pour faire que la valeur par défaut de <em><strong>units </strong></em>soit
+      la valeur <em><strong>normalized</strong></em>:<br>
+      <em style="color: #000099;">set(0,&nbsp; 'DefaultUicontrolUnits',&nbsp;
+        'normalized')</em><br>
+      Les fonctions set() et get() Après avoir crée un contrôle, on peut définir
+      ou redéfinir une ou plusieurs de ces propriétés à l'aide de la fonction <em><strong>set()</strong></em>.
+      On peut aussi obtenir la valeur d'une propriété à l'aide de la fonction <em><strong>get()</strong></em><br>
+      <br>
+      <br>
+      <em style="color: #000099;">h = figure();<br>
+        set(h, 'Menubar', 'none', 'name', 'Investigations')<br>
+        <br>
+        m = get(h,'position')&nbsp;&nbsp; --&gt;&nbsp;&nbsp; 621&nbsp;&nbsp;
+        269&nbsp;&nbsp; 560&nbsp;&nbsp; 420</em><br>
+      <br>
+      <br>
+      <br>
+      <h1 class="titre">Les valeurs par défaut des propriétés</h1>
+      <br>
+      Voir <a target="_top" href="Matlab_Graphiques.html#valdefaut">ICI</a><br>
+      <br>
+      <h1><a target="_top" href="matlab_controles.html"><span style="font-style: italic;">La
+            suite</span></a></h1>
+      <script language="JavaScript">document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script> </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab" name="description">
+    <meta content="Matlab" name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style="        background-color: silver; width: 99%; height: 100%;">
+    <div class="maron" id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <div id="sctn_ttl">
+      <h1>Interface GUI</h1>
+      <p><br>
+      </p>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html"></object> <br>
+    <div id="contenu"><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

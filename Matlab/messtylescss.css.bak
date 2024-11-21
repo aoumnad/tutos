@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <link rel="alternate stylesheet" type="text/css" href="resource://gre-resources/plaintext.css"
+      title="Retour à la ligne automatique">
+  </head>
+  <body>
+    <pre>#gnrl_ttl {  
+  width: 26%;  
+  height: 80px;  
+  color: #333300;  
+  background-color: #ccccff;  
+  font-family: Cambria;  
+  text-align: center;  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;  
+  position: fixed;  
+  left: 0.5%;  
+  float: left;  
+  display: inline-block !important;
+}
+
+#sctn_ttl {  
+  width: 66.25%;  
+  height: 80px;  
+  color: #cc0000;  
+  background-color: #ccccff;  
+  font-family: Cambria;  
+  text-align: center;  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;  
+  //display: inline-block;  
+  float: right;
+}
+
+#counter {  
+  width: 7%;  
+  height: 80px;  
+  color: #cc0000;  
+  background-color: #ccccff;  
+  font-family: Cambria;  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;  
+  //display: inline-block;  
+  float: right;  
+  text-align: center;  
+  margin-left: 0.25%;
+}
+
+#navigation {  
+  width: 26%;  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;  
+  position: fixed;  
+  left: 0.5%;  
+  top: 93px;  
+  overflow: auto;  
+  height: 85%;  
+  background-color: #ccccff;
+}
+
+#contenu {  
+  width: 72.5%;  
+  float: right;  
+  background-color: #fbffc6;  
+  font-family: Cambria;  
+  margin-top: 5px;  
+  text-align: justify;  
+  padding-top: 0.5%;  
+  padding-right: 0.5%;  
+  padding-bottom: 0.5%;  
+  padding-left: 0.5%;  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;
+}
+
+#icone {  
+  width: 20%;  
+  height: 90%;  
+  float: left;  
+  padding-top: 1%;  
+  padding-right: 1%;  
+  padding-bottom: 1%;  
+  padding-left: 1%;
+}
+
+.titre {  
+  font-style: italic;  
+  color: #cc0000;  
+  margin-top: 0px;  
+  margin-right: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;
+}
+
+.prog {  
+  background-color: #ccccff;  
+  font-family: Consolas;  
+  font-style: italic;
+}
+
+.matcmd {  
+  font-family: Consolas, monaco, monospace;  
+  font-weight: bold;  
+  font-style: italic;  
+  color: #000099;
+}
+
+.figure {  
+  float: right;  
+  width: 35%;  
+  margin-left: 5px;
+}
+
+.float_R {  
+  float: right;  
+  margin-left: 5px;
+}
+
+.visible_maron {  
+  color: #cc0000;  
+  font-weight: bold;
+}
+
+.visible_maron_I {  
+  color: #cc0000;  
+  font-weight: bold;  
+  font-style: italic;
+}
+
+.visible_bleu_I {  
+  color: blue;  
+  font-style: italic;
+}
+
+.visible_bleu_I_G {  
+  color: blue;  
+  font-weight: bold;  
+  font-style: italic;
+}
+
+#fixe_droite {  
+  background-color: #ccffff;  
+  position: fixed;  
+  right: 1em;  
+  bottom: 1em;
+}
+
+.titre1 {  
+  font-size: 30pt;  
+  color: #3366ff;  
+  margin-top: 0px;  
+  margin-right: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;
+}
+
+.code {  
+  font-style: italic;  
+  font-family: Consolas;  
+  color: blue;
+}
+
+</pre>
+  </body>
+</html>

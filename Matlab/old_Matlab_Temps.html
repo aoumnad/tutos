@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Tutoriel Matlab</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Tutoriel Matlab, Gestion du temps" name="description">
+    <meta content="Matlab, timer, Tic, Toc, pause, clock" name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/matlab2.png" \="">
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+  </head>
+  <body style="                       background-color: silver; width: 99%; height: 100%;">
+    <div id="gnrl_ttl"> <img id="icone" src="images/matlab.jpg">
+      <h3>Didacticiel MATLAB</h3>
+    </div>
+    <object id="counter" data="compteur.php?name=temps_count.txt"></object>
+    <div id="sctn_ttl">
+      <h1>Gestion du temps</h1>
+    </div>
+    <object id="navigation" data="matlab_sommaire.html"></object>
+    <div id="contenu">
+      <h1 class="titre"><a id="timer" name="timer"></a>Le timer</h1>
+      Le timer est un processus qui une fois lancé, tourne en parallèle avec le
+      programme et déclenche à intervalles réguliers l'exécution d'une fonction
+      définie. <br>
+      <br>
+      Les étapes et les fonctions pour utiliser le timer sont:<br>
+      <ul>
+        <li>Créer un objet timer à l'aide de la fonction <strong><em>timer()</em></strong>
+          <br>
+          <span class="matcmd">id = timer('PropertyName1', PropertyValue1,
+            'PropertyName2', PropertyValue2,...)</span><br>
+          Voir le tableau ci-dessous pour les propriétés</li>
+        <li>Démarrer le timer à l'aide de la fonction <em><strong>start(id)</strong></em></li>
+        <li>Quand on a terminé avec le timer:</li>
+        <ul>
+          <li>Arrêter&nbsp; le timer à l'aide de la fonction <em><strong>stop(id)</strong></em></li>
+          <li>Supprimer l'objet timer à l'aide de la fonction <em><strong>delete(id)</strong></em></li>
+          <li>Effacer la variable id de l'espace de travail&nbsp; <em><strong>clear
+                id</strong></em></li>
+        </ul>
+      </ul>
+      Voici quelques propriétés de l'objet <em>timer</em>. Vous aurez plus de
+      détail <a target="_blank" href="http://www.mathworks.com/help/matlab/ref/timer.html">ici</a><a
+
+        target="_top"><br>
+      </a>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 122.733px;"><em><strong>ExecutionMode</strong></em></td>
+            <td style="width: 728.733px;">Mode d'exécution. Les valeurs
+              possibles sont: {singleShot} , fixedDelay , fixedRate,
+              fixedSpacing<br>
+              Avec singleshot, le timer compte une seule période et s'arrêtte.
+              La fonction associée est éxécutée une seule fois.<br>
+              Avec les 3 autres paramètres, on obtient à peu près la même chose.
+              La fonction associée est déclenchée périodiquement selon la
+              période choisie.</td>
+          </tr>
+          <tr>
+            <td><em><strong>Period</strong></em></td>
+            <td>Période du timer en secondes. Par défaut = 1.0 s</td>
+          </tr>
+          <tr>
+            <td><em><strong>Running</strong></em></td>
+            <td>Permet de savoir si le timer est démarré ou arrêté. Elle
+              retourne les valeurs <em>'on'</em>, ou <em>'off'</em><br>
+              <em>etat = get(id, 'Running')</em></td>
+          </tr>
+          <tr>
+            <td><em><strong>StartDelay</strong></em></td>
+            <td>Période entre le moment du démarrage du timer avec la fonction <em>start()</em>
+              et le moment où il démarre effectivement. Par défaut , sa valeur
+              est 0</td>
+          </tr>
+          <tr>
+            <td><em><strong>StartFcn</strong></em></td>
+            <td>Fonction qui sera appelée&nbsp; au moment du démarrage du timer
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>StopFcn</strong></em></td>
+            <td>Fonction qui sera appelée&nbsp; quand le timer est stoppé ou
+              quand il a terminé le nombre de périodes précisé par la propriété
+              TasksToExecute</td>
+          </tr>
+          <tr>
+            <td><em><strong>TasksToExecute</strong></em></td>
+            <td>Nombre de périodes à achever avant de s’arrêter automatiquement</td>
+          </tr>
+          <tr>
+            <td><em><strong>TasksExecuted</strong></em></td>
+            <td>Permet de savoir combien de périodes se sont écoulées depuis le
+              démarrage du timer.<br>
+              <em>n = get(id, 'TasksExecuted')</em></td>
+          </tr>
+          <tr>
+            <td><em><strong>TimerFcn</strong></em></td>
+            <td>Définit le callback du timer.: Nom de la fonction qui sera
+              exécutée chaque fois que le timer a terminé une période</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      Voici un <a target="_blank" href="scripts/timer_anim.m">petit exemple</a>
+      pour illustrer tout ça<br>
+      <table style="width: 100%;" border="1" cellpadding="5">
+        <tbody>
+          <tr>
+            <td class="prog">function timer_anim()<br>
+              &nbsp;&nbsp;&nbsp; close all;<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('menu','none','Units','Normal',
+              'pos', [0.25 0.25 0.5 0.5]);<br>
+              &nbsp;&nbsp;&nbsp; ax = axes('Units','Normal', 'pos', [0.25 0.05
+              0.73 0.9],'NextPlot','add');<br>
+              &nbsp;&nbsp;&nbsp; set(ax,'xtick',[], 'ytick', [])<br>
+              &nbsp;&nbsp;&nbsp; set(fh, 'defaultUicontrolUnits','normalized');<br>
+              &nbsp;&nbsp;&nbsp; ext = uicontrol(fh, 'style','pushbutton',
+              'string', 'EXIT',...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'pos',[0.04 0.05 0.15
+              0.1], 'callback',@extcall);<br>
+              &nbsp;&nbsp;&nbsp; strtstp = uicontrol(fh, 'style','pushbutton',
+              'string', 'START / STOP',...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'pos',[0.04 0.2 0.15 0.1], 'callback',@strtstpcb);<br>
+              &nbsp;&nbsp;&nbsp; vu = uicontrol(fh, 'style','Text', 'pos',[0.04
+              0.35 0.15 0.15], 'foreg', 'b');<br>
+              &nbsp;&nbsp;&nbsp; tmr = timerfindall; % chercher s'il y'a des
+              timer qui trainent<br>
+              &nbsp;&nbsp;&nbsp; delete(tmr);<br>
+              &nbsp;&nbsp;&nbsp; tmr = timer('ExecutionMode', 'fixedRate',
+              'Period', 0.1,...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'TasksToExecute',100, 'StartFcn',
+              @strt, 'StopFcn', @stp, 'TimerFcn',@tmrcall);<br>
+              &nbsp;&nbsp;&nbsp; k = 4;<br>
+              &nbsp;&nbsp;&nbsp; p = pi/50;<br>
+              &nbsp;&nbsp;&nbsp; t = 0 : p : 2*pi;<br>
+              &nbsp;&nbsp;&nbsp; x = sin(t);<br>
+              &nbsp;&nbsp;&nbsp; y = sin(k*t);<br>
+              &nbsp;&nbsp;&nbsp; plot(x,y,':');<br>
+              &nbsp;&nbsp;&nbsp; m = plot(0, 0, 'o', 'Markersize',10,
+              'MarkerFaceColor','g','EraseMode','xor');<br>
+              &nbsp;&nbsp;&nbsp; axis([-1.2 1.2 -1.2 1.2]);<br>
+              &nbsp;&nbsp;&nbsp; t = 0;<br>
+              &nbsp;&nbsp;&nbsp; x = 0;<br>
+              &nbsp;&nbsp;&nbsp; y = 0;<br>
+              &nbsp;&nbsp;&nbsp; start(tmr);<br>
+              &nbsp; <br>
+              &nbsp;&nbsp;&nbsp; function strt(obj, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tic;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              set(vu, 'string', {'' 'C''est parti ' 'pour un tour'})&nbsp; <br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function stp(obj, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tt =
+              num2str(toc);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ttt =
+              ['en ' tt ' s'];<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              set(vu, 'string', {'' 'C''est fait' ttt});<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [yy,
+              ff]=wavread('c:\windows\media\notify');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              sound(yy,ff,16);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function tmrcall(obj, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = plot(x, y, 'o',
+              'Markersize',10, 'MarkerFaceColor','g','EraseMode','xor');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = t + p;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = sin(t);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y = sin(k*t);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = plot(ax, x, y, 'o',
+              'Markersize',10, 'MarkerFaceColor','g','EraseMode','xor');<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function strtstpcb(obj, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(tmr,'running');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if strcmp(s, 'off')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              start(tmr);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              stop(tmr);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function extcall(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(tmr,'running');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if strcmp(s, 'on')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              stop(tmr);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(tmr);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear tmr;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(fh);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+              end </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h1> <a class="titre" id="tictoc"> Tic, Toc</a></h1>
+      Permette de déterminer le le temps d'exécution d'une ou d'un ensemble
+      d'instructions. <br>
+      <br>
+      <div style="margin-left: 40px;"><em>tic;</em><br>
+        <em>. . .</em><br>
+        <em>. . .</em><br>
+        <em> . . .</em><br>
+        <em> . . .</em><br>
+        <em> t = toc</em></div>
+      <br>
+      L'exemple ci-dessous montre que (sur ma machine), Matlab met 0.38s pour
+      inverser une matrice 1000x1000 et 0.057s pour calculer le logarithme de
+      toutes ses valeurs<br>
+      <br>
+      <span class="matcmd">&gt;&gt; a = rand(1000,1000);<br>
+        &gt;&gt; tic; b=inv(a); toc</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp; Elapsed time is 0.383913 seconds.<br>
+      <br>
+      <span class="matcmd"> &gt;&gt; tic; b = log(a); t=toc</span><br>
+      &nbsp;&nbsp;&nbsp; t =&nbsp;&nbsp; 0.0568<br>
+      <br>
+      <br>
+      <h1><a class="titre" id="clock"> clock</a></h1>
+      la fonction <em><strong>clock </strong></em>retourne la date et l'heure
+      sous forme d'un vecteur à six éléments,<br>
+      [année moi jour heure minute secondes]<br>
+      <pre class="programlisting">[year month day hour minute seconds]</pre>
+      <br>
+      <span class="matcmd">&gt;&gt; format short g<br>
+        &gt;&gt; clock</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans
+      =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 59.192<br>
+      <br>
+      <span class="matcmd">&gt;&gt; d = clock;<br>
+        &gt;&gt; fprintf('On est le %d/%d/%d %dh:%dmn:%5.2fs\n',
+        d(3),d(2),d(1),d(4),d(5),d(6))</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp; On est le 28/7/2013 16h:39mn:35.14s<br>
+      <br>
+      On peut aussi essayer comme ça:<br>
+      <br>
+      <span class="matcmd">&gt;&gt; d = clock,, </span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d&nbsp; =&nbsp;&nbsp;
+      2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 38.084<br>
+      <span class="matcmd"> &gt;&gt; d(1:3) = fliplr(d(1:3))</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 38.084<br>
+      <span class="matcmd">&gt;&gt; fprintf('On est le %d/%d/%d&nbsp;
+        %dh:%dmn:%5.2fs\n', d)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; On est le 28/7/2013&nbsp; 16h:52mn:38.08s<br>
+      <br>
+      <br>
+      <h1 class="titre"><a id="pause"> </a>pause</h1>
+      Permet d'interrompre momentanément l'exécution d'un programme. Plusieurs
+      syntaxes sont possibles:<br>
+      <em><tt>pause<br>
+          pause(n)<br>
+          pause on<br>
+          pause off<br>
+          pause query<br>
+          state = pause('query')<br>
+          oldstate = pause(newstate)</tt></em><br>
+      <br>
+      <span class="matcmd">pause</span><br>
+      Suspend l'exécution d'un programme m-file jusqu'à ce qu'on touche le
+      clavier<br>
+      <br>
+      <span class="matcmd">pause(n)</span><br>
+      Suspend l'exécution d'un programme m-file pendant n secondes. n est un
+      nombre réel positif<br>
+      <br>
+      <span class="matcmd">pause on</span><br>
+      Valide la possibilité d'interrompre les programme à l'aide de
+      l'instruction <em>pause </em>et <em>pause(n)</em> <br>
+      <br>
+      <span class="matcmd">pause off</span><br>
+      désactive la possibilité d'interrompre les programme à l'aide de
+      l'instruction <em>pause </em>et <em>pause(n)</em> <br>
+      <br>
+      <span class="matcmd">pause query</span><br>
+      Affiche l'état (<em>on </em>ou <em>off</em>) de validation de pause<br>
+      <br>
+      <span class="matcmd"> etat = pause('query')</span><br>
+      Affecte l'état de validation de pause à la variable etat<br>
+      <br>
+      <span class="matcmd"> oldstate = pause(newstate)</span><br>
+      L'état actuel de validation de pause est affecté à la variable oldstate.
+      Le nouvel état de validation prend la valeur de newstate<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

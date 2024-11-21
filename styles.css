@@ -55,6 +55,14 @@ figcaption {
     text-align: center;
 }
 
+.blue{
+    color: blue;
+}
+
+.red{
+    color: red;
+}
+
 .PosterPageContainer {
     width: 100vw;
     height: 100dvh;

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Matlab Serial</title>
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Didacticiel Matlab" name="description">
+    <meta content="Matlab Serial" name="keywords">
+  </head>
+  <body style="                                   background-color: #ccccff;">
+    <div id="entete">Le port Série </div>
+    <br>
+    <div id="contenu">
+      <h2 class="titre"> <a id="serial" name="serial"></a>Créer un objet serial <span class="matcmd"></span></h2>
+      Pour commencer il faut créer un objet (structure) serial et lui affecter un port physique:<br>
+      <span class="matcmd">id = serial('COM4');</span><br>
+      Le port ainsi créé sera accessible par son identificateur <em>id</em>.<br>
+      ici nous n'avons précisé que le nom du port, tous les autres paramètres sont pris par défaut. Pour consulter leurs
+      valeurs, taper la commande <span class="matcmd">get(id)</span><br>
+      <br>
+      <span style="font-style: italic;">&nbsp;&nbsp;&nbsp;<span style="color: #ff6600; font-weight: bold;"> ByteOrder =
+          littleEndian</span><br>
+        &nbsp;&nbsp;&nbsp;<span style="color: #ff6600; font-weight: bold;"> BytesAvailable = 0</span><br>
+        &nbsp;&nbsp;&nbsp; BytesAvailableFcn = <br>
+        &nbsp;&nbsp;&nbsp; BytesAvailableFcnCount = 48<br>
+        &nbsp;&nbsp;&nbsp; BytesAvailableFcnMode = terminator<br>
+        &nbsp;&nbsp;&nbsp; BytesToOutput = 0<br>
+        &nbsp;&nbsp;&nbsp; ErrorFcn = <br>
+        &nbsp;&nbsp;&nbsp; <strong style="color: #ff6600;">InputBufferSize = 512</strong><br>
+        &nbsp;&nbsp;&nbsp; Name = Serial-COM4<br>
+        &nbsp;&nbsp;&nbsp; ObjectVisibility = on<br>
+        &nbsp;&nbsp;&nbsp; OutputBufferSize = 512<br>
+        &nbsp;&nbsp;&nbsp; OutputEmptyFcn = <br>
+        &nbsp;&nbsp;&nbsp; RecordDetail = compact<br>
+        &nbsp;&nbsp;&nbsp; RecordMode = overwrite<br>
+        &nbsp;&nbsp;&nbsp; RecordName = record.txt<br>
+        &nbsp;&nbsp;&nbsp; RecordStatus = off<br>
+        &nbsp;&nbsp;&nbsp;<strong style="color: #ff6600;"> Status = closed</strong><br>
+        &nbsp;&nbsp;&nbsp; Tag = <br>
+        &nbsp;&nbsp;&nbsp; <strong style="color: #ff6600;">Timeout = 10</strong><br>
+        &nbsp;&nbsp;&nbsp; TimerFcn = <br>
+        &nbsp;&nbsp;&nbsp; TimerPeriod = 1<br>
+        &nbsp;&nbsp;&nbsp; TransferStatus = idle<br>
+        &nbsp;&nbsp;&nbsp; Type = serial<br>
+        &nbsp;&nbsp;&nbsp; UserData = []<br>
+        &nbsp;&nbsp;&nbsp; ValuesReceived = 0<br>
+        &nbsp;&nbsp;&nbsp; ValuesSent = 0<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; SERIAL specific properties:<br>
+        &nbsp;&nbsp;&nbsp;<strong style="color: #ff6600;"> BaudRate = 9600</strong><br>
+        &nbsp;&nbsp;&nbsp; BreakInterruptFcn = <br>
+        &nbsp;&nbsp;&nbsp;<strong><span style="color: #ff6600;"> DataBits = 8</span></strong><br>
+        &nbsp;&nbsp;&nbsp; DataTerminalReady = on<br>
+        &nbsp;&nbsp;&nbsp; FlowControl = none<br>
+        <strong style="color: #ff6600;">&nbsp;&nbsp;&nbsp; Parity = none</strong><br>
+        &nbsp;&nbsp;&nbsp; PinStatus = [1x1 struct]<br>
+        &nbsp;&nbsp;&nbsp; PinStatusFcn = <br>
+        <strong style="color: #ff6600;">&nbsp;&nbsp;&nbsp; Port = COM4</strong><br>
+        &nbsp;&nbsp;&nbsp; ReadAsyncMode = continuous<br>
+        &nbsp;&nbsp;&nbsp; RequestToSend = on<br>
+        <strong style="color: #ff6600;">&nbsp;&nbsp;&nbsp; StopBits = 1</strong><br>
+        <span style="font-weight: bold; color: #ff6600;">&nbsp;&nbsp;&nbsp; Terminator = LF</span><br>
+      </span><span style="font-style: italic;"></span><br>
+      pour modifier la valeur d'une propriété, on peut le faire de deux façons:<br>
+      <ul>
+        <li>Au moment de la création: &nbsp;&nbsp; <span class="matcmd">sp =
+            serial('COM4','Baudrate',19200,'databits',8)</span></li>
+      </ul>
+      <ul>
+        <li>Après la création:</li>
+        <span class="matcmd"> sp = serial('COM4');<br>
+          set(sp, 'baudrate', 19200);</span>
+      </ul>
+      <br>
+      <h2 class="titre"> <a id="openport" name="openport"></a>Ouvrir un port <span class="matcmd"></span></h2>
+      Avant d'utiliser un objet serial, il faut l'ouvrir: <em><strong>fopen(id)</strong></em><br>
+      <span class="matinst"> sp = serial('COM4');</span><br>
+      <span class="matcmd"> fopen(sp)</span><br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="closeport" name="closeport"></a>Fermer un port <span class="matcmd"></span></h2>
+      Quand on a fini avec un port, il faut le fermer: <em><strong>fclose(id)</strong></em><br>
+      <br>
+      <span class="matinst">sp = serial('COM4');<br>
+        fopen(sp)<br>
+        ...<br>
+        ...<br>
+        ...</span><br>
+      <span class="matcmd"> fclose(sp)</span><br>
+      <br>
+      <h2 class="titre"> <a id="deleteport" name="deleteport"></a>Supprimer l'objet serial <span class="matcmd"></span></h2>
+      Après la fermeture d'un port à l'aide la fonction <em><strong>fclose()</strong></em>, l'objet port série continue
+      d'exister. On peut le réouvrir et le réutiliser. Quand on a vraiment terminé avec un port,&nbsp; il faut le
+      supprimer.<br>
+      <br>
+      <span class="matinst">sp = serial('COM4');<br>
+        fopen(sp);<br>
+        ...<br>
+        ...<br>
+        ...<br>
+        fclose(sp);<br>
+      </span><span class="matcmd">delete(sp);<br>
+        clear sp;<br>
+      </span><br>
+      <h2 class="titre"> <a id="goodpractice" name="goodpractice"></a>Pour éviter les problèmes <span class="matcmd"></span></h2>
+      Il arrive (en cas de plantage de programme par exemple) qu'un objet serial ne soit pas supprimé. A chaque
+      ré-exécution du programme, un nouvel objet serial est crée sur le même port physique. Le problème est que après,
+      le plantage d'un programme, ses variables n'existe plus, mais les objets de type serial continuent d'exister. On
+      se retrouve avec des objets serial dont les identificateurs n'existent plus, comment faire pour les supprimer ?<br>
+      la fonction <em><strong>instrfind()</strong></em> permet de déterminer tous les identificateurs des objets liés à
+      un port. Ceci permet de les supprimer.<br>
+      <br>
+      <span class="matcmd">id = instrfind('port', 'COM4') ;<br>
+        delete(id);<br>
+        clear id;<br>
+        <br>
+      </span>un bon programme contiendra les deux blocs suivants:<br>
+      <table style="width: 100%;" border="1" cellpadding="4" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="background-color: #99ffff;"><span class="matcmd">id = instrfind('port', 'COM4') ;<br>
+                delete(id);<br>
+                clear id;<br>
+              </span><span class="matcmd">sp = serial('COM4');<br>
+                fopen(sp);<br>
+                ...<br>
+                ...<br>
+                ...<br>
+                fclose(sp);<br>
+                delete(sp);<br>
+                clear sp;</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="txstr" name="txstr"></a>Transmettre une Chaîne</h2>
+      <span class="matcmd">fwrite(sp, 'ABç');</span><br>
+      les octets transmis sont 65, 66, 231 ce qui signifie que Matlab utilise le codage par défaut de la machine
+      utilisée. Pour moi, c'est&nbsp; windows-1252 qui une adapatation pour Windows de&nbsp; <a target="_blank" href="https://fr.wikipedia.org/wiki/ISO_8859-1"><em
+          style="color: rgb(0, 0, 0); font-family: Cambria; font-size: medium; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 153);">iso8859_1</em></a>
+      souvent appelé Latin-1. Matlab ne produit pas de message d'erreur si on transmet des caractères qui ne peuvent
+      être codés en latin-1 comme ω ou µ, les codes sont tout simplement tronqués et on reçoit des caractères erronés.<br>
+      <br>
+      Pour déterminer le codage par défaut de votre machine: <span class="matcmd">feature('DefaultCharacterSet')</span><br>
+      <br>
+      <div class="P_Sttl"> Encodage d'une chaîne</div>
+      Pour effectuer le codage d'une chaîne dans un code donné on peut utiliser la fonction:<br>
+      <span class="matcmd">bytes = unicode2native(unicodestr, encoding)</span><br>
+      exemple:<br>
+      <br>
+      <span class="matcmd">B = unicode2native('AçéB', 'latin-1')&nbsp;&nbsp; </span><br>
+      B =&nbsp;&nbsp; 65&nbsp; 231&nbsp; 233&nbsp;&nbsp; 66<br>
+      <br>
+      <span class="matcmd">B = unicode2native('AçéB','utf-8')</span><br>
+      B =&nbsp;&nbsp; 65&nbsp; 195&nbsp; 167&nbsp; 195&nbsp; 169&nbsp;&nbsp; 66<br>
+      on remarque avec le codage utf-8,&nbsp; ç est codé par deux octets 195, 167 ainsi que é qui est codé par 195, 169<br>
+      <br>
+      pour avoir les code en hexadécimal, il suffit de demander à Matlab d'afficher en hexadécimal:<br>
+      <span class="matcmd">format hex<br>
+        B = unicode2native('AçéB','utf-8')</span><br>
+      B =&nbsp;&nbsp; 41&nbsp;&nbsp; c3&nbsp;&nbsp; a7&nbsp;&nbsp; c3&nbsp;&nbsp; a9&nbsp;&nbsp; 42<br>
+      pour revenir au format décimal, il suffit de taper <em>format</em><br>
+      <br>
+      En résumé si on veut transmettre la chaîne AçéB en utilisant le codage utf-8, il suffit de transmettre la suite
+      d'octet [65&nbsp; 195&nbsp; 167&nbsp; 195&nbsp; 169&nbsp;&nbsp; 66]. Il va sans dire que la machine qui reçoit
+      doit les décoder conformément au tableau utf-8<br>
+      <span class="matcmd">fwrite(sp, [65&nbsp; 195&nbsp; 167&nbsp; 195&nbsp; 169&nbsp;&nbsp; 66], 'uint8')</span><br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="rxstr" name="rxstr"></a>Recevoir une Chaîne </h2>
+      Les informations sont reçues octet par octet. A priori on n'a aucun moyen de savoir si les octets reçus font
+      partie d'une chaîne, d'un entier ou d'un réel. <br>
+      <br>
+      Pour lire une suite de 6 octets dans le port ouvert avec l'identificateur rx,<br>
+      <span class="matcmd">inp = fread(rx, 6);</span><br>
+      <br>
+      On obtient quelque chose de ce genre:<br>
+      inp =<br>
+      &nbsp;&nbsp;&nbsp; 65<br>
+      &nbsp;&nbsp; 195<br>
+      &nbsp;&nbsp; 167<br>
+      &nbsp;&nbsp; 195<br>
+      &nbsp;&nbsp; 169<br>
+      &nbsp;&nbsp;&nbsp; 66<br>
+      <br>
+      Si on utilise l'instruction <em>whos</em>, on peut vérifier que par défaut, Matlab stocke les éléments dans la
+      variable inp au format double (32 bits = 8 octet pour chaque élément)<br>
+      <br>
+      &nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Bytes&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp; Attributes<br>
+      &nbsp; inp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      6x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      48&nbsp;&nbsp;&nbsp;&nbsp; double&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      &nbsp;<br>
+      Il est conseillé d'utiliser le format uint8 (unsigned integer 8) pour les octet reçu. On va aussi transposer (<strong><em>'</em></strong>
+      ) le vecteur reçu afin d'obtenir un vecteur ligne.<br>
+      <span class="matcmd">inp = uint8(fread(rx, 6))';</span><br>
+      on obtient:<br>
+      inp =<br>
+      &nbsp;&nbsp; 65&nbsp; 195&nbsp; 167&nbsp; 195&nbsp; 169&nbsp;&nbsp; 66<br>
+      <br>
+      si on utilise l'instruction whos, on vérifie que chaque élément de inp est un byte et non un double:<br>
+      &nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Bytes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Attributes<br>
+      &nbsp; inp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1x6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      uint8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <br>
+      <div><span class="P_Sttl">Décodage de la chaîne</span></div>
+      Si on sait que les octets reçus sont issus de l'encodage <em>utf-8</em> d'une chaîne, on peut reconstituer cette
+      chaîne à l'aide de la fonction&nbsp;<span class="matcmd"> native2unicode(bytes, encoding)<br>
+      </span><span class="matcmd"></span><br>
+      <span class="matcmd">s = native2unicode(inp, 'utf-8')</span><br>
+      On obtient:<br>
+      s = AçéB<br>
+      <br>
+      <br>
+      Un bon moyen pour faire des essais, est de créer une paire de ports virtuels connectés entre eux à l'aide d'un
+      logiciel du genre VSPD ou similaire. Ce qu'on écrit dans un port on le reçoit dans l'autre.<br>
+      Voici un petit programme qui transmet une chaine sur COM4 et la récupère sur COM5<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">txp ='COM4';<br>
+              id = instrfind('port',txp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              tx = serial(txp);<br>
+              fopen(tx);<br>
+              <br>
+              rxp ='COM5';<br>
+              id = instrfind('port',rxp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              rx = serial(rxp);<br>
+              fopen(rx);<br>
+              <br>
+              st = 'Comment ça va ?';<br>
+              fwrite(tx, st, 'uint8');<br>
+              inp = uint8(fread(rx, length(st)))';<br>
+              sr = char(inp)<br>
+              <br>
+              fclose(tx);<br>
+              delete(tx);<br>
+              clear tx;<br>
+              <br>
+              fclose(rx);<br>
+              delete(rx);<br>
+              clear rx;<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      l'exemple ci-dessous est le même mais utilise le codage utf-8<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">txp ='COM4';<br>
+              id = instrfind('port',txp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              tx = serial(txp);<br>
+              fopen(tx);<br>
+              <br>
+              rxp ='COM5';<br>
+              id = instrfind('port',rxp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              rx = serial(rxp);<br>
+              fopen(rx);<br>
+              <br>
+              st = 'ça va merci';<br>
+              bt = unicode2native(st,'utf-8')<br>
+              fwrite(tx, bt, 'uint8');<br>
+              <br>
+              br = uint8(fread(rx, length(bt)))';<br>
+              sr = native2unicode(br,'utf-8')<br>
+              <br>
+              fclose(tx);<br>
+              delete(tx);<br>
+              clear tx;<br>
+              <br>
+              fclose(rx);<br>
+              delete(rx);<br>
+              clear rx;<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="txint" name="txint"></a>Transmettre un Entier </h2>
+      Un entier peut être constitué de 1, 2, 4 ou 8 octets ( et même plus). il peut être signé ou non signé.<br>
+      Avec un octet, on peut représenter 256 entiers non signés allant de 0 à 255<br>
+      Avec un octet, on peut représenter 256 entiers signés allant de 0 à +127 et de -1 à -128<br>
+      <br>
+      Pour transmettre un entier N non signé de 32 bits (uint32) dans le port ouvert avec l'identificateur <em><strong>tx</strong><br>
+      </em><span class="matcmd">fwrite(tx, N, 'uint32');</span><br>
+      <br>
+      A titre d'exemple, examinons le nombre 888666444, si on le représente en binaire, on voit qu'il faut quatre octets
+      pour le représenter.<br>
+      <span class="matcmd">dec2bin(888666444)</span><br>
+      ans = 110100111101111111100101001100<br>
+      <br>
+      <span class="matcmd">typecast(uint32(888666444),'uint8')</span><br>
+      ans&nbsp; = &nbsp;&nbsp; 76&nbsp; 249&nbsp; 247&nbsp;&nbsp; 52<br>
+      <br>
+      donc 888666444 =&nbsp; 110100 11110111 11111001 01001100<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      247&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      249&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 76<br>
+      <br>
+      l'instruction <span class="matcmd">fwrite(tx, 888666444, 'uint32');</span> va transmettre les 4 octets 76&nbsp;
+      249&nbsp; 247&nbsp;&nbsp; 52. La transmission commence par l'octet de poids le plus faible car la valeur par
+      défaut, de la propriété <em><strong>ByteOrder</strong></em> de l'objet <em>serial </em>est égale à <em><strong>littleEndian</strong></em>.
+      Si on veut commencer par le poids le plus fort, il faut donner la valeur <em><strong>bigEndian</strong></em> à
+      cette propriété.<br>
+      <span class="matcmd">set(tx, 'ByteOrder', 'bigEndian')</span><br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="rxint" name="rxint"></a>Recevoir un Entier </h2>
+      La réception de nombres entiers de plusieurs octets chacun doit se faire avec soin. Il faut veiller à une bonne
+      synchronisation entre l'émetteur et le récepteur. Par exemple, si l'émetteur transmet des entiers de 32bits (4
+      octets)<br>
+      [23 45 66 100][56 34 2 22][100 50 44 123][200 100 23 8]...<br>
+      si pour une raison ou pour une autre le récepteur rate le premier octet et commence à lire à partir du 2ème octet:<br>
+      [45 66 100 56][34 2 22 100][50 44 123200] ...<br>
+      Il est évident qu'après reconstitution, les entiers reçus seront différents des entiers transmis.<br>
+      <br>
+      Ce problème mis à part, les choses sont assez simples. On lit n octets à l'aide de la fonction <em><strong>fread()</strong></em>,
+      et on reconstitue l'entier à l'aide de la fonction <em><strong>typecast()</strong></em><br>
+      <br>
+      <span class="matcmd">rb = uint8(fread(rx, 2))<br>
+        ri = typecast(rb,'uint16')</span><br>
+      <br>
+      <span class="matcmd">rb = uint8(fread(rx, 4))<br>
+        ri = typecast(rb,'uint32')</span><br>
+      <br>
+      Si l'émetteur utilise l'ordre <em>bigEndian</em>, il faut retourner l'entier reconstitué à l'aide de la fonction
+      <em><strong>swapbytes()</strong></em><br>
+      <span class="matcmd"> ri = swapbytes(ri)</span><br>
+      <br>
+      <br>
+      Voici un exemple qui transmet un nombre 32 bits sur COM4 et le récupère sur COM5<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">txp ='COM4';<br>
+              id = instrfind('port',txp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              tx = serial(txp);<br>
+              fopen(tx);<br>
+              <br>
+              rxp ='COM5';<br>
+              id = instrfind('port',rxp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              rx = serial(rxp);<br>
+              fopen(rx);<br>
+              <br>
+              ti = 888666444;<br>
+              fwrite(tx,ti,'uint32');<br>
+              rb = fread(rx, 4)<br>
+              ri = typecast(uint8(rb),'uint32')<br>
+              <br>
+              %=== fermer le port et supprimer l'objet serial<br>
+              fclose(tx);<br>
+              delete(tx);<br>
+              clear tx;<br>
+              <br>
+              fclose(rx);<br>
+              delete(rx);<br>
+              clear rx;<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="txrxfloat" name="txrxfloat"></a>Transmettre et Recevoir un Réel</h2>
+      <br>
+      Tout ce qu'on a dit sur les entiers s'applique au réels. <br>
+      Les réels de type <em><strong>single </strong></em>(simple précision) sont codé sur 4 octets chacun. Les <em><strong>double
+          </strong></em>(double précision) sont codé sur 8 octet chacun. Par défaut, Matlab code tous les nombres avec
+      le type double. Pour changer de type, il faut utiliser les fonction de conversion single(), double(),&nbsp; int16
+      (), int32(), int64(), int8(), intmax(), intmin(),&nbsp; uint16(), uint32(), uint64<br>
+      <br>
+      <span class="matcmd">n = 123;<br>
+        m = single(234);<br>
+        k = uint8(24);<br>
+        whos<br>
+      </span>&nbsp; Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bytes&nbsp;&nbsp;&nbsp;&nbsp;
+      Class&nbsp;&nbsp;&nbsp;&nbsp; Attributes<br>
+      &nbsp; k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 &nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp; uint8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      &nbsp; m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      single&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      &nbsp; n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      1x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 &nbsp;
+      &nbsp; &nbsp; double&nbsp;&nbsp; <br>
+      <br>
+      Voici un exemple qui transmet un nombre réel simple précision sur COM4 et le récupère sur COM5. Pour un réel
+      double précision, il suffit de remplace <em>single </em>par <em>double </em>et 4 par 8<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">txp ='COM4';<br>
+              id = instrfind('port',txp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              tx = serial(txp);<br>
+              fopen(tx);<br>
+              <br>
+              rxp ='COM5';<br>
+              id = instrfind('port',rxp);&nbsp; <br>
+              delete(id);<br>
+              clear id;<br>
+              rx = serial(rxp);<br>
+              fopen(rx);<br>
+              <br>
+              ti = 345.6789;<br>
+              fwrite(tx,ti,'single');<br>
+              rb = uint8(fread(rx, 4))<br>
+              ri = typecast(rb,'single')<br>
+              <br>
+              %=== fermer le port et supprimer l'objet serial<br>
+              fclose(tx);<br>
+              delete(tx);<br>
+              clear tx;<br>
+              <br>
+              fclose(rx);<br>
+              delete(rx);<br>
+              clear rx;<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="serialtimer" name="serialtimer"></a>Lecture Ecriture Périodique </h2>
+      L'objet serial est associé à un <em><strong>timer </strong></em>facile à utiliser. Il est géré par les
+      propriétés <em><strong>TimerPeriod </strong></em>et <em><strong>TimerFcn</strong></em><br>
+      <span class="P_Sttl">TimerPeriod</span>: Sa valeur détermine la période du timer en seconde<br>
+      <span class="P_Sttl">TimerFcn</span>: Sa valeur détermine la fonction qui sera exécutée chaque fois que la période
+      est écoulée<br>
+      <br>
+      Le programme suivant transmet un entier (16bits) toutes les secondes. Ce programme utilise <em><strong>getAvailableComPort
+          </strong></em>qui permet de déterminer les ports COM disponibles sur la machine. Cette fonction doit être
+      placée dans le même dossier.<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function serial_tx_timer()<br>
+              &nbsp;&nbsp;&nbsp; tx = [];<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.6 0.6 0.15 0.3],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar','none', 'NumberTitle', 'off','name', 'Déconnecté');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; h = 0.12;&nbsp; % hauteur des boutons<br>
+              &nbsp;&nbsp;&nbsp; w = 0.6;&nbsp;&nbsp; % largeur des boutons<br>
+              &nbsp;&nbsp;&nbsp; x = 0.2;<br>
+              &nbsp;&nbsp;&nbsp; y = 0.05;<br>
+              &nbsp;&nbsp;&nbsp; g = h + 0.05;<br>
+              &nbsp;&nbsp;&nbsp; poph = uicontrol(fh, 'style','popup','position',[x y+4*g w h],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'back', 'c', 'fore', 'r','call',@pop);<br>
+              &nbsp;&nbsp;&nbsp; avcp = getAvailableComPort;<br>
+              &nbsp;&nbsp;&nbsp; set(poph, 'string', avcp);<br>
+              &nbsp;&nbsp;&nbsp; stst = uicontrol(fh, 'style', 'push', 'pos',[x y+g w h],...<br>
+              &nbsp; &nbsp; &nbsp;&nbsp; 'str', 'Stop ', 'call', @start_stop);<br>
+              &nbsp;&nbsp;&nbsp; visu = uicontrol(fh, 'style', 'Edit', 'pos',[x y+2*g w h]);<br>
+              &nbsp;&nbsp;&nbsp; exit = uicontrol(fh, 'style', 'push', 'pos',[x y w h], 'str', 'EXIT', 'call',
+              @quitter);<br>
+              &nbsp;&nbsp;&nbsp; set(fh,'CloseRequestFcn',@quitter); <br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function pop(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(obj,'string');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = get(obj, 'value');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com = s{i};<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = instrfind('port',com);&nbsp; <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(id);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear id;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tx = serial(com);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tx, 'TimerPeriod',1);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tx, 'Timerfcn', @transmit)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fopen(tx);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(fh, 'name', com);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function transmit(tx, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = uint16(fix(rand * 1023));<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(visu,'string',m);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fwrite(tx, m, 'uint16');<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function start_stop(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if get(stst,'string') == 'Stop '<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tx, 'Timerfcn', '')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(stst, 'string','Start')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tx, 'Timerfcn', @transmit)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(stst, 'string','Stop ')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function quitter(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(gcf);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if tx.status =='open'<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              fclose(tx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(tx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear tx;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch me<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(me.message)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              end<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      La fonction <em>getAvailableComPort()</em> <br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function lCOM_Port = getAvailableComPort()<br>
+              % function lCOM_Port = getAvailableComPort()<br>
+              % Return a Cell Array of COM port names available on your computer<br>
+              <br>
+              try<br>
+              &nbsp;&nbsp;&nbsp; s=serial('IMPOSSIBLE_NAME_ON_PORT');fopen(s); <br>
+              catch<br>
+              &nbsp;&nbsp;&nbsp; lErrMsg = lasterr;<br>
+              end<br>
+              delete(s);<br>
+              %Start of the COM available port<br>
+              lIndex1 = findstr(lErrMsg,'COM');<br>
+              %End of COM available port<br>
+              lIndex2 = findstr(lErrMsg,'Use')-3;<br>
+              <br>
+              lComStr = lErrMsg(lIndex1:lIndex2);<br>
+              <br>
+              %Parse the resulting string<br>
+              lIndexDot = findstr(lComStr,',');<br>
+              <br>
+              % If no Port are available<br>
+              if isempty(lIndex1)<br>
+              &nbsp;&nbsp;&nbsp; lCOM_Port{1}='';<br>
+              &nbsp;&nbsp;&nbsp; return;<br>
+              end<br>
+              <br>
+              % If only one Port is available<br>
+              if isempty(lIndexDot)<br>
+              &nbsp;&nbsp;&nbsp; lCOM_Port{1}=lComStr;<br>
+              &nbsp;&nbsp;&nbsp; return;<br>
+              end<br>
+              <br>
+              lCOM_Port{1} = lComStr(1:lIndexDot(1)-1);<br>
+              <br>
+              for i=1:numel(lIndexDot)+1<br>
+              &nbsp;&nbsp;&nbsp; % First One<br>
+              &nbsp;&nbsp;&nbsp; if (i==1)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lCOM_Port{1,1} = lComStr(1:lIndexDot(i)-1);<br>
+              &nbsp;&nbsp;&nbsp; % Last One<br>
+              &nbsp;&nbsp;&nbsp; elseif (i==numel(lIndexDot)+1)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lCOM_Port{i,1} =
+              lComStr(lIndexDot(i-1)+2:end);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+              &nbsp;&nbsp;&nbsp; % Others<br>
+              &nbsp;&nbsp;&nbsp; else<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lCOM_Port{i,1} = lComStr(lIndexDot(i-1)+2:lIndexDot(i)-1);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              end&nbsp;&nbsp;&nbsp; </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      Le programme ci-dessous lit un entier 16bits toutes les 1/2 secondes<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function serial_rx_timer()<br>
+              &nbsp;&nbsp;&nbsp; rx = [];<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.44 0.6 0.15 0.3],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar','none', 'NumberTitle', 'off','name', 'Déconnecté');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; h = 0.12;&nbsp; % hauteur des boutons<br>
+              &nbsp;&nbsp;&nbsp; w = 0.6;&nbsp;&nbsp; % largeur des boutons<br>
+              &nbsp;&nbsp;&nbsp; x = 0.2;<br>
+              &nbsp;&nbsp;&nbsp; y = 0.05;<br>
+              &nbsp;&nbsp;&nbsp; g = h + 0.05;<br>
+              &nbsp;&nbsp;&nbsp; poph = uicontrol(fh, 'style','popup','position',[x y+4*g w h],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'back', 'c', 'fore', 'r','call',@pop);<br>
+              &nbsp;&nbsp;&nbsp; avcp = getAvailableComPort;<br>
+              &nbsp;&nbsp;&nbsp; set(poph, 'string', avcp);<br>
+              &nbsp;&nbsp;&nbsp; volt = uicontrol(fh, 'style', 'edit', 'pos',[x y+g w h]);<br>
+              &nbsp;&nbsp;&nbsp; nadc = uicontrol(fh, 'style', 'edit', 'pos',[x y+2*g w h]);<br>
+              &nbsp;&nbsp;&nbsp; exit = uicontrol(fh, 'style', 'push', 'pos',[x y w h], 'str', 'EXIT', 'call',
+              @quitter);<br>
+              &nbsp;&nbsp;&nbsp; set(fh,'CloseRequestFcn',@quitter); <br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function pop(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(obj,'string');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = get(obj, 'value');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com = s{i};<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = instrfind('port',com);&nbsp; <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(id);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear id;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rx = serial(com);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(rx, 'TimerPeriod',0.5);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(rx, 'Timerfcn', @lire)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fopen(rx);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(fh, 'name', com);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function lire(rx, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = get(rx,'BytesAvailable');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if a &gt; 1<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb = fread(rx, 2);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ri = typecast(uint8(rb),'uint16');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(nadc,'string', ri);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v = single(ri) * 5 / 1024;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vs = num2str(v,'%4.2f');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(volt, 'string', vs);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end&nbsp;&nbsp; <br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function quitter(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(gcf);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if rx.status =='open'<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              fclose(rx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(rx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear rx;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch me<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(me.message)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              end<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <h2 class="titre"> <a id="serialevent" name="serialevent"></a>Lecture sur événement </h2>
+      L'objet serial peut déclencher un événement suite à la réception d'un nombre définit d'octet. Ceci est géré par
+      les propriétés suivantes:<br>
+      <br>
+      <span class="P_Sttl">BytesAvailableFcnMode</span>: Sa valeur précise la nature des donnée à compter. Elle peut
+      prendre les valeurs {terminator} ou byte. Le plus simple et de choisir 'byte' pour compter les octets reçus. Si on
+      choisit 'terminator' ( valeur par défaut), on va compter les lignes reçue puisque la valeur par défaut de la
+      propriété <em>Terminator </em>est 'LF'<br>
+      <br>
+      <span class="P_Sttl">BytesAvailableFcnCoun</span>: Sa valeur précise le nombre de données à compter avant&nbsp;
+      d'appeller la fonction précisée par la propriété ci-dessous<br>
+      <br>
+      <span class="P_Sttl">BytesAvailableFcn</span>: Non de la fonction à appeler quand le compte est bon. Son nom doit
+      être précisé parle caractère @. Si on veut passer des paramètre à la fonction il faut utiliser la syntaxe suivante
+      {@fonction x y z } ou {@fonction, x,&nbsp; y, z}<br>
+      <br>
+      Le programme ci-dessous lit un entier 16bits chaque fois que le port à reçu 2 octets.<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="prog">function serial_rx_onevent()<br>
+              &nbsp;&nbsp;&nbsp; rx = [];<br>
+              &nbsp;&nbsp;&nbsp; fh = figure('Units', 'Normalized', 'Position',[0.44 0.6 0.15 0.3],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'MenuBar','none', 'NumberTitle', 'off','name', 'Déconnecté');<br>
+              &nbsp;&nbsp;&nbsp; set(0, 'DefaultUicontrolUnits',&nbsp; 'normalized') ;<br>
+              &nbsp;&nbsp;&nbsp; h = 0.12;&nbsp; % hauteur des boutons<br>
+              &nbsp;&nbsp;&nbsp; w = 0.6;&nbsp;&nbsp; % largeur des boutons<br>
+              &nbsp;&nbsp;&nbsp; x = 0.2;<br>
+              &nbsp;&nbsp;&nbsp; y = 0.05;<br>
+              &nbsp;&nbsp;&nbsp; g = h + 0.05;<br>
+              &nbsp;&nbsp;&nbsp; poph = uicontrol(fh, 'style','popup','position',[x y+4*g w h],...<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'back', 'c', 'fore', 'r','call',@pop);<br>
+              &nbsp;&nbsp;&nbsp; avcp = getAvailableComPort;<br>
+              &nbsp;&nbsp;&nbsp; set(poph, 'string', avcp);<br>
+              &nbsp;&nbsp;&nbsp; volt = uicontrol(fh, 'style', 'edit', 'pos',[x y+g w h]);<br>
+              &nbsp;&nbsp;&nbsp; nadc = uicontrol(fh, 'style', 'edit', 'pos',[x y+2*g w h]);<br>
+              &nbsp;&nbsp;&nbsp; exit = uicontrol(fh, 'style', 'push', 'pos',[x y w h], 'str', 'EXIT', 'call',
+              @quitter);<br>
+              &nbsp;&nbsp;&nbsp; set(fh,'CloseRequestFcn',@quitter); <br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function pop(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(obj,'string');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = get(obj, 'value');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com = s{i};<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = instrfind('port',com);&nbsp; <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(id);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear id;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rx = serial(com);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fopen(rx);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(fh, 'name', com);<br>
+              <span class="matcmd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rx.BytesAvailableFcnMode = 'byte';<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rx.BytesAvailableFcnCoun = 2;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rx.BytesAvailableFcn = @lire;<br>
+              </span>&nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function lire(rx, event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb = fread(rx, 2);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ri = typecast(uint8(rb),'uint16');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(nadc,'string', ri);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v = single(ri) * 5 / 1024;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vs = num2str(v,'%4.2f');<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(volt, 'string', vs);<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              <br>
+              &nbsp;&nbsp;&nbsp; function quitter(obj,event)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(fh);<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if strcmp(rx.status,'open')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              fclose(rx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(rx); <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear rx;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch me<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('Tentative de fermer un port
+              inexistant')<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+              &nbsp;&nbsp;&nbsp; end<br>
+              end</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2 class="titre"><a id="serialdebug" name="serialdebug"></a>Un programme très utile</h2>
+      <p style="margin-left: 40px;">Le <a href="scripts/Serial_monitor.m">programme </a>ci-dessous est très utile pour
+        déboguer une liaison entre un PC et une carte microcontroleur type ARDUINO ou PIC<br>
+        Il permet de transmettre du texte et des nombres introduit en décimal ou en Hexadécimal.<br>
+        Les octets reçus sont affichés en Hexadécimal dans la fenêtre de gauche et en format texte dans la fenêtre de
+        droite</p>
+      <ul>
+        <li>Si on tape <span class="visible_maron_I">ABCDE</span> on transmet la chaine ABCDE c.a.d la suite de
+          caractères A, B, C, D ,E c.a.d la suite des octet 65, 66, 67, 68, 69</li>
+        <li>L'espace est utilisé comme séparateur. pour transmettre l'espace il faut utiliser son code ASCII 32</li>
+        <li>Si ontape<span class="visible_maron_I"> A 125</span> on transmet l'octet 'A'=65&nbsp; suivi de l'octet 125</li>
+        <li>pour transmettre la chaine&nbsp; "ABCD XYZ" il faut taper <span class="visible_maron_I">ABCD 32 XYZ</span>
+        </li>
+        <li>Si on tape <span class="visible_maron_I">'125'</span> on transmet la chaine 125 c.a.d le caractère '1'
+          suivi du caractère '2' suivi du caractère '5' c.a.d la suite des octets 49, 50,53</li>
+      </ul>
+      <p class="prog"> function Serial_monitor()<br>
+        &nbsp;&nbsp;&nbsp; sp = serial('BIDON');<br>
+        &nbsp;&nbsp;&nbsp; lin = 1;<br>
+        &nbsp;&nbsp;&nbsp; col = 1;<br>
+        &nbsp;&nbsp;&nbsp; HF=400;<br>
+        &nbsp;&nbsp;&nbsp; WF=600;<br>
+        &nbsp;&nbsp;&nbsp; fh=figure('pos',[600 180 WF HF],'menubar','none',...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'NumberTitle','off','CloseRequestFcn',@quitter);<br>
+        &nbsp;&nbsp;&nbsp; gap = 5;<br>
+        &nbsp;&nbsp;&nbsp; hpop = 30;<br>
+        &nbsp;&nbsp;&nbsp; wpop = 100;<br>
+        &nbsp;&nbsp;&nbsp; popy = HF-hpop-gap;<br>
+        &nbsp;&nbsp;&nbsp; avcp = getvalidports;<br>
+        &nbsp;&nbsp;&nbsp; %avcp = {'COM1','COM2','COM3','COM4','COM5','COM6','COM7','COM8','COM9','COM10',...<br>
+        &nbsp;&nbsp;&nbsp; %&nbsp;&nbsp;&nbsp; 'COM11','COM12','COM13','COM14','COM15','COM16','COM17','COM18','COM19'};<br>
+        &nbsp;&nbsp;&nbsp; COM_POP = uicontrol(fh, 'style','popup','position',[10 popy wpop hpop],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'back', 'c', 'fore', 'r','string',avcp,'call',@pop);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; he1=20;<br>
+        &nbsp;&nbsp;&nbsp; e1y = popy - he1 -gap;<br>
+        &nbsp;&nbsp;&nbsp; we1 = 370;<br>
+        &nbsp;&nbsp;&nbsp; e1 = uicontrol(fh, 'style', 'EDIT', 'Posit',[10 e1y we1 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'horizon','left','back',[0.8 1 0.8]);<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; btx = uicontrol(fh, 'style', 'pushbutton', 'position',[10+we1+gap e1y 50 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Tx', 'call', @transmit,'back',[0.8 0.8 0.4]);<br>
+        &nbsp;&nbsp;&nbsp; bCLR1 = uicontrol(fh, 'style', 'pushbutton', 'position',[10+we1+gap+70 e1y 50 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'CLEAR', 'call', @cleare1,'back',[0.8 0.8 0.4]);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; hlpmsg = {'Le champs de transmission permet de transmettre un mellange de texte et de nombres
+        en décimal ou en Hexadécimal';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Si on tape W 35 ABC ''123'' 37568 0x41A2 ''0x4253''';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'On transmet le caractère W, le nombre décimal 35, la chaine
+        ABC,';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'la chaine 123, le nombre décimal 37568, le nombre hexadécimal
+        41A2,';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'et enfin la chaine 0x4253';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Les nombres sont cassés en octets et transmis dans l''ordre Big
+        Endian';'';...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Les caractères reçus sont affichés en hexadecimal dans la fenetre de
+        gauche et en texte dans la fenetre de droite'};<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; bhlp = uicontrol(fh, 'style', 'pushbutton', 'position',[10+wpop+10 popy+2*gap 50 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'Help', 'call',
+        {@(hObject,callbackdata)msgbox(hlpmsg)},'back',[0.8 0.8 0.4]);<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; hthex=300;<br>
+        &nbsp;&nbsp;&nbsp; thexy = e1y - hthex - gap;<br>
+        &nbsp;&nbsp;&nbsp; wthex = 430;<br>
+        &nbsp;&nbsp;&nbsp; thex = uicontrol(fh, 'style', 'TEXT', 'Posit',[10 thexy wthex hthex],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'horizon','left','fontname','Courier','foreg','r','fontsize',11);<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; htchar=hthex;<br>
+        &nbsp;&nbsp;&nbsp; wtchar = WF-wthex-20;<br>
+        &nbsp;&nbsp;&nbsp; tchary = thexy;<br>
+        &nbsp;&nbsp;&nbsp; tchar = uicontrol(fh, 'style', 'TEXT', 'Posit',[10+wthex+gap tchary wtchar htchar],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'horizon','left','fontname','Courier','fontsize',11,'foreg','b');<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; bCLR = uicontrol(fh, 'style', 'pushbutton', 'position',[100 5 50 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'CLEAR', 'call', @cleare,'back',[0.8 0.8 0.4]);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; bexit = uicontrol(fh, 'style', 'pushbutton', 'position',[10 5 40 20],...<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'str', 'EXIT', 'call', @quitter,'back',[0.8 0.8 0.4]);<br>
+        &nbsp;&nbsp;&nbsp; set(e1, 'string','Tapez ici les données à transmettre et cliquez sur le bouton Tx');<br>
+        &nbsp;&nbsp;&nbsp; set(thex, 'string','Les octets reçus sont affichés ici en Hexadécimal');<br>
+        &nbsp;&nbsp;&nbsp; set(tchar,'string','Les octets reçus sont affichés ici en format texte');<br>
+        &nbsp;&nbsp;&nbsp; set(fh, 'name', 'Aucun port Ouvert, Choisir un port dans la liste');<br>
+        %============================================================================&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; function pop(obj,event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(obj,'string');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i = get(obj, 'value');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; com = s{i};<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if exist('sp','var')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %disp(['un handle est affécté à ' sp.Port])<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if isvalid(sp)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %disp([sp.Port '&nbsp; Valide'])<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+        strcmp(sp.status,'open')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %disp([sp.Port '&nbsp; Ouvert'])<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        fclose(sp); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %disp([sp.Port&nbsp; '&nbsp; Fermé']);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %disp([sp.Port '&nbsp; N''est pas Ouvert'])<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(['&gt;&gt;&gt;&gt;&gt;&nbsp; Supression
+        de&nbsp; ' sp.Port])<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(sp); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear sp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp = serial(com);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp.timeout = 5;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp.BytesAvailableFcnMode = 'byte';<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp.BytesAvailableFcnCoun =1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp.BytesAvailableFcn = @lire;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fopen(sp);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if sp.BytesAvailable &gt; 0<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bidon = fread(rx,rx.BytesAvailable);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(fh, 'name', [com '&nbsp; 9600']);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if sp.Status<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp(['&gt;&gt;&gt;&gt;&gt;&nbsp; ' com '
+        Ouvert']);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(e1,'string','');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp([com ' Fermé']);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; function lire(rx, event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rb = fread(rx, 1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sh = get(thex,'string');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sh = [sh sprintf('%.2X ',rb)];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(thex, 'string', sh);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; viewchar(rb);<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        %============================================================================&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; function transmit(obj,event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if exist('sp','var') &amp; isvalid(sp) &amp; strcmp(sp.status,'open')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = get(e1,'string');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while s <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [a, s]=strtok(s); %a=premiere chaine,&nbsp;
+        s=reste de la chiaine<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = str2num(a);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if isempty(n)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (length(a) &gt; 2)
+        &amp; (a(1:2) == '0x' | a(1:2) == '0X')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        a = a(3:length(a));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        n = hex2dec(a);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        n = swapbytes(uint32(n)); % à l'origine&nbsp; n est un double<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        B = typecast(n, 'uint8'); % casser n en bytes<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ix = B == 0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        B(ix) = [];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        if a(1) == ''''<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        a = a(2:length(a)-1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        B = uint8(a);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n =
+        swapbytes(uint32(n)); % à l'origine&nbsp; n est un double<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B = typecast(n,
+        'uint8'); % casser n en bytes<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ix = B == 0;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B(ix) = [];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fwrite(sp,B);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(e1,'str','Aucun port COMM ouvert, Veuillez choisir un
+        port');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        <br>
+        %=============================================================<br>
+        &nbsp;&nbsp;&nbsp; function viewchar(c)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sc = get(tchar,'string');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if c == 13<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = 182;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if c == 10<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = 167;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sc(lin, col) = c;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tchar, 'string', sc);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; col = col + 1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if col == 17<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; col = 1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lin = lin + 1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        %======================================================================<br>
+        &nbsp;&nbsp;&nbsp; function cleare(obj, event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(thex, 'string','');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(tchar, 'string','');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lin = 1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; col = 1;<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; function cleare1(obj, event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(e1, 'string','');<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        %======================================================================<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; function quitter(obj,event)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if exist('sp','var')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if isvalid(sp)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+        strcmp(sp.status,'open')<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        fclose(sp); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        disp(['&gt;&gt;&gt;&gt;&gt;&nbsp; ' sp.Port&nbsp; ' Fermé']);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(sp); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clear sp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(gcf);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disp('By')<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; function valid_ports = getvalidports()<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % function lCOM_Port = getAvailableComPort()<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % Return a Cell Array of COM port names available on your computer<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s=serial('IMPOSSIBLE_NAME_ON_PORT');fopen(s);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lErrMsg = lasterr;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete(s);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %Start of the COM available port<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lIndex1 = findstr(lErrMsg,'COM');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %End of COM available port<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lIndex2 = findstr(lErrMsg,'Use')-3;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lComStr = lErrMsg(lIndex1:lIndex2);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %Parse the resulting string<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lIndexDot = findstr(lComStr,',');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % If no Port are available<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if isempty(lIndex1)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{1}='';<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % If only one Port is available<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if isempty(lIndexDot)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{1}=lComStr;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{1} = lComStr(1:lIndexDot(1)-1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i=1:numel(lIndexDot)+1<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % First One<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i==1)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{1,1} =
+        lComStr(1:lIndexDot(i)-1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % Last One<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elseif (i==numel(lIndexDot)+1)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{i,1} =
+        lComStr(lIndexDot(i-1)+2:end);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % Others<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valid_ports{i,1} =
+        lComStr(lIndexDot(i-1)+2:lIndexDot(i)-1);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end<br>
+        &nbsp;&nbsp;&nbsp; end<br>
+        end</p>
+      .<br>
+    </div>
+  </body>
+</html>

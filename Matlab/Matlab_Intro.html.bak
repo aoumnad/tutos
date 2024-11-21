@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Arduino</title>
+    <link href="messtylescss.css" rel="stylesheet" type="text/css">
+<meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Tutoriel Arduino" name="description">
+    <meta content="ARDUINO, Serial, LCD, I2C" name="keywords">
+  </head>
+  <body style="                                  background-color: #ccccff;">
+    <div id="entete">INTRODUCTION </div>
+    <br>
+    <div style="font-size: large;" id="contenu"> MATLAB&nbsp; <em>(Matrix Laboratory)</em>&nbsp; est&nbsp; un&nbsp;
+      environnement de programmation très adapté aux calculs numériques.&nbsp; Il&nbsp; associe&nbsp; puissance&nbsp;
+      de&nbsp; calcul,&nbsp; simplicité&nbsp; de&nbsp; visualisation&nbsp; et programmation&nbsp; aisée&nbsp; à&nbsp;
+      l'aide&nbsp; d'un&nbsp; langage&nbsp; très&nbsp; proche&nbsp; de&nbsp; l'écriture&nbsp; mathématique
+      habituelle.&nbsp; <br>
+      <br>
+      La&nbsp; librairie&nbsp; mathématique&nbsp; de&nbsp; MATLAB&nbsp;&nbsp;&nbsp; est&nbsp; constituée&nbsp;
+      d'une&nbsp; vaste collection de fonctions de calcul allant des fonctions élémentaires comme sqrt,&nbsp; sin&nbsp;
+      et cos&nbsp; jusqu'à&nbsp; des&nbsp; fonctions&nbsp; bien&nbsp; plus&nbsp; complexes&nbsp; comme&nbsp;
+      l'inversion&nbsp; d'une&nbsp; matrice,&nbsp; le calcul de ses valeurs propres, le calcul des fonctions de Bessel
+      ou de la transformée de Fourier rapide.<br>
+      <br>
+      L'élément de base de Matlab est la matrice. Toutes les opérations et les fonctions se font directement sur des
+      matrices. Ceci lui confère une rapidité de calcul impressionnante. <br>
+      <br>
+      Le tracé de courbes devient un jeu d'enfants grâce à un ensemble de fonction graphiques prédéfinies. Par exemple,
+      il suffit de taper les deux lignes suivantes dans la fenêtre de commande Matlab pour obtenir la figure ci-dessous<br>
+      <span class="matcmd">x = 0:0.1:14;<br>
+        plot(x,sin(x));grid;<br>
+      </span>
+      <div style="text-align: center;"><br>
+        <img alt="" src="images/plot_intro.PNG"><br>
+      </div>
+      <br>
+      En réalité, la&nbsp; vraie&nbsp; puissance&nbsp; de&nbsp; MATLAB&nbsp;&nbsp;&nbsp; réside&nbsp; dans&nbsp;
+      la&nbsp; disponibilité&nbsp; de&nbsp; librairies appelées&nbsp; toolboxe&nbsp; constituées&nbsp; de&nbsp;
+      fonctions&nbsp; préprogrammées&nbsp; (m-files)&nbsp; directement exécutables dans l'environnement MATLAB. Les
+      toolboxes couvrent un grand nombre de&nbsp; domaines&nbsp; scientifique&nbsp; comme&nbsp; le&nbsp;
+      traitement&nbsp; du&nbsp; signal,&nbsp; les&nbsp; télécommunications,&nbsp; la mécanique, les statistiques,
+      l'automatique … <br>
+      <br>
+      Les commandes MATLAB&nbsp;&nbsp; peuvent être exécutées individuellement dans la fenêtre de commande
+      MATLAB&nbsp;&nbsp; ou peuvent être groupée dans un fichier ayant l'extension .m formant ainsi un scripte
+      exécutable sous&nbsp; MATLAB&nbsp;&nbsp;&nbsp; qu'on appèlle communément <em>m-file</em>. <br>
+      <br>
+      Pour avoir une liste des fonctions mathématiques élémentaire, tapez :<br>
+      <span class="matcmd">help elfun</span><br>
+      <br>
+      Pour avoir une liste de fonctions plus sophistiquées, tapez :<br>
+      <span class="matcmd">help specfun ou help matfun<br>
+      </span><br>
+      Certaines fonctions comme&nbsp; sqrt,&nbsp; sin&nbsp; ou&nbsp; cos&nbsp; sont implantée dans le noyau&nbsp;
+      MATLAB,(built-in function), elles s'exécutent très rapidement mais on ne peut pas consulter le détail de leurs
+      algorithmes de calculs. Les autres fonctions sont implémentées en mfile qui sont des fichiers texte&nbsp; que l'on
+      peut consulter pour s'en inspirer et même les modifier.<br>
+      <br>
+      <br>
+      <div class="P_ttl">
+        <h2 class="titre"> La fenêtre de commande Matlab</h2>
+      </div>
+      Matlab est un langage interprété. Quand on démarre Matlab, en obtient la fenêtre suivante:<br>
+      <br>
+      <div style="text-align: center;"><img alt="" src="images/fen_commande.PNG"><br>
+      </div>
+      Le signe &gt;&gt; signifie que nous avons la main. Si on tape des instructions dans cette fenêtre, elles sont
+      interprétées immédiatement. Si on définie des variables, elle sont stockées dans l'espace de travail durant toute
+      la séance de travail.<br>
+      <br>
+      <br>
+      <div class="P_ttl">
+        <h2 class="titre">Le point virgule</h2>
+      </div>
+      Si on termine une instruction par un point-virgule (<em><strong>;</strong></em>), Matlab l’interprète, mais&nbsp;
+      n'affiche rien en réponse. Le résultat (s'il y en a un) est stocké dans l'espace de travail.<br>
+      <span class="matcmd">&gt;&gt; x = 1;<br>
+        &gt;&gt; y = sin(x);<br>
+      </span>Plus tard,&nbsp; il suffira de taper le nom de la variable suivi de ⏎ pour voir sa valeur. On verra plus
+      tard d'autres méthodes d'affichage comme <em>disp()</em>, <em>fprintf()</em> ...<br>
+      <span class="matcmd"> &gt;&gt; y</span><br>
+      y =<br>
+      &nbsp;&nbsp;&nbsp; 0.8415<br>
+      <br>
+      Si on ne termine pas la ligne par un point virgule, Matlab affiche le résultat de l'instruction immédiatement dans
+      la fenêtre de commande. Si l'instruction n'affecte le résultat à aucune variable, matlab l'affecte à la variable
+      ans. Cést une variable système qui contient toujours le résultat de la dernière instruction.<br>
+      <span class="matcmd">&gt;&gt;&nbsp; x = cos(pi)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp; =&nbsp;&nbsp;&nbsp; -1<br>
+      <span class="matcmd">&gt;&gt; sin(pi/2)</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ans&nbsp; =&nbsp;&nbsp;&nbsp; 1<br>
+      <br>
+      <br>
+      <div class="P_ttl">
+        <h2 class="titre"> Avec Matlab, la matrice reine</h2>
+      </div>
+      La matrice constitue l'élément de base dans Matlab<br>
+      <br>
+      <li><span style="color: #990000;"><em><strong>Scalaire</strong></em></span></li>
+      <div style="margin-left: 25px;">Un scalaire est considéré comme une matrice 1x1, une ligne, une colonne.<br>
+        <span class="matcmd">&gt;&gt; a = 5;</span><br>
+        <span class="matcmd">&gt;&gt; size(a)</span><br>
+        ans = &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1</div>
+      <br>
+      <li><span style="color: #990000;"><em><strong>Matrice ligne ou vecteur ligne</strong></em></span></li>
+      <div style="margin-left: 25px;">C'est une matrice à une ligne et plusieurs colonnes.<br>
+        <span class="matcmd">&gt;&gt; a = [3 7 9 5 8]</span><br>
+        a = &nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;&nbsp;
+        5&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+        <br>
+        <span class="matcmd">&gt;&gt; size(a)</span><br>
+        ans = &nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+        <br>
+      </div>
+      <li><span style="color: #990000;"><em><strong>Matrice colonne ou vecteur colonne</strong></em></span></li>
+      <div style="margin-left: 25px;"> C'est une matrice à plusieurs lignes et une seule colonne.<br>
+        <span class="matcmd">&gt;&gt; a = [3 4 5 6 7]<span style="color: #990000;">'</span></span><br>
+        a =<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 7<br>
+        <br>
+        <span class="matcmd">&gt;&gt; size(a)</span><br>
+        ans = &nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+        <br>
+        Vous avez remarqué que le caractère apostrophe (<em><strong><span style="color: #990000;">'</span> </strong></em>)
+        est un opérateur de transposition. <br>
+        <br>
+        Il y a une autre façon de définir un vecteur colonne:<br>
+        <span class="matcmd">&gt;&gt; b = [20; 45; 30;&nbsp; 22]</span><br>
+        b =<br>
+        &nbsp;&nbsp;&nbsp; 20<br>
+        &nbsp;&nbsp;&nbsp; 45<br>
+        &nbsp;&nbsp;&nbsp; 30<br>
+        &nbsp;&nbsp;&nbsp; 22</div>
+      <span class="matcmd"></span><br>
+      <li><span style="color: #990000;"><em><strong><span>Matrice rectangulaire</span></strong></em></span></li>
+      <div style="margin-left: 25px;"> <span class="matcmd">&gt;&gt; a = [10 20 30 40; 15 25 35 45; 50 60 70 80]</span><br>
+        a =<br>
+        &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp; 40<br>
+        &nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp; 35&nbsp;&nbsp;&nbsp; 45<br>
+        &nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp; 70&nbsp;&nbsp;&nbsp; 80<br>
+        <br>
+        <span class="matcmd"> &gt;&gt; size(a)</span><br>
+        ans = &nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp; 4</div>
+      <br>
+      <br>
+      <h2> <span class="P_ttl titre"> Les opérations</span></h2>
+      La variable de base étant la matrices, les opérations s'appliquent à tous les éléments de la matrice.<br>
+      <br>
+      <span class="matcmd">&gt;&gt; a = [10 20 30 40; 15 25 35 45; 50 60 70 80]</span><br>
+      a =<br>
+      &nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp; 40<br>
+      &nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp; 35&nbsp;&nbsp;&nbsp; 45<br>
+      &nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp; 70&nbsp;&nbsp;&nbsp; 80<br>
+      <br>
+      <span class="matcmd">&gt;&gt; b = a + 5</span><br>
+      b =<br>
+      &nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp; 35&nbsp;&nbsp;&nbsp; 45<br>
+      &nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp; 40&nbsp;&nbsp;&nbsp; 50<br>
+      &nbsp;&nbsp;&nbsp; 55&nbsp;&nbsp;&nbsp; 65&nbsp;&nbsp;&nbsp; 75&nbsp;&nbsp;&nbsp; 85<br>
+      <br>
+      <span class="matcmd">&gt;&gt; c = 2 * b</span><br>
+      c =<br>
+      &nbsp;&nbsp;&nbsp; 30&nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 70&nbsp; &nbsp;&nbsp;&nbsp; 90<br>
+      &nbsp;&nbsp;&nbsp; 40&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; 80&nbsp; &nbsp; 100<br>
+      &nbsp;&nbsp; 110&nbsp;&nbsp; 130&nbsp;&nbsp; 150&nbsp;&nbsp; 170<br>
+      <br>
+      <span class="matcmd">&gt;&gt; d = log(c)</span><br>
+      d =<br>
+      &nbsp;&nbsp;&nbsp; 3.4012&nbsp;&nbsp;&nbsp; 3.9120&nbsp;&nbsp;&nbsp; 4.2485&nbsp;&nbsp;&nbsp; 4.4998<br>
+      &nbsp;&nbsp;&nbsp; 3.6889&nbsp;&nbsp;&nbsp; 4.0943&nbsp;&nbsp;&nbsp; 4.3820&nbsp;&nbsp;&nbsp; 4.6052<br>
+      &nbsp;&nbsp;&nbsp; 4.7005&nbsp;&nbsp;&nbsp; 4.8675&nbsp;&nbsp;&nbsp; 5.0106&nbsp;&nbsp;&nbsp; 5.1358<br>
+      <br>
+      Voir <a target="_top" href="Matlab_matrice.html#operations">cette section</a> pour plus de détail sur les
+      opérations sur les matrices, <br>
+      <br>
+    </div>
+  </body>
+</html>

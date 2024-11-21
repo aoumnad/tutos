@@ -1,0 +1,16 @@
+function [] = popup()
+    % Illustration du contrôle PopupMenu
+    close all
+    fh = figure('position',[300 300 200 110],'numbertitle','off',...
+           'menubar','none','name','PopUpMenu = ComboBox');
+    set(fh,'DefaultUicontrolfontsize',14)
+    poph = uicontrol(fh, 'style','popup','position',[20 10 140 40], 'back', 'c',  'fore', 'r',...
+          'string',{'Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'});
+    txth = uicontrol('style','Text','position',[20 60 140 30]);
+    set(poph,'val', 5, 'callback',{@pop_call,txth});
+end
+function [] = pop_call(poph, event,txth)
+    s = get(poph,'str');
+    i = get(poph, 'val');
+    set(txth,'str',s{i}); 
+end

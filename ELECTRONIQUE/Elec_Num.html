@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Electronique Numérique" name="description">
+    <meta content="Binaire, Hexadécimal, Porte logique, Bascule, JK, RS, Compteur, Multiplexeur, Additionneur"
+        name="keywords">
+    <title>Electronique Numérique</title>
+    <link rel="icon" href="IMAGES/ElecLogo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+
+                <div class="rubrique" onclick="toggleMenu('numbers', this)">
+                    <span>&gt;</span>
+                    <h2>Representation des nombres</h2>
+                </div>
+                <div id="numbers" class="sub-rubrique">
+                    <a href="#INTRO">
+                        <h3>Systèmes pondérés</h3>
+                    </a>
+                    <a href="#BINARY">
+                        <h3>Intérêt du système binaire</h3>
+                    </a>
+                    <a href="#CONVBASE">
+                        <h3>Changement de base</h3>
+                    </a>
+                    <a href="#">
+                        <h3></h3>
+                    </a>
+                    <a href="#">
+                        <h3></h3>
+                    </a>
+                    <a href="#">
+                        <h3></h3>
+                    </a>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- ################################################################################################ -->
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Electronique Numérique</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Representation des nombres</h2>
+                <p>La représentation naturelle que nous utilisons pour représenter des nombres est une représentation
+                    <b>pondérée</b>. Les systèmes <b>Décimal</b> de base <i>B=10</i>, <b>Octal</b> de base <i>B=8</i>,
+                    Hexadécimal de base <i>B=16</i> et <b>Binaire</b> de base <i>B=2</i> sont des systèmes pondérés
+                </p>
+                <p>un système pondéré de base B est caractérisé par :</p>
+                <ul>
+                    <li>Il faut B symboles qu'on appelle <b>chiffres</b> pour représenter un nombre dans une bas B. Par
+                        exemple :
+                        <ul>
+                            <li>Le système Décimal utilise dix chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
+                            <li>Le système Octal utilise 8 chiffres : 0, 1, 2, 3, 4, 5, 6, 7</li>
+                            <li>Le système Hexadécimal utilise 16 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D,
+                                E, F</li>
+                            <li>Le système Binaire utilise 2 chiffres : 0, 1</li>
+                        </ul>
+                    </li>
+                    <li>Chaque chiffre a une "poids" qui dépend de sa position dans le nombre </li>
+                    <li>Chaque poids est une puissance de B</li>
+                    <li>A gauche de la virgule (.décimal), on a les puissances positives de B. A droite on a les
+                        puissances négatives</li>
+                    <li>Le poids du chiffre de rang i est B fois celui du rang i-1 <br>
+                        <img src="IMAGES/EN_Poids.jpg" alt="">
+                    </li>
+                    <li>Exemples :
+                        <ul>
+                            <li>Le nombre 472 en base 10 peut être décomposé comme suit : <br>
+                                \( 472_{10}= 4 × 10^2 + 7 × 10^1 + 2 × 10^0 \)</li>
+                            <li>Le nombre 345.25 en base 10 peut être décomposé comme suit : <br>
+                                \( 345.25_{10}= 3 × 10^2 + 4 × 10^1 + 5 × 10^0 + 2 × 10^{-1} + 5 × 10^{-2} \)</li>
+                            <li>Le nombre binaire 1011 peut être converti en décimal comme suit : <br>
+                                \( 1101_2 =1×2^3 + 1×2^2 +0×2^1 +1×2^0=1×8+1×4+0×2+1×1=8+4+0+1=13_{10} \)</li>
+                            <li>Le nombre binaire 101.101 peut être converti en décimal comme suit : <br>
+                                \( 101.101_2 =1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625_{10} \)</li>
+                            <li>Le nombre hexadécimal 2F3 peut être converti en décimal comme suit : br</li>
+                            \( 2F3_{16}= 2×16^2 +F×16^1 +3×16^0 = 2×256+15×16+3×1=755_{10} \)
+                        </ul>
+
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="BINARY">Intérêt du système binaire</h2>
+                <p>Le système binaire revêt une importance fondamentale en électronique et en informatique,
+                    principalement parce qu'il est aisément transposable en signaux électriques. En effet, les deux
+                    états possibles du système binaire, représentés par les chiffres 0 et 1, peuvent être matérialisés
+                    de diverses manières techniques, permettant ainsi de simplifier la conception et la fabrication des
+                    circuits électroniques. Parmi ces méthodes, on peut citer :
+                </p>
+                <ul>
+                    <li>Le passage ou non d'un courant électrique dans un composant** : un circuit peut être conçu pour
+                        détecter la présence (représentant "1") ou l'absence (représentant "0") d'un courant électrique,
+                        une approche couramment utilisée dans les circuits logiques</li>
+                    <li>L'état d'un commutateur** : par exemple, un transistor ou un autre type de dispositif peut agir
+                        comme un interrupteur, qui est soit ouvert (représentant "0"), soit fermé (représentant "1").
+                        Cette caractéristique est essentielle pour le fonctionnement des circuits intégrés et des
+                        microprocesseurs
+                        modernes</li>
+                    <li>La valeur d'une tension électrique** : une tension spécifique peut être attribuée à chaque état
+                        binaire. Par exemple, une tension de +5 volts peut correspondre à "1", tandis qu'une tension de
+                        0 volt peut correspondre à "0". Cette méthode est particulièrement répandue dans les systèmes
+                        numériques pour transmettre des informations de manière fiable</li>
+                </ul>
+                <p>Ces représentations permettent une mise en œuvre robuste et efficace des systèmes numériques, qui
+                    forment la base des technologies modernes, des ordinateurs aux systèmes embarqués en passant par les
+                    télécommunications.</p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="CONVBASE">Changement de base</h2>
+                <p>La conversion entre les systèmes dont la base est une puissance de v2 est très facile. Le conversion
+                    de ou vers la base 10 demande un peu plus de travail</p>
+                <h3>Hexadécimal &xrarr; binaire</h3>
+                <p>chaque chiffre Hexadécimal est écrit sur 4 bits :</p>
+                <p>8E97A<sub>16</sub> = 1000 1110 1001 0111 1010<sub>2</sub> </p>
+
+                <h3>Binaire &xrarr; Hexadécimal</h3>
+                <p>Le nombre binaire est découpé en blocs de 4 bits en commençant de la droite (LSB), ensuite chaque
+                    bloc de 4 bits est représenté en hexadécimal</p>
+                <p>11110111110011011<sub>2</sub> = 1 1110 1111 1001 1011<sub>2</sub> = 1EF9B<sub>16</sub> </p>
+
+                <h3>Decimal &xrarr; Binaire</h3>
+                <p>La méthode la plus automatique et la division/multiplication en échelle.</p>
+                <p>Pour la partie entière, on effectue une division successive par 2. On arrête quand on a un quotient
+                    nul. Le résultat en binaire est constitué par les restes successifs des divisions.
+                </p>
+                <p>Pour la partie décimale, on effectue des multiplications successive par 2. On arrête quand on a un
+                    produit entier.  Il arrive qu'on ne tombe jamais sur un produit entier et la multiplication ne s'arrête jamais.
+                    Dans ce cas on est libre d'arreter dès qu'on juge que le nombre de chiffres après la virgule est
+                    suffisant</p>
+                    <h4>Exemple :</h4>
+                    <p>On va convertir le nombre 947,6407 en binaire</p>
+                    <p>Pour la partie entière on obtient :</p>
+                    <img src="IMAGES/EN_DivEch.jpg" alt="">
+                    <p>Pour la partie décimale :</p>
+                    <img src="IMAGES/EN_MulEch.jpg" alt="">
+                    <p>le résultat final est :  <b><i>947,6407=<span class="blue">1110110011</span>.<span class="red">101001</span> </i></b></p>
+
+                <p>  </p>
+
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

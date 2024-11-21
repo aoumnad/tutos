@@ -1,0 +1,12 @@
+
+[x,y] = meshgrid(-5 : 0.2 : 5);
+r = sqrt(x.^2 + y.^2) + eps;
+z = sin(pi*r) ./ r;
+close all;
+surf(x, y, z);
+figure;
+surf(x, y, z,'FaceColor','interp','FaceLighting','phong','EdgeColor','none');
+daspect([5 5 5])
+axis tight
+view(-50,30)
+camlight left
