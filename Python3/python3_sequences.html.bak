@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Listes</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, séquences, sequences,"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+        #soustitre {  
+          background-color: #ffff99;  
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="                                                  background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr style="text-align: center; font-size: xx-large; color: #990000; font-weight: bold; font-style: italic; background-color: #79cc90;"
+          id="soustitre" align="center">
+          <td>Les Séquences<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">Une séquences est une suite d'éléments. On distingue les
+      séquences <em><strong>muttables</strong></em>, dont les éléments peuvent
+      être modifiés après leur définition, et les séquences <em><strong>non-muttables</strong></em>
+      dont les éléments ne peuvent être modifiés<br>
+      <br>
+      On accède à un élément d'une séquence par son indice (index) comme dans un
+      tableau. Si on commence à partir du début, s[0] est le premier élément,
+      s[1] est le deuxième et ainsi de suite. Si on commence à partir de la fin,
+      s[-1] est le dernier élément, s[-2] l'avant dernier et ainsi de suite.<br>
+      <br>
+      Python supporte différent types de séquences:<br>
+      <ul>
+        <li>Les <a target="_top" href="python3_listes.html"><em><strong>listes</strong></em></a>,
+          les <a target="_top" href="python3_tuples.html"><em><strong>tuples </strong></em></a>et
+          les <a target="_top" href="#ranges"><em><strong>ranges</strong></em>
+          </a>constituent les types de bases. </li>
+        <li>Les chaines de caractère sont des séquence de type <a target="_top"
+            href="python3_manip_string.html.bak"><em><strong>str </strong></em></a>(string)
+          constituées d'une suites de caractères. </li>
+        <li>Les <a target="_top" href="python3_bytes_bytearray.html"><em><strong>bytes
+                </strong></em>et </a><em><strong><a target="_top" href="python3_bytes_bytearray.html">bytearray</a>
+            </strong></em>sont des séquences d'octets </li>
+        <li>Les <em><strong>set </strong></em>appellés aussi <a target="_top"
+            href="python3_ensemble_set.html"><em><strong>ensembles </strong></em></a>sont
+          des séquences du même genre que les listes et les tuples mais qui
+          disposent de quelques méthodes de manipulation non disponibles pour
+          ces derniers.</li>
+      </ul>
+      &nbsp;&nbsp;&nbsp; <br>
+      <br>
+      On dispose de plusieurs mécanismes intéressants pour manipuler les
+      séquences. <br>
+      <br>
+      Voici quelques outils de manipulation communs à tous les types de
+      séquences:<br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 15%;"><em><strong>x in s<br>
+                </strong></em> </td>
+            <td>Vrai si x est un élément de la séquence s<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>x not in s<br>
+                </strong></em> </td>
+            <td>Vrai si x ne fait pas partie des élément de la séquence s<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>s1 + s2<br>
+                </strong></em> </td>
+            <td>Concaténation des séquences s1 et s2<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>k * s&nbsp; ou s * k<br>
+                </strong></em> </td>
+            <td>Concaténation k fois la séquence s<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>&nbsp;s[ i ]<br>
+                </strong></em> </td>
+            <td>Retourne l'élément d'indice i de la séquence s </td>
+          </tr>
+          <tr>
+            <td><em><strong>s[ i : j ]<br>
+                </strong></em></td>
+            <td>Retourne une nouvelle séquence constituée des éléments <em>i</em>
+              à <em>j-1</em>&nbsp; (l'élément d'indice j n'est pas inclus)</td>
+          </tr>
+          <tr>
+            <td><em><strong>s[ i : j : k]</strong></em></td>
+            <td>Retourne une nouvelle séquence constituée des éléments <em>i</em>
+              à <em>j-1</em> avec un pas égal à k</td>
+          </tr>
+          <tr>
+            <td><strong>len(s)<br>
+              </strong></td>
+            <td>longueur de la séquence s</td>
+          </tr>
+          <tr>
+            <td><em><strong>min(s)<br>
+                </strong></em></td>
+            <td>plus petit élément de s</td>
+          </tr>
+          <tr>
+            <td><em><strong>max(s)<br>
+                </strong></em> </td>
+            <td>plus grand élément de s<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>s.index(x)<br>
+                </strong></em></td>
+            <td>retourne l'indice de l'élément x dans la séquence s<br>
+              <em>s.index(x, i)</em> retourne l'indice de l'élément x dans la
+              séquence s en commençant à partir de l'indice i<br>
+              <em>s.index(x, i, j)</em> retourne l'indice de l'élément x dans la
+              séquence s entre les indices&nbsp; i&nbsp; et j</td>
+          </tr>
+          <tr>
+            <td><em><strong>s.count(x)<br>
+                </strong></em></td>
+            <td>nombre d'occurences de l'élément x dans la séquence s</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      Voici quelques outils de manipulation communs à toutes les séquences de
+      type muttable
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 15%;"><em><strong>s[i] = x</strong></em></td>
+            <td>affecter la valer x à l''elément i de la séquence s</td>
+          </tr>
+          <tr>
+            <td><em><strong>s[i:j] = t</strong></em></td>
+            <td>la sous-séquence s[i:j] est remplacée par l'itérable t</td>
+          </tr>
+          <tr>
+            <td><em><strong>s[i:j:k] = t</strong></em></td>
+            <td>Les élement de i à j-1 avec un pas de k sont remplacés par
+              l'itérable t</td>
+          </tr>
+          <tr>
+            <td><em><strong>del( s[i:j])</strong></em></td>
+            <td>supprime les élément de i à j-1, similaire à s[i:j]=[]</td>
+          </tr>
+          <tr>
+            <td><em><strong>del(s[i:j:k])</strong></em></td>
+            <td>Supprime les élements de i à j-1 avec un pas de k</td>
+          </tr>
+          <tr>
+            <td><em><strong>s.append(x)</strong></em></td>
+            <td>Rajoute l'élément x à la fin de la séquence</td>
+          </tr>
+          <tr>
+            <td><em><strong>s.clear()</strong></em></td>
+            <td>supprime tous les élément de la séquence s.&nbsp; Similaire à
+              s[:]=[]&nbsp; ou del(s[:])</td>
+          </tr>
+          <tr>
+            <td><em><strong>s.copy()</strong></em></td>
+            <td>retourne une copie de s<br>
+              s2 = s1.copy() --&gt; s2 est une nouvelle séquence identique à s1.
+              <br>
+              <span style="color: red;">attension: si on écrit s2 = s1, on ne
+                crée pas une nouvelle séquence, les identificateurs s1 et s2
+                pointent sur la même séquence. Si on modifie l'une, l'autre
+                aussi est modifiée </span></td>
+          </tr>
+          <tr>
+            <td><em><strong>s.extend(t)</strong></em></td>
+            <td>Ajoute la séquence t à la fin de la séquence s</td>
+          </tr>
+          <tr>
+            <td><em><strong>s.insert(i, x)</strong></em></td>
+            <td><span style="font-family: Cambria;"> insère l'élément x à la
+                position i,</span></td>
+          </tr>
+          <tr>
+            <td><em><strong>s.pop([i])</strong></em></td>
+            <td><span style="font-family: Cambria;"> supprime et retourne
+                l'élément d'ordre i. Si l'indice i est omis, c'est le dernier
+                élément qui est retiré<br>
+              </span></td>
+          </tr>
+          <tr>
+            <td><em><strong>s.remove(x)</strong></em></td>
+            <td><span style="font-family: Cambria;"> supprime l'élément x (la
+                1ère occurrence) de la liste,</span></td>
+          </tr>
+          <tr>
+            <td><em><strong>s.reverse()</strong></em></td>
+            <td><span style="font-family: Cambria;"> inverser les éléments de la
+                liste (flip),</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2><em><a id="ranges" name="ranges"></a>Les ranges:</em></h2>
+      Les ranges sont des séquences de nombres ordonnées habituellement
+      utilisées pour les itération dans les boucle <em>for</em>. On les utilise
+      aussi pour construire d'autres séquence commes les listes, les tuples...
+      Les ranges sot des séquences non mutables.<br>
+      <br>
+      Pour générer une séquence range, on utilise la fonction <em><strong>range()</strong></em>:<br>
+      <br>
+      <em style="color: #000099;">R1 = range(10)</em> --&gt; séquence de nombres
+      compris entre 0 et 9. <br>
+      <em style="color: #000099;">R2 = range(0, 10 ,2)</em> --&gt; séquence de
+      nombres copris entre 0 et 9 avec un pas de 2 --&gt; 0 2 4 6 8<br>
+      <br>
+      Il n'y a pas de représentation spéciale pour un range. Si on demande de
+      l'afficher, python affiche: range( . . .)<br>
+      <em style="color: #000099;">print(R2)&nbsp;&nbsp; --&gt;&nbsp; range(0,
+        10, 2)</em><br>
+      <br>
+      Si on veut voir les éléments d'un range, on peut l'utiliser pour générer
+      une liste<br>
+      <em style="color: #000099;">print(list(R2))&nbsp; --&gt;&nbsp;&nbsp; [0,
+        2, 4, 6, 8]<br>
+      </em><br>
+      <br>
+      Très souvent, on utilise les ranges comme itérateurs dans une boucle <em><strong>for</strong></em><br>
+      <br>
+      <table style="width: 100%;" border="0" cellpadding="10" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 100%; background-color: #ccffff;"><em><span style="color: #000099;">L
+                  = ['Lundi', 'Mardi', 'Mercredi','Jeudi','Vendredi', 'Samedi',
+                  'dimanche']<br>
+                  <span style="color: #990000;">for j in range(7):</span><br>
+                  &nbsp;&nbsp;&nbsp; print( L[j] )<br>
+                  <br>
+                  <span style="color: black;">L&#8217;exécution de ce petit programme
+                    produit la sortie suivante:</span><br>
+                  &nbsp;<br>
+                  Lundi<br>
+                  Mardi<br>
+                  Mercredi<br>
+                  Jeudi<br>
+                  Vendredi<br>
+                  Samedi<br>
+                  dimanche<br>
+                  <br>
+                </span></em> </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      Pour plus de détail, voir&nbsp;&nbsp; <a href="http://docs.python.org/3/library/stdtypes.html">http://docs.python.org/3/library/stdtypes.html</a><br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

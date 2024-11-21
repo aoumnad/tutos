@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Python 3 - Checkbutton</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter" name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, Checkbutton" name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python 3</span> et l'Interface
+                Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le widget Checkbutton<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Ce widget <img alt="ch_B" src="images/checkbutton1.PNG">retourne une valeur parmi deux selon
+      s'il est coché ou non. La valeur retournée est liée (grâce à l'option <em>variable</em>) à une variable qui peut
+      être de type <em>IntVar()</em>, <em>StringVar()</em> ou <em>BooleanVar()</em>. La valeur retournée est 0 ou 1
+      pour <em>IntVar()</em>, '0' ou '1' pour <em>StringVar()</em>, True ou False pour <em>BooleanVar()</em>. On peut
+      redéfinir les valeurs retournées &nbsp;à l'aide des options <em>onvalue</em> et <em>offvalue</em>.
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">&nbsp;Syntaxe:<br>
+          </em></span></h2>
+      <dl>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>from tkinter import *</em></span></span></h3>
+        </dd>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>nom = Checkbutton(parent,
+                  option=valeur, option=valeur, . . .)</em></span></span></h3>
+        </dd>
+      </dl>
+      <br>
+      <p><span style="font-family: Cambria;">La valeur courante du widget peut être modifiée par code en modifiant la
+          valeur de la variable associée: <em style="color: #000099;">nom_variable.set(valeur)</em> <br>
+        </span></p>
+      <p><span style="font-family: Cambria;">La valeur courante du widget peut être lue comme suit:&nbsp; <em style="color: #000099;">valeur
+            = nom_variable.get()</em></span><span style="font-family: Cambria;"></span> </p>
+      <h2><span style="font-family: Cambria;">&nbsp;<em style="color: #990000;">Quelques options du widget Checkbutton:</em></span></h2>
+      <span style="font-family: Cambria;"></span><span style="font-family: Cambria;"></span><br>
+      <table style="width: 90%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 116px"><span style="font-family: Cambria;"><strong><em>background (bg)</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                    </a></span>arrière plan.</span> voir exemple ci-dessous<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>bitmap</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"></span><span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><a href="python3_attributs_standard.html">bitmap </a></span>monochrome
+                à afficher</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>bd</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Épaisseur de la bordure en pixels. Améliore
+                l'effet de relief. Défaut=2.</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>command</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Procédure exécuté quand le widget et
+                coché/décoché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>cursor</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_curseurs_souris.html">Curseur
+                    </a></span>de la souris quand celle-ci survole le widget</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>disabledforeground</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                    </a></span>du texte quand le widget est désactivé</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>font</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_button.html#fonte">Fonte
+                    </a></span>du texte du widget. exemple: <em>font="arial 8 italic bold"</em></span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>foreground (fg)</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                    </a></span>du texte</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>height</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Hauteur du widget en lignes</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>image</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">image à afficher</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>indicatoron</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Si cette option est placée à 0, les cases à
+                cocher sont remplacées par des boutons enfoncé/relâché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>justify</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Permet de justifier le texte (LEFT, CENTER,
+                RIGHT) dans le cas où celui-ci contient des \n&nbsp; pour retourner à la ligne</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>offvalue</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Définit la valeur de la variable quand le
+                widget n'est pas coché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>onvalue</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Définit la valeur de la variable quand le
+                widget est coché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>padx</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Marge horizontale du texte par rapport aux
+                limites du widget</span><br>
+              <span style="font-family: Cambria;"><em>padx=3</em> =&gt; 3 pixels,&nbsp;&nbsp; <em>padx='3m'</em> =&gt;
+                3 mm,&nbsp;&nbsp; <em>padx='1c'</em> =&gt; 1 cm, <em>padx='0.5i'</em> =&gt; 0.5 inch</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>pady</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Marge verticale</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>relief</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Relief du widget.&nbsp; Défaut = SUNKEN</span><br>
+              <br>
+              <span style="font-family: Cambria;"><img alt="relief" src="images/relief.png"></span><br>
+            </td>
+          </tr>
+          <tr>
+            <td><span style="font-family: Cambria;"><strong><em>selectcolor</em></strong></span></td>
+            <td><span style="font-family: Cambria;"><span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur</a>
+                  du checkbutton. Voir exemple ci-dessous<br>
+                </span></span></td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>state</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Permet d'activer (NORMAL) ou de désactiver
+                (DISABLED) le widget</span><br>
+              <span style="font-family: Cambria;">je n'ai pas bien compris le rôle de la valeur ACTIVE</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>text</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">texte à afficher sur le widget, \n permet un
+                texte sur plusieurs lignes</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>variable</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Définit la variable liée au widget. La valeur
+                de cette variable correspond à l'état du widget</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>width</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Largeur du widget en caractères</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;">&nbsp;</span>
+      <h2><span style="font-family: Cambria;">&nbsp;<em style="color: #990000;">Quelques méthodes du widget Checkbutton:</em></span></h2>
+      <table style="width: 80%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.deselect()</em></span><br>
+            </td>
+            <td style="width: 586px">&nbsp; <span style="font-family: Cambria;">place le widget dans son état 0 = OFF</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.invoke()</em></span><br>
+            </td>
+            <td style="width: 586px"> <span style="font-family: Cambria;">Appelle le callback du widget défini par
+                l'option <em>command</em> comme si le widget avait été cliqué</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.select()</em></span><br>
+            </td>
+            <td style="width: 586px"> <span style="font-family: Cambria;">place le widget dans son état 1 = ON</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.toggle()</em></span><br>
+            </td>
+            <td style="width: 586px"> <span style="font-family: Cambria;">change l'état du widget</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <span style="font-family: Cambria;">&nbsp;L'exemple ci-dessous utilise trois Checkbuttons. <br>
+      </span><span style="font-family: Cambria;">&nbsp;Le premier est associée à une variable de type <em>IntVar()</em>,
+        sa valeur prendra les valeurs par défaut 0 ou 1. <br>
+      </span><span style="font-family: Cambria;">&nbsp;Le deuxième est associé à une variable de type <em>StringVar()</em>
+        qui prendra les valeurs (que nous avons définies) 'Oui' ou 'Non'<br>
+      </span><span style="font-family: Cambria;">&nbsp;Le troisième est associée à une variable de type <em>BooleanVar()</em>,
+        sa valeur prendra les valeurs par défaut True ou False. <br>
+        <br>
+        Chaque fois qu'on clique dans un Checkbutton, on invoque la fonction <em>voir()</em> qui affiche l'état des
+        trois Checkbuttons dans la fenêtre de commande Python.<br>
+      </span><br>
+      <table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="5">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff; width: 701.483px;"><span style="font-family: Cambria;"><em>from
+                  tkinter import *<br>
+                  <br>
+                  def voir():<br>
+                  &nbsp;&nbsp;&nbsp; print(rb0.get(), rb1.get(), rb2.get())<br>
+                  <br>
+                  fp = Tk()<br>
+                  <br>
+                  rb0 = IntVar()<br>
+                  rb1 = StringVar()<br>
+                  rb2 = BooleanVar()<br>
+                  rb1.set('Oui')<br>
+                  rb0_chk = Checkbutton(fp, text='RB0', variable = rb0, bg='pink', command = voir)<br>
+                  rb1_chk = Checkbutton(fp, text='RB1', variable = rb1, onvalue='Oui', offvalue='Non', command = voir)<br>
+                  rb2_chk = Checkbutton(fp, text='RB2', variable = rb2, selectcolor='yellow', command = voir)<br>
+                  <br>
+                  rb0_chk.pack()<br>
+                  rb1_chk.pack()<br>
+                  rb2_chk.pack()<br>
+                  <br>
+                  Button(fp, text="EXIT", command=fp.destroy).pack()<br>
+                  <br>
+                  fp.mainloop()<br>
+                  <br>
+                </em></span> </td>
+            <td style="text-align: center; width: 161.25px;"><span style="font-family: Cambria;"><img alt="pack2" src="images/checkbutton.PNG"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

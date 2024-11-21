@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, bytes, bytearray"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+#titre {  
+  background-color: #ccccff;
+}
+
+#soustitre {  
+  background-color: #80cc90;  
+  font-style: italic;  
+  font-size: xx-large;  
+  font-weight: bold;  
+  text-align: center;  
+  color: #990000;
+}
+
+#navigation {  
+  width: 23%;  
+  min-height: 1000px;  
+  float: left;  
+  font-family: Cambria;
+}
+
+#contenu {  
+  width: 72%;  
+  min-height: 1000px;  
+  float: right;  
+  background-color: #ffff99;  
+  font-family: Cambria;  
+  padding-top: 10px;  
+  padding-right: 10px;  
+  padding-bottom: 10px;  
+  padding-left: 10px;  -ms-word-wrap: normal;
+  word-wrap: normal;
+}
+
+#icone {  
+  width: 7%;  
+  float: left;  
+  margin-top: 3px;  
+  margin-right: 3px;  
+  margin-bottom: 3px;  
+  margin-left: 3px;
+}
+
+#code {  
+  font-style: italic;  
+  color: #000099;
+}
+
+</style> </head>
+  <body style="      background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Bytes&nbsp; et&nbsp; Bytearray<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div style="text-align: justify;" id="contenu">Les séquences de type bytes
+      et bytearray&nbsp; sont des suites d'octets. C'est un moyen efficace de
+      représenter les chaines de caractère et les entiers (&gt;255) par une
+      suite d'octets (&lt;=255)<br>
+      les séquences <em><strong>bytes </strong></em>ne sont pas <em><strong>muttables</strong></em>,
+      une fois définies, leurs éléments ne peuvent être modifiés. <br>
+      les séquences <em><strong>bytearray </strong></em>sont <em><strong>muttables</strong></em>,
+      leurs éléments peuvent être modifiés à n'importe quel moment.<br>
+      <br>
+      La syntaxe pour définir une séquence de type byte ou bytearray est très
+      similaire à celle d'une chaine de caractère. On utilise les simples
+      guillemets ' ' ou les doubles <span>guillemets&nbsp; " " </span>précédés
+      de la lettre b, par exemple: <span id="code">bs = b'Bonjour'</span> .
+      Cette façon de définir une séquence bytes à partir d'une chaine n'est pas
+      toujours utilisable. Elle marche seulement quand tous les caractères de la
+      chaine peuvent être codés en ASCII (un octet par caractère)<br>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 50%; text-align: center;">Séquence de caractère: <em><strong>string</strong></em></td>
+            <td style="text-align: center;">Séquence d'octets : <em><strong>bytes<br>
+                </strong></em></td>
+          </tr>
+          <tr>
+            <td><em><span style="color: #000099;">ss = 'ABCDE'<br>
+                  ss[0]&nbsp; --&gt;&nbsp;&nbsp;&nbsp; 'A'</span></em></td>
+            <td><em style="color: #000099;">bs = b'ABCDE'<br>
+                bs[0]&nbsp; --&gt;&nbsp; 65</em></td>
+          </tr>
+          <tr>
+            <td><em><span style="color: #000099;">ss = 'glaçon'<br>
+                  ss[3]&nbsp;&nbsp; --&gt;&nbsp;&nbsp; 'ç'</span></em></td>
+            <td><em style="color: #000099;">bs = b'glaçon'</em>&nbsp; --&gt;
+              message d'erreur car le caractère ç ne peut<span style="font-style: italic;">
+              </span>être codé en code ASCII. Que faut il faire ?<br>
+              On va utiliser la fonction de conversion <a target="_top" href="python3_fonctions_predefinies.html#bytes"><em><strong>bytes()</strong></em></a>
+              en lui précisant le codage souhaité:<br>
+              <em style="color: #000099;"><br>
+                bs = bytes('glaçon', 'latin-1')&nbsp; --&gt;&nbsp; b'gla\xe7on'<br>
+              </em>le caractère ç est codé par l'octet \xe7 = 231<br>
+              <em><span style="color: #000099;">bs[3] --&gt; 231 </span></em><br>
+              <br>
+              <em style="color: #000099;">bs = bytes('glaçon', 'utf-8')&nbsp;
+                --&gt;&nbsp; b'gla\xc3\xa7on'<br>
+              </em>le caractère ç est codé par 2 octets&nbsp; \xc3&nbsp; \xa7 <br>
+              <em><span style="color: #000099;">bs[3] --&gt; 195 </span></em><br>
+              <em><span style="color: #000099;">bs[4] --&gt; 167 </span></em><br>
+            </td>
+          </tr>
+          <tr>
+            <td><br>
+            </td>
+            <td><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      Pour représenter un entier par une séquence de type bytes on utilise la
+      méthode <em><strong>.to_bytes()</strong></em><br>
+      <br>
+      <em style="color: #000099;">N = 65<br>
+        Nb = N.to_bytes(1, 'big')&nbsp;&nbsp; --&gt;&nbsp; b'A'<br>
+        Nb[0]&nbsp;&nbsp; --&gt;&nbsp; 65<br>
+        <br>
+        N = 250000<br>
+        bin(N)&nbsp; --&gt;&nbsp; '0b11 11010000 10010000'<br>
+        Nb = N.to_bytes(3, 'big')&nbsp; --&gt;&nbsp;&nbsp; b'\x03\xd0\x90'<br>
+        Kb = N.to_bytes(3, 'little')&nbsp; --&gt; b'\x90\xd0\x03'<br>
+        Nb[0]&nbsp; --&gt;&nbsp; 3<br>
+        Nb[1]&nbsp; --&gt;&nbsp; 208<br>
+        Nb[2]&nbsp; --&gt;&nbsp; 144<br>
+        list(Nb)&nbsp; --&gt;&nbsp; [3, 208, 144]<br>
+        tuple(Nb)&nbsp; --&gt;&nbsp; (3, 208, 144)</em><br>
+      <br>
+      <br>
+      Pour former un <span style="font-style: italic;">entier</span> à partir
+      d'une séquence de type bytes, on utilise la classe:<br>
+      <em><strong>int.from_bytes</strong>(bytes, byteorder, *, signed=False)</em><br>
+      <br>
+      <em style="color: #000099;">Bs = bytes([3, 4, 5])&nbsp;&nbsp;&nbsp;
+        --&gt;&nbsp;&nbsp;&nbsp; b'\x03\x04\x05'<br>
+        N = int.from_bytes(Bs, 'big')&nbsp;&nbsp;&nbsp; --&gt;&nbsp;&nbsp;
+        197637<br>
+        bin(N)&nbsp;&nbsp;&nbsp; --&gt;&nbsp;&nbsp; '0b110000010000000101'&nbsp;
+        --&gt;&nbsp; 11&nbsp; 00000100&nbsp; 00000101</em><br>
+      <br>
+      <br>
+      Les objets <em><strong>bytes </strong></em>et <em><strong>bytearray </strong></em>supportent
+      les opérations communes aux <a target="_blank" href="python3_sequences.html">séquences
+        </a>en général ainsi des méthodes (à quelques exceptions près)
+      s'appliquant aux séquences de type <a target="_blank" href="python3_manip_string.html">string</a>.<br>
+      <br>
+      <br>
+      Pour plus de détail, voir&nbsp;&nbsp; <a href="http://docs.python.org/3/library/stdtypes.html#binaryseq">http://docs.python.org/3/library/stdtypes.html#binaryseq</a>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

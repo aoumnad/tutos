@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Les threads</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, thread"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les Threads<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Un thread est un process qui tourne en parallèle avec les
+      autres process. Quand on crée un thread, on précise la fonction que
+      celui-ci doit exécuter. Le thread se termine (disparait) quand toutes les
+      instructions de la fonction sont exécutées. Il n'y a pas moyen simple et
+      propre pour forcer l'arrêt d'un thread avant la fin de sa fonction. Si la
+      fonction d'un thread est constituée d'une tache qui boucle sans fin, on
+      peut prévoir un moyen d'arrêter le thread en incorporant dans la fonction
+      un test sur une variable globale qui peut être vrai ou fausse, tant que la
+      variable est vrai, on répète la tache, sinon on sort de la fonction ce qui
+      termine le thread.
+      <p pbzloc="19">Python dispose de deux modules pour faire du threading. Le
+        module <strong><em>_thread</em></strong> (de bas niveau) et le module <strong><em>threading
+            </em></strong>(haut niveau) basé sur les classes et qui lui même
+        fait appel aux fonctions du module <em>_thread</em>. N'étant pas un
+        spécialiste Python, je ne ferai pas de recommandation. Il semble que le
+        module _thread qui ne supporte pas la programmation Orienté Objet (OOP)
+        serait plus simple à mettre en oeuvre.</p>
+      <p pbzloc="23">Le threading constitue un pan assez ardu du langage python.
+        On se contente ici d'une introduction très élementaire.</p>
+      <p>&nbsp;</p>
+      <h2 pbzloc="21"><span style="font-style: italic;"><span style="color: #990000;">Le
+            Module _thread</span></span></h2>
+      <p pbzloc="17">Voir:</p>
+      <ul>
+        <li pbzloc="20">[<a target="_blank" href="http://docs.python.org/3.1/library/_thread.html">http://docs.python.org/3.1/library/_thread.html</a>]</li>
+        <li pbzloc="7">[Programming Python de Mark Lutz]</li>
+      </ul>
+      <p>Avec le module <em>_thread</em>, on crée et démarre un thread à l'aide
+        de la fonction <em>_thread.start_new_thread()</em></p>
+      <br>
+      &nbsp;<em>import _thread</em><br>
+      <em>_thread.start_new_thread(fonction, args, kwargs)</em><br>
+      <ul style="list-style-type: circle">
+        <li><strong><em>fonction </em></strong><em>&nbsp;est le nom de la
+            fonction appelée par le Thread.</em></li>
+        <li><strong><em>args</em></strong><em> est un tuple d'arguments pour la
+            fonction </em></li>
+        <li><em><span style="font-weight: bold;">kwargs </span>est un
+            dictionnaire optionnel d'arguments pour l'invocation de la fonction</em></li>
+      </ul>
+      <p>Le thread se termine quand sa fonction se termine ou que celle-ci
+        exécute l'instruction _thread.exit() qui fonctionne un peu comme un <em>break</em>
+        dans une boucle.</p>
+      <p>&nbsp;</p>
+      <h2><span style="font-style: italic;"><span style="color: #990000;">Le
+            Module threading</span></span></h2>
+      <p>Avec le module <em>threading</em>, on crée un thread en instanciant la
+        classe<em> threading.Thread()</em></p>
+      <br>
+      <span style="color: #000099;"><em>import threading</em><br>
+        <em>MonThread = threading.Thread(target=fonction, name=nom,
+          args=(tuple), kwargs={dictionaire})</em><br>
+      </span>
+      <p>Ou encore si on veut se <em>soulager</em> du mot <em>threading</em> à
+        chaque fois qu'on&nbsp; fait appel à une classe du module :</p>
+      <span style="color: #000099;"><em>from&nbsp; threading import Thread</em><br>
+        <em>MonThread = Thread(target=fonction, name=nom, args=(tuple),
+          kwargs={dictionaire})</em><br>
+      </span>
+      <ul>
+        <li><strong><em>target</em></strong><em> est la fonction appelée par le
+            Thread.</em></li>
+      </ul>
+      <ul>
+        <li><strong><em>name</em></strong><em> permet de donner un nom au thread
+            (ne sert pas à grand-chose).</em></li>
+      </ul>
+      <ul>
+        <li><strong><em>args</em></strong><em> est un tuple d'arguments pour
+            l'invocation de la fonction target</em></li>
+      </ul>
+      <ul>
+        <li><strong><em>kwargs</em></strong><em> est un dictionnaire d'arguments
+            pour l'invocation de la fonction target</em></li>
+      </ul>
+      <p>&nbsp;</p>
+      <p>Le thread se termine quand sa fonction se termine ou que celle-ci
+        exécute l'instruction sys.exit() qui fonctionne un peu comme un <em>break</em>
+        dans une boucle.</p>
+      <h2><span style="font-style: italic;"><span style="color: #cc0000;">Exemple:</span></span></h2>
+      <p>L'exemple ci-dessous crée deux boutons, un pour démarrer un thread et
+        l'autre pour l'arrêter. Le bouton EXIT permet de quitter l'application
+        en faisant attention de ne pas laisser le thread en train de tourner.</p>
+      <p>&nbsp;<span style="color: #cc0000;"><span style="font-weight: bold;"><span
+              style="font-style: italic;">Avec le module _Thread:</span></span></span></p>
+      <div>
+        <table style="width: 100%;" border="1" cellpadding="10">
+          <tbody>
+            <tr>
+              <td style="background-color: #ccccff;"><em>from tkinter import *</em><em><br>
+                </em><em>import _thread</em><em><br>
+                </em><em>from time import sleep</em><em><br>
+                </em><em><br>
+                </em><em>#========== Définition des fonctions
+                  ==============================================</em><em><br>
+                </em><em>def
+                  TacheDuThread(Te):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # fonction constituant la tache du thread</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp; while th_actif:</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print('Thread en activité')</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  sleep(Te) # attendre 0.2 s</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp; print('Thread arrêté
+                  proprement')</em><em><br>
+                </em><em>&nbsp;</em><em><br>
+                </em><em>def&nbsp;&nbsp;&nbsp; demarrer():&nbsp; # Callback du
+                  bouton Start Thread =&gt; Crée et démarre le thread</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; global
+                  th_actif&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # variable globale</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; th_actif = True</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  _thread.start_new_thread(TacheDuThread,(0.2,))</em><em><br>
+                </em><em>&nbsp;</em><em><br>
+                </em><em>def&nbsp;&nbsp;&nbsp; arreter(): # Callback du bouton
+                  Stop Thread =&gt; demander à la fonction TacheDuThread de
+                  s'arreter</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; global th_actif</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; th_actif = False</em><em><br>
+                </em><em>&nbsp;</em><em><br>
+                </em><em>def&nbsp;&nbsp;
+                  quitter():&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # #Callback du bouton Stop =&gt; arrêter le programme
+                  proprement</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; global th_actif</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if&nbsp; th_actif:</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  th_actif = False&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #
+                  demander la fin de TacheDuThread</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print('By')</em><em><br>
+                </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  fp.destroy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # fermet la fenêtre de l'application</em><em><br>
+                </em><em><br>
+                </em><em>#======== main
+                  ====================================================</em><em><br>
+                </em><em>fp = Tk()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #
+                  fenêtre de l'application</em><em><br>
+                </em><em>Button(fp,text = 'Start Thread', command =
+                  demarrer).pack(pady=10)</em><em><br>
+                </em><em>Button(fp,text = 'Stop Thread', command =
+                  arreter).pack(pady=10)</em><em><br>
+                </em><em>Button(fp,text = 'EXIT',command =
+                  quitter).pack(pady=10)</em><em><br>
+                </em><em>fp.mainloop()</em><em><br>
+                </em><em><br>
+                </em></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <span style="font-style: italic;"><span style="color: red;"></span></span>
+        <br>
+      </div>
+      <p><span style="color: #cc0000;"><span style="font-style: italic;"><span style="font-weight: bold;">Avec
+              le module treading</span></span></span></p>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><em>&nbsp;from tkinter import
+                *</em><em><br>
+              </em><em>from threading import Thread</em><em><br>
+              </em><em>from time import sleep</em><em><br>
+              </em><em><br>
+              </em><em>#========== Définition des fonctions
+                ==============================================</em><em><br>
+              </em><em>def TacheDuThread(Te):&nbsp;&nbsp; # fonction constituant
+                la tache du thread</em><em><br>
+              </em><em>&nbsp; while MonThread.actif:</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print('Thread en
+                activité')</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep(Te) # attendre 0.2 s</em><em><br>
+              </em><em>&nbsp; print('Thread arrêté proprement')</em><em><br>
+              </em><em><br>
+              </em><em>def&nbsp;&nbsp;&nbsp; demarrer():&nbsp; # Callback du
+                bouton Start Thread =&gt; Crée et démarre le thread</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; global MonThread</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; MonThread = Thread(target=
+                TacheDuThread, args=(0.2,)) # Créer le thread, Callback =
+                TacheDuThread(0.2)</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; MonThread.actif= True</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; MonThread.start()</em><em><br>
+              </em><em><br>
+              </em><em>&nbsp;def&nbsp;&nbsp;&nbsp; arreter(): # Callback du
+                bouton Stop Thread =&gt; demander à la fonction TacheDuThread de
+                s'arrêter</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; global MonThread</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; MonThread.actif = False</em><em><br>
+              </em><em><br>
+              </em><em>&nbsp;def&nbsp;&nbsp;
+                quitter():&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # # Callback du bouton Stop =&gt; arrêter le programme
+                proprement</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; global MonThread</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; if&nbsp; MonThread.actif:</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                MonThread.actif =
+                False&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # demander la fin de TacheDuThread</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                MonThread.join()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # attendre que le thread se termine effectivement</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp; print('By')</em><em><br>
+              </em><em>&nbsp;&nbsp;&nbsp;
+                fp.destroy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # fermer la fenêtre de l'application</em><em><br>
+              </em><em><br>
+              </em><em>#======== main
+                ====================================================</em><em><br>
+              </em><em>fp = Tk()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #
+                fenêtre de l'application</em><em><br>
+              </em><em>Button(fp,text = 'Start Thread', command =
+                demarrer).pack(pady=10)</em><em><br>
+              </em><em>Button(fp,text = 'Stop Thread', command =
+                arreter).pack(pady=10)</em><em><br>
+              </em><em>Button(fp,text = 'EXIT',command = quitter).pack(pady=10)</em><em><br>
+              </em><em>fp.mainloop()</em><em><br>
+              </em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <span style="font-style: italic; color: red;"></span> </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

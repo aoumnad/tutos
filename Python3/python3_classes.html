@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Les classes</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, classes, classe, class"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les classes<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> <big>Python est un langage orienté objet. Une classe
+        constitue le <em>squelette</em> d'objets. Une fois une classe définie,
+        on peut créer autant d'objets qu'on le désire ayant la structure de la
+        classe. Chaque fois qu'on crée un objet, on dit qu'on fait une
+        instanciation de la classe. </big>
+      <p><big>Une classe définit les attributs (propriété) et des méthodes qui
+          sont des actions qu'on peut effectuer sur les objets de cette classe.</big></p>
+      <big> </big>
+      <p><big>Les attributs de la classe doivent être définit à l'aide du
+          constructeur <span style="font-style: italic;">__init__(self, suite
+            de variables)</span></big></p>
+      <big> </big>
+      <p><big>On peut si on le désire préciser une valeur par défaut pour chaque
+          variable (voir exemple ci-dessous). La fonction __init__ est exécutée
+          chaque fois qu'on crée un objet de cette classe.</big></p>
+      <big> </big>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><em># création de la classe<br>
+                class Time(object):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "mettre un commentaire ici"<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; def&nbsp; __init__(self, hh
+                =12, mm =0, ss =0): # attributs (options) de la classe<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                self.heure =hh<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                self.minute =mm<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; def
+                affiche(self):&nbsp;&nbsp;&nbsp; # définir une méthode pour la
+                classe<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                print("{0}:{1}:{2}".format(self.heure, self.minute,
+                self.seconde))<br>
+                <br>
+                <br>
+                # utilisation de la classe<br>
+                d1 = Time(14, 41,
+                30)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # instantiation =&gt; création de l'objet d1<br>
+                d2 =
+                Time()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # instantiation=&gt; création de l'objet d2<br>
+                d1.affiche()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # appliquer la méthode affiche sur d1 &nbsp; =&gt;
+                &nbsp;&nbsp;&nbsp; 14:41:30 <br>
+                d2.affiche()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # appliquer la méthode affiche sur d2&nbsp; =&gt;
+                &nbsp;&nbsp;&nbsp; 12:0:0&nbsp;&nbsp;&nbsp;&nbsp; (valeurs par
+                défaut)<br>
+                d2.minute =
+                18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # modifier la valeur d'un attribut<br>
+                d2.affiche()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # =&gt;&nbsp; 12:18:0<br>
+              </em></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><big>&nbsp;</big></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

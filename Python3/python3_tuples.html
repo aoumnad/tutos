@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Tuples</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, Tuples"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1200px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="              background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les tuples<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">
+      <ul>
+        <li>Les tuples sont des listes non modifiables. Pour distinguer un tuple
+          d'une liste on utilise les ( ) à la place des [ ].</li>
+      </ul>
+      <dl>
+        <dd>t1 = (10, 20, 30, 40)</dd>
+      </dl>
+      <ul>
+        <li>Dans la définition d'un tuple, il faut au mois une virgule. T2 = (5)
+          ne définit pas un tuple mais un simple entier. Pour définir un tuple à
+          1 seul élément, il faut utiliser la virgule: T2 = (5,)</li>
+      </ul>
+      <ul>
+        <li>Pour extraire un élément ou une portion d'un tuple, on utilise les
+          index entre [ ] comme pour les listes.</li>
+      </ul>
+      <dl>
+        <dd><em>T =
+            tuple(range(0,101,10))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; (0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)</em></dd>
+        <dd> <em>T[3]
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt;&nbsp; 30</em></dd>
+        <dd> <em>T[4:7]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt;&nbsp; (40, 50, 60)</em></dd>
+        <dd> <em>T[:6]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt;&nbsp; (0, 10, 20, 30, 40, 50)</em></dd>
+        <dd> <em>T[-3]
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; 80</em></dd>
+        <dd> <em>T[-3:]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; (80, 90, 100)</em></dd>
+      </dl>
+      <p> </p>
+      <p style="margin-left: 18pt">&nbsp;</p>
+      <ul>
+        <li>On ne peut pas modifier les éléments d'un tuple</li>
+      </ul>
+      <dl>
+        <dd><em>T[2] = 33&nbsp; =&gt; TypeError: 'tuple' object does not support
+            item assignment</em></dd>
+        <dd> <br>
+        </dd>
+        <dd>Pour modifier un tuple il faut en créer un neuf. Par exemple, pour
+          remplacer (40,50) par (400,500)</dd>
+        <dd> <br>
+        </dd>
+        <dd><em>T2 = T[:4]
+            +(400,500)+T[6:]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; (0, 10, 20, 30, 400, 500, 60, 70, 80, 90, 100)</em></dd>
+      </dl>
+      <p>&nbsp;</p>
+      <ul>
+        <li>Peu de fonction et de méthodes sont applicables sur les tuples. Pour
+          manipuler un tuple avec plus de souplesse, il vaut mieux le convertir
+          en liste, le manipuler puis le reconvertir en tuple ceci à l'aide des
+          fonctions <em>list()</em> et <em>tuple()</em>. On peut néanmoins
+          utiliser les fonctions, <em>in, len(), max(), min(), sorted() ainsi
+            que les méthodes .index() et .count()&nbsp;&nbsp;&nbsp; <br>
+            Voir paragraphe sur <a target="_top" href="python3_sequences.html">les
+              séquences</a></em></li>
+      </ul>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

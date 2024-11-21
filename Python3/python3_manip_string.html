@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, chaînes de
+      caractères</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, chaînes de caractères, chaines de caractères, string"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Manipulation des chaînes de caractères<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Une chaîne de caractère est une séquence de caractères.
+      Rappelons que sous python, les <strong>séquences</strong> représentent
+      une catégorie d'objets importante comme les listes et les tuples.
+      <p><span style="font-family: Cambria;">Qui dit séquence, signifie que
+          chaque élément est accessible par son index. Une chaîne peut être
+          manipulée comme tel (toute entière) mais on peut aussi accéder à un
+          caractère donné ou à une portion de la chaîne à l'aide des index
+          exactement comme on le fait avec les listes.</span></p>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s1 = 'Chaine'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s2 = ' de caractères'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s = s1 +
+              s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt; 'Chaine de caractères'&nbsp;&nbsp; ( + est l'opérateur de
+              concaténation)</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s[1]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'h'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s[7:9]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'de'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s[-10:]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'caractères'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              len(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              20</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              s[3]='î'&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              TypeError: 'str' object does not support item assignment</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <p><span style="font-family: Cambria;">Comme on peut le constater sur la
+          ligne précédente, on ne peut pas modifier un élément d'une chaîne. <strong><em>Une
+              chaîne de caractères est une séquence non mutable c.à.d. non
+              modifiable.</em></strong></span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><span style="font-style: italic;"><span
+              style="color: #660000;">Opérateurs sur chaînes de caractères</span></span></span></h2>
+      <ul>
+      </ul>
+      <ul>
+        <li><span style="font-family: Cambria;">Affectation ou définition:
+            &nbsp;&nbsp;<strong>=</strong></span></li>
+      </ul>
+      <ul>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s1
+              = 'Bonjour'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s2
+              = "Bonsoir\n"</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Concaténation:&nbsp;
+            &nbsp;&nbsp;<strong>+</strong></span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s1
+              = 'Bonjour'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s2
+              = " cher ami"</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s3
+              = s1 + s2&nbsp;&nbsp;&nbsp; =&gt;&nbsp; 'Bonjour cher ami'</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Répétition:&nbsp; &nbsp;&nbsp;<strong>*</strong></span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s
+              = 5 *
+              'Blabla'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp; 'Blabla Blabla Blabla Blabla Blabla '</span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Test d'égalité:&nbsp; &nbsp;<strong>==</strong></span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s1
+              == s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt;
+              retourne <strong>True</strong> si s1 est la même chaine que s2</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">if&nbsp;&nbsp;
+              s&nbsp; ==&nbsp;&nbsp; 'Error':</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              print("Il s'est produit une erreur")</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Test d'appartenance:&nbsp;&nbsp;
+            <strong><em>in</em></strong></span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s1
+              in s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt; retourne <strong>True</strong> si s1 est in incluse dans s2</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s
+              = 'Bonjour cher ami'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">'cher'
+              in s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; retourne True</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">'Cher'
+              in s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; retourne False</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Extraction:&nbsp; <strong><em>[
+                ]</em></strong></span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;">Une chaine de caractère est une
+            séquence de caractères. On va retrouver les mêmes mécanisme qu'on
+            utilise avec les listes et les tuples. Une chaine peut être
+            manipulée comme tel (toute entière) mais on peut aussi accéder à un
+            caractère donné ou à une portion de la chaine à l'aide des indices
+            (indexes) exactement comme on le fait avec les listes.</span></dd>
+        <dd> <span style="font-family: Cambria;"><br>
+          </span> </dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s1
+              = 'Chaine'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s2
+              = ' de caractères'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s
+              = s1 + s2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; 'Chaine de
+              caractères'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[0]
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'C'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[1]
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'h'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[7:9]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'de'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[-1]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              's'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[-4]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'è'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">s[-10:]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              'caractères'</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&nbsp;s[3]
+              = 'î'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              TypeError: 'str' object does not support item assignment</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+        <dd><span style="font-family: Cambria;">Sur la dernière ligne, on a
+            essayé de modifier un caractère de la chaine en lui affectant une
+            nouvelle valeur. On a obtenu une erreur. On ne peut pas modifier un
+            élément d'une chaine. D'où la constation fondamentale: <strong><em>Une
+                chaine de caractère est une séquence non modifiable.</em></strong></span></dd>
+        <dd> <span style="font-family: Cambria;"><br>
+          </span> </dd>
+      </dl>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><span style="font-style: italic;"><span
+              style="color: #660000;">Les fonctions s'appliquant sur les chaînes
+              de caractères</span></span></span></h2>
+      <ul>
+        <li><span style="font-family: Cambria;"><strong><em>len(s)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; retourne un entier = longueur de la chaîne<br>
+          </span></li>
+        <li><span style="font-family: Cambria;"><strong><em>chr(n)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; retourne le caractère correspondant à l'identifiant Unicode n</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>ord(c)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            =&gt; Retourne l'identifiant Unicode du caractère c</span></li>
+        <li><span style=" font-family: Cambria;"><em><strong>bytes(s,</strong></em><em><strong>
+                code)</strong></em>&nbsp;&nbsp;&nbsp; =&gt;&nbsp; retourne une
+            séquence d'octets (non mutable): <br>
+            <span style="color: #000099;"><em>b = bytes('ABéçCD', 'utf-8')&nbsp;
+                --&gt; b'AB\xc3\xa9\xc3\xa7CD'</em><em><br>
+              </em><em>l = list</em><em>(b)</em><em>&nbsp;&nbsp; --&gt;&nbsp;
+                [65, 66, 195, 169, 195, 167, 67, 68]</em></span><br>
+          </span></li>
+        <li><span style="  font-family: Cambria;"><em><strong>bytearray(s, code)</strong></em>&nbsp;&nbsp;
+            =&gt; </span><span style=" font-family: Cambria;">retourne une
+            séquence d'octets (mutable)</span></li>
+      </ul>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><span style="font-style: italic;"><span
+              style="color: #660000;">Les méthodes de la classe chaîne de
+              caractère</span></span></span></h2>
+      <p><span style="font-family: Cambria;">Voici quelques méthodes
+          s'appliquant sur les chaînes de caractères, d'autres sont énumérée
+          ici: <a href="http://docs.python.org/3.3/library/stdtypes.html#string-methods">http://docs.python.org/3.3/library/stdtypes.html#string-methods</a></span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <table style="width: 100%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 26%;"><span style="font-family: Cambria;">&nbsp; <strong><em>str.capitalize()</em></strong><br>
+              </span> </td>
+            <td> <span style="font-family: Cambria;">Retourne une copie de str
+                avec la première lettre en majuscule<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 210px;"><span style="font-family: Cambria;"><strong><em>str.count(s,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td><span style="font-family: Cambria;"> Retourne le nombre
+                d'occurrence de la sous-chaine s dans la portion de la chaine <em>str</em>
+                qui commence à <em>start</em> et se termine à <em>stop</em><br>
+              </span> <span style="font-family: Cambria;"><span style="color: red;"><span
+                    style="font-style: italic;">cc = 'ABC ABCDE BCD CDEF ABCDEF'</span><br>
+                  <span style="font-style: italic;">
+                    print(cc.count('BC'))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt;
+                    4&nbsp;&nbsp;&nbsp;&nbsp; =&gt;&nbsp; on compte dans toute
+                    la chaine cc</span><br>
+                  <span style="font-style: italic;">
+                    print(cc.count('BC',3))&nbsp;&nbsp; =&gt;
+                    3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&gt; &nbsp; on compte à
+                    parir de la position 3</span><br>
+                  <span style="font-style: italic;">
+                    print(cc.count('BC',3,14))&nbsp;&nbsp; =&gt;&nbsp;&nbsp;
+                    2&nbsp; =&gt;&nbsp; de la position 3 jusqu'à la position 14
+                    (non incluse)</span></span><br>
+                <span style="font-style: italic;"> </span></span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><br>
+                <span style="font-style: italic;"><strong><em>str.encode([code],[
+                      erreur])</em></strong></span><br>
+              </span>
+              <div style="margin-left: 40px;"> </div>
+            </td>
+            <td><span style="font-family: Cambria;"> Retourne une séquence
+                d'octets de type <em>bytes</em> correspondant au codage de la
+                chaine <em>str</em> dans la norme code.<br>
+                Par défaut, code = <em>'utf-8'</em>, il peut prendre <em>'ascii'</em>,
+                <em>'latin-1',' iso8859_6', . . .</em><br>
+                Par défaut, erreur= 'strict',&nbsp; elle peut prendre <em>'ignore',
+                  'replace', 'xmlcharrefreplace', 'backslashreplace'. </em><br>
+              </span> <span style="font-family: Cambria;"><br>
+                Pour plus de détail, voir: <a href="http://docs.python.org/3.3/library/codecs.html">http://docs.python.org/3.3/library/codecs.html</a><br>
+              </span> <span style="color: red;"><span style="font-family: Cambria;"><em>cc
+                    = 'leçon'</em><br>
+                </span> <span style="font-family: Cambria;"><em>print(cc.encode())&nbsp;
+                    =&gt;&nbsp; b'le\xc3\xa7on' =&gt; en utf-8, 'ç' est codé sur
+                    deux octets: 0xC3 et 0xA7</em><br>
+                </span> <span style="font-family: Cambria;"><em>print(cc.encode('latin-1'))&nbsp;
+                    =&gt;&nbsp; b'le\xe7on'&nbsp; =&gt; 'ç' est codé sur un
+                    octet: 0xE7</em><br>
+                </span> <span style="font-family: Cambria;"><em>print(cc.encode('ascii'))&nbsp;
+                    =&gt; erreur 'ascii' codec can't encode character
+                    '\xe7'&nbsp;&nbsp; not in range(128)</em></span></span> </td>
+          </tr>
+          <tr>
+            <td><span style="font-family: Cambria;"><strong><em>str.endswith(s,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td> <span style="font-family: Cambria;">Retourne True si <em>str[start:stop]</em>
+                se termine par la chaine s<br>
+                <em style="color: red;">print('ABCDE'.endswith('E'))&nbsp;
+                  =&gt;&nbsp; True</em></span> </td>
+          </tr>
+          <tr>
+            <td> <span style="font-family: Cambria;"><strong><em>str.find(sub,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td> <span style="font-family: Cambria;"> Retourne l'indice de la
+                première occurrence de la chaine sub dans <em>str[start:stop]</em>.
+                Retourne -1 si la chaine <em>sub</em> n'est pas trouvée. voir
+                aussi <em>.rfind</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td>&nbsp; <span style="font-family: Cambria;"><strong><em>str.index(sub,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td> <span style="font-family: Cambria;"> Similaire à <em>find</em>
+                mais retourne une erreur si la chaine <em>sub</em> n'est pas
+                trouvée<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td><span style="font-family: Cambria;"><strong><em>str.isalnum()</em></strong></span><br>
+              <span style="font-family: Cambria;"> </span> </td>
+            <td> <span style="font-family: Cambria;"> Retourne <em>True</em>
+                si tous les caractères de <em>str</em> sont alphanumériques et
+                qu'il ya au moins un caractère. </span> </td>
+          </tr>
+          <tr>
+            <td>&nbsp; <span style="font-family: Cambria;"><strong><em>str.isalpha()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px;"> <span style="font-family: Cambria;">Retourne
+                <em>True</em> si tous les caractères de <em>str</em> sont
+                alphabétiques et qu'il y a au moins un caractère.</span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><span style="font-family: Cambria;"><span
+                    style="font-style: italic;">'Bonjour'.isalpha()&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; True</span></span> </span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"> <span style="font-family: Cambria;"><span
+                    style="font-style: italic;">' Napoléon
+                    3'.isalpha()&nbsp;&nbsp; =&gt;&nbsp;&nbsp; False</span></span></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><br>
+                <strong><em>&nbsp;str.isdecimal()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px">
+              <div style="margin-left: 40px;"> </div>
+              <span style="font-family: Cambria;"> Retourne <em>True</em> si
+                tous les caractères de <em>str</em> sont des chiffres décimaux
+                et qu'il y a au moins un chiffre.<br>
+              </span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><em><span style="font-family: Cambria;">'34568'.isdecimal()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; True<br>
+                  </span></em><em> </em></span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><em> </em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>'345.68'.isdecimal()&nbsp;
+                    =&gt;&nbsp;&nbsp; False</em></span><br>
+              </span>
+              <div style="margin-left: 40px;"> </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><br>
+                <strong><em>&nbsp;str.islower()</em></strong><br>
+              </span> </td>
+            <td style="width: 809px; margin-left: -19px;">
+              <div style="margin-left: 40px;"> </div>
+              <span style="font-family: Cambria;"> Retourne <em>True</em> si
+                tous les caractères de <em>str</em> sont minuscules et qu'il ya
+                au moins un caractère<br>
+              </span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'abcd'.islower()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; True</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><em> </em><em><span style="font-family: Cambria;">'Abcd'.islower()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; False<br>
+                  </span></em><em> </em></span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><em> </em><em><span style="font-family: Cambria;">'abcd34'.islower()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; True<br>
+                  </span></em><em> </em></span>
+              <div style="margin-left: 40px;"> </div>
+              <span style="color: red;"><em> </em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>'346'.islower()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; False</em></span><br>
+              </span>
+              <div style="margin-left: 40px;"> </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.isspace()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Retourne
+                <em>True</em> si <em>str</em> n'est constituée que d'espaces<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.upper()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"><span style="font-family: Cambria;">
+                Retourne <em>True</em> si tous les caractères de <em>str</em>
+                sont majuscules et qu'il ya au moins un caractère<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABCD'.isupper()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; True</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em><em><span
+                    style="font-family: Cambria;">'ABCd'.isupper()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; False<br>
+                  </span></em><em> </em><em><span style="font-family: Cambria;">'ABCD34'.isupper()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; True<br>
+                  </span></em><em> </em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>'346'.isupper()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; False</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><br>
+                <strong><em>str.join()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">colle
+                des chaines en utilisant un séparateur<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>sep = '-'</em><em><br>
+                  </em></span></span><span style="color: red;"><em><span style="font-family: Cambria;">s
+                    = ['ABC', 'XYZ', '123']<br>
+                  </span></em><em> </em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>cc = sep.join(s)&nbsp; =&gt;&nbsp;
+                    &nbsp;'ABC-XYZ-123'</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.ljust(N,[c])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">complète
+                une chaine par un caractère en la justifiant à gauche. Voir <em>rjust</em><br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABC'.ljust(10)&nbsp; =&gt;&nbsp;
+                    'ABC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '</em><em><br>
+                  </em></span></span><span style="color: red;"><em><span style="font-family: Cambria;">'ABC'.ljust(10,'.')&nbsp;
+                    =&gt; </span></em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>'ABC.......'</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.lower()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">retourne
+                une copie de <em>str</em> mais avec tous les caractères
+                minuscules<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">'AbbdDDExyz'.lower()&nbsp;&nbsp;
+                  =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'abbdddexyz'</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"><span style="font-family: Cambria;"><strong><em>str.lstrip(['caractèrres'])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">supprime
+                les caractères indésirable du coté gauche. On arrête de
+                supprimer dès le premier caractère ne faisant pas partie de la
+                liste indésirable.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em><span style="color: red;">'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ABCD EFG&nbsp; HIJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    '.lstrip()&nbsp; =&gt;&nbsp;&nbsp; 'ABCD EFG&nbsp;
+                    HIJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '<br>
+                  </span></em></span><em><span style="color: red;"> </span></em><span
+                style="font-family: Cambria;"><em><span style="color: red;">'acbghkllw'.lstrip('axbyc')&nbsp;&nbsp;&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; 'ghkllw'</span></em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.partition(sep)</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Coupe
+                une chaine à la première occurrence d'un séparateur. Retourne un
+                tuple constitué de la chaine avant le séparateur, du séparateur
+                et de la chaine après le séparateur<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">'ABCD-EFGH-XYZ'.partition('-')&nbsp;&nbsp;
+                  =&gt;&nbsp;&nbsp;&nbsp;&nbsp; ('ABCD', '-', 'EFGH-XYZ')</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"><span style="font-family: Cambria;"><strong><em>str.replace(old,
+                    new, [N])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Retourne
+                une copie de la chaine <em>str</em> où toute occurrence de la
+                sous-chaine <em>old</em> est remplacée par la sous-chaine <em>new</em>.
+                Si N est précisé, seuls N occurrences sont remplacées.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">cc = 'ABCD\rEFG'.replace('\r','\n')</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><strong><em>str.rfind(sub,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Retourne
+                l'indice de la dernière occurrence de la chaine <em>sub</em>
+                dans <em>str[start:stop]</em>. Retourne -1 si la chaine <em>sub</em>
+                n'est pas trouvée. (voir aussi .<em>find</em>)<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">'ABCAXYADFG'.rfind('A')&nbsp;&nbsp;
+                  =&gt;&nbsp;&nbsp;&nbsp;&nbsp; 6</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.rindex(sub,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Similaire
+                à <em>rfind</em> mais retourne une erreur si la chaine <em>sub</em>
+                n'est pas trouvée<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.rjust(N,[c])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">complète
+                une chaine par un caractère en la justifiant à droite. Voir <em>ljust</em><br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABC'.ljust(10)&nbsp; =&gt;&nbsp;
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ABC'</em><em><br>
+                  </em></span></span><span style="color: red;"><em><span style="font-family: Cambria;">'ABC'.ljust(10,'.')<br>
+                  </span></em><em> </em></span><span style="font-family: Cambria;"><span
+                  style="color: red;"><em>'.......ABC'</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.rpartition(sep)</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Coupe
+                une chaine à la dernière occurrence d'un séparateur. Retourne un
+                tuple constitué de la chaine avant le séparateur, du séparateur
+                et de la chaine après le séparateur<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">'ABCD-EFGH-XYZ'.rpartition('-')&nbsp;&nbsp;
+                  =&gt;&nbsp;&nbsp;&nbsp;&nbsp; ('ABCD-EFGH', '-', 'XYZ')</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.split([sep],[n])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Coupe
+                une chaine en plusieurs sous chaines. Si n est précisé, seuls n
+                sous chaines sont extraites à partir de la gauche.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABC DEF GHI IJK'.split()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; ['ABC', 'DEF', 'GHI', 'IJK']</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span><span
+                style="font-family: Cambria;"><span style="color: red;"><em>'ABC
+                    DEF GHI IJK LMN OPQ'.split(' ',2)&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; ['ABC', 'DEF', 'GHI IJK LMN OPQ']</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.rsplit([sep],[n])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Coupe
+                une chaine en plusieurs sous chaines. Si n est précisé, seuls n
+                sous chaines sont extraites à partir de la droite.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABC DEF GHI IJK'.split()&nbsp;
+                    =&gt;&nbsp;&nbsp;&nbsp; ['ABC', 'DEF', 'GHI', 'IJK']</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span><span
+                style="font-family: Cambria;"><span style="color: red;"><em>'ABC
+                    DEF GHI IJK LMN OPQ'.rsplit(' ',2)&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; ['ABC DEF GHI IJK', 'LMN', 'OPQ']</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><strong><em>str.rstrip(['indésirables'])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Supprime
+                les caractères indésirable du coté droite. On arrête de
+                supprimer dès le premier caractère ne faisant pas partie de la
+                liste indésirable.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ABCD EFG&nbsp; HIJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    '.lstrip()&nbsp; =&gt;&nbsp;&nbsp;
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ABCD EFG&nbsp; HIJ'</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span><span
+                style="font-family: Cambria;"><span style="color: red;"><em>'ghkllwacb'.lstrip('axbyc')&nbsp;&nbsp;&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; 'ghkllw'</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"> <span style="font-family: Cambria;"><br>
+                <strong><em>&nbsp;str.splitlines(keepends)</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Casse
+                la chaine str en plusieurs lignes et les place dans une liste<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'ABC\rDEF\nHIJ\r\nXYZ\n'.splitlines(False)&nbsp;
+                    =&gt;&nbsp; ['ABC', 'DEF', 'HIJ', 'XYZ']</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span><span
+                style="font-family: Cambria;"><span style="color: red;"><em>'ABC\rDEF\nHIJ\r\nXYZ\n'.splitlines(True)&nbsp;&nbsp;
+                    =&gt;&nbsp; ['ABC\r', 'DEF\n', 'HIJ\r\n', 'XYZ\n']</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px"><span style="font-family: Cambria;"><strong><em>str.startswith(s,
+                    [start],[ stop])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Retourne
+                True si <em>str[start:stop]</em> commence par la chaine s<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">print('ABCDE'.endswith('E'))&nbsp;
+                  =&gt;&nbsp; True</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.strip(['indésirables'])</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Supprime
+                les caractères indésirable de droite et de gauche. On arrête de
+                supprimer dès le premier caractère ne faisant pas partie de la
+                liste indésirable.<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <span style="color: red;"><em>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    ABCD EFG&nbsp; HIJ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    '.strip()&nbsp; =&gt;&nbsp;&nbsp; 'ABCD EFG&nbsp; HIJ'</em><em><br>
+                  </em></span></span><span style="color: red;"><em> </em></span><span
+                style="font-family: Cambria;"><span style="color: red;"><em>'ababghkllwacb'.strip('axbyc')&nbsp;&nbsp;&nbsp;&nbsp;
+                    =&gt;&nbsp;&nbsp; 'ghkllw'</em></span><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.swapcase()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">Retourne
+                une copie de <em>str</em> en remplaçant les minuscules par des
+                majuscules et vice versa<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.title()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">retourne
+                une copie de <em>str</em> avec la première lettre en majuscule
+                et les autres en minuscule.<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 206px">&nbsp; <span style="font-family: Cambria;"><strong><em>str.upper()</em></strong><br>
+              </span> </td>
+            <td style="width: 451px"> <span style="font-family: Cambria;">retourne
+                une copie de <em>str</em> mais avec tous les caractères
+                majuscule<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em style="color: red;">'AbbdDDExyz'.lower()&nbsp;&nbsp;
+                  =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'ABBDDDEXYZ'</em><br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 pbzloc="10"><span style="font-family: Cambria;"><br>
+        </span> <span style="font-family: Cambria;"><span style="color: #990000;"><span
+              style="font-style: italic;"></span></span></span></h2>
+      <h2 pbzloc="10"><span style="font-family: Cambria;"><span style="color: #990000;"><span
+              style="font-style: italic;">Encodage des caractères</span></span></span></h2>
+      <p pbzloc="10"><span style="font-family: Cambria;">Sous python 3, chaque
+          caractère d'une chaine est codé en Unicode. Unicode affecte un
+          identifiant entier unique pour chaque caractère mais ne précise pas
+          sur combien d'octets faut-il coder cet identifiant. Par exemple,
+          l'identifiant Unicode de ω est 0x3C9 soit 969. Unicode laisse le chois
+          aux développeurs de langages de programmation coder cet identifiant
+          sur le nombre d'octet qui leur convient et ceci en fonction de la
+          plateforme sur laquelle ils travaillent.&nbsp; Ainsi une chaine peut
+          être constituée de caractère appartenant à plusieurs langues
+          différentes 'ABcéXçαβپيطون'<br>
+          Tant qu'on travaille sur un système, cela ne pose aucun problème. Mais
+          dès qu'il s'agit d'échanger des données entre systèmes, il faut que
+          les deux systèmes qui échangent se mettent d'accord sur la façon dont
+          les identifiants Unicode sont représentés. Si on envoie des données à
+          une imprimante sans lui préciser comment ces donnés ont été codées,
+          elle risque d'afficher n'importe quoi.<br>
+          Les échanges entre systèmes se font toujours sous forme de séquences
+          d'octets. C'est pour cette raison que python dispose d'un type appelé
+          <em><strong> byte </strong></em>qui est une suite d'octets avec les
+          mécanismes nécessaires pour passer de la représentation <strong><em>string
+              </em></strong>qui est une suite de caractères à la représentation
+          <em>byte </em>qui est une suite d'octets, et ceci dans les deux sens.
+          (voir les méthodes <em><strong>.encode()</strong></em> et .<em><strong>decode()</strong></em>
+          et les fonctions <em><strong>bytes()</strong></em> et <em><strong>bytearray()</strong></em>)<br>
+          Mais avant de pouvoir passer d'une représentation à une autre il faut
+          définir le nombre d'octet nécessaire pour coder un seul caractère.
+          C'est là qu'interviennent les normes de codages: </span></p>
+      <ul>
+        <li><span style="font-family: Cambria;"><span style="font-weight: bold;">ASCII</span>,
+            chaque caractère est codé sur 7 bits. On peut coder 128 caractères
+            différents. Il suffit pour écrire un texte 'normal' en anglais. Les
+            32 premier caractères sont des caractères de control, ils ne sont
+            pas affichables.</span></li>
+      </ul>
+      <ul>
+        <li><span style="font-family: Cambria;"><span style="font-weight: bold;">Latin-1</span>
+            connu sous Windows comme CP1252 ou plus généralement comme
+            ISO-8859-1. C'est un des tableaux de la norme ISO-8859. Cette norme
+            est une extension de du code ASCII. Chaque caractère est codé sur 8
+            bits. On peut ainsi coder 256 caractères différents en gardant la
+            compatibilité avec le code ascii. Les caractères de code 0 à 127
+            sont les mêmes que le code ASCII. Les codes de 128 à 255 sont
+            réservés aux caractères nationaux. Latin-1 permet de coder les
+            caractères accentués des pays de l'Europe de l'Ouest</span></li>
+      </ul>
+      <p pbzloc="10"><span style="font-family: Cambria;">On peut trouver
+          quelques tableaux de codes de la norme ISO-8856 dans un vieux document
+          que j'ai publié il y a assez longtemps:&nbsp;&nbsp; <a href="../Archi-Ordinateurs/ST0.pdf">http://www.oumnad.123.fr/Archi-Ordinateurs/STO.pdf
+            </a></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;"><span style="font-weight: bold;">Utf-8</span>
+            est une norme récente fortement utilisée. Elle maintient la
+            compatibilité avec le code ASCII standard, les 128 premiers
+            caractères sont codés sur un octet et ils ont gardé leur code ascii.
+            les autres sont codés sur 2, 3 ou même 4 octets. Le tableau
+            ci-dessous donne un aperçu, (unicode, caractère, utf-8). On ne peut
+            pas représenter la totalité du tableau utf-8. </span></li>
+      </ul>
+      <p pbzloc="10"><span style="font-family: Cambria;"><br>
+        </span> </p>
+      <span style="font-family: Cambria;"><em><strong>Exemples:</strong></em><br>
+      </span>
+      <dl>
+        <dd><span style="font-family: Cambria;">'ABCDE'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ASCII --&gt; un octet (7 bits) par caractère&nbsp;&nbsp;&nbsp;
+            ==&gt;&nbsp; 65&nbsp; 66&nbsp; 67&nbsp; 68&nbsp; 69</span></dd>
+        <dd><span style="font-family: Cambria;">'ABCDE'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Latin-1 --&gt; un octet (8 bits) par caractère&nbsp;&nbsp;&nbsp;
+            ==&gt; 65&nbsp; 66&nbsp; 67&nbsp; 68&nbsp; 69</span></dd>
+        <dd><span style="font-family: Cambria;">'ABC<span style="color: blue;">é</span><span
+              style="color: red;">ç</span>DE'&nbsp;&nbsp;&nbsp;&nbsp; Latin-1
+            --&gt; un octet (8 bits) par caractère&nbsp;&nbsp;&nbsp; ==&gt;
+            65&nbsp; 66&nbsp; 67&nbsp; <span style="color: blue;">233&nbsp; </span><span
+              style="color: red;">231&nbsp; </span>68&nbsp; 69</span></dd>
+        <dd><span style="font-family: Cambria;">'ABCéçDE'&nbsp;&nbsp;&nbsp;
+            ASCII --&gt; 7 bits par caractère&nbsp;&nbsp;&nbsp; ==&gt;&nbsp;
+            impossible, les identifiants de é et le ç ne peuvent être
+            représentés sur 7 bits</span></dd>
+        <dd><span style="font-family: Cambria;">'ABC<span style="color: blue;">é</span><span
+              style="color: red;">ç</span>DE'&nbsp;&nbsp;&nbsp;
+            Utf-8&nbsp;&nbsp;&nbsp; --&gt;&nbsp; 65&nbsp; 66&nbsp; 67&nbsp; <span
+              style="color: blue;">195&nbsp; 169</span>&nbsp; <span style="color: red;">195&nbsp;
+              167</span>&nbsp; 68&nbsp; 69</span></dd>
+        <dd><span style="font-family: Cambria;">'AB<span style="color: blue;">é</span>D<span
+              style="color: red;">ω</span>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Utf-8&nbsp;&nbsp;&nbsp; --&gt;&nbsp; 65&nbsp; 66&nbsp; <span style="color: blue;">195&nbsp;
+              169</span>&nbsp; 68&nbsp; <span style="color: red;">207&nbsp; 137</span></span></dd>
+        <dd><span style="font-family: Cambria;">'ABéçD</span><span style="font-family: Cambria;"><span
+              style="font-family: Cambria;"><span style="color: red;">ω</span></span>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Latin-1&nbsp;&nbsp;&nbsp; --&gt;&nbsp; impossible, l'identifiant
+            Unicode de </span><span style="font-family: Cambria;"><span style="font-family: Cambria;"><span
+                style="color: red;">ω</span></span> est \u03c9 = 669, il ne peut
+            être codé sur 8bits<br>
+          </span></dd>
+        <dd><br>
+          <span style="font-family: Cambria;"></span></dd>
+        <dd><span style="font-family: Cambria;">Pour réaliser l'encodage,&nbsp;
+            on peut utiliser </span>la méthode <em><strong>.encode()</strong></em>
+          ou les fonctions <strong><em>bytes()</em></strong> et <strong><em>bytearray()</em></strong>.</dd>
+        <dt><br>
+        </dt>
+      </dl>
+      <span style="font-family: Cambria;"><br>
+      </span> </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

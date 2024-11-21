@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Documentation</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, documentation, tutoriel, tutorial"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="      background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Documentation<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Pour apprendre tout seul, il faut de la doc. Il y a bien
+      sur la doc officielle, elle est en anglais et pas toujours facile à
+      déchiffrer. Heureusement, on cherchant avec Google, on finit toujours par
+      trouver un document ou un post dans un forum qui fournit les réponses à
+      nos questions. Je donne ici quelques liens. La liste est bien sur loin
+      d'être exhaustive.
+      <ul>
+        <li pbzloc="215">
+          <p pbzloc="243"><span style="font-family: Cambria;">L'incontournable <strong><em>Apprendre
+                  à programmer avec python 3</em></strong> de Gérard Swinnen: <a
+                href="http://inforef.be/swi/download/apprendre_python3_5.pdf">http://inforef.be/swi/download/apprendre_python3_5.pdf</a></span></p>
+        </li>
+        <li>
+          <p pbzloc="239"><span style="font-family: Cambria;">L'excellent <strong><em>Introduction
+                  à Python 3</em></strong> &nbsp;de Robert CORDEAU: <a href="http://www.afpy.org/Members/bcordeau/Python3v1-1.pdf">http://www.afpy.org/Members/bcordeau/Python3v1-1.pdf</a></span></p>
+        </li>
+      </ul>
+      <ul>
+        <li pbzloc="225">
+          <p pbzloc="227"><span style="font-family: Cambria;"><em><strong pbzloc="238">La
+                  caverne du python</strong></em>&nbsp;&nbsp; <a target="_blank"
+                href="http://www.gigante.be/python/section_didacticiels.php" pbzloc="220">http://www.gigante.be/python/section_didacticiels.php</a></span></p>
+        </li>
+        <li pbzloc="223">
+          <p pbzloc="237"><span style="font-family: Cambria;">Tutorie Python de
+              Jérôme Tschanz&nbsp; &nbsp;<a href="http://python.50webs.com/download/jt_python.zip">http://python.50webs.com/download/jt_python.zip</a></span></p>
+        </li>
+        <li>
+          <p pbzloc="236"><span style="font-family: Cambria;">Tk
+              mini-tutorial&nbsp; (faire une recherche google, le lien esttrop
+              long)</span></p>
+        </li>
+        <li>
+          <p pbzloc="235"><span style="font-family: Cambria;">Une doc très
+              complète sur le GUI tkinter: &nbsp;<a target="_blank" href="http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html">http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html</a></span></p>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <p><span style="font-family: Cambria;">An introduction to
+              tkinter&nbsp;&nbsp; <a target="_blank" href="http://www.pythonware.com/library/">http://www.pythonware.com/library/</a></span>
+          </p>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <p><span style="font-family: Cambria;">Tutorialpoints&nbsp;&nbsp; <a
+                target="_blank" href="http://www.tutorialspoint.com/python/python_gui_programming.htm">http://www.tutorialspoint.com/python/python_gui_programming.htm</a></span>
+          </p>
+        </li>
+        <li><span style="font-family: Cambria;">La doc officielle&nbsp; <a target="_blank"
+              href="http://docs.python.org/3.1/contents.html">http://docs.python.org/3.1/contents.html</a></span>
+        </li>
+        <ul>
+          <li><span style="font-family: Cambria;">tkinter&nbsp; <a target="_blank"
+                href="http://docs.python.org/3.1/library/tk.html">http://docs.python.org/3.1/library/tk.html</a></span>
+          </li>
+          <li><span style="font-family: Cambria;">Le langage&nbsp;&nbsp; <a target="_blank"
+                href="http://docs.python.org/3.1/reference/index.html">http://docs.python.org/3.1/reference/index.html</a></span>
+          </li>
+        </ul>
+        <li>
+          <p><span style="font-family: Cambria;">Encore un tutoriel intéressant
+              sur le GUI&nbsp; <a target="_blank" href="http://sebsauvage.net/python/gui/index_fr.html">http://sebsauvage.net/python/gui/index_fr.html</a></span>
+          </p>
+        </li>
+        <li>
+          <p><span style="font-family: Cambria;">TkDocs&nbsp;&nbsp; <a target="_blank"
+                href="http://www.tkdocs.com/tutorial/index.html">http://www.tkdocs.com/tutorial/index.html</a></span>
+          </p>
+        </li>
+        <li><span style="font-family: Cambria;">Evénements:&nbsp;&nbsp; <a target="_blank"
+              href="http://www.pythonware.com/library/tkinter/introduction/events-and-bindings.htm">http://www.pythonware.com/library/tkinter/introduction/events-and-bindings.htm</a></span></li>
+      </ul>
+      <dl>
+        <dt>
+          <p><span style="font-family: Cambria;">&nbsp;</span></p>
+        </dt>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Port série: module
+            pyserial&nbsp;&nbsp;&nbsp;&nbsp;<br>
+            <a target="_blank" href="http://pyserial.sourceforge.net/index.html">http://pyserial.sourceforge.net/index.html</a></span>
+        </li>
+      </ul>
+      <dl>
+        <dt>
+          <p style="margin-left: 40px;"><span style="font-family: Cambria;"><a href="http://xy-27.pythonxy.googlecode.com/hg-history/b93ae05029affa450ca661937eb147ad4eeeadc7/src/python/pyserial/DOC/PySerial.pdf">http://xy-27.pythonxy.googlecode.com/hg-history/b93ae05029affa450ca661937eb147ad4eeeadc7/src/python/pyserial/DOC/PySerial.pdf</a></span></p>
+        </dt>
+      </dl>
+      <span style="font-family: Cambria;"> </span>
+      <dl>
+        <dt> <br>
+        </dt>
+      </dl>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

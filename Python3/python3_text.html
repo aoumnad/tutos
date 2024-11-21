@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, le widget Text</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, Le widget Text, Text widget"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le widget Text<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Ce widget permet d'éditer un texte de plusieurs lignes.
+      Le texte peut être formaté (fonte, couleur, . . .). Ce widget peut aussi
+      recevoir une image ou une fenêtre.
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Syntaxe:<br>
+          </em></span></h2>
+      <dl>
+        <dd>
+          <h4><span style="font-family: Cambria;"><em>from tkinter import *</em></span></h4>
+        </dd>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>nom
+                  = Text(parent, option=valeur, option=valeur, . . .)</em></span></span></h3>
+        </dd>
+      </dl>
+      <h2><span style="font-family: Cambria;">&nbsp;</span></h2>
+      <h2><span style="font-family: Cambria;"><span style="color: #990000;"><em>Quelques
+              options du widget Text</em></span></span></h2>
+      <table style="width: 95%;" border="1" cellpadding="8" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>background
+                    (bg)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_couleurs.html">Couleur </a>du widget "red",
+                "blue", "green", "yellow", . . . ou #rrvvbb<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>borderwidth&nbsp;
+                    (bd)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Epaisseur
+                de la bordure en pixels. Défaut=2. améliore l'effet de relief<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>cursor</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_curseurs_souris.html">Curseur </a>de la souris
+                quand celle-ci survole le widget<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>font</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><a href="python3_attributs_standard.html">Fonte
+                  </a>par défaut du texte inséré. exemple: <em>font="arial 8
+                  italic bold"</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>foreground&nbsp;
+                    (fg)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><a target="_top" href="python3_couleurs.html">Couleur
+                    </a></span>du texte<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>height</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">hauteur
+                du widget en lignes de texte<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>padx</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"><span style="font-family: Cambria;"> Marge
+                horizontale du texte par rapport aux limites du bouton<br>
+              </span> <span style="font-family: Cambria;"><br>
+                <em>padx=3</em> =&gt; 3 pixels,&nbsp;&nbsp; <em>padx='3m'</em>
+                =&gt; 3 mm,&nbsp;&nbsp; <em>padx='1c'</em> =&gt; 1 cm, <em>padx='0.5i'</em>
+                =&gt; 0.5 inch<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>pady</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Marges
+                verticales<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>relief</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_attributs_standard.html">Relief </a>du
+                bouton.&nbsp; Défaut = RAISED<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>state</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"><span style="font-family: Cambria;"> Permet
+                d'activer (NORMAL) ou de désactiver (DISABLED) un bouton<br>
+              </span> <span style="font-family: Cambria;"><br>
+                je n'ai pas bien compris le rôle de la valeur ACTIVE<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>width</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Largeur
+                du widget en caractère<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h3><span style="font-family: Cambria;">&nbsp;<em style="color: #990000;">Quelques
+            méthodes du widget Text</em></span></h3>
+      <p><span style="font-family: Cambria;">En plus des <a target="_top" href="python3_methodes_standard.html">méthodes
+            universelles </a>, ce widget supporte les méthodes:</span></p>
+      <table style="width: 95%;" border="1" cellpadding="8" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 158px"> <span style="font-family: Cambria;"><strong><em>.delete(index1,
+                    [index2])</em></strong><br>
+              </span> </td>
+            <td style="width: 499px"><span style="font-family: Cambria;">
+                Supprime les caractères dont les indices sont compris
+                entre&nbsp; <em>index1</em> et <em>index2</em> (non inclus)<br>
+                <em style="color: red;">text1.delete(1.0,1.4)</em>&nbsp;&nbsp;
+                supprime les caractères n° 0, 1, 2, 3&nbsp; de la 1<sup>ère</sup>
+                ligne<br>
+                <span style="color: red;"><em>Edit1.delete(1.4)</em>&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                supprime le caractères n° 4&nbsp; del 1<sup>ère</sup> ligne (le
+                5ème )<br>
+                <span style="color: red;"><em>Edit1.delete(1.0,END)</em>&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                supprime tous les caractères du widget<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 158px"> <span style="font-family: Cambria;"><br>
+                <strong><em>.get(index1, index2)</em></strong><br>
+              </span> </td>
+            <td style="width: 499px"> <span style="font-family: Cambria;">Retourne
+                la chaine qui commence à index1 et se termine à index2<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 158px"> <span style="font-family: Cambria;"><strong><em>.index(indice)</em></strong><br>
+              </span> </td>
+            <td style="width: 499px"> <span style="font-family: Cambria;">Retourne
+                sous forme de string <em>'l.c'</em> la position de l'index
+                indice<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 158px"> <span style="font-family: Cambria;"><strong><em>.insert(index,
+                    str, [])</em></strong><br>
+              </span> </td>
+            <td style="width: 499px"> <span style="font-family: Cambria;">Insère
+                la chaine <em>str</em> avant le caractère n° <em>index. </em>le
+                paramètre optionnel tag permet d'appliquer un format particulier
+                au texte inséré<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h3><span style="color: #990000;"><span style="font-family: Cambria;"><strong><em><u><a
+                    id="Text_index" name="Text_index"></a>Les index de position
+                  dans le widget Text:</u></em></strong></span></span></h3>
+      <p><span style="font-family: Cambria;">Les indices ont la forme <strong>l.c</strong>
+          ou '<strong>l.c</strong>' ou "<strong>l.c</strong>" les lignes
+          commencent à 1 et les colonnes commencent à 0. Il est conseillé
+          d'utiliser les guillemets car 3.20 et interprété comme 3.2</span></p>
+      <p><span style="font-family: Cambria;">&nbsp;<strong><em>INSERT</em></strong><em>
+            ou "<strong>insert</strong>"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </em>: position courante du curseur clavier</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>CURRENT</em></strong><em>
+            ou "<strong>current</strong>"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </em>: position courante du curseur souris</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>END</em></strong><em>
+            ou "<strong>end</strong>"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </em>: Fin du widget</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>"l.end"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </em></strong>:&nbsp; Fin de la ligne l</span></p>
+      <p><span style="font-family: Cambria;"><em>"<strong>insert+3char</strong>"
+            ou "<strong>insert+3c</strong>"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </em>: position courante du curseur plus 3 caractère</span></p>
+      <br>
+      <strong><span style="font-family: Cambria;">E<em>xemples</em>:</span></strong><br>
+      <em><span style="font-family: Cambria;">text1.delete("insert-1c")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          # backspace</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.delete("2.0","2.end+1c")&nbsp;&nbsp;&nbsp;&nbsp;
+          # supprime la ligne 2 (on ajoute 1 pour supprimer le CR aussi)</span></em><br>
+      <em> </em>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;">========================supprimer
+          la ligne courrante ========================</span></p>
+      <em> </em><em><span style="font-family: Cambria;">curseur =
+          text1.index(INSERT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # retourne une
+          chaine de la forme 'l.c'</span></em><em>, il faut maintenant isoler le
+      </em><em>l</em><em><br>
+      </em><em> </em><em><span style="font-family: Cambria;">point =
+          curseur.find('.')&nbsp; # retourne l'index du caractère '.'</span></em><em><br>
+      </em><em> </em><em><span style="font-family: Cambria;">ligne =
+          curseur[0:point]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          # isoler le numéro de la ligne</span></em><em> </em><em>l</em><em><br>
+      </em><em> </em><em><span style="font-family: Cambria;">text1.delete(ligne+'.0',
+          ligne+'.end+1c')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # supprimer la ligne
+          courrante</span></em><em><br>
+      </em><em> </em>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;">================== formater le
+          texte inséré ==========================</span></p>
+      <em><span style="font-family: Cambria;">text1.tag_config('rouge',
+          foreground
+          ='red')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          # définir le tag nommé rouge</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.tag_config('bleu',
+          foreground
+          ='blue')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          # définir le tag nommé bleu</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.insert(INSERT,
+          'Couleur par défaut ')</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.insert(INSERT,
+          'ROUGE ', 'rouge')</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.insert(INSERT,
+          'BLEU', 'bleu')</span></em><br>
+      <em> </em>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;">========================== on peut
+          aussi faire comme ça, c'est moins pratique===============</span></p>
+      <em><span style="font-family: Cambria;">avant = text1.index(INSERT)</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">inséret du texte</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">apres =
+          text1.index(INSERT)</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.tag_add('ajout',avant,apres)
+          # créer le tag 'ajout' sur le texte compris entre les indexes avant et
+          apres</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.tag_configure('ajout',
+          foreground = 'green')&nbsp; # formater le tag</span></em><br>
+      <em> </em><br>
+      <em><span style="font-family: Cambria;">&nbsp;</span></em><br>
+      <p><span style="font-family: Cambria;">========== formater une zone
+          quelconque ===================</span></p>
+      <em><span style="font-family: Cambria;">text1.tag_add('tag1', '3.5',
+          '3.10')</span></em><br>
+      <em> </em><em><span style="font-family: Cambria;">text1.tag_configure('tag1',
+          background='yellow')</span></em><br>
+      <em> </em>
+      <p><span style="font-family: Cambria;">&nbsp;E<strong><em><u>xemple:</u></em></strong></span></p>
+      <table style="width: 100%;" border="0" cellpadding="8">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;">
+              <div><em>'''<br>
+                  chaque fois qu'un caractère est tapé dans le widget Text, il
+                  déclenche<br>
+                  l'événement &lt;Key&gt; qui appelle la procedure clavier.
+                  Celle ci affiche<br>
+                  le code ascii du caractère entre &lt;&gt; en rouge<br>
+                  Pour que le caractère soit affiché avant son code ASCII, on
+                  peut remplacer<br>
+                  l'événement &lt;Key&gt; par &lt;KeyRelease&gt;<br>
+                  '''<br>
+                  <br>
+                </em><em><span style="font-family: Cambria;">from tkinter import
+                    *</span></em><em><img alt="Text" src="images/text.PNG" align="right"><br>
+                </em><em><span style="font-family: Cambria;">fp =
+                    Tk()&nbsp;&nbsp; # fenetre principale</span></em><em><br>
+                </em> <em><span style="font-family: Cambria;">fp.title("Widget
+                    Text")</span></em><em><br>
+                </em><em><span style="font-family: Cambria;">def clavier(eve):</span></em><em><br>
+                </em><em> </em><em><span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    text1.insert(INSERT,'&lt;'+str(ord(eve.char))+'&gt;',
+                    'rouge')</span></em><em><br>
+                </em> <em><br>
+                </em><em><span style="font-family: Cambria;">def clrscr():</span></em><em><br>
+                </em><em> </em><em><span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;
+                    text1.delete(1.0, END)</span></em><em><br>
+                </em> <em><br>
+                </em><em><span style="font-family: Cambria;">&nbsp;text1=
+                    Text(fp, width=60, height =20)</span></em><em><br>
+                </em> <em><span style="font-family: Cambria;">text1.bind("&lt;Key&gt;",
+                    clavier)</span></em><em>&nbsp;&nbsp; # essayez aussi
+                  &lt;KeyRelease&gt;<br>
+                </em> <em><span style="font-family: Cambria;">text1.tag_config('rouge',
+                    foreground ='red')</span></em><em><br>
+                </em> <em><span style="font-family: Cambria;">text1.pack()</span></em><em><br>
+                </em> <em><span style="font-family: Cambria;">Button(fp,
+                    text='CLEAR', command = clrscr).pack(pady=5)</span></em><em><br>
+                </em> <em><span style="font-family: Cambria;">Button(fp,
+                    text='EXIT', command=fp.destroy).pack()</span></em><em><br>
+                </em> <em><br>
+                </em><em><span style="font-family: Cambria;">fp.mainloop()</span></em><em><br>
+                </em> </div>
+              <em> </em><em><span style="font-family: Cambria;"></span></em><em><span
+                  style="font-family: Cambria;"></span></em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <ul>
+      </ul>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+     </script>
+  </body>
+</html>

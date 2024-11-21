@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, événement clavier
+      et souris</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, bind, événement, clavier, souris"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Événements clavier et souris<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Tkinter offre la possibilité de lier un widget avec un
+      événement:<br>
+      <span style="color: red;"><em style="color: #000099;">widget.bind(événement
+          , fonctions)</em><em><br>
+        </em></span><br>
+      L'événement peut venir du clavier ou de la souris mais pas seulement.
+      Chaque fois que l'événement survient, la fonction est appelée. L'événement
+      est représenté par une chaîne le plus souvent entre crochet,
+      "&lt;événement&gt;"&nbsp; ou '&lt;événement&gt;'<br>
+      <h2><span style="color: #990000;"><em>Evénements clavier</em></span></h2>
+      <table style="width: 100%;" border="1" cellpadding="8">
+        <tbody>
+          <tr>
+            <td><em><strong>'&lt;KeyPress&gt;'</strong></em></td>
+            <td>n'importe quelle touche clavier a été appuyée</td>
+          </tr>
+          <tr>
+            <td><em><strong>'&lt;KeyPress-touche&gt;',
+                  '&lt;touche&gt;',&nbsp;&nbsp;'touche'</strong></em> </td>
+            <td>la touche spécifiée a été appuyée,&nbsp; '&lt;KeyPress-A&gt;'</td>
+          </tr>
+          <tr>
+            <td style="width: 442.417px;"><span style="font-style: italic;"><strong>'&lt;KeyRelease&gt;'&nbsp;
+                  <br> </strong></span></td>
+            <td style="width: 500.733px;">n'importe quelle touche clavier a été
+              relâchée<br>
+            </td>
+          </tr>
+          <tr>
+            <td><span style="font-style: italic;"><strong>'&lt;KeyRelease-touche&gt;'&nbsp;
+                  </strong></span></td>
+            <td>la touche spécifiée a été relâchée,&nbsp; '&lt;KeyRelease-A&gt;'</td>
+          </tr>
+          <tr>
+            <td><span style="font-style: italic;"><strong>Key&nbsp; <br>
+                </strong></span></td>
+            <td>abréviation pour KeyPress<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>'&lt;F1&gt;',&nbsp; '&lt;F2&gt;', ...&nbsp;&nbsp;
+                  '&lt;F12&gt;'<br>
+                  '&lt;Up&gt;',&nbsp; '&lt;Down&gt;',&nbsp; '&lt;Left&gt;',
+                  &nbsp; '&lt;Right&gt;'<br>
+                  '&lt;Prior&gt;',&nbsp; '&lt;Next&gt;' ,
+                  '&lt;BackSpace&gt;',&nbsp; '&lt;Delete&gt;'&nbsp;
+                  '&lt;BackSpace&gt;', '&lt;Delete&gt;', '&lt;End&gt;',
+                  '&lt;Home&gt;', '&lt;Insert&gt;', '&lt;Print&gt;',
+                  '&lt;Tab&gt;', '&lt;Escape&gt;', '&lt;Return&gt;',
+                  '&lt;Caps_Lock&gt;', '&lt;Num_Lock&gt;',
+                  '&lt;Scroll_Lock&gt;', '&lt;Alt_L&gt;', '&lt;Alt_R&gt;',
+                  '&lt;Control_L&gt;',&nbsp;&nbsp; '&lt;Control_R&gt;',
+                  '&lt;Shift_L&gt;', '&lt;Shift_R&gt;'</strong></em></td>
+            <td>Touches spéciales</td>
+          </tr>
+          <tr>
+            <td><span style="font-style: italic;"><strong>'&lt;Prefix-touche&gt;'</strong></span></td>
+            <td>Les préfixes possibles sont <em>Alt, Shift, Control</em> et
+              leurs combinaisons<br>
+              '&lt;Control-C&gt;'&nbsp;&nbsp;&nbsp; '&lt;Control-Alt-V&gt;'</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <h2><span style="color: #990000;"><em>Evénements souris<br>
+          </em></span></h2>
+      <br>
+      <table style="width: 100%;" border="1" cellpadding="8">
+        <tbody>
+          <tr>
+            <td style="width: 377.767px;"><strong>&lt;Button&gt;</strong></td>
+            <td style="width: 565.383px;">n'importe quel bouton de la souris a
+              été cliqué</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;Button-n&gt;</strong></td>
+            <td>Bouton n° n a été cliqué (1=gauche, 2=centre, 3=droite)</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;ButtonRelease-n&gt;</strong></td>
+            <td>Bouton n° n a été relâché (1=gauche, 2=centre, 3=droite)</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;B<em>n</em>-Motion&gt;</strong></td>
+            <td>La sourie a bougé avec le bouton <em><strong>n</strong></em>
+              appuyé</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;Double-Button-n&gt;</strong></td>
+            <td>Double clic sur le bouton n</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;Enter&gt;</strong></td>
+            <td>Le pointeur de la souris vient d'entrer dans le widget</td>
+          </tr>
+          <tr>
+            <td><strong>&lt;Leave&gt;</strong></td>
+            <td>Le pointeur de la souris vient de quitter le widget</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      Quand un événement intervient, il invoque la fonction callback en lui
+      passant un paramètre (de type event). Ce paramètre peut avoir les valeurs
+      suivantes:<br>
+      <ul>
+        <li><em><strong>event.char</strong></em><em><strong>&nbsp;</strong></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Le caractère tapé au clavier sous forme d'un string d'un caractère</li>
+        <li><em><strong>event.keysym&nbsp;</strong></em>&nbsp;&nbsp;&nbsp;&nbsp;
+          le nom de la touche clavier (Shift_L,&nbsp; F11, Left ... )</li>
+        <li><em><strong>event.num</strong></em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          numéro du bouton de la souris. 1=gauche, 2=centre, 3=droite</li>
+        <li><em><strong>event.x, event.y</strong></em>&nbsp;&nbsp; position de
+          la souris en pixels par rapport au coin haut gauche du widget</li>
+        <li><em><strong>event.x_root, event.y_root</strong></em> &nbsp; position
+          de la souris en pixels par rapport au coin haut gauche de l'écran</li>
+        <li><strong><em>event.widget</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          le widget dans lequel l'événement a eu lieu</li>
+      </ul>
+      <br>
+      <br>
+      <em style="font-weight: bold;"><a href="scriptes/evenement.py" id="exemple_event"
+          name="exemple_event"></a><a href="scriptes/evenement.py">Exemple</a>:</em><br>
+      <table style="width: 100%;" border="0" cellpadding="8">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;">
+              <div><em>from tkinter import *<br>
+                  <br>
+                  fp =
+                  Tk()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # fenêtre principale<br>
+                  fp.title("Evénement Clavier et souris")<br>
+                  <br>
+                  def clavier(ev):<br>
+                  &nbsp;&nbsp;&nbsp; text1.insert(END, '&lt;' + ev.keysym +
+                  '&gt;\n')<br>
+                  &nbsp;&nbsp;&nbsp; text1.see(END)<br>
+                  &nbsp;&nbsp;&nbsp; return
+                  "break"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  #pour que le caractère tapé ne soit pas affiché<br>
+                  <br>
+                  def souris(ev):<br>
+                  &nbsp;&nbsp;&nbsp; text1.insert(END,"[bouton , x , y]
+                  --&gt;&nbsp; " + str([ev.num, ev.x, ev.y])+'\n')<br>
+                  &nbsp;&nbsp;&nbsp; text1.see(END)<br>
+                  <br>
+                  def clrscr():<br>
+                  &nbsp;&nbsp;&nbsp; text1.delete(1.0, END)<br>
+                  <br>
+                  text1= Text(fp, width=30, height =20)<br>
+                  <br>
+                  <span style="color: red;"><strong>text1.bind("&lt;Key&gt;",
+                      clavier)<br>
+                      text1.bind("&lt;Button&gt;", souris)<br>
+                    </strong></span><br>
+                  text1.pack(fill='both', expand=1)<br>
+                  Button(fp, text='CLEAR', command = clrscr).pack(pady=5)<br>
+                  Button(fp, text='EXIT', command=fp.destroy).pack()<br>
+                  fp.mainloop()<br>
+                </em><em><br>
+                </em> </div>
+              <em> </em><em></em><em></em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+     </script>
+  </body>
+</html>

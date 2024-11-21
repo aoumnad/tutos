@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Structures de
+      controle</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, if, elif, else, for, while, try,except"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les structures de contrôle<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">
+      <h1><span style="color: #cc0000;"><span style="font-style: italic;"><span
+              style="font-family: Cambria;">if&nbsp; elif else</span></span></span></h1>
+      <h1><span style="font-family: Cambria;"></span></h1>
+      <span style="font-family: Cambria;">C'est la structure d'exécution
+        conditionnelle habituelle:<br>
+        <br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"> <span style="font-style: italic;"><span
+                  style="font-family: Cambria;">a = input('A =&nbsp;
+                  ')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # permet de saisir la valeur de a au clavier dans la fenêtre
+                  python shell<br>
+                  b = input('B =&nbsp; ') <br>
+                  if&nbsp; a == b: <br>
+                  &nbsp;&nbsp;&nbsp; print('A = B') <br>
+                  elif a &gt; b: <br>
+                  &nbsp;&nbsp;&nbsp; print('A &gt; B') <br>
+                  else: <br>
+                  &nbsp;&nbsp;&nbsp; print('A &lt; B') <br>
+                  print("C'est aussi simple que ça")&nbsp;&nbsp;</span></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+      </span>
+      <h1><span style="color: #cc0000;"><span style="font-style: italic;"><span
+              style="font-family: Cambria;"><a id="boucle_while" name="while"></a>Boucle
+              while</span></span></span></h1>
+      <h3><span style="font-family: Cambria;"></span></h3>
+      <span style="font-family: Cambria;">Répéter un bloc d'instructions tant
+        qu'une condition est vraie.<br>
+      </span> <span style="font-family: Cambria;"><br>
+        Dans l'exemple ci-dessous, tant que la variable c est différente d'une
+        chaîne vide, on affiche son identifiant Unicode et son code
+        Utf-8.&nbsp;&nbsp;&nbsp;&nbsp; La variable c est saisie au clavier à
+        l'aide de la fonction input(). Celle-ci retourne une chaîne vide si on
+        tape Return (CR):<br>
+        <br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-style: italic;"><span
+                  style="font-family: Cambria;">c = 'ç' <br>
+                  while c: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print("L'identifiqnt UNICODE de ", c, 'est:&nbsp; ', ord(c)) <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u =
+                  c.encode('utf-8') <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print('Le code
+                  utf-8 de ', c,'est:&nbsp; ', u, end = '&nbsp; =&gt;&nbsp; ') <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for i in u: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print(i, end='&nbsp; ') <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c =
+                  input('\n\nTapez un caractère accentué [Return pour
+                  arreter]&nbsp; ') <br>
+                  print('Fin de la boucle while')</span></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+      </span>
+      <h1><span style="color: #cc0000;"><span style="font-style: italic;"><span
+              style="font-family: Cambria;"><a id="boucle_for" name="for"></a>Boucle
+              for</span></span></span></h1>
+      <h1><span style="font-family: Cambria;"></span></h1>
+      <span style="font-family: Cambria;"><br>
+        Répéter un bloc d'instructions pour toutes les valeurs d'une variable
+        dans un ensemble donné:<br>
+        <br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-style: italic;"><span
+                  style="font-family: Cambria;">for i in range(11): <br>
+                </span> <span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;
+                  print('{:6d}&nbsp; {:6d} {:6d}&nbsp; {:6.3f}'.format(i,&nbsp;
+                  i**2, i**3, i**0.5)) <br>
+                </span><span style="font-family: Cambria;"><br>
+                  for i in [8, 16, 32]: <br>
+                </span> <span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print('2^'+str(i)+'&nbsp; =&nbsp; ',&nbsp; 2**i) <br>
+                </span></span> <span style="font-style: italic;"><span style="font-family: Cambria;"><br>
+                  for c in 'Python': <br>
+                </span> <span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;
+                  print('Unicode de&nbsp;&nbsp; ' , c ,'&nbsp;&nbsp;
+                  -&gt;&nbsp;&nbsp;&nbsp;&nbsp; ' ,&nbsp; ord(c)) <br>
+                </span>&nbsp; <span style="font-family: Cambria;"><br>
+                </span></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+        <br>
+      </span>
+      <h1><span style="color: #cc0000;"><span style="font-style: italic;"><span
+              style="font-family: Cambria;"><a id="try_except" name="try_except"></a>Gestion
+              des exceptions&nbsp; try: except:</span></span></span></h1>
+      <h1><span style="font-family: Cambria;"></span></h1>
+      <span style="font-family: Cambria;">Cette structure est très utile car
+        elle évite l'arrêt du programme en cas d'erreur d'exécution<br>
+      </span> <span style="font-family: Cambria;"><br>
+        Le petit programme ci-dessous va planter car il essaye de calculer 1/i
+        pour i compris entre -5 et 5 et rencontre le problème de division par 0<br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="width: 100%; background-color: #ccccff;"><span style="font-style: italic; font-family: Cambria;"><span>for
+                  i in range(-5,5): </span><span><br>
+                </span><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print(i, 1/i) </span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+        &nbsp;Il génère le message d'erreur:<br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> <span style="font-family: Cambria;"><span style="font-style: italic; color: #000099;">Traceback
+          (most recent call last): <br>
+          File "D:\MesProgrammes\PYTHON\try.py", line 4, in &lt;module&gt; <br>
+          print(i, 1/i) ZeroDivisionError: division by zero&nbsp; <br>
+        </span><br>
+      </span><span style="font-family: Cambria;">Voici <a href="scriptes/try_except.py">quelques
+          façons</a> (non exhaustives) d'y remédier<br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"> <span style="font-family: Cambria;"><span
+                  style="font-style: italic;">for i in range(-5,5): <br>
+                  &nbsp;&nbsp;&nbsp; try: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(i, 1/i) <br>
+                  &nbsp;&nbsp;&nbsp; except: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print('Le
+                  cas qui pose problème est tout simplement ignoré') <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print('======================================================')
+                  <br></span></span> <span style="font-family: Cambria;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-family: Cambria;"><span
+                  style="font-style: italic;">for i in range(-5,5): <br>
+                  &nbsp;&nbsp;&nbsp; try: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(i, 1/i) <br>
+                  &nbsp;&nbsp;&nbsp; except: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(i,
+                  '&nbsp;&nbsp; --&gt; Problème de division par 0 &lt;--') <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print("Sachant
+                  que le problème vient d'une division par 0") <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print("on
+                  affiche le message: --&gt;Problème de division par 0&lt;-- ")
+                  <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print('\n======================================================\n')
+                  <br></span></span> <span style="font-family: Cambria;"><span
+                  style="font-style: italic;"> </span></span></td>
+          </tr>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-family: Cambria;"><span
+                  style="font-style: italic;">for i in range(-5,5): <br>
+                  &nbsp;&nbsp;&nbsp; try: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(i, 1/i) <br>
+                  &nbsp;&nbsp;&nbsp; except Exception as erreur: <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print("==&gt;
+                  "+str(erreur)+" &lt;==") <br>
+                </span></span> <span style="font-family: Cambria;"><span style="font-style: italic;">print("On
+                  affiche le message d'erreur retourné par le système")</span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;">&nbsp; <br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> <span style="font-family: Cambria;"><br>
+        Pour plus de détail, voir: <br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> <span style="font-family: Cambria;"><a target="_blank" href="http://docs.python.org/3.3/tutorial/errors.html">http://docs.python.org/3.3/tutorial/errors.html</a>
+        <br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> <span style="font-family: Cambria;"><a target="_blank" href="http://docs.python.org/3.3/library/exceptions.html#bltin-exceptions">http://docs.python.org/3.3/library/exceptions.html#bltin-exceptions</a>
+        <br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> <span style="font-family: Cambria;"><br>
+        &nbsp; </span><br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

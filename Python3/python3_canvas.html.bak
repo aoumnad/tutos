@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Le widget Canvas</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, Le widget Canvas, Canvas widget"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le widget Canvas<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Je compléterai cette page dès que j'aurais un peu de
+      temps, pour l'instant, vous pouvez voir ici:
+      <p>&nbsp;</p>
+      <p><a href="http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/canvas.html">http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/canvas.html</a></p>
+      <p>&nbsp;</p>
+      <table border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 140px">
+              <p><strong><em>background (bg)</em></strong></p>
+            </td>
+            <td style="width: 480px">
+              <p>Couleur du widget "red", "blue", "green", "yellow", . . . ou
+                #rrvvbb</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px">
+              <p><strong><em>borderwidth&nbsp; (bd)</em></strong></p>
+            </td>
+            <td style="width: 480px">
+              <p>Epaisseur de la bordure en pixels. Défaut=2. améliore l'effet
+                de relief</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px">
+              <p><strong><em>cursor</em></strong></p>
+            </td>
+            <td style="width: 480px">
+              <p>Curseur de la souris quand celle-ci survole le widget</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px">
+              <p><strong><em>height</em></strong></p>
+            </td>
+            <td style="width: 480px">
+              <p>hauteur du widget en lignes de texte</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px">
+              <p><strong><em>relief</em></strong></p>
+            </td>
+            <td style="width: 480px">
+              <p><a target="_top" href="python3_attributs_standard.html">Relief
+                </a>du widget.&nbsp; Défaut = FLAT<strong><em></em></strong></p>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <strong><em>width</em></strong></td>
+            <td style="width: 480px">
+              <p pbzloc="2">Largeur du widget en caractère</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

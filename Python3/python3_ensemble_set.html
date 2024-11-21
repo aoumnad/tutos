@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, ensembles set</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, ensembles, ensembles set, Tkinter GUI, set, sets, frosenset"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Ensembles , Sets<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Un ensemble ou <em>set</em> est une suite d'éléments
+      distincts non ordonnée. Les éléments d'un ensemble sont présenté entre { }
+      comme les dictionnaires.
+      <p><span style="font-family: Cambria;">{ } représente un dictionnaire
+          vide. Pour obtenir un ensemble vide il faut utiliser <em>set()</em>.</span></p>
+      <p><span style="font-family: Cambria;">L'intérêt des ensembles set c'est
+          qu'il dispose de quelques méthodes non disponibles avec les listes
+          comme <strong><em>intersection, difference, ...<br>
+            </em></strong></span></p>
+      <p><span style="font-family: Cambria;">Un ensemble set peut être construit
+          en précisant une suite d'éléments entre {} ou à partir d'une autre
+          séquence en utilisant la fonction <em>set()</em></span></p>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              e1 =
+              {10,20,20,30}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {10, 20, 30}</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              e2 =
+              set(range(10))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              e3 =
+              set('Bonjour')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {'r', 'u', 'B', 'j', 'o', 'n'}</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">&gt;&gt;&gt;
+              e4 = set([1, 2, 3, 4, 1, 6, 2]) &nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {1, 2, 3, 4, 6}</span></span></dd>
+      </dl>
+      <p><span style="font-family: Cambria;">&nbsp;Remarquez que les doublons on
+          été supprimés</span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><span style="font-style: italic;"><span
+              style="color: #660000;">Opérations et Fonctions s'appliquant les
+              ensembles de type set</span></span></span></h2>
+      <ul>
+        <li><span style="font-family: Cambria;"><strong><em>x in E</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            retourne <strong><em>True</em></strong> si x est un élément de
+            l'ensemble E,</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1 &lt; E2</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retourne True si E1 est
+            inclus dans E2 mais différent</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1 &gt; E2&nbsp; </em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            retourne True si E1 contient E2 et au moins un autre élément</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>x not in
+                E&nbsp;&nbsp;&nbsp;&nbsp; </em></strong>retourne <strong><em>True</em></strong>
+            si x n'est pas un élément de l'ensemble E,</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>len( E)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            retourne le nombre d'élément de l'ensemble E,</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>max(E)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </em></strong>retourne le plus grand élément de l'ensemble E,</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>min(E)</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retourne le plus petit
+            élément de l'ensemble E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>sum(E)</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retourne la somme des
+            éléments de l'ensemble E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>sorted(E)</em></strong>
+            &nbsp;&nbsp; retourne un ensemble trié</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>set(sequence)</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Génère génère un ensemble à
+            partir d'une séquence</span></li>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">E1
+              = set(range(10))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # à partir
+              d'une séquence</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">E2
+              = set( (1, 2, 3, 4))&nbsp; &nbsp;&nbsp;&nbsp; # &nbsp;à partir
+              d'un tuple</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">E3
+              = set('Bonjour')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #
+              à partir d'un
+              string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {'r', 'u', 'B', 'j', 'o', 'n'}</span></span></dd>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;"><strong><em>all(E)</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retourne <em>True</em>
+            si tous les éléments de l'ensemble E sont vrai (différents de 0)</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>any(E)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            retourne True si au moins un élément de l'ensemble E est vrai
+            (différent de 0)</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>type(E)</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retourne le type de E</span></li>
+      </ul>
+      <ul>
+      </ul>
+      <dl>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">type(e2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &lt;class 'set'&gt;</span></span></dd>
+        <dd><span style="font-family: Cambria;"><span style="font-style: italic;">type(e2)
+              ==
+              type(set())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              True</span></span></dd>
+        <dd> <span style="font-family: Cambria;"><span style="font-style: italic;"><br>
+            </span></span></dd>
+      </dl>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;"><span style="font-style: italic;"><span
+              style="color: #660000;">Méthodes s'appliquant sur un ensemble set</span></span></span></h2>
+      <ul>
+        <li><span style="font-family: Cambria;"><strong><em>E.add(x)</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ajoute l'élément x à l'ensemble E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E.clear()</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Supprime tous les élément de E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.isdisjoint(E2)</em></strong>&nbsp;&nbsp;
+            retourne True si Les ensembles E1 et E2 n'on pas d'éléments communs</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E.pop()</em></strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Retourne et supprime un
+            élément arbitraire de l'ensemble</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E.discard(x)</em></strong>
+            enlève élément x (s'il existe) de l'ensemble E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E.remove(x)</em></strong>
+            enlève l'élément x, erreur KeyError si x n'existe pas dans E</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.issubset(E2)</em></strong>
+            (<strong><em>ou E1 &lt;= E2</em></strong>) retourne <em>True</em>
+            si E1 est un sous ensemble de E2</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1 &lt; E2</em></strong>
+            retourne True si E1 est inclus dans E2 mais différent</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.issuperset(E2)</em></strong>
+            (<strong><em>E1 &gt;= E2</em></strong>) retourne <em>True</em> si
+            E2 est un sous ensemble de E1</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1 &gt; E2&nbsp; </em></strong>&nbsp;retourne
+            True si E1 contient E2 et au moins un autre élément</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.union(E2, E3, . .
+                .)</em></strong>&nbsp;&nbsp; <strong>(E1 | E2 | E3 | . . .)</strong>
+            Retourne la concaténation de tous les ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.update(E2, E3, .
+                . .)</em></strong> <strong>(E1 |= E2 | E3 | . . .)</strong>
+            ajoute à E1 les éléments les élément des autres ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.intersection(E2,
+                E3,. . .)</em></strong> (<strong><em>E1 &amp; E2 &amp; E3 &amp;
+                . . .</em></strong>) Retourne les éléments communs à tous les
+            ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.intersection_update(E2,
+                E3, . . .) (E1 &amp;= E2 &amp; E3 &amp; . . .)</em></strong> ne
+            conserve à E1 que les éléments communs à tous les ensembles
+            ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.difference(E2,
+                E3, . . .) (E1 - E2 - E3 - . . .)</em></strong>&nbsp;&nbsp;
+            Retourne les éléments de E1 n'appartenant pas aux autres ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.difference_update(E2,
+                E3, . . .) (E1 -= E2 | E3 | . . .)</em></strong> &nbsp;Retire à
+            E1 tous les éléments appartenant aux autres ensembles</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.symmetric_difference(E2)
+                (E1 ^E2)</em></strong> &nbsp;Retourne les éléments non commun à
+            E1 et E2</span></li>
+        <li><span style="font-family: Cambria;"><strong><em>E1.symmetric_difference_update(E2)
+                (E1 ^ E2)</em></strong> retire à E1 tous les éléments communs
+            avec E2</span></li>
+        <li pbzloc="5"><span style="font-family: Cambria;"><strong><em>frozenset()</em></strong>
+            Génère un ensemble set non mutable</span></li>
+      </ul>
+      <dl>
+        <dt><span style="font-family: Cambria;"><br>
+          </span> </dt>
+        <dt><span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Voir <a target="_blank" href="http://docs.python.org/3.1/library/stdtypes.html?highlight=complex#set-types-set-frozenset">http://docs.python.org/3.1/library/stdtypes.html?highlight=complex#set-types-set-frozenset</a></span></dt>
+        <dd><br>
+        </dd>
+      </dl>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

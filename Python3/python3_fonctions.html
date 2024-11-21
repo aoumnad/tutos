@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, fonctions et
+      modules</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, fonctions, def, modules"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les fonctions et les modules<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">
+      <ul>
+        <li><span style="font-family: Cambria;">La définition d'une fonction se
+            fait à l'aide de l'instruction <b><i>def</i></b></span></li>
+      </ul>
+      <ul>
+      </ul>
+      <dl>
+      </dl>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-family: Cambria;"><span
+                  style="font-style: italic;">def nom_fonction(liste de
+                  paramètres):<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  instruction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . . .
+                  .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instruction <br>
+                </span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <dl>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Une fonction peut se contenter
+            de réaliser une tâche, elle peut aussi retourner quelque chose au
+            programme qui l'a appelée. Pour ça il faut utiliser l'instruction <i>return()</i></span>
+        </li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="font-family: Cambria;"><strong><em>exemple:</em></strong></span></p>
+      <dl>
+      </dl>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody align="left">
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-family: Cambria;"><span
+                  style="font-style: italic;"><br>
+                  from math import *<br>
+                  <br>
+                  #===== définition de la fonction<br>
+                  def periode(x,y,z):<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T = (x + 2 * y) * z *
+                  log(2)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(T)<br>
+                  <br>
+                  <br>
+                  #===== utilisation de la fonction<br>
+                  p = periode(10, 22, 47)<br>
+                  print(p)<br>
+                </span><span style="font-style: italic;"><br>
+                </span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><span style="color: red;"><em></em></span></span>
+      <dl>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Dans le cas d'une fonction avec
+            plusieurs paramètres, on a la possibilité de l'appeler sans préciser
+            tous les paramètres. Pour ça il faut préciser des valeurs par défaut
+            pour les paramètres au moment de la définition de la fonction.</span></li>
+      </ul>
+      <dl>
+      </dl>
+      <span style="font-family: Cambria;"><br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><span style="font-family: Cambria;"><span
+                  style="font-style: italic;"><br>
+                  &nbsp;&nbsp;&nbsp; #===== définition de la fonction<br>
+                  &nbsp;&nbsp;&nbsp; def bidon(L=1, W=1, H=1):<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  print(L, W, H , sep=' - ')<br>
+                  <br>
+                  &nbsp;&nbsp;&nbsp; #===== utilisation de la fonction<br>
+                  &nbsp;&nbsp;&nbsp; bidon() --&gt; 1 - 1 - 1<br>
+                  &nbsp;&nbsp;&nbsp; bidon(2) --&gt; 2 - 1 - 1 <br>
+                  &nbsp;&nbsp;&nbsp; bidon(3,7) --&gt; 3 - 7 - 1<br>
+                  &nbsp;&nbsp;&nbsp; bidon(H=37) --&gt; 1 - 1 - 37<br>
+                  &nbsp;&nbsp;&nbsp; bidon(H=37, L=2) --&gt; 2 - 1 --&gt; 37<br>
+                </span></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <dl>
+      </dl>
+      <ul>
+        <li><span style="font-family: Cambria;">Les variables crées dans une
+            fonction sont locales à cette fonction. Elles ne sont connue ni du
+            programme principal, ni des autres fonctions.</span></li>
+      </ul>
+      <ul>
+        <li><span style="font-family: Cambria;">Les variables crées dans le
+            programme principal sont connues de toutes les fonctions mais elles
+            sont accessible seulement en lecture, les fonctions ne peuvent pas
+            les modifier</span></li>
+      </ul>
+      <ul>
+        <li><span style="font-family: Cambria;">Pour qu'une fonction puisse
+            partager (lecture et modification) une variable avec le programme
+            principal ou d'autres fonctions, il faut que cette variable soie
+            déclarée comme globale dans la (les) fonction(s)</span></li>
+      </ul>
+      <h2><span style="font-family: Cambria;"><br>
+          <span style="color: #990000;"><em><strong></strong></em></span></span></h2>
+      <h2><span style="font-family: Cambria;"><span style="color: #990000;"><em><strong>Les
+                modules</strong></em><em><strong> </strong></em></span></span></h2>
+      <p><span style="font-family: Cambria;">On peut regrouper les fonctions
+          dans un fichier librairie (<i>mypylib.py</i> par exemple). Sous
+          Python, les librairies sont appelées modules. Pour utiliser les
+          fonctions d'un module, il suffit de l'importer. On dispose de
+          plusieurs façons:</span></p>
+      <div style="text-align: left;"><span style="font-family: Cambria;">1)<span
+            style="font-weight: bold;"><span style="color: red;"><i><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </span>import math</i></span></span></span></div>
+      <div style="margin-left: 40px;"><span style="font-family: Cambria;">Dans
+          ce cas, pour utiliser une fonction du module, il faut utiliser <em>module.fonction()</em>:<br>
+          <span style="color: red;"><span style="font-style: italic;"><span style="font-weight: bold;"></span></span></span></span><span
+          style="font-family: Cambria;"><span style="color: red;"><span style="font-weight: bold;"><i>y
+                = math.cos(math.pi)&nbsp;&nbsp; -&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                -1.0 </i></span></span></span></div>
+      <span style="font-family: Cambria;"><br>
+        2) &nbsp; &nbsp; &nbsp;&nbsp;<strong><em> </em></strong><strong style="color: red;"><em><i>from&nbsp;
+              math&nbsp; import&nbsp; *</i></em></strong><br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: Cambria;">Dans
+          ce cas on n'est pas obligé de répéter le nom du module à chaque fois<br>
+        </span> <span style="font-family: Cambria;"><span style="color: red;"><span
+              style="font-weight: bold;"><i>y = cos(pi)&nbsp;&nbsp;
+                -&gt;&nbsp;&nbsp;&nbsp;&nbsp; -1.0 </i></span></span></span> </div>
+      <p><span style="font-family: Cambria;"><strong><em> </em></strong></span></p>
+      <p><span style="font-family: Cambria;"><strong><em>Remarque:</em></strong></span></p>
+      <span style="font-family: Cambria;"><em> </em><i>Lors du développement
+          d'un module, on est amené souvent à modifier les fonctions et
+          revérifier leur fonctionnement. Si on essaye les fonctions à partir de
+          la fenêtre Python shell, les fonctions ne sont pas réactualisées même
+          si on réimporte le module. Il faut fermer et ouvrir la fenêtre shell
+          ou recharger le module à l'aide la fonction reload du module imp ce
+          qui n'est pas très commode. J'utilise une solution plus simple: chaque
+          fois que je modifie une fonction de mon module, je tape F5 comme si je
+          voulais exécuter le module, ainsi la nouvelle version de ma fonction
+          devient connue de ma fenêtre shell.</i><br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span> </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

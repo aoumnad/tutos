@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>L'interface graphique (GUI) Tkinter<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Plusieurs interfaces graphiques peuvent être utilisées
+      avec python, <strong><em>tkinter, wxPython, pyQT, pyGTK</em></strong>.
+      L'interface <strong><em>tkinter (Tk interface)</em></strong> est
+      installée par défaut avec Python. C'est celle-ci que nous allons utiliser
+      dans ce didacticiel.
+      <p><span style="font-family: Cambria;">&nbsp;La bibliothèque <strong><em>tkinter</em></strong>
+          est une adaptation de la bibliothèque <em>Tk</em> développée à
+          l'origine pour le langage <em>Tcl</em>. Elle contient le module de
+          base <strong><em>Tk</em></strong> et son extension <strong><em>ttk</em></strong>
+          (Tk themed widgets) qui permet d'obtenir des widgets avec une
+          apparence similaire à ceux du système d'exploitation utilisé en
+          faisant appel à la bibliothèque graphique de ce dernier.</span></p>
+      <p><span style="font-family: Cambria;">Normalement, le module de base Tk
+          est largement suffisant pour monter une interface graphique.
+          Néanmoins, le module ttk introduit quelques nouveaux widgets (comme
+          combobox) et des améliorations appréciables. Comme ttk ne remplace pas
+          complètement le module Tk, il est possible d'utiliser des widgets de
+          l'un et de l'autre dans une même application</span></p>
+      <p><span style="font-family: Cambria;">&nbsp;Un élément graphique comme un
+          bouton,&nbsp; une case à cocher ou une fenêtre de saisie est appelé <strong><em>widget</em></strong>.
+          Un <em>widget</em> est caractérisé par des <strong><em>options</em></strong>&nbsp;
+          qui sont ses propriétés et des <span style="font-style: italic;"><span
+              style="font-weight: bold;">méthodes</span></span> qui désignent
+          des actions qu'on peut lui appliquer.</span></p>
+      <p><span style="font-family: Cambria;">Les <strong><em>option</em></strong>s
+          sont précisées entre parenthèses au moment de la création du <em>widget</em>.
+          Les méthodes sont invoqués ensuite.</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>E</em></strong><strong><em
+              pbzloc="22">xemple 1:</em></strong></span></p>
+      <span style="font-family: Cambria;"><br>
+      </span>
+      <table style="width: 100%;" border="1" cellpadding="5">
+        <tbody>
+          <tr>
+            <td style="width: 100%; background-color: #ccccff; font-size: medium;"><span
+                style="font-family: Cambria;"><span style="font-style: italic;">from
+                  tkinter import
+                  *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp; # charger la bibliothèque tkinter<br>
+                  fp =
+                  Tk()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # Créer la fenêtre principale sous le nom fp</span><br>
+              </span> <span style="font-family: Cambria;"><br>
+              </span> <span style="font-family: Cambria;"><span style="font-style: italic;"><span
+                    style="font-style: italic;"># créer le bouton B1. fp désigne
+                    le père du bouton, ici c'est la fentre fp. L'option text
+                    permet de définir le texte&nbsp; affiché&nbsp; sur le bouton</span><br>
+                  B1 = Button(fp, text = "Bouton 1")<br>
+                  B1.pack()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # positionner le bouton dans la fenêtre<br>
+                  <br>
+                  B2 = Button(fp, text = "Bouton 2")&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # créer le bouton B2 dans la feinter fp<br>
+                  B2.pack()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  # positionner le bouton dans la fenêtre<br>
+                  fp.mainloop()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # activer le
+                  gestionnaire d'événements qui va&nbsp; surveiller ce qui se
+                  passe dans la fenêtre</span></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"></span> <span style="font-family: Cambria;"><span
+          style="font-style: italic; color: red"></span></span>
+      <p><span style="font-family: Cambria;">On obtient la fenêtre suivante:</span></p>
+      <div style="text-align: center;"><span style="font-family: Cambria;"><img
+            alt="bouton 1" src="images/bouton1.png"></span></div>
+      <p pbzloc="33"><span style="font-family: Cambria;">Le fait d'avoir utilisé
+          le positionneur <strong><em>pack()</em></strong> sans aucun
+          paramètre, les <em pbzloc="37">widgets</em> sont positionnés
+          automatiquement l'un en dessous de l'autre.</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>Tkinter</em></strong>
+          dispose de trois positionneurs (geometry manager) : <strong><em pbzloc="30">pack(),
+              place() et grid()</em></strong>. Chacun utilise une technique
+          différente pour positionner les <em>widgets</em> dans la fenêtre.
+          Nous auront l'occasion d'en parler dans la suite de ce document. pour
+          le moment, on va juste ajouter le paramètre pady au positionneur
+          pack() pour espacer les bouton verticalement (axe y). on replace la
+          ligne&nbsp; <em>B1.pack()</em> par <em>B1.pack(pady = 5)</em> et on
+          fait de même pour le bouton 2. On obtient:</span></p>
+      <p pbzloc="15" align="center"><span style="font-family: Cambria;"><img alt="bouton2"
+            src="images/bouton2.png">&nbsp;</span></p>
+      <p pbzloc="7"><span style="font-family: Cambria;">&nbsp;</span></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

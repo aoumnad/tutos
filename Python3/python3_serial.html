@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, le port série</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, pyserial, port série, serial port"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 25%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+          margin-top: 10px;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="                    background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le port série<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> L'accès au port série se fait à l'aide du module <em>pyserial</em>.
+      Voir <a target="_top" href="python3_installation.html">installation</a>
+      <ul>
+      </ul>
+      <span style="font-family: Cambria;">La syntaxe générale pour ouvrir un
+        port et lui affecter un identificateur id:</span>
+      <ul>
+      </ul>
+      <p><span style="color: #000099;"><strong><em><span>id =
+                serial.Serial(port=None, baudrate=9600, bytesize=EIGHTBITS,
+                parity=PARITY_NONE, stop-bits=STOPBITS_ONE, timeout=None,
+                xonxoff=False, rtscts=False, writeTimeout=None,dsrdtr=False,
+                interCharTimeout=None)</span></em></strong></span></p>
+      <p><span style="font-family: Cambria;">Comme on peut le constater, tous
+          les paramètres on des valeurs par défaut. On n'est donc pas obligés de
+          tous les définir au moment de l'ouverture du port. Il faudra au moins
+          préciser le nom du port. Nous allons faire une présentation très
+          résumée. Pour plus de détail il faut consulter la doc officielle. </span><span
+          style="font-family: Cambria;"><a href="http://pyserial.sourceforge.net/index.html">http://pyserial.sourceforge.net/index.html</a></span></p>
+      <p><br>
+        <span style="font-family: Cambria;"></span></p>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Ouvrir
+            un port et lui affecter un identificateur</em><br>
+        </span></h2>
+      <p><span style="color: #000099;"><strong><em><span style="font-family: Cambria;">id
+                = serial.Serial('COM1', '19200',timeout=0)</span></em></strong></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">&nbsp;Les paramètres<strong><em>
+                timeout et writeTimeout</em></strong> sont importants. Ils
+            définissent le temps d'attente en lecture et en écriture par les
+            méthode <em>.read()</em> et <em>.write()</em>. Par défaut les
+            lectures et les écritures sont <strong><em>bloquantes</em></strong>.</span></li>
+      </ul>
+      <ul style="list-style-type: circle">
+        <ul>
+          <li><span style="font-family: Cambria;"><em>timeout=None</em>&nbsp;
+              =&gt; lecture bloquante: attendre jusqu'à la réception du nombre
+              d'octets requis par la méthode <em>.read()</em>.</span></li>
+        </ul>
+        <ul>
+          <li><span style="font-family: Cambria;"><em>writeTimeout=None</em>&nbsp;
+              =&gt; Ecriture bloquante: termine la transmission de tous les
+              octets soumis à la méthode <em>.write()</em> avant de retourner</span></li>
+          <li><span style="font-family: Cambria;"><em>timeout=0</em> =&gt;
+              lecture non bloquante. Retourne immédiatement même si le nombre
+              d'octet requis par la méthode .<em>read()</em> n'est pas
+              disponible,</span></li>
+          <li><span style="font-family: Cambria;"><em>writeTimeout=0</em> =&gt;
+              écriture non bloquante. Retourne immédiatement même si le nombre
+              d'octet requis par la méthode .<em>write()</em> ne peut être
+              transmis pour une raison ou une autre,</span></li>
+          <li><span style="font-family: Cambria;"><em>timeout = x</em>
+              =&gt;&nbsp; Si le nombre d'octet requis par la méthode .<em>read()</em>
+              n'est pas disponible, celle ci attend x secondes avant de
+              retourner</span></li>
+          <li><span style="font-family: Cambria;"><em>writeTimeout = x</em>
+              =&gt;&nbsp; Si le nombre d'octet requis par la méthode .<em>write()</em>
+              ne peut être transmis, celle ci attend x secondes avant de
+              retourner</span></li>
+        </ul>
+      </ul>
+      <ul>
+      </ul>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Fermer
+            un port ouvert</em><br>
+        </span></h2>
+      <span style="font-family: Cambria;"><strong><em style="color: #000099;">id.close()<br>
+            <br>
+          </em></strong></span>
+      <ul>
+      </ul>
+      <ul>
+      </ul>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Ouvrir
+            un port fermé</em></span></h2>
+      <span style="font-family: Cambria;"><strong><em style="color: #000099;"></em></strong></span><strong><span
+          style="font-family: Cambria;"><em style="color: #000099;">id.open()</em></span></strong>
+      <ul>
+      </ul>
+      <ul>
+      </ul>
+      <h2><br>
+        <span style="font-family: Cambria;"></span></h2>
+      <h2><span style="color: #990000;"><em><span style="font-family: Cambria;">Écrire
+              dans un port (transmettre):&nbsp;&nbsp;</span></em></span></h2>
+      <strong><span style="font-family: Cambria;"><em style="color: #000099;">id.write(B)</em></span></strong><br>
+      B doit être une séquence de type <em><strong>bytes</strong><br>
+      </em>
+      <ul>
+        <li>Pour transmettre une chaîne:<br>
+          <span style="color: #000099;"><em><span style="font-family: Cambria;">id.writw(
+                b'Bonjour' )<br>
+                id.write( 'Bonsoir'.encode('Latin-1'))<br>
+                S = 'Glaçon'<br>
+                id.write(S.encode('Utf-8')<br>
+              </span></em><br>
+          </span></li>
+      </ul>
+      <ul>
+        <li>Pour transmettre un entier, il faut <a target="_blank" href="python3_fonctions_predefinies.html">le
+            transformer en séquence de bytes</a>:<br>
+          <em style="color: #000099;">id.write( 2345.to_bytes(2, 'big') )<br>
+          </em></li>
+      </ul>
+      <ul>
+        <li>Pour transmettre un réel, il me semble que le mieux est de le
+          transmettre en tant que chaîne<br>
+          <em style="color: #000099;"><span>r = 45.657<br>
+              s = str(r)<br>
+              b = s.encode('ascii')<br>
+              id.write(b).</span></em></li>
+      </ul>
+      <ul>
+      </ul>
+      <p style="margin-left: 80px;"><span style="color: #000099;"><em><span style="font-family: Cambria;"><br>
+            </span></em></span></p>
+      <ul>
+      </ul>
+      <h2><span style="color: #990000;"><em><span style="font-family: Cambria;">Lire
+              dans un port&nbsp; (recevoir):&nbsp; <br>
+            </span></em></span></h2>
+      <ul>
+        <li>Pour recevoir une chaîne, on lit une séquence de bytes et on la
+          transforme en chaîne conformément à un codage donné<br>
+          <span style="font-family: Cambria;"><span style="color: #000099;"><em>b
+                = id.read(n)</em></span></span><span style="font-family: Cambria;"><span
+              style="color: #000000;"><em><span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>n</strong> désigne le nombre d'octet à lire. <strong>id.inwaiting()</strong>
+                  permet de lire tous les octet en attente<br>
+                </span> <span style="color: #000099;">s = b.decode('latin-1')</span></em></span></span></li>
+      </ul>
+      <br>
+      <ul>
+        <li>Pour recevoir un entier, on lit une séquence de bytes et on les
+          colle pour construire un entier.&nbsp; Voir <em><a target="_blank" href="python3_fonctions_predefinies.html">int.from_bytes</a></em><br>
+          <span style="font-family: Cambria;"><span style="color: #000099;"><em>b
+                = id.read(n)</em></span></span><span style="font-family: Cambria;"><span
+              style="color: #000000;"><em><span style="font-family: Cambria;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <strong>n</strong> désigne le nombre d'octet à lire. <strong>id.inwaiting()</strong>
+                  permet de lire tous les octet en attente<br>
+                </span><span style="color: #000099;">N= int.from_bytes(b, 'big')</span></em></span></span></li>
+      </ul>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="color: #cc0000;"><em><span style="font-family: Cambria;">Quelque
+              méthodes de la calsse serial</span></em></span></h2>
+      <table style="width: 100%;" border="1" cellpadding="8" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 15%;"> <span style="font-family: Cambria;"><strong><em>.open()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Ouvrir
+                le port</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.close()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Fermer
+                le port</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.read(n)</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">lire
+                n octet dans le port</span>. A moins d'avoir précisé <em>timeout=0</em>,
+              la méthode .<em>read </em>est bloquante, elle attend la réception
+              de n octets avant de continuer le programme<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.write(chaine)</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">écrit
+                la chaine dans le port. Retourne le nombre d'octet effectivement
+                transmis</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.inWaiting()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Retourne
+                le nombre d'octets en attente dans le buffer de réception</span>.
+              Avec ce paramètre, la lecture <em>port_id.read</em><em>(port_id.inWaiting)</em>
+              n'est pas bloquante, si le buffer est vide, elle retourne une
+              chaîne vide sans attendre.<br>
+            </td>
+          </tr>
+          <tr>
+            <td><em><strong>.isOpen()<br>
+                </strong></em></td>
+            <td>Retourne true si le port est ouvert</td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.flush()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Attend
+                que tous les octets en attente dans le buffer de transmission
+                soient transmis</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.flushInput()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Vide
+                le buffer de réception</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.flushOutput()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Vide
+                le buffer de transmission</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.setRTS(level)</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">place
+                la ligne RTS à 1 ou à 0 (level=True ou level =
+                False)&nbsp;&nbsp; (pate 7)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.setDTR(level)</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">place
+                la ligne DTR à 1 ou à 0 (level=True ou level = False)&nbsp;
+                (pate 4)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.getCTS()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Retourne
+                l'état de la ligne CTS&nbsp; (pate 8 du connecteur)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.getDSR()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Retourne
+                l'état de la ligne DSR&nbsp; (pate 6 du connecteur)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>getRI()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Retourne
+                l'état de la ligne RI&nbsp; (pate 9</span><span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"> du connecteur</span>)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>getCD()</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Retourne
+                l'état de la ligne CD&nbsp; (pate 1</span><span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"> du connecteur</span>)</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.name</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">retourne
+                ou redéfinit le nom du port.</span><br>
+              <span style="font-family: Cambria;">En lecture, retourne le nom du
+                port même si celui-ci à été ouvert par un numéro</span><br>
+              <span style="font-family: Cambria;">En écriture, si le port est
+                déjà ouvert, il est fermé puis ré-ouvert avec le nouveau nom</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.baudrate</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">retourne
+                ou redéfinit la vitesse de transmission</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.timeout</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">retourne
+                ou redéfinit le temps d'attente en lecture</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>.writeTimeout</em></strong></span><br>
+            </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">retourne
+                ou redéfinit le temps d'attente en écriture</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;">&nbsp;</span>
+      <p pbzloc="2"><span style="font-family: Cambria;"><br>
+        </span></p>
+      <p><span style="font-family: Cambria;"><strong><em>Exemple:</em></strong></span></p>
+      <p><span style="font-family: Cambria;">Ce petit programme ouvre le port
+          COM1 avec la vitesse 9600 baud. Chaque fois qu'on clique sur le bouton
+          <em>Transmet</em>, il envoie la chaîne <em>bonjour</em> sur le port.
+          Tous les caractères reçus sur le port sont affichés dans la petite
+          fenêtre blanche. On remarquera que la scrutation du port se fait d'une
+          façon récursive à l'aide de la fonction <em>scrut()</em> qui
+          s'appelle elle même tous les 50 ms à l'aide de la méthode <em>after</em>.
+          On remarquera que le process du programme principal n'est pas
+          interrompu pendant les temps d'attente de la méthode <em>after</em>.
+          Ceci évite l'utilisation d'un thread pour surveiller le port.</span></p>
+      <p pbzloc="4"><span style="font-family: Cambria;">&nbsp;</span></p>
+      <table style="width: 100%;" border="0" cellpadding="8">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;">
+              <div><em><span style="font-family: Cambria;">from tkinter import *<img
+                      style="float: right;" alt="serial" src="images/serial.PNG"><br>
+                    import serial<br>
+                    <br>
+                    def transmet():<br>
+                    &nbsp;&nbsp;&nbsp; sp.write('Bonjour\n'.encode('Latin-1'))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>def scrut():<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; inp = sp.read(sp.inWaiting())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; conso.insert(END, inp)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; conso.see(END)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; fp.after(50, scrut)<br>
+                    <br>
+                    def quitter():<br>
+                    &nbsp;&nbsp;&nbsp; sp.close()<br>
+                    &nbsp;&nbsp;&nbsp;
+                    fp.destroy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>fp = Tk()<br>
+                    conso = Text(fp,width=20, height=10)<br>
+                    conso.pack(padx = 10, pady = 10)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>tx = Button(fp, text='Transmet', bd=5, command =
+                    transmet)<br>
+                    tx.pack(pady = 10)<br>
+                    <br>
+                    ex = Button(fp, text=' EXIT ', bd=5, command = quitter)<br>
+                    ex.pack(pady=10)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>sp = serial.Serial('COM1')<br>
+                    <br>
+                    scrut()<br>
+                    fp.mainloop()<br>
+                  </span></em><em><br>
+                </em> </div>
+              <em> </em><em><span style="font-family: Cambria;"></span></em><em><span
+                  style="font-family: Cambria;"></span></em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <span style="font-family: Cambria;">Voici une petite application que j'ai
+        appelée <a target="_top" href="scriptes/pyterm.pyw"><em>pyterm </em></a>censée
+        remplacer l'utilitaire HyperTerminal Ô combien utile.&nbsp; Chaque fois
+        que j'apprends un truc supplémentaire, je l'améliore un petit peu. Vous
+        pouvez en faire autant.<br>
+      </span>
+      <p pbzloc="2"><span style="font-family: Cambria;"></span></p>
+      <table style="width: 100%;" border="1" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><em><span style="font-family: Cambria;">from
+                  tkinter import *<br>
+                  import serial<br>
+                  <br>
+                  def lecture():<br>
+                  &nbsp;&nbsp;&nbsp; try:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; st =
+                  sp.read(sp.inWaiting())<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if st:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  if&nbsp; rxeolvar.get() == '\r':&nbsp;&nbsp;&nbsp; st =
+                  st.replace(b'\r', b'\n')<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  edit.insert(END,st.decode('latin-1'),'bleu')<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  edit.see(END)&nbsp;&nbsp; # scroll auto quand on arrive en fin
+                  de page<br>
+                  &nbsp;&nbsp;&nbsp; except Exception as err:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(err)<br>
+                  &nbsp;&nbsp;&nbsp; fp.after(100,lecture)<br>
+                  &nbsp;&nbsp;&nbsp; <br>
+                  def Port_Setup():<br>
+                  &nbsp;&nbsp;&nbsp; global sp<br>
+                  &nbsp;&nbsp;&nbsp; try:&nbsp;&nbsp;&nbsp; # vérifier si
+                  l'objet sp est défini<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if sp.isOpen():<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  sp.close() # si oui le fermer<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  edit.insert(INSERT, '--&gt; '+sp.port+' Fermé\n')<br>
+                  &nbsp;&nbsp;&nbsp; except:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass&nbsp; <br>
+                  <br>
+                  &nbsp;&nbsp;&nbsp; try:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp =
+                  serial.Serial(portstr.get(), baudstr.get(), timeout=0)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edit.insert(INSERT,
+                  '--&gt; '+ sp.port+' Ouvert\n')<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lecture()&nbsp; #
+                  lecture périodique<br>
+                  &nbsp;&nbsp;&nbsp; except Exception as err:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  edit.insert(INSERT,"I/O error: {0}\n".format(err),'rouge')<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fp.title('Port
+                  fermé')<br>
+                  &nbsp;&nbsp;&nbsp; else:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fp.title(sp.portstr
+                  + '&nbsp;&nbsp; ' + str(sp.baudrate))<br>
+                  <br>
+                  &nbsp;&nbsp;&nbsp; PortSetup.grab_release() # lacher le
+                  monopol<br>
+                  &nbsp;&nbsp;&nbsp;
+                  PortSetup.withdraw()&nbsp;&nbsp;&nbsp;&nbsp; # cacher la
+                  fenetre<br>
+                  &nbsp;&nbsp;&nbsp; <br>
+                  <br>
+                  def clavier(event):<br>
+                  &nbsp;&nbsp;&nbsp; global sp<br>
+                  &nbsp;&nbsp;&nbsp; c = event.char<br>
+                  &nbsp;&nbsp;&nbsp; if c == '\r':<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = txeolvar.get()<br>
+                  &nbsp;&nbsp;&nbsp; try:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  sp.write(c.encode('Latin-1'))<br>
+                  &nbsp;&nbsp;&nbsp; except:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  edit.insert(INSERT,'\nPort fermé, choisissez un port\n',
+                  'rouge')<br>
+                  &nbsp;&nbsp;&nbsp; if not echolocal.get():<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "break"<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+                  <br>
+                  def quitter():<br>
+                  &nbsp;&nbsp;&nbsp; global sp<br>
+                  &nbsp;&nbsp;&nbsp; try:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sp<br>
+                  &nbsp;&nbsp;&nbsp; except:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pass<br>
+                  &nbsp;&nbsp;&nbsp; else:<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if sp.isOpen():<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  sp.close()<br>
+                  &nbsp;&nbsp;&nbsp; #print('By')<br>
+                  &nbsp;&nbsp;&nbsp; fp.destroy()<br>
+                  <br>
+                  def&nbsp; showsetup():<br>
+                  &nbsp; PortSetup.deiconify()<br>
+                  <br>
+                  def nettoyer():<br>
+                  &nbsp; edit.delete('1.0',END)<br>
+                  <br>
+                  def curseur(bidon):<br>
+                  &nbsp;&nbsp;&nbsp; fp.after(10, lambda: edit.mark_set(INSERT,
+                  END))<br>
+                  &nbsp;&nbsp;&nbsp; <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+                  <br>
+                  #====== Création de la fenetre principale
+                  ============================<br>
+                  fp=Tk()<br>
+                  fp.geometry('+50+50')<br>
+                  fp.protocol("WM_DELETE_WINDOW", quitter)<br>
+                  <br>
+                  cadre = Frame(fp, height = 200)<br>
+                  cadre.pack(padx=5, pady=5, fill = BOTH, expand=1)<br>
+                  Vscroll = Scrollbar(cadre)<br>
+                  edit = Text(cadre, width=50,height=20,yscrollcommand =
+                  Vscroll.set)<br>
+                  edit.bind("&lt;KeyPress&gt;", clavier)<br>
+                  edit.bind("&lt;FocusIn&gt;", curseur)<br>
+                  edit.tag_config('rouge', foreground ='red')<br>
+                  edit.tag_config('bleu', foreground ='blue')<br>
+                  edit.pack(side=LEFT, fill = BOTH, expand=1)<br>
+                  Vscroll.pack( side = LEFT, fill = Y)<br>
+                  Vscroll.config(command = edit.yview)<br>
+                  Clear_B = Button(fp, text='CLEAR', bg='olivedrab',bd=5,command
+                  = nettoyer )<br>
+                  Clear_B.pack(side = LEFT, padx = 10)<br>
+                  Exit_B = Button(fp, text="EXIT", bg='olivedrab',bd=5, command
+                  = quitter)<br>
+                  Exit_B.pack(side = LEFT, padx = 10)<br>
+                  <br>
+                  #===== Création de la fenêtre de configuration du port
+                  ===============<br>
+                  PortSetup = Toplevel(fp)<br>
+                  PortSetup.geometry('+100+100')<br>
+                  PortSetup.transient(fp)<br>
+                  PortSetup.grab_set()<br>
+                  PortSetup.focus_set()<br>
+                  F1 = Frame(PortSetup)<br>
+                  F2 = Frame(PortSetup)<br>
+                  F1.pack(padx = 10, pady = 10)<br>
+                  F2.pack(padx = 10, pady = 10)<br>
+                  portstr = StringVar()<br>
+                  baudstr = StringVar()<br>
+                  portmenu = OptionMenu(F1, portstr,
+                  'COM1','COM2','COM3','COM4','COM5','COM6','COM7','COM8','COM9','COM10')<br>
+                  portmenu.configure(width = 10, bg='cyan', bd=5)<br>
+                  portstr.set('COM1')<br>
+                  baudmenu = OptionMenu(F1, baudstr,
+                  '1200','2400','4800','9600','19200','38400')<br>
+                  baudmenu.configure(width = 10, bg='cyan', bd=5)<br>
+                  baudstr.set('9600')<br>
+                  portmenu.pack(side=LEFT, padx = 20, pady = 10)<br>
+                  baudmenu.pack(side = RIGHT, padx = 20, pady = 10)<br>
+                  lf1 = LabelFrame(F2, text='fin de ligne en émission')<br>
+                  lf1.pack(side = LEFT, padx = 10, pady = 10)<br>
+                  txeolvar = StringVar()<br>
+                  txeolvar.set('\r')<br>
+                  txeolr1 = Radiobutton(lf1, text="CR", variable= txeolvar,
+                  value='\r')<br>
+                  txeolr1.pack( anchor = W )<br>
+                  txeolr2 = Radiobutton(lf1, text="LF", variable= txeolvar,
+                  value='\n')<br>
+                  txeolr2.pack( anchor = W )<br>
+                  txeolr3 = Radiobutton(lf1, text="CR+LF", variable= txeolvar,
+                  value='\r\n')<br>
+                  txeolr3.pack( anchor = W )<br>
+                  <br>
+                  lf2 = LabelFrame(F2, text='fin de ligne en réception')<br>
+                  lf2.pack(side = RIGHT, padx = 10, pady = 10)<br>
+                  rxeolvar = StringVar()<br>
+                  rxeolvar.set('\r')<br>
+                  rxeolr1 = Radiobutton(lf2, text="CR", variable= rxeolvar,
+                  value='\r')<br>
+                  rxeolr1.pack( anchor = W )<br>
+                  rxeolr2 = Radiobutton(lf2, text="LF", variable= rxeolvar,
+                  value='\n')<br>
+                  rxeolr2.pack( anchor = W )<br>
+                  rxeolr3 = Radiobutton(lf2, text="CR+LF", variable= rxeolvar,
+                  value='\r\n')<br>
+                  rxeolr3.pack( anchor = W )<br>
+                  echolocal = BooleanVar()<br>
+                  echolocal.set(True)<br>
+                  lecho = Checkbutton(PortSetup, text='Echo local', variable =
+                  echolocal)<br>
+                  lecho.pack(side = LEFT, padx=20, anchor = W )<br>
+                  <br>
+                  Button(PortSetup,text = ' OK ',
+                  bd=5,bg='orange2',command=Port_Setup).pack(side = RIGHT, padx
+                  = 20, pady = 10)<br>
+                  Setup_B = Button(fp, text='Setup', bg='olivedrab',bd=5,
+                  command = PortSetup.deiconify)<br>
+                  Setup_B.pack(side = LEFT, padx=10, pady=5)<br>
+                  fp.mainloop()<br>
+                </span></em><em><br>
+              </em></td>
+          </tr>
+        </tbody>
+      </table>
+      <p pbzloc="2"><span style="font-family: Cambria;"><br>
+        </span></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+     </script>
+  </body>
+</html>

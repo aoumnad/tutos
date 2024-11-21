@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, opérateurs</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, opérateur, arithmétique, logique, comparaison"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="        background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les Opérateur<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">
+      <h1><em><span style="color: #b22222">Les Opérateurs Arithmétiques</span></em></h1>
+      <span style="font-family: Cambria;">Le tableau ci-dessous présente les
+        opérateurs arithmétiques classés par priorité d'exécution&nbsp;
+        croissante.<br>
+      </span>
+      <table style="width: 90%;" border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em
+                    pbzloc="249">+</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                addition<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>-</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                soustraction<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>*</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                multiplication<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>/</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                division<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>//</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                division entière<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>x
+                    % y</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;"> modulo
+                = reste de x/y<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>-x</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;">
+                négation<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>+x</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;"> ne
+                fait rien<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 111px"> <span style="font-family: Cambria;"><strong><em>x
+                    ** y</em></strong><br>
+              </span> </td>
+            <td style="width: 527px"><span style="font-family: Cambria;"> x
+                puissance y<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+        &nbsp;<br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span>
+      <h1><span style="font-family: Cambria;"><em><span style="color: #b22222">Les
+              Opérateurs logiques orienté bit</span></em></span></h1>
+      <span style="font-family: Cambria;"><br>
+        Opérateurs logiques classés par ordre de priorité d'exécution croissante<br>
+      </span> <span style="font-family: Cambria;"><br>
+      </span>
+      <table border="1" cellpadding="10" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 54px"> <span style="font-family: Cambria;"><br>
+                A | B<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;"> OR
+                logique bit par bite entre A et B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 54px"><span style="font-family: Cambria;"> A ^ B<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;"> XOR
+                logique bit par bite entre A et B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 54px"><span style="font-family: Cambria;"> A &amp;
+                B<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;"> AND
+                logique bit par bite entre A et B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 54px"><span style="font-family: Cambria;"> A « n<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;"> A
+                décalé à gauche de n bits<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 54px"><span style="font-family: Cambria;"> A » n<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;"> A
+                décalé à droite de n bits<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 54px"><span style="font-family: Cambria;">&nbsp;
+                ~A<br>
+              </span> </td>
+            <td style="width: 584px"><span style="font-family: Cambria;">
+                Complément bit par bit de A (complément à 1)<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+        &nbsp; </span><span style="font-family: Cambria;"></span><span style="font-family: Cambria;"><br>
+      </span>
+      <h1><span style="font-family: Cambria;"><em><span style="color: #b22222">Les
+              Opérateurs logique de comparaison</span></em></span></h1>
+      <span style="font-family: Cambria;"><br>
+        Les opérateurs de comparaison retour une valeur booléenne True ou False</span><span
+        style="font-family: Cambria;"><br>
+        &nbsp;<br>
+      </span>
+      <table border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A <strong>==</strong>
+                B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A=B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>!=</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A&nbsp; &#8800; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>&lt;</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A &lt; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>&gt;</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A &gt; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>&lt;</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A &lt; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>&lt;=</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A &#8804;&nbsp; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>&gt;=</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A &#8805;&nbsp; B<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A&nbsp;
+                <strong>is</strong>&nbsp;&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A et B représentent le même objet<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A <strong>is
+                  not</strong> B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si A et B ne représentent pas le même objet<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"> <span style="font-family: Cambria;">A <strong>in</strong>
+                B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                L'élément A fait partie de la liste ou le tuple B<br>
+              </span> <span style="font-family: Cambria;"><em>10 in [12, 34,
+                  10]</em> retourne <em>True</em><br>
+              </span> <span style="font-family: Cambria;"><em>10 in (12, 34,
+                  150)&nbsp; </em>retourne<em> False</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;"> A <strong>not
+                  in</strong>&nbsp; B<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;">
+                L'opposé de in<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;">
+                C1&nbsp; <strong>and</strong>&nbsp; C2<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si condition C1 est Vraie&nbsp; <strong><em>ET</em></strong>&nbsp;
+                condition C2 est Vraie<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"><span style="font-family: Cambria;">
+                C1&nbsp; <strong>or</strong>&nbsp; C2<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si condition C1 est Vraie&nbsp; <strong><em>OU</em></strong>&nbsp;
+                condition C2 est Vraie<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 83px"> <span style="font-family: Cambria;"><strong>not</strong>
+                C<br>
+              </span> </td>
+            <td style="width: 555px"><span style="font-family: Cambria;"> Vrai
+                si la condition C est fausse<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><br>
+        &nbsp; </span><br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

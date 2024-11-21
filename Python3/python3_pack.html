@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Python, Tkinter, pack()</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter" name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, pack, pack(), geometry manager"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python 3</span> et l'Interface
+                Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le positionneur pack()<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Le gestionnaire de géométrie pack() est plus simple et convient parfaitement au petites
+      interfaces pas trop chargées.
+      <p><span style="font-family: Cambria;">Le gestionnaire <em>pack()</em> place les widgets dans l'espace qui n'est
+          pas encore utilisé et adapte la taille de la fenêtre pour contenir tous les widgets.</span></p>
+      <p><span style="font-family: Cambria;">Par défaut, les widgets sont placés les uns en dessous des autres en
+          commençant par le haut (side=TOP). Pour contrôler le positionnement, on dispose des options suivantes:</span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">L'option <strong><em>side,</em></strong> C'est l'option maîtresse du
+            positionneur pack(). Elle permet de positionner le widget dans l'espace disponible. Elle peut prendre la
+            valeur <em>LEFT</em>, <em>RIGHT</em>, <em>TOP</em> ou <em>BOTOM.</em> Au début, l'espace disponible est
+            constitué de la totalité du widget père (conteneur). Une fois le widget positionné, on se retrouve avec un
+            nouvel espace disponible dans lequel on recommence de la même manière.</span></li>
+      </ul>
+      <p align="center"><span style="font-family: Cambria;"><img alt="pack()" src="images/pack.PNG">&nbsp;</span></p>
+      <p align="center"><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">l'option <strong><em>fill</em></strong> précise comment le widget va
+            remplir l'espace disponible. Cette option peut prendre la valeur X pour horizontal, Y pour vertical, BOTH
+            pour les deux et NONE pour aucun.</span></li>
+        <li><span style="font-family: Cambria;">L'option <strong><em>expand</em></strong> permet préciser si le widget
+            doit suivre le redimensionnement de son conteneur. cette option peut prendre la valeur 1 ou 0</span></li>
+        <li><span style="font-family: Cambria;">Les options <strong><em>padx</em></strong> et <strong><em>pady</em></strong>
+            permettent de définir les marges (en pixel) horizontales et verticales autour du widget (couleur marron)</span></li>
+      </ul>
+      <div style="text-align: center;"><span style="font-family: Cambria;"><img alt="pad" src="images/padxy.PNG"></span>
+      </div>
+      <ul>
+        <li><span style="font-family: Cambria;">L'option <strong><em>anchor.</em></strong> Par défaut, quand le widget
+            ne remplit pas son espace, il est centré. Cette option permet de l'ancrer sur l'un des quatre cotés ou l'un
+            des quatre coins.</span></li>
+      </ul>
+      <div style="text-align: center;"><span style="font-family: Cambria;"><img alt="anchor" src="images/anchor.png"></span>
+      </div>
+      <ul>
+        <li><span style="font-family: Cambria;">Pour plus de souplesse, on peut commencer par placer des frames qui
+            pourront à leur tour recevoir des widgets. A l'intérieur de ces nouveaux conteneurs, rien ne nous oblige
+            d'utiliser le positionneur <em>pack()</em>, on peut très bien utiliser le positionneur <em>grid()</em> ou
+            <em>place()</em></span></li>
+      </ul>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;">Ce gestionnaire est très bien expliqué ici: <a target="_blank" href="http://www.gigante.be/python/didact_002.php">http://www.gigante.be/python/didact_002.php</a></span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p><span style="font-family: Cambria;"><strong><em>Exemple:</em></strong></span></p>
+      <span style="font-family: Cambria;"></span>
+      <table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff; width: 640.483px;"><span style="font-family: Cambria;"><em>from
+                  tkinter import *</em></span><br>
+              <span style="font-family: Cambria;"><em><span style="font-family: Cambria;"><img style="float: right;" alt="pack1"
+                      src="images/packx1.png"></span> fp = Tk()<br>
+                  L1 = Label(fp, text = 'Nom')<br>
+                  E1 = Entry(fp, width=20)<br>
+                  L2 = Label(fp, text = '\nPrénom') #le \n permet de séparer un peu verticalement<br>
+                  E2 = Entry(fp, width=15)<br>
+                  B1 = Button(fp, text='Bouton1', bd=5)<br>
+                  B2 = Button(fp, text='Bouton2', bd=5)<br>
+                  L1.pack(anchor='w')<br>
+                  E1.pack()<br>
+                  L2.pack()<br>
+                  E2.pack(anchor='e')<br>
+                  B1.pack(pady=5)<br>
+                  B2.pack(pady=5, anchor='w')<br>
+                  fp.mainloop() </em></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: Cambria;"><em><span style="color: red;"></span></em></span>
+      <p><span style="font-family: Cambria;">&nbsp;Avec une petite modification on obtient:</span></p>
+      <span style="font-family: Cambria;"></span>
+      <table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
+        <tbody>
+          <tr>
+            <td style="width: 495px; background-color: #ccccff;"><span style="font-family: Cambria;"><em>from tkinter
+                  import *</em></span><br>
+              <span style="font-family: Cambria;"><em><span style="font-family: Cambria;"><img style="float: right;" alt="pack2"
+                      src="images/packx2.png"></span> fp = Tk()<br>
+                  L1 = Label(fp, text = 'Nom')<br>
+                  E1 = Entry(fp, width=20)<br>
+                  L2 = Label(fp, text = '\nPrénom') #le \n permet de séparer un peu verticalement<br>
+                  E2 = Entry(fp, width=15)<br>
+                  B1 = Button(fp, text='Bouton1', bd=5)<br>
+                  B2 = Button(fp, text='EXIT', bd=5, command=fp.destroy)<br>
+                  E3 = Text(fp, width=20, height=15)<br>
+                  E3.pack(side=RIGHT, fill=BOTH, padx=5, pady=10, expand=1)<br>
+                  L1.pack()<br>
+                  E1.pack()<br>
+                  L2.pack()<br>
+                  E2.pack()<br>
+                  B1.pack(pady=20)<br>
+                  B2.pack(pady=5)<br>
+                  fp.mainloop() </em></span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align: center;"><span style="font-family: Cambria;">&nbsp;</span></p>
+      <span style="font-family: Cambria;"></span>
+      <p pbzloc="2"><span style="font-family: Cambria;">&nbsp;</span></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

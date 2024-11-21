@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, types de données</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, types"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1200px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1200px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="        background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Les types de données<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu">La représentation des donnés numériques ou alphanumérique
+      sous python n'est pas triviale, Nous allons simplifier le mieux Possible.
+      <p pbzloc="218">Sous python, on n'est pas obligé de déclarer les types des
+        variables. Le type d'une variable est déterminé automatiquement quand on
+        lui affecte une valeur. Le type peut changer automatiquement par la
+        suite. Par exemple: si on fait <em>x = 123</em>, la variable sera codée
+        comme un entier (int). Si par la suite on fait <em>x=x/2</em>, la
+        variable x prend la valeur 61.5 et devient automatiquement un réel
+        (float).</p>
+      <p pbzloc="127">La fonction <span style="color: #ff0000"><em pbzloc="122">type()</em></span>
+        permet de savoir quel est le type d'une variable.</p>
+      <span style="font-style: italic; color: #000099;">&gt;&gt;&gt; n = 5<br>
+        &gt;&gt;&gt; r = n/2<br>
+        &gt;&gt;&gt; type(n)&nbsp;&nbsp;&nbsp;&nbsp;
+        =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;class 'int'&gt;<br>
+        &gt;&gt;&gt; type(r)&nbsp;&nbsp;&nbsp;&nbsp;
+        =&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &lt;class 'float'&gt;</span><em><span style="color: #b22222"></span></em>
+      <h1 pbzloc="172"><em><span pbzloc="173" style="color: #b22222">Les entiers<br>
+          </span></em></h1>
+      <p pbzloc="151">Les entiers sont normalement codés sur 32 bits. Mais quand
+        la taille d'un entier dépasse 32 bits, python le code automatiquement
+        sur un nombre d'octet variable. Le programmeur n'a pas à s'en occuper.
+        Rappelons qu'avec 32 bits, on peut coder <em>2<sup>32</sup></em>
+        entiers différents. La moitié (<em>2<sup>31</sup></em>) sont des nombre
+        positifs (de 0 à <em>2<sup>31</sup> - 1</em>) et l'autre moitié sont
+        des nombres négatifs (-1 à -<em>2<sup>31</sup>)</em></p>
+      <ul pbzloc="155">
+        <li>Pour déterminer la valeur du nombre entier le plus grand sur une
+          plate-forme donnée</li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="color: #000099;"><em>import
+            sys</em><em><br>
+          </em><em>M = sys.maxsize&nbsp; # retourne l'entier de base le plus
+            grand, en général 2<sup>31</sup>-1 = 2147483647</em><em><br>
+          </em><em>print(M)</em><em><br>
+          </em></span></div>
+      <ul>
+        <li> Pour déterminer le nombre de bits nécessaires pour coder un entier
+          M non signé, on peut utiliser la méthode <em>.bit_length()</em> de la
+          classe <em>int.</em> </li>
+      </ul>
+      <ul pbzloc="163">
+      </ul>
+      <div style="margin-left: 40px;"><span style="color: #000099;"><span style="font-style: italic;">M
+            = 255</span></span><br>
+        <span style="color: #000099;"><span style="font-style: italic;">Print(M.bit_length())&nbsp;
+            # retourne 8</span></span><br>
+        <span style="color: #000099;"><span style="font-style: italic;">N = 256</span></span><br>
+        <span style="color: #000099;"><span style="font-style: italic;">Print(M.bit_length())&nbsp;
+            # retourne 9</span></span><br>
+      </div>
+      <ul>
+        <li>&nbsp;Un nombre peut être présisé dans n'importe quelle base </li>
+      </ul>
+      <div style="margin-left: 40px;"> <span style="color: #000099;"><em>x =
+            1234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+            entier positif exprimé en décimal</em><em><br>
+          </em><em> x = -321</em><em>&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; entier négatif </em></span><span
+          style="color: #000099;"><em><span style="color: #000099;"><em>exprimé
+                en décimal<br>
+              </em></span></em><em>x = 0xFF&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            &nbsp; :&nbsp;&nbsp; Entier exprimé en Hexadécimal. Même chose que x
+            = 255</em><em><br>
+          </em><em> x = 0b10011&nbsp;&nbsp;&nbsp; :&nbsp; Entier exprimé en
+            binaire. Equivalent à x = 19</em><em><br>
+          </em><em> </em></span></div>
+      <p style="margin-left: 40px;"><em>Remarque:</em> Qu'un entier doit définit
+        en décimal, en Hexadécimal ou en binaire, à l'intérieur de la machine,
+        il est toujours codé en binaire. Si on l'affiche avec une simple
+        instruction du genre <em>print(x)</em>, il sera affiché en décimal.
+        Pour l'afficher dans une autre base, il faut utiliser une sortie
+        formatée.</p>
+      <ul>
+        <li>&nbsp;Pour convertir un entier en une séquence de bytes, on utilise
+          la méthode <em>.to_bytes(length, byteorder, *, signed=False)</em>. <br>
+          <em style="color: #000099;">N = 65<br>
+            Nb = N.to_bytes(1, 'big')&nbsp;&nbsp; --&gt;&nbsp; b'A'<br>
+            Nb[0]&nbsp;&nbsp; --&gt;&nbsp; 65<br>
+            <br>
+            N = 250000<br>
+            bin(N)&nbsp; --&gt;&nbsp; '0b11 11010000 10010000'<br>
+            Nb = N.to_bytes(3, 'big')&nbsp; --&gt;&nbsp;&nbsp; b'\x03\xd0\x90'<br>
+            Kb = N.to_bytes(3, 'little')&nbsp; --&gt; b'\x90\xd0\x03'<br>
+            Nb[0]&nbsp; --&gt;&nbsp; 3<br>
+            Nb[1]&nbsp; --&gt;&nbsp; 208<br>
+            Nb[2]&nbsp; --&gt;&nbsp; 144<br>
+            list(Nb)&nbsp; --&gt;&nbsp; [3, 208, 144]<br>
+            tuple(Nb)&nbsp; --&gt;&nbsp; (3, 208, 144)</em><br>
+          <a target="_top" href="python3_bytes_bytearray.html"><br>
+          </a></li>
+        <br>
+        <li>Pour former un entier à partir d'une séquence de type bytes, on
+          utilise la classe:<br>
+          <em><strong>int.from_bytes</strong>(bytes, byteorder, *, signed=False)</em><br>
+          <br>
+          <em style="color: #000099;">Bs = bytes([3, 4, 5])&nbsp;&nbsp;&nbsp;
+            --&gt;&nbsp;&nbsp;&nbsp; b'\x03\x04\x05'<br>
+            N = int.from_bytes(Bs, 'big')&nbsp;&nbsp;&nbsp; --&gt;&nbsp;&nbsp;
+            197637<br>
+            bin(N)&nbsp;&nbsp;&nbsp; --&gt;&nbsp;&nbsp;
+            '0b110000010000000101'&nbsp; --&gt;&nbsp; 11&nbsp; 00000100&nbsp;
+            00000101</em> </li>
+      </ul>
+      <span style="color: #000099;"><em></em></span>
+      <h1 pbzloc="172"><em><span pbzloc="173" style="color: #b22222">Les réels</span></em></h1>
+      <p pbzloc="177">Les réels (float) sont représentés en virgule flottante.
+        Ils peuvent représenter les nombres compris (approximativement) entre 5
+        × 10<sup>-324</sup>&nbsp; et <em>1.79 x 10<sup>308</sup></em>
+        &nbsp;(idem pour les négatif). Un nombre plus grand que 10<sup>+308</sup>
+        ne provoque pas de message d'erreur mais il est représenté par <em>inf</em>
+        (infini). Utiliser <em>float('inf')</em> représenter l'infini dans une
+        expression.</p>
+      <div style="margin-left: 40px;"><span style="color: #000099;"><span style="font-style: italic;">x
+            = 3.14</span><br>
+          <span style="font-style: italic;">x = 0.001</span><br>
+          <span style="font-style: italic;">x = 345.</span><br>
+          <span style="font-style: italic;">x = -23.18</span><br>
+          <span style="font-style: italic;">x = 12e18&nbsp;&nbsp;&nbsp;&nbsp;
+            (12 × 10<sup>18</sup>)</span><br>
+          <span style="font-style: italic;">x =
+            156e-6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (156 × 10<sup>-6</sup> )</span></span><br>
+      </div>
+      <h1 pbzloc="185"><em><span style="color: #b22222">Les booléens</span></em></h1>
+      <p pbzloc="216">Une grandeur booléenne ne constitue pas un type proprement
+        dit. C'est un sous-type du type <em>int</em>. Une grandeur booléenne
+        ne&nbsp; peut prendre que deux valeurs 1 ou 0 ou encore <em>True</em>
+        ou <em>False</em>. En réalité 0 correspond à false et tout ce qui est
+        différent de 0 correspond à true</p>
+      <div style="margin-left: 40px;"><span style="color: #000099;"><em>x =
+            False</em><em><br>
+          </em><em>y = True</em><em><br>
+          </em><em>x = not y</em></span><br>
+      </div>
+      <h1 pbzloc="202"><em><span style="color: #b22222">Les chaînes de
+            caractères</span></em></h1>
+      <p pbzloc="207">Une chaîne est constituée de 1 ou plusieurs caractère. Il
+        faut la préciser entre ' ' ou " ". Les doubles guillemets sont utiles
+        quand la chaîne&nbsp; contient un '</p>
+      <p style="margin-left: 40px;" pbzloc="207"><span style="color: #000099;"><em>x
+            = 'A'</em><em><br>
+          </em><em>y = "B"</em><em><br>
+          </em><em>x = 'Bonjour'</em><em><br>
+          </em><em>y = "Bonsoir"</em><em><br>
+          </em><em>z = "Ensemble d'instructions"</em></span></p>
+      <p pbzloc="213">&nbsp;Voir <a href="python3_manip_string.html">ce
+          paragraphe</a> pour plus d'information sur les chaînes de caractères</p>
+      <h1><em><span style="color: #990000;">Les complexes</span></em></h1>
+      Le langage python sait manipuler les nombres complexes<br>
+      <dl>
+        <dd><em><span style="color: #000099;">z = 5 + 3j</span></em></dd>
+        <dd><em><span style="color: #000099;">y = 3.4 + 2.75j</span></em></dd>
+        <dd><em><span style="color: #000099;"><span style="font-style: italic;">abs(z)</span>
+              retourne le module de z</span></em></dd>
+        <dd><em><span style="color: #000099;"><span style="font-style: italic;">z.real&nbsp;</span>
+              retourne la partie réelle de z</span></em></dd>
+        <dd><em><span style="color: #000099;"><span style="font-style: italic;">z.imag</span>&nbsp;
+              retourne la partie imaginaire de z</span></em></dd>
+        <dd><em><span style="color: #000099;"><span style="font-style: italic;">z.conjugate()</span>&nbsp;
+              retourne le conjugué de z</span></em></dd>
+      </dl>
+      <p pbzloc="215"><br>
+        Le module <span style="font-style: italic;">cmath </span>contient
+        d'autres fonctions de manipulation des complexes. Pour les utiliser il
+        faut importer ce module</p>
+      <dl>
+        <dd><span style="font-style: italic; color: #000099;">import cmath</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          importe le module cmath</dd>
+        <dd><span style="font-style: italic; color: #000099;">cmath.phase(z)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne l'argument de z en radian</dd>
+        <dd><span style="font-style: italic; color: #000099;">cmath.polar(z)</span>&nbsp;
+&nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; retourne la représentation
+          polaire (module, argument)</dd>
+        <dd><span style="font-style: italic; color: #000099;">cmath.rect(module,
+            argument)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne&nbsp; le complexe correspondant à (module, argument)</dd>
+        <dd><span style="font-style: italic; color: #000099;">cmath.pi</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne la valeur de pi</dd>
+      </dl>
+      <p>S on importe le module par: <em style="color: #000099;">from module
+          import *</em> on n'est pas obligé d'utiliser le nom du module devant
+        chaque fonction. Mais ceci peut entraîner des confusions si une fonction
+        porte le même nom dans deux modules différents<span style="font-style: italic; color: #000099;"><br>
+        </span></p>
+      <dl>
+        <dd><span style="font-style: italic; color: #000099;">from cmath import
+            *</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          importe le module cmath</dd>
+        <dd><span style="font-style: italic; color: #000099;">phase(z)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne l'argument de z en radian</dd>
+        <dd><span style="font-style: italic; color: #000099;">polar(z)</span>&nbsp;
+&nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; retourne la représentation
+          polaire (module, argument)</dd>
+        <dd><span style="font-style: italic; color: #000099;">rect(module,
+            argument)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne&nbsp; le complexe correspondant à (module, argument)</dd>
+        <dd><span style="font-style: italic; color: #000099;">pi</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          retourne la valeur de pi</dd>
+      </dl>
+      <p><br>
+        On n'est pas obligé d'importer un module complet. si je n'ai besoin que
+        de la fonction <em>phase </em>et de la valeur de π</p>
+      <dl>
+        <dd><span style="color: #000099;"><em>from cmath import phase, pi<br>
+              a = phase(1+1j)<span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                retourne l'argument de 1+j&nbsp;&nbsp;&nbsp; en radiant</span>&nbsp;&nbsp;
+              (0.785 rad)<br>
+              a = a * 180 / pi<span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                le même argument en degré</span>&nbsp;&nbsp;&nbsp; (45 °)</em></span></dd>
+        <dd><span style="color: #000099;"><em>b= phase(-1+1j)<span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                retourne l'argument de -1+j&nbsp;&nbsp;&nbsp; en radiant</span>&nbsp;&nbsp;
+              (2.356 rad)<br>
+              b = b * 180 / pi<span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                le même argument en degré</span>&nbsp;&nbsp;&nbsp; (135 °)<br>
+            </em></span></dd>
+        <dt><br>
+        </dt>
+      </dl>
+      <h1><em><span style="color: #990000;">Les séquences<br>
+          </span></em></h1>
+      <dl>
+        <dt> Voir <a target="_top" href="python3_sequences.html">paragraphe </a>sur
+          les séquences</dt>
+      </dl>
+      <p><br>
+      </p>
+      <dl>
+        <dt><br>
+        </dt>
+      </dl>
+      <dl>
+        <dt><br>
+        </dt>
+      </dl>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

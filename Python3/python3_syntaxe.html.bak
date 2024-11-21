@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, syntaxe</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, alignement, indentation"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Syntaxe Python<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Un principe fondamental du langage python est
+      l'alignement (Indentation). Avec d'autre langage comme le langage C, on a
+      l'habitude de décaler certains blocs de programme pour rendre le programme
+      plus lisible. Avec Python, l'alignement des blocs de programme est devenu
+      obligatoire. C'est la seule façon de délimiter blocs d'instruction. Par
+      exemple:
+      <p>&nbsp;</p>
+      <h3 pbzloc="37">Langage C:</h3>
+      <p>En langage C, les deux programmes ci-dessous sont identiques. Celui de
+        gauche est plus lisible, mais celui de droite fonctionne aussi car
+        chaque bloc d'instructions est délimité par les accolades { }</p>
+      <table style="text-align: left; margin-left: auto; margin-right: auto;" border="1"
+        cellpadding="10" cellspacing="0">
+        <tbody>
+          <tr style="background-color: #ccccff;">
+            <td pbzloc="80" style="width: 326px">
+              <address pbzloc="81">main()</address>
+              <address pbzloc="71">{</address>
+              <address pbzloc="70" style="margin-left: 40px">int i,j;</address>
+              <address pbzloc="69" style="margin-left: 40px">float k;</address>
+              <address pbzloc="68" style="margin-left: 40px">for(i=1; i &lt;
+                100; i++){</address>
+              <address pbzloc="72" style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                j = i * i;</address>
+              <address style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                k = sqrt(i);</address>
+              <address pbzloc="62" style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                printf("%d&nbsp;&nbsp; %d&nbsp;&nbsp;&nbsp; %f\n",i,j,k);</address>
+              <address pbzloc="63" style="margin-left: 35.4pt">}</address>
+              <address style="margin-left: 35.4pt">i = 1;</address>
+              <address style="margin-left: 35.4pt">while(i &lt; 100){</address>
+              <address style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                j = pow(i,3);</address>
+              <address style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                k = exp(i)</address>
+              <address style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                printf("%d&nbsp;&nbsp; %d&nbsp;&nbsp;&nbsp; %f\n",i,j,k);</address>
+              <address style="margin-left: 35.4pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                i++;</address>
+              <address style="margin-left: 35.4pt">}</address>
+              <address>}</address>
+              <address pbzloc="82">&nbsp;</address>
+            </td>
+            <td pbzloc="31" style="width: 326px">
+              <address pbzloc="84" style="margin-left: 40px">main()</address>
+              <address style="margin-left: 40px;">{</address>
+              <address style="margin-left: 40px">int i,j;</address>
+              <address style="margin-left: 40px">float k;</address>
+              <address style="margin-left: 40px">for(i=1; i &lt; 100; i++)</address>
+              <address style="margin-left: 40px">{</address>
+              <address style="margin-left: 40px">j = i * i;</address>
+              <address style="margin-left: 40px">k = sqrt(i);</address>
+              <address style="margin-left: 40px">printf("%d&nbsp;&nbsp;
+                %d&nbsp;&nbsp;&nbsp; %f\n",i,j,k);</address>
+              <address style="margin-left: 40px">}</address>
+              <address pbzloc="27" style="margin-left: 40px">i = 1;</address>
+              <address style="margin-left: 40px">while(i &lt; 100)</address>
+              <address style="margin-left: 40px">{</address>
+              <address style="margin-left: 40px">j = pow(i,3);</address>
+              <address style="margin-left: 40px">k = exp(i)</address>
+              <address style="margin-left: 40px">printf("%d&nbsp;&nbsp;
+                %d&nbsp;&nbsp;&nbsp; %f\n",i,j,k);</address>
+              <address style="margin-left: 40px">i++;</address>
+              <address style="margin-left: 40px">}</address>
+              <address style="margin-left: 40px">}</address>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+      <h3 pbzloc="40">Python:</h3>
+      <p pbzloc="41">Avec Python, il n'y a pas de délimiteur, le seul moyen de
+        délimiter un bloc d'instructions est de&nbsp; le décaler par rapport au
+        reste. Les créateurs de ce langage, ont voulu ainsi forcer les
+        programmeurs à travailler proprement. Le programme précédent devient.</p>
+      <p pbzloc="106">&nbsp;<span pbzloc="104" style="color: #ff0000"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>from math import *</span></p>
+      <address pbzloc="51" style="margin-left: 40px"><span style="color: #ff0000">for
+          i in range(100):</span></address>
+      <address style="margin-left: 80px"><span style="color: blue;">j = i * i</span></address>
+      <span style="color: blue;"> </span>
+      <address style="margin-left: 80px"><span style="color: blue;">k = sqrt(i)</span></address>
+      <span style="color: blue;"> </span>
+      <address style="margin-left: 80px"><span style="color: blue;">print(i, j,
+          k,'\n')</span></address>
+      <address style="margin-left: 40px"><span style="color: #ff0000">i = 1</span></address>
+      <address style="margin-left: 40px"><span style="color: #ff0000">while i
+          &lt; 100:</span></address>
+      <address style="margin-left: 80px"><span style="color: blue;">j = i ** 3</span></address>
+      <span style="color: blue;"> </span>
+      <address style="margin-left: 80px"><span style="color: blue;">k = exp(i)</span></address>
+      <span style="color: blue;"> </span>
+      <address style="margin-left: 80px"><span style="color: blue;">print(i, j,
+          k,'\n')</span></address>
+      <span style="color: blue;"> </span>
+      <address style="margin-left: 80px"><span style="color: blue;">i = i + 1</span></address>
+      <p pbzloc="95">&nbsp;</p>
+      <p>On remarquera que les instructions <em><strong>for </strong></em>et <em><strong>while
+            </strong></em>se termine par (:) pour préciser qu'ils s'appliquent
+        sur un bloque d'instruction qui doit avoir obligatoirement le même
+        alignement.</p>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,356 @@
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, RadioButton</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, RadioButton"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le widget RadioButton<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Le widget <em style="font-weight: bold;">RadioButton </em>permet
+      de faire un choix parmi plusieurs. En fait il faut utiliser plusieurs
+      widgets et les lier à la même variable. Un seul widget peut être coché. Le
+      widget coché affecte sa valeur à la variable commune et décoche le widget
+      coché précédemment. La valeur retournée par un widget est définie par
+      l'utilisateur à l'aide de l'option <em>value</em>.&nbsp; L'option <em>variable</em>
+      permet de lier la valeur de chaque widget à une variable de type IntVar()
+      ou StringVar() commune à tous les&nbsp; RadioButton du même groupe. La
+      valeur de la variable peut être positionnée par code <em>nom_variable.set(valeur)</em>
+      et récupérée par <em>valeur = nom_variable.get()</em>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Syntaxe:<br>
+          </em></span></h2>
+      <dl>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>from
+                  tkinter import *</em></span></span></h3>
+        </dd>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>nom
+                  = RadioButton(parent, option=valeur, option=valeur, . . .)</em></span></span></h3>
+        </dd>
+        <dt><br>
+        </dt>
+      </dl>
+      <h3><em><span style="color: #990000;"><span style="font-family: Cambria;">Quelques
+              options du widget RadioButton</span></span></em></h3>
+      <table style="width: 95%;" border="1" cellpadding="10" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>anchor</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_attributs_standard.html">alignement </a>du
+                texte dans le widget.&nbsp;&nbsp;&nbsp;&nbsp; par
+                défaut=CENTER&nbsp;</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>background
+                    (bg)</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                  </a>arrière plan.</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>bitmap</em></strong></span><br>
+            </td>
+            <td style="width: 541px"><a href="python3_attributs_standard.html">bitmap&nbsp;
+                </a><span style="font-family: Cambria;">monochrome à afficher</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>borderwidth
+                    (bd)</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Epaisseur
+                de la bordure en pixels. Améliore l'effet de relief. Défaut=2.</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>command</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Procédure
+                exécuté quand le widget et coché/décoché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>cursor</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_curseurs_souris.html">Curseur </a>de la souris
+                quand celle-ci survole le widget</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>font</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a href="python3_attributs_standard.html">Fonte
+                  </a>du texte du bouton. exemple: <em>font="arial 8 italic
+                  bold"</em></span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>foreground
+                    (fg)</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                  </a>du texte</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>height</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Hauteur
+                du widget en lignes</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>image</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">image
+                à afficher</span> sur le widget à la place du texte<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>indicatoron</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Si
+                cette option est placée à 0, les cercles à cocher sont remplacés
+                par des boutons enfoncé/relâché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>justify</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Permet
+                de justifier le texte (LEFT, CENTER, RIGHT) dans le cas où
+                celui-ci contient des \n&nbsp; pour retourner à la ligne</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>padx</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Marge
+                horizontale du texte par rapport aux limites du widget</span><br>
+              <br>
+              <span style="font-family: Cambria;"><em>padx=3</em> =&gt; 3
+                pixels,&nbsp;&nbsp; <em>padx='3m'</em> =&gt; 3 mm,&nbsp;&nbsp;
+                <em>padx='1c'</em> =&gt; 1 cm, <em>padx='0.5i'</em> =&gt; 0.5
+                inch</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <br>
+              <span style="font-family: Cambria;"><strong><em>pady</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Marge
+                verticale. Voir padx pour les unités</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>relief</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_attributs_standard.html">Relief </a>du
+                bouton.&nbsp; Défaut = RAISED&nbsp;</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>selectcolor</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;"><a target="_top"
+                  href="python3_couleurs.html">couleur </a>de fond du cercle à
+                cocher</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>selectimage</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">dans
+                le cas ou le widget utilise une image au lieu d'un texte, cette
+                option permet de définir l'image à afficher quand le widget est
+                coché</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>state</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Permet
+                d'activer (NORMAL) ou de désactiver (DISABLED) le widget</span><br>
+              <br>
+              <span style="font-family: Cambria;">je n'ai pas bien compris le
+                rôle de la valeur ACTIVE</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>text</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">texte
+                à afficher sur le widget, \n permet un texte sur plusieurs
+                lignes</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>textvariable</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">pour
+                lier le texte affiché sur le widget à une variable de type
+                StringVar()</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>value</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">permet
+                de définir la valeur qui sera affectée à la variable commune
+                quand le widget sera coché. Selon que la variable commune est de
+                type IntVar() ou StringVar(), cette valeur doit être un entier
+                ou une chaîne</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>variable</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Définit
+                la variable liée au widget. Elle doit être la même pour tous les
+                RadioButton du même groupe.</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 116px"> <span style="font-family: Cambria;"><strong><em>width</em></strong></span><br>
+            </td>
+            <td style="width: 541px"> <span style="font-family: Cambria;">Largeur
+                du bouton en caractères</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h3><span style="color: #990000;"><em><span style="font-family: Cambria;">Quelques
+              méthodes du widget RadioButton</span></em></span></h3>
+      <p><span style="font-family: Cambria;">En plus des <a target="_top" href="python3_methodes_standard.html">méthodes
+            universelles </a>, ce widget supporte les méthodes:</span></p>
+      <table style="width: 95%;" border="1" cellpadding="9" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.deselect()</em></span><br>
+            </td>
+            <td style="width: 579px">&nbsp; <span style="font-family: Cambria;">place
+                le widget dans son état 0 = OFF</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.invoke()</em></span><br>
+            </td>
+            <td style="width: 579px"> <span style="font-family: Cambria;">Appelle
+                le callback du widget défini par l'option <em>command</em>
+                comme si le widget avait été cliqué</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 71px"> <span style="font-family: Cambria;"><em>.select()</em></span><br>
+            </td>
+            <td style="width: 579px"> <span style="font-family: Cambria;">place
+                le widget dans son état 1 = ON</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><span style="font-family: Cambria;"></span></p>
+      <table style="width: 100%;" border="0" cellpadding="8">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><em><span style="font-family: Cambria;">from
+                  tkinter import *<img alt="radio" src="images/radiobutton.PNG"
+                    align="right"><br>
+                  def sel():<br>
+                  &nbsp;&nbsp; L1.config(text = "Vous avez choisi l'option " +
+                  str(var.get()))<br>
+                  <br>
+                  root = Tk()<br>
+                  var = IntVar()<br>
+                  var.set(3)<br>
+                  R1 = Radiobutton(root, text="Option 1",selectcolor='brown1',
+                  variable=var, value=1,command=sel)<br>
+                  R1.pack( anchor = W )<br>
+                  R2 = Radiobutton(root, text="Option 2", selectcolor='cyan',
+                  variable=var, value=2,command=sel)<br>
+                  R2.pack( anchor = W )<br>
+                  R3 = Radiobutton(root, text="Option 3", selectcolor='yellow',
+                  variable=var, value=3,command=sel)<br>
+                  R3.pack( anchor = W)<br>
+                  L1 = Label(root)<br>
+                  L1.pack()<br>
+                  root.mainloop()<br>
+                </span></em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

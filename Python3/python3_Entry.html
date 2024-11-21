@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, Entry</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, Entry"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          text-align: justify;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le widget Entry<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Ce widget d'une seule ligne&nbsp; permet de saisir un
+      texte. Pour récupérer le contenu du widget, on utilise la méthode <em style="color: #000099;">nom.get()</em>,
+      qui retourne une chaîne. On peut utiliser <a href="python3_fonctions_predefinies.html#Fonctions_conversion">les
+        fonctions de conversion</a> pour modifier le type.
+      <p><span style="font-family: Cambria;">&nbsp;Voir cet <a target="_top" href="python3_exemple_button.html">exemple</a></span>
+      </p>
+      <h2><span style="font-family: Cambria;"><em style="color: #990000;">Syntaxe:</em></span></h2>
+      <p><span style="font-family: Cambria;"><em style="color: #990000;"> </em></span></p>
+      <dl>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>from
+                  tkinter import *</em></span></span></h3>
+        </dd>
+        <dd>
+          <h3><span style="color: #000099;"><span style="font-family: Cambria;"><em>nom
+                  = Entry(parent, option=valeur, option=valeur, . . .)</em></span></span></h3>
+        </dd>
+      </dl>
+      <br>
+      <h2><span style="font-family: Cambria;">&nbsp;<em style="color: #990000;">Quelques
+            options du widget Entry:</em></span></h2>
+      <table style="width: 100%; text-align: left; margin-left: 0px; margin-right: auto;"
+        border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>background
+                    (bg)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><a
+                      href="python3_couleurs.html">Couleur </a></span></span>du
+                widget "red", "blue", "green", "yellow", . . . ou #rrvvbb<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>borderwidth&nbsp;
+                    (bd)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Epaisseur
+                de la bordure en pixels. Défaut=2. améliore l'effet de relief<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>cursor</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><a
+                      href="python3_curseurs_souris.html">Curseur </a></span></span>de
+                la souris quand celle-ci survole le widget<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>disabledbackground</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><span
+                      style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                        </a></span></span></span>quand le widget est désacivé<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>disabledforeground</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><span
+                      style="font-family: Cambria;"><a href="python3_couleurs.html">Couleur
+                        </a></span></span></span>du texte quand le widget est
+                désactivé<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>font</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><a
+                      href="python3_button.html#fonte">Fonte </a></span></span>du
+                texte du bouton. exemple: <em>font="arial 8 italic bold"</em><br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>foreground&nbsp;
+                    (fg)</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><span
+                  style="font-family: Cambria;"><span style="font-family: Cambria;"><span
+                      style="font-family: Cambria;"><span style="font-family: Cambria;"><a
+                          href="python3_couleurs.html">Couleur </a></span></span></span></span>du
+                texte<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>justify</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Permet
+                de justifier le texte (LEFT, CENTER, RIGHT) <br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>relief</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;"><a href="python3_attributs_standard.html">Relief
+                  </a>du bouton.&nbsp; Défaut = SUNKEN<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>show</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Pour
+                masquer les caractère tapés (mot de passe) show='*'par exemple<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>state</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Permet
+                d'activer (NORMAL) ou de désactiver (DISABLED) un bouton<br>
+              </span> <span style="font-family: Cambria;">je n'ai pas bien
+                compris le rôle de la valeur ACTIVE<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>validate</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"><span style="font-family: Cambria;">&nbsp;
+                <br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>validatecommand</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"><span style="font-family: Cambria;">&nbsp;
+              </span></td>
+          </tr>
+          <tr>
+            <td style="width: 140px"> <span style="font-family: Cambria;"><strong><em>width</em></strong><br>
+              </span> </td>
+            <td style="width: 480px"> <span style="font-family: Cambria;">Largeur
+                du bouton en caractère<br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="clear: both"><span style="font-family: Cambria;">&nbsp;</span></div>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <h2><span style="font-family: Cambria;">&nbsp;<em style="color: #990000;">Quelques
+            méthodes du widget Entry:</em></span></h2>
+      <p><span style="font-family: Cambria;">En plus des <a target="_top" href="python3_methodes_standard.html">méthodes
+            universelles </a>, ce widget supporte les méthodes:<br>
+        </span></p>
+      <table style="width: 100%; text-align: left; margin-left: 0px; margin-right: auto;"
+        border="1" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width: 130px"> <span style="font-family: Cambria;"><br>
+              </span> <span style="font-family: Cambria;"><strong><em>.delete(first,
+                    [last])</em></strong><br>
+              </span> </td>
+            <td style="width: 454px"> <span style="font-family: Cambria;">Supprime
+                des caractères de <em>first</em> jusqu'à <em>last</em> (non
+                inclus)<br>
+              </span> <span style="font-family: Cambria;"><em style="color: #000099;">Edit1.delete(0,4)</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                supprime les caractères n° 0, 1, 2, 3<br>
+              </span> <span style="font-family: Cambria;"><em style="color: #000099;">Edit1.delete(4)&nbsp;&nbsp;</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                supprime le caractères n° 4&nbsp;&nbsp; (le 5ème)<br>
+              </span> <span style="font-family: Cambria;"><em style="color: #000099;">Edit1.delete(0,END)</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                supprime tous les caractères du widget<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 130px"> <span style="font-family: Cambria;"><strong><em>.get()</em></strong><br>
+              </span> </td>
+            <td style="width: 454px"> <span style="font-family: Cambria;">Retourne
+                le contenu du widget en tant que chaîne.<br>
+              </span> </td>
+          </tr>
+          <tr>
+            <td style="width: 130px"> <span style="font-family: Cambria;"><strong><em>.insert(index,
+                    str)</em></strong><br>
+              </span> </td>
+            <td style="width: 454px"> <span style="font-family: Cambria;">Insère
+                la chaîne <em>str</em> avant le caractère n° <em>index</em><br>
+              </span> </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="clear: both"><span style="font-family: Cambria;">&nbsp;</span></div>
+      <br>
+      Les valeurs possibles des l'indices <strong><em>first, last, index</em></strong>:<br>
+      <div style="margin-left: 40px;"><strong><em>0</em></strong>&nbsp;&nbsp;&nbsp;
+        indice du premier caractère<br>
+        <em>n</em>&nbsp;&nbsp;&nbsp; indice du (n+1)ème caractère<br>
+        <strong><em>INSERT&nbsp;&nbsp;&nbsp; </em></strong>position actuelle du
+        curseur<br>
+        <strong><em>END&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </em></strong>fin
+        du widget<br>
+        <strong><em>ANCHOR&nbsp;&nbsp;&nbsp; </em></strong>premier caractère de
+        la zone sélectionnée (s'il y en a une)</div>
+      <p><br>
+        <span style="font-family: Cambria;"></span><span style="font-family: Cambria;">
+        </span> <span style="font-family: Cambria;"></span><span style="font-family: Cambria;"></span></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+     </script>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

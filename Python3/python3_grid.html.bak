@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, grid()</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, grid()"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="      background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le positionneur grid()<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Le gestionnaire de géométrie <strong><em>grid()</em></strong>
+      permet de positionner les widgets dans un conteneur comme une fenêtre ou
+      un frame. Le conteneur est organisé comme une grille de cellules. La
+      numérotation des lignes et des colonnes&nbsp; peut commencer à n'importe
+      quelle ligne
+      <ul>
+        <li><span style="font-family: Cambria;">Pour placer un widget dans une
+            cellule:</span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="color: red;"> <em style="color: blue;"><span
+              style="font-family: Cambria;">widget.grid(row=valeur,
+              column=valeur)</span></em></span><br>
+      </div>
+      <ul>
+        <li><span style="font-family: Cambria;">Au départ, on ne crée pas la
+            grille en définissant un nombre de lignes ou de colonnes. La grille
+            est crée au momment où on y place des widgets. si on place un widget
+            dans la cellule (1,1) et un autre dans la cellule (4, 3) alors une
+            grille à quatre ligne et 3 colonnes est crée.</span></li>
+      </ul>
+      <ul>
+        <li><span style="font-family: Cambria;">Une ligne dont toutes les
+            cellules son vide n'est pas visible à moins qu'on définisse une
+            taille minimum obligatoire:</span></li>
+      </ul>
+      <ul>
+      </ul>
+      <div style="margin-left: 40px;"> <em style="color: blue;"><span style="font-family: Cambria;">conteneur.grid_rowconfigure(3,
+            minsize = 20)</span></em><br>
+      </div>
+      <ul>
+        <li><span style="font-family: Cambria;">Une colone dont toutes les
+            cellules son vide n'est pas visible à moins qu'on définisse une
+            taille minimum obligatoire:</span></li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">conteneur.grid_columnconfigure(2,
+              minsize = 20)</span></em></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">Un widget peut occuper plusieurs
+            cellules à l'aide de l'option rowspan:</span></li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">widget.grid(row=2,
+              column=3, rowspan=5)</span></em></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">Une ligne adapte sa hauteur à
+            celle du plus grand widget qu'elle contient à moins qu'on définisse
+            une taille minimum obligatoire à l'aide de la méthode</span></li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">.grid_rowconfigure(ligne,
+              minsize = valeur)</span></em></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">Une colonne adapte sa largeur à
+            celle du plus grand widget qu'elle contient à moins qu'on définisse
+            une taille minimum obligatoire à l'aide de la méthode:</span></li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">.grid_columconfigure(colone,
+              minsize = valeur)</span></em></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">Quand on place un widget dans
+            une cellule, on peut imposer une marge horizontale et verticale par
+            rapport aux bords de la cellule à l'aides des options <strong><em>padx</em></strong>
+            et <strong><em>pady</em></strong> (en pixels):</span></li>
+      </ul>
+      <p style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">widget.grid(row=valeur,
+              column=valeur, padx=valeur, pady=valeur)</span></em></span></p>
+      <ul>
+        <li><span style="font-family: Cambria;">Par défaut, une ligne ou une
+            colonne ne change pas de dimension si on agrandit la fenêtre. Pour
+            faire de sorte que cela arrive, il faut lui affecter un coefficient
+            d'agrandissement différent de 0</span></li>
+      </ul>
+      <div style="margin-left: 40px;"><span style="color: red;"><em style="color: blue;"><span
+              style="font-family: Cambria;">conteneur.grid_columnconfigure(colone,
+              weight=1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              # pour la colonne</span></em><em><br>
+          </em></span> <span style="color: red;"><em style="color: blue;"><span
+              style="font-family: Cambria;">conteneur.grid_rowconfigure(ligne,
+              weight=1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              # pour la ligne</span></em><em><br>
+          </em></span> </div>
+      <ul>
+        <ul>
+        </ul>
+        <li><span style="font-family: Cambria;">Un widget peut être collé sur
+            les bords de sa cellule à l'aide de l'option sticky qui peut prendre
+            une ou plusieurs valeur parmi E, W, N , S&nbsp;&nbsp; (Est, West,
+            North, Sud). Ceci permet au widget de grandir avec sa cellule si
+            celle-ci est configurée pour ça</span></li>
+      </ul>
+      <br>
+      <div style="margin-left: 40px;"><span style="color: blue;"><em><span style="font-family: Cambria;">widget.grid(row=2,
+              column=3,
+              sticky='EW')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              # Collé horizontallement</span></em><em><br>
+          </em> <em><span style="font-family: Cambria;">widget.grid(row=2,
+              column=3,
+              sticky='NS')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              # Collé verticalement</span></em><em><br>
+          </em> </span><span style="color: red;"><span style="color: blue;"><em><span
+                style="font-family: Cambria;">widget.grid(row=2, column=3,
+                sticky='EWNS')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                # Collé sur tous les coté</span></em></span><em><br>
+          </em></span> </div>
+      <p style="text-align: center;"><span style="font-family: Cambria;">&nbsp;<img
+            alt="grid" src="images/grid.PNG"></span></p>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>

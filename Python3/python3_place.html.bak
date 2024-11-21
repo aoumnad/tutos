@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>Référence Python 3 et Interface graphique Tkinter, pack()</title>
+    <meta content="A. Oumnad" name="author">
+    <meta content="Mini référence pour le langage de programmation Python 3 et l'interface graphique Tkinter"
+      name="description">
+    <meta content="Python, Python3, Python 3, Tkinter, interface graphique, GUI, Tkinter GUI, pack()"
+      name="keywords">
+    <link rel="shortcut icon" type="image/png" href="images/py.png" \="">
+    <style type="text/css">
+        #titre {  
+          background-color: #ccccff;  
+        }
+      
+        #soustitre {  
+          background-color: #80cc90;
+          font-style: italic; 
+          font-size: xx-large; 
+          font-weight: bold; 
+          text-align: center; 
+          color: #990000;
+        }
+        
+        #navigation {  
+          width: 23%; 
+          min-height: 1000px;
+          float: left;  
+          font-family: Cambria;
+        }
+        
+        #contenu{  
+          width: 72%;
+          min-height: 1000px;
+          float: right;  
+          background-color: #ffff99;  
+          font-family: Cambria;
+          padding: 10px;
+          margin-top: 10px;
+          }
+      
+        #icone{
+         width: 7%;
+         float: left; 
+         margin: 3px;
+         }
+      
+     </style>
+  </head>
+  <body style="       background-color: silver; width: 99%; height: 100%;">
+    <table style="width: 100%; font-family: Cambria;" border="0">
+      <tbody>
+        <tr id="titre">
+          <td> <img id="icone" alt="" src="images/python.jpg">
+            <h1 style="text-align: center;"><em>Le langage <span style="color: #990000;">python
+                  3</span> et l'Interface Graphique <span style="color: #990000;">Tkinter</span><br>
+              </em></h1>
+            <h1> </h1>
+          </td>
+        </tr>
+        <tr id="soustitre">
+          <td>Le positionneur place()<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <object id="navigation" data="python3_sommaire.html"></object>
+    <div id="contenu"> Ce positionneur permet définir les positions <span style="font-family: Cambria;"><strong><em
+            style="color: red;"><span style="font-family: Cambria;">absolues </span></em></strong>(x,y)
+        des widget ainsi que leur dimensions. On se contentera ici de donner un
+        <a target="_blank" href="scriptes/place.py"> exemple </a>(inachevé
+        faute de temps) qui servira de fil conducteur à celui qui décide
+        d'approfondir cet aspect.</span> <br>
+      <br>
+      <table style="width: 100%;" border="0" cellpadding="10" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="background-color: #ccccff;"><em>from tkinter import *<br>
+                from tkinter import ttk<br>
+                fp = Tk()&nbsp;&nbsp; # fenetre principale<br>
+                fp.geometry("480x400")<br>
+                fp.title("Timer TMR2")<br>
+                label1 = Label(fp,text='Fosc en MHz')<br>
+                label1.place(x=10, y=30, anchor=SW)<br>
+                edit1 = Entry(fp)<br>
+                edit1.place(x=10, y=30, anchor=NW)<br>
+                label2 = Label(fp,text='Période en µs')<br>
+                label2.place(x=10, y=80, anchor=SW)<br>
+                edit2 = Entry(fp)<br>
+                edit2.place(x=10, y=80, anchor=NW)<br>
+                label3 = Label(fp,text='Tolérence en µs')<br>
+                label3.place(x=10, y=130, anchor=SW)<br>
+                edit3 = Entry(fp)<br>
+                edit3.place(x=10, y=130, anchor=NW)<br>
+                go_button = ttk.Button(fp,text = "GO")<br>
+                go_button.place(x=10,y=200)<br>
+                exit_button = ttk.Button(fp,text = "Exit",command = fp.destroy)<br>
+                exit_button.place(x=10,y=300)<br>
+                label4 = Label(fp,font='TkFixedFont',text=' CTR&nbsp;
+                PREDIV&nbsp; PR2+1&nbsp; POSTDIV&nbsp; T&nbsp; Erreur')<br>
+                label4.place(x=150, y=30, anchor=SW)<br>
+                fen4 = Text(fp)<br>
+                fen4.place(x = 150,y = 30, anchor=NW , relwidth=0.65,
+                relheight=0.9)<br>
+                fp.mainloop() </em></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <p><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p style="text-align: center;"><span style="font-family: Cambria;"><img alt="place"
+            src="images/place.png"></span></p>
+      <p pbzloc="6"><span style="font-family: Cambria;">&nbsp;</span></p>
+      <p style="text-align: left;" pbzloc="6"><span style="font-family: Cambria;">l'option
+          <em> anchor </em>accepte les valeur suivantes:</span></p>
+      <p style="text-align: center;" pbzloc="6"><span style="font-family: Cambria;"><img
+            alt="anchor" src="images/anchormaj.PNG"></span></p>
+      <br>
+    </div>
+    <script language="JavaScript">
+         document.getElementById('navigation').height= document.getElementById('contenu').scrollHeight;
+    </script>
+  </body>
+</html>
