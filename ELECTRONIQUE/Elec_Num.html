@@ -40,16 +40,79 @@
                     <a href="#CONVBASE">
                         <h3>Changement de base</h3>
                     </a>
-                    <a href="#">
-                        <h3></h3>
+                    <a href="#CALCBIN">
+                        <h3>Calcul dans le système binaire</h3>
                     </a>
-                    <a href="#">
-                        <h3></h3>
+                    <a href="#REPNEG">
+                        <h3>La représentation des nombres négatifs</h3>
                     </a>
-                    <a href="#">
-                        <h3></h3>
+                    <a href="#CODES">
+                        <h3>Autres Representations</h3>
+                    </a>
+                    <a href="#GRAY">
+                        <h3>Le code Gray</h3>
                     </a>
 
+
+                </div>
+                <div class="rubrique" onclick="toggleMenu('boole', this)">
+                    <span>&gt;</span>
+                    <h2>Algèbre de Boole</h2>
+                </div>
+                <div id="boole" class="sub-rubrique">
+                    <a href="#BOOLE">
+                        <h3>Introduction</h3>
+                    </a>
+                    <a href="#VARLOGIC">
+                        <h3>Variables Booléenne</h3>
+                    </a>
+                    <a href="#FONCLOGIC">
+                        <h3>Fonctions Booléenne</h3>
+                    </a>
+                    <a href="#OPLOGIC">
+                        <h3>Opérateurs logiques</h3>
+                    </a>
+                    <a href="#IDENTREM">
+                        <h3>Identités remarquables</h3>
+                    </a>
+                    <a href="#MORGAN">
+                        <h3>Théorème de Morgan</h3>
+                    </a>
+                    <a href="#CANONIC">
+                        <h3>Forme Canonique</h3>
+                    </a>
+                    <a href="#NANDUNIVERSEL">
+                        <h3>NAND : Opérateur universel</h3>
+                    </a>
+                </div>
+
+                <div class="rubrique" onclick="toggleMenu('simpfonc', this)">
+                    <span>&gt;</span>
+                    <h2>Simplification des fonctions logiques</h2>
+                </div>
+                <div id="simpfonc" class="sub-rubrique">
+                    <a href="#SIMPFONC">
+                        <h3>Introduction</h3>
+                    </a>
+
+                    <a href="#DKARNAUGH">
+                        <h3>Diagramme de Karnaugh</h3>
+                    </a>
+                    <a href="#REMPKAR">
+                        <h3>Remplissage de la table de Karnaugh</h3>
+                    </a>
+                    <a href="#GROUP">
+                        <h3>Regrouper les 1 en blocs</h3>
+                    </a>
+                    <a href="#LECTCARNAUGH">
+                        <h3>Lecture de la table de Karnaugh</h3>
+                    </a>
+                    <a href="#KEX1">
+                        <h3>Exemple 1: Binaire &xrarr; Gray</h3>
+                    </a>
+                    <a href="#KEX2">
+                        <h3>Exemple 2: Etude d'un convoyeur</h3>
+                    </a>
                 </div>
                 <br><br><br>
                 <h2>Le reste est en cours de redaction</h2>
@@ -144,6 +207,10 @@
                 <p>chaque chiffre Hexadécimal est écrit sur 4 bits :</p>
                 <p>8E97A<sub>16</sub> = 1000 1110 1001 0111 1010<sub>2</sub> </p>
 
+                <h3>Octal &xrarr; binaire</h3>
+                <p>chaque chiffre octal est est écrit sur 3 bits :</p>
+                <p>657<sub>8</sub> = 110 101 111<sub>2</sub> </p>
+
                 <h3>Binaire &xrarr; Hexadécimal</h3>
                 <p>Le nombre binaire est découpé en blocs de 4 bits en commençant de la droite (LSB), ensuite chaque
                     bloc de 4 bits est représenté en hexadécimal</p>
@@ -171,14 +238,592 @@
                 <p> </p>
 
                 <!-- ################################################################################################ -->
-                <h2 id=""></h2>
+                <h2 id="CALCBIN">Calcul dans le système binaire</h2>
+                <p>Le calcul dans le système binaire se fait de la même façon que nous avons appris à le faire en
+                    décimal dans la petite école.</p>
+                <h3>Addition :</h3>
+                <p>
+                    0 + 0 = 0 <br>
+                    0 + 1 = 1 <br>
+                    1 + 0 = 1 <br>
+                    1 + 1 = 0 et on retient 1
+                </p>
+                <img src="IMAGES/EN_AddBin.jpg" alt="">
+                <p>On remarque dans l'exemple qu'à cause de la retenue du rang précédent, on est amené à ajouter 3
+                    bits. On en déduit qu'un additionneur élémentaire doit additionner 3 bits et produire une somme et
+                    une retenue. Nous reviendrons plus en détail sur cet aspect dans la section consacrée aux circuits
+                    numériques.</p><br>
+
+                <h3>Soustraction :</h3>
+                <p>
+                    0 - 0 = 0 <br>
+                    0 - 1 = 1 après avoir emprunté 1 à la rangée de gauche<br>
+                    1 - 0 = 1 <br>
+                    1 - 1 = 0 <br>
+                </p>
+                <img src="IMAGES/EN_SubBin.jpg" alt="">
+                <p>Avec la soustraction, même s'il arrive qu'on parle de retenue, en fait c'est un emprunt (Borrow en
+                    anglais). On
+                    constate sur l'exemple qu'à chaque colone, on effectue une soustraction de 3 bites \((X - Y -
+                    B_{in})\) et on produit un résultat \(S\) et un Borrow \(B_{out}\). Le
+                    tableau ci-dessous répertorie toutes les possibilités </p>
+                <img src="IMAGES/EN_Sub_Bin_Table.jpg" alt="">
+                <p> Nous reviendrons plus en détail sur cet aspect dans la section consacrée aux circuits
+                    numériques.</p><br>
+
+                <h3>Multiplication :</h3>
+                <p>Là aussi, on procède comme on le fait en base 10</p>
+                <img src="IMAGES/EN_MulBin.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="REPNEG">La représentation des nombres négatifs</h2>
+
+                <p>Il existe plusieurs façons de représenter les nombres négatifs en binaire.
+                    La plus utilisée en informatique est la méthode du <em>complément à deux</em>. Cette technique
+                    repose sur une
+                    propriété fondamentale : le complément (-N) d'un nombre N est défini de manière à vérifier l'égalité
+                    suivante : \(N+(-N)=0\)</p>
+                <p>Cependant, en binaire, cette méthode n'a de sens que si l'on travaille avec un nombre fixe de bits,
+                    ce qui correspond à la taille des registres ou des données manipulées par une machine.
+                    Prenons l'exemple d'une machine qui utilise 4 bits pour représenter les nombres. Cette machine peut
+                    représenter uniquement les nombres compris entre 0000 (0 en base 10) et 1111 (15 en base 10).
+
+                    Examinons quelques opérations :</p>
+                <ul>
+                    <li>Si l'on effectue l'addition 0101 (5) + 0011 (3), on obtient 1000 (8). Le résultat est correct et
+                        reste dans la plage représentable.</li>
+                    <li>En revanche, si l'on effectue 0111 (7) + 1101 (13), on obtient 0100 (4). Pourquoi? Parce que la
+                        machine n'a pas de place pour le cinquième bit généré par l'opération, qui correspondrait à 16.
+                        Ce dépassement est appelé un débordement.</li>
+                </ul>
+                <p>Ce comportement implique qu'une machine 4 bits effectue ses calculs modulo \(2^4=16\).
+                    Dans ce système, <b>le nombre 16 est équivalent à 0</b>. Par conséquent, la méthode du complément à
+                    deux repose sur la relation :
+                    $$N+(-N)=16$$
+                    Le complément du nombre N est donc :
+                    $$(-N)=16-N$$
+                    D'une façon générale, dans une machine n bits, le complément d'un nombre N est donné par :
+                    $$(-N)=2^n-N$$
+                </p>
+                <p>Cette définition garantit que l'addition de N et de son complément donne toujours zéro</p>
+                <p>Le complément à 2 d'un nombre peut être déterminé directement en binaire sans passer par les
+                    relations ci-dessus.</p>
+                <p>En effet :</p>
+                $$(-N)=16-N=(15+1)-N=(15-N)+1$$
+                <p>L'opération \(15-N\) s'appelle <em>le complément à 1</em> du nombre N. Elle revient à complémenter un
+                    par
+                    un tous les bits du nombre N. Ensuite, il suffit d'ajouter 1 pour obtenir Le <em>Le complément à
+                        2</em></p>
+
+                <h4>Exemple :</h4>
+                <p>Cherchons la représentation du nombre (-7) :</p>
+                <ul>
+                    <li> 7 = 0111</li>
+                    <li>On inverse tous les bits &xrarr; 1000</li>
+                    <li> On ajoute 1 &xrarr; -7 = 1001</li>
+                    <li>vérification (7) + (-7) :
+                        <img class="inline" src="IMAGES/EN_C2Verif.jpg" alt="">
+                    </li>
+                </ul><br>
+                <p>En définitif, notre machine 4 bits peut représenter \(2^4=16\) nombres différents : </p>
+                <ul>
+                    <li>Soit non signés (tous positifs)
+                        <img src="IMAGES/EN_Unsigned.jpg" alt="">
+                    </li>
+                    <li>Soit signés, 8 positifs et 8 négatifs :
+                        <img src="IMAGES/EN_SignedTable.jpg" alt=""><br>
+                        Remarquons que pour les nombres positifs, le MSB est égal à 0 et pour les nombres négatifs le
+                        MSB est
+                        égal à 1. C'est ainsi que l'on peut tester si le résultat d'une opération est juste. Par
+                        exemple,
+                        pour l'addition, la règle est simple :
+                        <ul>
+                            <li>La somme de 2 nombres positifs doit donner un nombre positif</li>
+                            <li>la somme de 2 nombres négatifs doit donner un nombre négatif</li>
+                        </ul>
+                        L'erreur se produit quand il y a débordement, c.a.d quand le résultat dépasse le nombre maximum
+                        que
+                        la machine peut représenter soit +7 pour les nombres positifs ou -8 pour les nombres négatifs.
+                        Une
+                        erreur peut se produire quand on ajoute des nombres de même signe. Il y a erreur quand le signe
+                        du
+                        résultat est différent de celui des deux opérandes.
+                        <img src="IMAGES/EN_SignedExmples.jpg" alt="">
+                    </li>
+                </ul><br>
+
+
+                <h4>Généralisation :</h4>
+                <div class="encadre">
+                    <ul>
+                        <li>Une machine \(n\) bits peut représenter \(2^n\) nombres différents :</li>
+                        <li>Si on ne désire manipuler que des nombres positifs, on pourra représenter les nombres allant
+                            de \(0\) à \(2^n-1\) </li>
+                        <li>Si on désire manipuler des nombres signés, on pourra représenter :
+                            <ul>
+                                <li>\(\frac{2^n}{2}\) Nombres positifs allant de \(\quad 0 \quad à \quad
+                                    \left(\frac{2^n}{2}-1\right) \)</li>
+                                <li>\(\frac{2^n}{2}\) Nombres négatifs allant de \(\quad -1 \quad à \quad -\frac{2^n}{2}
+                                    \)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="CODES">Autres Representations</h2>
+                <p>Le binaire naturel n'est pas la seule représentation des nombres utilisée en informatique.
+                    Bien que le système binaire naturel (ou positionnel) soit largement employé pour représenter les
+                    nombres en raison de sa simplicité et de son adéquation avec le fonctionnement des circuits
+                    électroniques, d'autres systèmes de codage peuvent être mieux adaptés à certains contextes
+                    spécifiques. Parmi ces systèmes, on trouve :</p>
+                <ul>
+                    <li><b>Le code BCD</b> (Binary-Coded Decimal) : Ce système représente chaque chiffre décimal
+                        individuellement à
+                        l'aide de 4 bits. Par exemple :
+                        <ul>
+                            <li>\( 457 = 111001001_{binaire} \)</li>
+                            <li>\( 457 = 0100 \; 0101 \; 0111_{BCD} \)</li>
+                        </ul>
+                        Le code BCD est couramment utilisé dans les systèmes avec des afficheurs Sept segments
+                        <img src="IMAGES/EN_7seg.jpg" alt="">
+                    </li>
+                    <li><b>Le code de Gray</b> : Utilisé principalement dans les systèmes de mesure et de contrôle. Ce
+                        code a la particularité de ne changer qu'un seul bit entre deux valeurs consécutives. Cela le
+                        rend particulièrement adapté aux dispositifs où des erreurs dues à des transitions multiples de
+                        bits
+                        pourraient survenir, comme dans les codeurs rotatifs ou les circuits numériques synchrone. Il
+                        est aussi utilisé dans les tables de Karnaugh pour la simplification des fonctions logiques</li>
+                    <li>Le code excès-N (Excess-N) : Utilisé pour représenter des nombres signés ou non signés. Il est
+                        courant dans certains formats d'images numériques ou d'intervalles définis.
+
+                    </li>
+                </ul>
+                <p>Ces systèmes de codage, bien que moins universels que le binaire naturel, répondent à des
+                    besoins spécifiques en optimisant certains aspects comme la lisibilité humaine (BCD), la robustesse
+                    contre les erreurs (code de Gray) ou la gestion de plages numériques particulières (excès-N). Ainsi,
+                    le choix d'un système dépend largement des contraintes et des exigences de l'application envisagée
+                </p>
+                <p>Le tableau ci-dessous présente l'exemple de quelques codes :</p>
+                <img src="IMAGES/EN_Codes.jpg" alt="">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="GRAY">Le code Gray</h2>
+                <p>Le code de Gray est le code binaire réfléchi, c'est un cas très important des codes continus.</p>
+                <p>Un code est continu au sens large si dans la table de vérité qui le définit, les états successifs
+                    sont adjacents, c'est à dire que quand on passe de l'un à l'autre, il y a un seul chiffre qui
+                    change. Un code est continu au sens strict si en plus le premier et le dernier état sont adjacents.
+                </p>
+                <p>Un code réfléchi est un code naturel dont on a renversé le sens de variation par endroits afin de le
+                    rendre continu. On renverse une période sur deux en commençant par la deuxième. Le tableau
+                    ci-dessous illustre le code ternaire (base 3) réfléchi.</p>
+                <img src="IMAGES/EN_TernaireReflechi.jpg" alt="">
+                <p>Le tableau ci-dessous illustre le code Gray</p>
+                <img src="IMAGES/EN_Gray.jpg" alt="">
+                <p>Le code de Gray est très fréquemment utilisé notamment sur les tables de Karnaugh pour simplifier les
+                    fonctions
+                    logiques. Remarquons que le code de Gray est continu au sens stricte, 0 est adjacent avec 15</p>
+                <img src="IMAGES/EN_Karnaugh.jpg" alt="">
+                <p>Comme on le voit sur la figure, la table de Karnaugh est une table de vérité représentée d'une façon
+                    particulière. Les adresses des cases sont représentées en code de Gray de sorte à ce que toutes les
+                    cases qui ont un coté commun soient adjacentes. Les cases sur les extrémités opposées sont aussi
+                    adjacentes, on peut vérifier les adjacentes suivantes : 0-3, 7-4, 8-11, 15-12, 0-15, 1-14, 2-13,
+                    3-12</p>
+                <p>Si on considère la table comme une feuille de papier, on peut vérifier les adjacence en enroulant la
+                    feuille verticalement et horizontalement</p>
+                <img src="IMAGES/EN_KarnaughAdj.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="BOOLE">Algèbre de Boole</h2>
+                <p>L'algèbre de Boole est une branche des mathématiques qui traite des variables logiques et des
+                    opérations logiques. Elle a été développée par George Boole au XIXe siècle et constitue la base des
+                    systèmes numériques et de l'informatique moderne. C'est l'algèbre des variables qui ne peuvent
+                    prendre que deux valeurs généralement notées 0 et 1, représentant le faux et le vrai. Les opérations
+                    fondamentales de
+                    l'algèbre de Boole incluent le ET (AND), le OU (OR), et le NON (NOT), qui permettent de manipuler
+                    les valeurs logiques pour résoudre des problèmes de logique et de conception de circuits numériques.
+                    Cette discipline est essentielle pour comprendre le fonctionnement des ordinateurs et des systèmes
+                    électroniques</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="VARLOGIC">Variables, Fonction et Opérateur logiques</h2>
+                <p>L'algèbre de Boole repose sur :</p>
+                <h3>Variables Booléenne</h3>
+                <p>C'est une grandeur qui ne peut prendre que deux valeurs 0 ou 1</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="FONCLOGIC">Fonctions Booléenne</h3>
+                <p>C'est une fonction de une ou plusieurs variables booléennes, ne pouvant prendre elle-même qu'une
+                    des deux valeurs 0 ou 1. Pour la définir, il faut préciser sa valeur pour toutes les
+                    combinaisons possibles des variables.</p>
+                <p>Il arrive que l'état de la fonction ne soit déterminé pour certaines combinaison des entrées. Dans ce
+                    cas on met un 'x' dans la table de vérité pour indiquer que l'état de la fonction dans ces cas n'a
+                    pas d'importance et il peut être considéré comme un '1' ou un '0'. Cela arrive quand certaines
+                    combinaisons des entrées ne peuvent pas exister dans la pratique. Rien de mieux qu'un petit exemple
+                    pour illustrer ce genre de situation :</p>
+                <p>On désire maintenir la température d'une salle de travail entre 17°C et 20°C.
+                    Nous nous procurons deux capteurs de température ayant chacun une sortie logique que nous
+                    appellerons C17 et C20 . Chaque capteur fonctionne de la manière suivante</p>
+                <ul>
+                    <li>C17 = 0 si la température est &lt; à 17°C , C17 = 1 si la température est &gt; à 17°C</li>
+                    <li>C20 = 0 si la température est &lt; à 20°C , C20 = 1 si la température est &gt; à 20°C</li>
+                </ul>
+                <p>On va essayer de construire un système logique qui délivre une alarme S chaque fois que la
+                    température sort de l'intervalle [17°,20°]. Ce qui revient à chercher la fonction S des deux
+                    variables C17 et C20 , S = f(C17 ,C20 )</p>
+                <img src="IMAGES/EN_Simp_X.jpg" alt="">
+                <p>La figure illustre les trois situations possibles de la température, les état des capteurs et la
+                    valeur de la
+                    fonction S.</p>
+                <p>Quand on dresse la table de vérité, avec deux variables, on a quatre combinaison possibles :</p>
+                <img src="IMAGES/EN_Simp_X_TV.jpg" alt="">
+                <p>On s'aperçoit qu'il manque l'état (C17=0, C20=1), normal, cet état ne peu pas exister car il
+                    correspond à une température en même temps inférieure à 17 et supérieure à 20. Dans la table vérité
+                    on met un x comme valeur de S ce qui signifie qu'on <i>s'en fout</i> de sa valeur puisque cet état
+                    est impossible. Lors de la recherche de l'expression de S, on peut considérer le 'x' comme un 0 ou
+                    comme un 1 selon la convenience</p>
+
+                <!-- ########################################################## -->
+                <h3 id="OPLOGIC">Opérateurs logiques</h3>
+                <p>On peut montrer que toute fonction booléenne peut se synthétiser à partir d'un nombre très
+                    réduit de fonctions (élémentaires) de deux variables ou l'extension à plusieurs variables de
+                    ces mêmes fonctions. Ces fonctions sont souvent appelées Opérateurs.</p>
+                <ul>
+                    <li>Opérateur <b>ET</b> (AND)
+                        <img src="IMAGES/EN_AND.jpg" alt="">
+                        <p class="InlineCenter">(A . B) est vrai si et seulement si A est vraie <b>et</b> B est
+                            vraie</p>
+                    </li>
+                    <li>Opérateur <b>OU</b> (OR)
+                        <img src="IMAGES/EN_OR.jpg" alt="">
+                        <p class="InlineCenter">(A + B) est vrai si et seulement si A est vraie <b>ou</b> B est
+                            vraie</p>
+                    </li>
+                    <li>Opérateur <b>NON</b> (NOT)
+                        <img src="IMAGES/EN_NOT.jpg" alt="">
+                        <p class="InlineCenter">Inverse la valeur de l'entrée</p>
+                    </li>
+                </ul><br>
+                <p><b>Les trois opérateurs de base, AND, OR et NOT, suffisent à construire n'importe quelle
+                        fonction logique. Cependant, dans certaines situations, l'utilisation d'opérateurs
+                        combinés
+                        comme XOR, NAND et NOR peut être avantageuse pour simplifier l'écriture des fonctions et
+                        faciliter la conception de systèmes électroniques.</b></p><br>
+                <ul><br>
+                    <li>Opérateur <b>OU exclusif</b> (XOR)
+                        <img src="IMAGES/EN_XOR.jpg" alt="">
+                        <p class="InlineCenter">(A &oplus; B) est vrai si et seulement si A est vraie <b>ou</b>
+                            B est
+                            vraie mais pas les deux à la fois</p>
+                        <p>XOR est un opérateur combiné car il peut être construit à l'aide des opérateurs de
+                            base :</p>
+                        <p>\( \rm A \oplus B = A\overline{B}+\overline{A}B \)</p>
+                        <p><img src="IMAGES/EN_XOR_Comb.jpg" alt=""></p>
+                    </li><br>
+                    <li>Opérateur <b>NON ET</b> (NAND)
+                        <img src="IMAGES/EN_NAND.jpg" alt="">
+                        <p>C'est le complément de l'opérateur ET. C'est l'opérateur le plus couramment utilisé
+                            dans la pratique, on verra pourquoi quand on aura vu la règle de Morgan</p>
+                    </li><br>
+                    <li>Opérateur <b>NON OU</b> (NOR)
+                        <img src="IMAGES/EN_NOR.jpg" alt="">
+                        <p>C'est le complément de l'opérateur OU.</p>
+                    </li><br>
+                </ul>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="IDENTREM"> Identités remarquables</h2>
+                <h3>Élément neutre, élément absorbant et complémentarité :</h3>
+                <p class="InlineCenter">
+                    \( \boxed{
+                    \begin{matrix}
+                    \rm{A} &+ &0 &= &\rm{A} \\
+                    \rm{A} &+ &1 &= &1 \\
+                    \rm{A} &+ &\bar{\rm{A}} &= &1
+                    \end{matrix}}
+                    \)
+                    &nbsp;&nbsp;&nbsp;
+                    \( \boxed{
+                    \begin{matrix}
+                    \rm{A} &. &0 &= &0 \\
+                    \rm{A} &. &1 &= &\rm{A} \\
+                    \rm{A} &. &\bar{\rm{A}} &= &0
+                    \end{matrix} }
+                    \)
+                </p><br>
+
+                <h3>Idempotence :</h3>
+                $$
+                \boxed{
+                \begin{matrix}
+                \rm{A} &+ &\rm{A} &= &\rm{A} \\
+                \rm{A} &. &\rm{A} &= &\rm{A}
+                \end{matrix}
+                }
+                $$
+
+                <h3>Commutativité :</h3>
+                $$
+                \boxed{
+                \begin{array}{c}
+                {A+B=B+A}\\
+                {A\;.\;B=B\;.\;A}
+                \end{array}
+                }
+                $$
+
+                <h3>Associativité :</h3>
+                $$ \boxed{ \begin{array}{c}{(A+B)+C=A+(B+C)}\\{(A \;.\; B)\;.\;C=A\;.\;(B\;.\;C)}\\\end{array} }$$
+
+                <h3>Absorption :</h3>
+                $$ \boxed{A.(A+B)= A} $$
+                En effet : \(A.(A+B)=AA+AB=A+AB=A.(1+B)=A\)
+
+                <h3>Distributivité</h3>
+                <p>• est distributive par rapport à + <br>
+                    + est distributive par rapport à •</p>
+
+                $$ \boxed{ \begin{matrix}
+                \rm{A.(B+C)=AB+AC} \\
+                \rm{A+B.C=(A+B).(A+C)}
+                \end{matrix} }
+                $$
+                <p>Verification : <br>
+                    \(
+                    \begin{aligned}
+                    \rm{(A+B).(A+C)}&=\rm{A.(A+C)+B.(A+C)}\\
+                    &=\rm{A+BA+BC}\\
+                    &=\rm{A.(1+B)+BC}\\
+                    &=\rm{A+BC}
+                    \end{aligned}
+                    \)
+                </p>
+
+                <h3>Autres identités :</h3>
+                $$
+                \boxed{
+                \begin{matrix}
+                \rm{A.B+A.\bar{B}=A} \\
+                \rm{(A+B).(A+\bar{B})=A}
+                \end{matrix}
+                }
+                $$
+                <p>Vérification: <br>
+                    \( \rm{A.B+A.\bar{B}=A.(B+\bar{B})=A.1=A} \) <br>
+
+                    \( \mathrm{(A+B).(A+\bar{B})=A+(B.\bar{B})=A+0=A} \)
+                </p><br>
+
+                $$ \boxed{ \mathrm{A+\bar{A}B=A+B} } $$
+                <p>En effet : <br>
+                    \( \rm{A+\bar{A}B=(A+\bar{A}).(A+B)=1.(A+B)=A+B} \)
+                </p>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="MORGAN">Théorème de Morgan</h2>
+                <p>Rappelons la table de vérité des opérateurs ET et OU :</p>
+                <img src="IMAGES/EN_AND_OR_Tables.jpg" alt="">
+                <p>On peut lire ces tables d'une façon différente de ce que nous avons l'habitude de faire :</p>
+                <ul>
+                    <li>A+B est fausse si et seulement si A et fausse et B est fausse,</li>
+                    <li>A.B est fausse si et seulement si A et fausse ou B est fausse</li>
+                </ul>
+                <p>Ces deux phrases peuvent se traduire algébriquement par :</p>
+                $$ \boxed{ \overline{\rm{A+B}}=\overline{\rm{A}} . \overline{\rm{B}}} $$
+                $$ \boxed{ \overline{\rm{A.B}}=\overline{\rm{A}} + \overline{\rm{B}}} $$
+                <p>On coupe la barre et on change l'opérateur</p><br>
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="CANONIC">Forme Canonique</h2>
+                <p>Soit la fonction S définie par la table de vérité :</p>
+                <img src="IMAGES/EN_Canonic.jpg" alt="">
+                <p>Cette table de vérité peut s'écrire de la façon algébrique suivante :</p>
+                $$
+                \rm{S(A, B, C)=A B \bar{C}+\bar{A} \bar{B} C+A \bar{B} C+\bar{A} B C+A B C}
+                $$
+                <p>A droite du signe =, on a une expression logique, c'est
+                    un peut l'équivalent d'un polynôme</p>
+                <p>Cependant, Il y a d'autre expression différentes mais équivalentes pour représenter la
+                    fonction S. On peut vérifier sur la table qu'on a aussi \(S=B C+A B+A C+\bar{A} C\)</p>
+                <p>La première expression de S est particulière. Dans chaque
+                    monôme, figurent toutes les variables. Cette expression est appelée <em>forme canonique somme</em>.
+                    C'est l'expression qui traduit fidèlement la table de vérité. Ce n'est pas l'expression la plus
+                    simple. Nous apprendrons plus tard à la simplifier à l'aide de la méthode de Karnaugh</p><br>
+                <p><em>La forme canonique produit</em> revient à écrire l'expression de \(\bar{S}\) :</p>
+                <p>\(\bar{S}(A, B, C)=\bar{A} \bar{B} \bar{C}+A \bar{B} \bar{C}+\bar{A} B \bar{C}\)</p>
+                <p>On inverse tout :</p>
+                <p>\( S(A,B,C)=\overline{ \bar{A}\bar{B}\bar{C}+A\bar{B}\bar{C}+\bar{A}B\bar{C} } \) </p>
+                <p>On utilise le théorème de Morgan (deux fois) :</p>
+                <p>\( S(A,B,C)=\overline{ \bar{A}\bar{B}\bar{C}} . \overline{A\bar{B}\bar{C}} .
+                    \overline{\bar{A}B\bar{C} } \) </p>
+                <p>\(S(A,B,C)=(A+B+C).(\bar{A}+B+C).(A+\bar{B}+C)\)</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="NANDUNIVERSEL">NAND : Opérateur universel</h2>
+                <p>D'après la forme canonique, Nous pouvons exprimer toute fonction à l'aide de 3 opérateurs, AND, OR
+                    et NOR. Voyons comment on peut faire pour n'utiliser que l'opérateur NAND pour
+                    exprimer ces fonctions</p>
+                <p>Prenons un exemple simple : S = AB + CD, le schéma est le suivant :</p>
+                <img src="IMAGES/EN_NANDUNIV1.jpg" alt="">
+                <p>Si on inverse deux fois l'expression le résultat ne change pas :</p>
+                <p> \( S = \overline{\overline{AB+CD}} \)</p>
+                <p>On utilise le théorème de Morgan :</p>
+                <p> \( S = \overline{\overline{AB}.\overline{CD}} \)</p>
+                <p>Le schéma correspondant est le suivant :</p>
+                <img src="IMAGES/EN_NAND_Univ.jpg" alt="">
+                <p>On s'aperçoit que ce résultat peut être obtenu en travaillant directement sur le schéma en remplaçant
+                    systématiquement les opérateur AND et OR par des NAND</p>
+                <p>Cette règle ne s'applique que si la condition suivante est vérifiée :</p>
+                <p><strong> En suivant n'importe quel chemin entre une entrée et une sortie, on rencontre
+                        alternativement un AND et un OR. Le premier étant obligatoirement un AND et le dernier
+                        obligatoirement un OR. <br>
+                        Si cette condition n'est pas vérifiée, on peut y remédier en intercalant
+                        des opérateurs A.A ou A+A aux endroits adéquats. Ceux ci ne changent
+                        rien au fonctionnement d'origine. On les appelle les opérateurs fantômes</strong>
+                </p>
+                <p>Les fantômes deviennent des NAND à une entrée qui ne sont rien d'autre que des inverseurs</p>
+                <img src="IMAGES/EN_NAND_fant_transform.jpg" alt="">
+                <p>Exemple : Pour être le plus général possible, on va prendre une expression qui n'est pas sous
+                    forme canonique :</p>
+                <img src="IMAGES/EN_NAND_univ_Formule.jpg" alt="">
+                <img src="IMAGES/EN_NAND_Univ_Ex.jpg" alt="">
+                <p>La règle n'est pas vérifiée, on ajoute les fantômes</p>
+                <img src="IMAGES/EN_NAND_UNIV_fant.jpg" alt="">
+                <p>On remplace tout par des NAND</p>
+                <img src="IMAGES/EN_NAND_Univ_Nand.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="SIMPFONC">Simplification des fonctions logiques</h2>
+                <p>Il s'agit de chercher l'expression la plus simple d'une fonction booléenne. Ceci bien sur dans le but
+                    d'avoir une réalisation avec un nombre minimum d'opérateurs.
+                    Plusieurs méthodes existent, Nous allons parler de la méthode de Karnaugh (1953)
+                </p>
+
+                <h3 id="DKARNAUGH">Diagramme de Karnaugh</h3>
+                <p>La table de Karnaugh est une table de vérité représentée d'une façon particulière. Chaque case
+                    correspond à une ligne de la table de vérité. Les adresses des
+                    cases sont représentées en code de Gray de sorte à ce que toutes les cases qui ont un coté commun
+                    soient adjacentes. Les cases sur les extrémités opposées sont aussi adjacentes car deux cases sont
+                    adjacentes quand leurs adresses le sont.</p>
+                <p>Voici un exemple pour 2, 3 puis 4 variables: </p>
+                <img src="IMAGES/EN_Karnaugh234.jpg" alt="">
+
+                <p>Sur la table ci-dessous, on peut vérifier les adjacentes suivantes : 0-3, 7-4, 8-11, 15-12, 0-15,
+                    1-14, 2-13, 3-12. Si on
+                    considère la table comme une feuille de papier, on peut vérifier les adjacence d'extrémité en
+                    enroulant la
+                    feuille verticalement et horizontalement</p>
+                <img src="IMAGES/EN_Karnaugh.jpg" alt="">
+                <img src="IMAGES/EN_KarnaughAdj.jpg" alt="">
+
+                <h3 id="REMPKAR">Remplissage de la table de Karnaugh</h3>
+                <p>Il faut faire attention quand on remplit la table de Karnaugh à partir de la table de vérité. La
+                    correspondance
+                    entre les lignes de la table de vérité et les cases de la table de Karnaugh dépend de la disposition
+                    des variables
+                    ABCD dans les cases adresses.</p>
+                <p>Voici un exemple de table de vérité :</p>
+                <img src="IMAGES/EN_Simp_Fonc_TVEx.jpg" alt="">
+                <p>Voici des disposition possible de la table de Karnaugh</p>
+                <img src="IMAGES/EN_SimpFonc_KarEx.jpg" alt="">
+                <p>On obtient les tables suivantes pour la fonction de la table de vérité</p>
+                <img src="IMAGES/EN_Simp_Fonc_K_Ex_Fonc.jpg" alt="">
+                <p>Moi, j'utilise toujours la 2ème disposition. Avec le temps, on acquiert un automatisme de
+                    remplissage. 😊 Enfin, c'était il y a très longtemps. Ça fait des décennies que je n'ai pas touché à
+                    ça😊</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="GROUP">Regrouper les 1 en blocs</h2>
+                <p>Maintenant on regroupe les '1' <b>Adjacents</b> en faisant des groupe de 1, 2, 4, 8 ...Ne pas oublier
+                    les adjacences sur les extrémité de la table.</p>
+                <p>Voici les règles pour obtenir l'expression la plus simple :</p>
+                <ul>
+                    <li>Les blocs doivent être constitués de \(2^n\) cases contiguës (1, 2, 4, 8, ...).</li>
+                    <li>Tous les 1 doivent être entourés</li>
+                    <li>Les 0 ne doivent pas être entourés</li>
+                    <li>Il faut faire les plus grands groupements possibles</li>
+                    <li>Les x peuvent être entouré ou non selon le besoin</li>
+                    <li>Les 1 et les x peuvent être entouré plusieurs fois</li>
+                    <li>On s'arrête dès que tous les 1 sont entourés</li>
+                </ul>
+                <p>Voici quelques exemples :</p>
+                <img src="IMAGES/EN_Simp_Groupes.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="LECTCARNAUGH">Lecture de la table de Karnaugh</h2>
+                <p>Voir les exemples de la figure ci-dessus :</p>
+                <ul>
+                    <li><b>bloc contenant un seul '1' :</b> <br>
+                        Le Minterme correspondant contient toutes les variables (sans simplification possible).</li>
+                    <li><b>Un bloc contenant deux '1' :</b> <br>
+                        Une seule variable change dans les deux cases du bloc. Cette variable est éliminée dans le
+                        Minterme correspondant.
+                        Les variables qui ne changent pas sont conservées</li>
+                    <li><b>Un bloc contenant quatre '1' :</b> <br>
+                        Deux variables changent dans les quatre cases du bloc (une variable horizontalement
+                        et une verticalement). Ces deux variables sont éliminées dans le Minterme.
+                        Les variables qui restent constantes dans tout le bloc sont conservées.</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h2 id="KEX1">Exemple 1: Binaire &xrarr; Gray</h2>
+                <img src="IMAGES/EN_Simp_Bin_Gray.jpg" alt="">
+                <p>Il y a quatre sortie, on cherche 4 fonctions : \( G_o, \; G_1,\; G_2 \;et\; G_3\)</p>
+                <img src="IMAGES/EN_Simp_Bin_Gray_TV.jpg" alt="">
+                <img class="inline" src="IMAGES/EN_Simp_Bin_Gray_Go.jpg" alt="">
+                <img class="inline" src="IMAGES/EN_Simp_Bin_Gray_G1.jpg" alt="">
+                <img class="inline" src="IMAGES/EN_Simp_Bin_Gray_G2.jpg" alt="">
+                <p>Pour G3, on n'a pas besoin de table Karnaugh. On peut voir sur la table de vérité que :</p>
+                <p>\(G_3=D\)</p>
+                <img src="IMAGES/EN_Simp_Bin_Gray_Sch.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="KEX2">Exemple 2: Etude d'un convoyeur</h2>
+                <p>Pour transporter le sable d'une position A vers une position B, on utilise le système suivant :</p>
+                <img src="IMAGES/EN_Simp_Ex2.jpg" alt="">
+                <p>Un chariot peut se déplacer sur un rail sous l'action d'un moteur électrique M :</p>
+                <p>M=0 &rarr; moteur à l'arrêt, M=1 &rarr; moteur en marche</p>
+                <p>Le déplacement du chariot se fait toujours dans le même sens. Deux capteurs A et B permettent de
+                    déterminer la position du chariot :</p>
+                <p>A=1 &rarr; chariot en position A, A=0 &rarr; le chariot n'est pas en position A. Le capteur B
+                    fonctionne de la même façon que A.</p>
+                <p>Un capteur P placé sur le chariot permet de savoir si le chariot est plein ou vide :</p>
+                <p>P=1 &rarr; chariot plain, P=0 &rarr; chariot vide.</p>
+                <p>Le chariot peut être remplit à l'aide d'une trappe de remplissage Tr :</p>
+                <p>Tr=1 &rarr; trappe ouverte, Tr=0 &rarr; trappe fermée. </p>
+                <p>Le chariot peut être vidé à l'aide d'une trappe de vidange Tv :</p>
+                <p>Tv = 1 &rarr; trappe ouverte, Tv = 0 &rarr; trappe fermée</p>
+                <p>Le fonctionnement se fait de la manière suivante :</p>
+                <p>Le chariot vide arrive en A (A=1, P=0), le moteur M s'arrête, la trappe de remplissage Tr s'ouvre, Un
+                    fois le chariot plein, Tr se ferme et le chariot démarre. Quand le chariot arrive en B, il sarrette
+                    et la trappe Tv s'ouvre. Quand le chariot est vide, la trappe Tv se ferme et le chariot démarre.
+                    Quand il arrive en A le cycle recommence identique à lui même.</p>
+                <p>Normalement, ce genre de système est étudié à l'aide de méthode séquentielles. Vu sa simplicité nous
+                    allons le faire avec un système combinatoire simple.</p>
+                <p>Nous allons chercher les fonctions qui commandent les actionneurs M, Tr et Tv à partir des entrée A,
+                    B
+                    et P</p>
+                <img src="IMAGES/EN_Simp_Ex2_TV.jpg" alt="">
+                <img src="IMAGES/EN_Simp_Ex2_K.jpg" alt="">
+                <img src="IMAGES/EN_Simp_Ex2_Sch.jpg" alt="">
+
+
+
+
+
 
                 <!-- ################################################################################################ -->
                 <h2 id=""></h2>
-
-                <!-- ################################################################################################ -->
-                <h2 id=""></h2>
-
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
