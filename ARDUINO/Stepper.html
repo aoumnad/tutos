@@ -40,6 +40,9 @@
                 <a href="#EXMPLSM">
                     <h3>Exemple avec moniteur Série</h3>
                 </a>
+                <a href="#TB6600">
+                    <h3>Le driver TB6600</h3>
+                </a>
             </div>
         </div>
         <div class="RightPanel">
@@ -86,8 +89,9 @@
                     </li>
                 </ul>
                 <p class="InlineCenter"><img class="inline w300" src="IMAGES/Stepper_28BYJ48.png"> &nbsp;
-                    <img class="inline w300" src="IMAGES/Stepper_28BYJ48_rdctr.png"></p>
-                
+                    <img class="inline w300" src="IMAGES/Stepper_28BYJ48_rdctr.png">
+                </p>
+
                 <br>
                 <!-- ######################################################################################################## -->
                 <h2 id="ULN2003">Le circuit ULN2003</h2>
@@ -105,8 +109,8 @@
                 <!-- ######################################################################################################## -->
                 <h2 id="ULN2003MOD">Le Module ULN2003</h2>
                 <p class="InlineCenter">
-                    <img  src="IMAGES/ULN2003_Module.png" class="inline w300">
-                    <img  src="IMAGES/ULN2003_module_Stepper.png" class="inline w300">
+                    <img src="IMAGES/ULN2003_Module.png" class="inline w300">
+                    <img src="IMAGES/ULN2003_module_Stepper.png" class="inline w300">
                 </p>
                 <p>Le module ULN2003 facilite grandement la connectique avec l'Arduino, le moteur et l'alimentation. Il
                     possède:</p>
@@ -153,7 +157,8 @@
                             <li><em>stepperInit(tork) : </em>Permet d'Initialiser les broches de control et choisir
                                 entre les modes couple Normal ou couple Fort.
                                 <ul>
-                                    <li><strong>tork : </strong> LOW (ou 0) ==&gt; Couple normal. HIGH (ou 1)==&gt; Couple
+                                    <li><strong>tork : </strong> LOW (ou 0) ==&gt; Couple normal. HIGH (ou 1)==&gt;
+                                        Couple
                                         fort</li>
                                 </ul>
                             </li>
@@ -372,6 +377,130 @@ void clearInputBuffer() {
 </code></pre>
                 </div><br><br>
                 <!-- ============================= Fin Code ================================================ -->
+                <h2 id="TB6600">Le driver TB6600</h2>
+                <img src="IMAGES/TB6600.jpg" alt="">
+                <ul>
+                    <li>Driver de puissance pour moteurs pas à pas bipolaires (2 phases) avec une tension de
+                        fonctionnement de 9V à 42V et un courant jusqu'à 4.5A.</li>
+                    <li>Permet de faire du Microstepping. On peut faire avancer le moteur d'un pas, 1/2 pas, 1/4 pas,
+                        1/8 pas, 1/16 pas ou 1/32 pas ce qui permet d'obtenir un mouvement plus fluide </li>
+                    <li>Compatible avec des signaux de contrôle 3.3V et 5V, ce qui le rend facile à interfacer avec des
+                        microcontrôleurs</li>
+                </ul>
+                <h3>Branchement :</h3>
+                <img src="IMAGES/TB6600_Branchement.jpg" alt="">
+                <p>Dans le schéma proposé :</p>
+                <ul>
+                    <li>L'entrée de validation (EN) n'est pas branchée. Le module est validé par défaut</li>
+                    <li>Les entrées Pulse (PUL) et Direction (DIR) sont connectée en mode Anode commune : Les entré (+)
+                        sont reliée à 5V et la commande se fait par les entrée (-), (Commande par niveau bas)</li>
+                    <li>Pour le branchement du moteur, les couleurs proposées sont assez communes mais non standard.
+                        Verifier les phases de votre moteur</li>
+                </ul><br>
+
+                <h3>Fonctionnement :</h3>
+                <ul>
+                    <li>Positionner les switches S1, S2 et S3 pour choisir le microstep désiré. Augmenter le nombre de
+                        microsteps améliore la fluidité du mouvement mais diminue le couple
+                        <img src="IMAGES/TB6600_Microsteps.jpg" alt="">
+                        Le nombre de pulses par tour (Pulse/rev) proposé dans le tableau correspond à un moteur 200 pas
+                    </li>
+                    <li>La broche DIR permet de choisir la direction de rotation</li>
+                    <li>Chaque impulsion sur l'entrée PUL fait avancer le moteur d'un microstep
+                        <img src="IMAGES/TB6600_PUL_signal.jpg" alt="">
+                        Pour augmenter la vitesse, on augmente la fréquence ce qui diminue la largeur de l'impulsion. La
+                        largeur min supportée par le module est 2.5µs ce qui donne une fréquence max: fmax = 1/(2&times;2.5µs)=200kHz
+                    </li>
+                    <li>Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
+                        rapport de Microstepping et de la fréquence des impulsions
+                        <img src="IMAGES/TB6600_vitesses_Tab1.jpg" alt="">
+                    </li>
+                    <li>On peut générer un signal carré sur les sorties pwm de l'Arduino à l'aide de l'instruction
+                        <strong>analogWrite(127)</strong>. Pour fixer la fréquence, il faut ajouter une des lignes
+                        ci-dessous au début du programme
+                        <!-- =========================== Code ========================================================= -->
+                        <div class="CodeAreaContainer">
+                            <div class="CodeAreaHeader">Fréquences PWM pour Arduino UNO<button class="CopyBtn"
+                                    onclick="CopyCode(this)">Copier</button> </div>
+                            <pre><code>// For Arduino Uno, Nano, Micro Magician, Mini Driver, Lilly Pad and any other board using ATmega 8, 168 or 328
+//-------------- fréquences PWM sur les broches D5 &amp; D6 -------------------------------
+TCCR0B = TCCR0B &amp; B11111000 | B00000001;    // f = 62500.00 Hz, 	T = 0.016ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000011;    // f = 976.56 Hz,  	T = 1.024ms (The DEFAULT)
+TCCR0B = TCCR0B &amp; B11111000 | B00000100;    // f = 244.14 Hz, 	T = 4.096ms
+TCCR0B = TCCR0B &amp; B11111000 | B00000101;    // f = 61.04 Hz, 	T = 16.383ms
+
+//---------------------------------------------- Set PWM frequency for D9 &amp; D10 ------------------------------
+TCCR1B = TCCR1B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000011;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR1B = TCCR1B &amp; B11111000 | B00000100;    // f = 122.55 Hz,	T = 8.16ms
+TCCR1B = TCCR1B &amp; B11111000 | B00000101;    // f = 30.64 Hz,	T = 32.637ms
+
+//---------------------------------------------- Set PWM frequency for D3 &amp; D11 ------------------------------
+TCCR2B = TCCR2B &amp; B11111000 | B00000001;    // f = 31372.55 Hz,	T = 0.032ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000010;    // f = 3921.16 Hz, 	T = 0.255ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000011;    // f = 980.39 Hz, 	T = 1.020ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000100;    // f = 490.20 Hz,	T = 2.04ms (The DEFAULT)
+TCCR2B = TCCR2B &amp; B11111000 | B00000101;    // f = 245.10 Hz,	T = 4.080ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
+TCCR2B = TCCR2B &amp; B11111000 | B00000111;    // f = 30.64 Hz,		T = 32.637ms
+
+</code></pre>
+                        </div><br>
+                        <!-- ============================= Fin Code ================================================ -->
+                    Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
+                        rapport de Microstepping et de la fréquence des impulsions que l'on peut générer sur les sorties
+                        PWM de l'Arduino UNO <br><br>
+                        <img src="IMAGES/TB6600_vitesses_Tab2.jpg" alt="">
+                    
+
+                    </li>
+                </ul><br>
+                <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+            <div class="CodeAreaHeader">Exemple de test<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+            <pre><code>/*
+ * Test du module TB6600
+ * moteur 200 pas
+ * microstep = 1
+ */
+
+#define PUL 8
+#define DIR 9
+#define PULSE_ms 4 // 1 tour par 200 x 8ms = 1.6s
+
+
+void setup() {
+  pinMode(PUL, OUTPUT);
+  pinMode(DIR, OUTPUT);
+  digitalWrite(PUL,HIGH);
+  digitalWrite(DIR,HIGH);
+  for(int i = 0 ; i &lt; 200 ; i++){
+    digitalWrite(PUL,LOW);
+    delay(PULSE_ms);
+    digitalWrite(PUL,HIGH);
+    delay(PULSE_ms);
+    
+  }
+  digitalWrite(DIR,LOW);
+  delay(1);
+  for(int i = 0 ; i &lt; 200 ; i++){
+    digitalWrite(PUL,LOW);
+    delay(PULSE_ms);
+    digitalWrite(PUL,HIGH);
+    delay(PULSE_ms);
+    
+  }
+}
+
+void loop() {
+}</code></pre>
+          </div><br>
+          <!-- ============================= Fin Code ================================================ -->
+  
+
+<br><br><br><br>
             </div>
         </div>
     </div>

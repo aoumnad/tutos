@@ -114,6 +114,98 @@
                         <h3>Exemple 2: Etude d'un convoyeur</h3>
                     </a>
                 </div>
+                <div class="rubrique" onclick="toggleMenu('circomb', this)">
+                    <span>&gt;</span>
+                    <h2>Circuits numérique combinatoires</h2>
+                </div>
+                <div id="circomb" class="sub-rubrique">
+                    <a href="#CIRNUMCOMB">
+                        <h2>Introduction</h2>
+                    </a>
+                    <div class="rubrique" onclick="toggleMenu('mxrsub', this)">
+                        <span>&gt;</span>
+                        <h2>Le multiplexeur</h2>
+                    </div>
+                    <div id="mxrsub" class="sub-rubrique">
+                        <ul>
+                            <li><a href="#MXR">
+                                    <h3>Introduction</h3>
+                                </a></li>
+                            <li><a href="#MXR14">
+                                    <h3>Multiplexeur 4:1</h3>
+                                </a></li>
+                            <li><a href="#MXREXT">
+                                    <h3>Extension de Multiplexeurs</h3>
+                                </a></li>
+                            <li><a href="#MXRSFB">
+                                    <h3>Synthèse de fonctions booléennes</h3>
+                                </a></li>
+                            <li><a href="#MXRDS">
+                                    <h3>Choix d'un mot parmi Plusieurs</h3>
+                                </a></li>
+                            <li><a href="#MXRCMRCE">
+                                    <h3>Multiplexeurs du commerce</h3>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <a href="#DMXR">
+                        <h2>Le démultiplexeur</h2>
+                    </a>
+                    <a href="#DCR">
+                        <h2>Le décodeur</h2>
+                    </a>
+                    <a href="#DCRDMXR">
+                        <h2>Décodeur/Démultiplexeur</h2>
+                    </a>
+                    <a href="#CMPRTR">
+                        <h2>Comparateur Numérique</h2>
+                    </a>
+
+                    <div class="rubrique" onclick="toggleMenu('adder', this)">
+                        <span>&gt;</span>
+                        <h2>Additionneur Binaire</h2>
+                    </div>
+                    <div id="adder" class="sub-rubrique">
+                        <a href="#ADDER">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#ADDER">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#HALFADDER">
+                            <h3>Etude d'un circuit Half adder</h3>
+                        </a>
+                        <a href="#FULLADDER">
+                            <h3>Etude d'un circuit Full adder</h3>
+                        </a>
+                        <a href="#ADDPR">
+                            <h3>Additionneur à propagation de la retenue</h3>
+                        </a>
+                        <a href="#ADDUSAGE">
+                            <h3>Utilisation correcte d'un additionneur</h3>
+                        </a>
+                        <a href="#U4BADDER">
+                            <h3>Additionner 4 bits pour nombres non signés</h3>
+                        </a>
+                        <a href="#S4BADDER">
+                            <h3>Additionner 4 bits pour nombres signés</h3>
+                        </a>
+                        <a href="#SUBTOR">
+                            <h3>Soustracteur</h3>
+                        </a>
+                        <a href="#ADDSUBTOR">
+                            <h3>Additionneur/Soustracteur</h3>
+                        </a>
+                        <a href="#4BUADDSUB">
+                            <h3>Additionneur/Soustracteur 4 bits Non signé</h3>
+                        </a>
+                        <a href="#4BSADDSUB">
+                            <h3>Additionneur/Soustracteur 4 bits Signé</h3>
+                        </a>
+                    </div>
+
+
+                </div>
                 <br><br><br>
                 <h2>Le reste est en cours de redaction</h2>
 
@@ -149,7 +241,7 @@
                             <li>Le système Binaire utilise 2 chiffres : 0, 1</li>
                         </ul>
                     </li>
-                    <li>Chaque chiffre a une "poids" qui dépend de sa position dans le nombre </li>
+                    <li>Chaque chiffre a un "poids" qui dépend de sa position dans le nombre </li>
                     <li>Chaque poids est une puissance de B</li>
                     <li>A gauche de la virgule (.décimal), on a les puissances positives de B. A droite on a les
                         puissances négatives</li>
@@ -159,15 +251,19 @@
                     <li>Exemples :
                         <ul>
                             <li>Le nombre 472 en base 10 peut être décomposé comme suit : <br>
-                                \( 472_{10}= 4 × 10^2 + 7 × 10^1 + 2 × 10^0 \)</li>
+                                \( 472_{10}= 4 &times; 10^2 + 7 &times; 10^1 + 2 &times; 10^0 \)</li>
                             <li>Le nombre 345.25 en base 10 peut être décomposé comme suit : <br>
-                                \( 345.25_{10}= 3 × 10^2 + 4 × 10^1 + 5 × 10^0 + 2 × 10^{-1} + 5 × 10^{-2} \)</li>
+                                \( 345.25_{10}= 3 &times; 10^2 + 4 &times; 10^1 + 5 &times; 10^0 + 2 &times; 10^{-1} + 5
+                                &times; 10^{-2} \)</li>
                             <li>Le nombre binaire 1011 peut être converti en décimal comme suit : <br>
-                                \( 1101_2 =1×2^3 + 1×2^2 +0×2^1 +1×2^0=1×8+1×4+0×2+1×1=8+4+0+1=13_{10} \)</li>
+                                \( 1101_2 =1&times;2^3 + 1&times;2^2 +0&times;2^1
+                                +1&times;2^0=1&times;8+1&times;4+0&times;2+1&times;1=8+4+0+1=13_{10} \)</li>
                             <li>Le nombre binaire 101.101 peut être converti en décimal comme suit : <br>
-                                \( 101.101_2 =1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 = 5.625_{10} \)</li>
+                                \( 101.101_2 =1&times;4 + 0&times;2 + 1&times;1 + 1&times;0.5 + 0&times;0.25 +
+                                1&times;0.125 = 5.625_{10} \)</li>
                             <li>Le nombre hexadécimal 2F3 peut être converti en décimal comme suit : br</li>
-                            \( 2F3_{16}= 2×16^2 +F×16^1 +3×16^0 = 2×256+15×16+3×1=755_{10} \)
+                            \( \rm{2F3_{16}}= 2&times;16^2 +F&times;16^1 +3&times;16^0 =
+                            2&times;256+15&times;16+3&times;1=755_{10} \)
                         </ul>
 
                     </li>
@@ -638,7 +734,7 @@
                 <p>Ces deux phrases peuvent se traduire algébriquement par :</p>
                 $$ \boxed{ \overline{\rm{A+B}}=\overline{\rm{A}} . \overline{\rm{B}}} $$
                 $$ \boxed{ \overline{\rm{A.B}}=\overline{\rm{A}} + \overline{\rm{B}}} $$
-                <p>On coupe la barre et on change l'opérateur</p><br>
+                <p><b>On coupe la barre et on change l'opérateur</b></p><br>
 
 
 
@@ -815,15 +911,542 @@
                     et P</p>
                 <img src="IMAGES/EN_Simp_Ex2_TV.jpg" alt="">
                 <img src="IMAGES/EN_Simp_Ex2_K.jpg" alt="">
-                <img src="IMAGES/EN_Simp_Ex2_Sch.jpg" alt="">
+                <img src="IMAGES/EN_Simp_Ex2_Sch.jpg" alt=""><br>
 
+                <!-- ################################################################################################ -->
+                <h2 id="CIRNUMCOMB">Circuits numérique combinatoires</h2>
+                <p>Les circuits numériques forment la base des systèmes utilisés dans une variété
+                    d'applications, allant des ordinateurs aux appareils électroniques embarqués.</p>
+                <p>Contrairement aux circuits séquentiels qui
+                    dépendent de l'état précédent pour produire une sortie, <b>les circuits combinatoires</b> génèrent
+                    une
+                    sortie exclusivement en fonction de leurs entrées actuelles.</p>
+                
+                <p>Dans ce chapitre, nous allons explorer plusieurs types de circuits combinatoires couramment utilisés
+                    dans les systèmes numériques :</p>
+                <ul>
+                    <li><b>Les circuits d'aiguillage,</b> tels que les multiplexeurs et les démultiplexeurs, qui
+                        permettent de
+                        sélectionner ou de distribuer des signaux selon des critères spécifiques.</li>
+                    <li><b>Les circuits arithmétiques,</b> comme les additionneurs et les soustracteurs, qui exécutent
+                        des
+                        opérations mathématiques
+                        essentielles au traitement numérique.</li>
+                    <li><b>Les circuits d'identification,</b> tels que les comparateurs, qui permettent de comparer des
+                        données
+                        numériques et de déterminer des relations entre elles.</li>
+                    <li><b>Les systèmes d'affichage,</b> notamment les afficheurs à sept segments, qui traduisent des
+                        informations numériques en représentations visuelles compréhensibles.</li>
+                </ul>
 
+                <!-- ########################################################################### -->
+                <h3 id="MXR">Le multiplexeur :</h3>
+                <img src="IMAGES/EN_Mxr.jpg" alt="">
+                <ul>
+                    <li>Un multiplexeur a plusieurs entrées et une seule sortie,</li>
+                    <li>Il permet de connecter la sortie à l'une des entrée conformément à l'adresse précisée par les
+                        entrées de sélection</li>
+                    <li>Un multiplexeur à \(N\) entrées doit avoir \(n\) entrée de sélection tels que \(2^n \geq N\)
+                    </li>
 
+                </ul>
+                <!-- ########################################################################### -->
+                <h3 id="MXR14">Multiplexeur 1 parmi 4 :</h3>
+                <img src="IMAGES/EN_Mxr14.jpg" alt="">
+                <p>La table de vérité est :</p>
+                <img src="IMAGES/EN_Mxr14_TV.jpg" alt="">
+                <p>D'où l'expression logique de S</p>
+                $$S=E_0\bar{A_0}\bar{A_1}+E_1\bar{A_0}A_1+E_2A_0\bar{A_1}+E_3A_0A_1$$
+                <p>Ce qui donne le schéma :</p>
+                <img src="IMAGES/EN_Mxr14_Sch.jpg" alt="">
 
+                <!-- ########################################################################### -->
+                <h3 id="MXREXT">Extension de Multiplexeurs :</h3>
+                <p>Pour réaliser des multiplexeurs avec un grand nombre d'entrées, on peut utiliser de
+                    petits multiplexeurs montés en <b>pyramide</b></p>
+                <p>Par exemple, pour réaliser un multiplexeur 16:1, on peut utiliser 4 multiplexeurs 4:1</p>
+                <img src="IMAGES/EN_Mxr16.jpg" alt="">
+                <img src="IMAGES/EN_Mxr16_pyramide.jpg" alt="">
+                <ul>
+                    <li>Les bits d'adresse \(A_1A_0\) réalisent une première sélection. Les bits d'adresse \(A_3A_2\)
+                        finalisent la sélection</li>
+                    <li>Les bits de faible poids de l'adresse doivent commander le premier étage,</li>
+                    <li>J'ai représenté le multiplexeur de droite à gauche pour une meilleure représentation des
+                        adresses sur le dessin (pour que le LSB \(A_o\) soit situé à droite)</li>
+                </ul><br>
+
+                <!-- ########################################################################### -->
+                <h3 id="MXRSFB">Synthèse de fonctions booléennes :</h3>
+                <p>Un multiplexeur peut être utilisé pour réaliser une fonction logique décrite par sa table de vérité.
+                    Cette technique est très utilisé dans les circuits logiques programmables (PLD) sous le nom de LUT
+                    <i>(Look Up Table)</i>
+                </p>
+
+                <h4>Méthode directe :</h4>
+                <p>Ce n'est pas la méthode la plus économique, mais c'est la plus simple et la plus systématique</p>
+                <img src="IMAGES/EN_Mxr_Synth.jpg" alt="">
+                <ul>
+                    <li>On établit la table de vérité de la fonction à réaliser,</li>
+                    <li>Une fonction a \(n\) variables a une table de vérité de \(2^n\) lignes</li>
+                    <li>Pour la réaliser on prend un multiplexeur avec \(n\) entrées de sélection, soit \(2^n\) entrées
+                        de données </li>
+                    <li>On applique les entrées (variables) de la fonction aux entrées de sélection du multiplexeur</li>
+                    <li>On forces les entrée du multiplexeurs à \(0\) ou à \(1\) conformément à la table de vérité</li>
+                    <li>C'est tout, nous avons réalisé notre fonction😊</li>
+                </ul><br>
+                <b>Exemple :</b>
+                <img src="IMAGES/EN_Mxr_Synth_ex1.jpg" alt=""><br>
+
+                <h4>Méthode économique :</h4>
+                <p>Moyennant un petit développement supplémentaire, on peut réaliser la même fonction logique avec un
+                    multiplexeur plus petit que la méthode directe. </p>
+                <ul>
+                    <li>Toute fonction logique de \(n\) variables est réalisable à l’aide d’un multiplexeur à \(n-1\)
+                        entrées de sélection</li>
+                    <li>\(n-1\) variables de la fonction sont utilisées comme entrées de sélection du multiplexeur. La
+                        variable restante (Z) sera utilisée comme entrée du multiplexeur </li>
+                    <li>Établir la table de vérité,</li>
+                    <li>Décider que c'est la variable LSB qui servira de variable Z, les autres seront les variables de
+                        sélection</li>
+                    <li>Regrouper les lignes de la table de vérité deux par deux. On obtient une table avec deux fois
+                        moins de lignes dont les variables sont les variable de sélection.</li>
+                    <li>Définir les sortie de cette nouvelle table qui seront égale à \(0\), \(1\), \(Z\) ou à
+                        \(\bar{Z}\)</li>
+                    <li>Appliquer les sortie de la table Réduite aux entrées du multiplexeur</li>
+                </ul><br>
+
+                <b>Exemple : </b>
+                <img src="IMAGES/EN_Mxr_Synth_ex2.jpg" alt=""><br>
+
+                <b>Autre exemple :</b>
+                <p>On désire réaliser un générateur de parité caractérisé par la fonction logique \(F=\overline{A\oplus
+                    B\oplus C}\)</p>
+                <p>On établit la table de vérité à partir de la fonction logique et on procède comme indiqué
+                    précédemment.</p>
+                <img src="IMAGES/EN_Mxr_Synth_ex3.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="MXRDS">Choix d'un mot parmi Plusieurs</h3>
+                <p>Il s'agit d'un multiplexeur plus élaboré qu'on appelle <b>sélecteur de donné</b>, (<i>Data
+                        Selector</i> ) qui permet de choisir un mot de n bits parmi N mots tous de la même taille.
+                    Là aussi on va utiliser des multiplexeurs classiques montés de façon adéquate.
+                    La figure ci-dessous montre un sélecteur qui permet de choisir un mot parmi 4 mots de 8 bits</p>
+                <img src="IMAGES/EN_Mxr_DS14.jpg" alt="">
+                <p>La figure ci-dessous montre un sélecteur qui permet de choisir un mot parmi 8 mots de 4 bits</p>
+                <img src="IMAGES/EN_Mxr_DS18.jpg" alt="">
+                <p>Cette architecture est assez lourde et ne sera utilisée que si on n'a pas les moyen d'utiliser un
+                    circuit PLD</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="MXRCMRCE">Multiplexeurs du commerce</h3>
+                <p>On trouve dans le commerce beaucoup de multiplexeur différent. Nous en citeront deux à titre
+                    d'exemple</p>
+                <h4>Le 74LS151</h4>
+                <p>Le 74 LS 151 est un multiplexeur en technologie bipolaire. Il permet de choisir une entrés parmi 8.
+                    Il a
+                    deux sorties, une sortie normale plus une sortie inversée. Il dispose aussi d'une entrée de
+                    Validation E : E=0 &rarr; multiplexeur normal, E=1 &rarr; sortie = 0 &forall; l'état des entrées et
+                    des adresses
+                </p>
+                <img src="IMAGES/EN_Mxr_151.jpg" alt="">
+                <p>L'entrée de validation peut être utilisée pour former un multiplexeur 16:1 sans l'utilisation de la
+                    structure en pyramide classique en utilisant une simple porte NAND à la place d'un multiplexeur 1/2
+                </p>
+                <img src="IMAGES/EN_Mxr_151_16.jpg" alt="">
+
+                <h4>Le 74LS153</h4>
+                <p>Le 74LS153 contient deux multiplexeurs 4:1 dans un seul boîtier. Chacun a sa propre entrée de
+                    validation. Malheureusement, ils se partage les entrées de sélection, ils ne sont donc pas tout à
+                    fait indépendants.</p>
+                <img src="IMAGES/EN_Mxr_153.jpg" alt="">
+                <p>Voilà comment on peut l'utiliser pour réaliser un multiplexeur 8:1</p>
+                <img src="IMAGES/EN_Mxr_153_18.jpg" alt=""><br><br>
+
+                <h4>Autres multiplexeurs :</h4>
+                <p>Dans la famille <b>TTL</b>, on peut citer : <br>
+                    74LS151 : Multiplexeur 8 vers 1 (avec entrée d'activation).<br>
+                    74LS153 : Double multiplexeur 4 vers 1 (deux MUX indépendants).<br>
+                    74LS157 : Multiplexeur quadruple 2 vers 1 (quatre MUX indépendants de 2:1).<br>
+                    74LS158 : Multiplexeur quadruple 2 vers 1 avec sorties actives bas.<br>
+                    74LS150 : Multiplexeur 16 vers 1 (moins courant, utilisé pour des systèmes complexes).<br>
+                    74LS148 : Priorité encodée pour applications avancées de multiplexage.<br><br>
+
+                    Dans la famille <b>CMOS</b>, on peut citer : <br>
+                    CD4051 : Multiplexeur analogique 8 vers 1 (également utilisé comme démultiplexeur).<br>
+                    CD4052 : Multiplexeur analogique double 4 vers 1 (ou démultiplexeur).<br>
+                    CD4053 : Multiplexeur analogique triple 2 vers 1.<br>
+                    74HC151 : Multiplexeur 8 vers 1, CMOS rapide, équivalent au 74LS151.<br>
+                    74HC153 : Double multiplexeur 4 vers 1, CMOS rapide, équivalent au 74LS153.<br>
+                    74HC157 : Multiplexeur quadruple 2 vers 1, CMOS rapide, équivalent au 74LS157.<br>
+                    74HC158 : Multiplexeur quadruple 2 vers 1 avec sorties actives bas.<br>
+                    74HC4051 : Multiplexeur 8 vers 1 (signaux analogiques ou numériques).<br>
+                    74HC4052 : Multiplexeur double 4 vers 1 (signaux analogiques ou numériques).<br>
+                    CD4016/CD4066 : Commutateurs analogiques pouvant être configurés pour du multiplexage.<br>
+                </p>
+
+                <br><br><br>
+                <!-- ################################################################################################ -->
+                <h2 id="DMXR">Le démultiplexeur</h2>
+                <p>Le démultiplexeur est le circuit complémentaire du multiplexeur. Il a <b>une entrée et plusieurs
+                        sorties</b>
+                    ainsi qu'un certain nombre d'entrées de sélection (d'adresse). </p>
+                <p>La sortie "pointée" par l'adresse est connectée à l'entrée. Les autres sorties peuvent être soit tous
+                    à
+                    l'état bas soit tous à l'état haut.</p>
+                <img src="IMAGES/EN_Dmxr.jpg" alt=""><br>
+
+                <h3>Démultiplexeur 1 parmi 4 (1:4)</h3>
+                <p>On se propose de réaliser un démultiplexeur à 4 sorties S3, S2, S1, S0 , une entre E et deux bits
+                    d'adresse A0, A1</p>
+                <img src="IMAGES/EN_Dmxr_14.jpg" alt="">
+                <h4>Démultiplexer 1:4 Type 1 : Sorties non sélectionnées = 0</h4>
+                <img src="IMAGES/EN_Dmxr_14_TV.jpg" alt=""><br>
+                <p>On a quatre sorties, il faut l'expression logique de chaque sortie :</p>
+                <p>\(\rm{S_0=E \; \overline{A_1} \; \overline{A_0}} \)</p>
+                <p>\(\rm{S_1 = E \; \overline{A_1} \; A_0 } \)</p>
+                <p>\(\rm{S_2 = E \; A_1 \; \overline{A_0}} \)</p>
+                <p>\(\rm{S_3 = E \; A_1 \; A_0 } \)</p>
+                <img src="IMAGES/EN_Dmxr_14_Sch_Typ1.jpg" alt="">
+                <h4>Démultiplexer 1:4 Type 2 : Sorties non sélectionnées = 1</h4>
+                <p>Il suffit d'inverser toutes les sorties. La sortie sélectionnée sera aussi inversée se qui donnera
+                    \(\bar{E}\) au lieu de \(E\). On inverse aussi l'entrée et le tour est joué.</p>
+                <img src="IMAGES/EN_Dmxr_14_Sch_Typ2.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h2 id="DCR">Le décodeur</h2>
+                <p>Le décodeur est un démultiplexeur particulier. Il n'a pas d'entrée, la sortie sélectionné aura le
+                    niveau logique inverse des autres sorties. Dès lors on peut distinguer deux types:</p>
+                <p><strong>Type 1 :</strong></p>
+                <ul>
+                    <li>Sortie sélectionnée = 1</li>
+                    <li>Sorties non sélectionnés = 0</li>
+                </ul>
+                <p><strong>Type 2 :</strong></p>
+                <ul>
+                    <li>Sortie sélectionnée = 0</li>
+                    <li>Sorties non sélectionnés = 1</li>
+                </ul>
+                <h4>Décodeur 1:4 type 1</h4>
+                <img src="IMAGES/EN_Dcr_14_Typ1.jpg" alt="">
+                <h4>Décodeur 1:4 type 2</h4>
+                <img src="IMAGES/EN_Dcr_14_Typ2.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="DCRDMXR">Décodeur/Démultiplexeur</h2>
+                <p>Vue leur très grande similarité, un démultiplexeur peut très bien être utilisé en décodeur</p>
+                <h3>Décodeur/Démultiplexeur 1:4 type 1</h3>
+                <img src="IMAGES/EN_Dmxr_14_Sch_Typ1.jpg" alt="">
+                <ul>
+                    <li><b>Mode démultiplexeur :</b>
+                        <ul>
+                            <li>E est l'entrée du démultiplexeur,</li>
+                            <li>Sortie sélectionnée = E, les autres = 0
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>Mode décodeur :</b>
+                        <ul>
+                            <li>E sert d'entrée de validation,</li>
+                            <li>E = 0 &rArr; circuit inhibé, toutes les sortie = 0 ∀ Ai </li>
+                            <li>E = 1 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 1, les autres = 0 </li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Décodeur/Démultiplexeur 1:4 type 2</h3>
+                <img src="IMAGES/EN_Dmxr_14_Sch_Typ2.jpg" alt="">
+                <ul>
+                    <li><b>Mode démultiplexeur :</b>
+                        <ul>
+                            <li>E est l'entrée du démultiplexeur,</li>
+                            <li>Sortie sélectionnée = E, les autres = 1
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>Mode décodeur :</b>
+                        <ul>
+                            <li>E sert d'entrée de validation,</li>
+                            <li>E = 1 &rArr; circuit inhibé, toutes les sortie = 1 ∀ Ai </li>
+                            <li>E = 0 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 0, les autres = 1 </li>
+                        </ul>
+                    </li>
+                </ul><br>
+
+                <h3>Décodeur/Démultiplexeur du commerce</h3>
+                <h4>Le 74LS139</h4>
+                <p>Contient deux décodeurs/démultiplexeurs 1:4 type 2</p>
+                <img src="IMAGES/EN_DcrDmxr_139.jpg" alt="">
+                <img src="IMAGES/EN_DcrDmxr_139_DIP.jpg" alt="">
+
+                <h4>Le 74LS154</h4>
+                <p>C'est un décodeurs/démultiplexeurs 1:16 type 2</p>
+
+                <img src="IMAGES/EN_DcrDmxr_154.jpg" alt="">
+                <img src="IMAGES/EN_DcrDmxr_154_DIP.jpg" alt="">
+                <p>Les modes de fonctionnement sont résumé dans le tableau ci-dessous</p>
+                <img src="IMAGES/EN_DcrDmxr_154_Fonc.jpg" alt=""><br>
+                <h4>Autres décodeurs/démultiplexeurs</h4>
+                <p> Dans la famille <b>TTL</b>, on peut citer : <br>
+                    74LS138 : Décodeur 3 vers 8 avec une entrée d'activation. <br>
+                    74LS139 : Double décodeur 2 vers 4 avec sorties actives bas.<br>
+                    74LS154 : Décodeur 4 vers 16, utilisé pour le décodage d'adresses.<br>
+                    74LS156 : Double décodeur 2 vers 4 avec sorties à collecteur ouvert.<br>
+                    74LS155 : Double décodeur/démultiplexeur 2 vers 4 avec sorties actives bas.<br>
+                    74LS151 : Démultiplexeur 1 vers 8 (multiplexeur 8 vers 1 en configuration inverse).<br>
+                    74LS137 : Décodeur/démultiplexeur 3 vers 8 avec latch intégré pour les entrées.<br>
+                    74LS145 : Décodeur BCD vers décimal, très utile pour les affichages numériques.<br><br>
+
+                    Dans la famille <b>CMOS</b> on peut citer : <br>
+                    CD4028 : Décodeur BCD vers décimal (4 vers 10).<br>
+                    CD4514 : Décodeur 4 vers 16 avec latch intégré.<br>
+                    CD4515 : Décodeur 4 vers 16 avec latch intégré et sorties actives bas.<br>
+                    74HC138 : Décodeur 3 vers 8, CMOS rapide, similaire au 74LS138.<br>
+                    74HC139 : Double décodeur 2 vers 4, CMOS rapide, similaire au 74LS139.<br>
+                    74HC154 : Décodeur 4 vers 16, CMOS rapide, similaire au 74LS154.<br>
+                    74HC145 : Décodeur BCD vers décimal avec sorties actives bas.<br>
+                    74HC4051 : Démultiplexeur 1 vers 8 (également utilisé comme multiplexeur).<br>
+                    CD4051 : Démultiplexeur/multiplexeur analogique 1 vers 8 (signal analogique ou numérique).<br>
+                    CD4052 : Démultiplexeur/multiplexeur 2 vers 4 (signal analogique ou numérique).<br>
+                </p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="CMPRTR">Comparateur Numérique</h2>
+                <img src="IMAGES/EN_Cmprtr.jpg" alt="">
+                <p>Un comparateur Logique dit aussi circuit d'identification permet de tester l'égalité de deux
+                    nombres.</p>
+                <ul>
+                    <li>A = B &rArr; S=1,</li>
+                    <li>A &NotEqual; B &rArr; S=0,</li>
+                </ul>
+                <p>Deux nombres \( A=a_n...a_1a_o \) et \( B=b_n...b_1b_o \) sont égaux si tous les bits du même poids
+                    sont égaux : \( a_o=b_o\; et \; a_1=b_1\; et \; a_2=b_2 \; ... \)
+                </p>
+                <p>Étudions un circuit de comparaison entre deux bits :</p>
+                <img src="IMAGES/EN_Cmprtr_2b_Tab.jpg" alt="">
+                <p>\( S_i = \overline{a_i}~\overline{b_i}+a_i~b_i~=~\overline{a_i \oplus b_i} \)</p>
+                <img src="IMAGES/EN_Cmprtr_2b_Sch.jpg" alt="">
+                <p>On en déduit le schéma du comparateur de deux mots de n bits</p>
+                <img src="IMAGES/EN_Cmprtr_nbits_Sch.jpg" alt=""><br>
+
+                <h3>Comparateurs du commerce :</h3>
+                <p>Le plus populaire et le 74LS85</p>
+                <p>C'est un comparateur de deux mots de 4 bits</p>
+                <p>Les entrées de mise en cascade \(I_{sup}, I_{eq} ~ et ~ I_{inf} \) servent à chaîner plusieurs 74LS85
+                    et comparer des nombres plus grands.</p>
+                <p>Voici l'essentiel du mode de fonctionnement. Voir la datasheet du circuit pour découvrir toutes ses
+                    possibilités</p>
+                <p><b>Utilisation d'un comparateur seul :</b></p>
+                <img src="IMAGES/EN_Cmprtr_85.jpg" alt=""><br>
+                <p><b>Utilisation de plusieurs comparateurs en cascade :</b></p>
+                <img src="IMAGES/EN_Cmprtr85_Cascd.jpg" alt=""><br>
+                <p>Les sortie \(O_{sup}, O_{eq} ~ et ~ O_{inf} \) du comparateur seul ou du dernier se positionnent
+                    comme suit :</p>
+                <ul>
+                    <li>\( A \gt B \Rightarrow ~ O_{sup}=1 ~,~ O_{eq}=0 ~,~O_{inf}=0 ~,~\)</li>
+                    <li>\( A = B \Rightarrow ~ O_{sup}=0 ~,~ O_{eq}=1 ~,~O_{inf}=0 ~,~\)</li>
+                    <li>\( A \lt B \Rightarrow ~ O_{sup}=0 ~,~ O_{eq}=0 ~,~O_{inf}=1 ~,~\)</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h2 id="ADDER">Additionneur Binaire</h2>
+                <img src="IMAGES/EN_ADD_Bin.jpg" alt="">
+
+                <p>Quand on additionne "manuellement" deux mots de \(n\) bits, on réalise \(n\) fois l'addition de
+                    trois bits. Chaque addition génère une somme et une retenue. Ainsi, la conception d'un additionneur
+                    pour deux mots de \(n\) bits revient à assembler en cascade \(n\) additionneurs élémentaires de
+                    trois bits.
+                </p>
+                <p>Pour faire l'étude d'un additionneur élémentaire 3 bits, on peut procéder de deux façons :</p>
+                <ol>
+                    <li>Faire comme on fait à la main. Additionner les bits deux par deux. On commence par additionner
+                        les deux premiers bits, ensuite on additionne le résultat avec le 3ème bits. La retenue finale
+                        est
+                        celle produite par la première <b>ou</b> la deuxième addition. Cela reviendra à étudier un
+                        circuit réalisant une addition deux bits, et d'en brancher deux en cascade pour réaliser
+                        l'addition 3 bits. L'additionneur <b>deux bits</b> a été baptisé <em>Half adder</em>.
+                        L'additionneur <b>trois bits</b>
+                        a été baptisé <em>Half adder.</em>
+                        <img src="IMAGES/EN_ADD_HalfAdder_cascad.jpg" alt="">
+                    </li>
+                    <li>Faire directement l'étude d'un additionneur 3 bits <em>Full adder</em>
+                        <img src="IMAGES/EN_ADD_3bits.jpg" alt="">
+                    </li>
+                </ol>
+
+                <!-- ################################################################################################ -->
+                <h3 id="HALFADDER">Etude d'un circuit Half adder</h3>
+                <p class="InlineCenter">
+                    <img class="inline" src="IMAGES/EN_ADD_HA_TVS.jpg" alt="">
+                    <img class="inline" src="IMAGES/EN_ADD_HA_TVC.jpg" alt="">
+                </p>
+                <img src="IMAGES/EN_ADDR_HA_Sch.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="FULLADDER">Etude d'un circuit Full adder</h3>
+                <img src="IMAGES/EN_ADD_FA_TVS.jpg" alt="">
+                <img src="IMAGES/EN_ADD_FA_TVC.jpg" alt="">
+                <img src="IMAGES/EN_ADD_FA_Sch.jpg" alt="">
+                <p>On s'aperçoit qu'on obtient le même résultat que l'étude avec les Half-adders</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ADDPR">Additionneur à propagation de la retenue</h3>
+                <p>Pour additionner deux nombres de \(n\) bits, On utilise \(n\) additionneurs Full-adder chaînés en
+                    cascade. On
+                    obtient ce qu'on appelle un <b>Additionneur à propagation de la retenue</b></p>
+                <img src="IMAGES/EN_ADD_APR.jpg" alt="">
+                <p>Ce genre d'additionneur a l'avantage d'être facile à réaliser mais il manque de rapidité de calcul.
+                    En effet :</p>
+
+                <ul>
+                    <li>Le premier additionneur calcule la somme des bits de poids faible ainsi que
+                        la retenue correspondante,</li>
+                    <li>La retenue produite est transmise à l'additionneur suivant pour être utilisée dans son calcul,
+                    </li>
+                    <li>Ce processus se répète jusqu'à ce que tous les bits soient additionnés,</li>
+                    <li>La retenue doit donc se propager d'un bout à l'autre de l'additionneur, ce qui peut ralentir
+                        l'opération si \(n\) est élevé</li>
+                    <li>Le temps total de calcul est proportionnel à \(n\), ce qui en fait une architecture relativement
+                        lente pour
+                        des opérations sur de grands nombres.
+                    </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ADDUSAGE">Utilisation correcte d'un additionneur</h3>
+                <p>La réalisation d'un additionneur ne pose pas de problème particulier. Par contre, son utilisation
+                    demande quelques précautions pour éviter une mauvaise interprétation des résultats. On peut
+                    distinguer plusieurs cas d'utilisations possibles. Dans ce tuto, nous allons considérer seulement le
+                    cas où les opérandes et le résultat ont le même nombre de bits. On va voir comment utiliser un
+                    additionneur 4 bits avec des nombres signés et des nombres non signés
+                </p>
+                <img src="IMAGES/EN_ADD_addition4bits.jpg" alt="">
+                <img src="IMAGES/EN_ADD_4b_adder.jpg" alt="">
+                <!-- ################################################################################################ -->
+                <h3 id="U4BADDER">Additionner 4 bits pour nombres non signés</h3>
+                <ul>
+                    <li>Avec 4 bits, on peut représenter les nombres non signés allant de 0 à 15,</li>
+                    <img class="Float_R" src="IMAGES/EN_Unsigned.jpg" alt="">
+                    <li>Si le résultat de l'addition est &gt; 15, il ne peut pas être représenté sur 4 bits, la retenue
+                        sortante \(C_{out} = C_3\) sert de <em>flag de débordement</em> pour indiquer si le résultat est
+                        correct ou non.
+                        <img src="IMAGES/EN_ADD_4bUadder.jpg" alt="">
+                    </li>
+                    <li>\(C_{out}\) peut aussi servir pour la mise en cascade. On peut par exemple, cascader deux
+                        additionneurs 4 bits pour réaliser un additionneur 8 bits
+                        <img src="IMAGES/EN_ADD_8bUadder.jpg" alt="">
+                    </li>
+
+                </ul>
 
 
                 <!-- ################################################################################################ -->
+                <h3 id="S4BADDER">Additionner 4 bits pour nombres signés</h3>
+                <ul>
+                    <img class="Float_R" src="IMAGES/EN_SignedTable.jpg" alt="">
+                    <li>Avec 4 bits, on peut représenter les nombres Signés allant de +0 à +7 et de -1 à -8 </li>
+                    <li>Si le résultat de l'addition est &gt; +7 ou &lt; -8, il ne peut pas être représenté sur 4 bits.
+                        La retenue sortante \(C_3\) ne permet pas de détecter le débordement : <br>
+                        Par exemple : (+5)+(+4)=0101+0100=0 1001=(-7) , le résultat est faux et pourtant le flag \(C_3\)
+                        est resté à 0
+                    </li>
+                    <li>On va ajouter une sortie \(O_F\) <i>Overflow</i> qui servira de flag de débordement :
+                        <ul>
+                            <li>Si la retenue \(C_2\) est accessible : \(O_F=C_2\oplus C_3\)</li>
+                            <li>Sinon on peut utiliser une des trois expressions : <br>
+                                \(O_{F}=A_{3}B_{3}\:\bar{S}_3\:+\:\bar{A}_3\:\bar{B}_{3}\:S_3\:=\:\overline{A_3\:\oplus\:B_3}\:(S_3\:\oplus\:B_3\:)\)
+                                <br>
+                                \( O_F =\overline{ A_3 \oplus B_3 } \; (S_3 \oplus C_3) \) <br>
+                                \( O_F = A_3 \oplus B_3 \oplus S_3 \oplus C_3 \)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Si on réalise l'additionneurs à partir de Full-adders élémentaires, C2 sera accessible et on peut
+                    utiliser le schéma suivant :</p>
+                <img src="IMAGES/EN_ADD_4bSadderV1.jpg" alt="">
+                <p>Si on réalise l'additionneurs à partir d'un circuit intégré (type 74LS283), C2 ne sera pas
+                    accessible, on peut
+                    utiliser le schéma suivant :</p>
+                <img src="IMAGES/EN_ADD_4bSadderV2.jpg" alt="">
+                <p>Si on utilise plusieurs additionneurs en cascade, l'Overflow est fabriqué au niveau du dernier étage.
+                </p>
+                <img src="IMAGES/EN_ADD_8bSadder.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="SUBTOR">Soustracteur</h3>
+                <p>Pour réaliser des soustraction, on peut faire l'étude d'un soustracteur exactement comme on l'a fait
+                    avec l'additionneur. On trouve d'ailleurs des structure assez similaire pour le
+                    <i>Half-Substractor</i> et le <i>Full_Substractor</i>
+                </p>
+                <p>Au lieu de ça, on va exploiter une idée qui va nou permettre de nous permettre d'utiliser un
+                    additionneur comme soustracteur. En effet :</p>
+                <ul>
+                    <li>\( A-B = A \textcolor{red}{+} (-B) \), la soustraction est ramenée à une addition</li>
+                    <li>\( (-B) \) est obtenue en faisant le complément à 2 de B </li>
+                    <li>Pour réaliser le complément à 2, on inverse tous les bits et on ajoute 1</li>
+                    <li>Pour inverser tous les bits, on va appliquer l'expression \( X \oplus 1 = \bar{X} \) à tous les
+                        bits</li>
+                    <li>Pour ajouter 1 on va forcer à 1 la retenue entrante \(C_{in}\) de l`additionneur</li>
+                </ul>
+                <img src="IMAGES/EN_ADD_Substractor.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="ADDSUBTOR">Additionneur/Soustracteur</h3>
+                <p>Le circuit précédent peut facilement être adapté pour fonctionner soit en additionneur soit en
+                    soustracteur. Il suffit remarquer que \( X \oplus 0 = X \)</p>
+                <img src="IMAGES/EN_ADD_4bAddSub.jpg" alt="">
+                <ul>
+                    <li><b>Mode = 0</b> &rArr; \( S = 0 + A + B = A + B \)</li>
+                    <li><b>Mode = 1</b> &rArr; \( S = 1 + A + \tilde{B} = A + (-B) = A-B \)</li>
+                </ul><br>
+
+                <p><strong>Pour utiliser correctement ce circuit, il faut adapter la sortie \(C_{out}\) pour indiquer
+                    correctement les débordement en mode <em>non signé</em> et en mode <em>signé</em></strong></p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="4BUADDSUB">Additionneur/Soustracteur 4 bits Non signé :</h3>
+                <img src="IMAGES/EN_ADD_4bUaddsub.jpg" alt="">
+
+                <li>La sortie \(CB\) permet de détecter les débordements :
+                    <ul>
+                        <li>En Mode addition, elle indique la retenue (Carry)</li>
+                        <li>En Mode soustraction, elle indique l'emprunt (Borrow)</li>
+                    </ul>
+                </li>
+
+                <p>Sur 4 bits, on peut représenter les nombres allant de 0 à 15</p>
+                <ul>
+                    <li><b>Mode = 0</b> &rArr; Additionneur, Voici quelques exemples :
+                        <img src="IMAGES/EN_ADD_4bU_AS_tab1.jpg" alt="">
+                    </li>
+                    <li><b>Mode = 1</b> &rArr; Soustracteur, Voici quelques exemples :
+                        <img src="IMAGES/EN_ADD_4bU_AS_tab2.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <!-- ########################################################################## -->
+                <h3 id="4BSADDSUB">Additionneur/Soustracteur 4 bits Signé :</h3>
+                <img src="IMAGES/EN_ADD_4bSaddsub.jpg" alt="">
+                <p>La sortie \(CB\) indique si le résultat est correct ou non</p>
+                <p>Sur 4 bits, on peut représenter les nombres allant de -8 à +7</p>
+                <ul>
+                    <li><b>Mode = 0</b> &rArr; Additionneur, Voici quelques exemples :
+                        <img src="IMAGES/EN_ADD_4bS_AS_tab1.jpg" alt="">
+                    </li>
+                    <li><b>Mode = 1</b> &rArr; Soustracteur, Voici quelques exemples :
+                        <img src="IMAGES/EN_ADD_4bS_AS_tab2.jpg" alt="">
+                    </li>
+                </ul>
+
+
+
+                <br><br><br>
+                <!-- ################################################################################################ -->
                 <h2 id=""></h2>
+
+                <!-- ################################################################################################ -->
+                <h3 id=""></h3>
+
+              
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
