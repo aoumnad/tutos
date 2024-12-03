@@ -158,12 +158,12 @@
                         <h2>Décodeur/Démultiplexeur</h2>
                     </a>
                     <a href="#CMPRTR">
-                        <h2>Comparateur Numérique</h2>
+                        <h2>Comparateur</h2>
                     </a>
 
                     <div class="rubrique" onclick="toggleMenu('adder', this)">
                         <span>&gt;</span>
-                        <h2>Additionneur Binaire</h2>
+                        <h2>Additionneur</h2>
                     </div>
                     <div id="adder" class="sub-rubrique">
                         <a href="#ADDER">
@@ -173,10 +173,10 @@
                             <h3>Introduction</h3>
                         </a>
                         <a href="#HALFADDER">
-                            <h3>Etude d'un circuit Half adder</h3>
+                            <h3>Circuit Half adder</h3>
                         </a>
                         <a href="#FULLADDER">
-                            <h3>Etude d'un circuit Full adder</h3>
+                            <h3>Circuit Full adder</h3>
                         </a>
                         <a href="#ADDPR">
                             <h3>Additionneur à propagation de la retenue</h3>
@@ -185,10 +185,10 @@
                             <h3>Utilisation correcte d'un additionneur</h3>
                         </a>
                         <a href="#U4BADDER">
-                            <h3>Additionner 4 bits pour nombres non signés</h3>
+                            <h3>Additionner 4 bits non signés</h3>
                         </a>
                         <a href="#S4BADDER">
-                            <h3>Additionner 4 bits pour nombres signés</h3>
+                            <h3>Additionner 4 bits Signés</h3>
                         </a>
                         <a href="#SUBTOR">
                             <h3>Soustracteur</h3>
@@ -197,17 +197,53 @@
                             <h3>Additionneur/Soustracteur</h3>
                         </a>
                         <a href="#4BUADDSUB">
-                            <h3>Additionneur/Soustracteur 4 bits Non signé</h3>
+                            <h3>Additionneur/Soustracteur 4 bits Non signés</h3>
                         </a>
                         <a href="#4BSADDSUB">
-                            <h3>Additionneur/Soustracteur 4 bits Signé</h3>
+                            <h3>Additionneur/Soustracteur 4 bits Signés</h3>
+                        </a>
+                    </div>
+                    <div class="rubrique" onclick="toggleMenu('7seg', this)">
+                        <span>&gt;</span>
+                        <h2>Afficheurs 7 segments</h2>
+                    </div>
+                    <div id="7seg" class="sub-rubrique">
+                        <a href="#7SEG">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#7SEGAC">
+                            <h3>Anode Commune</h3>
+                        </a>
+                        <a href="#7SEGCC">
+                            <h3>Cathode commune</h3>
+                        </a>
+                        <a href="#7SEG_DCR">
+                            <h3>Décodeur BCD - 7 segments</h3>
+                        </a>
+                        <a href="#7SEG_PAC">
+                            <h3>Pilotage Anode commune</h3>
+                        </a>
+                        <a href="#7SEG_PCC">
+                            <h3>Pilotage Cathode commune</h3>
+                        </a>
+                        <a href="#BIN2BCD">
+                            <h3>Binaire vers BCD</h3>
                         </a>
                     </div>
 
 
                 </div>
                 <br><br><br>
-                <h2>Le reste est en cours de redaction</h2>
+                <div class="rubrique" onclick="toggleMenu('xxx', this)">
+                    <span>&gt;</span>
+                    <h2>Le reste est en cours de redaction</h2>
+                </div>
+                <div id="xxx" class="sub-rubrique">
+                    <a href="#ADDER">
+                        <h3>Introduction</h3>
+                    </a>
+                </div>
+                <h2></h2>
 
 
             </div>
@@ -921,7 +957,7 @@
                     dépendent de l'état précédent pour produire une sortie, <b>les circuits combinatoires</b> génèrent
                     une
                     sortie exclusivement en fonction de leurs entrées actuelles.</p>
-                
+
                 <p>Dans ce chapitre, nous allons explorer plusieurs types de circuits combinatoires couramment utilisés
                     dans les systèmes numériques :</p>
                 <ul>
@@ -1400,7 +1436,7 @@
                 </ul><br>
 
                 <p><strong>Pour utiliser correctement ce circuit, il faut adapter la sortie \(C_{out}\) pour indiquer
-                    correctement les débordement en mode <em>non signé</em> et en mode <em>signé</em></strong></p>
+                        correctement les débordement en mode <em>non signé</em> et en mode <em>signé</em></strong></p>
 
                 <!-- ################################################################################################ -->
                 <h3 id="4BUADDSUB">Additionneur/Soustracteur 4 bits Non signé :</h3>
@@ -1435,7 +1471,107 @@
                     <li><b>Mode = 1</b> &rArr; Soustracteur, Voici quelques exemples :
                         <img src="IMAGES/EN_ADD_4bS_AS_tab2.jpg" alt="">
                     </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="7SEG">Afficheurs 7 segments</h2>
+                <img src="IMAGES/EN_7segCircuit.jpg" alt="">
+                <p>Un afficheur 7 segments est constitué de 7 segments lumineux disposés pour former un "8" lorsqu'ils
+                    sont tous activés. Le plus souvent, les segments sont réalisés par des LEDs. Chaque segment est
+                    identifié par une lettre (de A à G) et peut être allumé ou éteint individuellement pour créer
+                    différentes figures, principalement des chiffres. En plus des 7 segments, certains modèles incluent
+                    un point décimal pour afficher des valeurs non entières</p>
+                <img src="IMAGES/EN_7seg_abc.jpg" alt="">
+                <p>Pour minimiser le nombre de broches, les sept segment sont organisés soit en Anode commune, soit en
+                    Cathode commune.</p>
+
+                <h3 id="7SEGAC">Anode Commune</h3>
+                <ul>
+                    <li>Les Anodes (bornes positive) de tous les segments sont reliées ensemble.</li>
+                    <li>Pour illuminer un segment, on applique un <b>niveau bas</b> sur sa
+                        cathode</li>
+                    <img src="IMAGES/EN_7segAC1.jpg" alt="">
+                    <img src="IMAGES/EN_7segAC2.jpg" alt="">
                 </ul>
+
+                <h3 id="7SEGCC">Cathode Commune</h3>
+                <ul>
+                    <li>Les cathodes (bornes négatives) de tous les segments sont reliées ensemble</li>
+                    <li>Pour illuminer un segment, on applique un <b>niveau haut</b> sur son anode</li>
+                    <img src="IMAGES/EN_7segCC1.jpg" alt="">
+                    <img src="IMAGES/EN_7segCC2.jpg" alt="">
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="7SEG_DCR">Décodeur BCD - 7 segments :</h3>
+                <p>Les afficheurs 7 segments sont principalement utilisés pour afficher des nombres. Les chiffres de 0 à
+                    9 sont généralement représentés en binaire sur 4 bits, ce qui correspond au code DCB (Décimal Codé
+                    en Binaire), plus couramment désigné sous le terme BCD (Binary Coded Decimal). Cependant, comme un
+                    afficheur 7 segments possède 7 broches pour contrôler les segments, un décodeur est nécessaire
+                    pour convertir l'information codée en BCD (4 bits) en signaux compatibles avec l'afficheur (7 bits),
+                    afin d'activer les segments appropriés.</p>
+                <img src="IMAGES/EN_7segDCR.jpg" alt=""><br>
+
+                <h4>Etude d'un décodeur pour afficheur Cathode Commune</h4>
+                <img src="IMAGES/EN_7segDCRtab.jpg" alt="">
+                <img src="IMAGES/EN_7segDCRformules.jpg" alt="">
+                <img src="IMAGES/EN_7segDCRsch.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="7SEG_PAC">Pilotage Anode commune</h3>
+                <img src="IMAGES/EN_7segDRVAC.jpg" alt="">
+                <ul>
+                    <li>Il faut utiliser un décodeur pour Anodes Communes : Commande par niveau Bas,</li>
+                    <li>Le décodeur peut avoir des sorties normales ou collecteur ouvert,</li>
+                    <li>La valeur de R doit être calculée en fonction du seuil des LEDs et leur courant nominal (Vd,
+                        Idn) :</li>
+                    $$ R = \frac{V_{cd}-V_d}{I_{dn}} $$
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="7SEG_PCC">Pilotage Cathode commune</h3>
+                <img src="IMAGES/EN_7segDRVCC.jpg" alt="">
+                <ul>
+                    <li>Il faut utiliser un décodeur pour Cathodes Communes : Commande par niveau Haut,</li>
+                    <li>Le décodeur doit avoir des sorties normales (pas collecteur ouvert)</li>
+                    <li>La valeur de R doit être calculée en fonction du seuil des LEDs et leur courant nominal (Vd,
+                        Idn) ainsi que la tension de sortie du décodeur correspondant au courant Idn</li>
+                    $$ R = \frac{V_{OH}(I_{dn})-V_d}{I_{dn}} $$
+                </ul>
+                <p>L'utilisation d'un décodeur avec sorties Open Collector peut se faire comme le montre la figure
+                    ci-dessous. Je ne conseille pas cette structure car le montage consomme du courant que les LEDs soit
+                    allumées ou pas</p>
+                <img src="IMAGES/EN_7segDRVCCoc.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="BIN2BCD">Binaire vers BCD</h3>
+                <p>Normalement, les données sons codées en binaire dans les systèmes numériques. Si on désire les
+                    afficher
+                    sur des afficheurs 7 segments, il faut les convertir en BCD comme cela est indiqué sur la figure ci
+                    dessous</p>
+                <img src="IMAGES/EN_7segBIN2BCD1.jpg" alt="">
+                <p>La conversion binaire vers BCD est difficile à réaliser à l'aide de circuits MSI (TTL, CMOS…).
+                    Il ya le circuit 74185 mais il se limite au nombre binaires 6 bits (0 à 63). On peut en associer
+                    plusieurs pour traiter des nombres plus grand mais ça devient très vite très encombrant.
+                </p>
+                <p>Le plus simple est de la programmer sur un microcontrôleur ou <a class="lien" target="_blank"
+                        href="../VHDL_LIB.html#BIN_BCD_4D_G">l'implanter sur un FPGA</a> à l'aide de
+                    l'algorithme ci dessous :</p>
+                <ul>
+                    <li>On commence par former un grand registre constitué du binaire à droite et des chiffre BCD à
+                        gauche,
+                    </li>
+                    <li>Pour un nombre binaire de N bits, on recommence N fois les deux actions suivantes:
+                        <ul>
+                            <li>Tester chacun des digits BCD, Si ≥ 5, rajouter 3 </li>
+                            <li>Décaler le tout une position vers la gauche </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Voici l'exemple de conversion du nombre 471 (9 bits : 9 itérations) :</p>
+                <img src="IMAGES/EN_7segBIN2BCD2.jpg" alt="">
+
+
 
 
 
@@ -1446,7 +1582,7 @@
                 <!-- ################################################################################################ -->
                 <h3 id=""></h3>
 
-              
+
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
