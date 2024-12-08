@@ -229,21 +229,169 @@
                         <a href="#BIN2BCD">
                             <h3>Binaire vers BCD</h3>
                         </a>
+                        <a href="#7446-47-48">
+                            <h3>Les circuits 7446, 7447 et 7448</h3>
+                        </a>
+                        <a href="#CD4511">
+                            <h3>Le circuits CD4511</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="rubrique" onclick="toggleMenu('seq', this)">
+                    <span>&gt;</span>
+                    <h2>Les Circuits séquentiels</h2>
+                </div>
+                <div id="seq" class="sub-rubrique">
+                    <a href="#SEQINTRO">
+                        <h3>Introduction</h3>
+                    </a>
+                    <div class="rubrique" onclick="toggleMenu('bascules', this)">
+                        <span>&gt;</span>
+                        <h2>Les bascules</h2>
+                    </div>
+                    <div id="bascules" class="sub-rubrique">
+                        <a href="#CSBASE">
+                            <h3>Le circuit de base</h3>
+                        </a>
+                        <a href="#CSRS">
+                            <h3>La bascule RS</h3>
+                        </a>
+                        <a href="#CSRSH">
+                            <h3>La bascule RSH</h3>
+                        </a>
+                        <a href="#CSJK">
+                            <h3>La bascule JK</h3>
+                        </a>
+                        <a href="#CSJKH">
+                            <h3>La bascule JKH</h3>
+                        </a>
+                        <a href="#CSFRONT">
+                            <h3>Bascule Réagissant sur front d'horloge</h3>
+                        </a>
+                        <a href="#CSCONV">
+                            <h3>Convention de dessin</h3>
+                        </a>
+                        <a href="#BASCULED">
+                            <h3>La bascule D</h3>
+                        </a>
+                        <a href="#FRORÇAGE">
+                            <h3>Entrées de forçage CLEAR et PRESET</h3>
+                        </a>
                     </div>
 
 
+                    <div class="rubrique" onclick="toggleMenu('registres', this)">
+                        <span>&gt;</span>
+                        <h2>Les Registres</h2>
+                    </div>
+                    <div id="registres" class="sub-rubrique">
+                        <a href="#REGINTRO">
+                            <h3>Chargement sur front</h3>
+                        </a>
+                        <a href="#REGLATCH">
+                            <h3>Registre Latch</h3>
+                        </a>
+                        <a href="#REG273">
+                            <h3>Le Registre 74LS273</h3>
+                        </a>
+                    </div>
+                    <div class="rubrique" onclick="toggleMenu('shiftreg', this)">
+                        <span>&gt;</span>
+                        <h2>Les Registres à décalage</h2>
+                    </div>
+                    <div id="shiftreg" class="sub-rubrique">
+                        <a href="#SHIFTREGI">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#PLOAD">
+                            <h3>Chargement parallèle</h3>
+                        </a>
+                        <a href="#SYPLOAD">
+                            <h3>Chargement parallèle Synchrone</h3>
+                        </a>
+                        <a href="#ASYPLOAD">
+                            <h3>Chargement parallèle Asynchrone</h3>
+                        </a>
+                        <a href="#BIDSR">
+                            <h3>Registre à décalage bidirectionnel</h3>
+                        </a>
+                        <a href="#SRUNIV">
+                            <h3>Registre à décalage universel</h3>
+                        </a>
+                    </div>
+
+                    <div class="rubrique" onclick="toggleMenu('ctrasync', this)">
+                        <span>&gt;</span>
+                        <h2>Les compteurs Asynchrones</h2>
+                    </div>
+                    <div id="ctrasync" class="sub-rubrique">
+                        <a href="#ASYCTR">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#ASYDCTR">
+                            <h3>Décompteur Asynchrone</h3>
+                        </a>
+                        <a href="#MODULON">
+                            <h3>Comptage incomplet</h3>
+                        </a>
+                        <a href="#DIVFREQ">
+                            <h3>Diviseur de fréquence</h3>
+                        </a>
+                        <a href="#CASCAASY">
+                            <h3>Cascadage asynchrone</h3>
+                        </a>
+                        <a href="#CASCADBCD">
+                            <h3>Compteur BCD</h3>
+                        </a>
+                        <a href="#74LS93">
+                            <h3>Le compteur 74LS93</h3>
+                        </a>
+                        <a href="#74LS90">
+                            <h3>Le compteur 74LS90</h3>
+                        </a>
+                        <a href="#BCD60">
+                            <h3>Compteur BCD modulo 60</h3>
+                        </a>
+                        <a href="#BCD24">
+                            <h3>Compteur BCD modulo 24</h3>
+                        </a>
+                    </div>
+                    <div class="rubrique" onclick="toggleMenu('ctrsync', this)">
+                        <span>&gt;</span>
+                        <h2>Les compteurs Synchrones</h2>
+                    </div>
+                    <div id="ctrsync" class="sub-rubrique">
+                        <a href="#SYNCTR">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#4BSYNCTR">
+                            <h3>Compteur Synchrone 4 bits</h3>
+                        </a>
+                        <a href="#4BSYNCTRPL">
+                            <h3>Version avec chargement parallèle</h3>
+                        </a>
+                        <a href="#4BSYNDCTR">
+                            <h3>Décompteur Synchrone 4 bits</h3>
+                        </a>
+                        <a href="#CTRDCTRSYN">
+                            <h3>Compteur/Décompteur Synchrone</h3>
+                        </a>
+                        <a href="#DECADESYNC">
+                            <h3>Décade Synchrone</h3>
+                        </a>
+                        <a href="#CASCADSYNC">
+                            <h3>Mise en cascade des compteurs synchrones</h3>
+                        </a>
+                        <a href="#CTRSYNBASCD">
+                            <h3>Compteur synchrone avec des bascules D</h3>
+                        </a>
+                        <a href="#DCTRSYNDFF">
+                            <h3>Décompteur synchrone avec des bascules D</h3>
+                        </a>
+                    </div>
                 </div>
                 <br><br><br>
-                <div class="rubrique" onclick="toggleMenu('xxx', this)">
-                    <span>&gt;</span>
-                    <h2>Le reste est en cours de redaction</h2>
-                </div>
-                <div id="xxx" class="sub-rubrique">
-                    <a href="#ADDER">
-                        <h3>Introduction</h3>
-                    </a>
-                </div>
-                <h2></h2>
+
 
 
             </div>
@@ -261,18 +409,22 @@
 
                 <!-- ################################################################################################ -->
                 <h2 id="INTRO">Representation des nombres</h2>
-                <p>La représentation naturelle que nous utilisons pour représenter des nombres est une représentation
-                    <b>pondérée</b>. Les systèmes <b>Décimal</b> de base <i>B=10</i>, <b>Octal</b> de base <i>B=8</i>,
+                <p>La représentation naturelle que nous utilisons pour représenter des nombres est une
+                    représentation
+                    <b>pondérée</b>. Les systèmes <b>Décimal</b> de base <i>B=10</i>, <b>Octal</b> de base
+                    <i>B=8</i>,
                     Hexadécimal de base <i>B=16</i> et <b>Binaire</b> de base <i>B=2</i> sont des systèmes pondérés
                 </p>
                 <p>un système pondéré de base B est caractérisé par :</p>
                 <ul>
-                    <li>Il faut B symboles qu'on appelle <b>chiffres</b> pour représenter un nombre dans une bas B. Par
+                    <li>Il faut B symboles qu'on appelle <b>chiffres</b> pour représenter un nombre dans une bas B.
+                        Par
                         exemple :
                         <ul>
                             <li>Le système Décimal utilise dix chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
                             <li>Le système Octal utilise 8 chiffres : 0, 1, 2, 3, 4, 5, 6, 7</li>
-                            <li>Le système Hexadécimal utilise 16 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D,
+                            <li>Le système Hexadécimal utilise 16 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C,
+                                D,
                                 E, F</li>
                             <li>Le système Binaire utilise 2 chiffres : 0, 1</li>
                         </ul>
@@ -289,7 +441,8 @@
                             <li>Le nombre 472 en base 10 peut être décomposé comme suit : <br>
                                 \( 472_{10}= 4 &times; 10^2 + 7 &times; 10^1 + 2 &times; 10^0 \)</li>
                             <li>Le nombre 345.25 en base 10 peut être décomposé comme suit : <br>
-                                \( 345.25_{10}= 3 &times; 10^2 + 4 &times; 10^1 + 5 &times; 10^0 + 2 &times; 10^{-1} + 5
+                                \( 345.25_{10}= 3 &times; 10^2 + 4 &times; 10^1 + 5 &times; 10^0 + 2 &times; 10^{-1}
+                                + 5
                                 &times; 10^{-2} \)</li>
                             <li>Le nombre binaire 1011 peut être converti en décimal comme suit : <br>
                                 \( 1101_2 =1&times;2^3 + 1&times;2^2 +0&times;2^1
@@ -309,31 +462,42 @@
                 <h2 id="BINARY">Intérêt du système binaire</h2>
                 <p>Le système binaire revêt une importance fondamentale en électronique et en informatique,
                     principalement parce qu'il est aisément transposable en signaux électriques. En effet, les deux
-                    états possibles du système binaire, représentés par les chiffres 0 et 1, peuvent être matérialisés
-                    de diverses manières techniques, permettant ainsi de simplifier la conception et la fabrication des
+                    états possibles du système binaire, représentés par les chiffres 0 et 1, peuvent être
+                    matérialisés
+                    de diverses manières techniques, permettant ainsi de simplifier la conception et la fabrication
+                    des
                     circuits électroniques. Parmi ces méthodes, on peut citer :
                 </p>
                 <ul>
-                    <li>Le passage ou non d'un courant électrique dans un composant** : un circuit peut être conçu pour
-                        détecter la présence (représentant "1") ou l'absence (représentant "0") d'un courant électrique,
+                    <li>Le passage ou non d'un courant électrique dans un composant** : un circuit peut être conçu
+                        pour
+                        détecter la présence (représentant "1") ou l'absence (représentant "0") d'un courant
+                        électrique,
                         une approche couramment utilisée dans les circuits logiques</li>
-                    <li>L'état d'un commutateur** : par exemple, un transistor ou un autre type de dispositif peut agir
-                        comme un interrupteur, qui est soit ouvert (représentant "0"), soit fermé (représentant "1").
+                    <li>L'état d'un commutateur** : par exemple, un transistor ou un autre type de dispositif peut
+                        agir
+                        comme un interrupteur, qui est soit ouvert (représentant "0"), soit fermé (représentant
+                        "1").
                         Cette caractéristique est essentielle pour le fonctionnement des circuits intégrés et des
                         microprocesseurs
                         modernes</li>
-                    <li>La valeur d'une tension électrique** : une tension spécifique peut être attribuée à chaque état
-                        binaire. Par exemple, une tension de +5 volts peut correspondre à "1", tandis qu'une tension de
-                        0 volt peut correspondre à "0". Cette méthode est particulièrement répandue dans les systèmes
+                    <li>La valeur d'une tension électrique** : une tension spécifique peut être attribuée à chaque
+                        état
+                        binaire. Par exemple, une tension de +5 volts peut correspondre à "1", tandis qu'une tension
+                        de
+                        0 volt peut correspondre à "0". Cette méthode est particulièrement répandue dans les
+                        systèmes
                         numériques pour transmettre des informations de manière fiable</li>
                 </ul>
                 <p>Ces représentations permettent une mise en œuvre robuste et efficace des systèmes numériques, qui
-                    forment la base des technologies modernes, des ordinateurs aux systèmes embarqués en passant par les
+                    forment la base des technologies modernes, des ordinateurs aux systèmes embarqués en passant par
+                    les
                     télécommunications.</p><br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="CONVBASE">Changement de base</h2>
-                <p>La conversion entre les systèmes dont la base est une puissance de v2 est très facile. Le conversion
+                <p>La conversion entre les systèmes dont la base est une puissance de v2 est très facile. Le
+                    conversion
                     de ou vers la base 10 demande un peu plus de travail</p>
                 <h3>Hexadécimal &xrarr; binaire</h3>
                 <p>chaque chiffre Hexadécimal est écrit sur 4 bits :</p>
@@ -350,13 +514,16 @@
 
                 <h3>Decimal &xrarr; Binaire</h3>
                 <p>La méthode la plus automatique et la division/multiplication en échelle.</p>
-                <p>Pour la partie entière, on effectue une division successive par 2. On arrête quand on a un quotient
+                <p>Pour la partie entière, on effectue une division successive par 2. On arrête quand on a un
+                    quotient
                     nul. Le résultat en binaire est constitué par les restes successifs des divisions.
                 </p>
-                <p>Pour la partie décimale, on procède à des multiplications successives par 2. Le processus s'arrête
+                <p>Pour la partie décimale, on procède à des multiplications successives par 2. Le processus
+                    s'arrête
                     dès qu'un produit entier est obtenu. Toutefois, il peut arriver que l'on n'obtienne jamais de
                     produit entier, dans ce cas, la multiplication peut théoriquement se poursuivre indéfiniment.
-                    Dans une telle situation, on peut choisir de s'arrêter dès que l'on estime que le nombre de chiffres
+                    Dans une telle situation, on peut choisir de s'arrêter dès que l'on estime que le nombre de
+                    chiffres
                     après la virgule est suffisant.</p>
                 <h4>Exemple :</h4>
                 <p>On va convertir le nombre 947,6407 en binaire</p>
@@ -382,8 +549,10 @@
                 </p>
                 <img src="IMAGES/EN_AddBin.jpg" alt="">
                 <p>On remarque dans l'exemple qu'à cause de la retenue du rang précédent, on est amené à ajouter 3
-                    bits. On en déduit qu'un additionneur élémentaire doit additionner 3 bits et produire une somme et
-                    une retenue. Nous reviendrons plus en détail sur cet aspect dans la section consacrée aux circuits
+                    bits. On en déduit qu'un additionneur élémentaire doit additionner 3 bits et produire une somme
+                    et
+                    une retenue. Nous reviendrons plus en détail sur cet aspect dans la section consacrée aux
+                    circuits
                     numériques.</p><br>
 
                 <h3>Soustraction :</h3>
@@ -394,7 +563,8 @@
                     1 - 1 = 0 <br>
                 </p>
                 <img src="IMAGES/EN_SubBin.jpg" alt="">
-                <p>Avec la soustraction, même s'il arrive qu'on parle de retenue, en fait c'est un emprunt (Borrow en
+                <p>Avec la soustraction, même s'il arrive qu'on parle de retenue, en fait c'est un emprunt (Borrow
+                    en
                     anglais). On
                     constate sur l'exemple qu'à chaque colone, on effectue une soustraction de 3 bites \((X - Y -
                     B_{in})\) et on produit un résultat \(S\) et un Borrow \(B_{out}\). Le
@@ -413,23 +583,30 @@
                 <p>Il existe plusieurs façons de représenter les nombres négatifs en binaire.
                     La plus utilisée en informatique est la méthode du <em>complément à deux</em>. Cette technique
                     repose sur une
-                    propriété fondamentale : le complément (-N) d'un nombre N est défini de manière à vérifier l'égalité
+                    propriété fondamentale : le complément (-N) d'un nombre N est défini de manière à vérifier
+                    l'égalité
                     suivante : \(N+(-N)=0\)</p>
-                <p>Cependant, en binaire, cette méthode n'a de sens que si l'on travaille avec un nombre fixe de bits,
+                <p>Cependant, en binaire, cette méthode n'a de sens que si l'on travaille avec un nombre fixe de
+                    bits,
                     ce qui correspond à la taille des registres ou des données manipulées par une machine.
-                    Prenons l'exemple d'une machine qui utilise 4 bits pour représenter les nombres. Cette machine peut
+                    Prenons l'exemple d'une machine qui utilise 4 bits pour représenter les nombres. Cette machine
+                    peut
                     représenter uniquement les nombres compris entre 0000 (0 en base 10) et 1111 (15 en base 10).
 
                     Examinons quelques opérations :</p>
                 <ul>
-                    <li>Si l'on effectue l'addition 0101 (5) + 0011 (3), on obtient 1000 (8). Le résultat est correct et
+                    <li>Si l'on effectue l'addition 0101 (5) + 0011 (3), on obtient 1000 (8). Le résultat est
+                        correct et
                         reste dans la plage représentable.</li>
-                    <li>En revanche, si l'on effectue 0111 (7) + 1101 (13), on obtient 0100 (4). Pourquoi? Parce que la
-                        machine n'a pas de place pour le cinquième bit généré par l'opération, qui correspondrait à 16.
+                    <li>En revanche, si l'on effectue 0111 (7) + 1101 (13), on obtient 0100 (4). Pourquoi? Parce que
+                        la
+                        machine n'a pas de place pour le cinquième bit généré par l'opération, qui correspondrait à
+                        16.
                         Ce dépassement est appelé un débordement.</li>
                 </ul>
                 <p>Ce comportement implique qu'une machine 4 bits effectue ses calculs modulo \(2^4=16\).
-                    Dans ce système, <b>le nombre 16 est équivalent à 0</b>. Par conséquent, la méthode du complément à
+                    Dans ce système, <b>le nombre 16 est équivalent à 0</b>. Par conséquent, la méthode du
+                    complément à
                     deux repose sur la relation :
                     $$N+(-N)=16$$
                     Le complément du nombre N est donc :
@@ -442,7 +619,8 @@
                     relations ci-dessus.</p>
                 <p>En effet :</p>
                 $$(-N)=16-N=(15+1)-N=(15-N)+1$$
-                <p>L'opération \(15-N\) s'appelle <em>le complément à 1</em> du nombre N. Elle revient à complémenter un
+                <p>L'opération \(15-N\) s'appelle <em>le complément à 1</em> du nombre N. Elle revient à
+                    complémenter un
                     par
                     un tous les bits du nombre N. Ensuite, il suffit d'ajouter 1 pour obtenir Le <em>Le complément à
                         2</em></p>
@@ -464,7 +642,8 @@
                     </li>
                     <li>Soit signés, 8 positifs et 8 négatifs :
                         <img src="IMAGES/EN_SignedTable.jpg" alt=""><br>
-                        Remarquons que pour les nombres positifs, le MSB est égal à 0 et pour les nombres négatifs le
+                        Remarquons que pour les nombres positifs, le MSB est égal à 0 et pour les nombres négatifs
+                        le
                         MSB est
                         égal à 1. C'est ainsi que l'on peut tester si le résultat d'une opération est juste. Par
                         exemple,
@@ -473,11 +652,14 @@
                             <li>La somme de 2 nombres positifs doit donner un nombre positif</li>
                             <li>la somme de 2 nombres négatifs doit donner un nombre négatif</li>
                         </ul>
-                        L'erreur se produit quand il y a débordement, c.a.d quand le résultat dépasse le nombre maximum
+                        L'erreur se produit quand il y a débordement, c.a.d quand le résultat dépasse le nombre
+                        maximum
                         que
-                        la machine peut représenter soit +7 pour les nombres positifs ou -8 pour les nombres négatifs.
+                        la machine peut représenter soit +7 pour les nombres positifs ou -8 pour les nombres
+                        négatifs.
                         Une
-                        erreur peut se produire quand on ajoute des nombres de même signe. Il y a erreur quand le signe
+                        erreur peut se produire quand on ajoute des nombres de même signe. Il y a erreur quand le
+                        signe
                         du
                         résultat est différent de celui des deux opérandes.
                         <img src="IMAGES/EN_SignedExmples.jpg" alt="">
@@ -489,13 +671,15 @@
                 <div class="encadre">
                     <ul>
                         <li>Une machine \(n\) bits peut représenter \(2^n\) nombres différents :</li>
-                        <li>Si on ne désire manipuler que des nombres positifs, on pourra représenter les nombres allant
+                        <li>Si on ne désire manipuler que des nombres positifs, on pourra représenter les nombres
+                            allant
                             de \(0\) à \(2^n-1\) </li>
                         <li>Si on désire manipuler des nombres signés, on pourra représenter :
                             <ul>
                                 <li>\(\frac{2^n}{2}\) Nombres positifs allant de \(\quad 0 \quad à \quad
                                     \left(\frac{2^n}{2}-1\right) \)</li>
-                                <li>\(\frac{2^n}{2}\) Nombres négatifs allant de \(\quad -1 \quad à \quad -\frac{2^n}{2}
+                                <li>\(\frac{2^n}{2}\) Nombres négatifs allant de \(\quad -1 \quad à \quad
+                                    -\frac{2^n}{2}
                                     \)</li>
                             </ul>
                         </li>
@@ -523,21 +707,30 @@
                         Le code BCD est couramment utilisé dans les systèmes avec des afficheurs Sept segments
                         <img src="IMAGES/EN_7seg.jpg" alt="">
                     </li>
-                    <li><b>Le code de Gray</b> : Utilisé principalement dans les systèmes de mesure et de contrôle. Ce
-                        code a la particularité de ne changer qu'un seul bit entre deux valeurs consécutives. Cela le
-                        rend particulièrement adapté aux dispositifs où des erreurs dues à des transitions multiples de
+                    <li><b>Le code de Gray</b> : Utilisé principalement dans les systèmes de mesure et de contrôle.
+                        Ce
+                        code a la particularité de ne changer qu'un seul bit entre deux valeurs consécutives. Cela
+                        le
+                        rend particulièrement adapté aux dispositifs où des erreurs dues à des transitions multiples
+                        de
                         bits
-                        pourraient survenir, comme dans les codeurs rotatifs ou les circuits numériques synchrone. Il
-                        est aussi utilisé dans les tables de Karnaugh pour la simplification des fonctions logiques</li>
-                    <li>Le code excès-N (Excess-N) : Utilisé pour représenter des nombres signés ou non signés. Il est
+                        pourraient survenir, comme dans les codeurs rotatifs ou les circuits numériques synchrone.
+                        Il
+                        est aussi utilisé dans les tables de Karnaugh pour la simplification des fonctions logiques
+                    </li>
+                    <li>Le code excès-N (Excess-N) : Utilisé pour représenter des nombres signés ou non signés. Il
+                        est
                         courant dans certains formats d'images numériques ou d'intervalles définis.
 
                     </li>
                 </ul>
                 <p>Ces systèmes de codage, bien que moins universels que le binaire naturel, répondent à des
-                    besoins spécifiques en optimisant certains aspects comme la lisibilité humaine (BCD), la robustesse
-                    contre les erreurs (code de Gray) ou la gestion de plages numériques particulières (excès-N). Ainsi,
-                    le choix d'un système dépend largement des contraintes et des exigences de l'application envisagée
+                    besoins spécifiques en optimisant certains aspects comme la lisibilité humaine (BCD), la
+                    robustesse
+                    contre les erreurs (code de Gray) ou la gestion de plages numériques particulières (excès-N).
+                    Ainsi,
+                    le choix d'un système dépend largement des contraintes et des exigences de l'application
+                    envisagée
                 </p>
                 <p>Le tableau ci-dessous présente l'exemple de quelques codes :</p>
                 <img src="IMAGES/EN_Codes.jpg" alt="">
@@ -549,37 +742,48 @@
                 <p>Le code de Gray est le code binaire réfléchi, c'est un cas très important des codes continus.</p>
                 <p>Un code est continu au sens large si dans la table de vérité qui le définit, les états successifs
                     sont adjacents, c'est à dire que quand on passe de l'un à l'autre, il y a un seul chiffre qui
-                    change. Un code est continu au sens strict si en plus le premier et le dernier état sont adjacents.
+                    change. Un code est continu au sens strict si en plus le premier et le dernier état sont
+                    adjacents.
                 </p>
-                <p>Un code réfléchi est un code naturel dont on a renversé le sens de variation par endroits afin de le
+                <p>Un code réfléchi est un code naturel dont on a renversé le sens de variation par endroits afin de
+                    le
                     rendre continu. On renverse une période sur deux en commençant par la deuxième. Le tableau
                     ci-dessous illustre le code ternaire (base 3) réfléchi.</p>
                 <img src="IMAGES/EN_TernaireReflechi.jpg" alt="">
                 <p>Le tableau ci-dessous illustre le code Gray</p>
                 <img src="IMAGES/EN_Gray.jpg" alt="">
-                <p>Le code de Gray est très fréquemment utilisé notamment sur les tables de Karnaugh pour simplifier les
+                <p>Le code de Gray est très fréquemment utilisé notamment sur les tables de Karnaugh pour simplifier
+                    les
                     fonctions
                     logiques. Remarquons que le code de Gray est continu au sens stricte, 0 est adjacent avec 15</p>
                 <img src="IMAGES/EN_Karnaugh.jpg" alt="">
-                <p>Comme on le voit sur la figure, la table de Karnaugh est une table de vérité représentée d'une façon
-                    particulière. Les adresses des cases sont représentées en code de Gray de sorte à ce que toutes les
+                <p>Comme on le voit sur la figure, la table de Karnaugh est une table de vérité représentée d'une
+                    façon
+                    particulière. Les adresses des cases sont représentées en code de Gray de sorte à ce que toutes
+                    les
                     cases qui ont un coté commun soient adjacentes. Les cases sur les extrémités opposées sont aussi
                     adjacentes, on peut vérifier les adjacentes suivantes : 0-3, 7-4, 8-11, 15-12, 0-15, 1-14, 2-13,
                     3-12</p>
-                <p>Si on considère la table comme une feuille de papier, on peut vérifier les adjacence en enroulant la
+                <p>Si on considère la table comme une feuille de papier, on peut vérifier les adjacence en enroulant
+                    la
                     feuille verticalement et horizontalement</p>
                 <img src="IMAGES/EN_KarnaughAdj.jpg" alt="">
 
                 <!-- ################################################################################################ -->
                 <h2 id="BOOLE">Algèbre de Boole</h2>
                 <p>L'algèbre de Boole est une branche des mathématiques qui traite des variables logiques et des
-                    opérations logiques. Elle a été développée par George Boole au XIXe siècle et constitue la base des
+                    opérations logiques. Elle a été développée par George Boole au XIXe siècle et constitue la base
+                    des
                     systèmes numériques et de l'informatique moderne. C'est l'algèbre des variables qui ne peuvent
-                    prendre que deux valeurs généralement notées 0 et 1, représentant le faux et le vrai. Les opérations
+                    prendre que deux valeurs généralement notées 0 et 1, représentant le faux et le vrai. Les
+                    opérations
                     fondamentales de
-                    l'algèbre de Boole incluent le ET (AND), le OU (OR), et le NON (NOT), qui permettent de manipuler
-                    les valeurs logiques pour résoudre des problèmes de logique et de conception de circuits numériques.
-                    Cette discipline est essentielle pour comprendre le fonctionnement des ordinateurs et des systèmes
+                    l'algèbre de Boole incluent le ET (AND), le OU (OR), et le NON (NOT), qui permettent de
+                    manipuler
+                    les valeurs logiques pour résoudre des problèmes de logique et de conception de circuits
+                    numériques.
+                    Cette discipline est essentielle pour comprendre le fonctionnement des ordinateurs et des
+                    systèmes
                     électroniques</p>
 
                 <!-- ################################################################################################ -->
@@ -593,10 +797,13 @@
                 <p>C'est une fonction de une ou plusieurs variables booléennes, ne pouvant prendre elle-même qu'une
                     des deux valeurs 0 ou 1. Pour la définir, il faut préciser sa valeur pour toutes les
                     combinaisons possibles des variables.</p>
-                <p>Il arrive que l'état de la fonction ne soit déterminé pour certaines combinaison des entrées. Dans ce
-                    cas on met un 'x' dans la table de vérité pour indiquer que l'état de la fonction dans ces cas n'a
+                <p>Il arrive que l'état de la fonction ne soit déterminé pour certaines combinaison des entrées.
+                    Dans ce
+                    cas on met un 'x' dans la table de vérité pour indiquer que l'état de la fonction dans ces cas
+                    n'a
                     pas d'importance et il peut être considéré comme un '1' ou un '0'. Cela arrive quand certaines
-                    combinaisons des entrées ne peuvent pas exister dans la pratique. Rien de mieux qu'un petit exemple
+                    combinaisons des entrées ne peuvent pas exister dans la pratique. Rien de mieux qu'un petit
+                    exemple
                     pour illustrer ce genre de situation :</p>
                 <p>On désire maintenir la température d'une salle de travail entre 17°C et 20°C.
                     Nous nous procurons deux capteurs de température ayant chacun une sortie logique que nous
@@ -615,9 +822,12 @@
                 <p>Quand on dresse la table de vérité, avec deux variables, on a quatre combinaison possibles :</p>
                 <img src="IMAGES/EN_Simp_X_TV.jpg" alt="">
                 <p>On s'aperçoit qu'il manque l'état (C17=0, C20=1), normal, cet état ne peu pas exister car il
-                    correspond à une température en même temps inférieure à 17 et supérieure à 20. Dans la table vérité
-                    on met un x comme valeur de S ce qui signifie qu'on <i>s'en fout</i> de sa valeur puisque cet état
-                    est impossible. Lors de la recherche de l'expression de S, on peut considérer le 'x' comme un 0 ou
+                    correspond à une température en même temps inférieure à 17 et supérieure à 20. Dans la table
+                    vérité
+                    on met un x comme valeur de S ce qui signifie qu'on <i>s'en fout</i> de sa valeur puisque cet
+                    état
+                    est impossible. Lors de la recherche de l'expression de S, on peut considérer le 'x' comme un 0
+                    ou
                     comme un 1 selon la convenience</p>
 
                 <!-- ########################################################## -->
@@ -788,7 +998,8 @@
                 <p>Cependant, Il y a d'autre expression différentes mais équivalentes pour représenter la
                     fonction S. On peut vérifier sur la table qu'on a aussi \(S=B C+A B+A C+\bar{A} C\)</p>
                 <p>La première expression de S est particulière. Dans chaque
-                    monôme, figurent toutes les variables. Cette expression est appelée <em>forme canonique somme</em>.
+                    monôme, figurent toutes les variables. Cette expression est appelée <em>forme canonique
+                        somme</em>.
                     C'est l'expression qui traduit fidèlement la table de vérité. Ce n'est pas l'expression la plus
                     simple. Nous apprendrons plus tard à la simplifier à l'aide de la méthode de Karnaugh</p><br>
                 <p><em>La forme canonique produit</em> revient à écrire l'expression de \(\bar{S}\) :</p>
@@ -802,7 +1013,8 @@
 
                 <!-- ################################################################################################ -->
                 <h2 id="NANDUNIVERSEL">NAND : Opérateur universel</h2>
-                <p>D'après la forme canonique, Nous pouvons exprimer toute fonction à l'aide de 3 opérateurs, AND, OR
+                <p>D'après la forme canonique, Nous pouvons exprimer toute fonction à l'aide de 3 opérateurs, AND,
+                    OR
                     et NOR. Voyons comment on peut faire pour n'utiliser que l'opérateur NAND pour
                     exprimer ces fonctions</p>
                 <p>Prenons un exemple simple : S = AB + CD, le schéma est le suivant :</p>
@@ -813,7 +1025,8 @@
                 <p> \( S = \overline{\overline{AB}.\overline{CD}} \)</p>
                 <p>Le schéma correspondant est le suivant :</p>
                 <img src="IMAGES/EN_NAND_Univ.jpg" alt="">
-                <p>On s'aperçoit que ce résultat peut être obtenu en travaillant directement sur le schéma en remplaçant
+                <p>On s'aperçoit que ce résultat peut être obtenu en travaillant directement sur le schéma en
+                    remplaçant
                     systématiquement les opérateur AND et OR par des NAND</p>
                 <p>Cette règle ne s'applique que si la condition suivante est vérifiée :</p>
                 <p><strong> En suivant n'importe quel chemin entre une entrée et une sortie, on rencontre
@@ -836,7 +1049,8 @@
 
                 <!-- ################################################################################################ -->
                 <h2 id="SIMPFONC">Simplification des fonctions logiques</h2>
-                <p>Il s'agit de chercher l'expression la plus simple d'une fonction booléenne. Ceci bien sur dans le but
+                <p>Il s'agit de chercher l'expression la plus simple d'une fonction booléenne. Ceci bien sur dans le
+                    but
                     d'avoir une réalisation avec un nombre minimum d'opérateurs.
                     Plusieurs méthodes existent, Nous allons parler de la méthode de Karnaugh (1953)
                 </p>
@@ -844,8 +1058,10 @@
                 <h3 id="DKARNAUGH">Diagramme de Karnaugh</h3>
                 <p>La table de Karnaugh est une table de vérité représentée d'une façon particulière. Chaque case
                     correspond à une ligne de la table de vérité. Les adresses des
-                    cases sont représentées en code de Gray de sorte à ce que toutes les cases qui ont un coté commun
-                    soient adjacentes. Les cases sur les extrémités opposées sont aussi adjacentes car deux cases sont
+                    cases sont représentées en code de Gray de sorte à ce que toutes les cases qui ont un coté
+                    commun
+                    soient adjacentes. Les cases sur les extrémités opposées sont aussi adjacentes car deux cases
+                    sont
                     adjacentes quand leurs adresses le sont.</p>
                 <p>Voici un exemple pour 2, 3 puis 4 variables: </p>
                 <img src="IMAGES/EN_Karnaugh234.jpg" alt="">
@@ -861,7 +1077,8 @@
                 <h3 id="REMPKAR">Remplissage de la table de Karnaugh</h3>
                 <p>Il faut faire attention quand on remplit la table de Karnaugh à partir de la table de vérité. La
                     correspondance
-                    entre les lignes de la table de vérité et les cases de la table de Karnaugh dépend de la disposition
+                    entre les lignes de la table de vérité et les cases de la table de Karnaugh dépend de la
+                    disposition
                     des variables
                     ABCD dans les cases adresses.</p>
                 <p>Voici un exemple de table de vérité :</p>
@@ -871,12 +1088,14 @@
                 <p>On obtient les tables suivantes pour la fonction de la table de vérité</p>
                 <img src="IMAGES/EN_Simp_Fonc_K_Ex_Fonc.jpg" alt="">
                 <p>Moi, j'utilise toujours la 2ème disposition. Avec le temps, on acquiert un automatisme de
-                    remplissage. 😊 Enfin, c'était il y a très longtemps. Ça fait des décennies que je n'ai pas touché à
+                    remplissage. 😊 Enfin, c'était il y a très longtemps. Ça fait des décennies que je n'ai pas
+                    touché à
                     ça😊</p>
 
                 <!-- ################################################################################################ -->
                 <h2 id="GROUP">Regrouper les 1 en blocs</h2>
-                <p>Maintenant on regroupe les '1' <b>Adjacents</b> en faisant des groupe de 1, 2, 4, 8 ...Ne pas oublier
+                <p>Maintenant on regroupe les '1' <b>Adjacents</b> en faisant des groupe de 1, 2, 4, 8 ...Ne pas
+                    oublier
                     les adjacences sur les extrémité de la table.</p>
                 <p>Voici les règles pour obtenir l'expression la plus simple :</p>
                 <ul>
@@ -921,7 +1140,8 @@
 
                 <!-- ################################################################################################ -->
                 <h2 id="KEX2">Exemple 2: Etude d'un convoyeur</h2>
-                <p>Pour transporter le sable d'une position A vers une position B, on utilise le système suivant :</p>
+                <p>Pour transporter le sable d'une position A vers une position B, on utilise le système suivant :
+                </p>
                 <img src="IMAGES/EN_Simp_Ex2.jpg" alt="">
                 <p>Un chariot peut se déplacer sur un rail sous l'action d'un moteur électrique M :</p>
                 <p>M=0 &rarr; moteur à l'arrêt, M=1 &rarr; moteur en marche</p>
@@ -936,13 +1156,17 @@
                 <p>Le chariot peut être vidé à l'aide d'une trappe de vidange Tv :</p>
                 <p>Tv = 1 &rarr; trappe ouverte, Tv = 0 &rarr; trappe fermée</p>
                 <p>Le fonctionnement se fait de la manière suivante :</p>
-                <p>Le chariot vide arrive en A (A=1, P=0), le moteur M s'arrête, la trappe de remplissage Tr s'ouvre, Un
-                    fois le chariot plein, Tr se ferme et le chariot démarre. Quand le chariot arrive en B, il sarrette
+                <p>Le chariot vide arrive en A (A=1, P=0), le moteur M s'arrête, la trappe de remplissage Tr
+                    s'ouvre, Un
+                    fois le chariot plein, Tr se ferme et le chariot démarre. Quand le chariot arrive en B, il
+                    sarrette
                     et la trappe Tv s'ouvre. Quand le chariot est vide, la trappe Tv se ferme et le chariot démarre.
                     Quand il arrive en A le cycle recommence identique à lui même.</p>
-                <p>Normalement, ce genre de système est étudié à l'aide de méthode séquentielles. Vu sa simplicité nous
+                <p>Normalement, ce genre de système est étudié à l'aide de méthode séquentielles. Vu sa simplicité
+                    nous
                     allons le faire avec un système combinatoire simple.</p>
-                <p>Nous allons chercher les fonctions qui commandent les actionneurs M, Tr et Tv à partir des entrée A,
+                <p>Nous allons chercher les fonctions qui commandent les actionneurs M, Tr et Tv à partir des entrée
+                    A,
                     B
                     et P</p>
                 <img src="IMAGES/EN_Simp_Ex2_TV.jpg" alt="">
@@ -954,24 +1178,29 @@
                 <p>Les circuits numériques forment la base des systèmes utilisés dans une variété
                     d'applications, allant des ordinateurs aux appareils électroniques embarqués.</p>
                 <p>Contrairement aux circuits séquentiels qui
-                    dépendent de l'état précédent pour produire une sortie, <b>les circuits combinatoires</b> génèrent
+                    dépendent de l'état précédent pour produire une sortie, <b>les circuits combinatoires</b>
+                    génèrent
                     une
                     sortie exclusivement en fonction de leurs entrées actuelles.</p>
 
-                <p>Dans ce chapitre, nous allons explorer plusieurs types de circuits combinatoires couramment utilisés
+                <p>Dans ce chapitre, nous allons explorer plusieurs types de circuits combinatoires couramment
+                    utilisés
                     dans les systèmes numériques :</p>
                 <ul>
                     <li><b>Les circuits d'aiguillage,</b> tels que les multiplexeurs et les démultiplexeurs, qui
                         permettent de
                         sélectionner ou de distribuer des signaux selon des critères spécifiques.</li>
-                    <li><b>Les circuits arithmétiques,</b> comme les additionneurs et les soustracteurs, qui exécutent
+                    <li><b>Les circuits arithmétiques,</b> comme les additionneurs et les soustracteurs, qui
+                        exécutent
                         des
                         opérations mathématiques
                         essentielles au traitement numérique.</li>
-                    <li><b>Les circuits d'identification,</b> tels que les comparateurs, qui permettent de comparer des
+                    <li><b>Les circuits d'identification,</b> tels que les comparateurs, qui permettent de comparer
+                        des
                         données
                         numériques et de déterminer des relations entre elles.</li>
-                    <li><b>Les systèmes d'affichage,</b> notamment les afficheurs à sept segments, qui traduisent des
+                    <li><b>Les systèmes d'affichage,</b> notamment les afficheurs à sept segments, qui traduisent
+                        des
                         informations numériques en représentations visuelles compréhensibles.</li>
                 </ul>
 
@@ -980,7 +1209,8 @@
                 <img src="IMAGES/EN_Mxr.jpg" alt="">
                 <ul>
                     <li>Un multiplexeur a plusieurs entrées et une seule sortie,</li>
-                    <li>Il permet de connecter la sortie à l'une des entrée conformément à l'adresse précisée par les
+                    <li>Il permet de connecter la sortie à l'une des entrée conformément à l'adresse précisée par
+                        les
                         entrées de sélection</li>
                     <li>Un multiplexeur à \(N\) entrées doit avoir \(n\) entrée de sélection tels que \(2^n \geq N\)
                     </li>
@@ -1004,7 +1234,8 @@
                 <img src="IMAGES/EN_Mxr16.jpg" alt="">
                 <img src="IMAGES/EN_Mxr16_pyramide.jpg" alt="">
                 <ul>
-                    <li>Les bits d'adresse \(A_1A_0\) réalisent une première sélection. Les bits d'adresse \(A_3A_2\)
+                    <li>Les bits d'adresse \(A_1A_0\) réalisent une première sélection. Les bits d'adresse
+                        \(A_3A_2\)
                         finalisent la sélection</li>
                     <li>Les bits de faible poids de l'adresse doivent commander le premier étage,</li>
                     <li>J'ai représenté le multiplexeur de droite à gauche pour une meilleure représentation des
@@ -1013,8 +1244,10 @@
 
                 <!-- ########################################################################### -->
                 <h3 id="MXRSFB">Synthèse de fonctions booléennes :</h3>
-                <p>Un multiplexeur peut être utilisé pour réaliser une fonction logique décrite par sa table de vérité.
-                    Cette technique est très utilisé dans les circuits logiques programmables (PLD) sous le nom de LUT
+                <p>Un multiplexeur peut être utilisé pour réaliser une fonction logique décrite par sa table de
+                    vérité.
+                    Cette technique est très utilisé dans les circuits logiques programmables (PLD) sous le nom de
+                    LUT
                     <i>(Look Up Table)</i>
                 </p>
 
@@ -1024,27 +1257,35 @@
                 <ul>
                     <li>On établit la table de vérité de la fonction à réaliser,</li>
                     <li>Une fonction a \(n\) variables a une table de vérité de \(2^n\) lignes</li>
-                    <li>Pour la réaliser on prend un multiplexeur avec \(n\) entrées de sélection, soit \(2^n\) entrées
+                    <li>Pour la réaliser on prend un multiplexeur avec \(n\) entrées de sélection, soit \(2^n\)
+                        entrées
                         de données </li>
-                    <li>On applique les entrées (variables) de la fonction aux entrées de sélection du multiplexeur</li>
-                    <li>On forces les entrée du multiplexeurs à \(0\) ou à \(1\) conformément à la table de vérité</li>
+                    <li>On applique les entrées (variables) de la fonction aux entrées de sélection du multiplexeur
+                    </li>
+                    <li>On forces les entrée du multiplexeurs à \(0\) ou à \(1\) conformément à la table de vérité
+                    </li>
                     <li>C'est tout, nous avons réalisé notre fonction😊</li>
                 </ul><br>
                 <b>Exemple :</b>
                 <img src="IMAGES/EN_Mxr_Synth_ex1.jpg" alt=""><br>
 
                 <h4>Méthode économique :</h4>
-                <p>Moyennant un petit développement supplémentaire, on peut réaliser la même fonction logique avec un
+                <p>Moyennant un petit développement supplémentaire, on peut réaliser la même fonction logique avec
+                    un
                     multiplexeur plus petit que la méthode directe. </p>
                 <ul>
-                    <li>Toute fonction logique de \(n\) variables est réalisable à l’aide d’un multiplexeur à \(n-1\)
+                    <li>Toute fonction logique de \(n\) variables est réalisable à l’aide d’un multiplexeur à
+                        \(n-1\)
                         entrées de sélection</li>
-                    <li>\(n-1\) variables de la fonction sont utilisées comme entrées de sélection du multiplexeur. La
+                    <li>\(n-1\) variables de la fonction sont utilisées comme entrées de sélection du multiplexeur.
+                        La
                         variable restante (Z) sera utilisée comme entrée du multiplexeur </li>
                     <li>Établir la table de vérité,</li>
-                    <li>Décider que c'est la variable LSB qui servira de variable Z, les autres seront les variables de
+                    <li>Décider que c'est la variable LSB qui servira de variable Z, les autres seront les variables
+                        de
                         sélection</li>
-                    <li>Regrouper les lignes de la table de vérité deux par deux. On obtient une table avec deux fois
+                    <li>Regrouper les lignes de la table de vérité deux par deux. On obtient une table avec deux
+                        fois
                         moins de lignes dont les variables sont les variable de sélection.</li>
                     <li>Définir les sortie de cette nouvelle table qui seront égale à \(0\), \(1\), \(Z\) ou à
                         \(\bar{Z}\)</li>
@@ -1055,7 +1296,8 @@
                 <img src="IMAGES/EN_Mxr_Synth_ex2.jpg" alt=""><br>
 
                 <b>Autre exemple :</b>
-                <p>On désire réaliser un générateur de parité caractérisé par la fonction logique \(F=\overline{A\oplus
+                <p>On désire réaliser un générateur de parité caractérisé par la fonction logique
+                    \(F=\overline{A\oplus
                     B\oplus C}\)</p>
                 <p>On établit la table de vérité à partir de la fonction logique et on procède comme indiqué
                     précédemment.</p>
@@ -1078,21 +1320,26 @@
                 <p>On trouve dans le commerce beaucoup de multiplexeur différent. Nous en citeront deux à titre
                     d'exemple</p>
                 <h4>Le 74LS151</h4>
-                <p>Le 74 LS 151 est un multiplexeur en technologie bipolaire. Il permet de choisir une entrés parmi 8.
+                <p>Le 74 LS 151 est un multiplexeur en technologie bipolaire. Il permet de choisir une entrés parmi
+                    8.
                     Il a
                     deux sorties, une sortie normale plus une sortie inversée. Il dispose aussi d'une entrée de
-                    Validation E : E=0 &rarr; multiplexeur normal, E=1 &rarr; sortie = 0 &forall; l'état des entrées et
+                    Validation E : E=0 &rarr; multiplexeur normal, E=1 &rarr; sortie = 0 &forall; l'état des entrées
+                    et
                     des adresses
                 </p>
                 <img src="IMAGES/EN_Mxr_151.jpg" alt="">
-                <p>L'entrée de validation peut être utilisée pour former un multiplexeur 16:1 sans l'utilisation de la
-                    structure en pyramide classique en utilisant une simple porte NAND à la place d'un multiplexeur 1/2
+                <p>L'entrée de validation peut être utilisée pour former un multiplexeur 16:1 sans l'utilisation de
+                    la
+                    structure en pyramide classique en utilisant une simple porte NAND à la place d'un multiplexeur
+                    1/2
                 </p>
                 <img src="IMAGES/EN_Mxr_151_16.jpg" alt="">
 
                 <h4>Le 74LS153</h4>
                 <p>Le 74LS153 contient deux multiplexeurs 4:1 dans un seul boîtier. Chacun a sa propre entrée de
-                    validation. Malheureusement, ils se partage les entrées de sélection, ils ne sont donc pas tout à
+                    validation. Malheureusement, ils se partage les entrées de sélection, ils ne sont donc pas tout
+                    à
                     fait indépendants.</p>
                 <img src="IMAGES/EN_Mxr_153.jpg" alt="">
                 <p>Voilà comment on peut l'utiliser pour réaliser un multiplexeur 8:1</p>
@@ -1126,7 +1373,8 @@
                 <p>Le démultiplexeur est le circuit complémentaire du multiplexeur. Il a <b>une entrée et plusieurs
                         sorties</b>
                     ainsi qu'un certain nombre d'entrées de sélection (d'adresse). </p>
-                <p>La sortie "pointée" par l'adresse est connectée à l'entrée. Les autres sorties peuvent être soit tous
+                <p>La sortie "pointée" par l'adresse est connectée à l'entrée. Les autres sorties peuvent être soit
+                    tous
                     à
                     l'état bas soit tous à l'état haut.</p>
                 <img src="IMAGES/EN_Dmxr.jpg" alt=""><br>
@@ -1144,7 +1392,8 @@
                 <p>\(\rm{S_3 = E \; A_1 \; A_0 } \)</p>
                 <img src="IMAGES/EN_Dmxr_14_Sch_Typ1.jpg" alt="">
                 <h4>Démultiplexer 1:4 Type 2 : Sorties non sélectionnées = 1</h4>
-                <p>Il suffit d'inverser toutes les sorties. La sortie sélectionnée sera aussi inversée se qui donnera
+                <p>Il suffit d'inverser toutes les sorties. La sortie sélectionnée sera aussi inversée se qui
+                    donnera
                     \(\bar{E}\) au lieu de \(E\). On inverse aussi l'entrée et le tour est joué.</p>
                 <img src="IMAGES/EN_Dmxr_14_Sch_Typ2.jpg" alt="">
 
@@ -1184,7 +1433,8 @@
                         <ul>
                             <li>E sert d'entrée de validation,</li>
                             <li>E = 0 &rArr; circuit inhibé, toutes les sortie = 0 ∀ Ai </li>
-                            <li>E = 1 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 1, les autres = 0 </li>
+                            <li>E = 1 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 1, les autres = 0
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -1202,7 +1452,8 @@
                         <ul>
                             <li>E sert d'entrée de validation,</li>
                             <li>E = 1 &rArr; circuit inhibé, toutes les sortie = 1 ∀ Ai </li>
-                            <li>E = 0 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 0, les autres = 1 </li>
+                            <li>E = 0 &rArr; fonctionnement en décodeur : Sortie sélectionnée = 0, les autres = 1
+                            </li>
                         </ul>
                     </li>
                 </ul><br>
@@ -1253,7 +1504,8 @@
                     <li>A = B &rArr; S=1,</li>
                     <li>A &NotEqual; B &rArr; S=0,</li>
                 </ul>
-                <p>Deux nombres \( A=a_n...a_1a_o \) et \( B=b_n...b_1b_o \) sont égaux si tous les bits du même poids
+                <p>Deux nombres \( A=a_n...a_1a_o \) et \( B=b_n...b_1b_o \) sont égaux si tous les bits du même
+                    poids
                     sont égaux : \( a_o=b_o\; et \; a_1=b_1\; et \; a_2=b_2 \; ... \)
                 </p>
                 <p>Étudions un circuit de comparaison entre deux bits :</p>
@@ -1266,9 +1518,11 @@
                 <h3>Comparateurs du commerce :</h3>
                 <p>Le plus populaire et le 74LS85</p>
                 <p>C'est un comparateur de deux mots de 4 bits</p>
-                <p>Les entrées de mise en cascade \(I_{sup}, I_{eq} ~ et ~ I_{inf} \) servent à chaîner plusieurs 74LS85
+                <p>Les entrées de mise en cascade \(I_{sup}, I_{eq} ~ et ~ I_{inf} \) servent à chaîner plusieurs
+                    74LS85
                     et comparer des nombres plus grands.</p>
-                <p>Voici l'essentiel du mode de fonctionnement. Voir la datasheet du circuit pour découvrir toutes ses
+                <p>Voici l'essentiel du mode de fonctionnement. Voir la datasheet du circuit pour découvrir toutes
+                    ses
                     possibilités</p>
                 <p><b>Utilisation d'un comparateur seul :</b></p>
                 <img src="IMAGES/EN_Cmprtr_85.jpg" alt=""><br>
@@ -1287,14 +1541,17 @@
                 <img src="IMAGES/EN_ADD_Bin.jpg" alt="">
 
                 <p>Quand on additionne "manuellement" deux mots de \(n\) bits, on réalise \(n\) fois l'addition de
-                    trois bits. Chaque addition génère une somme et une retenue. Ainsi, la conception d'un additionneur
+                    trois bits. Chaque addition génère une somme et une retenue. Ainsi, la conception d'un
+                    additionneur
                     pour deux mots de \(n\) bits revient à assembler en cascade \(n\) additionneurs élémentaires de
                     trois bits.
                 </p>
                 <p>Pour faire l'étude d'un additionneur élémentaire 3 bits, on peut procéder de deux façons :</p>
                 <ol>
-                    <li>Faire comme on fait à la main. Additionner les bits deux par deux. On commence par additionner
-                        les deux premiers bits, ensuite on additionne le résultat avec le 3ème bits. La retenue finale
+                    <li>Faire comme on fait à la main. Additionner les bits deux par deux. On commence par
+                        additionner
+                        les deux premiers bits, ensuite on additionne le résultat avec le 3ème bits. La retenue
+                        finale
                         est
                         celle produite par la première <b>ou</b> la deuxième addition. Cela reviendra à étudier un
                         circuit réalisant une addition deux bits, et d'en brancher deux en cascade pour réaliser
@@ -1329,18 +1586,21 @@
                     cascade. On
                     obtient ce qu'on appelle un <b>Additionneur à propagation de la retenue</b></p>
                 <img src="IMAGES/EN_ADD_APR.jpg" alt="">
-                <p>Ce genre d'additionneur a l'avantage d'être facile à réaliser mais il manque de rapidité de calcul.
+                <p>Ce genre d'additionneur a l'avantage d'être facile à réaliser mais il manque de rapidité de
+                    calcul.
                     En effet :</p>
 
                 <ul>
                     <li>Le premier additionneur calcule la somme des bits de poids faible ainsi que
                         la retenue correspondante,</li>
-                    <li>La retenue produite est transmise à l'additionneur suivant pour être utilisée dans son calcul,
+                    <li>La retenue produite est transmise à l'additionneur suivant pour être utilisée dans son
+                        calcul,
                     </li>
                     <li>Ce processus se répète jusqu'à ce que tous les bits soient additionnés,</li>
                     <li>La retenue doit donc se propager d'un bout à l'autre de l'additionneur, ce qui peut ralentir
                         l'opération si \(n\) est élevé</li>
-                    <li>Le temps total de calcul est proportionnel à \(n\), ce qui en fait une architecture relativement
+                    <li>Le temps total de calcul est proportionnel à \(n\), ce qui en fait une architecture
+                        relativement
                         lente pour
                         des opérations sur de grands nombres.
                     </li>
@@ -1350,7 +1610,8 @@
                 <h3 id="ADDUSAGE">Utilisation correcte d'un additionneur</h3>
                 <p>La réalisation d'un additionneur ne pose pas de problème particulier. Par contre, son utilisation
                     demande quelques précautions pour éviter une mauvaise interprétation des résultats. On peut
-                    distinguer plusieurs cas d'utilisations possibles. Dans ce tuto, nous allons considérer seulement le
+                    distinguer plusieurs cas d'utilisations possibles. Dans ce tuto, nous allons considérer
+                    seulement le
                     cas où les opérandes et le résultat ont le même nombre de bits. On va voir comment utiliser un
                     additionneur 4 bits avec des nombres signés et des nombres non signés
                 </p>
@@ -1361,8 +1622,10 @@
                 <ul>
                     <li>Avec 4 bits, on peut représenter les nombres non signés allant de 0 à 15,</li>
                     <img class="Float_R" src="IMAGES/EN_Unsigned.jpg" alt="">
-                    <li>Si le résultat de l'addition est &gt; 15, il ne peut pas être représenté sur 4 bits, la retenue
-                        sortante \(C_{out} = C_3\) sert de <em>flag de débordement</em> pour indiquer si le résultat est
+                    <li>Si le résultat de l'addition est &gt; 15, il ne peut pas être représenté sur 4 bits, la
+                        retenue
+                        sortante \(C_{out} = C_3\) sert de <em>flag de débordement</em> pour indiquer si le résultat
+                        est
                         correct ou non.
                         <img src="IMAGES/EN_ADD_4bUadder.jpg" alt="">
                     </li>
@@ -1379,9 +1642,11 @@
                 <ul>
                     <img class="Float_R" src="IMAGES/EN_SignedTable.jpg" alt="">
                     <li>Avec 4 bits, on peut représenter les nombres Signés allant de +0 à +7 et de -1 à -8 </li>
-                    <li>Si le résultat de l'addition est &gt; +7 ou &lt; -8, il ne peut pas être représenté sur 4 bits.
+                    <li>Si le résultat de l'addition est &gt; +7 ou &lt; -8, il ne peut pas être représenté sur 4
+                        bits.
                         La retenue sortante \(C_3\) ne permet pas de détecter le débordement : <br>
-                        Par exemple : (+5)+(+4)=0101+0100=0 1001=(-7) , le résultat est faux et pourtant le flag \(C_3\)
+                        Par exemple : (+5)+(+4)=0101+0100=0 1001=(-7) , le résultat est faux et pourtant le flag
+                        \(C_3\)
                         est resté à 0
                     </li>
                     <li>On va ajouter une sortie \(O_F\) <i>Overflow</i> qui servira de flag de débordement :
@@ -1403,13 +1668,15 @@
                     accessible, on peut
                     utiliser le schéma suivant :</p>
                 <img src="IMAGES/EN_ADD_4bSadderV2.jpg" alt="">
-                <p>Si on utilise plusieurs additionneurs en cascade, l'Overflow est fabriqué au niveau du dernier étage.
+                <p>Si on utilise plusieurs additionneurs en cascade, l'Overflow est fabriqué au niveau du dernier
+                    étage.
                 </p>
                 <img src="IMAGES/EN_ADD_8bSadder.jpg" alt="">
 
                 <!-- ################################################################################################ -->
                 <h3 id="SUBTOR">Soustracteur</h3>
-                <p>Pour réaliser des soustraction, on peut faire l'étude d'un soustracteur exactement comme on l'a fait
+                <p>Pour réaliser des soustraction, on peut faire l'étude d'un soustracteur exactement comme on l'a
+                    fait
                     avec l'additionneur. On trouve d'ailleurs des structure assez similaire pour le
                     <i>Half-Substractor</i> et le <i>Full_Substractor</i>
                 </p>
@@ -1419,7 +1686,8 @@
                     <li>\( A-B = A \textcolor{red}{+} (-B) \), la soustraction est ramenée à une addition</li>
                     <li>\( (-B) \) est obtenue en faisant le complément à 2 de B </li>
                     <li>Pour réaliser le complément à 2, on inverse tous les bits et on ajoute 1</li>
-                    <li>Pour inverser tous les bits, on va appliquer l'expression \( X \oplus 1 = \bar{X} \) à tous les
+                    <li>Pour inverser tous les bits, on va appliquer l'expression \( X \oplus 1 = \bar{X} \) à tous
+                        les
                         bits</li>
                     <li>Pour ajouter 1 on va forcer à 1 la retenue entrante \(C_{in}\) de l`additionneur</li>
                 </ul>
@@ -1435,8 +1703,10 @@
                     <li><b>Mode = 1</b> &rArr; \( S = 1 + A + \tilde{B} = A + (-B) = A-B \)</li>
                 </ul><br>
 
-                <p><strong>Pour utiliser correctement ce circuit, il faut adapter la sortie \(C_{out}\) pour indiquer
-                        correctement les débordement en mode <em>non signé</em> et en mode <em>signé</em></strong></p>
+                <p><strong>Pour utiliser correctement ce circuit, il faut adapter la sortie \(C_{out}\) pour
+                        indiquer
+                        correctement les débordement en mode <em>non signé</em> et en mode <em>signé</em></strong>
+                </p>
 
                 <!-- ################################################################################################ -->
                 <h3 id="4BUADDSUB">Additionneur/Soustracteur 4 bits Non signé :</h3>
@@ -1476,13 +1746,16 @@
                 <!-- ################################################################################################ -->
                 <h2 id="7SEG">Afficheurs 7 segments</h2>
                 <img src="IMAGES/EN_7segCircuit.jpg" alt="">
-                <p>Un afficheur 7 segments est constitué de 7 segments lumineux disposés pour former un "8" lorsqu'ils
+                <p>Un afficheur 7 segments est constitué de 7 segments lumineux disposés pour former un "8"
+                    lorsqu'ils
                     sont tous activés. Le plus souvent, les segments sont réalisés par des LEDs. Chaque segment est
-                    identifié par une lettre (de A à G) et peut être allumé ou éteint individuellement pour créer
-                    différentes figures, principalement des chiffres. En plus des 7 segments, certains modèles incluent
+                    identifié par une lettre (de a à g) et peut être allumé ou éteint individuellement pour créer
+                    différentes figures, principalement des chiffres. En plus des 7 segments, certains modèles
+                    incluent
                     un point décimal pour afficher des valeurs non entières</p>
                 <img src="IMAGES/EN_7seg_abc.jpg" alt="">
-                <p>Pour minimiser le nombre de broches, les sept segment sont organisés soit en Anode commune, soit en
+                <p>Pour minimiser le nombre de broches, les sept segment sont organisés soit en Anode commune, soit
+                    en
                     Cathode commune.</p>
 
                 <h3 id="7SEGAC">Anode Commune</h3>
@@ -1504,11 +1777,15 @@
 
                 <!-- ################################################################################################ -->
                 <h3 id="7SEG_DCR">Décodeur BCD - 7 segments :</h3>
-                <p>Les afficheurs 7 segments sont principalement utilisés pour afficher des nombres. Les chiffres de 0 à
-                    9 sont généralement représentés en binaire sur 4 bits, ce qui correspond au code DCB (Décimal Codé
-                    en Binaire), plus couramment désigné sous le terme BCD (Binary Coded Decimal). Cependant, comme un
+                <p>Les afficheurs 7 segments sont principalement utilisés pour afficher des nombres. Les chiffres de
+                    0 à
+                    9 sont généralement représentés en binaire sur 4 bits, ce qui correspond au code DCB (Décimal
+                    Codé
+                    en Binaire), plus couramment désigné sous le terme BCD (Binary Coded Decimal). Cependant, comme
+                    un
                     afficheur 7 segments possède 7 broches pour contrôler les segments, un décodeur est nécessaire
-                    pour convertir l'information codée en BCD (4 bits) en signaux compatibles avec l'afficheur (7 bits),
+                    pour convertir l'information codée en BCD (4 bits) en signaux compatibles avec l'afficheur (7
+                    bits),
                     afin d'activer les segments appropriés.</p>
                 <img src="IMAGES/EN_7segDCR.jpg" alt=""><br>
 
@@ -1539,7 +1816,8 @@
                     $$ R = \frac{V_{OH}(I_{dn})-V_d}{I_{dn}} $$
                 </ul>
                 <p>L'utilisation d'un décodeur avec sorties Open Collector peut se faire comme le montre la figure
-                    ci-dessous. Je ne conseille pas cette structure car le montage consomme du courant que les LEDs soit
+                    ci-dessous. Je ne conseille pas cette structure car le montage consomme du courant que les LEDs
+                    soit
                     allumées ou pas</p>
                 <img src="IMAGES/EN_7segDRVCCoc.jpg" alt="">
 
@@ -1547,7 +1825,8 @@
                 <h3 id="BIN2BCD">Binaire vers BCD</h3>
                 <p>Normalement, les données sons codées en binaire dans les systèmes numériques. Si on désire les
                     afficher
-                    sur des afficheurs 7 segments, il faut les convertir en BCD comme cela est indiqué sur la figure ci
+                    sur des afficheurs 7 segments, il faut les convertir en BCD comme cela est indiqué sur la figure
+                    ci
                     dessous</p>
                 <img src="IMAGES/EN_7segBIN2BCD1.jpg" alt="">
                 <p>La conversion binaire vers BCD est difficile à réaliser à l'aide de circuits MSI (TTL, CMOS…).
@@ -1571,13 +1850,622 @@
                 <p>Voici l'exemple de conversion du nombre 471 (9 bits : 9 itérations) :</p>
                 <img src="IMAGES/EN_7segBIN2BCD2.jpg" alt="">
 
+                <!-- ################################################################################################ -->
+                <h3 id="7446-47-48">Les circuits 7446, 7447 et 7448</h3>
+                <p>Les décodeurs 7446, 7447, et 7448 sont des circuits intégrés de la famille TTL utilisés pour
+                    piloter
+                    des afficheurs à sept segments</p>
+                <ul>
+                    <li><b>7446 :</b>
+                        <ul>
+                            <li>Pour afficheurs à anode commune : Commande par niveau bas</li>
+                            <li>Sortie collecteur Ouvert</li>
+                            <li>Convient pour les afficheur nécessitant une tensions d'alimentation élevée (jusqu'à
+                                30V)
+                            </li>
+                        </ul>
+                    </li>
+                    <li><b>7447 :</b>
+                        <ul>
+                            <li>Pour afficheurs à anode commune : Commande par niveau bas</li>
+                            <li>Sortie collecteur Ouvert</li>
+                            <li>Convient pour les afficheur nécessitant une tensions d'alimentation relativement
+                                élevée
+                                (jusqu'à 15V)</li>
+                        </ul>
+                    </li>
+                    <li><b>7448 :</b>
+                        <ul>
+                            <li>Pour afficheurs à cathode commune : Commande par niveau haut</li>
+                            <li>Résistances intégrés</li>
+                            <li>Courant de sortie relativement faible. Ne convient pas aux afficheurs demandant un
+                                courant important</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_7seg74-46-47-48.jpg" alt="">
+                <ul>
+                    <li><b>LT</b> (Lamp Test) : Permet de tester l'afficheur. Si on l'active par un niveau bas (0), tous
+                        les
+                        segments sont allumés. </li>
+                    <li><b>RBI</b> (Ripple Blanking Input). Cette broche est utilisée dans les applications avec
+                        plusieurs afficheurs. On s'en sert pour faire de sorte que les 0 de gauche ne soit pas allumés.
+                        Le fonctionnement est résumé dans le tableau ci-dessous.
+                    </li>
+                    <li><b>BI/RBO</b> (Blanking Input/Ripple Blanking Output). Cette broche peut fonctionner soit en
+                        entrée soit en sortie :
+                        <ul>
+                            <li>Lorsque la broche est utilisée en entrée (BI), Si on l'active par un niveau bas (0),
+                                tous les segments sont éteints. </li>
+                            <li>Lorsque la broche est utilisée en sortie (RBO), Elle passe à 1 si l'afficheur est
+                                allumé, elle passent à 0 si l'afficheur est éteint. il faut la connecter à l'entré RBI
+                                de l'afficheur de droite pour l'informer si on est allumé ou éteint. Ainsi, il saura
+                                quoi faire si la valeur qu'il doit afficher est égale à 0</li>
+                        </ul>
+                    </li>
+                </ul><br>
+                <img src="IMAGES/EN_7segBIRBO.jpg" alt=""><br>
+                <p>Voici un exemple de branchement pour un afficheur à quatre digits :</p>
+                <img src="IMAGES/EN_7seg-7446Cascad.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="CD4511">Le circuits 4511</h3>
+                <p>C'est un décodeur BCD 7 segments de la famille CMOS</p>
+                <ul>
+                    <li>Pour afficheur cathode commune : Commande par niveau haut</li>
+                    <li>Alimentation entre 6V et 15V</li>
+                    <li>Jusqu'à 15mA par sortie</li>
+                    <li>Entré LT (Lamp Test) : Allume tous les segments. Permet de tester l'afficheur</li>
+                    <li>Entré BI (Blanking Input) : éteint tous les segments. Permet d'économiser l'énergie en
+                        allumant l'afficheur que quand c'est nécessaire</li>
+                    <li>Entrée LE (Latch Enable) : Permet de figer l'affichage à la valeur actuelle. Utile pour
+                        stabiliser l'affichage dans certaines situations</li>
+                </ul>
+                <img src="IMAGES/EN_7seg4511.jpg" alt=""><br>
 
 
+                <!-- ################################################################################################ -->
+                <h2 id="SEQINTRO">Les Circuits séquentiels</h2>
+                <p>Les circuits séquentiels constituent une classe importante des systèmes numériques. Leurs sorties
+                    dépendent non seulement des entrées actuelles, mais aussi de l'état précédent du circuit.
+                    Cette dépendance aux états permet à ces circuits de mémoriser des informations, ce qui les
+                    distingue
+                    des circuits combinatoires. </p>
+                <p>Dans cette section, je vais introduire l'élément essentiel des circuit séquentiels, à savoir
+                    <em>La
+                        bascule</em>. Ensuite je parlerai des <b>registres</b>, des <b>registres à décalages</b> et
+                    des
+                    <b>compteurs</b>
+                </p>
 
+                <!-- ################################################################################################ -->
+                <h3 id="CSBASE">Le circuit de base</h3>
+                <p>Le circuit de base des circuits séquentiels est constitué de deux portes NAND <i>qui se mordent
+                        la
+                        queue</i></p>
+                <p>Bien que ce circuit soit communément appelé bascule RS, je préfère donner ce nom au circuit
+                    ci-dessous</p>
+                <img src="IMAGES/EN_CS_Base.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSRS">La bascule RS</h3>
+                <img src="IMAGES/EN_CS_RS.jpg" alt="">
+                <p>La bascule RS (ou bascule SR, pour "Set-Reset") est une bascule bistable. Dès lors qu'elle est
+                    placée
+                    dans un état, elle va le maintenir grace à ces contre réactions.</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSRSH">La bascule RSH</h3>
+                <img src="IMAGES/EN_CS_RSH.jpg" alt="">
+                <p>l'ajout de l'entrée H transforme la bascule RS en une bascule synchrone. Les entrées ne sont
+                    prises
+                    en compte que lors de l'activation de l'horloge.</p>
+                <p>L'entré H (Horloge) fonctionne comme une entrée de validation :</p>
+                <ul>
+                    <li><b>H = 0</b> &rArr; État mémoire. La sortie ne change pas même si les les entrées R et S
+                        changent.
+                        J'utilise souvent le terme <b>aveugle</b> pour signifier que dans cet état, la bascule ne
+                        voit
+                        pas ce qui se passe sur R et S</li>
+                    <li><b>H = 1</b> &rArr; La bascule est active, la sortie se positionne conformément à la table
+                        de
+                        vérité. Tant que H est égale à 1, tout changement de R et S est répercuté en sortie.</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSJK">La bascule JK</h3>
+                <p>La bascule JK lève l'indétermination du cas : entrées = 11. Chaque fois qu'on arrive dans cet
+                    état,
+                    la sortie de la bascule change de niveau.</p>
+                <img src="IMAGES/EN_CS_JK.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSJKH">La bascule JKH</h3>
+                <img src="IMAGES/EN_CS_JKH.jpg" alt="">
+                <p>l'ajout de l'entrée H transforme la bascule JK en une bascule synchrone. Les entrées ne sont
+                    prises
+                    en compte que lors de l'activation de l'horloge.</p>
+                <p>L'entré H (Horloge) fonctionne comme une entrée de validation :</p>
+                <ul>
+                    <li><b>H = 0</b> &rArr; État mémoire. Bascule aveugle. Les changement de J et K sont ignorés.
+                    </li>
+                    <li><b>H = 1</b> &rArr; Bascule est active, la sortie se positionne conformément à la table de
+                        vérité. Tant que H est égale à 1, tout changement de J et K est répercuté en sortie.</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSFRONT">Bascule Réagissant sur front d'horloge</h3>
+                <p>Dans certaines situations, les changements multiples des entrées d'une bascule lorsque H = 1
+                    (niveau
+                    actif) peuvent mener à des problèmes indésirables. On a alors conçu des bascules qui réagissent
+                    uniquement sur le front de l'horloge (front montant ou descendant).</p>
+                <p>Deux méthodes sont couramment utilisées pour réaliser ce type de bascules :</p>
+                <ol>
+                    <li>Insérer un détecteur de front dans le circuit de l'horloge pour délivrer une impulsion très
+                        étroite au moment du changement de l'horloge. Durant la courte durée de cette impulsion, la
+                        bascule entre dans son état actif et traduit l'état des entrées vers la sortie.
+                        <img src="IMAGES/EN_CS_BRSFH.jpg" alt="">
+                        Voici des exemples de détecteurs de front qui exploite le temps de propagation dans les
+                        circuits
+                        logiques
+                        <ul>
+                            <li>Détecteur du front descendant : <img src="IMAGES/EN_CS_DFD.jpg" alt=""> </li>
+                            <li>Détecteur du front montant : <img src="IMAGES/EN_CS_DFM.jpg" alt=""> </li>
+                            <li>Détecteur des deux fronts : <img src="IMAGES/EN_CS_D2F.jpg" alt=""> </li>
+                        </ul>
+
+
+                    </li>
+                    <li>Utiliser une structure Maître-Esclave. On utilise deux bascules RS ou JK recevant des
+                        Horloges
+                        inversées. On peut facilement vérifier que le seul état des entrées qui arrive à la sortie
+                        est
+                        l'état présent sur les entrées juste avant le moment où l'horloge pase de 1 à 0
+                        <img src="IMAGES/EN_CS_MasterSlave.jpg" alt="">
+                        <ul>
+                            <li><b>RS Maître-Esclave :</b>
+                                <img src="IMAGES/EN_CS_RS_MS.jpg" alt="">
+                            </li>
+                            <li><b>JK Maître-Esclave :</b>
+                                <img src="IMAGES/EN_CS_JK_MS.jpg" alt="">
+                            </li>
+
+                        </ul>
+                    </li>
+                </ol>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CSCONV">Convention de dessin</h3>
+                <ul>
+                    <li>Bascule active pendant le <em>Nivaux haut</em> de l'horloge
+                        <img src="IMAGES/EN_CS_bascNH.jpg" alt="">
+                    </li>
+                    <li>Bascule active pendant le <em>Nivaux bas</em> de l'horloge
+                        <img src="IMAGES/EN_CS_bascNB.jpg" alt="">
+                    </li>
+                    <li>Bascule active pendant le <em>Front montant</em> de l'horloge
+                        <img src="IMAGES/EN_CS_bascFM.jpg" alt="">
+                    </li>
+                    <li>Bascule active pendant le <em>Front descendant</em> de l'horloge
+                        <img src="IMAGES/EN_CS_bascFD.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="BASCULED">La bascule D</h3>
+                <p>La bascule D (ou bascule "data") est une bascule disposant d'une seule entrée de données,
+                    notée <b>D</b>, et d'une sortie Q. Elle est conçue pour simplifier le
+                    stockage d'une valeur binaire.
+                    Elle peut être sensible au niveau de l'horloge (niveau haut ou bas) ou déclenchée par un front
+                    d'horloge (montant
+                    ou descendant). Lorsqu'elle est activée par l'horloge (au niveau ou au front), l'état présent
+                    sur
+                    l'entrée D est directement transféré à la sortie Q, où il est conservé jusqu'à la prochaine
+                    activation</p>
+
+                <h4>Bascule D active au niveau haut de H :</h4>
+                <img src="IMAGES/EN_CS_BD_HNH.jpg" alt=""><br>
+                <h4>Bascule D active au front descendant de H :</h4>
+                <img src="IMAGES/EN_CS_BD_HFD.jpg" alt=""><br><br>
+
+                <h4>Transformer une bascule JK ou RS en bascule D</h4>
+                <p>On peut constater sur les table de vérité que si J &ne; K alors la sortie suit J. De même si R
+                    &ne; S
+                    alors la sortie suit S. Il suffit donc d'ajouter un inverseur pour obtenir une bascule D</p>
+                <img src="IMAGES/EN_CS_BD_JKRS.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="FRORÇAGE">Entrées de forçage CLEAR et PRESET</h3>
+                <p>Les entrées de forçage sont prioritaires sur les autres entrées. Pae exemple, pour une bascule JK
+                    :
+                </p>
+                <ul>
+                    <li>L'entrée <em>C</em> (Clear) force la sortie à <em>0</em> &forall; J, K, H </li>
+                    <li>L'entrée <em>P</em> (Preset) force la sortie à <em>1</em> &forall; J, K, H </li>
+                </ul>
+                <img src="IMAGES/EN_CS_Force.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
 
                 <br><br><br>
                 <!-- ################################################################################################ -->
-                <h2 id=""></h2>
+                <h2 id="REGINTRO">Les Registres</h2>
+                <h3>Registre à chargement sur front d'horloge</h3>
+                <img src="IMAGES/EN_CS_REG.jpg" alt="">
+                <ul>
+                    <li>Un registre est une association de N bascules réalisant la fonction de mémoire N bits</li>
+                    <li>Au front d'horloge, l'information \(A_3 A_2 A_1 A_0\) est copiée dans \(Q_3 Q_2 Q_1 Q_0\) et y
+                        reste jusqu'au
+                        prochain front
+                    </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="REGLATCH">Registre Latch</h3>
+                <img src="IMAGES/EN_CS_REG_Latch.jpg" alt="">
+                <ul>
+                    <li>On utilise des bascules actives sur niveau de l'horloge</li>
+                    <li>Tant que l'horloge est à 1, les sorties Q suivent les entrées A </li>
+                    <li>Quand l'horloge passe à zéros, les sorties Q restent mémorisées <i>(latchées)</i> jusqu'à ce que
+                        l'horloge passe de nouveau à 1
+                    </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="REG273">Le Registre 74LS273</h3>
+                <ul>
+                    <li>Registre 8 bits de la famille TTL</li>
+                    <li>Chargement sur front montant de l'horloge</li>
+                    <li>Entrée CLEAR active au niveau bas</li>
+                </ul>
+                <img src="IMAGES/EN_CS_REG_273.jpg" alt="">
+                <img src="IMAGES/EN_CS_REG_273_sch.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="SHIFTREGI">Les Registres à décalage</h3>
+                <img src="IMAGES/EN_CS_SHIFTREG.jpg" alt="">
+                <ul>
+                    <li>A chaque coup d'horloge, le contenu d'une bascule est remplacé par celui de la bascule située à
+                        sa gauche &rArr; tous les bits sont alors décalés vers la droite, </li>
+                    <li><b>ES :</b> Entrée série, </li>
+                    <li><b>ABCD :</b> Sorties parallèle,</li>
+                    <li><b>SS :</b> Sorties série </li>
+                    <li><b>H :</b> Horloge </li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PLOAD">Chargement parallèle</h3>
+                <img src="IMAGES/EN_CS_SR_PL.jpg" alt="">
+                <ul>
+                    <li>En plus des N sorties \(Q_n\;...\; Q_2 Q_1 Q_0\), le registre à décalage dispose de N entrées de
+                        \(A_n \;...\; A_2 A_1 A_0\) ainsi qu'une entrée de contrôle de chargement PL (Parallel Load)
+                    </li>
+                    <li>Quand l'entré PL est activée, le entrées \(A_n \;...\; A_2 A_1 A_0\) sont chargée dans
+                        \(Q_n\;...\; Q_2 Q_1 Q_0\)</li>
+                    <li>Le chargement peut être synchrone ou Asynchrone :
+                        <ul>
+                            <li><b>Chargement Asynchrone :</b> Le chargement se fait immédiatement au moment de
+                                l'activation de l'entrée PL</li>
+                            <li><b>Chargement Synchrone :</b> Le chargement se fait au coup d'horloge qui suit
+                                l'activation de l'entrée PL</li>
+                        </ul>
+                    </li>
+                    <li>Quand l'entrée <b>PL</b> n'est pas activée, le registre fonctionne en mode décalage.
+                        C'est pour cette raison que cette entrée est des fois baptisée <b>SL</b> (Shift/Load) parce
+                        qu'elle permet de basculer entre le mode décalage et le mode chargement. Il arrive aussi qu'on
+                        la nomme tout simplement <b>L</b> (Load)</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="SYPLOAD">Chargement parallèle Synchrone</h3>
+                <p>Pour que le chargement soit synchronisé sur le front d'horloge, il faut que les données entrent dans
+                    les bascule par l'entré D. Pour ce faire, on place un petit multiplexeur 2:1 devant chaque bascule
+                    pour connecter l'entrée D soit vers la donnée à charger soit vers la sortie de la bascule
+                    précédente. Tous les multiplexeurs sont contrôlées par l'entrée PL</p>
+                <img src="IMAGES/EN_CS_SR_SPL.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SR_SPL_SCH.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ASYPLOAD">Chargement parallèle Asynchrone</h3>
+                <p>Pour que le chargement soit indépendant de l'horloge, on va passer par les entrées <b>Clear</b> et
+                    <b>Preset</b>
+                </p>
+                <img src="IMAGES/EN_CS_SR_APL.jpg" alt="">
+                <p>Les bascules utilisées on un Clear et Preset actif au niveau bas,</p>
+                <ul>
+                    <li><b>PL = 1</b> &rArr; \(C=1 ~,~ P=1\), &rArr; Bascule libre &rArr; Mode décalage</li>
+                    <li><b>PL = 0</b> &rArr; \(C=A ~,~ P=\bar{A}\) :
+                        <ul>
+                            <li>Si A=0 &rArr; C=0, P=1 &rArr; Clear &rArr; Q = 0 &equiv; Chargement de A</li>
+                            <li>Si A=1 &rArr; C=1, P=0 &rArr; Preset &rArr; Q = 1 &equiv; Chargement de A</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>On remarque que l'entrée \(PL\) est active au niveau bas. il aurait été plus juste de l'appeler
+                    \(\overline{PL}\)</p><br>
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="BIDSR">Registre à décalage bidirectionnel</h3>
+                <img src="IMAGES/EN_CS_SR_BIDIR.jpg" alt="">
+                <p>On a rajouté un petit multiplexeur 2:1 devant chaque entrée D pour connecter soit la bascule de
+                    gauche soit la bascule de droite</p>
+                <ul>
+                    <li><b>Dir = 0</b> &rArr; décalage à gauche</li>
+                    <li><b>Dir = 1</b> &rArr; décalage à droite</li>
+                    <li><b>ESG :</b> Entrée série gauche</li>
+                    <li><b>ESD :</b> Entrée série droite</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="SRUNIV">Registre à décalage universel</h3>
+                <img src="IMAGES/EN_CS_SR_UNIV.jpg" alt="">
+                <img src="IMAGES/EN_CS_SR_UNIV_tab.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="ASYCTR">Les compteurs Asynchrones</h2>
+                <p>On obtient un compteur Asynchrone en connectant en cascade des bascules JK de la façon suivante :</p>
+                <ul>
+                    <li>On utilise des bascules qui réagissent au front descendant de l'horloge</li>
+                    <li>On connecte la sortie Q d'une bascule à l'entrée Horloge de la bascule suivante</li>
+                    <li>Les entrée J et K doivent être forcée à 1 : A chaque coup d'horloge, la sortie Q change d'état
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_CS_CTR_ASY.jpg" alt="">
+                <img src="IMAGES/EN_CS_CTR_ASY_crono.jpg" alt=""><br>
+
+                <h4>Avantage est inconvénients :</h4>
+                <p>Les compteur asynchrones ont l'avantage de la simplicité mais l'inconvénient de la propagation. En
+                    effet, chaque
+                    bascule change un temps de propagation après la bascule précédente ce qui engendre un lenteur de
+                    fonctionnement et la génération d'états transitoires indésirables </p>
+                <img src="IMAGES/EN_CS_CTR_ASY_transitoir.jpg" alt="">
+                <p>Chaque état transitoire dure le temps de propagation de technologie utilisée. Par exemple, pour la
+                    famille TTL, le temps de propagation est de 10 ns</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="ASYDCTR">Décompteur Asynchrone</h3>
+                <p>Pour obtenir un décompteur asynchrone, on peut procéder de deux façons :</p>
+                <ol>
+                    <li>Utiliser le même montage que celui du compteur mais avec des bascules qui réagissent au
+                        <b>front montant </b> de l'horloge
+                        <img src="IMAGES/EN_CS_CTR_DCR1.jpg" alt="">
+                    </li>
+                    <li>Utilise des bascules qui réagissent au front descendant de l'horloge mais chaque bascule est
+                        déclenchée par la sortie \(\bar{Q}\) de la bascule précédente
+                        <img src="IMAGES/EN_CS_CTR_DCR2.jpg" alt="">
+                    </li>
+                </ol>
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="MODULON">Comptage incomplet</h3>
+                <p>un compteur \(n\) bits est un compteur modulo \(2^n\). Par exemple un compteur 4 bits est un compteur
+                    modulo 16, il compte de 0 à 15 et revient à 0</p>
+                <p>Avec un compteur asynchrone, la façon la plus simple de réaliser un compteur modulo \(N\) où \(N \lt
+                    2^n\) consiste à détecter la valeur \(N\) sur les sorties et de déclencher un signal de "remise à
+                    zéro" pour réinitialiser les sorties à 0. Cette méthode n'est pas parfaite à cause de la latence due
+                    au temps de propagation des portes logiques utilisées pour détecter la valeur \(N\). Pendant ce temp
+                    de latence, la valeur \(N\) qui ne doit pas faire partie du cycle comptage va exister pendant une
+                    durée serte très courte mais qui n'est pas nulle.</p>
+                <img src="IMAGES/EN_CS_CTR_ModulN.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_CTR_modul10.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="DIVFREQ">Diviseur de fréquence</h3>
+                <p>Une seule bascule peut être utilisée pour diviser la fréquence par 2 </p>
+                <img src="IMAGES/EN_CS_CTR_DivFreq2.jpg" alt="">
+                <p>Un compteur modulo N peut être utilisé pour diviser la fréquence par N. Le signal de sortie doit être
+                    pris sur le MSB du compteur</p>
+                <img src="IMAGES/EN_CS_CTR_DivFreqN.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_CTR_DivFreq5.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_CTR_DivFreq5Chrono.jpg" alt=""> <br>
+                <p>Pour le diviseur par 5, j'ai fait exprès d'utiliser un compteur 4 bits. Normalement 3 bits auraient
+                    suffit. Mais c'est dans le cas où on utilise un compteur intégré. Avec cette situation, il faut
+                    faire attention, le MSB c'est C et non D</p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CASCAASY">Cascadage asynchrone</h3>
+                <p>La mise en cascade de compteurs asynchrones permet d'augmenter le nombre de
+                    bits du comptage en connectant plusieurs compteurs en série</p>
+                <ul>
+                    <li>Le MSB du compteur i est appliqué à l'horloge du compteur i+1 (suivant)</li>
+                    <li>Chaque fois qu'un compteur termine son cycle et repasse à 0, le compteur suivant s'incrémente
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_CS_CTR_CascadAsy.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CASCADBCD">Compteur BCD</h3>
+                <p>On obtient un compteur BCD en cascadant des compteurs modulo 10 </p>
+                <img src="IMAGES/EN_CS_CTR_BCD.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="74LS93">Le compteur 74LS93</h3>
+                <img src="IMAGES/EN_CS_CTR_93.jpg" alt="">
+                <img src="IMAGES/EN_CS_CTR_93_pinout.jpg" alt="">
+                <img class="w300" src="IMAGES/EN_CS_CTR_93_Sch.jpg" alt="">
+
+                <p>Le 74LS93 est un compteur asynchrone populaire de la famille TTL. Il a une conception intelligente :
+                </p>
+                <ul>
+                    <li>La bascule A n'est pas chaînée avec les 3 autres. Elle peut être utilisée toute seule et les 3
+                        autres peuvent être utilisées à part pour réaliser un compteur modulo 8 ou plus faible</li>
+                    <li>Pour réaliser un compteur module 3, 5, 6, 9 , 10, 12 ou 14, on n'a pas besoin d'une porte NAND
+                        externe, celle qui est intégrée fait l'affaire</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="74LS90">Le compteur 74LS90</h3>
+                <img src="IMAGES/EN_CS_CTR_90.jpg" alt="">
+                <p>Le 74LS90 est une décade asynchrone populaire de la famille TTL. Il a une architecture similaire au
+                    93 avec des entrées de remise à 9 en plus</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="BCD60">Compteur BCD modulo 60</h3>
+                <p>Voici l'exemple d'un compteur BCD modulo 60 avec affichage. Convient pour compter les secondes ou les
+                    minutes.</p>
+                <img src="IMAGES/EN_CS_CTR_BCD60.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="BCD24">Compteur BCD modulo 24</h3>
+                <p>Voici l'exemple d'un compteur BCD modulo 24 avec affichage. Convient pour compter les
+                    heures.</p>
+                <img src="IMAGES/EN_CS_CTR_BCD24.jpg" alt=""><br>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="SYNCTR">Les compteurs Synchrones</h2>
+                <p>Les compteurs synchrones peuvent aussi être réalisés à l'aide de bascule JK. A la différence des
+                    compteurs asynchrones, toutes les bascules reçoivent la même horloge. Dès lors, à chaque
+                    coup d'horloge toutes les sorties changent en même temps, il n'y aura pas de latence ni états
+                    transitoires.
+                </p>
+                <img src="IMAGES/EN_CS_SCTR_CLK.jpg" alt="">
+                <p class="InlineCenter"><span class="encadre">Que doit on mettre sur les J et les K pour que ça compte
+                        ?</span></p>
+                <p>On connaît la séquence de comptage. Au coup d'horloge, on sait pour chaque bascule si elle doit
+                    changer d'état ou non, On en déduit le J et le K qu'il faut lui appliquer. Pour nous faciliter le
+                    travail, on va établir la table de transition de la bascule JK </p>
+                <img src="IMAGES/EN_CS_SCTR_TransTable.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="4BSYNCTR">Compteur Synchrone 4 bits</h3>
+                <p>On commence par dresser une Table avec la séquences de comptage des sorties A, B, C et D et les
+                    valeurs adéquates des entrées J et K</p>
+                <img src="IMAGES/EN_CS_SCTR_4BTable.jpg" alt="">
+                <h4>Remplissage de la table :</h4>
+                <p>Au départ on est dans l'état DCBA = 0000. Au prochain coup d'horloge on doit aller à l'état DCBA =
+                    0001. </p>
+                <p>Pour la bascule A, on a une transition 0&rarr;1, on consulte la table de transition, on trouve JK=1x
+                </p>
+                <p>Pour les autres bascules, il faut rester à 0, la table de transition donne JK=0x</p>
+                <p>On continue comme ça pour compléter la table.</p>
+                <p>Maintenant, il faut trouver les expression des J et K en fonction de A, B, C et D. il y a du boulot
+                    😊</p><br>
+                <p>Pour la bascule A, c'est vite fait, on constate qu'elle change à chaque coup d'horloge &rArr; J=1, K=
+                    1</p>
+                <p>Voici les tables de Karnaugh pour tous les J et les K</p>
+                <img src="IMAGES/EN_CS_SCTR_KarnT1.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_KarnT2.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_4BSch.jpg" alt="">
+                <p><b>On remarque qu'on a une relation de récurrence 1, A, AB, ABC, ABCD ... facile à généraliser pour
+                        construire des compteurs plus grands</b></p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="4BSYNCTRPL">Version avec chargement parallèle Asynchrone</h3>
+                <img src="IMAGES/EN_CS_SCTR_4bPL.jpg" alt="">
+                <p>Le comptage est synchrone, le chargement est Asynchrone</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="4BSYNDCTR">Décompteur Synchrone 4 bits</h3>
+                <p>Avec une étude similaire, on obtient : </p>
+                <img src="IMAGES/EN_CS_SCTR_4bDCTR.jpg" alt=""><br>
+                <b>Là aussi, on remarque une récurrence facile à généraliser : \( 1, ~\bar{A},~
+                    \bar{A}\bar{B},~\bar{A}\bar{B}\bar{C}~...\)</b><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CTRDCTRSYN">Compteur/Décompteur Synchrone</h3>
+                <p>On va encore utiliser l'opérateur XOR (que j'adore😊) pour choisir entre \( A \) et \(\bar{A}\) , \(
+                    B \) et \(\bar{B}\) ... </p>
+                $$ 0 \oplus X = X \quad,\quad 1 \oplus X = \bar{X}$$
+                <img src="IMAGES/EN_CS_SCTR_CTR-DCTR.jpg" alt="">
+                <ul>
+                    <li><b>DIR = 0 :</b> Compteur</li>
+                    <li><b>DIR = 1 :</b> Décompteur</li>
+                </ul>
+                <p>Voici une version avec chargement parallèle</p>
+                <img src="IMAGES/EN_CS_SCTR_CTR-DCTR_PL.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="DECADESYNC">Décade Synchrone</h3>
+                <p>La technique qui consiste à detecter le 10 et le replacer par 0 est une technique Asynchrone donc
+                    inadéquate pour réaliser une décade synchrone. On va donc refaire l'étude de A à Z</p>
+                <img src="IMAGES/EN_CS_SCTR_DCAD_Tbl.jpg" alt="">
+                <img src="IMAGES/EN_CS_SCTR_KarnT3.jpg" alt="">
+                <img src="IMAGES/EN_CS_SCTR_KarnT4.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_DCAD.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="CASCADSYNC">Mise en cascade des compteurs synchrones</h3>
+                <p>La mise en cascade doit être synchrone. Tous les compteurs doivent recevoir la même Horloge</p>
+                <img src="IMAGES/EN_CS_SCTR_CascadSync.jpg" alt="">
+                <p>Dans ces conditions, tous les compteurs fonctionneront simultanément et on n'aura pas le comptage
+                    désiré. La règle de comptage doit être la suivante :</p>
+                <ul><em>
+                        <li>Le compteur de plus faible poids s'incrémente toujours</li>
+                        <li>Pour les autres, un compteur ne doit s'incrémenter que si les compteurs de rang inférieur
+                            sont tous à leur valeur maximale</li>
+
+                    </em></ul>
+                <p>Prenons le cas d'un comptage BCD (tous les compteur sont des décades, la valeur max de chaque
+                    compteur est 9) :</p>
+                <ul>
+                    <li>Si la situation actuelle est <b>0099</b>, au prochain coup d'horloge :
+                        <ul>
+                            <li>Le compteur des unités doit s'incrémenter car il doit toujours le faire,</li>
+                            <li>Le compteur des dizaines doit s'incrémenter car le compteur à sa droite contient 9</li>
+                            <li>Le compteur des centaines doit s'incrémenter car les deux compteurs à sa droite sont à 9
+                            </li>
+                            <li>Le compteur des milliers ne doit pas s'incrémenter car les trois compteurs à sa droite
+                                ne sont pas tous les trois à 9</li>
+                            <li>On passe donc à <b>0100</b></li>
+                        </ul>
+                    </li>
+                    <li>Si la situation actuelle est <b>0997</b>, au prochain coup d'horloge :
+                        <ul>
+                            <li>Le compteur des unités doit s'incrémenter car il doit toujours le faire,</li>
+                            <li>Le compteur des dizaines ne doit pas s'incrémenter car le compteur à sa droite contient
+                                7, </li>
+                            <li>Le compteur des centaines ne doit pas s'incrémenter car les deux compteurs à sa droite
+                                ne sont pas tous les deux à 9</li>
+                            <li>Le compteur des milliers ne doit pas s'incrémenter car les trois compteurs à sa droite
+                                ne sont pas tous les trois à 9</li>
+                            <li>En définitive, il n'y a que le compteur des unités qui s'incrémente et on passe à
+                                <b>0998</b>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul><br>
+                <p>Pour réaliser cet objectif, on va rajouter à chaque compteur une entrée de <em>validation V</em> et
+                    une sortie de <em>retenue R</em>, et on va les connecter en cascade comme suit : </p>
+                <img src="IMAGES/EN_CS_SCTR_CascadSyncSch.jpg" alt="">
+                <ul>
+                    <li>L'entrée de validation V permet d'autoriser de d'interdire le comptage :
+                        <ul>
+                            <li>V = 0 &rArr; arrêt</li>
+                            <li>V = 1 &rArr; comptage</li>
+                        </ul>
+                    </li>
+                    <li>La sortie de retenue R passe à 1 quand le compteur contient sa valeur max <b>et</b> son entrée
+                        de validation V est active signifiant que les compteurs précédents sont aussi à leur valeur max.
+                        Cette sortie servira à informer le compteur suivant qu'il pourra s'incrémenter pendant le coup
+                        d'horloge suivant.</li>
+                </ul><br>
+                <img src="IMAGES/EN_CS_SCTR_4Bcascad.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_DecdCascad.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CTRSYNBASCD">Compteur synchrone avec des bascules D</h3>
+                <p>On procède de la même façon qu'avec les bascules JK</p>
+                <img src="IMAGES/EN_CS_SCTR_DFF_Table.jpg" alt="">
+                <p>l'étude de Karnaugh permet d'obtenir les résultats :</p>
+                <img src="IMAGES/EN_CS_SCTR_DFF_Formules.jpg" alt="">
+                <img src="IMAGES/EN_CS_SCTR_DFF_SCH.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="DCTRSYNDFF">Décompteur synchrone avec des bascules D</h3>
+                <img src="IMAGES/EN_CS_SCTR_DFF_DCTR_Table.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_DFF_DCTR_Formules.jpg" alt=""><br>
+                <img src="IMAGES/EN_CS_SCTR_DFF_DCTR.jpg" alt=""><br>
+                <p>On peut combiner les deux pour réaliser un compteur/décompteur :</p>
+                <img src="IMAGES/EN_CS_SCTR_DFF_CTR-DCTR.jpg" alt="">
+
+
+
 
                 <!-- ################################################################################################ -->
                 <h3 id=""></h3>
