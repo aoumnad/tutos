@@ -454,6 +454,12 @@ code {
 .w400 {
     width: 400px;
 }
+.w500 {
+    width: 500px;
+}
+.w600 {
+    width: 600px;
+}
 
 .encadre {
     border: 2px solid black; /* Changez la couleur et l'épaisseur de la bordure si nécessaire */

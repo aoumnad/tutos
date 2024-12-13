@@ -55,7 +55,7 @@
 
 
                 </div>
-                <div class="rubrique" onclick="toggleMenu('boole', this)">
+                <div class="rubrique" onclick="toggleMenu('Boole', this)">
                     <span>&gt;</span>
                     <h2>Algèbre de Boole</h2>
                 </div>
@@ -387,6 +387,35 @@
                         </a>
                         <a href="#DCTRSYNDFF">
                             <h3>Décompteur synchrone avec des bascules D</h3>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="rubrique" onclick="toggleMenu('realcircnum', this)">
+                    <span>&gt;</span>
+                    <h2>Réalisation des circuits numériques</h2>
+                </div>
+                <div id="realcircnum" class="sub-rubrique">
+                    <a href="#DIGITCIRCUIT">
+                        <h3>Introduction</h3>
+                    </a>
+                    <div class="rubrique" onclick="toggleMenu('compocom', this)">
+                        <span>&gt;</span>
+                        <h2>Composants en commutation</h2>
+                    </div>
+                    <div id="compocom" class="sub-rubrique">
+                        <a href="#COMTOR">
+                            <h3>Le commutateur</h3>
+                        </a>
+                        <a href="#DIODCOMM">
+                            <h3>La diode en commutation</h3>
+                        </a>
+                        <a href="#TRANSCOMM">
+                            <h3>Le Transistor Bipolaire en commutation</h3>
+                        </a>
+                        <a href="#TRANSMOS">
+                            <h3>Le Transistor MOS en commutation</h3>
                         </a>
                     </div>
                 </div>
@@ -2462,7 +2491,482 @@
                 <img src="IMAGES/EN_CS_SCTR_DFF_DCTR_Formules.jpg" alt=""><br>
                 <img src="IMAGES/EN_CS_SCTR_DFF_DCTR.jpg" alt=""><br>
                 <p>On peut combiner les deux pour réaliser un compteur/décompteur :</p>
-                <img src="IMAGES/EN_CS_SCTR_DFF_CTR-DCTR.jpg" alt="">
+                <img src="IMAGES/EN_CS_SCTR_DFF_CTR-DCTR.jpg" alt=""><br>
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="DIGITCIRCUIT">Réalisation des circuits numériques</h2>
+                <p>Nous vivons dans un monde analogique, et non numérique, où les tensions, les courants et autres
+                    grandeurs physiques varient de manière continue dans les circuits réels. <br>
+                    La logique numérique simplifie ces complexités en réduisant l'infinité des valeurs réelles d'une
+                    grandeur physique à deux états logiques : 0 et 1. Cette simplification permet d'analyser et de
+                    concevoir des circuits numériques de manière fonctionnelle, en s'appuyant à la fois sur des outils
+                    mathématiques, comme l'algèbre de Boole adaptée à l'ensemble {0, 1}, et sur l'utilisation de
+                    composants électroniques en commutation capables de représenter physiquement ces deux états.</p>
+
+                <!-- ################################################################################################ -->
+                <h2 id="COMTOR">Composants en commutation</h2>
+                <p>L'élément essentiel de l'électronique digitale est le <b>commutateur</b>. C'est un dispositif qui
+                    permet d'établir ou d'interrompre une connexion électrique entre deux points d'un circuit.</p>
+                <ul>
+                    <li>En position fermée, le commutateur permet au <b>courant</b> de circuler.</li>
+                    <li>En position ouverte, il interrompt le flux de <b>courant</b>.</li>
+                </ul>
+                <p>L'information <b>présence</b> ou <b>absence</b> de courant peut être transformé en une information
+                    <b>tension
+                        faible</b> ou <b>tension forte</b> à l'aide du circuit suivant :
+                </p>
+                <img src="IMAGES/EN_COM_COM.jpg" alt="">
+                <ul>
+                    <li>En position fermée : \(Vs~=~0\)</li>
+                    <li>En position ouverte : \(Vs~=~V_{cc}\)</li>
+                </ul><br>
+
+                <h3>Caractéristiques statiques d'un commutateur idéal :</h3>
+                <ul>
+                    <li>En position fermée : \(R_{com}~=~0\) , \(Vs~=~0\) , \(I:~important\)</li>
+                    <li>En position ouverte : \(R_{com}~=~ \infty\) , \(I=0\) , \(Vs~=~V_{cc}\)</li>
+                </ul><br>
+
+                <h3>Caractéristiques statiques d'un commutateur Réel :</h3>
+                <p>Dans les circuits numériques, on utilise essentiellement des diodes, des transistors bipolaire et des
+                    transistors MOS comme commutateurs. Ces derniers n'ont ni une résistance infinie à l'état
+                    ouvert, ni une résistance nulle à l'état fermé</p>
+                <ul>
+                    <li>En position fermée : \(R_{com}: faible \) , \(Vs: faible~(\approx0) \) , \(I:~important\)</li>
+                    <li>En position ouverte : \(R_{com}: très~élevée \) , \( I \approx 0~(courant~de~fuite) \) ,
+                        \(Vs~\approx~V_{cc}\)</li>
+                </ul>
+                <img src="IMAGES/EN_COM_Stat.jpg" alt=""><br>
+
+                <h3>Caractéristiques dynamique d'un commutateur Réel :</h3>
+                <p>Les caractéristiques dynamiques d'un commutateur Traduisent le comportement transitoire lors du
+                    passage
+                    d'un état à un autre. </p>
+                <img src="IMAGES/EN_COM_Dyn.jpg" alt="">
+                <ul>
+                    <li>\(t_d\) :<b> Delay Time (Temps de retard) :</b> C'est le temps nécessaire pour qu'un commutateur
+                        commence à répondre à un signal d'activation. Dépend de la capacité parasite et aux résistances
+                        internes du commutateur</li>
+                    <li>\(t_r\) :<b> Rise Time (Temps de montée) :</b> C'est le temps nécessaire pour que le courant
+                        passe d'une valeur faible (10 % de la pleine échelle) à une valeur élevée (90 %
+                        de la pleine échelle)</li>
+                    <li>\(t_s\) :<b> Storage Time (Temps de stockage) :</b> Ce paramètre est surtout associé au
+                        transistor bipolaire. C'est le temps que met un commutateur à évacuer
+                        les charges accumulées dans la base lorsqu'il passe de l'état ON à l'état OFF.
+                    </li>
+                    <li>\(t_f\) : <b>Fall Time (Temps de descente) :</b> C'est le temps nécessaire pour que le
+                        courant passe d'une valeur élevée (90 % de la pleine échelle) à une valeur faible (10 % de la
+                        pleine échelle).</li>
+                    <li>\(t_{on}\) : <b>Turn-On Time (Temps d'allumage) :</b> C'est la somme du <i>delay time</i> et du
+                        <i>rise time</i>.
+                        C'est le temps total nécessaire pour que le commutateur passe de l'état OFF à l'état ON.
+                    </li>
+                    <li>\(t_{off}\) : <b>Turn-Off Time (Temps d'extinction) :</b> C'est la somme du <i>storage time</i>
+                        et du
+                        <i>fall time</i>.
+                        C'est le temps total nécessaire pour que le commutateur passe de l'état ON à l'état OFF.
+                    </li>
+                </ul>
+                <p><em>Ces paramètres indiquent la rapidité avec laquelle le commutateur change d'état. Ils jouent un
+                        rôle essentiel dans les applications à haute fréquence nécessitant des transitions rapides.
+                        Ils dépendent principalement de la capacité structurelle du commutateur, de
+                        ses résistances internes, ainsi que des résistances du circuit de commande. L'un des principaux
+                        enjeux de l'industrie électronique actuelle est de concevoir des composants ayant les temps de
+                        commutation les plus réduits possibles</em></p>
+                <p>Pour réduire les capacités structurelles des commutateurs, les composants électroniques sont conçus
+                    avec des dimensions de plus en plus petites. Cette miniaturisation permet de diminuer la quantité de
+                    charge stockée, améliorant ainsi les performances dynamiques. Cependant, elle atteint ses limites en
+                    raison de phénomènes physiques tels que l'effet tunnel quantique, la fiabilité des matériaux à
+                    l'échelle nanométrique, et les difficultés de fabrication. <br>
+
+                    En parallèle, pour réduire les temps de charge et de décharge des capacités structurelles, on
+                    cherche à diminuer les résistances internes et celles des circuits de commande. Bien que cela
+                    améliore les vitesses de commutation, cela entraîne une augmentation des courants ce qui provoque
+                    des problèmes de surchauffe à cause de la dissipation thermique, nécessitant des systèmes de
+                    refroidissement de plus en plus volumineux.
+                    Ainsi, l'optimisation des temps de commutation est un équilibre délicat entre performance, fiabilité
+                    et gestion thermique</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="DIODCOMM">La diode en commutation</h3>
+                <p>La diode est un composant qui n'a que deux bornes. Elle n'a pas une entrée qui peut servir de
+                    contrôle. De ce fait, elle sera commandée par le sens de la tension qui lui est appliquée. Il n'y a
+                    pas de séparation entre le circuit de commande est le circuit commandé. Nous en avons parlé dans la
+                    section <a target="_blank" href="ElecBase.html#DIODEINTRO">Electronique de base</a>
+                    <img src="IMAGES/EN_COM_Diode.jpg" alt="">
+                </p><br>
+                <h4>Comportement dynamique</h4>
+                <img src="IMAGES/EN_COM_Diod_Dyn.jpg" alt="">
+                <p>Lors du passage de l'état ON à l'état OFF, la diode présente un comportement dynamique particulier :
+                    elle conduit dans le sens inverse pendant un très court instant. Un courant inverse, de même
+                    intensité que le courant
+                    direct, circule temporairement. Ce courant est dû aux porteurs de charge non recombinés, rappelés
+                    par la tension inverse. La durée de ce phénomène est appelée temps de recouvrement inverse
+                    (\(t_{rr}\) , reverse recovery time)</p><br>
+
+                <h4>Paramètre importants :</h4>
+                <ul>
+                    <li><b>Tension inverse maximale \(V_{rmax}\) : </b> C'est la tension maximale que la diode peut
+                        supporter
+                        en polarisation inverse avant d'être détruite par claquage.</li>
+                    <li><b>Courant direct maximal \(I_{Fmax}\) : </b> C'est courant maximal que la diode peut conduire
+                        en polarisation directe avant d'être détruite par échauffement</li>
+                </ul>
+
+                <p>Voici quelques caractéristiques de la diode <b>1N4148</b> : </p>
+                <ul>
+                    \(V_{rmax}\) = 75V <br>
+                    \( I_{rmax}(V_{rmax}) \) = (25 nA à 25 °C) , (50 µA à 150 °C) <br>
+                    \(C_{max}\) = 4 pF <br>
+                    \(t_{rrmax}(I_F=10mA)\) = 4ns <br>
+                    \( I_{Fmax} \) = 75 mA.
+                </ul><br>
+
+                <p>On remarque que Le courant inverse d'une diode dépend fortement de la température, car l'élévation de
+                    température accroît la génération de porteurs de charge (paire électron trou) dans la jonction en
+                    cassant des liaisons de valence.
+                    Il est donc important de prendre en compte ce phénomène dans les circuits : à très haute
+                    température, le courant de fuite inverse peut devenir significatif, et la diode ne peut plus être
+                    considérée comme complètement bloquée. <br>
+                    Toutefois, il arrive que cette propriété soit mise à profit en utilisant la diode polarisée en
+                    inverse comme capteur de
+                    température dans certaines applications.
+                </p>
+                <p>n'hésitez pas consulter <a target="_blank" href="ElecBase.html#DIODEXMPL">les exemples</a> dans la
+                    section 'Electronique de Base'</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TRANSCOMM">Le Transistor Bipolaire en commutation</h3>
+                <img src="IMAGES/EN_COM_Trans.jpg" alt="">
+                <p>Le collecteur et l'émetteur constituent les extrémités du commutateur. La base constitue la borne de
+                    commande</p>
+                <p>Nous allons nous baser sur le circuit ci-dessous pour voir ce qui se passe :</p>
+                <img src="IMAGES/EN_COM_TrCircuit.jpg" alt="">
+                <ul>
+                    <li>Le circuit de base constitue le circuit de commande. C'est la tension \(V_{bb}\)
+                        qui va définir si le transistor se comporte comme un interrupteur <b>ouvert</b> ou <b>fermé</b>
+                    </li>
+                    <li>La clé du transistor est sa jonction Base_Émetteur (Diode). Si elle est bloquée, le transistor
+                        est bloqué. Si elle passante, le transistor est passant.</li>
+                    <li>Un transistor <b>bloqué</b> est équivalent à un <b>interrupteur ouvert</b>.</li>
+                    <li>Un transistor <b>passant</b> <em>n'est pas forcément</em> équivalent à un <b>interrupteur
+                            fermé</b>. Il peut être soit dans le mode <b>linéaire</b> soit dans le mode <b>saturé</b>.
+                        C'est ce dernier mode qui correspond à un interrupteur fermé.
+                    </li>
+                </ul><br>
+
+                <h4>État Bloqué :</h4>
+                <ul>
+                    <li>Si \(V_{bb} \lt 0.6V\) , La jonction B-E est <b>bloquée</b>,</li>
+                    <li>&rArr; Ib=0, Ic=0, &rArr; Transistor <b>Bloqué</b>,</li>
+                    <li>&rArr; équivalent à un interrupteur ouvert</li>
+                    <li>&rArr; \( V_s = V_{cc} \)</li>
+                </ul><br>
+
+                <h4>État Passant :</h4>
+                <ul>
+                    <li>Si \(V_{bb} \ge 0.7V\) , La jonction B-E est <b>passante</b>, \( V_{BE}=0.7V \)</li>
+                    <li>&rArr; Ib &ne; 0, Ic &ne; 0, &rArr; Transistor <b>Passant</b>, \( I_B = \frac{V_{bb}-0.7}{R_b}
+                        \)</li>
+                    <li>&rArr; Le transistor est passant, il faut vérifier qu'il est dans le mode saturé</li>
+                    <li>Pour ça, il faut comparer le courant \(I_B\) avec le seuil de saturation \(
+                        I_{Bsat}=\frac{I_{Cmax}}{\beta} \) avec \( \left( I_{Cmax}=\frac{V_{cc}-0.2}{R_c} \right) \)
+                        <ul>
+                            <li>Si \( I_B \lt I_{Bsat} \) &rArr; Mode <b>Linéaire</b>, \( I_C = \beta I_B \) , \( V_{CE}
+                                = V_{cc}-R_c I_C \)</li>
+                            <li>Si \( I_B \ge I_{Bsat} \) &rArr; Mode <b>Saturé</b> &rArr; équivalent à un interrupteur
+                                fermé : <br>
+                                <span class="encadre">
+                                    \( V_{CE}=V_{CEsat}=0.2V \) <br>
+                                    \( I_C = I_{Cmax}=\frac{V_{cc}-0.2}{R_c} \)</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> <br>
+
+                <h4>En résumé :</h4>
+                <p class="encadre">Pour saturer un transistor, il faut lui appliquer un courant \(I_B\) qui vérifie :
+                    $$ I_B \gt I_{Bsat} $$
+                    avec :
+                    $$ I_{Bsat}=\frac{I_{Cmax}}{\beta} \quad,\quad I_{Cmax}=\frac{V_{cc}-0.2}{R_c} $$
+                </p><br>
+
+                <h3>Exemple 1 :</h3>
+                <img src="IMAGES/EN_COM_Tr_EX1.jpg" alt="">
+                <ol>
+                    <li>Donner l'état du transistor et calculer la valeur de Vs dans les deux cas suivants :
+                        <ul>
+                            <li>Ve = 0V</li>
+                            <li>Ve = 5V</li>
+                        </ul>
+                    </li>
+                    <li>Quelle est la fonction logique de ce montage</li>
+                </ol><br>
+
+                <h4>Solution :</h4>
+                <ul>
+                    <li><b>Ve = 0V</b> &rArr; Transistor bloqué &rArr; <b>Vs=5V</b></li>
+                    <li><b>Ve=5V</b> &rArr; Transistor passant, <br>
+                        Ib = (5-0.7)/10k = 0,43mA <br>
+                        Icmax = (5 - 0.2)/1k = 4.8 mA <br>
+                        Ibsat = Icmax / 130 = 0.037 mA <br>
+                        Ib &gt; Ibsat &rArr; Transistor <b>saturé</b> &rArr; <b>Vs=0.2V</b>
+                    </li>
+                    <li>Ce montage est un inverseur <img class="inline" src="IMAGES/EN_COM_Inv.jpg" alt=""></li>
+                </ul><br>
+
+                <h3>Exemple 2 :</h3>
+                <img src="IMAGES/EN_COM_Tr_Ex2.jpg" alt="">
+                <p>Calculer Rb pour que le transistor soit saturé avec un facteur de saturation Fs = Ib / Ibsat = 2 </p>
+                <h4>Solution :</h4>
+                <p>Ibsat = Icmax / 130 = 0.037 mA &rArr; Ib = 2 &times; Ibsat = 0.074mA <br>
+                    Rb = (5 - 0.7) / 0.074 k&ohm; = 58 k&ohm;
+                </p><br>
+
+                <h3>Exemple 3 :</h3>
+                <img src="IMAGES/EN_COM_Tr_Ex3.jpg" alt="">
+                <p>Analyser le montage et donner la valeur de Vs dans les cas suivants :</p>
+                <ol>
+                    <li>Ve = 1V</li>
+                    <li>Ve = 2.6V</li>
+                    <li>Ve = 5V</li>
+                </ol>
+
+                <h4>Solution :</h4>
+                <p>On commence par remplacer R1 et R2 par leur équivalent <a target="_blank"
+                        href="ElecBase.html#THEVENIN">Thévenin</a> pour obtenir un montage plus familier :</p>
+                <img src="IMAGES/EN_COM_Tr_Ex3_Eqv.jpg" alt="">
+                <p>Req = R1 // R2 = 1.43 k&ohm; , Veq = ( R2 / (R1 + R2) ) Ve</p>
+                <ol>
+                    <li>Ve = 1V &rArr; Veq = 0.28V &lt; 0.7V &rArr; transistor <b>bloqué</b> &rArr; <b>Vs = 5V</b></li>
+                    <li>Ve = 2.6V &rArr; Veq = 0.74V &gt; 0.7V &rArr; Transistor passant, <br>
+                        Ib = (Veq - 0.7)/Req = 0.03mA <br>
+                        Icmax = 4.8mA , Ibsat = 0.048mA <br>
+                        Ib &lt; Ibsat &rArr; Transistor <b>linéaire</b> &rArr; Ic = &beta;Ib = 3mA <br>
+                        <b>Vs = Vcc - Rc Ic = 2V</b>
+                    </li>
+                    <li>
+                        Ve = 5V &rArr; Veq = 1,43V &gt; 0.7V &rArr; Transistor passant, <br>
+                        Ib = (Veq - 0.7)/Req = 0.51mA <br>
+                        Ib &gt; Ibsat &rArr; Transistor <b>Saturé</b> &rArr; <b>Vs = 0.2V</b>
+                    </li>
+                </ol> <br>
+
+                <h3>Exemple 4 :</h3>
+                <img src="IMAGES/EN_COM_Tr_Ex4.jpg" alt="">
+                <p>Analyser le montage, Compléter le tableau, Donner la fonction logique du montage </p><br>
+                <h4>Solution :</h4>
+                <ul>
+                    <li>Si une des des deux entrée = 0V &rArr; Diode correspondante passante &rArr; Vx = 0,7V :
+                        Insuffisant pour faire conduire D3 et la Jonction<sub>B-E</sub> en série &rArr; Transistor
+                        bloqué &rArr; <b>Vs=5V</b></li>
+                    <li>A=5V, B= 5V &rArr; D1 et D2 bloquées (&equiv;absentes) <br>
+                        &rArr; (D3 et T) voient 3,6k reliée à 5V
+                        &rArr; D3 et T conduisent &rArr; Vx = 2 &times;0.7V = 1,4V <br>
+                        Ib = (5-1.4)/3.6k = 1 mA <br>
+                        Icmax = (5 - 0.2) / 0.096 k = 50 mA <br>
+                        Ibsat = Icmax / &beta; = 0.5 mA <br>
+                        Ib &gt; Ibsat &rArr; Transistor <b>Saturé</b> &rArr; <b>Vs = 0.2V</b>
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_COM_Tr_Ex4_Tab.jpg" alt="">
+                <p>Pour établir une table logique à partir de cette table électrique, on va adopter le barème suivants :
+                <ul>
+                    <li>Aux niveaux de <b>tension faibles</b> [0V, 1V] , on fait correspondre le <b>niveau logique 0</b>
+                    </li>
+                    <li>Aux niveaux de <b>tension forts</b> [4V, 5V] , on fait correspondre le <b>niveau logique 1</b>
+                    </li>
+                </ul>
+                </p>
+                <p>on obtient la table ci-dessous qui correspond à une porte NAND :</p>
+                <img src="IMAGES/EN_COM_Tr_Ex4_TabL.jpg" alt=""> <br>
+
+                <h3>Exemple 5 :</h3>
+                <img src="IMAGES/EN_COM_Tr_Ex5.jpg" alt="">
+                <p>Analyser le montage, Compléter le tableau, Donner la fonction logique du montage </p><br>
+
+                <h4>Solution :</h4>
+                <ul>
+                    <li><b>A=0V, B= 0V :</b>D1a: passante, Va1=0.7V, T1: Bloqué, D2a: passante, Va2=0.7V, T2: Bloqué,
+                        \(V_s=5V\) </li>
+
+                    <li><b>A=0V, B= 5V :</b>D1a: passante, Va1=0.7V, T1: Bloqué, D2a: Bloquée, T2: Passant : <br>
+                        Ib = (5-1.4)/47k = 76.6 µA <br>
+                        Icmax = (5 - 0.2) / 1k = 4.8 mA <br>
+                        Ibsat = Icmax / &beta; = 36.9 µA <br>
+                        Ib &gt; Ibsat &rArr; Transistor <b>Saturé</b> &rArr; <b>Vs = 0.2V</b>
+                    </li>
+
+                    <li><b>A=5V, B= 0V :</b> Idem cas précédent car montage symétrique, <b>Vs = 0.2V</b></li>
+
+                    <li><b>A=5V, B=5V :</b>D1a: Bloquée, T1: Passant, D2a: Bloquée, T2: Passant : <br>
+                        Ib1 = Ib2 = (5-1.4)/47k = 76.6 µA <br>
+                        IRcmax = (5 - 0.2) / 1k = 4.8 mA <br>
+                        Ic1max = Ic2max = IRcmax/2 = 2.4mA <br>
+                        Ib1sat = Ib2sat = 2.4mA / &beta; = 18,46 µA <br>
+                        Les deux transistors Saturés, <b>Vs = 0.2V</b>
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_COM_Tr_Ex5_Tab.jpg" alt="">
+                <p>En utilisant les mêmes niveaux logiques que l'exemple précédent, on obtient la table ci-dessous qui
+                    correspond à une porte NOR :</p>
+                <img src="IMAGES/EN_COM_Tr_Ex5_TabL.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="TRANSMOS">Le Transistor MOS en commutation</h2>
+                <p>Un transistor MOS ou MOSFET est un type de transistor à effet de champ (MOSFET -
+                    Metal-Oxide-Semiconductor
+                    Field-Effect Transistor) qui utilise un champ électrique pour contrôler la conductance entre deux de
+                    ses terminaux. Il comporte trois principales électrodes :</p>
+
+                <p>Il est constitué de :</p>
+                <ul>
+                    <li>Une grille métallique accessible par l'électrode G (Grille) qui contrôle la conductance entre le
+                        drain et la source via un champ électrique,</li>
+                    <li>Un isolant en oxyde de silicium qui isole la grille du reste,</li>
+                    <li>Un substrat (Bulk) en silicium (dopé P pour le transistor type N). Sur les cotés du substrat P,
+                        on trouve deux zones N sur lesquelles on connecte les électrode D (Drain) et S (Source)</li>
+                    <li>La grille est complètement isolée, le courant de grille est toujours nul, la commande se fait en
+                        tensions. S'il y a un courant, il aura lieu entre le Drain et la source.
+                    </li><br>
+                </ul><img src="IMAGES/EN_COM_MOS_NP.jpg" alt=""><br>
+
+                <h3>Catégories de MOSFET :</h3>
+                <p>Les MOSFETs se classent en deux Catégories :</p>
+                <ul>
+                    <li><b>MOS à enrichissement <i>(Enhancement)</i> </b>: Normalement éteint (pas de conduction au
+                        repos), nécessite une tension sur la Grille pour créer un canal de conduction entre le Drain et
+                        la source</li>
+                    <li><b>MOS à appauvrissement <i>(Depletion)</i> </b>: Normalement allumé (conducteur au repos),
+                        nécessite une tension sur la Grille pour éliminer le canal de conduction entre le Drain et
+                        la source</li>
+                    <li>Pour chacune de ces deux Catégories (enrichissement ou appauvrissement), on distingue deux types
+                        de transistors :
+                        <ul>
+                            <li>Canal N, La conduction entre le Drain et la source se fait à travers un canal
+                                d'électrons</li>
+                            <li>Canal P, La conduction entre le Drain et la source se fait à travers un canal de trous
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <br>
+
+                <h3>Polarisation du MOS :</h3>
+                <p><b>Si on applique une tension Vdd entre le drain est la source, il ne se passe rien</b>, car il n'y a
+                    pas de canal de conduction être les deux. Les frontières entre les zones N et le substrat P
+                    constituent des jonction PN, quelque soit le sens de la tension Vdd, une des deux jonctions sera
+                    polarisée en inverse</p>
+                <img src="IMAGES/EN_COM_MOS_DSP.jpg" alt="" class="w500"><br>
+
+                <p>Si on en plus, on applique une tension Vgb entre la grille et le substrat, el va générer un champ
+                    dans le substrat qui attire les électrons minoritaires et les accumule contre l'oxyde de silicium.
+                    cette accumulation d'électrons crée un canal de conduction entre le drain et la source. La largeur
+                    du canal (donc sa résistance) dépend de la valeur de Vgb. Dès lors, le courant Id qui va circuler
+                    entre le drain et la source dépend des deux tensions Vds et Vgb
+                </p>
+                <img src="IMAGES/EN_COM_MOS_POL.jpg" alt="" class="w500"><br> <br>
+                <p>J'ai essayé de résumer cela sur l'animation ci dessous, ça vaut ce que ça vaut😊</p>
+
+                <video controls src="IMAGES/EN_COM_MOS_anim.mp4" width="600" class="BlocCenter"></video> <br>
+
+                <h3>Caractéristique de commande :</h3>
+                <p>Les caractéristiques ci-dessous montrent la variation du courant Id en fonction de Vgb pour une
+                    Tension Vdd constante</p>
+                <img src="IMAGES/EN_COM_MOS_CT.jpg" alt="">
+                <ul>
+                    <li>Pour qu'il y ait création de canal, il faut que Vgb soit supérieure (en valeur absolue) à une
+                        tension de seuil (Threshold) Vth</li>
+                    <li>Vth dépend des paramètres physiques du transistor. Le plus souvent |Vth| se situe dans
+                        l'intervalle [1V , 2V]</li>
+                    <li>En commutation, on choisira toujours une tension bien supérieur à Vth pour faire conduire le
+                        transistor</li>
+                </ul><br>
+
+                <h3>Transistor MOS en commutation</h3>
+                <img src="IMAGES/EN_COM_MOS_COM.jpg" alt=""><br>
+
+                <h3>Aspects pratiques :</h3>
+                <ul>
+                    <li>Normalement, la flèche sur la borne B permet de différentier le canal n du canal p. On peut
+                        ajouter un petit rond sur la grille du canal p pour rappeler qu'il faut une tension négative
+                        pour le faire conduire,
+                        <img src="IMAGES/EN_COM_MOS_ConvD.jpg" alt="">
+                    </li>
+                    <li>Très souvent, les transistor MOS ne disposent que de trois broches (G, D, S). La borne B est
+                        reliée en interne à la borne S. Dans ce cas <b>Vgb = Vgs</b>
+                        <img src="IMAGES/EN_COM_MOS_BS.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <h3>Inverseur à MOS</h3>
+                <img src="IMAGES/EN_COM_MOS_Ex1.jpg" alt="">
+                <ul>
+                    <li>Analyser le montage et donner la valeur de Vs dans les deux cas suivants :
+                        <ul>
+                            <li>a) Ve = 0V</li>
+                            <li>b) Ve = 5V</li>
+                        </ul>
+                    </li>
+                    <li>Quelle est la fonction logique de ce montage</li>
+                </ul><br>
+                <h4>Solution :</h4>
+                <p>Commençons par rappeler les condition de conduction :</p>
+                <img src="IMAGES/EN_COM_MOS_Ex1_Rap.jpg" alt=""><br>
+                <p>a) Ve = 0V :</p>
+                <img src="IMAGES/EN_COM_MOS_Ex1_a.jpg" alt=""><br>
+
+                <p>b) Ve = 5V :</p>
+                <img src="IMAGES/EN_COM_MOS_Ex1_b.jpg" alt="">
+
+                <p>Fonction logique :</p>
+                <img src="IMAGES/EN_COM_MOS_Ex1_Fonc.jpg" alt=""><br>
+
+                <h3>Porte NAND</h3>
+                <img src="IMAGES/EN_COM_MOS_NAND.jpg" alt="">
+                <ol>
+                    <li>A = 0V, B = 0V,<img src="IMAGES/EN_COM_MOS_NAND_1.jpg" alt=""></li>
+                    <li>A = 0V, B = 5V,<img src="IMAGES/EN_COM_MOS_NAND_2.jpg" alt=""></li>
+                    <li>A = 5V, B = 0V,<img src="IMAGES/EN_COM_MOS_NAND_3.jpg" alt=""></li>
+                    <li>A = 5V, B = 5V,<img src="IMAGES/EN_COM_MOS_NAND_4.jpg" alt=""></li>
+                </ol>
+                <p>C'est une porte NAND :</p>
+                <p class="InlineCenter">
+                <img src="IMAGES/EN_COM_NAND_Table.jpg" alt="" class="inline">
+                <img src="IMAGES/EN_COM_NAND.jpg" alt="" class="inline"></p><br>
+
+                <h3>Porte NOR</h3>
+                <img src="IMAGES/EN_COM_MOS_NOR.jpg" alt="">
+                <ol>
+                    <li>A = 0V, B = 0V,<img src="IMAGES/EN_COM_MOS_NOR_1.jpg" alt=""></li>
+                    <li>A = 0V, B = 5V,<img src="IMAGES/EN_COM_MOS_NOR_2.jpg" alt=""></li>
+                    <li>A = 5V, B = 0V,<img src="IMAGES/EN_COM_MOS_NOR_3.jpg" alt=""></li>
+                    <li>A = 5V, B = 5V,<img src="IMAGES/EN_COM_MOS_NOR_4.jpg" alt=""></li>
+                </ol>
+                <p>C'est une porte NOR :</p>
+                <p class="InlineCenter">
+                <img src="IMAGES/EN_COM_NOR_Table.jpg" alt="" class="inline">
+                <img src="IMAGES/EN_COM_NOR.jpg" alt="" class="inline"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
