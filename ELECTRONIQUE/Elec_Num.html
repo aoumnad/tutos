@@ -239,7 +239,7 @@
                 </div>
                 <div class="rubrique" onclick="toggleMenu('seq', this)">
                     <span>&gt;</span>
-                    <h2>Les Circuits séquentiels</h2>
+                    <h2>Circuits numériques séquentiels</h2>
                 </div>
                 <div id="seq" class="sub-rubrique">
                     <a href="#SEQINTRO">
@@ -394,7 +394,7 @@
                 </div>
                 <div class="rubrique" onclick="toggleMenu('realcircnum', this)">
                     <span>&gt;</span>
-                    <h2>Réalisation des circuits numériques</h2>
+                    <h2>Technologie des circuits numériques</h2>
                 </div>
                 <div id="realcircnum" class="sub-rubrique">
                     <a href="#DIGITCIRCUIT">
@@ -417,6 +417,81 @@
                         <a href="#TRANSMOS">
                             <h3>Le Transistor MOS en commutation</h3>
                         </a>
+                    </div>
+                    <div class="rubrique" onclick="toggleMenu('famlogic', this)">
+                        <span>&gt;</span>
+                        <h2>Familles des circuits logiques</h2>
+                    </div>
+                    <div id="famlogic" class="sub-rubrique">
+                        <a href="#FAMCIRLOGIC">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#NAMING">
+                            <h3>Nomenclature commerciale</h3>
+                        </a>
+                        <div class="rubrique" onclick="toggleMenu('famttl', this)">
+                            <span>&gt;</span>
+                            <h2>La famille TTL</h2>
+                        </div>
+                        <div id="famttl" class="sub-rubrique">
+                            <a href="#TTLFMLY">
+                                <h3>Introduction</h3>
+                            </a>
+                            <a href="#TTLCARC">
+                                <h3>Caractéristiques principales :</h3>
+                            </a>
+                            <a href="#TTLSUBFAM">
+                                <h3>Sous-familles courantes</h3>
+                            </a>
+                            <a href="#7400">
+                                <h3>Le circuit 7400</h3>
+                            </a>
+                            <a href="#CARTRANS">
+                                <h3>Caractéristique de transfert</h3>
+                            </a>
+                            <a href="#NIVLOGIC">
+                                <h3>Niveaux logiques</h3>
+                            </a>
+                            <a href="#MARGEBRUIT">
+                                <h3>Immunité au bruit</h3>
+                            </a>
+                            <a href="#IINPUTMAX">
+                                <h3>Limites des Courants d'entrée</h3>
+                            </a>
+                            <a href="#IOUTUTMAX">
+                                <h3>Limites des Courants de sortie</h3>
+                            </a>
+                            <a href="#SORTANCE">
+                                <h3>Sortance</h3>
+                            </a>
+                            <a href="#PUISSANCE">
+                                <h3>Puissance consommée</h3>
+                            </a>
+                            <a href="#TP">
+                                <h3>Temps de propagation</h3>
+                            </a>
+                            <a href="#MAXFREQ">
+                                <h3>Fréquence maximale d'utilisation</h3>
+                            </a>
+                            <a href="#OPENCOL">
+                                <h3>Sortie collecteur ouvert</h3>
+                            </a>
+                            <a href="#TRISTATE">
+                                <h3>Sortie trois états</h3>
+                            </a>
+                            <a href="#S_TRIG">
+                                <h3>Entrées à trigger de Schmitt</h3>
+                            </a>
+                        </div>
+                        <div class="rubrique" onclick="toggleMenu('famcmos', this)">
+                            <span>&gt;</span>
+                            <h2>La famille CMOS</h2>
+                        </div>
+                        <div id="famcmos" class="sub-rubrique">
+                            <a href="#CMOS">
+                                <h3>Introduction</h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <br><br><br>
@@ -2495,7 +2570,7 @@
 
 
                 <!-- ################################################################################################ -->
-                <h2 id="DIGITCIRCUIT">Réalisation des circuits numériques</h2>
+                <h2 id="DIGITCIRCUIT">Technologies des circuits numériques</h2>
                 <p>Nous vivons dans un monde analogique, et non numérique, où les tensions, les courants et autres
                     grandeurs physiques varient de manière continue dans les circuits réels. <br>
                     La logique numérique simplifie ces complexités en réduisant l'infinité des valeurs réelles d'une
@@ -2933,8 +3008,9 @@
                 </ol>
                 <p>C'est une porte NAND :</p>
                 <p class="InlineCenter">
-                <img src="IMAGES/EN_COM_NAND_Table.jpg" alt="" class="inline">
-                <img src="IMAGES/EN_COM_NAND.jpg" alt="" class="inline"></p><br>
+                    <img src="IMAGES/EN_COM_NAND_Table.jpg" alt="" class="inline">
+                    <img src="IMAGES/EN_COM_NAND.jpg" alt="" class="inline">
+                </p><br>
 
                 <h3>Porte NOR</h3>
                 <img src="IMAGES/EN_COM_MOS_NOR.jpg" alt="">
@@ -2946,8 +3022,480 @@
                 </ol>
                 <p>C'est une porte NOR :</p>
                 <p class="InlineCenter">
-                <img src="IMAGES/EN_COM_NOR_Table.jpg" alt="" class="inline">
-                <img src="IMAGES/EN_COM_NOR.jpg" alt="" class="inline"></p>
+                    <img src="IMAGES/EN_COM_NOR_Table.jpg" alt="" class="inline">
+                    <img src="IMAGES/EN_COM_NOR.jpg" alt="" class="inline">
+                </p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="FAMCIRLOGIC">Familles des circuits logiques</h2>
+                <p>Une famille logique regroupe des circuits intégrés aux caractéristiques similaires (entrées,
+                    sorties, circuits internes), mais réalisant des fonctions logiques variées. Ces circuits peuvent
+                    être interconnectés entre eux, mais leur compatibilité avec d'autres familles peut être impossible
+                    ou limitée en raison de différences de tensions d'alimentation ou de conditions d'entrée/sortie.</p>
+                <p>La logique bipolaire la plus réussie est le <em>TTL</em> <i>(Transistor-Transistor Logic)</i>,
+                    introduite dans les années 1960. Cette famille regroupe plusieurs sous-familles compatibles entre
+                    elles, mais différant en vitesse, consommation d'énergie et coût.
+                </p>
+
+                <p> Le transistor MOS (MOSFET), inventé avant le transistor bipolaire, n'a été utilisable dans des
+                    circuits logiques qu'à partir des années 1960. Malgré une vitesse
+                    inférieure, il était prisé pour sa faible consommation d'énergie et son haut niveau d'intégration.
+                </p>
+
+                <p>Dès les années 1980, les circuits <em>CMOS</em> <i>(Complementary MOS)</i> ont surpassé les
+                    performances des circuits bipolaires,
+                    devenant majoritaires pour les circuits intégrés, notamment les microprocesseurs et mémoires.
+                    Aujourd'hui, le CMOS domine le marché grâce à sa rapidité, sa faible consommation et son
+                    adaptabilité. Malgré cette avance, le TTL reste courant dans les laboratoires académiques.</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="NAMING">Nomenclature commerciale :</h3>
+                <p>La nomenclature commerciale doit permettre (facilement) d'identifier le circuit ainsi que sa famille
+                    et sous famille.
+                    Les constructeurs de circuit logiques ont finalement adopté une nomenclature standard unifiée.</p>
+                <p>Le standard spécifie plusieurs champs constituant la reference d'un circuit intégré. Toutefois, les
+                    constructeurs ne gravent sur le circuit que les champs les plus importants. Par exemple les champs
+                    1,
+                    2, 3, 7 et 8</p>
+                <img src="IMAGES/EN_FAM_NOM.jpg" alt="">
+                <ul>
+                    <li><b>Champ 1 :</b> Préfixe indiquant le fabricant ou des spécifications particulières du circuit.
+                        Par exemple, <b>SN</b> a été introduit à l'origine par Texas Instruments pour ses circuits
+                        logiques TTL sans spécification particulière,</li>
+                    <li><b>Champ 2 :</b> Indique s'il s'agit de la série <b>civile</b> ou de la série <b>militaire</b>.
+                        C'est surtout
+                        la température de fonctionnement qui distingue ces deux séries :
+                        <ul>
+                            <li><b>74 :</b> Série civile, les spécifications du circuit sont garanties dans la plage de
+                                température [0°C,70°C], </li>
+                            <li><b>54 :</b> Série militaire, les spécifications du circuit sont garanties dans la plage
+                                de
+                                température [-55°C,125°C], </li>
+                        </ul>
+                    </li>
+                    <li><b>Champ 3 :</b> <b>Famille</b> du circuit. Par exemple LS correspond à la famille <i>Low Power
+                            Schottky</i>
+                    </li>
+                    <li><b>Champ 7 :</b> <b>Identificateur</b> du circuit. Par exemple 76 est l'identificateur du
+                        circuit qui
+                        contient deux bascule JK</li>
+                    <li><b>Champ 8 :</b> Ce suffixe indique le type de <b>boîtier</b>. Par exemple N correspond au
+                        boîtier <i>dual in line
+                            plastique.</i> <br>
+                        Voici une liste de Suffixe de boîtiers : <br>
+                        <img src="IMAGES/EN_FAM_PACK_Sufix.jpg" alt="">
+                        Voici quelques types de boîtiers : <br>
+                        <img src="IMAGES/EN_FAM_PACK_Type.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="TTLFMLY">La famille TTL</h2>
+                <p>La famille TTL (Transistor-Transistor Logic) est une technologie de circuits numériques
+                    basée sur des transistors bipolaires. Elle a été introduite dans les années 1960 et a rapidement
+                    dominé le marché des circuits numériques grâce à sa fiabilité, sa vitesse et sa facilité
+                    d'utilisation. Cependant, à partir des années 1980, elle a commencé à décliner face à la famille
+                    CMOS, qui offre des performances supérieures, une consommation énergétique réduite et une meilleure
+                    intégration.</p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TTLCARC">Caractéristiques principales :</h3>
+                <ol>
+                    <li><b>Structure interne :</b> Les circuits TTL utilisent des <b>transistors bipolaires</b>. Ils
+                        intègrent également des résistances et des diodes,</li>
+                    <li><b>Tension d'alimentation : </b>La plupart des circuits TTL fonctionnent avec une alimentation
+                        standard de <b>5 volts</b>,</li>
+                    <li><b>Vitesses de fonctionnement :</b> Les circuits TTL classiques offrent des vitesses moyennes
+                        (10 ns), mais différentes sous-familles améliorent cet aspect,</li>
+                    <li><b>Consommation d'énergie :</b> Les premières versions de la famille TTL avaient une
+                        consommation relativement importante (10 mW). Là aussi, on a développé des sous-familles qui
+                        améliorent cet aspect.</li>
+                </ol><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TTLSUBFAM">Sous-familles courantes :</h3>
+                <ul>
+                    <li><b>Standard () :</b> Première génération, caractérisée par des performances de base (10ns, 10
+                        mW),</li>
+
+                    <li><b>Low Power (L) :</b> Réduction de la consommation d'énergie au détriment de la vitesse ,
+                        (33ns, 1 mW),</li>
+                    <li><b>High Speed (H) :</b> Amélioration de la vitesse au détriment de la consommation , (6ns, 22
+                        mW),</li>
+                    <li><b>Schottky (S) :</b> Vitesse accrue grâce à l'utilisation de diodes Schottky, mais avec une
+                        consommation énergétique plus élevée (3ns, 19 mW),</li>
+                    <li><b>Low Power Schottky (LS) :</b> Compromis entre vitesse et consommation énergétique (9.5ns, 2
+                        mW), largement utilisée,</li>
+                    <li><b>Advanced Schottky (AS) :</b> Version avancée de la famille Schottky (1.5ns, 8 mW),</li>
+                    <li><b>Advanced Low Power Schottky (ALS) :</b> Version avancée de la famille Low Power Schottky
+                        (4ns, 1 mW).</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="7400">Le circuit 7400 :</h3>
+                <p>Le 7400 est l'un des circuits intégrés les plus célèbres et emblématiques de la famille TTL. Il est
+                    souvent considéré comme le point de départ pour l'apprentissage des circuits logiques en raison de
+                    sa simplicité et de son importance historique. Il contient quatre portes logiques NAND à deux
+                    entrées dans un boîtier standard DIP (Dual Inline Package).
+                </p>
+                <img src="IMAGES/EN_FAM_7400_Pinout.jpg" alt="">
+                <p>le schéma interne des portes NAND est le suivant :</p>
+                <img src="IMAGES/EN_FAM_7400_Sch.jpg" alt="">
+                <ul>
+                    <li>Le transistor Q1 qui constitue l'étage d'entrée ne fonctionne pas comme un transistor mais comme
+                        3 diodes. Nous avons rencontré quelques chose de similaire dans L'exemple 4 du <a
+                            target="_blank" href="Elec_Num.html#TRANSCOMM">transistor bipolaire en commutation,</a>
+                        <img src="IMAGES/EN_FAM_7400_Input.jpg" alt="">
+                    </li>
+                    <li>L'état du transistor Q2 dépend des états des deux entrées. Dans ses états bloqué ou saturé, il
+                        va
+                        activer soit le transistor Q3, soit le transistor Q4. Entre les deux (pendant la transition), il
+                        fonctionne en amplificateur pour accélérer les variations d'entrée est obtenir une
+                        transition plus abrupte.
+                    </li>
+                    <li>Les transistors Q3 et Q4 ainsi que la diode D3 constituent l'étage de sortie de la porte. Q3 et
+                        D3 jouent le rôle du du commutateur K1 <b>(pull-up)</b> qui relie la sortie au nivaux haut. Q4
+                        constitue le commutateur K2 <b>(pull-down)</b> qui relie la sortie au nivaux bas. La diode D3 a
+                        été ajoutée pour s'assurer que les deux commutateurs ne conduisent pas simultanément. Cet étage
+                        porte le nom de <i>Totem-pole</i>
+                        <img src="IMAGES/EN_FAM_7400_Output.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CARTRANS">Caractéristique de transfert :</h3>
+                <p>Pour tracer la caractéristique de transfert on fait varier les deux entrées (reliées) entre 0V et 5V
+                    et on relève les valeurs de la tension de sortie. On peut aussi connecter une des entrée au niveau
+                    haut et faire varier l'autre entrée. Dans les deux cas, ça revient à tracer la caractéristique d'un
+                    inverseur. On obtient une caractéristique similaire à :</p>
+                <img src="IMAGES/EN_FAM_CAR_TRANS.jpg" alt="">
+
+
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="NIVLOGIC">Niveaux logiques :</h3>
+                <p>Si l'on trace la caractéristique de transfert de différentes portes NAND 7400 provenant de
+                    constructeurs différents, fonctionnant à des températures variées ou avec des charges TTL
+                    différentes, on n'obtient pas exactement la même courbe. On observe une dispersion dans les valeurs
+                    des niveaux logiques haut et bas, ainsi que dans la tension de transition.
+
+                    Cette dispersion est due aux variations inhérentes aux procédés de fabrication, aux tolérances des
+                    composants internes, et aux conditions de fonctionnement, telles que la température ou la charge
+                    connectée à la sortie. Malgré ces variations, les circuits TTL sont conçus pour garantir une
+                    compatibilité entre les composants en définissant des plages de tensions qui font que les niveaux
+                    logique en sortie soient compatibles avec les niveaux logiques en entrée
+                </p><br>
+
+                <h4>Niveaux logiques à l'entrée</h4>
+                <p>Si on considère la figure ci-dessous qui montre une dispersion <i>(un peu exagérée)</i> de la
+                    caractéristique de transfert</p>
+                <img src="IMAGES/EN_FAM_CAR_TR_INP.jpg" alt="">
+                <ul>
+                    <li>Le <b>Niveau bas à l'entrée </b> est le niveau qui génère un niveau haut en sortie. D'après la
+                        figure, toute tension d'entrée inférieure ou égale à 0.8V vérifie cette condition. Par
+                        conséquent : <br>
+                        L'intervalle <em>[0V, 0.8V]</em> constitue le <em>niveau bas à l'entrée</em> de la famille TTL.
+                        La valeur 0.8V est la limite supérieure de cet intervalle, on l'appelle \(V_{ILmax}\)
+                        <i>(Input Low max voltage)</i>
+                    </li>
+                    <li>Le <b>Niveau haut à l'entrée </b> est le niveau qui génère un niveau bas en sortie. D'après la
+                        figure, toute tension d'entrée supérieure à 2V vérifie cette condition. Par conséquent : <br>
+                        L'intervalle <em>[2V, 5V]</em> constitue le <em>niveau haut à l'entrée</em> de la famille TTL.
+                        La valeur 2V est la limite inférieure de cet intervalle, on l'appelle \(V_{IHmin}\)
+                        <i>(Input High min voltage)</i>
+                    </li>
+                </ul><br>
+
+                <h4>Niveaux logiques à la sortie</h4>
+                <p>Si on considère la figure ci-dessous qui montre une dispersion <i>(un peu exagérée)</i> de la
+                    caractéristique de transfert</p>
+                <img src="IMAGES/EN_FAM_CAR_TR_OUT.jpg" alt="">
+                <p>Les niveaux logiques à la sortie sont définis de manière à garantir la compatibilité avec les niveaux
+                    d'entrée tout en maintenant une marge de sécurité suffisante pour éviter les erreurs de
+                    fonctionnement :</p>
+                <ul>
+                    <li>L'intervalle <em>[0V, 0.4V]</em> constitue le <em>niveau bas en sortie</em> de la famille TTL.
+                        La valeur 0.4V est la limite supérieure de cet intervalle, on l'appelle \(V_{OLmax}\)
+                        <i>(Output Low max voltage)</i>
+                    </li>
+                    <li>L'intervalle <em>[2.4V, 5V]</em> constitue le <em>niveau haut en sortie</em> de la famille TTL.
+                        La valeur 2.4V est la limite inférieure de cet intervalle, on l'appelle \(V_{OHmin}\)
+                        <i>(Output High min voltage)</i>
+                    </li>
+                </ul><br>
+
+                <h4>Illustration :</h4>
+                <img src="IMAGES/EN_FAM_NIVTTL.jpg" alt="">
+                <ul>
+                    <li>C'est nous qui décidons quoi brancher à l'entrée d'une porte. Dès lors, les niveaux de tension
+                        en
+                        entrée sont des niveaux recommandés que nous devons respecter,</li>
+                    <li>C'est la porte qui génère les tensions de sortie. Donc, les niveaux de sortie sont garantis par
+                        le constructeur, à condition que la charge connectée respecte les limitations de courant que
+                        nous verrons plus bas.</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="MARGEBRUIT">Immunité au bruit</h3>
+                <p>L'immunité au bruit, également appelée marge de bruit (noise margin), est une caractéristique
+                    importante de la famille TTL (Transistor-Transistor Logic) et des circuits numériques en général.
+                    Elle représente la capacité d'un circuit logique à tolérer des perturbations (bruit électrique) sans
+                    altérer les niveaux logiques corrects. Voici une explication détaillée :</p>
+                <img src="IMAGES/EN_FAM_NM.jpg" alt=""><br>
+                <p>La marge de bruit est définie comme la différence entre Les niveaux garantis à la sortie Les niveaux
+                    requis à l'entrée.</p>
+                <ul>
+                    <li><b>Marge de bruit niveau bas :</b> \( MB_L = V_{ILmax}-V_{OLmax}=0.8V - 0.4V = 0.4V \)</li>
+                    <li><b>Marge de bruit niveau haut :</b> \( MB_H = V_{OLmin}-V_{ILmin}=2.4V - 2V = 0.4V \)</li>
+                </ul>
+                <p>En conclusion, <b>la marge de bruit de la famille TTL standard est typiquement 0.4V</b> pour les deux
+                    niveaux logiques (haut et bas).
+                    Cela signifie que si une perturbation ou un bruit électronique introduit une variation de tension de
+                    ±0.4V autour
+                    des niveaux de sortie garantis, le circuit continuera à fonctionner correctement.
+                </p>
+                <img src="IMAGES/EN_FAM_NM2.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="IINPUTMAX">Les courants d'entrée maximums</h3>
+                <p>Quand on applique une tension basse ou une tension haute à l'entrée d'une porte, La datasheet précise
+                    les valeur max des courants qui vont circuler dans l'entrée</p>
+                <img src="IMAGES/EN_FAM_INP_CURR.jpg" alt="">
+                <ul>
+                    <li>\(I_{ILmax}\) <i>(Input Low max)</i> : Quant on applique un <b>niveau bas</b> à l'entrée, le
+                        constructeur garantit que le courant \(I_{IL}\) qui en résulte ne dépassera pas la valeur
+                        maximum
+                        \(I_{ILmax}=1.6mA\). Dans la datasheet, il est est indiqué comme négatif car il sort de la
+                        porte.
+                    </li>
+                    <li>\(I_{IHmax}\) <i>(Input High max)</i> : Quant on applique un <b>niveau haut</b> à l'entrée, le
+                        constructeur garantit que le courant \(I_{IH}\) qui en résulte ne dépassera pas la valeur
+                        maximum
+                        \(I_{IHmax}=40µA\). Dans la datasheet, il est est indiqué comme positif car il entre dans la
+                        porte.
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="IOUTUTMAX">Les courants de sortie maximums</h3>
+                <p>Le courant de sortie d'une porte dépend de la charge connectée. Or, Le niveaux de la tension de
+                    sortie dépend de la valeur du courant de sortie. Lorsque le courant de sortie augmente, le
+                    niveaux de la tension de sortie se dégrade et peut sortir des intervalles normalisés. Il est donc
+                    recommandé de ne pas connecter des charges nécessitant un courant trop élevé afin de préserver la
+                    stabilité des niveaux logiques. </p>
+                <p>Les courbes ci-dessous illustrent la variation de la tension de sortie en fonction du courant de
+                    sortie,</p>
+                <img src="IMAGES/EN_FAM_VoIo.jpg" alt=""><br>
+
+                <ul>
+                    <li>\(I_{OHmax}\) <i>(Output High max)</i> : Quand on connecte une charge à une sortie au <b>niveau
+                            haut</b>, la valeur \(I_{OH}\) du courant de sortie fourni par la porte dépend de la valeur
+                        de la
+                        charge. Il est recommandé de faire de sorte que \(I_{OH}\) ne dépasse pas la valeur max
+                        \(I_{OHmax}=0.4mA\) pour garantir que la tension de sortie \( V_{OH} \) reste supérieure à 2.4V
+                    </li>
+                    <li>\(I_{OLmax}\) <i>(Output Low max)</i> : Quand on connecte une charge à une sortie au <b>niveau
+                            bas</b>, la valeur \(I_{OL}\) du courant de sortie (injecté) dans la porte dépend de la
+                        valeur de la
+                        charge. Il est recommandé de faire de sorte que \(I_{OL}\) ne dépasse pas la valeur max
+                        \(I_{OLmax}=16mA\) pour garantir que la tension de sortie \( V_{OL} \) reste inférieure à 0.4V
+                    </li>
+                </ul>
+                <img src="IMAGES/EN_FAM_OUTCURR.jpg" alt="">
+                <h4>En résumé :</h4>
+                <img src="IMAGES/EN_FAM_TTL_Niveaux.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="SORTANCE">Sortance :</h3>
+                <p>La Sortance <i>(fan-out en anglais)</i> représente le nombre maximum de portes logiques que l'on peut
+                    connecter à la
+                    sortie d'une porte logique sans altérer significativement les niveaux logiques standardisés.
+                    Elle dépend directement des caractéristiques électriques des circuits, en particulier, les courants
+                    Iilmax, IiHmax, Iolmax, Iohmax.</p>
+                <p>Lorsque la sortance est dépassée, cela peut entraîner une dégradation des niveaux logiques, une
+                    diminution de la marge de bruit, et un fonctionnement erratique du circuit.</p>
+                <h4>Sortance au niveau bas :</h4>
+                <img src="IMAGES/EN_FAM_Sortance_Low.jpg" alt="">
+                <ul>
+                    <li>Le courant max que la sortie d'une porte peut recevoir est \(I_{OLmax}=16mA \)</li>
+                    <li>Chaque porte branchée apporte un courant qui peut aveindre \(I_{ILmax}=1.6mA \)</li>
+                    $$ Sortance_L = \frac{I_{OLmax}}{I_{ILmax}}= \frac{16mA}{1.6mA} = 10 $$
+                </ul><br>
+
+                <h4>Sortance au niveau Haut :</h4>
+                <img src="IMAGES/EN_FAM_Sortance_High.jpg" alt="">
+                <ul>
+                    <li>Le courant max qu'une sortie au niveau haut peut donner est \(I_{OHmax}=0.4mA=400µA \)</li>
+                    <li>Chaque porte branchée absorbe un courant qui peut aveindre \(I_{IHmax}=40µA \)</li>
+                    $$ Sortance_H = \frac{I_{OHmax}}{I_{IHmax}}= \frac{400µA}{40µA} = 10 $$
+                </ul>
+                <p>Donc pour la famille TTL standard, la sortance est la même pour ls niveaux haut et bas :</p>
+                <p class="InlineCenter"><span class="encadre">$$ Sortance = 10 $$</span></p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PUISSANCE">Puissance consommée :</h3>
+                <img src="IMAGES/EN_FAM_Icc.jpg" alt="" class="Float_R">
+                <p>Une porte logique ne consomme pas le même courant quand sa sortie est au niveau haut et au niveau
+                    bas. Pour donner une valeur typique de la consommation, on prend la moyenne</p>
+                <p>\( I_{CCHtyp}=1mA \) , \( I_{CCLtyp}=3mA \) &rArr; \( I_{CCtyp}=\frac{1mA+3mA}{2}=2mA \)</p>
+                <p>La puissance typique consommée est :</p>
+                <p class="InlineCenter"><span class="encadre">$$ P_{typ} = V_{cc} \times I_{cctyp} = 5V \times 2mA = 10
+                        mW $$</span></p>
+                <p>La consommation augmente légèrement avec la fréquence. On peut considérer la valeur de 10 mW valable
+                    jusqu'à une fréquence de 1 MHz</p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TP">Temps de propagation</h3>
+                <p>Le temps de propagation correspond au délai entre l'application dun changement d'état sur l'entrée
+                    d'une porte logique et l'apparition de la réponse correspondante sur sa sortie.</p>
+                <img src="IMAGES/EN_FAM_Tp.jpg" alt="">
+                <ul>
+                    <li><b>\( T_{PHL} \) : </b>Temps de propagation pour un passage de l'état haut à l'état bas,</li>
+                    <li><b>\( T_{PLH} \) : </b>Temps de propagation pour un passage de l'état bas à l'état haut,</li>
+                </ul>
+                <p>Pour la famille TTL standard :</p>
+                <p>\( T_{PHLtyp}= 8ns ~~~\) , \( T_{PLHtyp}= 12ns \)</p>
+                <p class="InlineCenter"> <span class="encadre">$$ T_{Ptyp}= 10ns $$</span> </p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="MAXFREQ">Fréquence maximale d'utilisation</h3>
+                $$ f_{max}= \frac{1}{T_{PHLtyp}+T_{PLHtyp}} = \frac{1}{20ns}=50 MHz $$
+                <p>Pour garantir un bon fonction d'un système basé sur des circuits TTL standard, il est conseillé de se
+                    limiter à :</p>
+                <p class="InlineCenter"> <span class="encadre">$$ f_{max}= 40 Mhz $$</span> </p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="OPENCOL">Sortie collecteur ouvert</h3>
+                <img src="IMAGES/EN_FAM_CO.jpg" alt="">
+                <p>Dans une porte avec sortie collecteur ouvert <i>(Open Collector)</i>, le commutateur qui permet de
+                    placer la sortie au niveau haut a été supprimé. La sortie est connecté au collecteur du transistor
+                    restant (Q4 dans notre exemple) d'où le nom de collecteur ouvert</p>
+                <ul>
+                    <li>Lorsque le transistor est saturé (ON), la sortie est connectée à la masse (0V), ce qui
+                        correspond à un niveau bas, </li>
+                    <li>Lorsque le transistor est bloqué (OFF), la sortie est "flottante", le niveau haut devra être
+                        établi par un circuit externe. </li>
+                </ul>
+                <p>La méthode la plus courante pour fixer le niveau haut de la sortie est d'utiliser une résistance de
+                    pull_up externe. Cette résistance peut être reliée à une tension différente de Vcc ce qui va
+                    permettre une grande souplesse d'utilisation</p>
+                <img src="IMAGES/EN_FAM_CO_PU.jpg" alt="">
+                <p>Les portes collecteur Ouvert ont différentes applications utiles comme :</p>
+                <ol>
+                    <li><b>Adaptation de niveau :</b> Permet de piloter une porte non TTL alimentée par une alimentation
+                        différente de 5V,
+                        <img src="IMAGES/EN_FAM_CO_Adapt.jpg" alt="">
+                    </li>
+                    <li><b>ET câblé :</b> Plusieurs sorties collecteur ouvert peuvent être connectées ensemble ce qu
+                        permet de réaliser une fonction ET <i>gratuitement</i>. Tout le monde s'accorde à dire que c'est
+                        un "OU", pour
+                        moi, c'est un "ET" 😊.
+                        <img src="IMAGES/EN_FAM_CO_ETCable.jpg" alt="">
+                        En fait, si on veut être rigoureux, l'appellation OU câblé ou ET câblé dépendent de la logique.
+                        En logique positive, vrai=1. En logique négative, vrai=0. Donc pour notre circuit :
+                        <ul>
+                            <li>La sortie commune est à 1 si les deux sorties sont à 1, ce
+                                qui correspond à une fonction ET en logique positive</li>
+                            <li>La sortie commune est à 0 si au moins une des deux sortie est à 0, ce
+                                qui correspond à une fonction OU en logique négative</li>
+
+                        </ul>
+                    </li>
+                    <li><b>Piloter une charge haute tension :</b> Si par exemple on veut contrôler une LED 12V, on ne
+                        peut pas le
+                        faire directement avec une porte TTL normale. Par contre, la porte collecteur ouvert est
+                        parfaitement adaptée :
+                        <img src="IMAGES/EN_FAM_CO_HT.jpg" alt="">
+                    </li>
+                </ol><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TRISTATE">Sortie trois états :</h3>
+                <p>Les sorties trois états, également appelées sorties "Tri-State" ou sorties à haute impédance, sont
+                    des sorties numériques capables de se trouver dans l'un des trois états suivants :</p>
+                <ol>
+                    <li>État haut (1) : La sortie délivre une tension correspondant à un niveau logique haut.</li>
+                    <li>État bas (0) : La sortie délivre une tension correspondant à un niveau logique bas.</li>
+                    <li>État haute impédance (Hi-Z) : La sortie est déconnectée du circuit, se comportant comme une
+                        impédance très élevée, équivalente à un circuit ouvert. Dans cet état, la sortie n'influence pas
+                        le reste du circuit.</li>
+                </ol>
+                <p>Cette fonctionnalité est particulièrement utile dans les systèmes où plusieurs dispositifs partagent
+                    une même ligne de communication, comme un bus de données. Les sorties trois états permettent à
+                    plusieurs circuits de se connecter à une même ligne sans interférer les uns avec les autres, à
+                    condition qu'une seule sortie soit active (en état haut ou bas) à la fois, tandis que les autres
+                    sont en état haute impédance. Cela évite les conflits de bus et permet une communication
+                    bidirectionnelle</p>
+                <p>Par exemple, dans un système informatique, les mémoires et les périphériques peuvent partager le même
+                    bus de données. Grâce aux sorties trois états, chaque dispositif peut prendre le contrôle du bus
+                    lorsqu'il est sélectionné, tandis que les autres se mettent en état haute impédance, évitant ainsi
+                    les courts-circuits et les interférences.</p>
+                <img src="IMAGES/EN_FAM_HZ.jpg" alt="" class="Float_R">
+                <p>En général,les circuit tristate on une entrée de contrôle qui permet de place la sortie en mode haute
+                    impédance : </p>
+                <ul>
+                    <li>HZ = 1 : fonctionnement normal, sortie 2 états</li>
+                    <li>HZ = 0 : Sortie haute impédance</li>
+                </ul>
+                <p>La figures ci dessous montre plusieurs circuit connectés à un bus. Seul le circuit qui est
+                    sélectionné pour écrire dans le bus doit être en basse impédance, tous les autres doivent être
+                    en haute impédance</p>
+                <img src="IMAGES/EN_FAM_HZ_BUS.jpg" alt="">
+                <p>Les circuit tri-state sont aussi très utiles pour réaliser des buffer bidirectionnel qui permettent
+                    d'utiliser une ligne dans un sens ou dans l'autre. Par exemple dans une mémoire, on utilise le même
+                    bus pour lire et pour écrire,</p>
+                <img src="IMAGES/EN_FAM_HZ_Buffer.jpg" alt=""><br>
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="S_TRIG">Entrées à trigger de Schmitt</h3>
+                <img src="IMAGES/EN_FAM_TS.jpg" alt="">
+                <p>Certains circuit logiques sont conçus avec un circuit d'entrée particulier qui fait que la
+                    caractéristique de transfert comporte un <b>hystérésis</b> qui définit deux seuils de tension
+                    distincts pour les transitions montantes et descendantes</p>
+                <p>Voici la caractéristique de transfert d'un inverseur avec entré trigger de Schmitt</p>
+                <img src="IMAGES/EN_FAM_TS_CT.jpg" alt="">
+                <ul>
+                    <li><b>Seuil haut </b>\(V_{th} \) : Lorsque la tension d'entrée <i>Vi</i> est en train d'augmenter,
+                        quand elle
+                        atteint ce seuil, la sortie <i>Vo</i> bascule de l'état haut à l'état bas,</li>
+                    <li><b>Seuil bas </b>\(V_{tl} \) : Lorsque la tension d'entrée <i>Vi</i> est en train de diminuer,
+                        quand elle
+                        atteint ce seuil, la sortie <i>Vo</i> bascule de l'état bas à l'état haut,</li>
+                </ul>
+                <h4>Avantages :</h4>
+                <ul>
+                    <li><b>Rejet du bruit : </b>La différence de seuils empêche les commutations intempestives dues
+                        aux variations mineures ou au bruit sur le signal d'entrée, assurant ainsi une sortie stable en
+                        évitant les oscillations indésirables de la sortie,
+                    </li>
+                    <li><b>Amélioration des transitions :</b> Pour obtenir un hystérésis sur la caractéristique de
+                        transfert, l'étage d'entrée comporte une <strong>contre réaction positive</strong> dont une des
+                        propriété est
+                        l'accélération des transition. De ce fait, on va obtenir des transitions de sortie très rapides
+                        (verticales) même dans le cas d'une entrée variant très lentement. </li>
+                </ul>
+                <h4>Applications :</h4>
+                <ul>
+                    <li><b>Déparasitage de contacts : </b>Élimination des rebonds lors de l'appui sur des boutons ou
+                        interrupteurs mécaniques.
+                        <img src="IMAGES/EN_FAM_TS_DBcer.jpg" alt="">
+                    </li>
+                    <li><b>Conditionnement de signaux : </b>Conversion de formes d'onde analogiques en signaux
+                        numériques propres.
+                        <img src="IMAGES/EN_FAM_TS_MF.jpg" alt="">
+                    </li>
+                    <li><b>Oscillateurs : </b>Utilisation dans des circuits oscillateurs pour générer des signaux
+                        périodiques.
+                        <img src="IMAGES/EN_FAM_TS_Osc.jpg" alt="">
+                        <img src="IMAGES/EN_FAM_TS_OSC_CRB.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="CMOS">La famille CMOS</h2>
+                <p>Cette section est en cours de rédaction</p>
 
 
 
@@ -2955,22 +3503,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <!-- ################################################################################################ -->
+                <h2 id=""></h2>
                 <!-- ################################################################################################ -->
                 <h3 id=""></h3>
 
