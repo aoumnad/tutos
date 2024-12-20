@@ -482,6 +482,9 @@
                             <a href="#S_TRIG">
                                 <h3>Entrées à trigger de Schmitt</h3>
                             </a>
+                            <a href="#SUBFAM">
+                                <h3>Spécifications de quelques Sous-familles TTL</h3>
+                            </a>
                         </div>
                         <div class="rubrique" onclick="toggleMenu('famcmos', this)">
                             <span>&gt;</span>
@@ -490,6 +493,39 @@
                         <div id="famcmos" class="sub-rubrique">
                             <a href="#CMOS">
                                 <h3>Introduction</h3>
+                            </a>
+                            <a href="#CD4000">
+                                <h3>La série 4000</h3>
+                            </a>
+                            <a href="#4KINV">
+                                <h3>Le circuit élémentaire (Inverseur)</h3>
+                            </a>
+                            <a href="#4KNIVLINP">
+                                <h3>Niveaux logique en entrée</h3>
+                            </a>
+                            <a href="#4KNIVLOUT">
+                                <h3>Niveaux logique en Sortie</h3>
+                            </a>
+                            <a href="#NOISEMARGIN">
+                                <h3>Marge de bruit</h3>
+                            </a>
+                            <a href="#SORTANCE4K">
+                                <h3>Sortance</h3>
+                            </a>
+                            <a href="#TPROP">
+                                <h3>Temps de propagation</h3>
+                            </a>
+                            <a href="#CONSO">
+                                <h3>Consommation</h3>
+                            </a>
+                            <a href="#74C">
+                                <h3>Les circuits 74C</h3>
+                            </a>
+                            <a href="#NAND4011">
+                                <h3>La porte NAND (4011)</h3>
+                            </a>
+                            <a href="#NOR4001">
+                                <h3>La porte NOR (4001)</h3>
                             </a>
                         </div>
                     </div>
@@ -2998,7 +3034,7 @@
                 <p>Fonction logique :</p>
                 <img src="IMAGES/EN_COM_MOS_Ex1_Fonc.jpg" alt=""><br>
 
-                <h3>Porte NAND</h3>
+                <h3 id="4011">Porte NAND</h3>
                 <img src="IMAGES/EN_COM_MOS_NAND.jpg" alt="">
                 <ol>
                     <li>A = 0V, B = 0V,<img src="IMAGES/EN_COM_MOS_NAND_1.jpg" alt=""></li>
@@ -3012,7 +3048,7 @@
                     <img src="IMAGES/EN_COM_NAND.jpg" alt="" class="inline">
                 </p><br>
 
-                <h3>Porte NOR</h3>
+                <h3 id="4001">Porte NOR</h3>
                 <img src="IMAGES/EN_COM_MOS_NOR.jpg" alt="">
                 <ol>
                     <li>A = 0V, B = 0V,<img src="IMAGES/EN_COM_MOS_NOR_1.jpg" alt=""></li>
@@ -3492,16 +3528,219 @@
                         <img src="IMAGES/EN_FAM_TS_OSC_CRB.jpg" alt="">
                     </li>
                 </ul><br>
+                <!-- ################################################################################################ -->
+                <h3 id="SUBFAM">Spécifications de quelques Sous-familles TTL</h3>
+                <img src="IMAGES/EN_FAM_SUBF_SPECS.jpg" alt="">
+                <img src="IMAGES/EN_FAM_SUBF_CRB1.jpg" alt="">
+                <img src="IMAGES/EN_FAM_SUBF_CRB2.jpg" alt=""><br>
 
                 <!-- ################################################################################################ -->
-                <h2 id="CMOS">La famille CMOS</h2>
-                <p>Cette section est en cours de rédaction</p>
+                <h2 id="CMOS">La famille CMOS (Complementary MOS)</h2>
+                <p>Cette famille tient son nom (Complementary) du fait que chaque étage d'un circuit numérique est
+                    constitué de deux transistors MOS complémentaires : un canal N et un canal P</p>
+                <p>Les caractéristiques principales de cette famille sont :</p>
+                <ul>
+                    <li><b>Faible consommation : </b> En fait, c'est la consommation <b>statique</b> (basse fréquences)
+                        qui est quasi nulle. Idéal pour les applications alimentées par batterie. La consommation
+                        <b>dynamique</b> (haute fréquence) devient similaire aux familles TTL.
+                    </li>
+                    <li><b>Très bonne Immunité au bruit :</b> Les circuits CMOS ont une bonne marge de bruit grâce à
+                        leur large plage de tensions acceptables pour les niveaux logiques</li>
+                    <li><b>Souplesse des tensions d'alimentation :</b> Les circuits CMOS peuvent fonctionner avec une
+                        large gamme de tensions d'alimentation, typiquement de 3V à 15V. Certaines sous familles sont
+                        conçues pour fonctionner avec une alimentation de 1.8V ou 1.2V</li>
+                    <li><b>Densité élevée : </b> Les transistors MOS sont très compacts, permettant d'intégrer des
+                        millions (voire des milliards) de transistors sur une seule puce.</li>
+                    <li><b>Vitesse de fonctionnement élevée :</b> Contrairement aux premiers circuits CMOS (série 4000)
+                        qui étaient moins rapides que les circuits TTL, les circuit CMOS modernes offrent des temps de
+                        commutation très courts, adaptés aux applications rapides.</li>
+                    <li><b>Limitations :</b>
+                        <ul>
+                            <li>Les transistors MOS sont très sensibles à l'électricité statique. Ils peuvent être
+                                endommagés par des décharges électrostatiques (ESD), nécessitant des précautions lors de
+                                la manipulation.</li>
+                            <li>La consommation peut augmenter significativement à haute fréquence, ce qui engendre une
+                                dissipation
+                                thermique nécessitant un système de refroidissement.</li>
+                            <li>Les circuits CMOS ne peuvent pas fournir de forts courants en sortie sans l'ajout de
+                                buffers ou de drivers externes.</li>
+                        </ul>
+                    </li>
+                </ul><br>
+                <p>La famille CMOS est constituée de plusieurs sous-familles :</p>
+                <ul>
+                    <li><b>Série 4000</b> : CMOS standard, première famille développée</li>
+                    <li><b>74C : </b>Mêmes spécifications que la série 4000 mais avec la nomenclature normalisée</li>
+                    <li><b>74AC : </b>advanced CMOS</li>
+                    <li><b>74HC : </b>High-Speed CMOS Logic</li>
+                    <li><b>74ACT : </b>advanced CMOS compatible TTL</li>
+                    <li><b>74HCT : </b>High-Speed CMOS Logic compatible TTL</li>
+                    <li><b>74AHC : </b>Advanced High-Speed CMOS Logic</li>
+                    <li><b>74AHCT : </b>Advances High-Speed CMOS Logic compatible TTL</li>
+                    <li><b>74BCT : </b>BiCMOS technology</li>
+                    <li><b>74ABT : </b>Advanced BiCMOS</li>
+                    <li><b>74LV : </b>Low Voltage HCMOS Technology</li>
+                    <li><b>74LVC : </b> Low Voltage CMOS</li>
+                    <li><b>74ALVC : </b>Advanced Low Voltage CMOS</li>
+                    <li><b>74LVT : </b>Low Voltage Technology</li>
+                    <li><b>74ALVT : </b>Advanced Low Voltage Technology</li>
+                    <li><b>74ALB : </b>Advanced Low voltage BiCMOS</li>
+                    <li><b>74CBTLV : </b> Low Voltage Bus Switches (Crossbar technology)</li>
+                </ul>
 
 
+                <!-- ################################################################################################ -->
+                <h3 id="CD4000">La série 4000 :</h3>
+                <p>La série 4000 est la première famille CMOS. Elle a été introduite dans les années 1970 pour
+                    fournir des alternatives plus flexibles et économes en énergie par rapport à la famille TTL. Bien
+                    que largement dépassée par les circuits modernes, la série 4000 est encore utilisée dans des
+                    applications basse fréquence (&lt; 1MHz) nécessitant une faible consommation
+                    d'énergie et une compatibilité avec différentes plages de tensions</p>
 
+                <h4>Tension d'alimentation :</h4>
+                <p>Les circuits de la famille 4000 ne sont pas obligatoirement alimentés entre une tension positive fixe
+                    et la masse comme c'est le cas de la famille TTL. Ils peuvent être alimentés entre une tension Vdd
+                    et une tension Vss quelconques en respectant les limites \( 3V \lt (V_{DD}-V_{SS}) \lt 18V \). Les
+                    niveaux logiques haut et bas seront définis ultérieurement avec plus de précision mais on peut déjà
+                    dire que \( V_{OH} \approx V_{DD} \) , \( V_{OL} \approx V_{SS} \). <br>
+                    Le plus souvent, les circuits sont alimentés par rapport à la masse (Vss=0), ave Vdd = 5V, 10V ou
+                    15V
+                </p><br>
 
+                <h4>Température de fonctionnement :</h4>
+                <ul>
+                    <li>[-40 , 85]°C pour la série civile</li>
+                    <li>[-55 , 125]°C pour la série militaire.</li>
+                </ul><br>
 
+                <h4>Transistors MOS utilisés :</h4>
+                <img src="IMAGES/EN_FAM_4K_MOS.jpg" alt="">
+                <br>
 
+                <!-- ################################################################################################ -->
+                <h3 id="4KINV">Le circuit élémentaire (Inverseur)</h3>
+                <img src="IMAGES/EN_FAM_4K_INV.jpg" alt="">
+                <ul>
+                    <li>\( V_i=0 \;,\; V_{GS1}= -V_{DD} \rightarrow Q_1:ON \;,\quad V_{GS2}= 0 \;\rightarrow\; Q_2:OFF
+                        \; \Rightarrow V_o=V_{DD} \)</li>
+                    <li>\( V_i=V_{DD} \;,\; V_{GS1}= 0 \rightarrow Q_1:OFF \;,\quad V_{GS2}= V_{DD} \;\rightarrow\;
+                        Q_2:ON \; \Rightarrow V_o=0 \)</li>
+                </ul>
+                <p>Si on fait varier Vi entre 0 et Vdd, on obtient la caractéristique de transfert ci-dessous. Comme le
+                    circuit est symétrique, on constate que la tension de transition est égale à Vdd/2</p>
+                <img src="IMAGES/EN_FAM_4K_INV_CRB.jpg" alt=""> <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="4KNIVLINP">Niveaux logiques en entrée</h3>
+                <img src="IMAGES/EN_FAM_4K_NIVL.jpg" alt="">
+                <p>Les niveaux logiques en entrées dépendent de la tension d'alimentation. Les intervalles correspondant
+                    au niveau logiques bas et haut sont symétriques et ont la même largeur. L'approximation \( \Delta
+                    V_i \approx 30 \% V_{dd} \) colle
+                    assez bien aux spécifications des datasheets.
+                </p>
+                <img src="IMAGES/EN_FAM_4K_NIVL_TAB.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="4KNIVLOUT">Niveaux logique en Sortie</h3>
+                <p>Le niveau de la tension de sortie dépend très fortement du courant de sortie. Cette variation est due
+                    à la chute
+                    de tension dans la résistance \(R_{DSon}\) du transistor passant.</p>
+                <img src="IMAGES/EN_FAM_4K_VoIo.jpg" alt="">
+                <p>Dans des conditions idéales, une porte CMOS devrait être connectée à l'entrée d'une
+                    autre porte CMOS. À cause de l'impédance d'entrée très élevée des circuits CMOS, le courant de
+                    sortie de
+                    la première porte sera pratiquement nul. Cela permet d'obtenir des niveaux logiques de sortie
+                    parfaits :</p>
+                <ul>
+                    <li>\( V_{OH} = V_{DD}\)</li>
+                    <li>\( V_{OL} = 0\)</li>
+                </ul><br>
+
+                <h4>En résumé :</h4>
+                <img src="IMAGES/EN_FAM_4K_NIVLOG.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="NOISEMARGIN">Marge de bruit :</h3>
+                <img src="IMAGES/EN_FAM_4K_NOISE.jpg" alt="">
+                <p>La marge de bruit est de l'ordre de \( \Delta V_i \approx 30 \% V_{dd} \), ce qui offre des
+                    tolérances très importantes pour les
+                    tensions d'alimentation élevées. Cela constitue un des avantages majeurs de cette famille, la
+                    rendant quasi incontournable pour des applications dans des environnements fortement parasités,
+                    comme au sein d'unités industrielles.</p>
+
+                <img src="IMAGES/EN_FAM_4K_NOISE_Tab.jpg" alt="">
+                <p>Cela signifie qu'avec Vdd=15V, on peut avoir des parasites de plus de 4Volts qui se
+                    superposent au signaux sans altérer le fonctionnement normal</p>
+                <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="SORTANCE4K">Sortance :</h3>
+                <p>La Sortance (fan-out en anglais) représente le nombre maximum de portes logiques que l'on peut
+                    connecter à la sortie d'une porte logique sans altérer significativement les niveaux logiques
+                    standardisés.</p>
+                <ul>
+                    <li>Pour la famille CMOS, la sortance n'est pas limitée par les courants puisque le courant d'entrée
+                        des portes CMOS est pratiquement nul. Théoriquement, on peut connecter un grand nombre de portes
+                        à une sortie unique sans provoquer de surcharge en courant.</li>
+                    <li>Cependant, chaque porte connectée ajoute sa capacité d'entrée (environ 7,5 pF), ce qui augmente
+                        la capacité totale de charge vue par la sortie. Cette capacité accrue ralentit les temps de
+                        propagation des signaux, ce qui peut dégrader les performances globales du circuit, notamment à
+                        des fréquences élevées.</li>
+                    <li>Dans la pratique, pour éviter une dégradation excessive des temps de propagation, il est
+                        recommandé de ne pas dépasser une sortance de 50 portes connectées à une seule sortie. Pour des
+                        applications critiques, des circuits de buffer peuvent être utilisés pour augmenter la capacité
+                        de décharge sans compromettre les performances.</li>
+                </ul>
+
+                <!-- ################################################################################################ -->
+                <h3 id="TPROP">Temps de propagation :</h3>
+                <img src="IMAGES/EN_FAM_4K_TP_RC.jpg" alt="">
+                <p>Le temps de propagation dépend fortement du circuit RC constitué de la résistance \(R_{DS}\) et de
+                    la capacité de charge \(C_L\). A chaque basculement, il faut charger ou décharger \(C_L\) à travers
+                    la résistance \(R_{DS}\), Le retard est voisin de la constante de temps \(\tau = R_{DS} C_L\). </p>
+                <p>La valeur de \(R_{DS}\) dépend de la tension Vgs (donc de Vdd) d'où l'influence de cette dernière sur
+                    le temp de propagation</p>
+                <img src="IMAGES/EN_FAM_4K_TP_Rds.jpg" alt="">
+                <img src="IMAGES/EN_FAM_4K_TP_CRB.jpg" alt="">
+                <p>On constate que le temps de propagation est bien meilleur avec Vdd=15V. C'était aussi le cas avec la
+                    marge de bruit, il semble donc qu'on a toujours intérêt à suralimenter les circuits CMOS</p> <br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="CONSO">Consommation :</h3>
+                <ul>
+                    <li>En <b>statique</b>, la consommation est quasi nulle. Il n'y a aucun chemin entre Vdd et la masse
+                        car un des deux transistors complémentaires est toujours bloqué. </li>
+                    <li>Lors d'un basculement (Vi = Vt), on va avoir une petite consommation pour deux raisons:
+                        <ul>
+                            <li>Les deux transistors conduisent simultanément pendant un très cours instant et un
+                                courant circule entre Vdd et la masse</li>
+                            <li>A chaque basculement, on charge ou on décharge la capacité C<sub>L</sub></li>
+                            <img src="IMAGES/EN_FAM_4K_CONSO.jpg" alt="">
+                        </ul>
+                    </li>
+                    <li>En <b>haute fréquence</b>, on a beaucoup de basculement par seconde, donc la consommation
+                        augmente </li>
+                </ul>
+
+                <img src="IMAGES/EN_FAM_4K_CONSO_freq.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="74C">Les circuits 74C</h3>
+                <p>Les circuits de la famille 74C sont les même que les circuits de la série 4000 avec la nomenclature
+                    normalisée. Ils ont le même brochage que la famille TTL.</p>
+                <p>Par exemple, le circuit 74C00 contient quatre portes NAND similaires à ceux du 4011, mais il n'ont
+                    pas
+                    le même brochage.</p>
+                <img src="IMAGES/EN_FAM_4K_74C.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="NAND4011">La porte NAND (4011) :</h3>
+                <p>Nous en avons déjà parlé dans la section <a href="Elec_Num.html#4011" target="_blank">Transistor MOS
+                        en commutation</a></p><br>
+
+                <h3 id="NOR4001">La porte NOR (4001) :</h3>
+                <p>Nous en avons déjà parlé dans la section <a href="Elec_Num.html#4001" target="_blank">Transistor MOS
+                        en commutation</a></p>
 
                 <!-- ################################################################################################ -->
                 <h2 id=""></h2>
@@ -3510,7 +3749,7 @@
 
 
 
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
