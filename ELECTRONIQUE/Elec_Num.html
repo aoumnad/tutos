@@ -4152,7 +4152,8 @@
                 <p>Un CPLD est constitué de trois ensembles principaux :</p>
                 <ul>
                     <li>Plusieurs blocs de type PLD appelés LAB <i><b>(Logic Array Bloc)</b></i>. Chaque bloc (LAB)
-                        est constitué d'un ensemble de macrocellules permettant chacune de synthétiser une fonction logique comme c'est le cas 
+                        est constitué d'un ensemble de macrocellules permettant chacune de synthétiser une fonction
+                        logique comme c'est le cas
                         dans un circuit 22V10 par exemple,
                     </li>
                     <li>Quelques blocs d'E/S pour se connecter à l'extérieure,</li>
@@ -4166,7 +4167,8 @@
                 <img src="IMAGES/EN_PLD_CPLD_LABstruc.jpg" alt="">
                 <p>Les macrocellules constituants les LAB CPLD sont plus élaborées que celles des SPLD.</p>
                 <p>Dans un PAL classique, chaque somme (OU) est connectée à un à un nombre fixe de produits (ET).
-                    Cependant, toutes ces produits ne sont pas toujours nécessaires pour synthétiser une fonction logique. Si
+                    Cependant, toutes ces produits ne sont pas toujours nécessaires pour synthétiser une fonction
+                    logique. Si
                     tous les produits ne sont pas utilisés, ces ressources restent gaspillées.</p>
                 <img src="IMAGES/EN_PLD_REGOUT.jpg" alt="">
                 <p>Dans les macrocellules d'un LAB CPLD, on a ajouté une matrice de sélection de Produits <i>(PTC -
@@ -4176,12 +4178,122 @@
                     d'utilisations des ressources.</p>
                 <img src="IMAGES/EN_PLD_CPLD_MCell.jpg" alt=""><br>
 
-                 <!-- ################################################################################################ -->
-                 <h2 id="FPGA">Les FPGA</h2>
+                <!-- ################################################################################################ -->
+                <h2 id="FPGA">Les FPGA</h2>
 
-                 <p>Cette section est en cours de rédaction</p>
+                <p>La technologie <b>FPGA : Field-Programmable Gate Array</b> est la catégorie de PLD la plus développée
+                    et la plus utilisée de nos jours. Sa capacité et ses performances sont bien supérieures à celles de
+                    la technologie CPLD. Les circuit FPGA sont plus flexibles et peuvent être configurés plusieurs
+                    fois, même après leur mise en service. Ils sont largement utilisés pour des applications complexes
+                    telles que le traitement du signal, les systèmes embarqués, en phase de prototypage et en produit
+                    final.</p>
+                <p>Parmi les caractéristiques principales des circuits FPGA on peut citer :</p>
+                <ul>
+                    <li>Un circuit FPGA est constitué d'un grand nombre de blocs logiques programmables appelés CLB
+                        (Configurable Logic Blocks). Ces blocs sont répartis sur toute la surface de la puce et
+                        "baignent" dans une matrice d'interconnexion programmable, également distribuée sur toute la
+                        surface. Cette matrice permet de connecter les CLB entre eux et de les interfacer avec les blocs
+                        d'E/S programmables (IO ou IOB) qui entourent l'ensemble.
 
+                        Bien que les exigences de routage varient d'un circuit à l'autre, certaines caractéristiques
+                        communes peuvent être exploitées pour concevoir de manière optimale cette interconnexion. Par
+                        exemple, la plupart des conceptions présentent une certaine localité, ce qui nécessite une
+                        abondance de fils courts pour relier les CLB voisins. Cependant, il existe également des
+                        connexions à longue distance, ce qui implique le besoin de fils longs mais moins nombreux.
 
+                        En outre, la matrice d'interconnexion des FPGA est conçue de manière hiérarchique, avec des
+                        réseaux locaux pour connecter des blocs proches et des réseaux globaux pour relier des blocs
+                        plus éloignés. Cette architecture hiérarchique optimise l'utilisation des ressources et réduit
+                        les délais de propagation, ce qui en fait une solution adaptée aux conceptions complexes et
+                        dynamiques. </li>
+                    <img src="IMAGES/EN_PLD_FPGA.jpg" alt="">
+                    <li>La technologie FPGA a adopté le transistor MOS (normal) comme point de connexion. Ce choix
+                        présente plusieurs avantages : il est facile à fabriquer, et sa petite taille permet un taux
+                        d'intégration élevé. Cependant, le transistor MOS seul n'a pas de capacité de mémoire, l'état de
+                        chaque transistor étant uniquement défini par la tension de commande appliquée à sa grille.
+
+                        Pour pallier cette limitation, les circuits FPGA utilisent des cellules mémoire SRAM pour
+                        contrôler les grilles des transistors MOS. Ces cellules SRAM constituent la mémoire de
+                        configuration du circuit et définissent le comportement logique du FPGA. Cependant, les cellules
+                        SRAM sont volatiles, ce qui signifie qu'elles perdent leur état lorsque l'alimentation est
+                        coupée.
+
+                        Pour assurer la non-volatilité des données de configuration, les FPGA s'appuient sur une mémoire
+                        externe non volatile, généralement une EEPROM ou une mémoire flash. Lors de la programmation,
+                        les données de configuration sont enregistrées dans cette mémoire externe. Ainsi, à chaque mise
+                        sous tension du FPGA, l'ensemble de sa mémoire de configuration est initialisé à partir de la
+                        mémoire non volatile, permettant au circuit de retrouver son fonctionnement prévu. Cette
+                        approche combine la flexibilité de la reprogrammation avec la fiabilité des mémoires non
+                        volatiles.
+                        <img src="IMAGES/EN_PLD_FPGA_PXMOS.jpg" alt="">
+                        Pour une mailleur souplesse de la matrice de connexion, chaque point de connexion peut être
+                        constitué de plusieurs MOS (jusqu'à 6) pour augmenter le nombre de possibilités
+                        d'interconnexion.
+                        <img src="IMAGES/EN_PLD_FPGA_PXMOS_6.jpg" alt="">
+                    </li>
+                    <li> Un bloc CLB (Configurable Logic Block) est constitué de plusieurs éléments logiques (LE : Logic
+                        Element). Un LE est composé d'un bloc combinatoire permettant de réaliser une fonction logique,
+                        suivi d'une bascule servant à la mémorisation ou à la synchronisation des données. <br>
+
+                        Le bloc CLB d'un FPGA est généralement plus petit qu'un bloc logique de CPLD, mais une puce FPGA
+                        contient beaucoup plus de blocs que ce que peut offrir un CPLD de taille équivalente (die size).
+                        La taille des blocs CLB détermine la granularité, qui peut être plus ou moins fine dans un FPGA.
+                        Une granularité fine améliore le taux d'utilisation des ressources logiques du circuit, mais
+                        elle augmente les besoins en ressources d'interconnexion. Dans le cas d'une granularité très
+                        fine, un bloc peut être réduit à un seul LE, consistant uniquement en un petit bloc combinatoire
+                        et une bascule.
+                        Cette configuration offre une grande flexibilité, mais impose une gestion optimisée de
+                        l'interconnexion pour éviter une augmentation des délais de propagation et de la consommation
+                        énergétique.
+                    </li>
+                </ul><br>
+
+                <h3>Cellule SRAM :</h3>
+                <p>La cellule SRAM est réalisé à l'aide de transistors MOS. Elle est constituée de deux inverseurs monté
+                    tête-bêche</p>
+                <img src="IMAGES/EN_PLD_FPGA_SRAM_Cell.jpg" alt="">
+
+                <h3>Le LUT : Look Up Table</h3>
+                <p>Dans un FPGA, le bloc combinatoire n'est pas réalisé par une matrice de portes ET et OU, comme c'est
+                    le cas des PLD classiques. Au lieu de cela, on utilise un LUT (Look-Up Table) pour accomplir cette
+                    tâche. <br>
+
+                    Un LUT est un multiplexeur conçu pour implémenter une fonction logique. Les entrées du multiplexeur
+                    sont connectées à une mémoire SRAM préprogrammée avec la table de vérité de la fonction logique à
+                    réaliser. Les variables de la fonction servent à commander les lignes de sélection du multiplexeur,
+                    permettant ainsi de produire la sortie logique correspondante.
+                </p>
+                <img src="IMAGES/EN_PLD_FPGA_LUT.jpg" alt=""><br>
+
+                <p>La réalisation des multiplexeurs se fait entièrement à l'aide de transistor MOS. On commence par
+                    réaliser un multiplexeur 2:1 à l'aide de quatre transistor MOS (inverseur = deux transistors)</p>
+                <img src="IMAGES/EN_PLD_FPGA_MXR21.jpg" alt="">
+                <p>L'association en pyramide des multiplexeurs 2:1 permet d'obtenir des multiplexeurs plus grads</p>
+                <img src="IMAGES/EN_PLD_FPGA_MXR81.jpg" alt=""> <br>
+
+                <h3>Exemple d'un LE</h3>
+                <p>C'est exemple montre un LE du constructeur Altera. Il est conçu pour offrir une grande souplesse d'utilisation</p>
+                <img src="IMAGES/EN_PLD_FPGA_LE0.jpg" alt="">
+                
+                <ol>
+                    <li>Bloc combinatoire constitué d'un LUT et d'un bloc Carry pour l'extension</li>
+                    <li>La bascule peut être programmée en bascule D, T, JK ou RS</li>
+                    <li>CLR, PRESET, Chargement Asynchrones</li>
+                    <li>Horloge et Validation d’horloge</li>
+                    <li>Chargement Synchrone</li>
+                    <li>La sortie de la bascule peut être envoyée vers le réseau d’interconnexion ou réinjectée à
+                        l’entrée du bloc combinatoire</li>
+                    <li>On peut utiliser seulement le bloc combinatoire sans passer par la bascule</li>
+                    <img src="IMAGES/EN_PLD_FPGA_LE1.jpg" alt="">
+                    <li>On peut utiliser la bascule seule sans passer par le bloc combinatoire</li>
+                    <li>La bascule peut être chaînée avec d’autres bascules pour faire des registres à décalage par
+                        exemple</li>
+                    <img src="IMAGES/EN_PLD_FPGA_LE2.jpg" alt="">
+                    <li>Le LUT et le registre peuvent être utilisés séparément mais simultanément</li>
+                </ol><br>
+
+                <h3>Exemple d'un Bloc d'E/S (IOB)</h3>
+                <img src="IMAGES/EN_PLD_FPGA_IOB.jpg" alt="">
 
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
