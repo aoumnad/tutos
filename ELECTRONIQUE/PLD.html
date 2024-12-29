@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Electronique Numérique" name="description">
+    <meta content="Binaire, Hexadécimal, Porte logique, Bascule, JK, RS, Compteur, Multiplexeur, Additionneur"
+        name="keywords">
+    <title>Electronique Numérique</title>
+    <link rel="icon" href="IMAGES/ElecLogo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                        <a href="#PLDFPGA">
+                            <h3>Introduction</h3>
+                        </a>
+                        <a href="#PLDTYPES">
+                            <h3>Types de PLD</h3>
+                        </a>
+                        <a href="#BASEIDEA">
+                            <h3>L'idée de base: les PLA</h3>
+                        </a>
+                        <a href="#PLDPAL">
+                            <h3>Les PAL</h3>
+                        </a>
+                        <a href="#PXFUSE">
+                            <h3>Points de connexion à fusibles</h3>
+                        </a>
+                        <a href="#PXAFUSE">
+                            <h3>Points de connexion à anti-fusibles</h3>
+                        </a>
+                        <a href="#PLDGAL">
+                            <h3>Les GAL</h3>
+                        </a>
+                        <a href="#PXEPLD">
+                            <h3>Point de Connexion EPLD</h3>
+                        </a>
+                        <a href="#PXEEPLD">
+                            <h3>Point de Connexion EEPLD</h3>
+                        </a>
+
+                        <div class="rubrique" onclick="toggleMenu('ploces', this)">
+                            <span>&gt;</span>
+                            <h2>Les blocs d'Entrée Sortie</h2>
+                        </div>
+                        <div id="ploces" class="sub-rubrique">
+                            <a href="#IOBLOCS">
+                                <h3>Introduction</h3>
+                            </a>
+                            <a href="#3STATEOUT">
+                                <h3>Sortie 3 états</h3>
+                            </a>
+                            <a href="#PLDIO">
+                                <h3>Entrée Sortie</h3>
+                            </a>
+                            <a href="#COMBOUT">
+                                <h3>Sortie combinatoire</h3>
+                            </a>
+                            <a href="#REGOUT">
+                                <h3>Sortie à registre</h3>
+                            </a>
+                            <a href="#VERSOUT">
+                                <h3>Sortie versatile</h3>
+                            </a>
+                        </div>
+                        <a href="#PAL16L8">
+                            <h3>Le circuit PAL16L8</h3>
+                        </a>
+                        <a href="#GAL22V10">
+                            <h3>Le circuit GAL22V10</h3>
+                        </a>
+                        <a href="#CPLD">
+                            <h3>Les CPLD</h3>
+                        </a>
+                        <a href="#FPGA">
+                            <h3>Les FPGA</h3>
+                        </a>
+                <br><br><br>
+            </div>
+        </div>
+
+        <!-- ################################################################################################ -->
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Electronique Numérique</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="PLDFPGA">Les circuits logique programmables PLD</h2>
+                <p>Les circuits logiques programmables <i>(PLD: Programmable Logic Devices)</i> sont des composants
+                    électroniques permettant de créer des circuits logiques <b>personnalisés</b>. Contrairement aux
+                    circuits logiques fixes (comme les circuits intégrés TTL ou CMOS), les PLD peuvent être programmés
+                    pour répondre à des besoins spécifiques.</p>
+                <p>Le terme <b>programmable</b> peut prêter à confusion. Les PLD ne sont pas programmés au sens
+                    informatique qui consiste à implanter le code d'une application dans un microcontrôleur ou un
+                    microprocesseur. Le terme <b>reconfigurable</b> est plus adapté. En effet, un PLD est un
+                    circuit intégré qui contient un réseau d'opérateurs logiques de base qui ne <b>sont pas
+                        interconnectés lors de la fabrication</b>.
+                    L'utilisateur <b>reconfigure</b> le circuit en définissant les connexions entre les les éléments
+                    logiques nécessaires pour réaliser une fonction particulière.
+                </p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PLDTYPES">Types de PLD</h3>
+                <p>Beaucoup d'acronymes sont utilisés dans le domaine des PLD. Certains désignent des technologies,
+                    d'autre des génération de technologies, etc...</p>
+                <ul>
+                    <li><em>PLA: </em>(Programmable Logic array) sont les premiers PLD qui ont été développés. Matrice
+                        ET programmable, Matrice OU programmable. Permet une flexibilité maximale pour implémenter des
+                        fonctions logiques complexes</li>
+                    <li><em>PAL: </em>(Programmable Array Logic) Simplification des PLA : seuls les réseaux AND sont
+                        programmables. Moins flexible mais plus rapide et plus économique.</li>
+                    <li><em>GAL: </em>(Generic Array Logic) Version améliorée et plus flexible des PAL. Il sont
+                        <em>RE</em>programmables
+                        grâce à leur réseau d'interconnexion de type EEPROM.
+                    </li>
+                    <li><em>SPLD: </em>(Simple programmable logic device) Désignes les PLD de première
+                        génération. Quelques centaines de portes logiques et quelques dizaines bascules: Technologies
+                        PLA, PAL et GAL</li>
+                    <li><em>EPLD: </em>(Erasable PLD) Terme générique pour désigner les PLD reprogrammable avec
+                        effacement par UV </li>
+                    <li><em>EEPLD: </em>(Electricaly Erasable PLD) Terme générique pour désigner les PLD reprogrammable
+                        électriquement </li>
+                    <li><em>CPLD: </em>(complex programmable logic device) Circuits relativement complexes (jusqu'à une
+                        ou deux dizaines de milliers de portes). Constitué de blocs logiques programmables dont
+                        l'architecture des blocs dérive directement de celle des SPLDs. Peut implémenter
+                        des fonctions plus complexes que les PAL. </li>
+                    <li><em>FPGA: </em>(field programmable gate array) Circuit qui peut être très complexe. Des
+                        centaines de milliers
+                        d'éléments logiques, avec des modules plus au moins sophistiqués et de la mémoire intégrée.
+                        (Capacité en constante augmentation).
+                    </li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="BASEIDEA">L'idée de base, les PLA</h3>
+                <p>Un système combinatoire est le plus souvent représenté par des fonctions sous la forme canonique
+                    somme. C'est une somme (OR) de produits (AND) des entrées et leurs compléments (NOT)</p>
+                <img src="IMAGES/EN_PLD_CANONIC.jpg" alt="">
+                <p>On constate que nous avons besoins d'inverseurs, de portes ET, de porte OU et d'un ensemble
+                    d'interconnexions</p>
+                <p>Le circuit PLD sera donc constitué de :</p>
+                <ol>
+                    <li>Un ensemble de bornes d'entrée,</li>
+                    <li>Un ensemble de buffers qui délivrent les entrées et leurs inverses</li>
+                    <li>Un ensemble de portes ET qui constitue la <em>matrice ET</em>
+                        <img src="IMAGES/EN_PLD_MAT_ET.jpg" alt="">
+                    </li>
+                    <li>Un ensemble de portes OU qui constitue la <em>matrice OU</em>
+                        <img src="IMAGES/EN_PLD_MAT_OU.jpg" alt="">
+                    </li>
+                    <li>Un ensemble de bornes de sorties,</li>
+                </ol>
+                <p>Les deux matrices (ET et OU) sont programmables :</p>
+                <ul>
+                    <li>Chaque porte de la matrice ET est connectée, via des <b>fusibles</b>, à toutes les entrées et
+                        leurs inverses.</li>
+                    <li>Chaque porte de la matrice OU est connectée, via des <b>fusibles</b>, à toutes les sorties de
+                        la matrice ET</li>
+                    <li>Lors de la programmation (reconfiguration), l'utilisateur, à l'aide d'un logiciel et d'un
+                        équipement spécialisés (programmeur) configure le circuit en détruisant les fusibles inutiles.
+                        Seuls les fusibles nécessaires pour réaliser la fonction logique souhaitée sont conservés</li>
+                </ul><br>
+                <h4>Simplification de dessin :</h4>
+                <p>Pour alléger le dessin, on a adopté la convention ci-dessous :</p>
+                <img src="IMAGES/EN_PLD_MAT_SMPL.jpg" alt="">
+                <p>Voici la représentation d'un PLA 4 entrées et 3 sortie</p>
+                <img src="IMAGES/EN_PLD_PLA_4I3O.jpg" alt=""><br>
+
+                <h4>PLA programmé :</h4>
+                <img src="IMAGES/EN_PLS_PLA_Programed.jpg" alt="">
+                $$ S_1=AB+\bar{A}\bar{B}\bar{C}\bar{D} $$
+                $$ S_2=A\bar{C}+\bar{A}CD+B $$
+                $$ S_3=AB+A\bar{C}+\bar{A}\bar{B}\bar{D} $$
+                <br>
+                <!-- ################################################################################################ -->
+                <h3 id="PLDPAL">Les PAL</h3>
+                <p>Un PAL (Programmable Array Logic) est un PLA dont seule la matrice ET est programmables. La matrice
+                    OU est fixe.</p>
+                <img src="IMAGES/EN_PLD_PAL.jpg" alt="">
+                <p>Les PAL sont plus économiques mais moins souples. Par exemple, avec le circuit de la figure ci
+                    dessous, on ne peut pas synthétiser une fonction constitué de la somme de plus de 4 monômes</p><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PXFUSE">Points de connexion à fusibles :</h3>
+                <img src="IMAGES/EN_PLD_PX_FUSE.jpg" alt="">
+                <ul>
+                    <li>Des diodes ou des transistors MOS sont utilisés comme point de connexion entre les lignes et les
+                        colonnes,</li>
+                    <li>A la fabrication, tous les points de connexion (fusibles) sont conducteurs,</li>
+                    <li>Lors de la programmation, on détruit les fusibles non désirés par <b>claquage</b>. Cette
+                        technique consiste à appliquer pendant un court instant une tension supérieure à la tension de
+                        destruction <i>(Break down voltage)</i>. Une fois claqué, le composant ne peut plus conduire, ce
+                        qui équivaut à couper la connexion,</li>
+                    <li>C'est un processus <b>permanent et irréversible</b>. Les circuits peuvent être programmés <b>une
+                            seule fois</b>. On parle de technologie PROM.</li>
+
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PXAFUSE">Points de connexion à anti-fusible</h3>
+                <p>Contrairement à un fusible, un <b>anti-fusible</b> est initialement isolant. Lors de la
+                    programmation, l'application d'une tension ou d'un courant élevé provoque un court-circuit
+                    permanent. Cela établit une connexion électrique là où il n'y en avait pas
+                    initialement.</p>
+                <p>La figure ci-dessous illustre une des technologies utilisées. Deux conducteurs sont séparés par une
+                    couche très mince de matériau isolant (par exemple, du silicium amorphe). Lors de la programmation,
+                    l'application d'une tension élevée (environ 20 volts) transforme d'une manière <b>permanente</b> le
+                    matériau isolant en conducteur, établissant ainsi une liaison entre les deux conducteurs.</p>
+                <img src="IMAGES/EN_PLD_PX_AFUSE.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PLDGAL">Les GAL :</h3>
+                <ul>
+                    <li>un GAL <i>(Generic Array Logic)</i> est une version améliorée et plus flexible des PAL,</li>
+                    <li>Les GAL sont conçus pour être <em>RE</em>programmables. Ils peuvent être reprogrammés plusieurs
+                        fois grâce à leur points de connexion EPLD ou EEPLD,</li>
+                    <li>Les GAL sont souvent conçus pour être des remplacements directs des PAL dans les circuits
+                        existants, ce qui facilite leur adoption.</li>
+                </ul><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PXEPLD">Point de Connexion EPLD :</h3>
+                <ul>
+                    <li>Le terme <b>EPLD</b> <i>(Erasable Programmable Logic Device)</i> s'inspire du terme <b>EPROM</b>
+                        <i>(Erasable Programmable Read-Only Memory)</i>, car ces circuits utilisent le même type de
+                        transistor MOS à grille isolée que les mémoires EPROM.
+                    </li>
+                    <li>Ces circuits se distinguent par leur capacité à être <b>effaçables</b> par exposition aux rayons
+                        <b>ultraviolets</b>, ce qui les rend reprogrammables après effacement.
+                    </li>
+                    <li>Le point de connexion est basé sur un transistor MOS à <b>grille flottante</b> ou <b>grille
+                            isolée</b>. Plus précisément, ce type de transistor comporte deux grilles :
+                        <ul>
+                            <li>Une <b>grille de contrôle</b>, accessible pour appliquer une tension.</li>
+                            <li>Une <b>grille flottante</b>, complètement isolée électriquement et capable de piéger des
+                                charges électriques.</li>
+                        </ul>
+                        <img src="IMAGES/EN_PLD_EPLD.jpg" alt="">
+                    </li>
+                    <li>Lors de la programmation, une tension appropriée appliquée sur la grille de contrôle génère un
+                        effet tunnel (ou injection par effet Fowler-Nordheim), permettant le transfert d'électrons vers
+                        la grille flottante. Ces électrons y restent piégés même après suppression de la tension de
+                        contrôle, modifiant ainsi l'état du transistor.</li>
+                    <li>L'effacement des électrons de la grille flottante se fait par exposition aux rayons
+                        ultraviolets, qui fournissent l'énergie nécessaire pour libérer les charges et rétablir l'état
+                        initial du transistor. Le boîtier dispose d'une petite fenêtre en verre pour permettre au UV
+                        d'atteindre les composants.
+                        <img src="IMAGES/EN_PLD_EPLD_Pg.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <h4>Utilisation de la grille de contrôle :</h4>
+                <p>La grille de contrôle intervient à la fois pendant la phase d'utilisation, la phase de programmation,
+                    et la phase d'effacement du circuit.</p><br>
+
+                <h4>Phase d'utilisation :</h4>
+                <p>Pendant la phase d'utilisation du circuit, <b>les grilles de contrôles de tous les transistors sont
+                        portées à 5 Volts</b>.
+                    L'état de chaque transistor dépend de l'état de sa grille flottante :</p>
+                <ul>
+                    <li><b>Grille flottante non chargée :</b> Le potentiel de 5 V appliqué sur la grille de contrôle
+                        crée un champ électrique qui attire les électrons minoritaires du substrat. Cela induit un
+                        canal de conduction entre le drain et la source.
+                        Résultat : les transistors <b>non programmés</b> fonctionnent comme des <b>points de connexion
+                            fermés</b>
+                        (ON).
+                        <img src="IMAGES/EN_PLD_EPLD_UNP.jpg" alt="">
+                    </li>
+                    <li><b>Grille flottante chargée :</b> La charge négative présente sur la grille flottante masque
+                        l'effet du potentiel de la grille de contrôle.
+                        Aucun canal de conduction n'est formé entre le drain et la source.
+                        Résultat : les transistors <b>programmés</b> agissent comme des <b>points de connexion
+                            ouverts</b> (OFF).
+                        <img src="IMAGES/EN_PLD_EPLD_UP.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <h4>Phase de programmation :</h4>
+                <p>Une tension élevée (&approx; 20 V) est appliquée sur la grille de contrôle du transistor à
+                    programmer.
+                    Ce fort champ électrique provoque un effet tunnel ou injection par effet Fowler-Nordheim, qui
+                    transfère des électrons vers la grille flottante.
+                    Les électrons restent piégés sur la grille flottante après la suppression de la tension
+                    de contrôle, modifiant définitivement l'état du transistor.</p>
+                <img src="IMAGES/EN_PLD_EPLD_Prog.jpg" alt=""><br>
+
+                <h4>Phase d'effacement :</h4>
+                <p>Pendant cette phase, le circuit est placé sous une lampe à UV pendant une vingtaine de minutes.
+                    Les rayons ultraviolets fournissent l'énergie nécessaire pour libérer les charges et rétablir
+                    l'état initial du transistor. Pendant cette phase, le fait de porter la grille de contrôle à un
+                    potentiel inférieur à
+                    celui du substrat peut faciliter le retour des charges piégées à leur état initial. Une fois les
+                    charges éliminées, les transistors retrouvent leur état initial et peuvent être reprogrammés.</p>
+                <img src="IMAGES/EN_PLD_EPLD_Erase.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PXEEPLD">Point de Connexion EEPLD</h3>
+
+                <p>Un point de connexion EEPLD utilise un transistor à grille isolée qui a bénéficié d'un
+                    certain nombre d'améliorations technologiques afin qu'il puisse être <b>reprogrammé
+                        électriquement</b> sans nécessité d'un effacement par ultra-violets. </p>
+                <p>Les principales améliorations pour rendre les transistors à grille isolée effaçables électriquement
+                    incluent :</p>
+                <ul>
+                    <li>Réduction de l'épaisseur de l'isolant entre la grille flottante et le substrat (200 Å),</li>
+                    <li>Amélioration des matériaux de l'oxyde isolant par l'utilisation de matériaux à haute
+                        permittivité diélectrique (high-k),</li>
+                    <li>Optimisation de la grille flottante pour une meilleure rétention des charges.</li>
+                </ul>
+                <img src="IMAGES/EN_PLD_EEPLD.jpg" alt="">
+                <ul>
+                    <li>Pour charger la grille flottante, on applique une tension élevée (typiquement entre +15V et
+                        +20V) sur la grille de contrôle pour générer un champ électrique suffisant qui provoque un
+                        transfert d'électrons vers la grille flottante par effet tunnel,
+                        <img src="IMAGES/EN_PLD_EEPLD_Ch.jpg" alt="">
+                    </li>
+                    <li>Pour retirer les charges piégées dans la grille flottante et ramener le transistor à son état
+                        initial, on applique une tension élevée de sens inverse (typiquement entre -15V et -20V) sur la
+                        grille de contrôle.
+                        Cette tension inverse génère un champ électrique qui extrait les électrons de la grille
+                        flottante par effet tunnel.
+                        <img src="IMAGES/EN_PLD_EEPLD_Dch.jpg" alt="">
+                    </li>
+                </ul><br>
+
+                <p>Lors de la phase d'utilisation, le point de connexion EEPLD s'utilise comme le point de connexion
+                    EPLD. <b>les grilles de contrôles de tous les transistors sont portées à 5 Volts</b>.
+                    L'état de chaque transistor dépend de l'état de sa grille flottante :</p>
+                <ul>
+                    <li><b>Grille flottante non chargée :</b> Le potentiel de 5 V appliqué sur la grille de contrôle
+                        crée un champ électrique qui attire les électrons minoritaires du substrat. Cela induit un
+                        canal de conduction entre le drain et la source.
+                        Résultat : les transistors <b>non programmés</b> fonctionnent comme des <b>points de connexion
+                            fermés</b> (ON).
+                        <img src="IMAGES/EN_PLD_EPLD_UNP.jpg" alt="">
+                    </li>
+                    <li><b>Grille flottante chargée :</b> La charge négative présente sur la grille flottante masque
+                        l'effet du potentiel de la grille de contrôle.
+                        Aucun canal de conduction n'est formé entre le drain et la source.
+                        Résultat : les transistors <b>programmés</b> agissent comme des <b>points de connexion
+                            ouverts</b> (OFF).
+                        <img src="IMAGES/EN_PLD_EPLD_UP.jpg" alt="">
+                    </li>
+                </ul><br>
+                <!-- ################################################################################################ -->
+                <h2 id="IOBLOCS">Les blocs d'Entrée Sortie</h2>
+                <p>Les blocs d'entrée/sortie (E/S) des circuits PLD sont des interfaces configurables qui permettent de
+                    connecter le circuit à des périphériques externes. Ils peuvent inclure des fonctionnalités telles
+                    que des tampons tri-état, des registres de capture, ou des options de polarité, offrant ainsi une
+                    grande flexibilité pour s'adapter aux exigences spécifiques des systèmes numériques.</p>
+
+                <!-- ################################################################################################ -->
+                <h3 id="3STATEOUT">Sortie 3 états</h3>
+                <p>Les sorties sont souvent de type 3 états, ce qui permet de les déconnecter au besoin</p>
+                <img src="IMAGES/EN_PLD_3SOUT.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="PLDIO">Entrée Sortie</h3>
+                <p>Une entrée-sortie est une broche qui peut être utilisée <b>soit comme entrée soit comme sortie</b>.
+                    Elle sert aussi à réinjecter la sortie avec les entrées ce qui permet l'étude des systèmes
+                    séquentiels </p>
+                <img src="IMAGES/EN_PLD_IO.jpg" alt="">
+
+
+                <!-- ################################################################################################ -->
+                <h3 id="COMBOUT">Sortie combinatoire</h3>
+                <p>Un sortie combinatoire peut être active au niveau haut, au niveau bas ou au choix :</p>
+                <ul>
+                    <li><b>Type H :</b> Sortie active au niveau Haut</li>
+                    <img src="IMAGES/EN_PLD_CMBOUT_H.jpg" alt="">
+                    <li><b>Type L :</b> Sortie active au niveau bas</li>
+                    <img src="IMAGES/EN_PLD_CMBOUT_L.jpg" alt="">
+                    <li><b>Type C :</b> Combinée: programmable en type H ou L</li>
+                    <img src="IMAGES/EN_PLD_CMBOUT_H.jpg" alt="">
+
+                </ul>
+                <!-- ################################################################################################ -->
+                <h3 id="REGOUT">Sortie à registre</h3>
+                <img src="IMAGES/EN_PLD_REGOUT.jpg" alt="">
+                <ul>
+                    <li>La sortie est mémorisée dans une bascule,</li>
+                    <li>Dans certaines versions, La bascule dispose d'entrées de forçage asynchrones, (Clear, Preset)
+                    </li>
+                    <li>Dans certaines versions, un XOR d'inversion programmable est inséré juste derrière la porte OR
+                    </li>
+                </ul>
+                <!-- ################################################################################################ -->
+                <h3 id="VERSOUT">Sortie versatile</h3>
+                <img src="IMAGES/EN_PLD_VERSOUT.jpg" alt="">
+                <p>E/S très souple qui peut être configurée dans différents modes en programmant les fusibles S0 et S1
+                </p>
+                <img src="IMAGES/EN_PLD_VERSOUT_Tab.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h3 id="PAL16L8">Le circuit PAL16L8</h3>
+                <p>C'est un circuit à sorties combinatoires (active Low). La référence est un peu trompeuse car elle
+                    précise 16 entrées et 8 sorties. En réalité, les sorties sont des E/S et sont comptées avec les
+                    entrée. Pour être précis, le circuit dispose de 10 entrées pures, 2 sorties pures et 6
+                    Entrée-sorties.</p>
+                <img src="IMAGES/EN_PLD_P16L8.jpg" alt="">
+                <img src="IMAGES/EN_PLD_P16L8_Ch.jpg" alt="">
+
+                <!-- ################################################################################################ -->
+                <h3 id="GAL22V10">Le circuit GAL22V10</h3>
+                <p>Le circuit GAL22V10 était populaire à son époque. Il est reprogrammable grace à ses point de
+                    connexion de type EEPLD. Il dispose de 12 Entrée et de 10 E/S Versatiles</p>
+                <img src="IMAGES/EN_PLD_GAL22V10.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="CPLD">Les CPLD</h2>
+                <p>Les CPLD (circuits logiques programmables <b>complexes</b> ) constituent
+                    une évolution des circuits logiques programmables simples (comme les PAL et GAL) en offrant une
+                    capacité de logique plus importante et une flexibilité accrue. Voici quelques propriétés :</p>
+                <ul>
+                    <li>Ils sont essentiellement de technologie EEPLD. Il sont non volatiles et reprogrammables </li>
+                    <li>Ils permette de réaliser des systèmes assez complexes: USART, contrôleur LAN, contrôleur
+                        graphique, contrôleur cache …</li>
+                    <li>Il sont caractérisés par un temps de propagation court et prédictible dû la structure
+                        d'interconnexion unique, </li>
+                    <li>Le nombre de LABs dans un circuit dépend des familles. Une dizaine à plusieurs centaines</li>
+                </ul>
+                <h3>Structure d'un circuit CPLD :</h3>
+                <p>Un CPLD est constitué de trois ensembles principaux :</p>
+                <ul>
+                    <li>Plusieurs blocs de type PLD appelés LAB <i><b>(Logic Array Bloc)</b></i>. Chaque bloc (LAB)
+                        est constitué d'un ensemble de macrocellules permettant chacune de synthétiser une fonction
+                        logique comme c'est le cas
+                        dans un circuit 22V10 par exemple,
+                    </li>
+                    <li>Quelques blocs d'E/S pour se connecter à l'extérieure,</li>
+                    <li>Une matrice d'interconnection permettant de relier les LABs entre eux et avec les E/S. Elle est
+                        appelée PI ou PIA <i><b>(Programmable Interconnect array)</b></i> </li>
+                </ul>
+                <img src="IMAGES/EN_PLD_CPLD.jpg" alt=""><br>
+
+                <h3>Structure d'un LAB :</h3>
+                <p>Chaque LAB est constitué de plusieurs <b>macrocellules</b> de type SPLD (16 en général).</p>
+                <img src="IMAGES/EN_PLD_CPLD_LABstruc.jpg" alt="">
+                <p>Les macrocellules constituants les LAB CPLD sont plus élaborées que celles des SPLD.</p>
+                <p>Dans un PAL classique, chaque somme (OU) est connectée à un à un nombre fixe de produits (ET).
+                    Cependant, toutes ces produits ne sont pas toujours nécessaires pour synthétiser une fonction
+                    logique. Si
+                    tous les produits ne sont pas utilisés, ces ressources restent gaspillées.</p>
+                <img src="IMAGES/EN_PLD_REGOUT.jpg" alt="">
+                <p>Dans les macrocellules d'un LAB CPLD, on a ajouté une matrice de sélection de Produits <i>(PTC -
+                        Product-Term Select Matrix)</i>, qui permet de rediriger les produits (ET)
+                    non utilisés vers d'autres macrocellules, ou si nécessaire,
+                    d'injecter des produits venant d'autre macrocellules. Ceci permet d' obtenir un meilleur taux
+                    d'utilisations des ressources.</p>
+                <img src="IMAGES/EN_PLD_CPLD_MCell.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="FPGA">Les FPGA</h2>
+
+                <p>La technologie <b>FPGA : Field-Programmable Gate Array</b> est la catégorie de PLD la plus développée
+                    et la plus utilisée de nos jours. Sa capacité et ses performances sont bien supérieures à celles de
+                    la technologie CPLD. Les circuit FPGA sont plus flexibles et peuvent être configurés plusieurs
+                    fois, même après leur mise en service. Ils sont largement utilisés pour des applications complexes
+                    telles que le traitement du signal, les systèmes embarqués, en phase de prototypage et en produit
+                    final.</p>
+                <p>Parmi les caractéristiques principales des circuits FPGA on peut citer :</p>
+                <ul>
+                    <li>Un circuit FPGA est constitué d'un grand nombre de blocs logiques programmables appelés CLB
+                        (Configurable Logic Blocks). Ces blocs sont répartis sur toute la surface de la puce et
+                        "baignent" dans une matrice d'interconnexion programmable, également distribuée sur toute la
+                        surface. Cette matrice permet de connecter les CLB entre eux et de les interfacer avec les blocs
+                        d'E/S programmables (IO ou IOB) qui entourent l'ensemble.
+
+                        Bien que les exigences de routage varient d'un circuit à l'autre, certaines caractéristiques
+                        communes peuvent être exploitées pour concevoir de manière optimale cette interconnexion. Par
+                        exemple, la plupart des conceptions présentent une certaine localité, ce qui nécessite une
+                        abondance de fils courts pour relier les CLB voisins. Cependant, il existe également des
+                        connexions à longue distance, ce qui implique le besoin de fils longs mais moins nombreux.
+
+                        En outre, la matrice d'interconnexion des FPGA est conçue de manière hiérarchique, avec des
+                        réseaux locaux pour connecter des blocs proches et des réseaux globaux pour relier des blocs
+                        plus éloignés. Cette architecture hiérarchique optimise l'utilisation des ressources et réduit
+                        les délais de propagation, ce qui en fait une solution adaptée aux conceptions complexes et
+                        dynamiques. </li>
+                    <img src="IMAGES/EN_PLD_FPGA.jpg" alt="">
+                    <li>La technologie FPGA a adopté le transistor MOS (normal) comme point de connexion. Ce choix
+                        présente plusieurs avantages : il est facile à fabriquer, et sa petite taille permet un taux
+                        d'intégration élevé. Cependant, le transistor MOS seul n'a pas de capacité de mémoire, l'état de
+                        chaque transistor étant uniquement défini par la tension de commande appliquée à sa grille.
+
+                        Pour pallier cette limitation, les circuits FPGA utilisent des cellules mémoire SRAM pour
+                        contrôler les grilles des transistors MOS. Ces cellules SRAM constituent la mémoire de
+                        configuration du circuit et définissent le comportement logique du FPGA. Cependant, les cellules
+                        SRAM sont volatiles, ce qui signifie qu'elles perdent leur état lorsque l'alimentation est
+                        coupée.
+
+                        Pour assurer la non-volatilité des données de configuration, les FPGA s'appuient sur une mémoire
+                        externe non volatile, généralement une EEPROM ou une mémoire flash. Lors de la programmation,
+                        les données de configuration sont enregistrées dans cette mémoire externe. Ainsi, à chaque mise
+                        sous tension du FPGA, l'ensemble de sa mémoire de configuration est initialisé à partir de la
+                        mémoire non volatile, permettant au circuit de retrouver son fonctionnement prévu. Cette
+                        approche combine la flexibilité de la reprogrammation avec la fiabilité des mémoires non
+                        volatiles.
+                        <img src="IMAGES/EN_PLD_FPGA_PXMOS.jpg" alt="">
+                        Pour une mailleur souplesse de la matrice de connexion, chaque point de connexion peut être
+                        constitué de plusieurs MOS (jusqu'à 6) pour augmenter le nombre de possibilités
+                        d'interconnexion.
+                        <img src="IMAGES/EN_PLD_FPGA_PXMOS_6.jpg" alt="">
+                    </li>
+                    <li> Un bloc CLB (Configurable Logic Block) est constitué de plusieurs éléments logiques (LE : Logic
+                        Element). Un LE est composé d'un bloc combinatoire permettant de réaliser une fonction logique,
+                        suivi d'une bascule servant à la mémorisation ou à la synchronisation des données. <br>
+
+                        Le bloc CLB d'un FPGA est généralement plus petit qu'un bloc logique de CPLD, mais une puce FPGA
+                        contient beaucoup plus de blocs que ce que peut offrir un CPLD de taille équivalente (die size).
+                        La taille des blocs CLB détermine la granularité, qui peut être plus ou moins fine dans un FPGA.
+                        Une granularité fine améliore le taux d'utilisation des ressources logiques du circuit, mais
+                        elle augmente les besoins en ressources d'interconnexion. Dans le cas d'une granularité très
+                        fine, un bloc peut être réduit à un seul LE, consistant uniquement en un petit bloc combinatoire
+                        et une bascule.
+                        Cette configuration offre une grande flexibilité, mais impose une gestion optimisée de
+                        l'interconnexion pour éviter une augmentation des délais de propagation et de la consommation
+                        énergétique.
+                    </li>
+                </ul><br>
+
+                <h3>Cellule SRAM :</h3>
+                <p>La cellule SRAM est réalisé à l'aide de transistors MOS. Elle est constituée de deux inverseurs monté
+                    tête-bêche</p>
+                <img src="IMAGES/EN_PLD_FPGA_SRAM_Cell.jpg" alt="">
+
+                <h3>Le LUT : Look Up Table</h3>
+                <p>Dans un FPGA, le bloc combinatoire n'est pas réalisé par une matrice de portes ET et OU, comme c'est
+                    le cas des PLD classiques. Au lieu de cela, on utilise un LUT (Look-Up Table) pour accomplir cette
+                    tâche. <br>
+
+                    Un LUT est un multiplexeur conçu pour implémenter une fonction logique. Les entrées du multiplexeur
+                    sont connectées à une mémoire SRAM préprogrammée avec la table de vérité de la fonction logique à
+                    réaliser. Les variables de la fonction servent à commander les lignes de sélection du multiplexeur,
+                    permettant ainsi de produire la sortie logique correspondante.
+                </p>
+                <img src="IMAGES/EN_PLD_FPGA_LUT.jpg" alt=""><br>
+
+                <p>La réalisation des multiplexeurs se fait entièrement à l'aide de transistor MOS. On commence par
+                    réaliser un multiplexeur 2:1 à l'aide de quatre transistor MOS (inverseur = deux transistors)</p>
+                <img src="IMAGES/EN_PLD_FPGA_MXR21.jpg" alt="">
+                <p>L'association en pyramide des multiplexeurs 2:1 permet d'obtenir des multiplexeurs plus grads</p>
+                <img src="IMAGES/EN_PLD_FPGA_MXR81.jpg" alt=""> <br>
+
+                <h3>Exemple d'un LE</h3>
+                <p>C'est exemple montre un LE du constructeur Altera. Il est conçu pour offrir une grande souplesse d'utilisation</p>
+                <img src="IMAGES/EN_PLD_FPGA_LE0.jpg" alt="">
+                
+                <ol>
+                    <li>Bloc combinatoire constitué d'un LUT et d'un bloc Carry pour l'extension</li>
+                    <li>La bascule peut être programmée en bascule D, T, JK ou RS</li>
+                    <li>CLR, PRESET, Chargement Asynchrones</li>
+                    <li>Horloge et Validation d’horloge</li>
+                    <li>Chargement Synchrone</li>
+                    <li>La sortie de la bascule peut être envoyée vers le réseau d’interconnexion ou réinjectée à
+                        l’entrée du bloc combinatoire</li>
+                    <li>On peut utiliser seulement le bloc combinatoire sans passer par la bascule</li>
+                    <img src="IMAGES/EN_PLD_FPGA_LE1.jpg" alt="">
+                    <li>On peut utiliser la bascule seule sans passer par le bloc combinatoire</li>
+                    <li>La bascule peut être chaînée avec d’autres bascules pour faire des registres à décalage par
+                        exemple</li>
+                    <img src="IMAGES/EN_PLD_FPGA_LE2.jpg" alt="">
+                    <li>Le LUT et le registre peuvent être utilisés séparément mais simultanément</li>
+                </ol><br>
+
+                <h3>Exemple d'un Bloc d'E/S (IOB)</h3>
+                <img src="IMAGES/EN_PLD_FPGA_IOB.jpg" alt="">
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

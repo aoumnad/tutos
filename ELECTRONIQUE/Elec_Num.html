@@ -55,7 +55,7 @@
 
 
                 </div>
-                <div class="rubrique" onclick="toggleMenu('Boole', this)">
+                <div class="rubrique" onclick="toggleMenu('boole', this)">
                     <span>&gt;</span>
                     <h2>Algèbre de Boole</h2>
                 </div>
@@ -529,77 +529,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="rubrique" onclick="toggleMenu('pld', this)">
-                        <span>&gt;</span>
-                        <h2>Les circuits logique Programmables PLD</h2>
-                    </div>
-                    <div id="pld" class="sub-rubrique">
-                        <a href="#PLDFPGA">
-                            <h3>Introduction</h3>
-                        </a>
-                        <a href="#PLDTYPES">
-                            <h3>Types de PLD</h3>
-                        </a>
-                        <a href="#BASEIDEA">
-                            <h3>L'idée de base: les PLA</h3>
-                        </a>
-                        <a href="#PLDPAL">
-                            <h3>Les PAL</h3>
-                        </a>
-                        <a href="#PXFUSE">
-                            <h3>Points de connexion à fusibles</h3>
-                        </a>
-                        <a href="#PXAFUSE">
-                            <h3>Points de connexion à anti-fusibles</h3>
-                        </a>
-                        <a href="#PLDGAL">
-                            <h3>Les GAL</h3>
-                        </a>
-                        <a href="#PXEPLD">
-                            <h3>Point de Connexion EPLD</h3>
-                        </a>
-                        <a href="#PXEEPLD">
-                            <h3>Point de Connexion EEPLD</h3>
-                        </a>
-
-                        <div class="rubrique" onclick="toggleMenu('ploces', this)">
-                            <span>&gt;</span>
-                            <h2>Les blocs d'Entrée Sortie</h2>
-                        </div>
-                        <div id="ploces" class="sub-rubrique">
-                            <a href="#IOBLOCS">
-                                <h3>Introduction</h3>
-                            </a>
-                            <a href="#3STATEOUT">
-                                <h3>Sortie 3 états</h3>
-                            </a>
-                            <a href="#PLDIO">
-                                <h3>Entrée Sortie</h3>
-                            </a>
-                            <a href="#COMBOUT">
-                                <h3>Sortie combinatoire</h3>
-                            </a>
-                            <a href="#REGOUT">
-                                <h3>Sortie à registre</h3>
-                            </a>
-                            <a href="#VERSOUT">
-                                <h3>Sortie versatile</h3>
-                            </a>
-                        </div>
-                        <a href="#PAL16L8">
-                            <h3>Le circuit PAL16L8</h3>
-                        </a>
-                        <a href="#GAL22V10">
-                            <h3>Le circuit GAL22V10</h3>
-                        </a>
-                        <a href="#CPLD">
-                            <h3>Les CPLD</h3>
-                        </a>
-                        <a href="#FPGA">
-                            <h3>Les FPGA</h3>
-                        </a>
-
-                    </div>
+                    
                 </div>
                 <br><br><br>
 
@@ -1144,7 +1074,7 @@
 
                 $$ \boxed{ \begin{matrix}
                 \rm{A.(B+C)=AB+AC} \\
-                \rm{A+B.C=(A+B).(A+C)}
+                \rm{A+(B.C)=(A+B).(A+C)}
                 \end{matrix} }
                 $$
                 <p>Verification : <br>

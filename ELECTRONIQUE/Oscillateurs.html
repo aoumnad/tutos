@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Abdelmajid OUMNAD" name="author">
+    <meta content="Electronique Numérique" name="description">
+    <meta content="Oscillateurs, Oscillateurs Sinusoïdaux, pont de Wien, phase shift" name="keywords">
+    <title>Oscillateurs Sinusoïdaux</title>
+    <link rel="icon" href="IMAGES/Osclogo.jpg" type="image/jpg">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../scripts.js" defer></script>
+    <script id="mathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <div class="TwoPanPageContainer">
+        <div id="LeftPanel_ID" class="LeftPanel">
+            <div class="LeftPanelHeader">
+                <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
+                <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="Electronique.html"> <img src="IMAGES/ElecLogo.png" height="45px"> </a>
+            </div>
+            <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
+                <a href="#INTRO">
+                    <h2>Introduction</h2>
+                </a>
+                <a href="#WIEN">
+                    <h2>Oscillateur à pont de Wien</h2>
+                </a>
+                <a href="#PHASESHIFT">
+                    <h2>Oscillateur à déphasage (phase shift)</h2>
+                </a>
+                <a href="#OSCLC">
+                    <h2>Oscillateurs à circuit accordé (LC)</h2>
+                </a>
+
+
+            </div>
+        </div>
+
+        <!-- ################################################################################################ -->
+        <div class="RightPanel">
+            <div class="RightPanelHeader">
+                <img onclick="montrerMenu()" class="Burger CursorPointer" src="../IMAGES/menu48.png">
+                <h1>Oscillateurs Sinusoïdaux</h1>
+            </div>
+            <div class="RightPanelContent">
+
+
+
+                <!-- ################################################################################################ -->
+                <h2 id="INTRO">Introduction</h2>
+                <p>Le concept général est celui d’un amplificateur qui s'autoalimente grâce à un 2ème amplificateur
+                    (ou atténuateur) qui réinjecte la tension de sortie vers l'entrée.</p>
+                <img src="IMAGES/EA_OSC_PRCPL.jpg" alt="">
+                <ul>
+                    <li>\(A_d\) : Fonction de transfert complexe de la chaîne directe :
+                        \( A_d = \begin{cases} A &\text{(Module = Gain)}\\ \varphi_A &\text{(Argument=Phase)}\end{cases}
+                        \)</li>
+                    <li>\(B_r\) : Fonction de transfert complexe de la chaîne de retour :
+                        \( B_r = \begin{cases} B &\text{(Module = Gain)}\\ \varphi_B &\text{(Argument=Phase)}\end{cases}
+                        \)</li>
+                </ul><br>
+
+                <h3>Condition d'oscillation :</h3>
+                <p>Supposons qu'à un instant donné, nous avons la tension \(V_e\) à l'entrée de la chaîne directe, nous
+                    auront en sortie une tension d'amplitude \(AV_e\) déphasée de \(\varphi_A\) par rapport à Ve. Pour
+                    qu'il y ait
+                    oscillation, c'est-à-dire pour que le signal de sortie se maintienne dans le temps, il faut que
+                    l'amplificateur de
+                    retour ramène vers l'entrée un signal identique à Ve (en amplitude et en phase).
+                    Pour cela il faut qu'il vérifie la condition suivante :</p>
+                <p class="InlineCenter"><span class="encadre">$$A \times B = 1$$
+                        $$\varphi_A+\varphi_B=0=\pm2\pi$$</span></p>
+                <p>Il faut faire attention avec les phases. Un retard de &phi; peut aussi être considéré comme
+                    une avance de 2&pi; - &phi;.</p>
+                <p>Si on considère les deux déphasages comme :</p>
+                <ul>
+                    <li>Des retards : \(\varphi_A \lt 0\) , \(\varphi_B \lt 0\) &rArr; \(\varphi_A + \varphi_A = -2\pi
+                        \)</li>
+                    <li>Des avances : \(\varphi_A \gt 0\) , \(\varphi_B \gt 0\) &rArr; \(\varphi_A + \varphi_A = +2\pi
+                        \)</li>
+                    <li>Un retard et une avance : &rArr; \(\varphi_A + \varphi_A = 0 \)</li>
+                </ul>
+                <p>Il va de soit que si les phases sont exprimées en degré, 2&pi;=360°</p><br>
+
+                <p>L'exemple de la figure ci-dessous montre les signaux d'un oscillateur tel que : </p>
+                <p>\( A=2, \varphi_A = -\frac{\pi}{2}, B=\frac{1}{2} , \varphi_B = -3\frac{\pi}{2}\)</p>
+                <img src="IMAGES/EA_OSC_ExCO.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="WIEN">Oscillateur à pont de Wien :</h2>
+                <p>C'est un oscillateur qui utilise un pont de Wien dans la chaîne de retour.</p>
+                <img src="IMAGES/EA_OSC_Wien.jpg" alt="">
+                <p>Pour déterminer la fonction de transfert du pont de Wien on pose :</p>
+                <img src="IMAGES/EA_OSC_W1.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_W2.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_W3.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_W4.jpg" alt=""><br>
+                <p>Le module et la phase dépendent de &omega; (fréquence). Selon le montage choisi dans la chaîne
+                    directe, l'oscillation aura lieu pour la fréquence qui vérifie les condition d'oscillation.</p>
+                <img src="IMAGES/EA_OSC_W5.jpg" alt=""><br>
+                <p>Si on utilise dans la chaîne directe un un amplificateur non-inverseur (\(\varphi_A=0\)) de gain 3
+                    (\(A=3\)), on obtient une oscillation à la fréquence \( f_o=\frac{1}{2\pi R C} \)</p>
+
+                <img src="IMAGES/EA_OSC_WIEN_Ch.jpg" alt=""><br>
+                <p>L'oscillateur à pont de Wien est assez difficile à stabiliser. La condition A.B = 1 constitue un
+                    point de convergence instable. Si B &gt; 1/A, l'amplitude va en augmentant jusqu'à saturation de
+                    l'amplificateur. Si B &lt; 1/A, L'amplitude va en diminuant jusqu'à la <i>mort</i> du signal.
+                    Pour cette raison, le montage nécessite un contrôle actif du gain avec un élément non linéaire comme
+                    une
+                    thermistance, une diode ou un FET pour stabiliser l'amplitude.</p>
+                <img src="IMAGES/EA_OSC_WIEN_CAG.jpg" alt=""><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="PHASESHIFT">Oscillateur à déphasage (phase shift) : </h2>
+                <p>Cet oscillateur utilise un circuit déphaseur R-C dans la chaîne de retour. </p>
+                <img src="IMAGES/EA_OSC_PSHIFT.jpg" alt="">
+                <p>Sa fonction de transfert est :</p>
+                $$B(\omega)=\frac{R^3C^3\omega^3}{(R^3C^3\omega^3-5RC\omega)+j(1-6R^2C^2\omega^2)}$$
+                <p>le module est :</p>
+                $$|B|(\omega)=\frac{R^3C^3\omega^3}{\sqrt{(R^3C^3\omega^3-5RC\omega)^2+(1-6R^2C^2\omega^2)^2}}$$
+                <p>La phase est :</p>
+                $$\varphi_B=-Arctg{\left(\frac{1-6R^2C^2\omega^2}{R^3C^3\omega^3-5RC\omega}\right)}$$
+                <p>Dans la chaîne directe, le plus facile à réaliser est soit le montage non inverseur \((\varphi_A=0)\)
+                    soit montage inverseur \((\varphi_A=-\pi= -180°)\).</p>
+                <p>Si on trace la courbe de phase du déphaseur, on constate qu'elle est toujours négative et qu'il
+                    existe une fréquence pour laquelle elle est égale à -180°</p>
+                <img src="IMAGES/EA_OSC_PSHIFT_TRACEP.jpg" alt="">
+                <p>On utilise donc un amplificateur inverseur dans la chaîne directe. La fréquence d'oscillation
+                    \(\omega_o\) sera
+                    la fréquence pour laquelle \((\varphi_B=-\pi= -180°)\) et on aura vérifié la condition
+                    \((\varphi_A+\varphi_B= -360°)\)</p>
+                <p>\(Arctg\left(\frac{1-6R^2C^2\omega_o^2}{R^3C^3\omega_o^3-5RC\omega_o}\right)=\pi\)</p>
+                <p>\(1-6R^{2}C^{2}\omega_{o}^{2}=0\) , \(\omega_{0}=\frac{1}{RC\sqrt{6}}\)</p>
+                $$ \boxed{ f_0=\frac{1}{2\pi RC\sqrt{6}}}$$
+                <p>Si on injecte \(\omega_o\) dans l'expression du module du déphaseur, on obtient : </p>
+                $$\boxed{B(\omega_0)=\frac{1}{29}}$$
+                <p>On utilise dans la chaîne directe un amplificateur inverseur de gain -29. On obtient le schéma
+                    ci-dessous. On remarquera que la 3ème résistance du déphaseur sert comme 1ère résistance de
+                    l'inverseur.</p>
+                <img src="IMAGES/EA_OSC_PSHIFT_Ch.jpg" alt="">
+                <p><strong>L'oscillateur à déphasage est un circuit très stable. Il n'a pas besoin de correction
+                        automatique du gain pour stabiliser l'amplitude</strong></p><br>
+
+                <!-- ################################################################################################ -->
+                <h2 id="OSCLC">Oscillateurs à circuit accordé (LC) : </h2>
+                <p>Les oscillateurs R-C ne permettent pas d'obtenir des fréquences d'oscillation élevées. Leur fréquence
+                    d'oscillation peut difficilement excéder le Mhz. Quand on a besoin de fréquences plus élevées, comme
+                    dans les émetteurs récepteurs AM et FM par exemple, on utilise des oscillateurs LC ou oscillateur à
+                    circuit accordé</p>
+                <p>Le principe de fonctionnement de ces oscillateurs est illustré sur la figure ci-dessous. Une fraction
+                    de la
+                    tension aux bornes du circuit accordé est réinjectée à l'entrée d'un amplificateur inverseur
+                    constituant la chaîne directe.</p>
+                <img src="IMAGES/EA_OSC_Tuned.jpg" alt="">
+                <p>Pour qu'il y est oscillation, il faut que les réactances Z1 et Z2 soient du même type. Deux types de
+                    circuit d'accord sont alors possibles,
+                </p>
+                <ul>
+                    <li>Z1 et Z2 sont des capacités et Z3 une inductance, on obtient un <b>oscillateur Colpitts</b></li>
+                    <li>Z1 et Z2 sont des inductances et Z3 une capacité, on obtient un <b>oscillateur de Hartley</b>
+                    </li>
+                </ul>
+                <img src="IMAGES/EA_OSC_CLPT_EC.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_CLPT_BC.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_CLPT_SC.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_HRTLY_EC.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_HRTLY_BC.jpg" alt=""><br>
+                <img src="IMAGES/EA_OSC_HRTLY_SC.jpg" alt=""><br>
+                <p>L'analyse des oscillateurs LC est compliquée, d'abord parce que l'impédance d'entrée de
+                    l'amplificateur à transistor est assez faible est vient shunter le circuit accordé et complique
+                    l'expression du gain de boucle AxB. D'un autre coté, puisque ces oscillateurs sont utilisés pour des
+                    fréquences élevées, le schéma équivalent du transistor en basses fréquences n'est plus utilisable,
+                    il faut le remplacer par le schéma équivalent hybride en &pi; dit schéma de Giacoletto.
+                    En règle générale, on peut utiliser les résultats groupés dans le tableau suivant :
+                </p>
+                <img src="IMAGES/EA_OSC_Tuned_tab.jpg" alt="">
+                <p>Pour les oscillateur Colpitts: \( C=\frac{C_1C_2}{C_1+C_2} \) <br>
+                    Pour les oscillateurs Hartley, \( L=L_1+L_2+2M \) , (M: Inductance mutuelle)
+                </p>
+
+
+
+                <br><br><br>
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
