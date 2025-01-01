@@ -37,6 +37,9 @@
                 <a href="#EXMPL">
                     <h2>Exemple : EEPROM 24C64</h2>
                 </a>
+                <a href="#I2CSCANNER">
+                    <h2>I2C Scanner</h2>
+                </a>
             </div>
         </div>
         <div class="RightPanel">
@@ -52,7 +55,7 @@
                     communication entre microcontrôleurs et divers périphériques tels que des capteurs, des mémoires,
                     des horloges temps réel, et des DAC/ADC.
                 </p><br>
-                <img  src="IMAGES/bus_I2C.png" alt=""><br>
+                <img src="IMAGES/bus_I2C.png" alt=""><br>
                 <p>Voici quelques aspects clés du bus I2C :</p>
                 <ul>
                     <li>
@@ -124,7 +127,7 @@
                     <p>Le protocole I2C jongle avec cette situation pour organiser l'échange des données entre les
                         deux
                         composants.</p>
-                    <img  src="IMAGES/I2C_line.png" alt="">
+                    <img src="IMAGES/I2C_line.png" alt="">
 
                     <li class="EnhancedPlus">Bus Libre</li>
                     <p>Quand le bus est libre, les deux lignes SDA et SCL sont au niveau haut. C'est la condition
@@ -136,18 +139,18 @@
                     <p>Quand un Master veut prendre le contrôle du bus et démarrer une séquence de communication, il
                         génère un signal <strong>Start</strong> condition sur le bus en ramenant les deux lignes à 0
                     </p>
-                    <img  src="IMAGES/I2C_START.png" alt=""><br>
+                    <img src="IMAGES/I2C_START.png" alt=""><br>
 
                     <li class="EnhancedPlus">Stop Condition</li>
                     <p>Quand un Master veut terminer une séquence de communication et libérer le bus, il génère un
                         signal <strong>stoP</strong> condition en ramenant les deux ligne à 1</p>
-                    <img  src="IMAGES/I2C_STOP.png" alt=""><br>
+                    <img src="IMAGES/I2C_STOP.png" alt=""><br>
 
                     <li class="EnhancedPlus"> Écrire un bit sur le bus</li>
                     <p>Le circuit qui écrit force la ligne SDA à 0 ou à 1 pendant l'impulsion de l'horloge sur SCL
                         (c'est
                         toujours le master qui génère l'horloge)</p>
-                    <img  src="IMAGES/I2C_W1_W0.png" alt=""><br>
+                    <img src="IMAGES/I2C_W1_W0.png" alt=""><br>
 
                     <li class="EnhancedPlus">L' acknowledge</li>
                     <p>L'acknowledge est l'accusé de réception. Il est placé par le circuit (qui vient de recevoir
@@ -158,7 +161,7 @@
                         <li>Si c'est le master qui envoie, alors c'est le slave qui place l'acknowledge</li>
                         <li>Si c'est le master qui reçoit, alors c'est lui même qui place l'acknowledge</li>
                     </ul><br>
-                    <img  src="IMAGES/I2C_Acknowledge.png" alt=""><br>
+                    <img src="IMAGES/I2C_Acknowledge.png" alt=""><br>
                     <li class="EnhancedPlus">Début d'une séquence de communication</li>
                     <p>Une séquence de communication doit toujours commencer comme suit:</p>
                     <ul>
@@ -172,9 +175,9 @@
                         </ul>
                         <li>Le slave place l'acknowledge pendant le 9ème coup d'horloge</li>
                     </ul>
-                    <img  src="IMAGES/I2C_debut_echange.png" alt=""><br>
+                    <img src="IMAGES/I2C_debut_echange.png" alt=""><br>
                     <li class="EnhancedPlus">Séquence de transmission (master → slave)</li>
-                    <img  src="IMAGES/I2C_master_W.png" alt=""><br>
+                    <img src="IMAGES/I2C_master_W.png" alt=""><br>
                     <ul>
                         <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=0</em> pour
                             préciser qu'il
@@ -187,7 +190,7 @@
                         <li>Le master termine la séquence en envoyant un stoP ce qui libère le bus</li>
                     </ul><br>
                     <li class="EnhancedPlus">Séquence de réception (master ← slave)</li>
-                    <img  src="IMAGES/I2C_master_R.png" alt=""><br>
+                    <img src="IMAGES/I2C_master_R.png" alt=""><br>
                     <ul>
                         <li>Le master envoie le Start, suivi de l'adresse du Slave avec le bit <em>R/W=1</em>
                             pour préciser qu'il démarre une séquence de <em>réception</em></li>
@@ -298,7 +301,7 @@ Wire.readBytes(TAB,N);
                     </pre> <br>
                 </ul><br>
                 <h2 id="EXMPL">Écriture, Lecture dans une mémoire EEPROM 24C64</h2>
-                <img  src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
+                <img src="IMAGES/24C64_schema.png" alt="" style="width: 600px;">
                 <ul>
                     <li>La 24C64 est une mémoire permanente (flash) de capacité 8 ko. Elle est organisée par page de 32
                         octets.
@@ -415,7 +418,35 @@ void loop() {
 }</code></pre>
                 </div>
                 <br>
-                <img  src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
+                <img src="IMAGES/24C64_Serial.png" alt="" style="width: 400px;"><br><br>
+                <h2 id="I2CSCANNER">I2C Scanner</h2>
+                <p>Si vous avez un module I2C et vous ne savez pas à quelle adresse il répond, vous pouvez utiliser le
+                    petit programme ci dessous qui teste toutes les adresses comprises entre 0 et 127. L'adresse de
+                    votre module sera affichée sur le moniteur série. Si votre module répond aussi à l'adresse 0, c'est
+                    normal, c'est l'adresse de 'broadcast' GCA (General Call Address). Normalement, chaque module I2C
+                    devrait répondre à sa propre adresse et à l'adresse 0, ce n'est pas toujours le cas, les constructeurs ne respectent pas tous cette règle </p>
+                <pre><code>
+// Scanneur I2C
+ 
+#include &lt;Wire.h&gt;
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  Serial.println("\r\n==== Debut du Scan =======");
+  for(int adr = 0; adr &lt; 128 ; adr++){
+    Wire.beginTransmission(adr);
+    int s = Wire.endTransmission();
+    if(s == 0){
+      Serial.println("\r\n---&gt; "+String(adr)+" ---&gt; 0X"+String(adr,HEX)+"  ---&gt;  "+String(adr,BIN));
+    }
+  }
+  Serial.println("\r\n==== Fin du Scan =======");
+}
+
+void loop() {
+}
+                    </code></pre>
             </div>
         </div>
     </div>

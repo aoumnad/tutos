@@ -53,11 +53,11 @@
                             <h3>Point de Connexion EEPLD</h3>
                         </a>
 
-                        <div class="rubrique" onclick="toggleMenu('ploces', this)">
+                        <div class="rubrique" onclick="toggleMenu('bloces', this)">
                             <span>&gt;</span>
                             <h2>Les blocs d'Entrée Sortie</h2>
                         </div>
-                        <div id="ploces" class="sub-rubrique">
+                        <div id="bloces" class="sub-rubrique">
                             <a href="#IOBLOCS">
                                 <h3>Introduction</h3>
                             </a>
@@ -120,7 +120,7 @@
                 <!-- ################################################################################################ -->
                 <h3 id="PLDTYPES">Types de PLD</h3>
                 <p>Beaucoup d'acronymes sont utilisés dans le domaine des PLD. Certains désignent des technologies,
-                    d'autre des génération de technologies, etc...</p>
+                    d'autres des générations de technologies, etc...</p>
                 <ul>
                     <li><em>PLA: </em>(Programmable Logic array) sont les premiers PLD qui ont été développés. Matrice
                         ET programmable, Matrice OU programmable. Permet une flexibilité maximale pour implémenter des
@@ -132,11 +132,11 @@
                         grâce à leur réseau d'interconnexion de type EEPROM.
                     </li>
                     <li><em>SPLD: </em>(Simple programmable logic device) Désignes les PLD de première
-                        génération. Quelques centaines de portes logiques et quelques dizaines bascules: Technologies
+                        générations. Quelques centaines de portes logiques et quelques dizaines bascules: Technologies
                         PLA, PAL et GAL</li>
                     <li><em>EPLD: </em>(Erasable PLD) Terme générique pour désigner les PLD reprogrammable avec
                         effacement par UV </li>
-                    <li><em>EEPLD: </em>(Electricaly Erasable PLD) Terme générique pour désigner les PLD reprogrammable
+                    <li><em>EEPLD: </em>(Electrically Erasable PLD) Terme générique pour désigner les PLD reprogrammable
                         électriquement </li>
                     <li><em>CPLD: </em>(complex programmable logic device) Circuits relativement complexes (jusqu'à une
                         ou deux dizaines de milliers de portes). Constitué de blocs logiques programmables dont
@@ -430,7 +430,7 @@
                     une évolution des circuits logiques programmables simples (comme les PAL et GAL) en offrant une
                     capacité de logique plus importante et une flexibilité accrue. Voici quelques propriétés :</p>
                 <ul>
-                    <li>Ils sont essentiellement de technologie EEPLD. Il sont non volatiles et reprogrammables </li>
+                    <li>Ils sont essentiellement de technologie EEPLD : <b>Non volatiles</b> et <b>Reprogrammables</b> </li>
                     <li>Ils permette de réaliser des systèmes assez complexes: USART, contrôleur LAN, contrôleur
                         graphique, contrôleur cache …</li>
                     <li>Il sont caractérisés par un temps de propagation court et prédictible dû la structure
@@ -463,8 +463,8 @@
                 <p>Dans les macrocellules d'un LAB CPLD, on a ajouté une matrice de sélection de Produits <i>(PTC -
                         Product-Term Select Matrix)</i>, qui permet de rediriger les produits (ET)
                     non utilisés vers d'autres macrocellules, ou si nécessaire,
-                    d'injecter des produits venant d'autre macrocellules. Ceci permet d' obtenir un meilleur taux
-                    d'utilisations des ressources.</p>
+                    d'injecter des produits venant d'autres macrocellules. Ceci permet d' obtenir un meilleur taux
+                    d'utilisation des ressources.</p>
                 <img src="IMAGES/EN_PLD_CPLD_MCell.jpg" alt=""><br>
 
                 <!-- ################################################################################################ -->
@@ -568,14 +568,14 @@
                     <li>Bloc combinatoire constitué d'un LUT et d'un bloc Carry pour l'extension</li>
                     <li>La bascule peut être programmée en bascule D, T, JK ou RS</li>
                     <li>CLR, PRESET, Chargement Asynchrones</li>
-                    <li>Horloge et Validation d’horloge</li>
+                    <li>Horloge et Validation d'horloge</li>
                     <li>Chargement Synchrone</li>
-                    <li>La sortie de la bascule peut être envoyée vers le réseau d’interconnexion ou réinjectée à
-                        l’entrée du bloc combinatoire</li>
+                    <li>La sortie de la bascule peut être envoyée vers le réseau d'interconnexion ou réinjectée à
+                        l'entrée du bloc combinatoire</li>
                     <li>On peut utiliser seulement le bloc combinatoire sans passer par la bascule</li>
                     <img src="IMAGES/EN_PLD_FPGA_LE1.jpg" alt="">
                     <li>On peut utiliser la bascule seule sans passer par le bloc combinatoire</li>
-                    <li>La bascule peut être chaînée avec d’autres bascules pour faire des registres à décalage par
+                    <li>La bascule peut être chaînée avec d'autres bascules pour faire des registres à décalage par
                         exemple</li>
                     <img src="IMAGES/EN_PLD_FPGA_LE2.jpg" alt="">
                     <li>Le LUT et le registre peuvent être utilisés séparément mais simultanément</li>
