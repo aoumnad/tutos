@@ -425,28 +425,34 @@ void loop() {
                     votre module sera affichée sur le moniteur série. Si votre module répond aussi à l'adresse 0, c'est
                     normal, c'est l'adresse de 'broadcast' GCA (General Call Address). Normalement, chaque module I2C
                     devrait répondre à sa propre adresse et à l'adresse 0, ce n'est pas toujours le cas, les constructeurs ne respectent pas tous cette règle </p>
-                <pre><code>
-// Scanneur I2C
- 
+                
+                <!-- =========================== Code ========================================================= -->
+        <div class="CodeAreaContainer">
+            <div class="CodeAreaHeader">Scanneur I2C<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
+            <pre><code>// Scanneur I2C
+
 #include &lt;Wire.h&gt;
 
 void setup() {
-  Serial.begin(9600);
-  Wire.begin();
-  Serial.println("\r\n==== Debut du Scan =======");
-  for(int adr = 0; adr &lt; 128 ; adr++){
-    Wire.beginTransmission(adr);
-    int s = Wire.endTransmission();
-    if(s == 0){
-      Serial.println("\r\n---&gt; "+String(adr)+" ---&gt; 0X"+String(adr,HEX)+"  ---&gt;  "+String(adr,BIN));
+    Serial.begin(9600);
+    Wire.begin();
+    Serial.println("\r\n==== Debut du Scan =======");
+    for(int adr = 0; adr &lt; 128 ; adr++){
+        Wire.beginTransmission(adr);
+        int s = Wire.endTransmission();
+        if(s == 0){
+            Serial.println("\r\n---&gt; "+String(adr)+" ---&gt; 0X"+String(adr,HEX)+"  ---&gt;  "+String(adr,BIN));
+        }
     }
-  }
-  Serial.println("\r\n==== Fin du Scan =======");
+    Serial.println("\r\n==== Fin du Scan =======");
 }
 
 void loop() {
 }
-                    </code></pre>
+            </code></pre>
+          </div><br>
+          <!-- ============================= Fin Code ================================================ -->
+  
             </div>
         </div>
     </div>
