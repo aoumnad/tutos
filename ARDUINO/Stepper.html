@@ -25,6 +25,9 @@
                 <a href="#INTRO">
                     <h3>Introduction</h3>
                 </a>
+                <a href="#28BYJ-48">
+                    <h3>Le moteur 28BYJ-48</h3>
+                </a>
                 <a href="#ULN2003">
                     <h3>Le circuit ULN2003</h3>
                 </a>
@@ -35,10 +38,13 @@
                     <h3>Couple Normal, Couple Fort</h3>
                 </a>
                 <a href="#EXMPLBASIC">
-                    <h3>Exemple basique</h3>
+                    <h3>Exemple basique sans librairie</h3>
                 </a>
                 <a href="#EXMPLSM">
                     <h3>Exemple avec moniteur Série</h3>
+                </a>
+                <a href="#STEPPERLIB">
+                    <h3>La librairie stepper de Arduino-IDE</h3>
                 </a>
                 <a href="#TB6600">
                     <h3>Le driver TB6600</h3>
@@ -83,14 +89,26 @@
                             <li>Moteur 200 pas: 1 pas = 1.8 °</li>
                             <li>Moteur 400 pas: 1 pas = 0.9 °</li>
                             <li>On peu faire du microstepping en utilisant des driver adaptés,</li>
-                            <li>Certains moteur ont des réducteurs mécaniques qui augmente considérablement leur nombre
-                                de pas comme le très populaire 28BYJ48</li>
                         </ul>
                     </li>
                 </ul>
+                <h2 id="28BYJ-48">Le moteur 28BYJ-48</h2>
                 <p class="InlineCenter"><img class="inline w300" src="IMAGES/Stepper_28BYJ48.png"> &nbsp;
                     <img class="inline w300" src="IMAGES/Stepper_28BYJ48_rdctr.png">
                 </p>
+                <p>Le 28BYJ-48 est un moteur pas à pas très populaire et économique, souvent utilisé dans les projets
+                    Arduino.
+                    En voici quelques caractéristiques : </p>
+                <ul>
+                    <li>Moteur unipolaire (5 fils) de 32 pas par révolution. Il existe aussi en version 64 pas,</li>
+                    <li>Alimentation 5V,</li>
+                    <li>Grace à un réducteur mécanique de rapport 64, il est équivalent à un moteur de 2048 pas par
+                        révolution,</li>
+                    <li>La durée de l'impulsion pour avancer d'un pas ne doit pas être inférieure à 2ms. Ceci donne
+                        une révolution en 2048 &times; 2ms &approx; 4 secondes. Soit une vitesse max 15 révolution par
+                        minute</li>
+                </ul>
+
 
                 <br>
                 <!-- ######################################################################################################## -->
@@ -138,7 +156,7 @@
                 </ul>
 
                 <!-- ######################################################################################################## -->
-                <h2 id="EXMPLBASIC">Exemple basique</h2>
+                <h2 id="EXMPLBASIC">Exemple basique Sans librairie</h2>
                 <img src="IMAGES/Stepper_ULN2003_Arduino.png">
                 <p>Dans cet exemple on va utiliser le moteur pas-à-pas 28BYJ-48. Ce moteur existe en plusieurs
                     versions. Nous utilisons une version 5V, 32 pas, réducteur 1/64, durée min d'un pas : 2 ms</p>
@@ -151,17 +169,16 @@
                     <li>On va avancer d'un pas toutes les 2ms ce qui correspond à un tour en 2048 * 2ms = 4048 ms ≈ 4
                         secondes.</li>
                     Ne pas oublier que ce moteur a un réducteur mécanique, n'essayez pas de le faire tourner trop vite
-                    <li>La librairie Stepper semble avoir quelques dysfonctionnements. Nous allons écrire deux
+                    <li>Dans cet exemple, on n'utilise pas de librairie. Nous allons écrire deux
                         fonctions pour controller le moteur:
                         <ul>
-                            <li><em>stepperInit(tork) : </em>Permet d'Initialiser les broches de control et choisir
-                                entre les modes couple Normal ou couple Fort.
-                                <ul>
-                                    <li><strong>tork : </strong> LOW (ou 0) ==&gt; Couple normal. HIGH (ou 1)==&gt;
-                                        Couple
-                                        fort</li>
-                                </ul>
+                            <li><em>stepperInit(tork) : </em>Permet d'Initialiser le moteur. Le paramètre
+                                <b>tork</b> permet de choisir entre couple faible ou couple fort:
                             </li>
+                            <ul>
+                                <li>LOW ==&gt; Couple faible (normal)</li>
+                                <li>HIGH ==&gt; Couple fort</li>
+                            </ul>
                             <li><em>stepperStep(steps, steptime) : </em>Permet de faire tourner le
                                 moteur en avant ou en arrière.
                                 <ul>
@@ -191,14 +208,15 @@ void setup() {
     stepperInit(LOW);
   }
   
-  void loop() {
+void loop() {
     stepperStep(2048, 3);
     delay(1000);
     stepperStep(-2048, 3);
     delay(1000);
   }
-  
-  void stepperInit(byte tork) {
+
+///////////////////////////////////////  
+void stepperInit(byte tork) {
     // Initialiser les commandes
     // tork = LOW ==&gt; couple faible
     // tork = HIGH ==&gt; couple fort  
@@ -377,6 +395,66 @@ void clearInputBuffer() {
 </code></pre>
                 </div><br><br>
                 <!-- ============================= Fin Code ================================================ -->
+
+                <h2 id="STEPPERLIB">La librairie stepper de Arduino-IDE</h2>
+                <p>La librairie <em>Stepper</em> intégrée à l'IDE Arduino permet de contrôler facilement des moteurs
+                    pas-à-pas
+                    sans avoir besoin d'installer des bibliothèques externes. Voici ce qu'il faut savoir:</p>
+                <ul>
+                    <li>Gère les moteurs <b>unipolaires</b> (avec un driver du type ULN2003) et les moteurs
+                        <b>bipolaires</b> (avec un
+                        driver du type L298N)</li>
+                    <li>Elle fonctionne seulement en mode couple fort: Les bobines sont alimentées deux par deux</li>
+                    <li><em>Pour le moteur unipolaire, il faut faire attention, les bobines ne sont pas alimentées dans
+                            le bon ordre. Si les
+                            bobines A, B, C, D sont connectée au broche 8, 9, 10, 11, dans le code il faut les déclarer
+                            dans l'ordre
+                            8, 10, 9, 11 comme on va le voir dans l'exemple</em></li>
+                </ul>
+                <p>Pour utiliser on a un constructeur et 2 méthodes:</p>
+                <ul>
+                    <li><b>Constructeur :</b> Permet de créer un objet (cpp) pour controller un moteur <br>
+                        <span class="Enhanced">Stepper mystepper(stepsPerRevolution, pin1, pin3, pin2, pin4); </span><br>
+                    <strong>Exemple :</strong><br>
+                    Pour un moteur 200 pas connecté aux broches 8, 9, 10, 11 :
+                    <pre>
+<code>Stepper myStepper(200, 8, 10, 9, 11);</code>
+                    </pre>
+                    </li>
+                    <li><em>setSpeed(rpm) :</em> Permet de définir la vitesse de rotation en tour par minute <br>
+                    <strong>Exemple :</strong>
+                <pre>
+<code>myStepper.setSpeed(15); // 15 tours par minute</code>
+                </pre></li>
+                <li><em>step(N)</em> Fait tourner le moteur de N pas <br>
+                    <strong>Exemple :</strong>
+                <pre>
+<code>myStepper.step(100);  // avancer de 100 pas
+myStepper.step(-100);  // reculer de 100 pas   
+</code>
+                </pre></li>
+                </ul>
+
+                <h3>Exemple pour le moteur </h3>
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Fréquences PWM pour Arduino UNO<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre>
+<code>#include &lt;Stepper.h&gt;
+// Déclaration du moteur (ordre des pins important)
+Stepper myStepper(2048, 8, 10, 9, 11); // ULN2003 branché sur pins 8, 9, 10, 11
+
+void setup() {
+    myStepper.setSpeed(15); // 15 tours/minute
+}
+
+void loop() {
+    myStepper.step(2048);   // Tour complet dans un sens
+    delay(1000);
+    myStepper.step(-2048);  // Tour complet dans l'autre sens
+    delay(1000);
+}</code></pre><br><br>
+
                 <h2 id="TB6600">Le driver TB6600</h2>
                 <img src="IMAGES/TB6600.jpg" alt="">
                 <ul>
@@ -409,7 +487,8 @@ void clearInputBuffer() {
                     <li>Chaque impulsion sur l'entrée PUL fait avancer le moteur d'un microstep
                         <img src="IMAGES/TB6600_PUL_signal.jpg" alt="">
                         Pour augmenter la vitesse, on augmente la fréquence ce qui diminue la largeur de l'impulsion. La
-                        largeur min supportée par le module est 2.5µs ce qui donne une fréquence max: fmax = 1/(2&times;2.5µs)=200kHz
+                        largeur min supportée par le module est 2.5µs ce qui donne une fréquence max: fmax =
+                        1/(2&times;2.5µs)=200kHz
                     </li>
                     <li>Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
                         rapport de Microstepping et de la fréquence des impulsions
@@ -449,18 +528,19 @@ TCCR2B = TCCR2B &amp; B11111000 | B00000111;    // f = 30.64 Hz,		T = 32.637ms
 </code></pre>
                         </div><br>
                         <!-- ============================= Fin Code ================================================ -->
-                    Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
+                        Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
                         rapport de Microstepping et de la fréquence des impulsions que l'on peut générer sur les sorties
                         PWM de l'Arduino UNO <br><br>
                         <img src="IMAGES/TB6600_vitesses_Tab2.jpg" alt="">
-                    
+
 
                     </li>
                 </ul><br>
                 <!-- =========================== Code ========================================================= -->
-        <div class="CodeAreaContainer">
-            <div class="CodeAreaHeader">Exemple de test<button class="CopyBtn" onclick="CopyCode(this)">Copier</button> </div>
-            <pre><code>/*
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Exemple de test<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>/*
  * Test du module TB6600
  * moteur 200 pas
  * microstep = 1
@@ -496,11 +576,11 @@ void setup() {
 
 void loop() {
 }</code></pre>
-          </div><br>
-          <!-- ============================= Fin Code ================================================ -->
-  
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
 
-<br><br><br><br>
+
+                <br><br><br><br>
             </div>
         </div>
     </div>

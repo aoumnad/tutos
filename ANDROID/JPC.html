@@ -72,13 +72,10 @@
                     Les éléments de l'interface sont automatiquement redessinés en réponse aux changements d'état grâce
                     à une gestion efficace des variables d'état. En Kotlin, les variables de type <i>mutableState</i>
                     permettent de suivre les changements dans l'état de l'application. Lorsqu'une variable de ce type
-                    est modifiée, les composables qui dépendent de cette variable sont automatiquement rafraîchis pour
+                    est modifiée, les composables qui en dépendent sont automatiquement rafraîchis pour
                     refléter les mises à jour. Cela simplifie la création d'interfaces dynamiques et réactives, tout en
                     réduisant le besoin de gestion manuelle du cycle de vie de l'interface utilisateur</p>
-                <p>Jetpack Compose offre également une intégration fluide avec les autres composants de l'écosystème
-                    Android, ainsi que des outils puissants pour personnaliser et optimiser les performances de
-                    l'interface utilisateur, ce qui en fait un choix attrayant pour les développeurs Android cherchant à
-                    créer des expériences utilisateur modernes et performantes.</p> <br>
+                 <br>
 
                 <!-- ################################################################################################ -->
                 <h2 id="BASICS">Notions de base</h2>
@@ -99,7 +96,7 @@
         }
     }</code></pre>
                 </p><br>
-                <p>Cce bout de code est constitué d'une variable et de trois composables:</p>
+                <p>Ce bout de code est constitué d'une variable et de trois composables:</p>
                 <ul>
                     <li><em>var taillexy by remember { mutableStateOf(20)}</em></li>
                     C'est la déclaration de la variable <i>taillexy</i>. C'est une syntaxe un peu particulière. Pour
