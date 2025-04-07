@@ -20,6 +20,7 @@
             <div class="LeftPanelHeader">
                 <img src="../IMAGES/x3.png" id="XIcon" class="xicon Burger">
                 <a href="../index.html"> <img src="../IMAGES/home48.png" alt=""> </a>
+                <a href="../ARDUINO/arduino.html"> <img src="../ARDUINO/IMAGES/Back2Arduino.png" height="40px"> </a>
                 <a href="Android.html"> <img src="IMAGES/JPC-logo.jpg" height="45px"> </a>
             </div>
             <div id="LeftPanelMenu_ID" class="LeftPanelMenu">
@@ -29,8 +30,14 @@
                 <a href="#ASSOC">
                     <h3>Association des équipements</h3>
                 </a>
-                <a href="#MINAPI">
-                    <h3>Minimum SDK</h3>
+                <a href="#ARDUINO">
+                    <h3>Coté Arduino</h3>
+                </a>
+                <a href="#PHONESIDE">
+                    <h3>Coté téléphone</h3>
+                </a>
+                <a href="#THEAPP">
+                    <h3>L'application</h3>
                 </a>
                 <a href="#PERM">
                     <h3>Autorisation dans le manifest</h3>
@@ -98,9 +105,7 @@
                 <a href="#CODE">
                     <h3>Le code entier</h3>
                 </a><br>
-                <a href="#ARDUINO">
-                    <h3>Coté Arduino</h3>
-                </a>
+
 
 
             </div>
@@ -143,7 +148,8 @@
                         analogique. La réponse retournée est affichée dans le champ de texte voisin</li>
                 </ul><br>
                 <h2 id="ASSOC">Association des équipement Bluetooth</h2>
-                <p>Avant de commencer à travailler sur l'application, précisons un point important:</p>
+                <p>Avant de commencer à travailler sur l'application, il faut associer le module HC-05 avec le
+                    téléphone. Précisons un point important:</p>
                 <ul>
                     <li>Pour un équipement Bluetooth, Il y a une différence entre être <b>associé</b> et être
                         <b>connecté,</b>
@@ -156,13 +162,110 @@
                     <li>Être connecté signifie que les appareils partagent actuellement un canal RFCOMM et sont capables
                         de transmettre des données entre eux. Les API Bluetooth actuelles nécessitent que les appareils
                         soient associés avant qu'une connexion RFCOMM puisse être établie,</li>
-                    <li><strong>Pour notre application, l'association des équipement Bluetooth sera faite avec le
-                            service
-                            Bluetooth du téléphone avant
-                            de lancer l'application</strong></li>
-
+                    <li><strong>Pour notre application, l'association du module bluetooth HC-05 sera faite avec le
+                            service Bluetooth du téléphone avant de lancer l'application. La première fois, il demande
+                            un code pin, normalement c'est 1234. Cette opération est à faire une seule fois.</strong>
+                    </li>
                 </ul><br>
-                <h2 id="MINAPI">Minimum SDK</h2>
+
+                <br><!-- ################################################################################################ -->
+                <h2 id="ARDUINO">Coté Arduino</h2>
+                <img src="IMAGES/HC05-Arduino.jpg" alt="">
+                <ul>
+                    <li>Sur Arduino + HC-05, La communication Bluetooth est ramenée à une simple communication série
+                    </li>
+                    <li>Coté Arduino, on utilise un port série software (7,8) pour connecter le HC-05. Ainsi le port
+                        série
+                        Hardware (0,1) sert (éventuellement) à afficher des messages de <i>debugging</i> sur le moniteur
+                        série
+                    </li>
+                    <li>Le port série du HC-05 utilise la logique 3.3V. il faut prévoir un diviseur de tension pour
+                        abaisser un peu le niveau 5V de la broche Tx de l'Arduino</li>
+                    <li>Pour la LED, on utilise la LED intégrée sur la carte</li>
+                    <li>Le buzzer est branché sur la broche 11</li>
+                    <li>Pour simplifier, on n'utilise pas un vrai capteur analogique. Quand l'application demande une
+                        mesure, on lui envoie une valeur fictive juste pour tester la connexion</li>
+                </ul><br>
+                <p>Voici le code Arduino</p>
+                <!-- =========================== Code ========================================================= -->
+                <div class="CodeAreaContainer">
+                    <div class="CodeAreaHeader">Code pou HV-05<button class="CopyBtn"
+                            onclick="CopyCode(this)">Copier</button> </div>
+                    <pre><code>#include &lt;SoftwareSerial.h&gt;
+// Rx(0), Tx(1) = Port COMM physique &lt;--&gt; moniteur Série
+// Rx(7), Tx(8) = Port COMM Software &lt;--&gt; module HC-05
+/*   
+     _________________                ______________
+     |   Arduino     |                |  Moniteur   |
+     |         Rx(0) |&lt;---------------|  Série      |
+     |         Tx(1) |---------------&gt;|             |
+     |               |                ---------------
+     |               |                _______________
+     |         Rx(7) |&lt;---------------|Tx  Module   |
+     |         Tx(8) |----/\/\/------&gt;|Rx   HC-05   |
+     |               |                |             |
+     |           5V  |----------------|Vcc          |
+     |           GND |----------------|GND          |
+     |               |                ---------------
+     -----------------            
+*/
+
+SoftwareSerial SerialGSM(7,8); // (RX, TX)
+#define LEDPIN 13
+#define BUZPIN 11
+void setup() {
+  Serial.begin(9600);
+  SerialGSM.begin(9600);
+  Serial.println("HC-05");
+  pinMode(LEDPIN, OUTPUT);
+  digitalWrite(LEDPIN, LOW);
+  pinMode(BUZPIN, OUTPUT);
+  digitalWrite(BUZPIN,HIGH);//buzzer active LOW
+}
+float R = 35.00;  // valeur fictive du capteur analogique
+void loop() {
+   if (SerialGSM.available() &gt; 0){
+    char c = SerialGSM.read();
+    Serial.println(c);
+    switch (c) {
+    case 'A':
+      digitalWrite(LEDPIN, HIGH);
+      break;
+    case 'B':
+      digitalWrite(LEDPIN,LOW);
+      break;
+     case 'C':
+      digitalWrite(BUZPIN, LOW); // active LOW
+      break;
+    case 'D':
+      digitalWrite(BUZPIN,HIGH);
+      break;
+    case 'E':
+      SerialGSM.print(R);
+      R += 0.5;
+     break;
+    default:
+      break;
+    }
+  }
+}
+</code></pre>
+                </div><br>
+                <!-- ============================= Fin Code ================================================ -->
+
+
+
+
+                <h2 id="PHONESIDE">Coté téléphone</h2>
+                <p>Pour créer l'application qui sera installée sur le smartphone, les choses sont un peu plus
+                    compliquées. D'abord, il faut télécharger et installer Android Studio sur votre PC.
+                    Une fois installé, il faut commencer par faire quelques petits programmes simples pour se faire la
+                    main. Pour mettre en œuvre le Bluetooth dans une application Android il faut être familier avec la
+                    programmation sous Android: Activités, Boutons, TextView, ListView, Adaptateur de ListView, les
+                    Listners, les threads et les Handler de thread ... <a href="android.html">Voir cette rubrique</a>
+                </p>
+
+                <h2 id="THEAPP">L'application</h2>
                 <p>Lors de la création du projet, choisir l'Appi 31 ou ultérieure comme minimum SDK</p>
                 <img src="IMAGES/BluetoothMinSDK.jpg" alt="">
 
@@ -1004,91 +1107,6 @@ fun MyUI(
             )
         }
     }
-}
-</code></pre>
-                </div><br>
-                <!-- ============================= Fin Code ================================================ -->
-
-                <br><!-- ################################################################################################ -->
-                <h2 id="ARDUINO">Coté Arduino</h2>
-                <img src="IMAGES/HC05-Arduino.jpg" alt="">
-                <ul>
-                    <li>Sur Arduino + HC-05, La communication Bluetooth est ramenée à une simple communication série
-                    </li>
-                    <li>Coté Arduino, on utilise un port série software (7,8) pour connecter le HC-05. Ainsi le port
-                        série
-                        Hardware (0,1) sert (éventuellement) à afficher des messages de <i>debugging</i> sur le moniteur
-                        série
-                    </li>
-                    <li>Le port série du HC-05 utilise la logique 3.3V. il faut prévoir un diviseur de tension pour
-                        abaisser un peu le niveau 5V de la broche Tx de l'Arduino</li>
-                    <li>Pour la LED, on utilise la LED intégrée sur la carte</li>
-                    <li>Le buzzer est branché sur la broche 11</li>
-                    <li>Pour simplifier, on n'utilise pas un vrai capteur analogique. Quand l'application demande une
-                        mesure, on lui envoie une valeur fictive juste pour tester la connexion</li>
-                </ul><br>
-                <p>Voici le code Arduino</p>
-                <!-- =========================== Code ========================================================= -->
-                <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">Code pou HV-05<button class="CopyBtn"
-                            onclick="CopyCode(this)">Copier</button> </div>
-                    <pre><code>#include &lt;SoftwareSerial.h&gt;
-// Rx(0), Tx(1) = Port COMM physique &lt;--&gt; moniteur Série
-// Rx(7), Tx(8) = Port COMM Software &lt;--&gt; module HC-05
-/*   
-     _________________                ______________
-     |   Arduino     |                |  Moniteur   |
-     |         Rx(0) |&lt;---------------|  Série      |
-     |         Tx(1) |---------------&gt;|             |
-     |               |                ---------------
-     |               |                _______________
-     |         Rx(7) |&lt;---------------|Tx  Module   |
-     |         Tx(8) |----/\/\/------&gt;|Rx   HC-05   |
-     |               |                |             |
-     |           5V  |----------------|Vcc          |
-     |           GND |----------------|GND          |
-     |               |                ---------------
-     -----------------            
-*/
-
-SoftwareSerial SerialGSM(7,8); // (RX, TX)
-#define LEDPIN 13
-#define BUZPIN 11
-void setup() {
-  Serial.begin(9600);
-  SerialGSM.begin(9600);
-  Serial.println("HC-05");
-  pinMode(LEDPIN, OUTPUT);
-  digitalWrite(LEDPIN, LOW);
-  pinMode(BUZPIN, OUTPUT);
-  digitalWrite(BUZPIN,HIGH);//buzzer active LOW
-}
-float R = 35.00;  // valeur fictive du capteur analogique
-void loop() {
-   if (SerialGSM.available() &gt; 0){
-    char c = SerialGSM.read();
-    Serial.println(c);
-    switch (c) {
-    case 'A':
-      digitalWrite(LEDPIN, HIGH);
-      break;
-    case 'B':
-      digitalWrite(LEDPIN,LOW);
-      break;
-     case 'C':
-      digitalWrite(BUZPIN, LOW); // active LOW
-      break;
-    case 'D':
-      digitalWrite(BUZPIN,HIGH);
-      break;
-    case 'E':
-      SerialGSM.print(R);
-      R += 0.5;
-     break;
-    default:
-      break;
-    }
-  }
 }
 </code></pre>
                 </div><br>
