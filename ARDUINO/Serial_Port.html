@@ -52,6 +52,9 @@
         <a href="#SERIAL">
           <h2>La librairie Serial</h2>
         </a>
+        <a href="#TIMEOUT">
+          <h2>Choix du timeout</h2>
+        </a>
         <a href="#CONFLICT">
           <h2>Conflit sur le port Série</h2>
         </a>
@@ -279,7 +282,7 @@
             <li>En émission, elle reçoit les données en parallèle sur le bus du
               microcontrôleur et les transmet en série un bit après l'autre sur un seul fil vers un système distant,
             </li>
-            <li>En réception, elle réalise l'opération inverse, elle reçoit les données bits par bit et transfert en
+            <li>En réception, elle réalise l'opération inverse, elle reçoit les données bits par bit et les transfert en
               parallèle sur le bus du microcontrôleur</li>
           </ul>
           <li>Elle gère la vitesse de communication connue sous le nom de <span class="Enhanced">baud rate</span>. Elle
@@ -478,10 +481,14 @@
               retournée</li>
             <li>Les caractères situés après le terminateur C restent dans le buffer de réception et pourront être lus
               plus tard</li>
+            <li><span class="CodeLine">Serial.readStringUntil('#'); </span>// arrête la lecture à la réception du
+              caractère '#'</li>
           </ul><br>
-          <p>Si on désire recevoir du texte qui a été transmis <b>ligne par ligne</b>. Le retour à la ligne est normalement
+          <p>Si on désire recevoir du texte qui a été transmis <b>ligne par ligne</b>. Le retour à la ligne est
+            normalement
             codé par deux caractères de contrôle CR (retour chariot: code ascii 13) et LF (saut de ligne: code ascii
-            10). En langage C (mais pas seulement), ces deux caractères sont représentés par '\r' et '\n'. Le meilleur choix de
+            10). En langage C (mais pas seulement), ces deux caractères sont représentés par '\r' et '\n'. Le meilleur
+            choix de
             terminateur pour <i>Serial.readStringUntil()</i> est '\n' car il arrive toujours en dernier. Le caractère
             '\r' qui précède, sera inclus dans la chaîne retournée, on peut le supprimer à l'aide la méthode
             <strong>.trim()</strong> de l'objet String. Normalement, <i>.trim()</i> sert à supprimer les espaces au
@@ -523,6 +530,32 @@ ligne.trim(); // supprime \r
             <li class="CodeLine">while(Serial.available()){Serial.read(); delay(2);}</li>
           </ul>
         </ul><br>
+        <!-- =============================================================================================================== -->
+        <h2 id="TIMEOUT">Choix du timeout</h2>
+        <p>Lorsqu'on utilise <strong>Serial.readString()</strong>, la lecture de la chaîne s'arrête après un
+          <b>timeout</b> d'inactivité sur la ligne de réception. Par défaut, ce <b>timeout</b> est fixé à une seconde
+          (1000 ms).
+          L'ajustement du <b>timeout</b> doit tenir compte de la nature de l'application. Un <b>timeout</b> trop court
+          peut provoquer
+          une lecture partielle de la chaîne, tandis qu'un <b>timeout</b> trop long peut ralentir la réactivité du
+          programme :
+        </p>
+        <ul>
+          <li><strong>Cas 1 : Transmission continue sans intermittence :</strong> <br>
+            Si la chaîne attendue est transmise sans interruption par l'émetteur distant (par exemple, un autre
+            microcontrôleur ou un module série), alors le <b>timeout</b> peut être ajusté en fonction de la vitesse de
+            transmission. Par exemple, à 9600 bauds, chaque caractère (10 bits avec start/stop) prend environ 1,04 ms à
+            transmettre. Dans ce cas, un timeout de 2 ms peut suffire (Si ne reçoit rien durant 2ms, c'est que la chaîne
+            est terminée) : <span class="CodeLine">Serial.setTimeout(2);</span>
+          </li>
+          <li><strong>Cas 2 : Transmission manuelle caractère par caractère</strong> <br>
+            Si la chaîne est saisie par un opérateur humain via un clavier (transmission caractère par caractère), il
+            faut prévoir un timeout plus long pour laisser à l'utilisateur le temps de taper l'ensemble du message.
+            Un timeout de 5 secondes (<span class="CodeLine">Serial.setTimeout(5000);</span>) semble raisonnable pour couvrir la plupart des cas
+            d'utilisation, y compris les saisies lentes ou hésitantes.
+          </li>
+        </ul>
+        <!-- =============================================================================================================== -->
         <h2 id="CONFLICT">Conflit sur le port série</h2>
         <p>Si on a un module branché sur le port série du Arduino (broches 0 et 1), on peut avoir un problème lors du
           téléversement d'un
@@ -564,8 +597,9 @@ void loop() {
 
         <!-- =============================================================================================== -->
         <h3 id="EX2">Exemple 2 : Contrôle d'une LED via le port série</h3>
-        <p>Ce programme permet de contrôler une LED en recevant des commandes via le port série. Les commandes "ON" et
-          "OFF" allument et éteignent la LED, respectivement.</p>
+        <p>Ce programme permet de contrôler une LED en recevant des commandes via le port série. La commande "ON" allume
+          la LED, la commande "OFF" éteint la LED. Le coté éloigné qui envoie les commandes doit les valider par un
+          "retour à la ligne" </p>
         <br>
         <div class="CodeAreaContainer">
           <div class="CodeAreaHeader">contrôler une LED<button class="CopyBtn" onclick="CopyCode(this)">Copier</button>
@@ -583,7 +617,7 @@ void setup() {
 void loop() {
   if (Serial.available() &gt; 0) {
     String command = Serial.readStringUntil('\n');
-    command.trim(); // Supprimer les espaces blancs en début et fin de chaîne
+    command.trim(); // Supprimer le '\r'
     
     if (command.equalsIgnoreCase("ON")) {
       digitalWrite(ledPin, HIGH);
@@ -601,7 +635,7 @@ void loop() {
         </div><br><br>
         <!-- =============================================================================================== -->
         <h3 id="EX3">Exemple 3 : Chaîne de commande avec paramètre entier</h3>
-        <p>Ce programme illustre une façon parmi d'autres de lire une commande constituée d'un mot clé suivi
+        <p>Ce programme illustre une façon parmi d'autres de lire une commande constituée d'un mot-clé suivi
           d'un paramètre numérique.
         </p>
         <p>la commande et le paramètre doivent être séparés d'au moins un espace</p>
@@ -612,30 +646,44 @@ void loop() {
               onclick="CopyCode(this)">Copier</button> </div>
           <pre>
             <code>
-void clearInputBuffer() {
-  do {
-    delay(2);
-    Serial.read();
-  } while (Serial.available());
-}
-
 void setup() {
   Serial.begin(9600);
-  Serial.setTimeout(5000);
+  Serial.setTimeout(5000); // en cas de saisie hésitante de la commande
 }
 
 void loop() {
   if (Serial.available()) {
-    String cmd = Serial.readStringUntil(' ');
-    int param = Serial.parseInt();
-    clearInputBuffer();
-    Serial.println("Commande:     --&gt;"+cmd+"&lt;--");
-    Serial.println("parametre:    --&gt;"+String(param)+"&lt;--");
+    String cmd = Serial.readStringUntil(' '); // Lecture de la commande jusqu'à l'espace
+    int param = Serial.parseInt();            // Lecture du paramètre entier
+    while (Serial.available()) Serial.read(); // Vidage du buffer pour éviter les résidus de fin de ligne
+
+    // Affichage de la commande et du paramètre reçus
+    Serial.println("Commande reçue  : --&gt;" + cmd + "&lt;--");
+    Serial.println("Paramètre reçu  : --&gt;" + String(param) + "&lt;--");
   }
 }
 </code>
 </pre>
-        </div><br><br>
+        </div><br>
+
+        <h4>Quelques indications sur le code :</h4>
+        <ul>
+          <li>Sur le dispositif émetteur (ex. : un terminal série), la commande est généralement validée par un
+            <i>retour à la ligne</i> , souvent encodé par les caractères de contrôle <b>\r \n</b>
+            On recevra donc quelque chose de la forme: <strong>"LEFT 125\r\n"</strong>
+          </li>
+          <li><strong>Serial.readStringUntil(' ')</strong> lit les caractères jusqu'au premier espace. On obtient ici
+            "LEFT"</li>
+          <li><strong>Serial.parseInt()</strong> lit ensuite les chiffres qui suivent et les convertit en entier (125
+            dans l'exemple)</li>
+          <li>Cette fonction <strong>parseInt()</strong> ne consomme pas les caractères de fin de ligne (\r et \n), qui
+            restent dans le
+            buffer. Si on ne les enlève pas, ils seront interprétés comme une future commande vide ou provoqueront des
+            lectures incorrectes, d'où la nécessité de vider le buffer de réception.</li>
+        </ul>
+
+
+        <br><br><br>
       </div>
     </div>
   </div>
