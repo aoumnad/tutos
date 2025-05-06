@@ -44,7 +44,7 @@
                     <h3>Exemple avec moniteur Série</h3>
                 </a>
                 <a href="#STEPPERLIB">
-                    <h3>La librairie stepper de Arduino-IDE</h3>
+                    <h3>La librairie Stepper de Arduino-IDE</h3>
                 </a>
                 <a href="#TB6600">
                     <h3>Le driver TB6600</h3>
@@ -396,112 +396,132 @@ void clearInputBuffer() {
                 </div><br><br>
                 <!-- ============================= Fin Code ================================================ -->
 
-                <h2 id="STEPPERLIB">La librairie stepper de Arduino-IDE</h2>
+                <h2 id="STEPPERLIB">La librairie Stepper de Arduino-IDE</h2>
                 <p>La librairie <em>Stepper</em> intégrée à l'IDE Arduino permet de contrôler facilement des moteurs
-                    pas-à-pas
-                    sans avoir besoin d'installer des bibliothèques externes. Voici ce qu'il faut savoir:</p>
+                    pas-à-pas sans avoir besoin d'installer des bibliothèques externes. Voici ce qu'il faut savoir:</p>
                 <ul>
-                    <li>Gère les moteurs <b>unipolaires</b> (avec un driver du type ULN2003) et les moteurs
-                        <b>bipolaires</b> (avec un
-                        driver du type L298N)</li>
-                    <li>Elle fonctionne seulement en mode couple fort: Les bobines sont alimentées deux par deux</li>
-                    <li><em>Pour le moteur unipolaire, il faut faire attention, les bobines ne sont pas alimentées dans
-                            le bon ordre. Si les
-                            bobines A, B, C, D sont connectée au broche 8, 9, 10, 11, dans le code il faut les déclarer
-                            dans l'ordre
-                            8, 10, 9, 11 comme on va le voir dans l'exemple</em></li>
-                </ul>
-                <p>Pour l'utiliser on a un constructeur et 2 méthodes:</p>
+                    <li>Gère les moteurs <b>unipolaires</b> (par exemple avec un driver du type ULN2003) et les moteurs
+                        <b>bipolaires</b> (par exemple avec un driver du type L298N)
+                    </li>
+                    <li>Le même code peut fonctionner avec un moteur unipolaire ou un moteur bipolaire. La conséquence
+                        et que le moteur unipolaire fonctionne seulement en mode couple fort: Les bobines sont
+                        alimentées deux par deux</li>
+
+                    <li>Pour le moteur unipolaire, il faut faire attention, les bobines doivent être connectées dans
+                        l'ordre A, C, B, D. Par exemple, si dans le code, on declare que le moteur est contrôlé par les
+                        sortie 8,
+                        9 , 10 , 11. il faut connecter le driver du moteur comme suit:
+                        <img src="IMAGES/StepperLIB_Unip.jpg" alt="">
+                    </li>
+                    <li>Pour le moteur bipolaire, on utilise un branchement normal
+                        <img src="IMAGES/StepperLib_BipL298.jpg" alt="">
+                    </li>
+                </ul><br>
+                <h3>Utilisation de la librairie</h3>
+                <p>La librairie est facile à utiliser. On a un constructeur pour créer un objet qui contrôle le moteur
+                    et deux fonctions et 2 fonctions pour l'actionner:</p>
                 <ul>
                     <li><b>Constructeur :</b> Permet de créer un objet (cpp) pour controller un moteur <br>
-                        <span class="Enhanced">Stepper mystepper(stepsPerRevolution, pin1, pin3, pin2, pin4); </span><br>
-                    <strong>Exemple :</strong><br>
-                    Pour un moteur 200 pas connecté aux broches 8, 9, 10, 11 :
-                    <pre>
-<code>Stepper myStepper(200, 8, 10, 9, 11);</code>
+                        <span class="Enhanced">Stepper mystepper(stepsPerRevolution, pin1, pin3, pin2, pin4);
+                        </span><br>
+                        <strong>Exemple :</strong><br>
+                        Pour un moteur 200 (unipolaire ou bipolaire) pas contrôlé par les sorties 8, 9, 10, 11 :
+                        <pre>
+<code>Stepper myStepper(200, 8, 9, 10, 11);</code>
                     </pre>
                     </li>
                     <li><em>setSpeed(rpm) :</em> Permet de définir la vitesse de rotation en tour par minute <br>
-                    <strong>Exemple :</strong>
-                <pre>
+                        <strong>Exemple :</strong>
+                        <pre>
 <code>myStepper.setSpeed(15); // 15 tours par minute</code>
-                </pre></li>
-                <li><em>step(N)</em> Fait tourner le moteur de N pas <br>
-                    <strong>Exemple :</strong>
-                <pre>
+                </pre>
+                    </li>
+                    <li><em>step(N)</em> Fait tourner le moteur de N pas <br>
+                        <strong>Exemple :</strong>
+                        <pre>
 <code>myStepper.step(100);  // avancer de 100 pas
 myStepper.step(-100);  // reculer de 100 pas   
 </code>
-                </pre></li>
+                </pre>
+                    </li>
                 </ul>
 
-                <h3>Exemple pour le moteur </h3>
+                <h3>Exemple de code pour un moteur 200 pas </h3>
+                <p>Ce code fonctionne pour un moteur unipolaire ou un moteur bipolaire. Les branchement diffèrent selon
+                    le type du moteur. Voir images plus haut. Faire attention avec le moteur unipolaire (Ordre A, C, B, D)</p>
                 <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">Fréquences PWM pour Arduino UNO<button class="CopyBtn"
+                    <div class="CodeAreaHeader">Moteur 200 pas Unipolaire ou Bipolaire<button class="CopyBtn"
                             onclick="CopyCode(this)">Copier</button> </div>
                     <pre>
 <code>#include &lt;Stepper.h&gt;
-// Déclaration du moteur (ordre des pins important)
-Stepper myStepper(2048, 8, 10, 9, 11); // ULN2003 branché sur pins 8, 9, 10, 11
+// Déclaration du moteur
+Stepper myStepper(200, 8, 9, 10, 11);
 
 void setup() {
     myStepper.setSpeed(15); // 15 tours/minute
 }
 
 void loop() {
-    myStepper.step(2048);   // Tour complet dans un sens
+    myStepper.step(200);   // Tour complet dans un sens
     delay(1000);
-    myStepper.step(-2048);  // Tour complet dans l'autre sens
+    myStepper.step(-200);  // Tour complet dans l'autre sens
     delay(1000);
 }</code></pre><br><br>
 
-                <h2 id="TB6600">Le driver TB6600</h2>
-                <img src="IMAGES/TB6600.jpg" alt="">
-                <ul>
-                    <li>Driver de puissance pour moteurs pas à pas bipolaires (2 phases) avec une tension de
-                        fonctionnement de 9V à 42V et un courant jusqu'à 4.5A.</li>
-                    <li>Permet de faire du Microstepping. On peut faire avancer le moteur d'un pas, 1/2 pas, 1/4 pas,
-                        1/8 pas, 1/16 pas ou 1/32 pas ce qui permet d'obtenir un mouvement plus fluide </li>
-                    <li>Compatible avec des signaux de contrôle 3.3V et 5V, ce qui le rend facile à interfacer avec des
-                        microcontrôleurs</li>
-                </ul>
-                <h3>Branchement :</h3>
-                <img src="IMAGES/TB6600_Branchement.jpg" alt="">
-                <p>Dans le schéma proposé :</p>
-                <ul>
-                    <li>L'entrée de validation (EN) n'est pas branchée. Le module est validé par défaut</li>
-                    <li>Les entrées Pulse (PUL) et Direction (DIR) sont connectée en mode Anode commune : Les entré (+)
-                        sont reliée à 5V et la commande se fait par les entrée (-), (Commande par niveau bas)</li>
-                    <li>Pour le branchement du moteur, les couleurs proposées sont assez communes mais non standard.
-                        Verifier les phases de votre moteur</li>
-                </ul><br>
+                    <h2 id="TB6600">Le driver TB6600</h2>
+                    <img src="IMAGES/TB6600.jpg" alt="">
+                    <ul>
+                        <li>Driver de puissance pour moteurs pas à pas bipolaires (2 phases) avec une tension de
+                            fonctionnement de 9V à 42V et un courant jusqu'à 4.5A.</li>
+                        <li>Permet de faire du Microstepping. On peut faire avancer le moteur d'un pas, 1/2 pas, 1/4
+                            pas,
+                            1/8 pas, 1/16 pas ou 1/32 pas ce qui permet d'obtenir un mouvement plus fluide </li>
+                        <li>Compatible avec des signaux de contrôle 3.3V et 5V, ce qui le rend facile à interfacer avec
+                            des
+                            microcontrôleurs</li>
+                    </ul>
+                    <h3>Branchement :</h3>
+                    <img src="IMAGES/TB6600_Branchement.jpg" alt="">
+                    <p>Dans le schéma proposé :</p>
+                    <ul>
+                        <li>L'entrée de validation (EN) n'est pas branchée. Le module est validé par défaut</li>
+                        <li>Les entrées Pulse (PUL) et Direction (DIR) sont connectée en mode Anode commune : Les entré
+                            (+)
+                            sont reliée à 5V et la commande se fait par les entrée (-), (Commande par niveau bas)</li>
+                        <li>Pour le branchement du moteur, les couleurs proposées sont assez communes mais non standard.
+                            Verifier les phases de votre moteur</li>
+                    </ul><br>
 
-                <h3>Fonctionnement :</h3>
-                <ul>
-                    <li>Positionner les switches S1, S2 et S3 pour choisir le microstep désiré. Augmenter le nombre de
-                        microsteps améliore la fluidité du mouvement mais diminue le couple
-                        <img src="IMAGES/TB6600_Microsteps.jpg" alt="">
-                        Le nombre de pulses par tour (Pulse/rev) proposé dans le tableau correspond à un moteur 200 pas
-                    </li>
-                    <li>La broche DIR permet de choisir la direction de rotation</li>
-                    <li>Chaque impulsion sur l'entrée PUL fait avancer le moteur d'un microstep
-                        <img src="IMAGES/TB6600_PUL_signal.jpg" alt="">
-                        Pour augmenter la vitesse, on augmente la fréquence ce qui diminue la largeur de l'impulsion. La
-                        largeur min supportée par le module est 2.5µs ce qui donne une fréquence max: fmax =
-                        1/(2&times;2.5µs)=200kHz
-                    </li>
-                    <li>Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
-                        rapport de Microstepping et de la fréquence des impulsions
-                        <img src="IMAGES/TB6600_vitesses_Tab1.jpg" alt="">
-                    </li>
-                    <li>On peut générer un signal carré sur les sorties pwm de l'Arduino à l'aide de l'instruction
-                        <strong>analogWrite(127)</strong>. Pour fixer la fréquence, il faut ajouter une des lignes
-                        ci-dessous au début du programme
-                        <!-- =========================== Code ========================================================= -->
-                        <div class="CodeAreaContainer">
-                            <div class="CodeAreaHeader">Fréquences PWM pour Arduino UNO<button class="CopyBtn"
-                                    onclick="CopyCode(this)">Copier</button> </div>
-                            <pre><code>// For Arduino Uno, Nano, Micro Magician, Mini Driver, Lilly Pad and any other board using ATmega 8, 168 or 328
+                    <h3>Fonctionnement :</h3>
+                    <ul>
+                        <li>Positionner les switches S1, S2 et S3 pour choisir le microstep désiré. Augmenter le nombre
+                            de
+                            microsteps améliore la fluidité du mouvement mais diminue le couple
+                            <img src="IMAGES/TB6600_Microsteps.jpg" alt="">
+                            Le nombre de pulses par tour (Pulse/rev) proposé dans le tableau correspond à un moteur 200
+                            pas
+                        </li>
+                        <li>La broche DIR permet de choisir la direction de rotation</li>
+                        <li>Chaque impulsion sur l'entrée PUL fait avancer le moteur d'un microstep
+                            <img src="IMAGES/TB6600_PUL_signal.jpg" alt="">
+                            Pour augmenter la vitesse, on augmente la fréquence ce qui diminue la largeur de
+                            l'impulsion. La
+                            largeur min supportée par le module est 2.5µs ce qui donne une fréquence max: fmax =
+                            1/(2&times;2.5µs)=200kHz
+                        </li>
+                        <li>Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en
+                            fonction du
+                            rapport de Microstepping et de la fréquence des impulsions
+                            <img src="IMAGES/TB6600_vitesses_Tab1.jpg" alt="">
+                        </li>
+                        <li>On peut générer un signal carré sur les sorties pwm de l'Arduino à l'aide de l'instruction
+                            <strong>analogWrite(127)</strong>. Pour fixer la fréquence, il faut ajouter une des lignes
+                            ci-dessous au début du programme
+                            <!-- =========================== Code ========================================================= -->
+                            <div class="CodeAreaContainer">
+                                <div class="CodeAreaHeader">Fréquences PWM pour Arduino UNO<button class="CopyBtn"
+                                        onclick="CopyCode(this)">Copier</button> </div>
+                                <pre><code>// For Arduino Uno, Nano, Micro Magician, Mini Driver, Lilly Pad and any other board using ATmega 8, 168 or 328
 //-------------- fréquences PWM sur les broches D5 &amp; D6 -------------------------------
 TCCR0B = TCCR0B &amp; B11111000 | B00000001;    // f = 62500.00 Hz, 	T = 0.016ms
 TCCR0B = TCCR0B &amp; B11111000 | B00000010;    // f = 7812.50 Hz, 	T = 0.128ms
@@ -526,21 +546,23 @@ TCCR2B = TCCR2B &amp; B11111000 | B00000110;    // f = 122.55 Hz,	T = 8.16ms
 TCCR2B = TCCR2B &amp; B11111000 | B00000111;    // f = 30.64 Hz,		T = 32.637ms
 
 </code></pre>
-                        </div><br>
-                        <!-- ============================= Fin Code ================================================ -->
-                        Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en fonction du
-                        rapport de Microstepping et de la fréquence des impulsions que l'on peut générer sur les sorties
-                        PWM de l'Arduino UNO <br><br>
-                        <img src="IMAGES/TB6600_vitesses_Tab2.jpg" alt="">
+                            </div><br>
+                            <!-- ============================= Fin Code ================================================ -->
+                            Le tableau ci dessous donne la vitesse de rotation en tours/s d'un moteur 200 pas en
+                            fonction du
+                            rapport de Microstepping et de la fréquence des impulsions que l'on peut générer sur les
+                            sorties
+                            PWM de l'Arduino UNO <br><br>
+                            <img src="IMAGES/TB6600_vitesses_Tab2.jpg" alt="">
 
 
-                    </li>
-                </ul><br>
-                <!-- =========================== Code ========================================================= -->
-                <div class="CodeAreaContainer">
-                    <div class="CodeAreaHeader">Exemple de test<button class="CopyBtn"
-                            onclick="CopyCode(this)">Copier</button> </div>
-                    <pre><code>/*
+                        </li>
+                    </ul><br>
+                    <!-- =========================== Code ========================================================= -->
+                    <div class="CodeAreaContainer">
+                        <div class="CodeAreaHeader">Exemple de test<button class="CopyBtn"
+                                onclick="CopyCode(this)">Copier</button> </div>
+                        <pre><code>/*
  * Test du module TB6600
  * moteur 200 pas
  * microstep = 1
@@ -576,14 +598,14 @@ void setup() {
 
 void loop() {
 }</code></pre>
-                </div><br>
-                <!-- ============================= Fin Code ================================================ -->
+                    </div><br>
+                    <!-- ============================= Fin Code ================================================ -->
 
 
-                <br><br><br><br>
+                    <br><br><br><br>
+                </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
